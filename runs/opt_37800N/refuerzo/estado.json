@@ -150,11 +150,11 @@
    "padre": "R1.1",
    "semilla": 54,
    "tipo": "fina",
-   "L": 0.2,
+   "L": 0.1,
    "L0": 0.1,
    "succ": 0,
-   "fail": 3,
-   "n": 20,
+   "fail": 0,
+   "n": 21,
    "best": {
     "score": [
      0,
