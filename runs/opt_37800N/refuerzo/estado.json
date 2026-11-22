@@ -82,9 +82,9 @@
    "tipo": "fina",
    "L": 0.025,
    "L0": 0.1,
-   "succ": 1,
-   "fail": 0,
-   "n": 12,
+   "succ": 0,
+   "fail": 1,
+   "n": 13,
    "best": {
     "score": [
      0,
