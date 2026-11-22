@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 15.2637,
+  "w_bar": 21.9902,
+  "phi_end": 50.8603,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 40.0,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.0,
+  "t_lug": 10.377,
+  "r_f": 7.0
+ },
+ "motivo": "[rama C1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia t_lug",
+ "pred": {
+  "mass_kg": 2.47477903127973,
+  "stress_mpa": 446.32001944297895,
+  "p_cumple": 1.1827337653469305e-232,
+  "paso": 0.6,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.053457586794427185,
+   "w_bar": 0.05385763644762412,
+   "phi_end": 0.044665789756265714,
+   "H": 0.22605743151734903,
+   "W_top": 0.04182895840425942,
+   "W_bot": 0.03801554662723803,
+   "x_box": 0.05952612937385731,
+   "g_end": 0.20762624349913855,
+   "t_w": 0.08215454883526854,
+   "e_lug": 0.08467514099287111,
+   "t_lug": 0.05294137034648744,
+   "r_f": 0.05519361740521339
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "C1",
+ "fecha": "2026-11-22T21:41:38.265967"
+}
