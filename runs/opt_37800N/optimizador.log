@@ -8752,3 +8752,9 @@
 [00:39:38]   [4/5] resultados
 [00:39:38]   [5/5] imagenes
 [00:39:40]   RESULTADO: masa 2.413 kg | tension 212.1 MPa (bruta 808) | NO cumple
+[00:39:51] [Refuerzo + vaciado] DISENO 099  |  mejor global: 2.428 kg (Refuerzo + vaciado #085)
+[00:39:51]   motivo: [rama RX1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia r_cut
+[00:39:51]   el modelo predice: masa 2.487 kg | tension 313 MPa | P(cumplir) 0.03
+[00:39:58]   (GitHub: subido)
+[00:40:00]   geometria IDENTICA al diseno 097 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[00:40:00]   RESULTADO: masa 2.483 kg | tension 286.4 MPa (bruta 747) | NO cumple
