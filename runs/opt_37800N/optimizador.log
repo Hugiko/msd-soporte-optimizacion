@@ -1629,3 +1629,9 @@
 [21:29:57]   [4/5] resultados
 [21:29:57]   [5/5] imagenes
 [21:29:58]   RESULTADO: masa 2.232 kg | tension 468.4 MPa (bruta 873) | NO cumple
+[21:30:02] [Vaciado del original] DISENO 017  |  mejor global: aun ninguno valido
+[21:30:02]   motivo: [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia cav_s0, cav_z0
+[21:30:02]   el modelo predice: masa 2.410 kg | tension 216 MPa | P(cumplir) 0.23
+[21:30:03]   (GitHub: subido)
+[21:30:06]   geometria IDENTICA al diseno 001 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[21:30:06]   RESULTADO: masa 2.423 kg | tension 212.9 MPa (bruta 863) | NO cumple
