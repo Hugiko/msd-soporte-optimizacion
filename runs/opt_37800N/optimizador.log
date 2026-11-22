@@ -3281,3 +3281,10 @@
 [22:10:44]   [4/5] resultados
 [22:10:44]   verificacion (malla fina, 110103 nodos): 188.1 MPa, 0.129 mm -> NO se confirma: no se acepta como nuevo mejor
 [22:10:45]   RESULTADO: masa 2.512 kg | tension 180.4 MPa (bruta 755) | casi (hasta +10 %)
+[22:10:53]   (GitHub: subido)
+[22:10:54] [Diseno desde cero] DISENO 030  |  mejor global: 2.515 kg (Refuerzo + vaciado #027)
+[22:10:54]   motivo: [rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia w_bar
+[22:10:54]   el modelo predice: masa 2.246 kg | tension 406 MPa | P(cumplir) 0.00
+[22:10:55]   geometria IDENTICA al diseno 027 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[22:10:55]   RESULTADO: masa 2.248 kg | tension 391.8 MPa (bruta 924) | NO cumple
+[22:10:56] Limpieza automatica: liberados 224 MB (disenos antiguos ya superados)
