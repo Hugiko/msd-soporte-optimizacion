@@ -1,0 +1,2 @@
+﻿familia;rama;iter;fecha;motivo;params;masa_kg;tension_MPa;tension_bruta_MPa;desp_max_mm;cumple;categoria;pred_masa_kg;pred_tension_MPa;pred_P_cumple;paso;nodos;tiempo_s;estado;error
+vaciado;V0;1;2026-11-22 20:38;reparto inicial (Sobol 1/12): explorar todo el espacio;cav_s0=30.0 cav_len=10.0 cav_a=8.0 cav_z0=12.0 cav_z1=12.0 trim_s0=75.0 trim_z=45.0 trim_ang=0.0 trim_a=20.0 r_cut=4.0 R_pocket=10.54;2,4234;212,9304;862,7947;0,1292;False;descartado;;;;;80282;41,9000;ok;
