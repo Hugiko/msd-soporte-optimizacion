@@ -1,0 +1,92 @@
+{
+ "status": "ok",
+ "params": {
+  "cav_s0": 29.3884,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 12.0,
+  "cav_z1": 12.0212,
+  "trim_s0": 58.5018,
+  "trim_z": 38.1779,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.1348,
+  "R_pocket": 10.54,
+  "t_col_del": 4.9472,
+  "t_col_tra": 2.7138,
+  "z_col": 21.9151
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 2.4857303454061204,
+ "volume_cad_mm3": 316653.54718549305,
+ "hueco": false,
+ "clamped": [
+  "hueco acortado 10.0->3.0 mm (techo a 45 para impresion 3D)",
+  "hueco estrechado 16.0->3.0 mm (techo a 45 para impresion 3D)",
+  "hueco demasiado pequeno -> no se hace"
+ ],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "fidelidad": "normal",
+ "mesh_h": 4.0,
+ "mesh_algo": 10,
+ "mesh_retries": [],
+ "solve_s": 34.08365225791931,
+ "n_nodes": 85694,
+ "n_elems": 49940,
+ "nodes_per_bolt": [
+  169,
+  180,
+  160,
+  160
+ ],
+ "nodes_per_lug": [
+  176,
+  172
+ ],
+ "volume_mm3": 318226.883,
+ "mass_kg": 2.49808103155,
+ "reaction": [
+  -37782.5866,
+  -1147.22906,
+  2.09547579e-07
+ ],
+ "reaction_err_pct": 6.969090962606108e-07,
+ "vm_max_raw": 816.8467,
+ "vm_p999": 425.3593925000104,
+ "u_max": 0.12572728846042858,
+ "ux_max": 0.1033476,
+ "uy_max": 0.01063921,
+ "uz_max": 0.08758623,
+ "vm_max_raw_xyz": [
+  54.75960489856883,
+  -2.80462270836537,
+  0.634999919129414
+ ],
+ "vm_metric": 183.591,
+ "vm_metric_xyz": [
+  -1.2035739666749699,
+  -58.534298570273336,
+  57.428415352359316
+ ],
+ "vm_metric_p999": 164.07342700000038,
+ "vm_ex_b0_p0": 816.8467,
+ "vm_ex_b3_p0": 336.7421,
+ "vm_ex_b5_p0": 336.7421,
+ "vm_ex_b3_p2": 214.2699,
+ "vm_ex_b8_p2": 183.591,
+ "fs_metric": 1.1710813710911754,
+ "total_s": 50.72833800315857,
+ "verif_vm": 187.2808,
+ "verif_u": 0.1298363998770395,
+ "verif_nodes": 110151,
+ "verif_ok": false,
+ "galeria": "galeria/20261122_221453_refuerzo_032_CASI_2.498kg.jpg"
+}
