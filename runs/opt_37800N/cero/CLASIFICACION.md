@@ -1,6 +1,6 @@
 # Diseno desde cero: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 23:32
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 23:41
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -12,7 +12,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 23:32
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (41)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (42)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -57,6 +57,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 23:32
 | 039 | 2.263 | 404.1 | [rama C1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.15); cambia R_pocket | [ver](039/vonmises.png) |
 | 040 | 2.258 | 388.7 | [rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.07); cambia R_pocket | [ver](040/vonmises.png) |
 | 041 | 2.250 | 393.0 | [rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.07); cambia R_pocket, t_lug, r_f | [ver](041/vonmises.png) |
+| 042 | 2.256 | 415.9 | [rama C1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.07); cambia R_pocket | [ver](042/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 
