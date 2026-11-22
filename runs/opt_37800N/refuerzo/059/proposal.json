@@ -1,0 +1,24 @@
+{
+ "params": {
+  "cav_s0": 19.395,
+  "cav_len": 56.3084,
+  "cav_a": 19.8568,
+  "cav_z0": 5.019,
+  "cav_z1": 37.4607,
+  "trim_s0": 41.091,
+  "trim_z": 11.1026,
+  "trim_ang": 28.7436,
+  "trim_a": 48.3251,
+  "r_cut": 3.8179,
+  "R_pocket": 11.919,
+  "t_col_del": 7.8402,
+  "t_col_tra": 3.0541,
+  "z_col": 13.1623
+ },
+ "motivo": "aleatorio (respaldo)",
+ "pred": null,
+ "fase": "respaldo",
+ "familia": "refuerzo",
+ "rama": "R1.1.1",
+ "fecha": "2026-11-22T23:20:49.595345"
+}
