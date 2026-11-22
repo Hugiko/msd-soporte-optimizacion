@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 30.0,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 12.0,
+  "cav_z1": 12.0,
+  "trim_s0": 75.0,
+  "trim_z": 44.5306,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.0,
+  "R_pocket": 10.54,
+  "t_col_del": 6.6213,
+  "t_col_tra": 3.996,
+  "z_col": 22.0
+ },
+ "motivo": "[rama R1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia t_col_del",
+ "pred": {
+  "mass_kg": 2.538667364017759,
+  "stress_mpa": 177.54694141792672,
+  "p_cumple": 0.9999859819509627,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.09908192703423745,
+   "cav_len": 0.04019099631430533,
+   "cav_a": 0.14157708471895675,
+   "cav_z0": 0.11671860523142728,
+   "cav_z1": 0.06443582518155541,
+   "trim_s0": 0.06211430220843917,
+   "trim_z": 0.04018388064438315,
+   "trim_ang": 0.04112569718421563,
+   "trim_a": 0.04299191845976015,
+   "r_cut": 0.07304764823292818,
+   "R_pocket": 0.08571314161556437,
+   "t_col_del": 0.030041020119629624,
+   "t_col_tra": 0.0733533410695425,
+   "z_col": 0.0894246119850551
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "R1",
+ "fecha": "2026-11-22T21:39:58.067244"
+}

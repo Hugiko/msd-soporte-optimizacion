@@ -24,7 +24,7 @@ classDef activa fill:#d6eaff,stroke:#1f6fb5,color:#000
 classDef fin fill:#eeeeee,stroke:#888,color:#000
 classDef mejor fill:#c8f0c0,stroke:#1a9850,stroke-width:4px,color:#000
 R0["R0 - reparto inicial<br/>12 pruebas<br/>aun sin validos; el mas cercano 179 MPa (#001)"]:::fin
-R1["R1 - inicial, paso 0.30<br/>8 pruebas<br/>aun sin validos; el mas cercano 178 MPa (#017)"]:::activa
+R1["R1 - inicial, paso 0.30<br/>9 pruebas<br/>aun sin validos; el mas cercano 178 MPa (#017)"]:::activa
 R0 --> R1
 ```
 
