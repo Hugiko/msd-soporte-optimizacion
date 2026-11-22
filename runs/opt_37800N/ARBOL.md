@@ -24,9 +24,9 @@ classDef activa fill:#d6eaff,stroke:#1f6fb5,color:#000
 classDef fin fill:#eeeeee,stroke:#888,color:#000
 classDef mejor fill:#c8f0c0,stroke:#1a9850,stroke-width:4px,color:#000
 R0["R0 - reparto inicial<br/>12 pruebas<br/>aun sin validos; el mas cercano 179 MPa (#001)"]:::fin
-R1["R1 - inicial, paso 0.30<br/>30 pruebas<br/>mejor: 2.493 kg, 183 MPa (#039)"]:::mejor
+R1["R1 - inicial, paso 0.30<br/>30 pruebas<br/>mejor: 2.493 kg, 183 MPa (#039)"]:::fin
 R0 --> R1
-R1_1["R1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R1_1["R1.1 - fina, paso 0.10<br/>1 pruebas<br/>mejor: 2.494 kg, 180 MPa (#043)"]:::mejor
 R1 --> R1_1
 R1_2["R1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1 --> R1_2
