@@ -1318,3 +1318,10 @@
 [21:07:41] [cero] reparto inicial terminado: la rama C1 arranca del diseno 009
 [21:07:42]   RESULTADO: masa 1.636 kg | tension 1656.4 MPa (bruta 1941) | NO cumple
 [21:07:42] [vaciado] aprendiendo masa(x) con 48 geometrias rapidas (sin ANSYS); hechas 0
+[21:07:52]   (GitHub: subido)
+[21:13:18] [Vaciado del original] DISENO 013  |  mejor global: aun ninguno valido
+[21:13:18]   motivo: [rama V1] [aun sin disenos validos] rama nueva (inicial, paso 0.30) desde el diseno 001; cambia cav_z0, cav_z1, trim_z
+[21:13:18]   el modelo predice: masa 2.425 kg | tension 210 MPa | P(cumplir) 0.26
+[21:13:22]   geometria IDENTICA al diseno 001 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[21:13:23]   RESULTADO: masa 2.423 kg | tension 212.9 MPa (bruta 863) | NO cumple
+[21:13:23] [refuerzo] aprendiendo masa(x) con 48 geometrias rapidas (sin ANSYS); hechas 0
