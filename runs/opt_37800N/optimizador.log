@@ -8391,3 +8391,10 @@
 [00:30:46]   [4/5] resultados
 [00:30:46]   [5/5] imagenes
 [00:30:48]   RESULTADO: masa 2.410 kg | tension 211.7 MPa (bruta 861) | NO cumple
+[00:30:55] [Refuerzo + vaciado] DISENO 093  |  mejor global: 2.428 kg (Refuerzo + vaciado #085)
+[00:30:55]   motivo: [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia cav_a, trim_s0, z_col
+[00:30:55]   el modelo predice: masa 2.350 kg | tension 382 MPa | P(cumplir) 0.07
+[00:30:59]   (GitHub: subido)
+[00:31:01]   [1/5] geometria parametrica (cadquery)
+[00:31:03]   !! fallo en geometria: ValueError: Null TopoDS_Shape object
+[00:31:04]   RESULTADO: FALLO (geom_fail): ValueError: Null TopoDS_Shape object -> se penaliza y se sigue
