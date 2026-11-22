@@ -14,7 +14,7 @@ classDef mejor fill:#c8f0c0,stroke:#1a9850,stroke-width:4px,color:#000
 V0["V0 - reparto inicial<br/>12 pruebas<br/>aun sin validos; el mas cercano 213 MPa (#001)"]:::fin
 V1["V1 - inicial, paso 0.30<br/>30 pruebas<br/>aun sin validos; el mas cercano 194 MPa (#031)"]:::fin
 V0 --> V1
-V1_1["V1.1 - fina, paso 0.10<br/>7 pruebas<br/>aun sin validos; el mas cercano 194 MPa (#031)"]:::activa
+V1_1["V1.1 - fina, paso 0.10<br/>8 pruebas<br/>aun sin validos; el mas cercano 194 MPa (#031)"]:::activa
 V1 --> V1_1
 V1_2["V1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 V1 --> V1_2
@@ -46,7 +46,7 @@ R1_1_1_2["R1.1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::
 R1_1_1 --> R1_1_1_2
 R1_1_1_3["R1.1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1_1 --> R1_1_1_3
-RX1["RX1 - exploradora, paso 0.30<br/>1 pruebas<br/>aun sin validos; el mas cercano 308 MPa (#089)"]:::activa
+RX1["RX1 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 308 MPa (#089)"]:::activa
 R0 --> RX1
 ```
 
