@@ -8,7 +8,7 @@ Este documento resume todo lo hecho hasta el 22/11/2026: el problema, las decisi
 
 ## 1. Resumen en una frase
 
-Hemos construido un programa que **genera piezas automáticamente, las calcula en ANSYS, aprende de cada resultado y se va acercando al soporte con el mejor compromiso entre masa y seguridad** que cumple los límites (σ ≤ 215 MPa y desplazamiento ≤ 0,25 mm), sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón. Funciona solo durante horas y lo publica todo en GitHub y en Discord.
+Hemos construido un programa que **genera piezas automáticamente, las calcula en ANSYS, aprende de cada resultado y se va acercando al soporte más ligero** que cumple un **coeficiente de seguridad mínimo de 1,15** (σ ≤ 187 MPa) y un desplazamiento ≤ 0,25 mm, sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón. Funciona solo durante horas y lo publica todo en GitHub y en Discord.
 
 ---
 
@@ -29,10 +29,10 @@ Hemos construido un programa que **genera piezas automáticamente, las calcula e
 | **Dirección** | Horizontal, perpendicular al bulón, en **−X** del STEP | En 0.stp, Z es vertical, Y es el eje del bulón y X la horizontal perpendicular. Con el reparto RBE3, el sentido no cambia la tensión de von Mises |
 | **Apoyo** | Empotramiento de las **superficies cilíndricas de los 4 agujeros de los pernos** | Son las «fixed support interfaces» de la Fig. 3. Empotrar toda la base sería pegarla al suelo y daría tensiones irrealmente bajas |
 | **Aplicación de la carga** | RBE3 desde un nodo piloto, en el punto medio entre orejetas, a las superficies de los 2 agujeros del bulón | Mismo esquema que SimJEB; sin cargas puntuales |
-| **Tensión admisible** | **215 MPa** (σadm = σy, sin margen) | El enunciado no da otra. El 0,9 que se usó al principio venía del prompt, no del enunciado |
+| **Tensión admisible** | **Coeficiente de seguridad ≥ 1,15** sobre σy, es decir, **σ ≤ 187 MPa** | El enunciado pide no superar σadm (215 MPa). Al ser una pieza aeronáutica con orejetas y uniones atornilladas, se aplica el factor de herraje de 1,15 de la normativa de aviones de transporte (CS/FAR 25.625). Cubre además la incertidumbre de la malla (~8 %). Con 1,00 se vuelve a 215 MPa |
 | **Desplazamiento** | **≤ 0,25 mm** (≈ 2 × el original, 0,129 mm) | No lo exige el enunciado. Se añade para evitar piezas ligeras pero blandas |
 | **Impresión 3D** | Reglas de fabricación aditiva **activadas** | El enunciado no la exige para nosotros (esa frase se refiere al concurso de 2013), pero el original está pensado para ella. Decisión de diseño propia |
-| **Cuándo una pieza es «mejor»** | Menor **puntuación = masa × aprovechamiento^0,5** | Compromiso entre masa y coeficiente de seguridad, pedido por el grupo (ver §6.4) |
+| **Cuándo una pieza es «mejor»** | Menor **puntuación = masa × aprovechamiento^0,15** | En aviación la seguridad se exige (mínimo 1,15) y, por encima de ese mínimo, manda la masa; la seguridad solo desempata (ver §6.4) |
 
 ---
 
@@ -151,16 +151,19 @@ Fuentes en `docs/fabricacion_aditiva.md` (ISO/ASTM 52911-1:2019, NASA, Cambridge
 El objetivo pasa a ser **reducir el incumplimiento** (el mayor de tensión/límite y desplazamiento/límite) hasta conseguir una pieza válida. Después, mejorar la puntuación.
 
 ### 6.4 Cuándo una pieza es «mejor»
-**Puntuación = masa × aprovechamiento^p** (menor = mejor):
-- **aprovechamiento** = max(σ / 215 MPa; u / 0,25 mm) = 1 / coeficiente de seguridad;
-- **p = 0,5** (`peso_seguridad`): un 1 % menos de masa vale lo mismo que un 2 % menos de tensión. Con p = 0 se vuelve al criterio literal del enunciado (solo masa).
-- Los límites son **obligatorios**: la puntuación solo ordena las piezas válidas.
+Criterio de pieza aeronáutica: **la seguridad se exige, no se premia**. Una vez cumplido el mínimo, cada gramo de más es peso muerto.
+- **Requisito obligatorio**: coeficiente de seguridad ≥ **1,15** sobre σy (factor de herraje de CS/FAR 25.625), es decir, σ ≤ 187 MPa, y desplazamiento ≤ 0,25 mm.
+- **Entre piezas válidas**: menor **puntuación = masa × aprovechamiento^p**, con aprovechamiento = max(σ/187 MPa; u/0,25 mm).
+- **p = 0,15** (`peso_seguridad`): un 1 % de masa equivale a un ~7 % de tensión, así que manda la masa y la seguridad solo desempata entre piezas casi iguales. Con p = 0, solo masa.
+- El coeficiente de seguridad que muestran el panel, Discord y las fichas es siempre **215 MPa / σ**.
 
-| Pieza (pruebas) | Masa | Coef. seguridad | Puntuación |
-|---|---|---|---|
-| Original | 2,423 kg | 1,01 | 2,411 |
-| Vaciado n.º 4 | 2,420 kg | 1,01 | 2,408 |
-| Refuerzo n.º 5 | 2,543 kg | 1,21 | **2,307** |
+| Pieza (pruebas) | Masa | Coef. seguridad (215/σ) | ¿Cumple ≥ 1,15? | Puntuación |
+|---|---|---|---|---|
+| Original | 2,423 kg | 1,01 | **No** | — |
+| Refuerzo n.º 5 | 2,543 kg | 1,21 | Sí | **2,522** (mejor) |
+| Refuerzo n.º 6 | 2,563 kg | 1,27 | Sí | 2,524 |
+
+Antes se usó p = 0,5 sin mínimo; se descartó porque premiaba demasiado la seguridad para una pieza de avión (el refuerzo, 120 g más pesado, ganaba al original).
 
 ---
 
@@ -224,9 +227,9 @@ El objetivo pasa a ser **reducir el incumplimiento** (el mayor de tensión/lími
 | Ajuste | Valor | Para qué |
 |---|---|---|
 | `carga_N` | 37800 | 42258 para la Tabla 2 (resultados en carpeta propia) |
-| `sigma_y_MPa` / `margen_optimizacion` | 215 / 1,00 | Límite de tensión |
+| `sigma_y_MPa` / `margen_optimizacion` | 215 / 0,8696 | Límite = 215 × 0,8696 = 187 MPa (coef. seguridad ≥ 1,15); 1,00 = 215 MPa |
 | `desplazamiento_max_mm` | 0,25 | 0 = sin límite |
-| `peso_seguridad` | 0,5 | Compromiso masa-seguridad (0 = solo masa) |
+| `peso_seguridad` | 0,15 | Peso de la seguridad entre piezas válidas (0 = solo masa) |
 | `familias` | vaciado, refuerzo, cero | Familias activas |
 | `presupuesto_por_familia` | 300 | Diseños máximos por familia |
 | `pruebas_por_rama` / `rama_exploradora_cada` | 30 / 3 | Árbol de ramas |
@@ -271,7 +274,7 @@ Trabajo/
 ---
 
 ## 11. Hallazgos importantes hasta ahora
-1. **El original está en el límite** con la carga de 37,8 kN: 212,9 MPa con la malla de optimización (195,2 MPa con malla fina), coeficiente de seguridad ≈ 1,0–1,1.
+1. **El original está en el límite** con la carga de 37,8 kN: 212,9 MPa con la malla de optimización (195,2 MPa con malla fina), coeficiente de seguridad ≈ 1,0–1,1. **No cumple el mínimo de 1,15** exigido a una pieza aeronáutica.
 2. **Su punto crítico** está en el fondo del alojamiento del tornillo delantero. Ahí manda la combinación del alojamiento con las cavidades interiores.
 3. **Vaciar sin reforzar apenas da margen** (−0,35 % de masa): casi cualquier corte grande supera el límite.
 4. **Reforzar ese punto con un collar** baja el pico a 181 MPa y abre margen para vaciar el resto.

@@ -3,16 +3,16 @@
   "carga_N": 37800,
   "_carga_opciones": "37800 = caso Horizontal de la Fig. 2 (por defecto) | 42258 = valor de la Tabla 2",
   "sigma_y_MPa": 215,
-  "margen_optimizacion": 1.00,
-  "_margen_nota": "1.00 = la tension no puede superar 215 MPa (lo que dice el enunciado). 0.90 = deja un 10 % de margen para el error de malla.",
+  "margen_optimizacion": 0.869565,
+  "_margen_nota": "limite de tension = sigma_y x margen. 0.869565 = 1/1,15: coeficiente de seguridad minimo 1,15 (factor de herraje de la normativa aeronautica CS/FAR 25.625) -> 187 MPa. 1.00 = limite del enunciado (215 MPa).",
   "desplazamiento_max_mm": 0.25,
   "_desplazamiento_nota": "desplazamiento maximo permitido (mm). El original da 0,129 mm con 37,8 kN; 0,25 = aprox. el doble. 0 = sin limite (el enunciado no lo exige).",
   "reglas_impresion_3d": true,
   "_impresion_nota": "false = sin restricciones de fabricacion (el enunciado no las exige). true = huecos imprimibles en 3D (techo inclinado + agujero de evacuacion de polvo, ver docs/fabricacion_aditiva.md)",
   "angulo_voladizo_deg": 45,
   "_angulo_nota": "pendiente minima (respecto a la horizontal) de los techos interiores para imprimir sin soportes. 45 = regla habitual y conservadora (ver docs/fabricacion_aditiva.md)",
-  "peso_seguridad": 0.5,
-  "_peso_seguridad_nota": "cuando una pieza es MEJOR que otra: puntuacion = masa x aprovechamiento^p (aprovechamiento = 1/coef. seguridad). 0 = solo masa (enunciado literal); 0.5 = 1 % de masa vale lo mismo que 2 % de tension; 1 = mismo peso. Los limites (215 MPa, 0,25 mm) siempre son obligatorios",
+  "peso_seguridad": 0.15,
+  "_peso_seguridad_nota": "cuando una pieza es MEJOR que otra: puntuacion = masa x aprovechamiento^p (aprovechamiento = 1/coef. seguridad). 0 = solo masa; 0.15 = 1 % de masa vale ~7 % de tension (pieza aeronautica: manda la masa, la seguridad desempata); 0.5 = 1 % de masa vale 2 % de tension. Los limites (215 MPa, 0,25 mm) siempre son obligatorios",
   "familias": ["vaciado", "refuerzo", "cero"],
   "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = collares junto a los tornillos (punto critico) + vaciado del resto | cero = diseno nuevo. Se alternan.",
   "presupuesto_por_familia": 300,
@@ -44,6 +44,7 @@
   "disco_minimo_gb": 5,
   "subir_a_github": true
 }
+
 
 
 

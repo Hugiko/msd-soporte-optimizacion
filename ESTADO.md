@@ -4,7 +4,7 @@
 
 ## Objetivo
 Un programa autónomo (`optimizar.bat`) que genera piezas, las calcula en ANSYS, aprende de cada resultado y converge al
-soporte de **mínima masa** que cumple **σ ≤ 215 MPa** (fuera de la singularidad de los pernos) y **u ≤ 0,25 mm**,
+soporte de **mínima masa** que cumple un **coeficiente de seguridad ≥ 1,15 (σ ≤ 187 MPa)** (fuera de la singularidad de los pernos) y **u ≤ 0,25 mm**,
 manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800 N en −X (configurable a 42 258 N).
 
 ## Hecho
@@ -44,7 +44,7 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
 7. [hecho] Limpieza automatica: wbpz solo de los 10 ultimos mejores en GitHub; wbpj resueltos solo 3 en el PC; datos y fichas siempre.
 8. [hecho] Pruebas borradas (PC y Discord), programa subido a GitHub y listo: doble clic en `optimizar.bat`.
 9. [hecho] Verificación automática con malla fina de cada candidato a nuevo mejor; geometría construida una sola vez por pieza.
-10. [hecho] «Mejor» = menor puntuación masa × aprovechamiento^p (p = 0,5; `peso_seguridad`). Discord activo siempre.
+10. [hecho] Criterio aeronáutico: coeficiente de seguridad ≥ 1,15 (σ ≤ 187 MPa) obligatorio y, entre piezas válidas, menor puntuación masa × aprovechamiento^0,15. Discord activo siempre.
 11. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
 
 

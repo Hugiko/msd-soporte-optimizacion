@@ -131,3 +131,9 @@
 - Se aplica en todo: nuevo mejor (y su verificación con malla fina), mejor de cada rama (región de confianza, cruces), adquisición (mejora esperada de log masa + p·log aprovechamiento, con varianza combinada), panel, Discord, árbol, clasificación y limpieza.
 - Ejemplos (p = 0,5): original 2,423 kg / 212,9 MPa → 2,411; vaciado n.º 4 2,420 kg → 2,408; refuerzo n.º 5 2,543 kg / 177 MPa (CS 1,21) → 2,307 (mejor).
 - Discord activo siempre, también en las pruebas.
+
+## 2026-11-22 – Criterio aeronáutico: coeficiente de seguridad mínimo 1,15 y p = 0,15
+- Revisión del criterio de «mejor» para una pieza de avión: en aeronáutica la seguridad se EXIGE (factor fijo) y, por encima, manda la masa (cada gramo vuela). p = 0,5 premiaba demasiado la seguridad (una pieza 120 g más pesada ganaba al original).
+- **Requisito**: coeficiente de seguridad ≥ 1,15 sobre σy (factor de herraje de CS/FAR 25.625, aplicable a orejetas y uniones atornilladas) → σ ≤ 187 MPa (`margen_optimizacion` = 1/1,15). Cubre además la incertidumbre de malla (~8 %). **El original no cumple** (CS 1,01); la familia «refuerzo» sí (CS 1,21–1,27).
+- **Desempate**: puntuación = masa × aprovechamiento^0,15 (1 % de masa ≈ 7 % de tensión).
+- El coeficiente de seguridad que se muestra (panel, Discord, fichas) es siempre 215 MPa / σ.

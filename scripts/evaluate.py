@@ -172,12 +172,13 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                                marker=m["vm_metric_xyz"])
             try:   # ficha 2x2 (geometria, von Mises, desplazamiento, datos); si falla no afecta al calculo
                 cfg = json.load(open(os.path.join(fem.ROOT, "config.json"), encoding="utf-8-sig"))
-                lim = float(cfg.get("sigma_y_MPa", 215)); ulim = float(cfg.get("desplazamiento_max_mm", 0.25))
+                sy = float(cfg.get("sigma_y_MPa", 215)); lim = sy * float(cfg.get("margen_optimizacion", 1.0))
+                ulim = float(cfg.get("desplazamiento_max_mm", 0.25))
                 ok_s = m["vm_metric"] <= lim; ok_u = ulim <= 0 or m["u_max"] <= ulim
                 ok_txt = "CUMPLE" if ok_s else "NO CUMPLE"
                 lines = [f"Masa             {m['mass_kg']:.3f} kg   (original 2,411 kg)",
                          f"Tension (metrica) {m['vm_metric']:.1f} MPa  -> {ok_txt} (limite {lim:.0f})",
-                         f"Coef. seguridad  {lim / m['vm_metric']:.2f}",
+                         f"Coef. seguridad  {sy / m['vm_metric']:.2f}  (minimo exigido {sy / lim:.2f})",
                          f"Tension bruta    {m['vm_max_raw']:.0f} MPa (singular, borde perno)",
                          f"Desplaz. maximo  {m['u_max']:.4f} mm  -> " + ("CUMPLE" if ok_u else "NO CUMPLE") + (f" (limite {ulim:.2f})" if ulim > 0 else ""),
                          "VEREDICTO        " + ("VALIDO" if (ok_s and ok_u) else "NO VALIDO"),

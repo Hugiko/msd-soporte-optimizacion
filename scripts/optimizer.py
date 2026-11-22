@@ -63,6 +63,11 @@ def score(m):
     return m["mass_kg"] * max(violation(m), 1e-6) ** SCORE_P
 
 
+def fs(m):
+    """Coeficiente de seguridad respecto al LIMITE ELASTICO (215 MPa / tension), el que se muestra."""
+    return CFG["sigma_y"] / max(m["vm_metric"], 1e-6)
+
+
 def violation(m):
     """>1 si incumple alguna condicion (tension o desplazamiento); se usa cuando aun no hay disenos validos."""
     v = m["vm_metric"] / SIG_OBJ
@@ -630,7 +635,7 @@ def register_new_best(fam, r, git):
             log("  (proyecto Workbench pendiente: se reintentara en las siguientes iteraciones;"
                 " si teneis Workbench abierto, cerradlo: la licencia Student solo admite una sesion)")
     best = dict(familia=fam.key, titulo=fam.title, iter=r["id"], carpeta=hd, mass_kg=m["mass_kg"], vm_metric=m["vm_metric"],
-                puntuacion=score(m), coef_seguridad=1 / max(violation(m), 1e-6),
+                puntuacion=score(m), coef_seguridad=fs(m),
                 vm_max_raw=m.get("vm_max_raw"), u_max=m.get("u_max"), params=r["p"]["params"], workbench=wb_ok,
                 fecha=datetime.datetime.now().isoformat())
     atomic_json(os.path.join(TOP, "MEJOR_GLOBAL.json"), best)
@@ -999,12 +1004,12 @@ def write_dashboard(estado="EN MARCHA"):
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
     L = ["# Optimizacion del soporte - panel en directo", "",
          f"> **Ultima actualizacion:** {now} &nbsp;|&nbsp; **Estado:** {estado} &nbsp;|&nbsp; carga {CFG['force']:.0f} N "
-         f"&nbsp;|&nbsp; limites: {SIG_OBJ:.0f} MPa" + (f" y {U_LIM:.2f} mm" if U_LIM > 0 else "") + " &nbsp;|&nbsp; acero S235", "",
+         f"&nbsp;|&nbsp; limites: {SIG_OBJ:.0f} MPa (coef. seguridad >= {CFG['sigma_y'] / SIG_OBJ:.2f} sobre sy = {CFG['sigma_y']:.0f} MPa)" + (f" y {U_LIM:.2f} mm" if U_LIM > 0 else "") + " &nbsp;|&nbsp; acero S235", "",
          "| Familia | disenos calculados | cumplen | mejor masa | estado |", "|---|---|---|---|---|"]
     for f in FAMS:
         rs = f.runs(); val = [r for r in rs if category(r["m"]) == "valido"]
         bb = min(val, key=lambda r: score(r["m"])) if val else None
-        bm = f"{bb['m']['mass_kg']:.3f} kg (CS {1 / violation(bb['m']):.2f})" if bb else "-"
+        bm = f"{bb['m']['mass_kg']:.3f} kg (CS {fs(bb['m']):.2f})" if bb else "-"
         L.append(f"| {f.title} | {len(rs)} | {len(val)} | {bm} | {'terminada: ' + f.st.get('motivo_fin', '') if f.st.get('done') else 'en marcha'} |")
     L.append("")
     # ahorro de calculo y fiabilidad del modelo
@@ -1020,7 +1025,7 @@ def write_dashboard(estado="EN MARCHA"):
         tm = tb["m"]; red = (1 - tm["mass_kg"] / M_ORIG) * 100
         L += ["## Mejor diseno actual", "",
               f"**{tm['mass_kg']:.4f} kg** ({-red:+.2f} % de masa frente al original, {M_ORIG:.3f} kg con el mismo modelo) &nbsp;|&nbsp; tension **{tm['vm_metric']:.1f} MPa** "
-              f"&nbsp;|&nbsp; desplazamiento **{(tm.get('u_max') or 0):.3f} mm** &nbsp;|&nbsp; coef. seguridad **{1 / violation(tm):.2f}** "
+              f"&nbsp;|&nbsp; desplazamiento **{(tm.get('u_max') or 0):.3f} mm** &nbsp;|&nbsp; coef. seguridad **{fs(tm):.2f}** "
               f"&nbsp;|&nbsp; puntuacion **{score(tm):.4f}** &nbsp;|&nbsp; {tb['title']}, diseno {tb['id']:03d} "
               f"&nbsp;|&nbsp; calculado {tb['p'].get('fecha', '')[:16].replace('T', ' ')}"
               + (f" &nbsp;|&nbsp; **verificado con malla fina: {tm['verif_vm']:.1f} MPa**" if tm.get("verif_vm") else ""), ""]
@@ -1259,7 +1264,7 @@ def notify_top(force=False):
     fields = [dict(name="Masa", value=f"**{m['mass_kg']:.4f} kg** ({-red:+.2f} % frente al original {M_ORIG:.3f} kg)", inline=False),
               dict(name="Tension", value=f"{m['vm_metric']:.1f} / {SIG_OBJ:.0f} MPa", inline=True),
               dict(name="Desplazamiento", value=f"{m['u_max']:.3f} / {U_LIM:.2f} mm", inline=True),
-              dict(name="Coef. seguridad", value=f"{1 / violation(m):.2f}", inline=True),
+              dict(name="Coef. seguridad", value=f"{fs(m):.2f} (minimo {CFG['sigma_y'] / SIG_OBJ:.2f})", inline=True),
               dict(name="Puntuacion (masa x aprovechamiento^p)", value=f"{score(m):.4f} (p = {SCORE_P:g})", inline=True),
               dict(name="Origen", value=f"{fam_t}, rama {tb['p'].get('rama')}, diseno {tb['id']:03d}", inline=False),
               dict(name="Encontrado", value=tb["p"].get("fecha", "")[:16].replace("T", " "), inline=True),
