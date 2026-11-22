@@ -1,0 +1,16 @@
+{
+ "_nota": "Extraido de cad/0.stp con scripts/find_holes.py. Superficies que NO pueden moverse. Unidades mm.",
+ "pernos": [
+  {"c": [0.0, 0.0], "r": 5.334},
+  {"c": [52.047, 1.580], "r": 5.1562},
+  {"c": [0.0, -148.125], "r": 5.1562},
+  {"c": [38.083, -146.968], "r": 5.1562}
+ ],
+ "pernos_z": [0.63, 7.85],
+ "bulon": {
+  "r": 9.55675,
+  "axis": [-0.03035, 0.99954, 0.0],
+  "centers": [[-21.357, -60.417, 44.725], [-20.490, -88.979, 44.725]],
+  "half_width": 3.2
+ }
+}

@@ -1,0 +1,28 @@
+﻿{
+  "_LEEME": "Ajustes del optimizador. Cambia un valor, guarda y vuelve a lanzar optimizar.bat. Cada carga guarda sus resultados en runs/opt_<carga>N.",
+  "carga_N": 37800,
+  "_carga_opciones": "37800 = caso Horizontal de la Fig. 2 (por defecto) | 42258 = valor de la Tabla 2",
+  "sigma_y_MPa": 215,
+  "margen_optimizacion": 1.00,
+  "_margen_nota": "1.00 = la tension no puede superar 215 MPa (lo que dice el enunciado). 0.90 = deja un 10 % de margen para el error de malla.",
+  "desplazamiento_max_mm": 0.25,
+  "_desplazamiento_nota": "desplazamiento maximo permitido (mm). El original da 0,129 mm con 37,8 kN; 0,25 = aprox. el doble. 0 = sin limite (el enunciado no lo exige).",
+  "familias": ["vaciado", "cero"],
+  "_familias_nota": "vaciado = el original al que se le quita material | cero = diseno nuevo. Se alternan.",
+  "presupuesto_por_familia": 300,
+  "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
+  "pruebas_por_rama": 30,
+  "_ramas_nota": "cada rama hace estas pruebas; al terminar, su mejor diseno crea 2 ramas hijas (fina y amplia). Arbol en ARBOL.md",
+  "crear_workbench_en_cada_mejora": true,
+  "mejora_minima_para_nuevo_mejor": 0.0001,
+  "_mejora_nota": "fraccion de masa que debe mejorar un diseno para contar como nuevo mejor (proyecto Workbench + historial + GitHub). 0.0001 = cualquier mejora real.",
+  "limpieza_cada_n_disenos": 10,
+  "limpieza_mantener_ultimos": 20,
+  "limpieza_mantener_mejores": 5,
+  "mantener_proyectos_workbench_resueltos": 3,
+  "_limpieza_nota": "cada N disenos se borran los ficheros pesados de los disenos antiguos ya superados (nunca sus datos ni su ficha resumen.png)",
+  "subir_a_github": true
+}
+
+
+

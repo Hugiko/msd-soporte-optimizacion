@@ -1,0 +1,35 @@
+﻿# entorno y temporales
+.venv/
+__pycache__/
+*.pyc
+*.tmp
+tests/
+runs/_base_prueba1/
+runs/prueba_*/
+entregas_*.log
+# pesados o regenerables (se suben: resumen.png, imagenes, json, modelo_apdl.zip, y el .wbpz de cada mejora)
+*.inp
+*.npy
+*.npz
+*.rst
+*.db
+*.dbb
+*.full
+*.esav
+*.emat
+*.err
+*.lock
+file*.out
+solve.out
+# proyectos de Workbench resueltos (grandes): se quedan en el PC; a GitHub va el .wbpz montado
+*.wbpj
+*_files/
+_*.wbjn
+_*.py
+# STEP de cada diseno (se regeneran con params.json); SI se suben los del historial
+runs/opt_*/*/[0-9][0-9][0-9]/geometria.step
+
+# la ficha de cada diseno se sube comprimida y fechada en runs/opt_*/galeria/ (no duplicarla)
+runs/opt_*/*/[0-9][0-9][0-9]/resumen.png
+runs/opt_*/*/[0-9][0-9][0-9]/vonmises.png
+runs/opt_*/*/[0-9][0-9][0-9]/geometria.png
