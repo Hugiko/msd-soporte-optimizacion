@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:52
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:55
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -13,13 +13,14 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:52
 |---|---|---|---|---|
 | 001 | 2.544 | 179.4 | reparto inicial (Sobol 1/12): explorar todo el espacio | [ver](001/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (3)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (4)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 003 | 1.565 | 779.7 | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](003/vonmises.png) |
 | 005 | 2.195 | 618.0 | reparto inicial (Sobol 5/12): explorar todo el espacio | [ver](005/vonmises.png) |
 | 006 | 2.409 | 302.8 | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](006/vonmises.png) |
+| 007 | 1.971 | 331.5 | reparto inicial (Sobol 7/12): explorar todo el espacio | [ver](007/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (2)
 
