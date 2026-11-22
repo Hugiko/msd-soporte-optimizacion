@@ -1,18 +1,19 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:16
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:19
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (20)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (21)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
-| 071 **MEJOR** | 2.436 | 182.7 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, cav_z1, trim_ang) | [ver](071/vonmises.png) |
+| 085 **MEJOR** | 2.428 | 183.5 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_z, r_cut (rama fina: solo mueve trim_s0, r_cut, trim_z, R_pocket, trim_a, trim_ang, z_col) | [ver](085/vonmises.png) |
+| 071 | 2.436 | 182.7 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, cav_z1, trim_ang) | [ver](071/vonmises.png) |
 | 075 | 2.436 | 182.7 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.40); cambia  (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, cav_a, cav_len, trim_ang) | [ver](075/vonmises.png) |
 | 070 | 2.443 | 182.6 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.20); cambia trim_z, r_cut, z_col (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_z1, trim_a, R_pocket, z_col) | [ver](070/vonmises.png) |
 | 066 | 2.459 | 179.8 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.10); cambia  (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, trim_ang, z_col) | [ver](066/vonmises.png) |
 | 065 | 2.460 | 180.2 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_z, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, trim_ang, cav_z1) | [ver](065/vonmises.png) |
-| 063 | 2.463 | 180.3 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, R_pocket, trim_ang) | [ver](063/vonmises.png) |
-| 064 | 2.456 | 185.7 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.10); cambia trim_z (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, cav_a, cav_z1, R_pocket) | [ver](064/vonmises.png) |
+| 063 | 2.463 | 180.3 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, R_pocket, trim_ang) | - |
+| 064 | 2.456 | 185.7 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.10); cambia trim_z (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, cav_a, cav_z1, R_pocket) | - |
 | 054 | 2.488 | 180.3 | [rama R1.1] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia r_cut (rama fina: solo mueve trim_s0, trim_z, trim_a, R_pocket, r_cut, cav_a, cav_z1) | - |
 | 049 | 2.488 | 180.4 | [rama R1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia cav_z0, trim_z (rama fina: solo mueve trim_s0, cav_z0, R_pocket, trim_z, trim_a, cav_a, t_col_del) | - |
 | 043 | 2.494 | 179.8 | [rama R1.1] rama nueva (fina, paso 0.10) desde el diseno 039; cambia cav_z0, r_cut (rama fina: solo mueve trim_z, trim_s0, R_pocket, cav_z0, cav_a, r_cut, trim_a) | - |
@@ -22,7 +23,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:16
 | 074 | 2.506 | 180.4 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.40); cambia trim_s0, trim_ang, r_cut (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, R_pocket, trim_ang, cav_z1) | [ver](074/vonmises.png) |
 | 029 | 2.510 | 181.7 | [rama R1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia trim_s0, trim_z | - |
 | 027 | 2.515 | 179.4 | [rama R1] varios pasos sin mejora: paso mas corto (0.15); cambia trim_s0, t_col_tra | - |
-| 061 | 2.513 | 181.7 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_z, r_cut, R_pocket, trim_a, cav_a, trim_ang) | [ver](061/vonmises.png) |
+| 061 | 2.513 | 181.7 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_z, r_cut, R_pocket, trim_a, cav_a, trim_ang) | - |
 | 044 | 2.521 | 180.0 | [rama R1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, R_pocket, z_col (rama fina: solo mueve trim_s0, trim_z, R_pocket, cav_a, trim_a, z_col, t_col_del) | - |
 | 023 | 2.528 | 179.6 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del | - |
 | 025 | 2.528 | 179.6 | [rama R1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia cav_s0, r_cut | - |
@@ -59,8 +60,8 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:16
 | 055 | 2.482 | 182.8 | [rama R1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.03); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_z, trim_a, R_pocket, r_cut, cav_a, cav_z1) | - |
 | 057 | 2.486 | 180.3 | [rama R1.1] varios pasos sin mejora: paso mas corto (0.03); cambia  (rama fina: solo mueve trim_s0, trim_z, trim_a, r_cut, R_pocket, cav_z1, cav_a) | - |
 | 058 | 2.485 | 179.7 | [rama R1.1] varios pasos sin mejora: paso mas corto (0.03); cambia  (rama fina: solo mueve trim_s0, trim_z, trim_a, r_cut, R_pocket, cav_a, trim_ang) | - |
-| 060 | 2.462 | 180.3 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, trim_a, r_cut, R_pocket, cav_a, cav_z1) | [ver](060/vonmises.png) |
-| 062 | 2.466 | 182.1 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, trim_ang, R_pocket) | [ver](062/vonmises.png) |
+| 060 | 2.462 | 180.3 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, trim_a, r_cut, R_pocket, cav_a, cav_z1) | - |
+| 062 | 2.466 | 182.1 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, trim_ang, R_pocket) | - |
 | 067 | 2.452 | 179.6 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia trim_z, trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, trim_ang, cav_z1) | [ver](067/vonmises.png) |
 | 068 | 2.440 | 182.0 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia trim_s0, trim_z, trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, cav_a, cav_z1, trim_ang) | [ver](068/vonmises.png) |
 | 069 | 2.444 | 182.8 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.20); cambia trim_z, trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, cav_z1, trim_ang) | [ver](069/vonmises.png) |
@@ -89,7 +90,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:16
 | 038 | 2.384 | 414.3 | [rama R1] el ultimo paso mejoro: sigue en esa linea (paso 0.04); cambia trim_s0, trim_z | - |
 | 045 | 2.494 | 227.3 | [rama R1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia r_cut (rama fina: solo mueve trim_z, trim_s0, cav_a, cav_z0, trim_a, R_pocket, r_cut) | - |
 | 056 | 1.660 | 464.2 | aleatorio (respaldo) | - |
-| 059 | 1.719 | 571.8 | aleatorio (respaldo) | [ver](059/vonmises.png) |
+| 059 | 1.719 | 571.8 | aleatorio (respaldo) | - |
 | 072 | 2.280 | 1230.9 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.40); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_z, r_cut, trim_a, trim_ang, R_pocket, cav_z1) | [ver](072/vonmises.png) |
 | 076 | 2.431 | 294.3 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia R_pocket (rama fina: solo mueve trim_s0, r_cut, trim_z, cav_a, trim_a, trim_ang, R_pocket) | [ver](076/vonmises.png) |
 | 084 | 2.418 | 230.1 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, r_cut, R_pocket, trim_z, trim_a, trim_ang, cav_z1) | [ver](084/vonmises.png) |

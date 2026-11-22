@@ -1,14 +1,14 @@
 {
  "familia": "refuerzo",
  "titulo": "Refuerzo + vaciado",
- "iter": 71,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\12_refuerzo_071_2.436kg",
- "mass_kg": 2.4356236683500003,
- "vm_metric": 182.7164,
- "puntuacion": 2.4272568675269515,
- "coef_seguridad": 1.1766869312223753,
- "vm_max_raw": 711.1815,
- "u_max": 0.12785435918648258,
+ "iter": 85,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\13_refuerzo_085_2.428kg",
+ "mass_kg": 2.42780838105,
+ "vm_metric": 183.4626,
+ "puntuacion": 2.420948000081298,
+ "coef_seguridad": 1.1719009760027383,
+ "vm_max_raw": 799.6613,
+ "u_max": 0.12799951945554772,
  "params": {
   "cav_s0": 29.5061,
   "cav_len": 11.0022,
@@ -16,15 +16,15 @@
   "cav_z0": 11.4094,
   "cav_z1": 12.0,
   "trim_s0": 52.6789,
-  "trim_z": 26.6093,
+  "trim_z": 25.0607,
   "trim_ang": 0.0,
   "trim_a": 20.0,
-  "r_cut": 4.9085,
+  "r_cut": 4.6189,
   "R_pocket": 10.54,
   "t_col_del": 5.2716,
   "t_col_tra": 2.8609,
   "z_col": 21.5408
  },
  "workbench": true,
- "fecha": "2026-11-22T23:54:17.901278"
+ "fecha": "2026-11-23T00:20:54.254936"
 }
