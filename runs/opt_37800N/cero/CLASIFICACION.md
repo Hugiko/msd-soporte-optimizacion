@@ -1,6 +1,6 @@
 # Diseno desde cero: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:57
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:00
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -12,7 +12,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:57
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (8)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -24,6 +24,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:57
 | 006 | 1.490 | 1384.6 | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](006/vonmises.png) |
 | 007 | 0.972 | 1853.1 | reparto inicial (Sobol 7/12): explorar todo el espacio | [ver](007/vonmises.png) |
 | 008 | 2.063 | 1174.5 | reparto inicial (Sobol 8/12): explorar todo el espacio | [ver](008/vonmises.png) |
+| 009 | 1.765 | 612.1 | reparto inicial (Sobol 9/12): explorar todo el espacio | [ver](009/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 
