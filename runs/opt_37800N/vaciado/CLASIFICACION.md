@@ -1,6 +1,6 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:56
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:57
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -14,7 +14,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:56
 | 021 | 2.422 | 200.5 | [rama V1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia cav_z1, r_cut | [ver](021/vonmises.png) |
 | 024 | 2.422 | 200.5 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia cav_s0, cav_z0, r_cut | [ver](024/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (21)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (22)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -39,6 +39,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:56
 | 023 | 2.423 | 213.1 | [rama V1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_len, r_cut | [ver](023/vonmises.png) |
 | 025 | 2.423 | 213.2 | [rama V1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia cav_s0, cav_z0, r_cut | [ver](025/vonmises.png) |
 | 026 | 2.423 | 212.9 | [rama V1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_len, cav_z0, cav_z1... | - |
+| 027 | 2.423 | 212.9 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia trim_ang | - |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 
