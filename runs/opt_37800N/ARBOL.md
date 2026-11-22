@@ -30,7 +30,7 @@ R1_1["R1.1 - fina, paso 0.10<br/>16 pruebas<br/>mejor: 2.488 kg, 180 MPa (#054)"
 R1 --> R1_1
 R1_2["R1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1 --> R1_2
-R1_1_1["R1.1.1 - fina, paso 0.10<br/>5 pruebas<br/>mejor: 2.463 kg, 180 MPa (#063)"]:::mejor
+R1_1_1["R1.1.1 - fina, paso 0.10<br/>6 pruebas<br/>mejor: 2.463 kg, 180 MPa (#063)"]:::mejor
 R1_1 --> R1_1_1
 R1_1_2["R1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1 --> R1_1_2
