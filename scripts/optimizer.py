@@ -310,8 +310,9 @@ class Family:
         br = self.current()
         bid, L = br["id"], br["L"]
         if br.get("semilla") is None and br.get("seed_x") is not None and br["n"] == 0:
-            return (np.array(br["seed_x"]), f"[rama {bid}] cruce: mezcla de los parametros de {br.get('nota', '')}",
-                    None, "cruce", bid)
+            txt = (f"cruce: mezcla de los parametros de {br.get('nota', '')}" if br["tipo"] == "cruce" else
+                   f"exploradora: punto al azar en una zona nunca probada ({br.get('nota', '')})")
+            return np.array(br["seed_x"]), f"[rama {bid}] {txt}", None, br["tipo"], bid
         cache = self.mass_cache()
         ok = [r for r in runs if r["m"].get("status") == "ok"]
         Xm = [c["x"] for c in cache if c["ok"]] + [self.to_unit(r["p"]["params"]).tolist() for r in runs if r["m"].get("mass_cad_kg")]
@@ -387,6 +388,15 @@ class Family:
         pred["importancia_tension"] = None if ls is None else dict(zip(self.names, map(float, (1 / ls) / np.sum(1 / ls))))
         return x, why, pred, "aprende", bid
 
+    def far_point(self, runs, n=2048):
+        """Punto al azar en la zona MENOS explorada: de n candidatos aleatorios, el mas alejado de todos los disenos probados."""
+        cand = qmc.Sobol(self.D, scramble=True, seed=int(self.rng.integers(1e9))).random(n)
+        X = np.array([self.to_unit(r["p"]["params"]) for r in runs]) if runs else np.zeros((1, self.D)) + 0.5
+        dmin = np.min(np.linalg.norm(cand[:, None] - X[None], axis=2), axis=1)
+        top = np.argsort(dmin)[::-1][:20]               # los 20 mas alejados; se elige uno al azar entre ellos
+        i = int(self.rng.choice(top))
+        return cand[i], float(dmin[i])
+
     def update_branch(self, runs, r_new):
         """Actualiza la rama del diseno recien calculado: paso mas largo si mejora, mas corto si no; al terminar
         la rama, su mejor diseno genera dos ramas hijas."""
@@ -442,6 +452,17 @@ class Family:
                         self.new_branch(f"{bid}.3", bid, None, 0.20, "cruce", min(sc, osc), seed_x=xc.tolist(),
                                         nota=f"{bid} (#{best_r['id']:03d}) y {oid} (#{orr['id']:03d})")
                         msg += f" y {bid}.3 (cruce con la rama {oid})"
+                # EXPLORADORA: cada N ramas terminadas, una rama que parte de un punto al azar lejos de todo lo probado
+                every = int(USER.get("rama_exploradora_cada", 3))
+                n_fin = sum(1 for b in R.values() if b["estado"] == "terminada" and b["padre"] is not None)
+                if every > 0 and n_fin % every == 0:
+                    xe, dmin = self.far_point(runs)
+                    k = 1 + sum(1 for b in R.values() if b["tipo"] == "exploradora")
+                    eid = f"{self.root_id()[0]}X{k}"
+                    self.new_branch(eid, self.root_id(), None, CFG["tr_init"], "exploradora",
+                                    (sc[0], sc[1] * (1 - 1e-9)), seed_x=xe.tolist(),
+                                    nota=f"a {dmin:.2f} del diseno probado mas cercano")
+                    msg += f"; ademas nace la rama exploradora {eid}"
                 log(f"[{self.key}] rama {bid} terminada ({br['motivo_fin']}); su mejor diseno ({best_r['id']:03d}) {msg}")
         self.save_state()
 

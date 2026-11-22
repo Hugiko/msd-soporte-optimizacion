@@ -16,6 +16,8 @@
   "presupuesto_por_familia": 300,
   "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
   "pruebas_por_rama": 30,
+  "rama_exploradora_cada": 3,
+  "_exploradora_nota": "cada N ramas terminadas nace una rama exploradora que parte de un punto al azar lejos de todo lo probado (0 = nunca)",
   "_ramas_nota": "cada rama hace estas pruebas; al terminar, su mejor diseno crea 2 ramas hijas (fina y amplia). Arbol en ARBOL.md",
   "cribado_rapido": 1.5,
   "_cribado_nota": "pasada rapida con malla gruesa: si el diseno incumple mas de 1,5 veces el limite se descarta sin malla fina (0 = desactivado)",
@@ -37,6 +39,7 @@
   "disco_minimo_gb": 5,
   "subir_a_github": true
 }
+
 
 
 

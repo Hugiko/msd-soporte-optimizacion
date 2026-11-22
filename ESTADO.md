@@ -20,7 +20,7 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
   Ø5 por cámara y ninguna cavidad cerrada. Fuentes en `docs/fabricacion_aditiva.md`. El enunciado no lo exige
   (la frase se refiere al concurso de GE de 2013); es una decisión de diseño propia.
 - **Optimizador** (`scripts/optimizer.py`): DOE → procesos gaussianos (BoTorch) para masa, tensión y desplazamiento → **ramas**
-  (árbol genealógico: fina / amplia / cruce, congelado de parámetros en las finas) → «cualquier mejora cuenta».
+  (árbol genealógico: fina / amplia / cruce / exploradora al azar cada 3 ramas, congelado de parámetros en las finas) → «cualquier mejora cuenta».
   Detección de piezas repetidas, **filtro por predicción** (si el modelo es fiable) y **pasada rápida** con malla gruesa.
 - **Salidas**: proyecto Workbench `.wbpj` (resuelto, en el PC) + `.wbpz` (en GitHub) en cada nueva mejora; historial; galería
   cronológica de todos los diseños; gráfica en el tiempo + gráfica interactiva html; árbol (`ARBOL.md` + `arbol.png`);
@@ -44,5 +44,6 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
 7. [hecho] Limpieza automatica: wbpz solo de los 10 ultimos mejores en GitHub; wbpj resueltos solo 3 en el PC; datos y fichas siempre.
 8. [hecho] Pruebas borradas (PC y Discord), programa subido a GitHub y listo: doble clic en `optimizar.bat`.
 9. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
+
 
 
