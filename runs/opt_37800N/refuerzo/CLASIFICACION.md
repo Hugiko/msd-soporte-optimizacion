@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:40
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:43
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -18,10 +18,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:40
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (1)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
+| 002 | 2.547 | - | reparto inicial (Sobol 2/12): explorar todo el espacio | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

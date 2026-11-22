@@ -1,0 +1,40 @@
+{
+ "status": "mesh_fail",
+ "params": {
+  "cav_s0": 36.979,
+  "cav_len": 25.5277,
+  "cav_a": 13.5926,
+  "cav_z0": 9.1447,
+  "cav_z1": 44.1763,
+  "trim_s0": 71.0796,
+  "trim_z": 28.3742,
+  "trim_ang": 27.8946,
+  "trim_a": 26.5126,
+  "r_cut": 3.3145,
+  "R_pocket": 10.7279,
+  "t_col_del": 3.4956,
+  "t_col_tra": 8.5531,
+  "z_col": 21.1204
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 2.5472826219824056,
+ "volume_cad_mm3": 324494.60152642115,
+ "hueco": true,
+ "clamped": [
+  "techo del hueco 44.2->27.9 mm (pared minima 3.0 mm)",
+  "cavidad cerrada rellenada (impresion 3D)"
+ ],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 503 | malla alg1 h4.00: Exception: Could not fix wire in surface 503 | malla alg10 h3.60: Exception: Could not fix wire in surface 503 | malla alg4 h4.00: Exception: Could not fix wire in surface 503 | malla alg10 h4.00: Exception: Could not fix wire in surface 508 | malla alg1 h4.40: Exception: Could not fix wire in surface 508",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 157, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 129, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 503 | malla alg1 h4.00: Exception: Could not fix wire in surface 503 | malla alg10 h3.60: Exception: Could not fix wire in surface 503 | malla alg4 h4.00: Exception: Could not fix wire in surface 503 | malla alg10 h4.00: Exception: Could not fix wire in surface 508 | malla alg1 h4.40: Exception: Could not fix wire in surface 508\n",
+ "total_s": 36.01040768623352,
+ "galeria": "galeria/20261122_204308_refuerzo_002_FALLO_2.547kg.jpg"
+}

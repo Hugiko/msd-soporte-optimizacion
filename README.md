@@ -1,11 +1,11 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 22/11/2026 20:42 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 22/11/2026 20:43 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | Vaciado del original | 2 | 0 | - | en marcha |
-| Refuerzo + vaciado | 1 | 0 | - | en marcha |
+| Refuerzo + vaciado | 2 | 0 | - | en marcha |
 | Diseno desde cero | 1 | 0 | - | en marcha |
 
 **Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 1 descartados en la pasada rapida, 0 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: aun aprendiendo | Refuerzo + vaciado: aun aprendiendo | Diseno desde cero: aun aprendiendo
@@ -20,7 +20,7 @@ Aun ningun diseno cumple el limite.
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 4 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 5 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -32,6 +32,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Refuerzo + vaciado | 002 | 2.547 | - | fallido | reparto inicial (Sobol 2/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204308_refuerzo_002_FALLO_2.547kg.jpg) |
 | Vaciado del original | 002 | 2.401 | 294.3 | descartado | reparto inicial (Sobol 2/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204212_vaciado_002_NO_VALIDO_2.401kg.jpg) |
 | Diseno desde cero | 001 | 1.510 | 1933.7 | descartado | reparto inicial (Sobol 1/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204110_cero_001_NO_VALIDO_1.510kg.jpg) |
 | Refuerzo + vaciado | 001 | 2.544 | 179.4 | cerca_del_limite | reparto inicial (Sobol 1/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204033_refuerzo_001_CASI_2.544kg.jpg) |
