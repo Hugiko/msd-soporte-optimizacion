@@ -1,0 +1,24 @@
+{
+ "params": {
+  "cav_s0": 19.8288,
+  "cav_len": 34.2714,
+  "cav_a": 38.2336,
+  "cav_z0": 8.2989,
+  "cav_z1": 18.4286,
+  "trim_s0": 35.0562,
+  "trim_z": 32.5143,
+  "trim_ang": 32.7042,
+  "trim_a": 22.6,
+  "r_cut": 2.8111,
+  "R_pocket": 10.5542,
+  "t_col_del": 7.1717,
+  "t_col_tra": 7.3878,
+  "z_col": 11.7148
+ },
+ "motivo": "reparto inicial (Sobol 8/12): explorar todo el espacio",
+ "pred": null,
+ "fase": "DOE",
+ "familia": "refuerzo",
+ "rama": "R0",
+ "fecha": "2026-11-22T20:56:25.119681"
+}
