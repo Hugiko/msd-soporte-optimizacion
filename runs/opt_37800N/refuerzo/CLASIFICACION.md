@@ -1,13 +1,13 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:35
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:38
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (8)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -19,6 +19,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:35
 | 017 | 2.546 | 177.6 | [rama R1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia  | [ver](017/vonmises.png) |
 | 018 | 2.546 | 177.6 | [rama R1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia  | [ver](018/vonmises.png) |
 | 019 | 2.548 | 178.1 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia  | [ver](019/vonmises.png) |
+| 020 | 2.552 | 178.1 | [rama R1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia t_col_del | [ver](020/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (9)
 
