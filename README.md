@@ -1,14 +1,14 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 22/11/2026 20:52 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 22/11/2026 20:53 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | Vaciado del original | 6 | 0 | - | en marcha |
 | Refuerzo + vaciado | 6 | 0 | - | en marcha |
-| Diseno desde cero | 5 | 0 | - | en marcha |
+| Diseno desde cero | 6 | 0 | - | en marcha |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 5 descartados en la pasada rapida, 0 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: aun aprendiendo | Refuerzo + vaciado: aun aprendiendo | Diseno desde cero: aun aprendiendo
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 6 descartados en la pasada rapida, 0 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: aun aprendiendo | Refuerzo + vaciado: aun aprendiendo | Diseno desde cero: aun aprendiendo
 
 ## Mejor diseno actual
 
@@ -20,7 +20,7 @@ Aun ningun diseno cumple el limite.
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 17 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 18 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -32,6 +32,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Diseno desde cero | 006 | 1.490 | 1384.6 | descartado | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_205316_cero_006_NO_VALIDO_1.490kg.jpg) |
 | Refuerzo + vaciado | 006 | 2.409 | 302.8 | descartado | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_205236_refuerzo_006_NO_VALIDO_2.409kg.jpg) |
 | Vaciado del original | 006 | 2.404 | 310.6 | descartado | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_205130_vaciado_006_NO_VALIDO_2.404kg.jpg) |
 | Diseno desde cero | 005 | 1.415 | 1642.8 | descartado | reparto inicial (Sobol 5/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_205031_cero_005_NO_VALIDO_1.415kg.jpg) |
@@ -41,7 +42,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 004 | 0.000 | - | fallido | reparto inicial (Sobol 4/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204723_refuerzo_004_FALLO_0.000kg.jpg) |
 | Vaciado del original | 004 | 2.161 | - | fallido | reparto inicial (Sobol 4/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204711_vaciado_004_FALLO_2.161kg.jpg) |
 | Diseno desde cero | 003 | 1.384 | 902.6 | descartado | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204622_cero_003_NO_VALIDO_1.384kg.jpg) |
-| Refuerzo + vaciado | 003 | 1.565 | 779.7 | descartado | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204542_refuerzo_003_NO_VALIDO_1.565kg.jpg) |
 
 ---
 
