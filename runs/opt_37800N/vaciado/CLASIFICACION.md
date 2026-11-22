@@ -1,6 +1,6 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:39
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:43
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -25,7 +25,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:39
 | 050 | 2.414 | 193.8 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a) | [ver](050/vonmises.png) |
 | 052 | 2.412 | 193.9 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia trim_z (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](052/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (37)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (38)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -66,6 +66,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:39
 | 049 | 2.414 | 212.1 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a) | [ver](049/vonmises.png) |
 | 051 | 2.410 | 211.7 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia trim_z, trim_a (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](051/vonmises.png) |
 | 053 | 2.413 | 212.1 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia trim_z (rama fina: solo mueve trim_s0, R_pocket, cav_a, cav_z1, trim_ang, trim_z) | [ver](053/vonmises.png) |
+| 054 | 2.423 | 212.8 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.03); cambia trim_s0 (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](054/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 

@@ -4,7 +4,7 @@
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| Vaciado del original | 53 | 0 | - | en marcha |
+| Vaciado del original | 54 | 0 | - | en marcha |
 | Refuerzo + vaciado | 101 | 21 | 2.428 kg (CS 1.17) | en marcha |
 | Diseno desde cero | 53 | 0 | - | en marcha |
 
@@ -24,7 +24,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 207 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 208 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -55,6 +55,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Vaciado del original | 054 | 2.423 | 212.8 | descartado | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso ma | [ver](runs/opt_37800N/galeria/20261123_004356_vaciado_054_NO_VALIDO_2.423kg.jpg) |
 | Refuerzo + vaciado | 101 | 2.006 | 402.6 | descartado | [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_004304_refuerzo_101_NO_VALIDO_2.006kg.jpg) |
 | Refuerzo + vaciado | 100 | 2.441 | 296.7 | descartado | [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_004155_refuerzo_100_NO_VALIDO_2.441kg.jpg) |
 | Diseno desde cero | 053 | 2.249 | 393.2 | descartado | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_004040_cero_053_NO_VALIDO_2.249kg.jpg) |
@@ -64,7 +65,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 097 | 2.483 | 286.4 | descartado | [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_003744_refuerzo_097_NO_VALIDO_2.483kg.jpg) |
 | Diseno desde cero | 052 | 2.247 | 408.3 | descartado | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_003633_cero_052_NO_VALIDO_2.247kg.jpg) |
 | Refuerzo + vaciado | 096 | 1.829 | 404.8 | descartado | [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_003554_refuerzo_096_NO_VALIDO_1.829kg.jpg) |
-| Vaciado del original | 052 | 2.412 | 193.9 | cerca_del_limite | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_003448_vaciado_052_CASI_2.412kg.jpg) |
 
 ---
 
