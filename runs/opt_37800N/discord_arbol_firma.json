@@ -44,8 +44,26 @@
  [
   "refuerzo",
   "R1.1.1",
-  "activa",
+  "terminada",
   85
+ ],
+ [
+  "refuerzo",
+  "R1.1.1.1",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "R1.1.1.2",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "R1.1.1.3",
+  "activa",
+  null
  ],
  [
   "refuerzo",
@@ -62,6 +80,12 @@
  [
   "refuerzo",
   "R1.2",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "RX1",
   "activa",
   null
  ],
