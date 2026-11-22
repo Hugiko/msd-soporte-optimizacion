@@ -33,11 +33,11 @@
    "padre": "R0",
    "semilla": 1,
    "tipo": "inicial",
-   "L": 0.15,
+   "L": 0.075,
    "L0": 0.3,
    "succ": 0,
-   "fail": 3,
-   "n": 18,
+   "fail": 0,
+   "n": 19,
    "best": {
     "score": [
      0,
