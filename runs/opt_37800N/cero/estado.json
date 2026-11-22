@@ -78,11 +78,11 @@
    "padre": "C1",
    "semilla": 31,
    "tipo": "fina",
-   "L": 0.05,
+   "L": 0.025,
    "L0": 0.1,
    "succ": 0,
-   "fail": 3,
-   "n": 8,
+   "fail": 0,
+   "n": 9,
    "best": {
     "score": [
      1,
