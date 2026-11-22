@@ -1755,3 +1755,9 @@
 [21:32:33]   el modelo predice: masa 2.404 kg | tension 207 MPa | P(cumplir) 0.10
 [21:32:37]   geometria IDENTICA al diseno 001 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [21:32:37]   RESULTADO: masa 2.423 kg | tension 212.9 MPa (bruta 863) | NO cumple
+[21:32:40]   (GitHub: subido)
+[21:32:41] [Refuerzo + vaciado] DISENO 018  |  mejor global: aun ninguno valido
+[21:32:41]   motivo: [rama R1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia 
+[21:32:41]   el modelo predice: masa 2.532 kg | tension 179 MPa | P(cumplir) 1.00
+[21:32:46]   geometria IDENTICA al diseno 017 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[21:32:47]   RESULTADO: masa 2.546 kg | tension 177.6 MPa (bruta 788) | casi (hasta +10 %)
