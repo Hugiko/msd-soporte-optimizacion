@@ -14,7 +14,7 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
 - **Pipeline de evaluación** (`scripts/evaluate.py`): geometría → malla tet10 (gmsh) → MAPDL → métricas → imágenes;
   reintentos de malla, **tiempo máximo de mallado** (proceso aparte, 300 s), espera si la licencia está ocupada y ficha
   `resumen.png` (geometría | von Mises | deformada | radiografía).
-- **Familias de geometría activas**: `vaciado` (original menos hueco/recorte/alojamientos) y `cero` (diseño nuevo).
+- **Familias de geometría activas**: `vaciado` (original menos hueco/recorte/alojamientos), `refuerzo` (v2: collares junto a los tornillos + vaciado; baja el pico del original de 212,9 a 181,2 MPa) y `cero` (diseño nuevo).
   Los 6 agujeros se verifican en cada diseño.
 - **Reglas de impresión 3D** (activadas, `reglas_impresion_3d` en `config.json`): techos interiores a 45°, agujero de evacuación de
   Ø5 por cámara y ninguna cavidad cerrada. Fuentes en `docs/fabricacion_aditiva.md`. El enunciado no lo exige
@@ -43,7 +43,9 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
    rapida (descarta disenos de `cero` en ~40 s), piezas repetidas reutilizadas, galeria, arbol en imagen, panel y Discord (3 canales).
 7. [hecho] Limpieza automatica: wbpz solo de los 10 ultimos mejores en GitHub; wbpj resueltos solo 3 en el PC; datos y fichas siempre.
 8. [hecho] Pruebas borradas (PC y Discord), programa subido a GitHub y listo: doble clic en `optimizar.bat`.
-9. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
+9. [hecho] Verificación automática con malla fina de cada candidato a nuevo mejor; geometría construida una sola vez por pieza.
+10. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
+
 
 
 

@@ -11,8 +11,8 @@
   "_impresion_nota": "false = sin restricciones de fabricacion (el enunciado no las exige). true = huecos imprimibles en 3D (techo inclinado + agujero de evacuacion de polvo, ver docs/fabricacion_aditiva.md)",
   "angulo_voladizo_deg": 45,
   "_angulo_nota": "pendiente minima (respecto a la horizontal) de los techos interiores para imprimir sin soportes. 45 = regla habitual y conservadora (ver docs/fabricacion_aditiva.md)",
-  "familias": ["vaciado", "cero"],
-  "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = se rellena junto a los pernos y se vacia el resto | cero = diseno nuevo. Se alternan.",
+  "familias": ["vaciado", "refuerzo", "cero"],
+  "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = collares junto a los tornillos (punto critico) + vaciado del resto | cero = diseno nuevo. Se alternan.",
   "presupuesto_por_familia": 300,
   "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
   "pruebas_por_rama": 30,
@@ -25,6 +25,9 @@
   "filtro_prob_minima": 0.05,
   "filtro_error_max": 0.10,
   "_filtro_nota": "si el modelo es fiable (error tipico < 10 %), no se calculan los disenos con P(cumplir) < 5 % (1 de cada 10 se calcula igualmente como control)",
+  "verificar_mejores": true,
+  "verificacion_h_mm": 3.5,
+  "_verificacion_nota": "antes de aceptar un nuevo mejor diseno se recalcula con malla fina; si ahi no cumple, no se acepta",
   "crear_workbench_en_cada_mejora": true,
   "mejora_minima_para_nuevo_mejor": 0.0001,
   "_mejora_nota": "fraccion de masa que debe mejorar un diseno para contar como nuevo mejor (proyecto Workbench + historial + GitHub). 0.0001 = cualquier mejora real.",
@@ -39,6 +42,7 @@
   "disco_minimo_gb": 5,
   "subir_a_github": true
 }
+
 
 
 

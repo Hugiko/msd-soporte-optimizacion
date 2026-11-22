@@ -5,21 +5,19 @@
   Fijo:         posicion de los 4 agujeros de perno y de los 2 agujeros del bulon
 
 COMO FUNCIONA (version corta para la defensa)
-  Se prueban DOS FAMILIAS de piezas, alternando un diseno de cada una:
-    - "vaciado": el soporte original al que se le quita material donde no trabaja.
-    - "cero":    un soporte nuevo (cajon de torsion + orejetas + franja de pernos).
+  Se prueban TRES FAMILIAS de piezas, alternando un diseno de cada una:
+    - "vaciado":  el soporte original al que se le quita material donde no trabaja.
+    - "refuerzo": collares junto a los tornillos (el punto critico del original) + vaciado del resto.
+    - "cero":     un soporte nuevo (cajon de torsion + orejetas + franja de pernos).
   Para cada familia:
     1. Reparto inicial (DOE Sobol): disenos repartidos por todo el espacio -> primera "foto".
-    2. Aprende: dos modelos sustitutos (procesos gaussianos, BoTorch) predicen masa(x) y tension(x)
-       con su incertidumbre, a partir de TODO lo que ya se ha calculado.
-    3. Pasos pequenos (region de confianza): propone cambios alrededor del MEJOR diseno.
-         - si el cambio mejora -> sigue en esa direccion y ALARGA el paso;
-         - si falla varias veces -> ACORTA el paso;
-         - si el paso se hace diminuto (ya no mejora) -> salta a explorar otra zona.
-       Entre todos los candidatos elige el de mayor "mejora esperada de masa x probabilidad de cumplir".
-    4. Lo calcula en ANSYS, lo clasifica, y vuelve a 2.
-  Cada NUEVO MEJOR DISENO (de todas las familias): proyecto de Workbench .wbpj listo para abrir,
-  entrada en el historial, fotograma del video timelapse y subida a GitHub.
+    2. Aprende: procesos gaussianos (BoTorch) predicen masa(x), tension(x) y desplazamiento(x) con su incertidumbre.
+    3. Ramas (arbol genealogico): cada rama prueba cambios alrededor de su mejor diseno (si mejora, alarga el paso;
+       si no, lo acorta). Al terminar, su mejor diseno crea ramas hijas: fina, amplia y cruce; y cada 3 ramas nace
+       una rama EXPLORADORA en una zona nunca probada (para no quedarse atrapado).
+    4. Antes de gastar ANSYS: piezas repetidas, filtro por prediccion y pasada rapida con malla gruesa.
+    5. Cada candidato a NUEVO MEJOR se verifica con malla fina antes de aceptarlo.
+  Cada nuevo mejor diseno: proyecto Workbench, historial, timelapse, GitHub y Discord.
 
 ROBUSTEZ: guarda tras cada diseno; si se apaga el PC continua donde iba; nunca sobrescribe;
 un diseno que falla (geometria/malla/solver) se registra, se penaliza y se sigue.
@@ -68,7 +66,7 @@ FAMILIES = {
     "vaciado": ("geometry_vaciado", "Vaciado del original",
                 [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0]),   # 1er diseno: casi el original
     "refuerzo": ("geometry_refuerzo", "Refuerzo + vaciado",
-                 [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.75]),     # 1er diseno: original reforzado
+                 [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.667, 0.444, 0.75]),  # 1er diseno: collares, cortes minimos
     "cero": ("geometry", "Diseno desde cero", None),
 }
 BRANCH_PREFIX = {"vaciado": "V", "refuerzo": "R", "cero": "C"}
@@ -171,12 +169,31 @@ class GitSync:
             log(f"  (GitHub: {e!r}; se reintentara)")
 
 
+class CachedGeom:
+    """Envuelve el modulo de geometria de una familia y recuerda las ultimas piezas construidas: la comprobacion de
+    piezas repetidas y el calculo usan la MISMA geometria sin construirla dos veces."""
+    def __init__(self, mod):
+        self._mod, self._memo = mod, []
+
+    def __getattr__(self, name):
+        return getattr(self._mod, name)
+
+    def build(self, p):
+        key = tuple(round(float(p[k]), 6) for k in self._mod.NAMES)
+        for k, val in self._memo:
+            if k == key:
+                return val
+        val = self._mod.build(p)
+        self._memo = ([(key, val)] + self._memo)[:3]
+        return val
+
+
 # ============================================================================ una familia
 class Family:
     def __init__(self, key):
         modname, self.title, self.x_first = FAMILIES[key]
         self.key = key
-        self.mod = importlib.import_module(modname)
+        self.mod = CachedGeom(importlib.import_module(modname))
         self.names = self.mod.NAMES; self.lo = self.mod.LO; self.hi = self.mod.HI; self.D = len(self.names)
         self.out = os.path.join(TOP, key); os.makedirs(self.out, exist_ok=True)
         self.state_path = os.path.join(self.out, "estado.json")
@@ -478,6 +495,8 @@ def category(m):
     if m.get("status") != "ok":
         return "fallido"
     v = violation(m)            # tension y desplazamiento a la vez
+    if v <= 1.0 and m.get("verif_ok") is False:
+        return "cerca_del_limite"   # cumplia con la malla normal pero NO con la malla fina de verificacion
     return "valido" if v <= 1.0 else ("cerca_del_limite" if v <= 1.1 else "descartado")
 
 
@@ -979,7 +998,8 @@ def write_dashboard(estado="EN MARCHA"):
         L += ["## Mejor diseno actual", "",
               f"**{tm['mass_kg']:.4f} kg** ({-red:+.2f} % de masa frente al original, {M_ORIG:.3f} kg con el mismo modelo) &nbsp;|&nbsp; tension **{tm['vm_metric']:.1f} MPa** "
               f"&nbsp;|&nbsp; desplazamiento **{(tm.get('u_max') or 0):.3f} mm** &nbsp;|&nbsp; {tb['title']}, diseno {tb['id']:03d} "
-              f"&nbsp;|&nbsp; calculado {tb['p'].get('fecha', '')[:16].replace('T', ' ')}", ""]
+              f"&nbsp;|&nbsp; calculado {tb['p'].get('fecha', '')[:16].replace('T', ' ')}"
+              + (f" &nbsp;|&nbsp; **verificado con malla fina: {tm['verif_vm']:.1f} MPa**" if tm.get("verif_vm") else ""), ""]
         same = gb and gb["familia"] == tb["fam"] and gb["iter"] == tb["id"]
         if gb:
             wb = glob.glob(os.path.join(gb["carpeta"], "workbench", "*.wbpz"))
@@ -1219,6 +1239,8 @@ def notify_top(force=False):
               dict(name="Origen", value=f"{fam_t}, rama {tb['p'].get('rama')}, diseno {tb['id']:03d}", inline=False),
               dict(name="Encontrado", value=tb["p"].get("fecha", "")[:16].replace("T", " "), inline=True),
               dict(name="Fiabilidad del modelo", value=(f"error tipico {fiab[1] * 100:.0f} %" if fiab[1] is not None else "aprendiendo"), inline=True)]
+    if m.get("verif_vm"):
+        fields.append(dict(name="Verificacion (malla fina)", value=f"{m['verif_vm']:.1f} MPa, {m['verif_u']:.3f} mm - confirmado", inline=False))
     gb = global_best()
     if gb and REPO_URL:
         wb = glob.glob(os.path.join(gb["carpeta"], "workbench", "*.wbpz"))
@@ -1247,6 +1269,33 @@ def disk_guard():
             log(f"  disco casi lleno ({free:.2f} GB): en pausa, se vuelve a comprobar en 10 min")
             time.sleep(600)
             free = shutil.disk_usage(ROOT).free / 1e9
+
+
+def verify_fine(fam, r):
+    """Recalcula un candidato a nuevo mejor con malla fina (h = 3,5 mm). Si ahi no cumple, no se acepta."""
+    from evaluate import evaluate
+    m = r["m"]; vd = os.path.join(r["dir"], "verificacion")
+    log(f"  candidato a NUEVO MEJOR: verificacion con malla fina...")
+    try:
+        mv = evaluate(r["p"]["params"], vd, force=CFG["force"], geom=fam.mod, log=LOG, images=False,
+                      h=float(USER.get("verificacion_h_mm", 3.5)), hmin=1.0)
+    except Exception as e:
+        mv = dict(status="error", error=repr(e))
+    if mv.get("status") == "ok":
+        m.update(verif_vm=mv["vm_metric"], verif_u=mv["u_max"], verif_nodes=mv.get("n_nodes"),
+                 verif_ok=violation(mv) <= 1.0)
+        log(f"  verificacion (malla fina, {mv.get('n_nodes')} nodos): {mv['vm_metric']:.1f} MPa, {mv['u_max']:.3f} mm -> "
+            + ("CONFIRMADO" if m["verif_ok"] else "NO se confirma: no se acepta como nuevo mejor"))
+    else:
+        m.update(verif_ok=None, verif_error=str(mv.get("error"))[:200])
+        log(f"  verificacion no disponible ({str(mv.get('error'))[:80]}): se acepta con la malla normal")
+    for f in glob.glob(os.path.join(vd, "*")):
+        if not f.endswith(("metrics.json", "params.json")):
+            try:
+                os.remove(f)
+            except OSError:
+                pass
+    atomic_json(os.path.join(r["dir"], "metrics.json"), m)
 
 
 def step(fam, git, t_session):
@@ -1315,6 +1364,11 @@ def step(fam, git, t_session):
                      if fam.key in USER.get("cribado_rapido_familias", ["cero"]) else None)
     r = dict(id=iid, dir=wd, m=m, p=prop, fam=fam.key)
     cat = category(m)
+    min_gain = float(USER.get("mejora_minima_para_nuevo_mejor", 0.0001))
+    if cat == "valido" and not m.get("duplicado_de") and USER.get("verificar_mejores", True) \
+            and (gb is None or m["mass_kg"] < gb["mass_kg"] * (1 - min_gain)):
+        verify_fine(fam, r)          # candidato a nuevo mejor: se recalcula con malla fina antes de aceptarlo
+        cat = category(m)
     try:
         add_to_gallery(fam, r)      # ficha con fecha en la galeria (validos y no validos)
         write_gallery_md()
@@ -1342,8 +1396,7 @@ def step(fam, git, t_session):
         log(f"  RESULTADO: masa {m['mass_kg']:.3f} kg | tension {m['vm_metric']:.1f} MPa (bruta {m['vm_max_raw']:.0f}) | {verdict}")
     else:
         log(f"  RESULTADO: FALLO ({m.get('status')}): {(m.get('error') or '')[:100]} -> se penaliza y se sigue")
-    # nuevo mejor = cumple y pesa menos que el anterior (cualquier mejora real) -> proyecto Workbench + historial + GitHub
-    min_gain = float(USER.get("mejora_minima_para_nuevo_mejor", 0.0001))
+    # nuevo mejor = cumple (tambien con malla fina) y pesa menos que el anterior -> proyecto Workbench + historial + GitHub
     is_best = cat == "valido" and (gb is None or m["mass_kg"] < gb["mass_kg"] * (1 - min_gain))
     if is_best:
         register_new_best(fam, r, git)       # Workbench + historial + timelapse (solo en mejoras)
@@ -1402,7 +1455,8 @@ def main():
     print("=" * 86)
     global DISCORD, REPO_URL
     import discord_notify
-    DISCORD = discord_notify.make(ROOT, TOP, log, test=TEST)
+    DISCORD = discord_notify.make(ROOT, TOP, log, test=TEST) if (not TEST or "--discord" in sys.argv) \
+        else discord_notify._Null()          # en las pruebas no se envia nada salvo que se pida (--discord)
     REPO_URL = _repo_url()
     if DISCORD.enabled:
         log("Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)")

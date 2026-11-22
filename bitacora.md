@@ -116,3 +116,11 @@
 - Prueba completa: sin errores.
 
 - **Ramas exploradoras**: todas las ramas nacían del mejor diseño de su madre, así que la búsqueda podía quedarse atrapada en un «valle» (le pasó a «vaciado», pegado al original). Ahora, cada 3 ramas terminadas (`rama_exploradora_cada`), nace una rama que parte de un punto al azar de entre los 20 más alejados de todo lo probado (de 2048 candidatos Sobol aleatorios) y hace allí sus pruebas; si encuentra algo mejor, sus hijas toman el relevo. Con 30 pruebas por rama, ≈ 25 % del tiempo es exploración. Comprobado con una simulación del árbol (resultados ficticios): las exploradoras nacen, se ejecutan y, cuando mejoran, la búsqueda continúa desde ellas.
+
+## 2026-11-22 – Familia «refuerzo» v2 y verificación con malla fina
+- **Refuerzo v2 (collares)**: un collar cilíndrico alrededor de cada alojamiento de tornillo (espesor delantero, trasero y altura como variables) + las operaciones de vaciado. Prueba en ANSYS sobre el original: con 6 mm, el pico baja de **212,9 a 181,2 MPa** (+159 g) y el punto crítico pasa a la orejeta. Malla sin problemas (formas cilíndricas simples). En la prueba corta, piezas válidas de 168–177 MPa.
+- Cavidades cerradas que aparecen al combinar operaciones: se rellenan (en impresión 3D el polvo quedaría atrapado) en lugar de descartar la pieza.
+- **Verificación automática con malla fina** (h = 3,5 mm) de cada candidato a nuevo mejor: si no cumple con la malla fina, se clasifica como «casi» y no se acepta. Resultado en la prueba: original 212,9 MPa (malla normal) → 195,2 MPa (malla fina); diseño 4: 195,1 MPa. Confirma la Fase 2: la malla normal es ligeramente conservadora en el punto crítico.
+- Rapidez: la geometría de cada pieza se construye una sola vez (antes, dos: comprobación de repetidas + cálculo).
+- En el modo de prueba no se envía nada a Discord salvo que se pida (`--discord`).
+- No implementado (decisión): cálculo en paralelo geometría/ANSYS (riesgo alto, ganancia ~1,5×), pulido final con CMA-ES (las ramas «finas» ya afinan), mapa topológico tipo BESO (queda como posible análisis para el informe).

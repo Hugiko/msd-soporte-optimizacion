@@ -108,6 +108,25 @@ def hip_cavity(s0, s1, ha, z0, z1):
     return box.intersect(tent_s).intersect(tent_a)
 
 
+def fill_closed_voids(solid):
+    """Rellena las cavidades interiores CERRADAS (sin salida al exterior)."""
+    shells = solid.Shells()
+    if len(shells) <= 1:
+        return solid
+    outer = max(shells, key=lambda sh: sh.BoundingBox().DiagonalLength)
+    for sh in shells:
+        if sh.isSame(outer):
+            continue
+        try:
+            plug = cq.Solid.makeSolid(sh)
+            if plug.Volume() < 0:
+                plug = cq.Solid(plug.wrapped.Reversed())
+            solid = solid.fuse(plug, tol=1e-4)
+        except Exception:
+            pass
+    return sorted(solid.Solids(), key=lambda x: x.Volume(), reverse=True)[0]
+
+
 def to_global(sh):
     return sh.rotate(cq.Vector(0, 0, 0), cq.Vector(0, 0, 1), G.THETA).translate(cq.Vector(G.P0[0], G.P0[1], 0))
 
@@ -192,7 +211,11 @@ def build(p, base=None):
     if not solid.isValid():
         raise GeometryError("solido no valido tras las operaciones booleanas")
     if G.AM_ON and len(solid.Shells()) > 1:
-        raise GeometryError("impresion 3D: queda una cavidad cerrada sin salida para el polvo")
+        # una cavidad cerrada atraparia el polvo: se rellena (la pieza sigue siendo valida y fabricable)
+        solid = fill_closed_voids(solid)
+        info["clamped"].append("cavidad cerrada rellenada (impresion 3D)")
+        if len(solid.Shells()) > 1:
+            raise GeometryError("impresion 3D: queda una cavidad cerrada sin salida para el polvo")
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6, pin_half_width=3.2)
     info["holes"] = G.check_holes(solid, 6.35)
     return solid, info

@@ -1,13 +1,14 @@
-"""FAMILIA C: REFUERZO + VACIADO DEL ORIGINAL.
+"""FAMILIA C: REFUERZO (COLLARES) + VACIADO DEL ORIGINAL.
 
-El punto debil del original esta junto a los alojamientos de los tornillos, donde el bloque tiene cavidades
-interiores. Esta familia:
-  1. RELLENA las cavidades interiores del original en un radio r_relleno alrededor de cada perno
-     (material nuevo, siempre por debajo de la superficie exterior: no cambia la forma por fuera ni los
-     alojamientos de las cabezas);
-  2. aplica despues las mismas operaciones de VACIADO que la familia «vaciado» (hueco interior, recorte,
-     alojamientos).
-Idea: si se refuerza donde la tension es maxima, queda margen para quitar mucho mas material donde no trabaja.
+El punto critico del original esta en el alojamiento de la cabeza del tornillo delantero (212,9 MPa de un limite
+de 215: sin margen). Esta familia:
+  1. anade un COLLAR cilindrico alrededor de cada alojamiento (material nuevo: rellena las cavidades interiores del
+     original junto a los pernos y, si sobresale, forma una protuberancia). Prueba en ANSYS: con 6 mm de espesor el
+     pico baja de 212,9 a 181,2 MPa (+159 g);
+  2. con ese margen, aplica las operaciones de VACIADO de la familia «vaciado» (hueco interior, recorte, alojamientos)
+     para quitar material donde no trabaja.
+El optimizador decide cuanto reforzar (delante y detras por separado) y cuanto vaciar.
+Version 2: formas simples y suaves (cilindros). La v1 (relleno escalonado) no se podia mallar.
 """
 import os, json, math
 import numpy as np
@@ -15,15 +16,18 @@ import cadquery as cq
 import geometry as G
 import geometry_vaciado as V
 
+R_POCKET0 = 10.541            # radio del alojamiento del original
 PARAMS = V.PARAMS + [
-    ("r_relleno", 0.0, 22.0, 16.0, "radio alrededor de cada perno donde se rellenan las cavidades interiores (mm); 0 = nada"),
+    ("t_col_del", 0.0, 9.0, 6.0, "espesor del collar en los 2 pernos delanteros (lado de la carga) (mm); 0 = sin collar"),
+    ("t_col_tra", 0.0, 9.0, 4.0, "espesor del collar en los 2 pernos traseros (mm); 0 = sin collar"),
+    ("z_col", 10.0, 26.0, 22.0, "altura del borde superior de los collares (mm)"),
 ]
 NAMES = [p[0] for p in PARAMS]
 LO = np.array([p[1] for p in PARAMS]); HI = np.array([p[2] for p in PARAMS])
 GeometryError = G.GeometryError
 export = G.export
-VERSION = "refuerzo-v1-" + V.VERSION
-CELL = 4.0            # tamano de las celdas del relleno (mm)
+VERSION = "refuerzo-v2-collares-" + V.VERSION
+FRONT = (0, 1)                # indices de los pernos delanteros en G.BOLTS (y ~ 0); traseros: 2, 3
 _CACHE = {}
 
 
@@ -32,8 +36,7 @@ def default_params():
 
 
 def fill_closed_voids(solid):
-    """Cavidades que han quedado CERRADAS (sin salida al exterior): se rellenan enteras. En impresion 3D el polvo
-    atrapado no se podria sacar; en cualquier caso, una cavidad cerrada solo aporta problemas."""
+    """Cavidades que han quedado CERRADAS (sin salida al exterior) se rellenan enteras (polvo atrapado en impresion 3D)."""
     shells = solid.Shells()
     if len(shells) <= 1:
         return solid
@@ -48,71 +51,29 @@ def fill_closed_voids(solid):
             solid = solid.fuse(plug, tol=1e-4)
         except Exception:
             pass
-    sols = sorted(solid.Solids(), key=lambda x: x.Volume(), reverse=True)
-    return sols[0]
+    return sorted(solid.Solids(), key=lambda x: x.Volume(), reverse=True)[0]
 
 
-def filled_original(r):
-    """Original con las cavidades interiores rellenas en un radio r alrededor de cada perno."""
-    key = round(r * 2) / 2
+def collared(t_f, t_r, z_top):
+    """Original con collares cilindricos alrededor de los alojamientos de las cabezas de los tornillos."""
+    key = (round(t_f, 1), round(t_r, 1), round(z_top, 1))
     if key in _CACHE:
         return _CACHE[key]
     base = V.original()
-    if key < 2.0:
-        _CACHE[key] = base
-        return base
-    from shapely.geometry import box as sbox
-    from shapely.ops import unary_union
-    s, a, z = V.heightmap()
-    cells = []                                     # (cuadrado en planta, altura maxima permitida)
-    for b in G.BOLTS:
-        bs, ba = b["sa"]
-        for s0 in np.arange(bs - key, bs + key, CELL):
-            for a0 in np.arange(ba - key, ba + key, CELL):
-                sc, ac = s0 + CELL / 2, a0 + CELL / 2
-                if math.hypot(sc - bs, ac - ba) > key:
-                    continue
-                ms = (s >= s0 - 1) & (s <= s0 + CELL + 1); ma = (a >= a0 - 1) & (a <= a0 + CELL + 1)
-                sub = z[np.ix_(ma, ms)]
-                if sub.size == 0 or np.isnan(sub).any():
-                    continue                       # celda fuera de la pieza o sobre un agujero: no se toca
-                top = float(np.min(sub)) - 0.6     # siempre por debajo de la superficie exterior
-                if top > 1.0:
-                    cells.append((sbox(s0, a0, s0 + CELL, a0 + CELL), top))
-    if not cells:
-        _CACHE[key] = base
-        return base
-    # relleno por CAPAS: cada capa es una sola region en planta extruida -> pocas caras, booleanas fiables
-    STEP = 4.0
-    slabs = []
-    zmax = max(t for _, t in cells)
-    zk = 0.3
-    while zk < zmax - 0.2:
-        z1 = min(zk + STEP, zmax)
-        region = unary_union([c for c, t in cells if t >= z1 - 1e-6])
-        if not region.is_empty:
-            region = region.buffer(1.5, quad_segs=3).buffer(-1.5, quad_segs=3).simplify(0.5)   # contornos suaves: pocas caras
-            for poly in G.polys(region, 4.0):
-                slabs.append(G.prism(poly, G.SA, (0, 0, 1), z1 - zk, both=False).translate(cq.Vector(0, 0, zk)))
-        zk = z1
-    if not slabs:
-        _CACHE[key] = base
-        return base
-    fill = slabs[0]
-    for sl in slabs[1:]:
-        fill = fill.fuse(sl)
-    fill = V.to_global(fill.clean())
-    solid = base.fuse(fill, tol=1e-4)
-    if sum(x.Volume() for x in solid.Solids()) < base.Volume() - 1.0 or max(x.Volume() for x in solid.Solids()) < 0.9 * base.Volume():
-        raise GeometryError("la union del relleno con el original ha fallado")
-    for b in G.BOLTS:                               # agujeros de los pernos: se vuelven a tallar exactos
-        solid = solid.cut(cq.Solid.makeCylinder(b["r"], G.Z1 - G.Z0 + 2, cq.Vector(b["c"][0], b["c"][1], G.Z0 - 1)), tol=1e-4)
-    sols = sorted(solid.Solids(), key=lambda x: x.Volume(), reverse=True)
+    solid = base
+    for i, b in enumerate(G.BOLTS):
+        t = key[0] if i in FRONT else key[1]
+        if t < 0.5:
+            continue
+        x, y = b["c"]
+        r_in = R_POCKET0 + 0.3          # 0,3 mm de holgura: no coincide con la pared del alojamiento (booleanas fiables)
+        ring = cq.Solid.makeCylinder(r_in + t, key[2] - 1.0, cq.Vector(x, y, 1.0)).cut(
+            cq.Solid.makeCylinder(r_in, key[2] + 1.0, cq.Vector(x, y, 0.0)))
+        solid = solid.fuse(ring, tol=1e-4)
+    sols = sorted(solid.Solids(), key=lambda q: q.Volume(), reverse=True)
     solid = fill_closed_voids(sols[0])
-    if solid.Volume() < base.Volume() - 1.0:
-        raise GeometryError("el relleno ha perdido material del original")
-    if not solid.isValid():
-        raise GeometryError("el relleno de las cavidades no es valido")
+    if not solid.isValid() or solid.Volume() < base.Volume() - 1.0:
+        raise GeometryError("la union de los collares con el original ha fallado")
     _CACHE[key] = solid
     return solid
 
@@ -122,10 +83,9 @@ def build(p):
     for k, lo, hi in zip(NAMES, LO, HI):
         if not (lo - 1e-9 <= p[k] <= hi + 1e-9):
             raise GeometryError(f"{k}={p[k]} fuera de [{lo}, {hi}]")
-    base = filled_original(p["r_relleno"])
+    base = collared(p["t_col_del"], p["t_col_tra"], p["z_col"])
     solid, info = V.build(p, base=base)
-    info["relleno_mm"] = p["r_relleno"]
-    info["masa_relleno_kg"] = (base.Volume() - V.original().Volume()) * 7.85e-6
+    info["masa_collares_kg"] = (base.Volume() - V.original().Volume()) * 7.85e-6
     return solid, info
 
 
