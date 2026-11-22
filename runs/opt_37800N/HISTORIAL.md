@@ -11,3 +11,4 @@ Original: 2,411 kg (CAD) | limite 187 MPa | carga 37800 N
 | 03 | 03_refuerzo_037_2.505kg | 2.505 | 180.0 | ![](historial/03_refuerzo_037_2.505kg/resumen.png) | [Workbench](historial/03_refuerzo_037_2.505kg/workbench/soporte_refuerzo_037.wbpz) |
 | 04 | 04_refuerzo_039_2.493kg | 2.493 | 182.6 | ![](historial/04_refuerzo_039_2.493kg/resumen.png) | [Workbench](historial/04_refuerzo_039_2.493kg/workbench/soporte_refuerzo_039.wbpz) |
 | 05 | 05_refuerzo_043_2.494kg | 2.494 | 179.8 | ![](historial/05_refuerzo_043_2.494kg/resumen.png) | [Workbench](historial/05_refuerzo_043_2.494kg/workbench/soporte_refuerzo_043.wbpz) |
+| 06 | 06_refuerzo_049_2.488kg | 2.488 | 180.4 | ![](historial/06_refuerzo_049_2.488kg/resumen.png) | [Workbench](historial/06_refuerzo_049_2.488kg/workbench/soporte_refuerzo_049.wbpz) |
