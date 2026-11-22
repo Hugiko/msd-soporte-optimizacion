@@ -1,6 +1,6 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:47
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:48
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -20,11 +20,12 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 20:47
 | 002 | 2.401 | 294.3 | reparto inicial (Sobol 2/12): explorar todo el espacio | [ver](002/vonmises.png) |
 | 003 | 2.413 | 315.5 | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](003/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (1)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (2)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 004 | 2.161 | - | reparto inicial (Sobol 4/12): explorar todo el espacio | - |
+| 005 | 2.300 | - | reparto inicial (Sobol 5/12): explorar todo el espacio | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

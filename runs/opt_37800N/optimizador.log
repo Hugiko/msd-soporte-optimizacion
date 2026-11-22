@@ -426,3 +426,22 @@
 [20:47:57]   RESULTADO: masa 1.233 kg | tension 2493.1 MPa (bruta 2493) | NO cumple
 [20:47:58] [Vaciado del original] DISENO 005  |  mejor global: aun ninguno valido
 [20:47:58]   motivo: reparto inicial (Sobol 5/12): explorar todo el espacio
+[20:48:04]   (GitHub: subido)
+[20:48:05]   [1/5] geometria parametrica (cadquery)
+[20:48:05]         masa CAD = 2.2998 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['techo del hueco 32.2->-4.0 mm (pared minima 3.0 mm)', 'hueco acortado 41.3->-19.1 mm (techo a 45 para impresion 3D)', 'hueco estrechado 98.1->-19.1 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[20:48:08]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[20:48:14]         fallo de malla: Exception: HXT 3D mesh failed
+[20:48:14]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[20:48:20]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[20:48:20]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[20:48:26]         fallo de malla: Exception: HXT 3D mesh failed
+[20:48:26]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[20:48:33]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[20:48:33]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[20:48:41]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[20:48:41]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[20:48:48]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[20:48:48]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: The 1D mesh seems not to be forming a closed loop | malla alg1 h4.40: Exception: The 1D mesh seems not to be forming a closed loop
+[20:48:49]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
+[20:48:49] [Refuerzo + vaciado] DISENO 005  |  mejor global: aun ninguno valido
+[20:48:49]   motivo: reparto inicial (Sobol 5/12): explorar todo el espacio
