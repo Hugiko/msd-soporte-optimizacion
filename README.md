@@ -1,22 +1,22 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 22/11/2026 23:28 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 22/11/2026 23:31 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | Vaciado del original | 41 | 0 | - | en marcha |
-| Refuerzo + vaciado | 62 | 12 | 2.488 kg (CS 1.19) | en marcha |
+| Refuerzo + vaciado | 63 | 13 | 2.463 kg (CS 1.19) | en marcha |
 | Diseno desde cero | 40 | 0 | - | en marcha |
 
 **Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 40 descartados en la pasada rapida, 18 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: error tipico 6 % | Refuerzo + vaciado: error tipico 2 % | Diseno desde cero: error tipico 2 %
 
 ## Mejor diseno actual
 
-**2.4879 kg** (+2.66 % de masa frente al original, 2.423 kg con el mismo modelo) &nbsp;|&nbsp; tension **180.3 MPa** &nbsp;|&nbsp; desplazamiento **0.126 mm** &nbsp;|&nbsp; coef. seguridad **1.19** &nbsp;|&nbsp; puntuacion **2.4743** &nbsp;|&nbsp; Refuerzo + vaciado, diseno 054 &nbsp;|&nbsp; calculado 2026-11-22 23:09 &nbsp;|&nbsp; **verificado con malla fina: 182.3 MPa**
+**2.4635 kg** (+1.65 % de masa frente al original, 2.423 kg con el mismo modelo) &nbsp;|&nbsp; tension **180.3 MPa** &nbsp;|&nbsp; desplazamiento **0.127 mm** &nbsp;|&nbsp; coef. seguridad **1.19** &nbsp;|&nbsp; puntuacion **2.4501** &nbsp;|&nbsp; Refuerzo + vaciado, diseno 063 &nbsp;|&nbsp; calculado 2026-11-22 23:28 &nbsp;|&nbsp; **verificado con malla fina: 185.8 MPa**
 
-[Proyecto Workbench (.wbpz)](runs/opt_37800N/historial/07_refuerzo_054_2.488kg/workbench/soporte_refuerzo_054.wbpz) &nbsp;|&nbsp; [Modelo APDL](runs/opt_37800N/historial/07_refuerzo_054_2.488kg/modelo_apdl.zip) &nbsp;|&nbsp; [Geometria STEP](runs/opt_37800N/historial/07_refuerzo_054_2.488kg/geometria.step)
+[Proyecto Workbench (.wbpz)](runs/opt_37800N/historial/08_refuerzo_063_2.463kg/workbench/soporte_refuerzo_063.wbpz) &nbsp;|&nbsp; [Modelo APDL](runs/opt_37800N/historial/08_refuerzo_063_2.463kg/modelo_apdl.zip) &nbsp;|&nbsp; [Geometria STEP](runs/opt_37800N/historial/08_refuerzo_063_2.463kg/geometria.step)
 
-![mejor diseno](runs/opt_37800N/galeria/20261122_231112_refuerzo_054_VALIDO_2.488kg.jpg)
+![mejor diseno](runs/opt_37800N/galeria/20261122_232949_refuerzo_063_VALIDO_2.463kg.jpg)
 
 ## Evolucion en el tiempo
 
@@ -24,7 +24,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 143 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 144 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -36,6 +36,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | n | hora | masa | mejora | tension | desplaz. | familia / diseno | proyecto | ficha |
 |---|---|---|---|---|---|---|---|---|
+| 9 | 22/11 23:29 | 2.4635 kg | -0.98 % (punt.) | 180.3 MPa | 0.127 mm | Refuerzo + vaciado 063 | [Workbench](runs/opt_37800N/historial/08_refuerzo_063_2.463kg/workbench/soporte_refuerzo_063.wbpz) | <img src="runs/opt_37800N/galeria/20261122_232949_refuerzo_063_VALIDO_2.463kg.jpg" width="320"> |
 | 8 | 22/11 23:10 | 2.4879 kg | -0.03 % (punt.) | 180.3 MPa | 0.126 mm | Refuerzo + vaciado 054 | [Workbench](runs/opt_37800N/historial/07_refuerzo_054_2.488kg/workbench/soporte_refuerzo_054.wbpz) | <img src="runs/opt_37800N/galeria/20261122_231112_refuerzo_054_VALIDO_2.488kg.jpg" width="320"> |
 | 7 | 22/11 22:56 | 2.4885 kg | -0.17 % (punt.) | 180.4 MPa | 0.126 mm | Refuerzo + vaciado 049 | [Workbench](runs/opt_37800N/historial/06_refuerzo_049_2.488kg/workbench/soporte_refuerzo_049.wbpz) | <img src="runs/opt_37800N/galeria/20261122_225746_refuerzo_049_VALIDO_2.488kg.jpg" width="320"> |
 | 6 | 22/11 22:40 | 2.4937 kg | -0.20 % (punt.) | 179.8 MPa | 0.126 mm | Refuerzo + vaciado 043 | [Workbench](runs/opt_37800N/historial/05_refuerzo_043_2.494kg/workbench/soporte_refuerzo_043.wbpz) | <img src="runs/opt_37800N/galeria/20261122_224143_refuerzo_043_VALIDO_2.494kg.jpg" width="320"> |
@@ -49,6 +50,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Refuerzo + vaciado | 063 | 2.463 | 180.3 | valido | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia t | [ver](runs/opt_37800N/galeria/20261122_232949_refuerzo_063_VALIDO_2.463kg.jpg) |
 | Vaciado del original | 041 | 2.414 | 199.7 | cerca_del_limite | [rama V1] [aun sin disenos validos] pequeno cambio alrededor del mejor | [ver](runs/opt_37800N/galeria/20261122_232813_vaciado_041_CASI_2.414kg.jpg) |
 | Refuerzo + vaciado | 062 | 2.466 | 182.1 | cerca_del_limite | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia t | [ver](runs/opt_37800N/galeria/20261122_232722_refuerzo_062_CASI_2.466kg.jpg) |
 | Refuerzo + vaciado | 061 | 2.513 | 181.7 | valido | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10 | [ver](runs/opt_37800N/galeria/20261122_232544_refuerzo_061_VALIDO_2.513kg.jpg) |
@@ -58,7 +60,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 059 | 1.719 | 571.8 | descartado | aleatorio (respaldo) | [ver](runs/opt_37800N/galeria/20261122_232143_refuerzo_059_NO_VALIDO_1.719kg.jpg) |
 | Refuerzo + vaciado | 058 | 2.485 | 179.7 | cerca_del_limite | [rama R1.1] varios pasos sin mejora: paso mas corto (0.03); cambia  (r | [ver](runs/opt_37800N/galeria/20261122_232047_refuerzo_058_CASI_2.485kg.jpg) |
 | Diseno desde cero | 039 | 2.263 | 404.1 | descartado | [rama C1] [aun sin disenos validos] varios pasos sin mejora: paso mas  | [ver](runs/opt_37800N/galeria/20261122_231900_cero_039_NO_VALIDO_2.263kg.jpg) |
-| Refuerzo + vaciado | 057 | 2.486 | 180.3 | cerca_del_limite | [rama R1.1] varios pasos sin mejora: paso mas corto (0.03); cambia  (r | [ver](runs/opt_37800N/galeria/20261122_231815_refuerzo_057_CASI_2.486kg.jpg) |
 
 ---
 
