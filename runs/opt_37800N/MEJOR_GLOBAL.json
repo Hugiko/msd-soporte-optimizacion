@@ -1,0 +1,30 @@
+{
+ "familia": "refuerzo",
+ "titulo": "Refuerzo + vaciado",
+ "iter": 23,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\01_refuerzo_023_2.528kg",
+ "mass_kg": 2.52779761475,
+ "vm_metric": 179.6107,
+ "puntuacion": 2.51264453952613,
+ "coef_seguridad": 1.1970333615981676,
+ "vm_max_raw": 807.3951,
+ "u_max": 0.12441372867893016,
+ "params": {
+  "cav_s0": 30.0,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 12.0,
+  "cav_z1": 12.0,
+  "trim_s0": 75.0,
+  "trim_z": 44.5306,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.0,
+  "R_pocket": 10.54,
+  "t_col_del": 5.2496,
+  "t_col_tra": 3.996,
+  "z_col": 22.0
+ },
+ "workbench": true,
+ "fecha": "2026-11-22T21:50:22.627515"
+}
