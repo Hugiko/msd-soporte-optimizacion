@@ -3596,3 +3596,10 @@
 [22:18:54]   [1/5] geometria parametrica (cadquery)
 [22:18:56]   !! fallo en geometria: GeometryError: la union de los collares con el original ha fallado
 [22:18:57]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares con el original ha fallado -> se penaliza y se sigue
+[22:19:02]   (GitHub: subido)
+[22:19:05] [Refuerzo + vaciado] DISENO 035  |  mejor global: 2.515 kg (Refuerzo + vaciado #027)
+[22:19:05]   motivo: [rama R1] varios pasos sin mejora: paso mas corto (0.07); cambia r_cut, t_col_del
+[22:19:05]   el modelo predice: masa 2.484 kg | tension 184 MPa | P(cumplir) 1.00
+[22:19:06]   [1/5] geometria parametrica (cadquery)
+[22:19:08]   !! fallo en geometria: GeometryError: la union de los collares con el original ha fallado
+[22:19:08]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares con el original ha fallado -> se penaliza y se sigue
