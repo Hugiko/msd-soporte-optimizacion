@@ -1,6 +1,6 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:09
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:15
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -23,7 +23,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:09
 | 046 | 2.411 | 194.1 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](046/vonmises.png) |
 | 047 | 2.411 | 194.1 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](047/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (33)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (34)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -60,6 +60,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 00:09
 | 037 | 2.414 | 212.1 | [rama V1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.07); cambia cav_z0, r_cut, R_pocket | [ver](037/vonmises.png) |
 | 038 | 2.423 | 212.9 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.07); cambia cav_len, R_pocket | - |
 | 044 | 2.408 | 211.8 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_ang, trim_z) | [ver](044/vonmises.png) |
+| 048 | 2.412 | 211.7 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_ang, trim_a) | [ver](048/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 
