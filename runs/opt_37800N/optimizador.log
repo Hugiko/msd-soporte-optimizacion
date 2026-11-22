@@ -2781,3 +2781,23 @@
 [21:56:03]   el modelo predice: masa 2.424 kg | tension 215 MPa | P(cumplir) 0.07
 [21:56:07]   geometria IDENTICA al diseno 001 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [21:56:07]   RESULTADO: masa 2.423 kg | tension 212.9 MPa (bruta 863) | NO cumple
+[21:56:11] [Refuerzo + vaciado] DISENO 026  |  mejor global: 2.528 kg (Refuerzo + vaciado #023)
+[21:56:11]   motivo: [rama R1] varios pasos sin mejora: paso mas corto (0.15); cambia t_col_del
+[21:56:11]   el modelo predice: masa 2.492 kg | tension 183 MPa | P(cumplir) 0.95
+[21:56:12]   (GitHub: subido)
+[21:56:21]   [1/5] geometria parametrica (cadquery)
+[21:56:21]         masa CAD = 2.4916 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 10.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[21:56:24]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[21:56:28]         fallo de malla: Exception: Could not fix wire in surface 383
+[21:56:28]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[21:56:33]         fallo de malla: Exception: Could not fix wire in surface 383
+[21:56:33]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[21:56:37]         fallo de malla: Exception: Could not fix wire in surface 383
+[21:56:37]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[21:56:42]         fallo de malla: Exception: Could not fix wire in surface 383
+[21:56:42]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[21:56:48]         fallo de malla: Exception: Could not fix wire in surface 405
+[21:56:48]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[21:56:54]         fallo de malla: Exception: Could not fix wire in surface 405
+[21:56:54]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 383 | malla alg1 h4.00: Exception: Could not fix wire in surface 383 | malla alg10 h3.60: Exception: Could not fix wire in surface 383 | malla alg4 h4.00: Exception: Could not fix wire in surface 383 | malla alg10 h4.00: Exception: Could not fix wire in surface 405 | malla alg1 h4.40: Exception: Could not fix wire in surface 405
+[21:56:55]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could  -> se penaliza y se sigue
