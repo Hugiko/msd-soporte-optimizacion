@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:31
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:34
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (6)
 
@@ -51,7 +51,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:31
 | 012 | 2.059 | 1173.3 | reparto inicial (Sobol 12/12): explorar todo el espacio | - |
 | 038 | 2.384 | 414.3 | [rama R1] el ultimo paso mejoro: sigue en esa linea (paso 0.04); cambia trim_s0, trim_z | [ver](038/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (5)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (6)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -60,6 +60,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:31
 | 026 | 2.492 | - | [rama R1] varios pasos sin mejora: paso mas corto (0.15); cambia t_col_del | - |
 | 034 | 0.000 | - | [rama R1] varios pasos sin mejora: paso mas corto (0.07); cambia r_cut, t_col_tra | - |
 | 035 | 0.000 | - | [rama R1] varios pasos sin mejora: paso mas corto (0.07); cambia r_cut, t_col_del | - |
+| 040 | 0.000 | - | [rama R1] el ultimo paso mejoro: sigue en esa linea (paso 0.04); cambia t_col_tra | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 
