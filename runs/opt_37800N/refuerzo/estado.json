@@ -1,0 +1,56 @@
+{
+ "ramas": {
+  "R0": {
+   "id": "R0",
+   "padre": null,
+   "semilla": null,
+   "tipo": "reparto inicial",
+   "L": null,
+   "L0": null,
+   "succ": 0,
+   "fail": 0,
+   "n": 12,
+   "best": {
+    "score": [
+     1,
+     0.9595527515160948
+    ],
+    "id": 1
+   },
+   "prev_x": null,
+   "estado": "terminada",
+   "hijos": [
+    "R1"
+   ],
+   "seed_score": [
+    9,
+    0
+   ],
+   "creada": "2026-11-22T21:07:04.782127"
+  },
+  "R1": {
+   "id": "R1",
+   "padre": "R0",
+   "semilla": 1,
+   "tipo": "inicial",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    0.9595527515160948
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-22T21:07:04.782127"
+  }
+ },
+ "done": false,
+ "motivo_fin": ""
+}
