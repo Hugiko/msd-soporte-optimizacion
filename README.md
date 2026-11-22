@@ -1,10 +1,10 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 22/11/2026 20:46 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 22/11/2026 20:47 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| Vaciado del original | 3 | 0 | - | en marcha |
+| Vaciado del original | 4 | 0 | - | en marcha |
 | Refuerzo + vaciado | 3 | 0 | - | en marcha |
 | Diseno desde cero | 3 | 0 | - | en marcha |
 
@@ -20,7 +20,7 @@ Aun ningun diseno cumple el limite.
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 9 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 10 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -32,6 +32,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Vaciado del original | 004 | 2.161 | - | fallido | reparto inicial (Sobol 4/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204711_vaciado_004_FALLO_2.161kg.jpg) |
 | Diseno desde cero | 003 | 1.384 | 902.6 | descartado | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204622_cero_003_NO_VALIDO_1.384kg.jpg) |
 | Refuerzo + vaciado | 003 | 1.565 | 779.7 | descartado | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204542_refuerzo_003_NO_VALIDO_1.565kg.jpg) |
 | Vaciado del original | 003 | 2.413 | 315.5 | descartado | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](runs/opt_37800N/galeria/20261122_204443_vaciado_003_NO_VALIDO_2.413kg.jpg) |
