@@ -1,0 +1,22 @@
+{
+ "params": {
+  "R_pocket": 11.1392,
+  "w_bar": 20.6742,
+  "phi_end": 54.6848,
+  "H": 15.7288,
+  "W_top": 37.9923,
+  "W_bot": 48.2406,
+  "x_box": 13.9058,
+  "g_end": 11.8588,
+  "t_w": 5.1119,
+  "e_lug": 12.5043,
+  "t_lug": 6.4114,
+  "r_f": 6.8051
+ },
+ "motivo": "reparto inicial (Sobol 10/12): explorar todo el espacio",
+ "pred": null,
+ "fase": "DOE",
+ "familia": "cero",
+ "rama": "C0",
+ "fecha": "2026-11-22T21:02:03.536307"
+}
