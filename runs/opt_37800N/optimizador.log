@@ -8023,3 +8023,9 @@
 [00:22:33]   [4/5] resultados
 [00:22:33]   verificacion (malla fina, 107195 nodos): 205.9 MPa, 0.133 mm -> NO se confirma: no se acepta como nuevo mejor
 [00:22:34]   RESULTADO: masa 2.415 kg | tension 184.0 MPa (bruta 718) | casi (hasta +10 %)
+[00:22:38] [Vaciado del original] DISENO 049  |  mejor global: 2.428 kg (Refuerzo + vaciado #085)
+[00:22:38]   motivo: [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a)
+[00:22:38]   el modelo predice: masa 2.403 kg | tension 202 MPa | P(cumplir) 0.00
+[00:22:42]   (GitHub: subido)
+[00:22:42]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[00:22:43]   RESULTADO: masa 2.414 kg | tension 212.1 MPa (bruta 861) | NO cumple
