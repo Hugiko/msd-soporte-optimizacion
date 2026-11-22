@@ -1,0 +1,40 @@
+{
+ "params": {
+  "cav_s0": 34.8807,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 8.4408,
+  "cav_z1": 12.0,
+  "trim_s0": 66.9314,
+  "trim_z": 27.9402,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.4046,
+  "R_pocket": 10.6032
+ },
+ "motivo": "[rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia trim_z (rama fina: solo mueve trim_s0, R_pocket, cav_a, cav_z1, trim_ang, trim_z)",
+ "pred": {
+  "mass_kg": 2.4021761595499234,
+  "stress_mpa": 201.6376799248477,
+  "p_cumple": 1.4323833586587112e-21,
+  "paso": 0.025,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.02777649837112492,
+   "cav_len": 0.08544054635805556,
+   "cav_a": 0.29451389746031637,
+   "cav_z0": 0.01822243142255784,
+   "cav_z1": 0.022735281637862384,
+   "trim_s0": 0.02808468736508752,
+   "trim_z": 0.02364173152035953,
+   "trim_ang": 0.017691590543915874,
+   "trim_a": 0.0279135814075793,
+   "r_cut": 0.02315299416009665,
+   "R_pocket": 0.4308267597530442
+  }
+ },
+ "fase": "aprende",
+ "familia": "vaciado",
+ "rama": "V1.1",
+ "fecha": "2026-11-23T00:38:55.535712"
+}
