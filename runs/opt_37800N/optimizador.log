@@ -1463,3 +1463,77 @@
 [21:26:31]   [4/5] resultados
 [21:26:32]   [5/5] imagenes
 [21:26:33]   RESULTADO: masa 2.420 kg | tension 289.4 MPa (bruta 907) | NO cumple
+[21:26:36] [Refuerzo + vaciado] DISENO 015  |  mejor global: aun ninguno valido
+[21:26:36]   motivo: [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia 
+[21:26:36]   el modelo predice: masa 2.532 kg | tension 180 MPa | P(cumplir) 0.98
+[21:26:42]   (GitHub: subido)
+[21:26:46]   [1/5] geometria parametrica (cadquery)
+[21:26:46]         masa CAD = 2.5297 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 10.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[21:26:48]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[21:26:57]   malla h=4.0: 85757 nodos, 50147 tet10 (4.1s)
+[21:26:58]   [3/5] ANSYS MAPDL normal (85757 nodos, 50147 elementos)
+[21:26:58] Lanzando MAPDL: model.inp (timeout 1200s)
+[21:27:04]   [fase] 4  /PREP7
+[21:27:07]   [fase] 187104  /SOLU
+[21:27:07]   [solver] 187106  EQSLV,SPARSE
+[21:27:07]   [fase] 187109  /POST1
+[21:27:07]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.979   TIME= 21:27:05
+[21:27:08]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.016
+[21:27:08]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[21:27:08]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.188   TIME= 21:27:05
+[21:27:08]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[21:27:08]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[21:27:09]   [solver] Equation solver memory allocated                     =  1951.641 MB
+[21:27:09]   [solver] Equation solver memory required for in-core mode     =  1866.863 MB
+[21:27:09]   [solver] Equation solver memory required for out-of-core mode =   405.038 MB
+[21:27:09]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[21:27:13]   [solver] Sparse solver maximum pivot= 263161877 at node 6746 UY.
+[21:27:13]   [solver] Sparse solver minimum pivot= 25688.0477 at node 1229 UY.
+[21:27:13]   [solver] Sparse solver minimum pivot in absolute value= 25688.0477 at node 1229
+[21:27:15]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        15.749
+[21:27:16]   [AVISO] *** WARNING ***                         ELAPSED TIME =      16.649   TIME= 21:27:15
+[21:27:16]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        16.712
+[21:27:27]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.4 seconds
+[21:27:27]   [solver] Elapsed time in equation solver                :        6.2 seconds
+[21:27:27]   [fase] Elapsed time spent post-processing model (/POST1) :        0.9 seconds
+[21:27:27]   [solver] Equation solver used                              :            Sparse (symmetric)
+[21:27:27]   [solver] Sparse direct equation solver computational rate  :       85.6 Gflops
+[21:27:28] MAPDL termino: estado=ok codigo=0 tiempo=29.8s
+[21:27:28]   [4/5] resultados
+[21:27:28]   [5/5] imagenes
+[21:27:29]   candidato a NUEVO MEJOR: verificacion con malla fina...
+[21:27:29]   [1/5] geometria parametrica (cadquery)
+[21:27:29]         masa CAD = 2.5297 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 10.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[21:27:29]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.50 mm)
+[21:27:37]   malla h=3.5: 111361 nodos, 66065 tet10 (3.8s)
+[21:27:39]   [3/5] ANSYS MAPDL normal (111361 nodos, 66065 elementos)
+[21:27:39] Lanzando MAPDL: model.inp (timeout 1200s)
+[21:27:45]   [fase] 4  /PREP7
+[21:27:48]   [fase] 244828  /SOLU
+[21:27:48]   [solver] 244830  EQSLV,SPARSE
+[21:27:48]   [fase] 244833  /POST1
+[21:27:49]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.487   TIME= 21:27:47
+[21:27:49]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.531
+[21:27:49]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[21:27:49]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.727   TIME= 21:27:47
+[21:27:49]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[21:27:49]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[21:27:51]   [solver] Equation solver memory allocated                     =  2667.757 MB
+[21:27:51]   [solver] Equation solver memory required for in-core mode     =  2551.398 MB
+[21:27:51]   [solver] Equation solver memory required for out-of-core mode =   529.954 MB
+[21:27:51]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[21:27:58]   [solver] Sparse solver maximum pivot= 196243140 at node 78393 UY.
+[21:27:58]   [solver] Sparse solver minimum pivot= 27796.6318 at node 1276 UY.
+[21:27:58]   [solver] Sparse solver minimum pivot in absolute value= 27796.6318 at node 1276
+[21:28:00]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        21.060
+[21:28:02]   [AVISO] *** WARNING ***                         ELAPSED TIME =      22.327   TIME= 21:28:01
+[21:28:02]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        22.412
+[21:28:14]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.5 seconds
+[21:28:14]   [solver] Elapsed time in equation solver                :       10.1 seconds
+[21:28:14]   [fase] Elapsed time spent post-processing model (/POST1) :        1.3 seconds
+[21:28:14]   [solver] Equation solver used                              :            Sparse (symmetric)
+[21:28:14]   [solver] Sparse direct equation solver computational rate  :       78.8 Gflops
+[21:28:14] MAPDL termino: estado=ok codigo=0 tiempo=35.5s
+[21:28:15]   [4/5] resultados
+[21:28:15]   verificacion (malla fina, 111361 nodos): 188.2 MPa, 0.128 mm -> NO se confirma: no se acepta como nuevo mejor
+[21:28:16]   RESULTADO: masa 2.541 kg | tension 179.7 MPa (bruta 478) | casi (hasta +10 %)
