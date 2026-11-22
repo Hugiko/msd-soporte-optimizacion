@@ -1,0 +1,40 @@
+{
+ "params": {
+  "cav_s0": 34.8807,
+  "cav_len": 10.3197,
+  "cav_a": 8.0,
+  "cav_z0": 8.4408,
+  "cav_z1": 12.0,
+  "trim_s0": 64.5349,
+  "trim_z": 27.6576,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.4046,
+  "R_pocket": 10.6122
+ },
+ "motivo": "[rama V1.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 031; cambia trim_s0, trim_z, R_pocket (rama fina: solo mueve R_pocket, cav_len, cav_a, trim_s0, trim_z, trim_a)",
+ "pred": {
+  "mass_kg": 2.396322205381526,
+  "stress_mpa": 201.75288586536146,
+  "p_cumple": 7.186575907926987e-13,
+  "paso": 0.1,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.025385626620204733,
+   "cav_len": 0.07836119766556408,
+   "cav_a": 0.3048283945967671,
+   "cav_z0": 0.017295125131749783,
+   "cav_z1": 0.022110593137417884,
+   "trim_s0": 0.028465045595491255,
+   "trim_z": 0.023042212246740683,
+   "trim_ang": 0.016590490032180962,
+   "trim_a": 0.02567372011926868,
+   "r_cut": 0.021856944192276545,
+   "R_pocket": 0.4363906506623382
+  }
+ },
+ "fase": "aprende",
+ "familia": "vaciado",
+ "rama": "V1.1",
+ "fecha": "2026-11-22T23:44:17.130787"
+}
