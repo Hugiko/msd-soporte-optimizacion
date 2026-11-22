@@ -8029,3 +8029,77 @@
 [00:22:42]   (GitHub: subido)
 [00:22:42]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [00:22:43]   RESULTADO: masa 2.414 kg | tension 212.1 MPa (bruta 861) | NO cumple
+[00:22:47]   (GitHub: subido)
+[00:22:47] [Refuerzo + vaciado] DISENO 087  |  mejor global: 2.428 kg (Refuerzo + vaciado #085)
+[00:22:47]   motivo: [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia z_col (rama fina: solo mueve trim_s0, trim_z, R_pocket, trim_a, trim_ang, cav_z0, z_col)
+[00:22:47]   el modelo predice: masa 2.406 kg | tension 181 MPa | P(cumplir) 0.94
+[00:22:57]   [1/5] geometria parametrica (cadquery)
+[00:22:57]         masa CAD = 2.4061 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 11.0->4.2 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->4.2 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[00:23:00]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[00:23:07]   malla h=4.0: 82623 nodos, 47743 tet10 (3.7s)
+[00:23:09]   [3/5] ANSYS MAPDL normal (82623 nodos, 47743 elementos)
+[00:23:09] Lanzando MAPDL: model.inp (timeout 1200s)
+[00:23:15]   [fase] 4  /PREP7
+[00:23:17]   [fase] 179162  /SOLU
+[00:23:17]   [solver] 179164  EQSLV,SPARSE
+[00:23:17]   [fase] 179167  /POST1
+[00:23:17]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.018   TIME= 00:23:16
+[00:23:17]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.052
+[00:23:17]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[00:23:18]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.208   TIME= 00:23:16
+[00:23:18]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[00:23:18]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[00:23:19]   [solver] Equation solver memory allocated                     =  1748.454 MB
+[00:23:19]   [solver] Equation solver memory required for in-core mode     =  1673.003 MB
+[00:23:19]   [solver] Equation solver memory required for out-of-core mode =   387.861 MB
+[00:23:19]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[00:23:22]   [solver] Sparse solver maximum pivot= 181075249 at node 66079 UY.
+[00:23:22]   [solver] Sparse solver minimum pivot= 23619.7009 at node 38773 UY.
+[00:23:22]   [solver] Sparse solver minimum pivot in absolute value= 23619.7009 at node 38773
+[00:23:23]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        14.442
+[00:23:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      15.349   TIME= 00:23:24
+[00:23:24]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        15.442
+[00:23:35]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.3 seconds
+[00:23:35]   [solver] Elapsed time in equation solver                :        5.1 seconds
+[00:23:35]   [fase] Elapsed time spent post-processing model (/POST1) :        1.0 seconds
+[00:23:35]   [solver] Equation solver used                              :            Sparse (symmetric)
+[00:23:35]   [solver] Sparse direct equation solver computational rate  :       92.8 Gflops
+[00:23:35] MAPDL termino: estado=ok codigo=0 tiempo=26.7s
+[00:23:35]   [4/5] resultados
+[00:23:36]   [5/5] imagenes
+[00:23:37]   candidato a NUEVO MEJOR: verificacion con malla fina...
+[00:23:37]   [1/5] geometria parametrica (cadquery)
+[00:23:37]         masa CAD = 2.4061 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 11.0->4.2 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->4.2 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[00:23:37]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.50 mm)
+[00:23:45]   malla h=3.5: 107222 nodos, 63060 tet10 (3.8s)
+[00:23:46]   [3/5] ANSYS MAPDL normal (107222 nodos, 63060 elementos)
+[00:23:46] Lanzando MAPDL: model.inp (timeout 1200s)
+[00:23:52]   [fase] 4  /PREP7
+[00:23:55]   [fase] 234679  /SOLU
+[00:23:55]   [solver] 234681  EQSLV,SPARSE
+[00:23:55]   [fase] 234684  /POST1
+[00:23:56]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.331   TIME= 00:23:54
+[00:23:56]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.375
+[00:23:56]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[00:23:56]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.562   TIME= 00:23:54
+[00:23:56]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[00:23:56]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[00:23:57]   [solver] Equation solver memory allocated                     =  2528.198 MB
+[00:23:57]   [solver] Equation solver memory required for in-core mode     =  2418.038 MB
+[00:23:57]   [solver] Equation solver memory required for out-of-core mode =   507.889 MB
+[00:23:57]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[00:24:03]   [solver] Sparse solver maximum pivot= 343069760 at node 7930 UY.
+[00:24:03]   [solver] Sparse solver minimum pivot= 27111.7314 at node 913 UZ.
+[00:24:03]   [solver] Sparse solver minimum pivot in absolute value= 27111.7314 at node 913
+[00:24:05]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        18.069
+[00:24:06]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.261   TIME= 00:24:06
+[00:24:06]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        19.340
+[00:24:17]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.4 seconds
+[00:24:17]   [solver] Elapsed time in equation solver                :        7.6 seconds
+[00:24:17]   [fase] Elapsed time spent post-processing model (/POST1) :        1.3 seconds
+[00:24:17]   [solver] Equation solver used                              :            Sparse (symmetric)
+[00:24:17]   [solver] Sparse direct equation solver computational rate  :      100.3 Gflops
+[00:24:17] MAPDL termino: estado=ok codigo=0 tiempo=31.2s
+[00:24:18]   [4/5] resultados
+[00:24:18]   verificacion (malla fina, 107222 nodos): 187.7 MPa, 0.133 mm -> NO se confirma: no se acepta como nuevo mejor
+[00:24:19]   RESULTADO: masa 2.419 kg | tension 181.6 MPa (bruta 580) | casi (hasta +10 %)
