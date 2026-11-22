@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 29.5061,
+  "cav_len": 10.2331,
+  "cav_a": 8.0,
+  "cav_z0": 11.4094,
+  "cav_z1": 12.0,
+  "trim_s0": 52.6789,
+  "trim_z": 26.6093,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.9085,
+  "R_pocket": 10.54,
+  "t_col_del": 5.2716,
+  "t_col_tra": 2.8609,
+  "z_col": 21.5408
+ },
+ "motivo": "[rama R1.1.1] varios pasos sin mejora: paso mas corto (0.40); cambia  (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, cav_a, cav_len, trim_ang)",
+ "pred": {
+  "mass_kg": 2.4235234226141773,
+  "stress_mpa": 183.10900166020988,
+  "p_cumple": 0.9897500938884898,
+  "paso": 0.4,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "cav_s0": 0.0384815151150036,
+   "cav_len": 0.06221390676042564,
+   "cav_a": 0.09477082991035102,
+   "cav_z0": 0.01202338094310851,
+   "cav_z1": 0.045565397612199576,
+   "trim_s0": 0.20650309152266721,
+   "trim_z": 0.11879080125113328,
+   "trim_ang": 0.032358454637958584,
+   "trim_a": 0.037952788501246344,
+   "r_cut": 0.2420535581668456,
+   "R_pocket": 0.034382229533081086,
+   "t_col_del": 0.023746719363726555,
+   "t_col_tra": 0.03259097327847982,
+   "z_col": 0.018566353403773224
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "R1.1.1",
+ "fecha": "2026-11-22T23:59:23.969734"
+}
