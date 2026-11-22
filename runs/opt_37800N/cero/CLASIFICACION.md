@@ -1,6 +1,6 @@
 # Diseno desde cero: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:57
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:02
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -12,16 +12,16 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:57
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (26)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (27)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 001 | 1.510 | 1933.7 | reparto inicial (Sobol 1/12): explorar todo el espacio | - |
 | 002 | 1.607 | 1664.8 | reparto inicial (Sobol 2/12): explorar todo el espacio | - |
 | 003 | 1.384 | 902.6 | reparto inicial (Sobol 3/12): explorar todo el espacio | - |
-| 004 | 1.233 | 2493.1 | reparto inicial (Sobol 4/12): explorar todo el espacio | [ver](004/vonmises.png) |
-| 005 | 1.415 | 1642.8 | reparto inicial (Sobol 5/12): explorar todo el espacio | [ver](005/vonmises.png) |
-| 006 | 1.490 | 1384.6 | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](006/vonmises.png) |
+| 004 | 1.233 | 2493.1 | reparto inicial (Sobol 4/12): explorar todo el espacio | - |
+| 005 | 1.415 | 1642.8 | reparto inicial (Sobol 5/12): explorar todo el espacio | - |
+| 006 | 1.490 | 1384.6 | reparto inicial (Sobol 6/12): explorar todo el espacio | - |
 | 007 | 0.972 | 1853.1 | reparto inicial (Sobol 7/12): explorar todo el espacio | [ver](007/vonmises.png) |
 | 008 | 2.063 | 1174.5 | reparto inicial (Sobol 8/12): explorar todo el espacio | [ver](008/vonmises.png) |
 | 009 | 1.765 | 612.1 | reparto inicial (Sobol 9/12): explorar todo el espacio | [ver](009/vonmises.png) |
@@ -42,6 +42,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:57
 | 024 | 2.326 | 447.6 | [rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia R_pocket, w_bar, phi_end, W_bot... | [ver](024/vonmises.png) |
 | 025 | 2.273 | 389.6 | [rama C1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.60); cambia w_bar, phi_end, t_lug | [ver](025/vonmises.png) |
 | 026 | 2.330 | 434.9 | [rama C1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia R_pocket | [ver](026/vonmises.png) |
+| 027 | 2.248 | 391.8 | [rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia w_bar | [ver](027/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 

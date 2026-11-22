@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 15.2637,
+  "w_bar": 8.0,
+  "phi_end": 25.0,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 40.0,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.0,
+  "t_lug": 10.8406,
+  "r_f": 7.0
+ },
+ "motivo": "[rama C1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia w_bar",
+ "pred": {
+  "mass_kg": 2.202137737398492,
+  "stress_mpa": 391.6400691996378,
+  "p_cumple": 3.566837464243907e-80,
+  "paso": 0.6,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.11109922927123893,
+   "w_bar": 0.03372909139996464,
+   "phi_end": 0.0402018764483558,
+   "H": 0.18596148131391513,
+   "W_top": 0.03601996510096886,
+   "W_bot": 0.047383152842180365,
+   "x_box": 0.06421402012437401,
+   "g_end": 0.15085088034486427,
+   "t_w": 0.08627830347912172,
+   "e_lug": 0.07159767732735504,
+   "t_lug": 0.13563530569264573,
+   "r_f": 0.03702901665501542
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "C1",
+ "fecha": "2026-11-22T22:01:29.420637"
+}
