@@ -1,4 +1,4 @@
-﻿"""FAMILIA B: VACIADO DEL ORIGINAL.
+"""FAMILIA B: VACIADO DEL ORIGINAL.
 
 Se parte del soporte original (0.stp), que ya esta en el limite de tension, y se le quita material
 donde casi no trabaja (zonas azules del mapa de von Mises):
@@ -18,7 +18,7 @@ ROOT = G.ROOT
 STEP0 = os.path.join(ROOT, "cad", "0.stp")
 HMAP = os.path.join(ROOT, "cad", "mapa_alturas_original.npz")
 T_MIN = 3.0                   # espesor minimo de pared que debe quedar sobre el hueco (mm)
-VERSION = "vaciado-v3-fabricacion-aditiva"   # cambia si cambia la geometria: los resultados antiguos se archivan
+VERSION = "vaciado-v4-" + (f"impresion3d-{G.AM_ANGLE:g}" if G.AM_ON else "libre")   # cambia si cambia la geometria: los resultados antiguos se archivan
 
 PARAMS = [  # nombre, min, max, valor por defecto, descripcion
     ("cav_s0", 15.0, 45.0, 25.0, "inicio del hueco interior en la direccion de la carga (mm, desde el bulon)"),
@@ -98,11 +98,11 @@ def hip_cavity(s0, s1, ha, z0, z1):
     Ls = s1 - s0
     box = cq.Solid.makeBox(Ls, 2 * ha, z1 - z0, cq.Vector(s0, -ha, z0))
     w1 = cq.Wire.makePolygon([cq.Vector(s0, -ha - 5, z0 - 1), cq.Vector(s1, -ha - 5, z0 - 1),
-                              cq.Vector(s1, -ha - 5, z0), cq.Vector((s0 + s1) / 2, -ha - 5, z0 + Ls / 2),
+                              cq.Vector(s1, -ha - 5, z0), cq.Vector((s0 + s1) / 2, -ha - 5, z0 + Ls / 2 * G.AM_T),
                               cq.Vector(s0, -ha - 5, z0)], close=True)
     tent_s = cq.Solid.extrudeLinear(cq.Face.makeFromWires(w1), cq.Vector(0, 2 * ha + 10, 0))
     w2 = cq.Wire.makePolygon([cq.Vector(s0 - 5, -ha, z0 - 1), cq.Vector(s0 - 5, ha, z0 - 1),
-                              cq.Vector(s0 - 5, ha, z0), cq.Vector(s0 - 5, 0, z0 + ha),
+                              cq.Vector(s0 - 5, ha, z0), cq.Vector(s0 - 5, 0, z0 + ha * G.AM_T),
                               cq.Vector(s0 - 5, -ha, z0)], close=True)
     tent_a = cq.Solid.extrudeLinear(cq.Face.makeFromWires(w2), cq.Vector(Ls + 10, 0, 0))
     return box.intersect(tent_s).intersect(tent_a)
@@ -112,14 +112,14 @@ def to_global(sh):
     return sh.rotate(cq.Vector(0, 0, 0), cq.Vector(0, 0, 1), G.THETA).translate(cq.Vector(G.P0[0], G.P0[1], 0))
 
 
-def build(p):
+def build(p, base=None):
     p = {k: float(p[k]) for k in NAMES}
     for k, lo, hi in zip(NAMES, LO, HI):
         if not (lo - 1e-9 <= p[k] <= hi + 1e-9):
             raise GeometryError(f"{k}={p[k]} fuera de [{lo}, {hi}]")
     r = p["r_cut"]
     info = {"clamped": [], "hueco": False, "recorte": False}
-    solid = original()
+    solid = original() if base is None else base
 
     # ---- recorte superior del lado alejado (prisma convexo redondeado)
     s0, zt, ang, at = p["trim_s0"], p["trim_z"], math.radians(p["trim_ang"]), p["trim_a"]
@@ -147,7 +147,7 @@ def build(p):
         cz1 = lim
     # FABRICACION ADITIVA: techo a cuatro aguas con pendientes de 45 (autoportante) y parte plana <= 3 mm
     hc = cz1 - cz0
-    wmax = 2 * hc + 3.0
+    wmax = 2 * hc / G.AM_T + 3.0 if G.AM_ON else 1e9   # techo con la pendiente minima de voladizo (solo impresion 3D)
     if cs1 - cs0 > wmax:
         info["clamped"].append(f"hueco acortado {cs1 - cs0:.1f}->{wmax:.1f} mm (techo a 45 para impresion 3D)")
         cs1 = cs0 + wmax
@@ -155,7 +155,8 @@ def build(p):
         info["clamped"].append(f"hueco estrechado {2 * ca:.1f}->{wmax:.1f} mm (techo a 45 para impresion 3D)")
         ca = wmax / 2
     if hc >= 2 * r + 1.0 and cs1 - cs0 >= 2 * r + 2.0 and 2 * ca >= 2 * r + 2.0:
-        cav = hip_cavity(cs0, cs1, ca, cz0, cz1)
+        cav = hip_cavity(cs0, cs1, ca, cz0, cz1) if G.AM_ON else \
+            cq.Solid.makeBox(cs1 - cs0, 2 * ca, cz1 - cz0, cq.Vector(cs0, -ca, cz0))
         cav = to_global(rounded(cav, r))
         cut2 = solid.cut(cav, tol=1e-4)
         if not cut2.isValid() or cut2.Volume() > solid.Volume() - 1.0:
@@ -163,7 +164,7 @@ def build(p):
         # agujero de evacuacion del polvo (D5) desde el suelo del hueco hasta la cara inferior
         drain = to_global(cq.Solid.makeCylinder(2.5, cz0 + 2.0, cq.Vector((cs0 + cs1) / 2, 0.0, -1.0)))
         cut3 = cut2.cut(drain, tol=1e-4)
-        if cut3.isValid():
+        if G.AM_ON and cut3.isValid():
             cut2 = cut3; info["drenajes"] = 1
         solid = cut2; info["hueco"] = True
     else:
@@ -190,6 +191,8 @@ def build(p):
         raise GeometryError(f"la pieza no es un unico solido ({len(solid.Solids())} trozos)")
     if not solid.isValid():
         raise GeometryError("solido no valido tras las operaciones booleanas")
+    if G.AM_ON and len(solid.Shells()) > 1:
+        raise GeometryError("impresion 3D: queda una cavidad cerrada sin salida para el polvo")
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6, pin_half_width=3.2)
     info["holes"] = G.check_holes(solid, 6.35)
     return solid, info

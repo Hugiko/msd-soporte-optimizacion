@@ -1,4 +1,4 @@
-﻿"""OPTIMIZADOR AUTOMATICO DEL SOPORTE - MSD 2026-27 (831_MSD_13_B, Soporte 6, acero S235)
+"""OPTIMIZADOR AUTOMATICO DEL SOPORTE - MSD 2026-27 (831_MSD_13_B, Soporte 6, acero S235)
 
   Objetivo:     minimizar la MASA
   Restriccion:  tension de von Mises (fuera de la singularidad de los pernos) <= 215 MPa
@@ -67,8 +67,11 @@ LOG = os.path.join(TOP, "optimizador.log")
 FAMILIES = {
     "vaciado": ("geometry_vaciado", "Vaciado del original",
                 [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0]),   # 1er diseno: casi el original
+    "refuerzo": ("geometry_refuerzo", "Refuerzo + vaciado",
+                 [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.75]),     # 1er diseno: original reforzado
     "cero": ("geometry", "Diseno desde cero", None),
 }
+BRANCH_PREFIX = {"vaciado": "V", "refuerzo": "R", "cero": "C"}
 
 
 # ============================================================================ utilidades
@@ -179,7 +182,7 @@ class Family:
         self.state_path = os.path.join(self.out, "estado.json")
         self.st = json.load(open(self.state_path)) if os.path.exists(self.state_path) else \
             dict(ramas={}, done=False, motivo_fin="")
-        self.rng = np.random.default_rng(CFG["seed"] + (0 if key == "vaciado" else 7))
+        self.rng = np.random.default_rng(CFG["seed"] + {"vaciado": 0, "refuerzo": 3, "cero": 7}.get(key, 11))
         self.cache = None
         self.pending = self.recover_interrupted()
 
@@ -263,15 +266,16 @@ class Family:
         seed = self.run_by_id(runs, br.get("semilla"))
         return rs + ([seed] if seed else [])
 
-    def new_branch(self, bid, parent, seed_run, L, tipo, seed_score):
-        self.st["ramas"][bid] = dict(id=bid, padre=parent, semilla=seed_run["id"], tipo=tipo, L=L, L0=L, succ=0, fail=0,
-                                     n=0, best=None, prev_x=None, estado="activa", hijos=[], seed_score=list(seed_score),
+    def new_branch(self, bid, parent, seed_run, L, tipo, seed_score, seed_x=None, nota=""):
+        self.st["ramas"][bid] = dict(id=bid, padre=parent, semilla=seed_run["id"] if seed_run else None, tipo=tipo, L=L, L0=L,
+                                     succ=0, fail=0, n=0, best=None, prev_x=None, estado="activa", hijos=[],
+                                     seed_score=list(seed_score), seed_x=seed_x, nota=nota,
                                      creada=datetime.datetime.now().isoformat())
         if parent:
             self.st["ramas"][parent]["hijos"].append(bid)
 
     def root_id(self):
-        return ("V" if self.key == "vaciado" else "C") + "0"
+        return BRANCH_PREFIX.get(self.key, self.key[0].upper()) + "0"
 
     def ensure_branches(self, runs):
         R = self.st.setdefault("ramas", {})
@@ -305,6 +309,9 @@ class Family:
         self.ensure_branches(runs)
         br = self.current()
         bid, L = br["id"], br["L"]
+        if br.get("semilla") is None and br.get("seed_x") is not None and br["n"] == 0:
+            return (np.array(br["seed_x"]), f"[rama {bid}] cruce: mezcla de los parametros de {br.get('nota', '')}",
+                    None, "cruce", bid)
         cache = self.mass_cache()
         ok = [r for r in runs if r["m"].get("status") == "ok"]
         Xm = [c["x"] for c in cache if c["ok"]] + [self.to_unit(r["p"]["params"]).tolist() for r in runs if r["m"].get("mass_cad_kg")]
@@ -314,13 +321,23 @@ class Family:
         gu = fit_gp([self.to_unit(r["p"]["params"]) for r in ok], [math.log(max(r["m"]["u_max"], 1e-6)) for r in ok]) \
             if U_LIM > 0 else None
         bsc, center_r = self.score_of(self.branch_runs(runs, bid))
+        if center_r is None:                       # rama de cruce cuyo primer diseno fallo: se parte de la mezcla
+            bsc, center_r = self.score_of(runs)
         c = self.to_unit(center_r["p"]["params"])
         feas_b = bsc[0] == 0
         # candidatos: (a) caja alrededor del mejor de la rama; (b) cambios de 1-3 parametros; (c) seguir la direccion que funciono
-        box = np.clip(c + (self.rng.random((CFG["n_cand"], self.D)) - 0.5) * L, 0, 1)
+        # ramas FINAS: solo se mueven los parametros que mas influyen (segun los modelos sustitutos)
+        dims = np.arange(self.D)
+        if br["tipo"] == "fina":
+            ls_s, ls_m = gp_lengthscales(gs), gp_lengthscales(gm)
+            if ls_s is not None and ls_m is not None:
+                imp = (1 / ls_s) / np.sum(1 / ls_s) + (1 / ls_m) / np.sum(1 / ls_m)
+                dims = np.argsort(imp)[::-1][:max(3, (self.D + 1) // 2)]
+        mask = np.zeros(self.D); mask[dims] = 1.0
+        box = np.clip(c + (self.rng.random((CFG["n_cand"], self.D)) - 0.5) * L * mask, 0, 1)
         few = np.repeat(c[None], 1200, 0)
         for row in few:
-            idx = self.rng.choice(self.D, self.rng.integers(1, 4), replace=False)
+            idx = self.rng.choice(dims, min(len(dims), self.rng.integers(1, 4)), replace=False)
             row[idx] = np.clip(row[idx] + self.rng.normal(0, L / 2, len(idx)), 0, 1)
         cand = [box, few]
         if br.get("prev_x") is not None and br.get("succ", 0) > 0:
@@ -361,6 +378,8 @@ class Family:
             why = f"varios pasos sin mejora: paso mas corto ({L:.2f}); cambia {what}"
         else:
             why = f"pequeno cambio alrededor del mejor de la rama (paso {L:.2f}); cambia {what}"
+        if br["tipo"] == "fina" and len(dims) < self.D:
+            why += f" (rama fina: solo mueve {', '.join(self.names[j] for j in dims)})"
         why = f"[rama {bid}] " + ("[aun sin disenos validos] " if not feas_b else "") + why
         pred = dict(mass_kg=float(math.exp(mu_m[i])), stress_mpa=float(math.exp(mu_s[i])), p_cumple=float(pof[i]),
                     paso=L, modo=mode)
@@ -406,8 +425,24 @@ class Family:
             if best_r is not None:
                 for k, (tipo, L0) in enumerate((("fina", 0.10), ("amplia", 0.35)), 1):
                     self.new_branch(f"{bid}.{k}", bid, best_r, L0, tipo, sc)
-                log(f"[{self.key}] rama {bid} terminada ({br['motivo_fin']}); su mejor diseno ({best_r['id']:03d}) "
-                    f"crea las ramas {bid}.1 (fina) y {bid}.2 (amplia)")
+                msg = f"crea las ramas {bid}.1 (fina) y {bid}.2 (amplia)"
+                # CRUCE: si otra rama terminada tiene un buen diseno distinto, se mezclan los parametros de ambos
+                others = []
+                for ob in R.values():
+                    if ob["id"] != bid and ob["estado"] == "terminada" and ob.get("best") and ob["padre"] is not None:
+                        orr = self.run_by_id(runs, ob["best"]["id"])
+                        if orr is not None and orr["id"] != best_r["id"]:
+                            others.append((tuple(ob["best"]["score"]), ob["id"], orr))
+                if others:
+                    osc, oid, orr = min(others)
+                    xa, xb = self.to_unit(best_r["p"]["params"]), self.to_unit(orr["p"]["params"])
+                    if np.linalg.norm(xa - xb) > 0.05:
+                        pick = self.rng.random(self.D) < 0.5
+                        xc = np.where(pick, xa, xb)
+                        self.new_branch(f"{bid}.3", bid, None, 0.20, "cruce", min(sc, osc), seed_x=xc.tolist(),
+                                        nota=f"{bid} (#{best_r['id']:03d}) y {oid} (#{orr['id']:03d})")
+                        msg += f" y {bid}.3 (cruce con la rama {oid})"
+                log(f"[{self.key}] rama {bid} terminada ({br['motivo_fin']}); su mejor diseno ({best_r['id']:03d}) {msg}")
         self.save_state()
 
 
@@ -417,6 +452,8 @@ REG_COLS = ["familia", "rama", "iter", "fecha", "motivo", "params", "masa_kg", "
 
 
 def category(m):
+    if m.get("status") == "filtrado":
+        return "filtrado"            # descartado por el modelo sin gastar ANSYS
     if m.get("status") != "ok":
         return "fallido"
     v = violation(m)            # tension y desplazamiento a la vez
@@ -451,14 +488,15 @@ def package_apdl(wd):
 
 
 def write_clasificacion(fam, runs):
-    groups = {k: [] for k in ("valido", "cerca_del_limite", "descartado", "fallido")}
+    groups = {k: [] for k in ("valido", "cerca_del_limite", "descartado", "fallido", "filtrado")}
     for r in runs:
         groups[category(r["m"])].append(r)
     groups["valido"].sort(key=lambda r: r["m"]["mass_kg"])
     title = {"valido": f"VALIDOS (tension <= {SIG_OBJ:.0f} MPa" + (f" y desplazamiento <= {U_LIM:.2f} mm" if U_LIM > 0 else "") + "), del mas ligero al mas pesado",
              "cerca_del_limite": "CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina",
              "descartado": "DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen",
-             "fallido": "FALLIDOS (geometria / malla / solver): registrados y penalizados"}
+             "fallido": "FALLIDOS (geometria / malla / solver): registrados y penalizados",
+             "filtrado": "FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS"}
     L = [f"# {fam.title}: clasificacion de disenos", "", f"Limite: {SIG_OBJ:.0f} MPa | carga {CFG['force']:.0f} N | "
          f"actualizado {datetime.datetime.now():%Y-%m-%d %H:%M}", ""]
     for k, lst in groups.items():
@@ -573,7 +611,7 @@ def register_new_best(fam, r, git):
 
 FAMS = []          # familias activas (lo rellena main) para el panel
 GAL = os.path.join(TOP, "galeria")
-VERD = {"valido": "VALIDO", "cerca_del_limite": "CASI", "descartado": "NO_VALIDO", "fallido": "FALLO"}
+VERD = {"valido": "VALIDO", "cerca_del_limite": "CASI", "descartado": "NO_VALIDO", "fallido": "FALLO", "filtrado": "FILTRADO"}
 
 
 def fig_of(r):
@@ -602,7 +640,9 @@ def add_to_gallery(fam, r):
             font = ImageFont.truetype("arial.ttf", 30); small = ImageFont.truetype("arial.ttf", 22)
         except Exception:
             font = small = ImageFont.load_default()
-        dr.text((30, 30), f"{fam.title} - diseno {r['id']:03d}: FALLO ({m.get('status')})", fill=(160, 0, 0), font=font)
+        head = ("FILTRADO por el modelo (no se calculo en ANSYS)" if m.get("status") == "filtrado"
+                else f"FALLO ({m.get('status')})")
+        dr.text((30, 30), f"{fam.title} - diseno {r['id']:03d}: {head}", fill=(160, 0, 0), font=font)
         err = (m.get("error") or "")[:400]
         for i in range(0, len(err), 80):
             dr.text((30, 100 + 30 * (i // 80)), err[i:i + 80], fill=(40, 40, 40), font=small)
@@ -657,6 +697,70 @@ def write_tree():
                 L.append(f"{b['padre'].replace('.', '_')} --> {nid}")
         L += ["```", ""]
     open(os.path.join(TOP, "ARBOL.md"), "w", encoding="utf-8").write("\n".join(L) + "\n")
+    try:
+        tree_png(best_glob)
+    except Exception as e:
+        log(f"(imagen del arbol: {e!r})")
+
+
+def tree_png(best_glob, max_nodes=26):
+    """arbol.png para el README: una fila por familia. Si hay muchas ramas se muestran el camino al mejor diseno
+    y las ramas activas (las demas se agrupan)."""
+    import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
+    fams = [f for f in FAMS if f.st.get("ramas")]
+    if not fams:
+        return
+    fig, axes = plt.subplots(len(fams), 1, figsize=(16, 4.2 * len(fams)), squeeze=False)
+    for ax, f in zip(axes[:, 0], fams):
+        R = f.st["ramas"]; runs = {r["id"]: r for r in f.runs()}
+        best_b = None
+        if best_glob and best_glob[1] == f.key and best_glob[2] in runs:
+            best_b = runs[best_glob[2]]["p"].get("rama")
+        keep = set(R)
+        if len(R) > max_nodes:                          # poda: camino al mejor + activas + sus antecesores
+            keep = set()
+            seeds = [b for b in R if R[b]["estado"] == "activa"] + ([best_b] if best_b in R else [])
+            for b in seeds:
+                while b:
+                    keep.add(b); b = R[b]["padre"]
+        kids = {b: [c for c in R[b]["hijos"] if c in keep] for b in keep}
+        root = f.root_id()
+        pos, cnt = {}, [0]
+
+        def place(b, d):
+            ch = kids.get(b, [])
+            for c in ch:
+                place(c, d + 1)
+            x = np.mean([pos[c][0] for c in ch]) if ch else cnt[0]
+            if not ch:
+                cnt[0] += 1
+            pos[b] = (x, -d)
+        place(root, 0)
+        for b, (x, y) in pos.items():
+            for c in kids.get(b, []):
+                ax.plot([x, pos[c][0]], [y, pos[c][1]], c="#888", lw=1, zorder=1)
+        for b, (x, y) in pos.items():
+            br = R[b]; best = runs.get((br.get("best") or {}).get("id"))
+            if best and category(best["m"]) == "valido":
+                res = f"{best['m']['mass_kg']:.3f} kg"
+            elif best and best["m"].get("vm_metric"):
+                res = f"{best['m']['vm_metric']:.0f} MPa"
+            else:
+                res = "-"
+            n = br["n"] if br["padre"] else sum(1 for r in runs.values() if r["p"].get("rama") in (None, b))
+            fc, ec, lw = ("#d6eaff", "#1f6fb5", 1) if br["estado"] == "activa" else ("#eeeeee", "#888888", 1)
+            if b == best_b:
+                fc, ec, lw = "#c8f0c0", "#1a9850", 3
+            hidden = len(R[b]["hijos"]) - len(kids.get(b, []))
+            txt = f"{b}\n{br['tipo']}\n{n} pr. | {res}" + (f"\n(+{hidden} ramas)" if hidden > 0 else "")
+            ax.text(x, y, txt, ha="center", va="center", fontsize=7.5, zorder=3,
+                    bbox=dict(boxstyle="round,pad=0.35", fc=fc, ec=ec, lw=lw))
+        ax.set_title(f"{f.title}: {len(R)} ramas" + (" (se muestran el camino al mejor y las activas)" if len(R) > max_nodes else ""),
+                     fontsize=11)
+        xs = [p[0] for p in pos.values()]; ys = [p[1] for p in pos.values()]
+        ax.set_xlim(min(xs) - 0.8, max(xs) + 0.8); ax.set_ylim(min(ys) - 0.7, 0.7); ax.axis("off")
+    fig.suptitle("Arbol genealogico de la busqueda  (azul = activa, gris = terminada, verde = rama del mejor diseno)", fontsize=12)
+    fig.tight_layout(); fig.savefig(os.path.join(TOP, "arbol.png"), dpi=110); plt.close(fig)
 
 
 def write_gallery_md():
@@ -731,6 +835,14 @@ def cleanup():
                     os.remove(item)
                 except OSError:
                     pass
+    keep_z = int(USER.get("mantener_wbpz_github", 10))       # en GitHub solo los .wbpz de los ultimos N mejores
+    for d in (hist[:-keep_z] if keep_z > 0 else []):
+        for z in glob.glob(os.path.join(d, "workbench", "*.wbpz")):
+            freed += os.path.getsize(z) / 1e6
+            try:
+                os.remove(z)
+            except OSError:
+                pass
     if freed > 0.5:
         log(f"Limpieza automatica: liberados {freed:.0f} MB (disenos antiguos ya superados)")
 
@@ -758,7 +870,7 @@ def write_dashboard(estado="EN MARCHA"):
     for r in allruns:
         if category(r["m"]) == "valido" and (best is None or r["m"]["mass_kg"] < best):
             best = r["m"]["mass_kg"]; improvements.append(r)
-    col = {"vaciado": "#2c7fb8", "cero": "#d95f0e"}
+    col = {"vaciado": "#2c7fb8", "refuerzo": "#7b3294", "cero": "#d95f0e"}
     # grafica estatica (README): eje horizontal = HORA real
     try:
         import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt, matplotlib.dates as mdates
@@ -832,6 +944,15 @@ def write_dashboard(estado="EN MARCHA"):
         bm = f"{min(r['m']['mass_kg'] for r in val):.3f} kg" if val else "-"
         L.append(f"| {f.title} | {len(rs)} | {len(val)} | {bm} | {'terminada: ' + f.st.get('motivo_fin', '') if f.st.get('done') else 'en marcha'} |")
     L.append("")
+    # ahorro de calculo y fiabilidad del modelo
+    n_filt = sum(1 for r in allruns if r["m"].get("status") == "filtrado")
+    n_rap = sum(1 for r in allruns if str(r["m"].get("fidelidad", "")).startswith("rapida"))
+    n_dup = sum(1 for r in allruns if r["m"].get("duplicado_de"))
+    fiab = [model_reliability(f.runs()) for f in FAMS]
+    rel_txt = " | ".join(f"{f.title}: " + (f"error tipico {e * 100:.0f} %" if e is not None else "aun aprendiendo")
+                         for f, (n_, e) in zip(FAMS, fiab))
+    L += [f"**Calculos ahorrados:** {n_filt} descartados por el modelo sin ANSYS, {n_rap} descartados en la pasada rapida, "
+          f"{n_dup} piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** {rel_txt}", ""]
     if tb:
         tm = tb["m"]; red = (1 - tm["mass_kg"] / M_ORIG) * 100
         L += ["## Mejor diseno actual", "",
@@ -866,7 +987,9 @@ def write_dashboard(estado="EN MARCHA"):
               "- descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).", "",
               f"**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico]({rel(os.path.join(TOP, 'GALERIA.md'))})** "
               f"- {len(glob.glob(os.path.join(GAL, '*.jpg')))} fichas.", "",
-              f"**[Arbol genealogico de la busqueda (ramas y de donde sale cada una)]({rel(os.path.join(TOP, 'ARBOL.md'))})**", ""]
+              f"## Arbol genealogico de la busqueda", "",
+              (f"![arbol]({rel(os.path.join(TOP, 'arbol.png'))})" if os.path.exists(os.path.join(TOP, "arbol.png")) else ""), "",
+              f"Detalle de cada rama: [ARBOL.md]({rel(os.path.join(TOP, 'ARBOL.md'))})", ""]
     if improvements:
         # historial = TODAS las mejoras (cada vez que aparece un diseno valido mas ligero); las que superaron
         # el umbral tienen ademas proyecto de Workbench en historial/
@@ -937,6 +1060,36 @@ def acquire_lock():
     return lk
 
 
+def model_reliability(runs, last=15):
+    """Error tipico del modelo de tension en los ultimos disenos calculados (prediccion frente a ANSYS)."""
+    errs = []
+    for r in runs[::-1]:
+        pr = r["p"].get("pred") or {}
+        if r["m"].get("status") == "ok" and not r["m"].get("duplicado_de") and pr.get("stress_mpa"):
+            errs.append(abs(math.log(pr["stress_mpa"] / r["m"]["vm_metric"])))
+            if len(errs) >= last:
+                break
+    return (len(errs), float(np.median(errs)) if errs else None)
+
+
+def model_filter(fam, runs, prop):
+    """Devuelve el motivo si el disenyo NO merece calcularse (modelo fiable + casi seguro que no cumple)."""
+    pr = prop.get("pred") or {}
+    if not pr or pr.get("modo") != "mejorar masa":
+        return None
+    p_min = float(USER.get("filtro_prob_minima", 0.05))
+    n, err = model_reliability(runs)
+    if n < 8 or err is None or err > float(USER.get("filtro_error_max", 0.10)):
+        return None                                   # modelo aun no fiable: se calcula todo
+    if pr.get("p_cumple", 1.0) >= p_min:
+        return None
+    if fam.rng.random() < 0.10:                       # control de calidad: 1 de cada 10 se calcula igualmente
+        prop["motivo"] += " [control de calidad del filtro: se calcula aunque el modelo lo descartaria]"
+        return None
+    return (f"el modelo (error tipico {err * 100:.0f} %) predice {pr['stress_mpa']:.0f} MPa y "
+            f"P(cumplir) = {pr['p_cumple']:.3f} < {p_min}")
+
+
 def find_duplicate(fam, params, runs):
     """Construye la geometria (unos segundos) y la compara con todas las calculadas: si el volumen coincide
     (< 0,5 mm3) la pieza es la misma y se reutiliza su resultado."""
@@ -952,12 +1105,136 @@ def find_duplicate(fam, params, runs):
     return None
 
 
+DISCORD = None        # avisos a Discord (se crea en main; si no hay enlaces no hace nada)
+REPO_URL = None
+
+
+def _repo_url():
+    try:
+        g = find_git()
+        u = subprocess.run([g, "remote", "get-url", "origin"], cwd=ROOT, capture_output=True, text=True, timeout=20).stdout.strip()
+        return u[:-4] if u.endswith(".git") else u
+    except Exception:
+        return None
+
+
+def _gal_path(r):
+    g = r["m"].get("galeria")
+    p = os.path.join(TOP, g) if g else None
+    return p if p and os.path.exists(p) else None
+
+
+def notify_design(fam, r, cat):
+    """Canal 'todo': ficha de cada diseno calculado (validos, no validos, fallidos y filtrados)."""
+    m, p = r["m"], r["p"]
+    verd = {"valido": "VALIDO", "cerca_del_limite": "casi (hasta +10 %)", "descartado": "no valido",
+            "fallido": "FALLO", "filtrado": "filtrado por el modelo (sin ANSYS)"}[cat]
+    mass = m.get("mass_kg") or m.get("mass_cad_kg")
+    fields = [dict(name="Resultado", value=verd, inline=True),
+              dict(name="Masa", value=f"{mass:.3f} kg" if mass else "-", inline=True),
+              dict(name="Tension", value=f"{m['vm_metric']:.1f} MPa" if m.get("vm_metric") else "-", inline=True),
+              dict(name="Desplazamiento", value=f"{m['u_max']:.3f} mm" if m.get("u_max") else "-", inline=True),
+              dict(name="Rama", value=str(p.get("rama") or "-"), inline=True)]
+    desc = p.get("motivo", "")
+    if m.get("error"):
+        desc += f"\n**Motivo del descarte / fallo:** {m['error'][:300]}"
+    DISCORD.design(f"{fam.title} - diseno {r['id']:03d}", cat, fields, desc, _gal_path(r))
+
+
+def _tree_signature():
+    sig = []
+    for f in FAMS:
+        for bid, b in sorted(f.st.get("ramas", {}).items()):
+            sig.append([f.key, bid, b["estado"], (b.get("best") or {}).get("id")])
+    return sig
+
+
+def notify_tree():
+    """Canal 'arbol': imagen nueva solo cuando cambia la estructura del arbol o el mejor de alguna rama."""
+    path = os.path.join(TOP, "discord_arbol_firma.json")
+    sig = _tree_signature()
+    old = json.load(open(path)) if os.path.exists(path) else None
+    png = os.path.join(TOP, "arbol.png")
+    if sig == old or not os.path.exists(png):
+        return
+    atomic_json(path, sig)
+    lines = []
+    for f in FAMS:
+        R = f.st.get("ramas", {})
+        if R:
+            act = sum(1 for b in R.values() if b["estado"] == "activa")
+            lines.append(f"**{f.title}**: {len(R)} ramas ({act} activas)")
+    shot = os.path.join(TOP, "discord_arbol.png")
+    shutil.copy(png, shot)            # copia: el original se reescribe en cada diseno
+    DISCORD.tree(shot, "\n".join(lines) or "-")
+
+
+def notify_top(force=False):
+    """Canal 'top': UN mensaje con el mejor diseno, que se edita al mejorar (y cada 15 disenos como senal de vida)."""
+    path = os.path.join(TOP, "discord_top.json")
+    st = json.load(open(path)) if os.path.exists(path) else {}
+    allr = [r for f in FAMS for r in f.runs()]
+    vals = [r for r in allr if category(r["m"]) == "valido"]
+    n_tot = len(allr)
+    tb = min(vals, key=lambda r: r["m"]["mass_kg"]) if vals else None
+    key = [tb["fam"], tb["id"]] if tb else None
+    if not force and key == st.get("key") and n_tot - st.get("n", 0) < 15:
+        return
+    atomic_json(path, dict(key=key, n=n_tot))
+    stamp = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
+    footer = (f"Actualizado {stamp} | {n_tot} disenos calculados, {len(vals)} validos | carga {CFG['force']:.0f} N | "
+              f"limites {SIG_OBJ:.0f} MPa y {U_LIM:.2f} mm")
+    if tb is None:
+        DISCORD.top("Mejor diseno actual: aun ninguno cumple", [dict(name="Estado", value="buscando el primer diseno valido")],
+                     None, footer, REPO_URL)
+        return
+    m = tb["m"]; red = (1 - m["mass_kg"] / M_ORIG) * 100
+    fam_t = FAMILIES[tb["fam"]][1]
+    fiab = model_reliability([r for r in allr if r["fam"] == tb["fam"]])
+    fields = [dict(name="Masa", value=f"**{m['mass_kg']:.4f} kg** ({-red:+.2f} % frente al original {M_ORIG:.3f} kg)", inline=False),
+              dict(name="Tension", value=f"{m['vm_metric']:.1f} / {SIG_OBJ:.0f} MPa", inline=True),
+              dict(name="Desplazamiento", value=f"{m['u_max']:.3f} / {U_LIM:.2f} mm", inline=True),
+              dict(name="Coef. seguridad", value=f"{CFG['sigma_y'] / m['vm_metric']:.2f}", inline=True),
+              dict(name="Origen", value=f"{fam_t}, rama {tb['p'].get('rama')}, diseno {tb['id']:03d}", inline=False),
+              dict(name="Encontrado", value=tb["p"].get("fecha", "")[:16].replace("T", " "), inline=True),
+              dict(name="Fiabilidad del modelo", value=(f"error tipico {fiab[1] * 100:.0f} %" if fiab[1] is not None else "aprendiendo"), inline=True)]
+    gb = global_best()
+    if gb and REPO_URL:
+        wb = glob.glob(os.path.join(gb["carpeta"], "workbench", "*.wbpz"))
+        if wb:
+            relp = os.path.relpath(wb[0], ROOT).replace("\\", "/")
+            fields.append(dict(name="Proyecto Workbench", value=f"[descargar .wbpz]({REPO_URL}/blob/main/{relp})", inline=False))
+    DISCORD.top("Mejor diseno actual", fields, _gal_path(tb), footer, REPO_URL)
+
+
+def disk_guard():
+    """Si queda poco disco: limpieza inmediata; si queda muy poco, pausa hasta que haya sitio."""
+    free = shutil.disk_usage(ROOT).free / 1e9
+    if free < float(USER.get("disco_minimo_gb", 5.0)):
+        log(f"Poco espacio en disco ({free:.1f} GB): limpieza inmediata")
+        try:
+            cleanup()
+        except Exception as e:
+            log(f"(limpieza: {e!r})")
+        free = shutil.disk_usage(ROOT).free / 1e9
+        warned = False
+        while free < 1.0:
+            if not warned:
+                DISCORD.alert(f"El disco esta casi lleno ({free:.1f} GB libres). El optimizador esta en PAUSA hasta que haya "
+                              "al menos 1 GB libre; despues continua solo.")
+                warned = True
+            log(f"  disco casi lleno ({free:.2f} GB): en pausa, se vuelve a comprobar en 10 min")
+            time.sleep(600)
+            free = shutil.disk_usage(ROOT).free / 1e9
+
+
 def step(fam, git, t_session):
     from evaluate import evaluate
     try:
         retry_pending_workbench(git)
     except Exception as e:
         log(f"(pendientes Workbench: {e!r})")
+    disk_guard()
     runs = fam.runs()
     n = max([r["id"] for r in runs], default=0)
     fails = 0
@@ -993,8 +1270,15 @@ def step(fam, git, t_session):
     if prop.get("pred"):
         pr = prop["pred"]
         log(f"  el modelo predice: masa {pr['mass_kg']:.3f} kg | tension {pr['stress_mpa']:.0f} MPa | P(cumplir) {pr['p_cumple']:.2f}")
-    dup = find_duplicate(fam, prop["params"], runs)
-    if dup is not None:
+    filt = model_filter(fam, runs, prop)
+    dup = None if filt else find_duplicate(fam, prop["params"], runs)
+    if filt:
+        m = dict(status="filtrado", params=prop["params"], mass_kg=None, mass_cad_kg=prop["pred"]["mass_kg"],
+                 pred_vm=prop["pred"]["stress_mpa"], error=filt, total_s=0.0)
+        json.dump(prop["params"], open(os.path.join(wd, "params.json"), "w"), indent=1)
+        atomic_json(os.path.join(wd, "metrics.json"), m)
+        log(f"  FILTRADO sin ANSYS: {filt}")
+    elif dup is not None:
         # geometria IDENTICA a un diseno ya calculado: mismo resultado, sin gastar ANSYS
         m = {k: v for k, v in dup["m"].items() if k not in ("traceback",)}
         m.update(params=prop["params"], duplicado_de=dup["id"], total_s=0.0)
@@ -1005,7 +1289,9 @@ def step(fam, git, t_session):
                 shutil.copy(os.path.join(dup["dir"], f), os.path.join(wd, f))
         log(f"  geometria IDENTICA al diseno {dup['id']:03d} (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS")
     else:
-        m = evaluate(prop["params"], wd, force=CFG["force"], geom=fam.mod, log=LOG)
+        m = evaluate(prop["params"], wd, force=CFG["force"], geom=fam.mod, log=LOG,
+                     prescreen=(float(USER.get("cribado_rapido", 1.5)) or None)
+                     if fam.key in USER.get("cribado_rapido_familias", ["cero"]) else None)
     r = dict(id=iid, dir=wd, m=m, p=prop, fam=fam.key)
     cat = category(m)
     try:
@@ -1013,6 +1299,10 @@ def step(fam, git, t_session):
         write_gallery_md()
     except Exception as e:
         log(f"(galeria: {e!r})")
+    try:
+        notify_design(fam, r, cat)  # Discord: canal de todo lo generado
+    except Exception as e:
+        log(f"(Discord: {e!r})")
     append_registro(fam, r)
     if cat in ("valido", "cerca_del_limite"):
         package_apdl(wd)
@@ -1022,6 +1312,7 @@ def step(fam, git, t_session):
     fam.update_branch(runs, r)
     try:
         write_tree()
+        notify_tree()               # Discord: imagen del arbol si ha cambiado
     except Exception as e:
         log(f"(arbol: {e!r})")
     write_clasificacion(fam, runs)
@@ -1039,6 +1330,10 @@ def step(fam, git, t_session):
         write_dashboard()
     except Exception as e:
         log(f"(panel: {e!r})")
+    try:
+        notify_top()                # Discord: mensaje del mejor diseno (se edita)
+    except Exception as e:
+        log(f"(Discord: {e!r})")
     if is_best:
         gb2 = global_best()
         git.push(f"NUEVO MEJOR DISENO: {gb2['mass_kg']:.3f} kg, {gb2['vm_metric']:.0f} MPa ({fam.title} {iid:03d})")
@@ -1084,8 +1379,15 @@ def main():
     print(f"  minimizar masa | tension <= {SIG_OBJ:.0f} MPa | familias: {', '.join(CFG['families'])}")
     print("  Se puede cerrar esta ventana en cualquier momento: al volver a abrirla continua donde iba.")
     print("=" * 86)
+    global DISCORD, REPO_URL
+    import discord_notify
+    DISCORD = discord_notify.make(ROOT, TOP, log, test=TEST)
+    REPO_URL = _repo_url()
+    if DISCORD.enabled:
+        log("Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)")
     fams = [Family(k) for k in CFG["families"]]
     FAMS[:] = fams
+    crash_streak = 0
     t0 = time.time()
     final_state = "DETENIDO (al relanzar optimizar.bat continua)"
     try:
@@ -1099,8 +1401,28 @@ def main():
                 # reparto del tiempo: una familia sin NINGUN diseno valido tras 30 intentos solo juega 1 de cada 3 turnos
                 if len(active) > 1 and len(rs_f) >= 30 and not any(category(r["m"]) == "valido" for r in rs_f) and rnd % 3:
                     continue
-                if not step(f, git, t0):
+                try:
+                    alive = step(f, git, t0)
+                    crash_streak = 0
+                except KeyboardInterrupt:
+                    raise
+                except Exception as e:
+                    # error inesperado: se registra, se avisa y se sigue (el diseno a medias se repetira)
+                    crash_streak += 1
+                    tbk = traceback.format_exc()
+                    log(f"ERROR INESPERADO ({crash_streak} seguidos) en {f.title}: {e!r}")
+                    with open(os.path.join(TOP, "errores.log"), "a", encoding="utf-8") as fe:
+                        fe.write(f"\n[{datetime.datetime.now():%Y-%m-%d %H:%M:%S}] {f.key}\n{tbk}")
+                    DISCORD.alert(f"Error inesperado en {f.title} ({crash_streak} seguidos): `{e!r}`"[:1500]
+                                  + "\nEl optimizador sigue; detalle en errores.log.")
+                    if crash_streak >= 5:
+                        DISCORD.alert("5 errores inesperados seguidos: el optimizador se detiene. optimizar.bat lo reiniciara en 1 minuto.")
+                        raise
+                    time.sleep(30)
+                    continue
+                if not alive:
                     log(f"[{f.title}] TERMINADA: {f.st.get('motivo_fin')}")
+                    DISCORD.alert(f"La familia **{f.title}** ha terminado: {f.st.get('motivo_fin')}.")
                 n_steps = sum(len(ff.runs()) for ff in fams)
                 if n_steps % int(USER.get("limpieza_cada_n_disenos", 10)) == 0:
                     try:
@@ -1109,6 +1431,7 @@ def main():
                         log(f"(limpieza: {e!r})")
         log("TODAS LAS FAMILIAS HAN TERMINADO.")
         final_state = "TERMINADO"
+        DISCORD.alert("**Optimizacion terminada.** El mensaje del canal del mejor diseno tiene el resultado final.")
     except KeyboardInterrupt:
         log("Detenido por el usuario. Progreso guardado: al relanzar continua donde iba.")
     finally:
@@ -1126,6 +1449,11 @@ def main():
         except Exception as e:
             log(f"(panel: {e!r})")
         git.push("checkpoint / estado final", wait=True)
+        try:
+            notify_top(force=True)
+            DISCORD.flush(90)
+        except Exception:
+            pass
         try:
             os.remove(lock)
         except OSError:

@@ -1,4 +1,4 @@
-﻿"""Geometria parametrica del soporte con cadquery + shapely (version 2: extremos tipo original).
+"""Geometria parametrica del soporte con cadquery + shapely (version 2: extremos tipo original).
 
 Idea estructural (carga horizontal perpendicular al bulon, aplicada a ~45 mm de altura):
   la fuerza crea un momento de vuelco que viaja como TORSION por el puente que une la fila
@@ -35,7 +35,14 @@ THETA = math.degrees(math.atan2(DX[1], DX[0]))
 P0 = np.mean(np.array(H["bulon"]["centers"])[:, :2], axis=0)   # punto medio entre orejetas (xy)
 CLEAR = 5.4                            # alojamiento cabeza/arandela: r = R + 5,4 = 10,54 mm (como el original)
 QS = 6                                 # segmentos por cuarto de circulo en los perfiles 2D
-VERSION = "cero-v6-fabricacion-aditiva"   # cambia si cambia la geometria: los resultados antiguos se archivan
+try:   # reglas de impresion 3D (opcionales) y angulo minimo de voladizo (docs/fabricacion_aditiva.md)
+    _cfg = json.load(open(os.path.join(ROOT, "config.json"), encoding="utf-8-sig"))
+except Exception:
+    _cfg = {}
+AM_ON = bool(_cfg.get("reglas_impresion_3d", False))
+AM_ANGLE = float(_cfg.get("angulo_voladizo_deg", 45.0))
+VERSION = "cero-v7-" + (f"impresion3d-{AM_ANGLE:g}" if AM_ON else "libre")   # si cambia, se archivan los resultados antiguos
+AM_T = math.tan(math.radians(AM_ANGLE))   # cambia si cambia la geometria: los resultados antiguos se archivan
 
 
 def to_local(xy):
@@ -117,14 +124,14 @@ def tent45(poly, z_floor, min_half=3.0):
     lo, hi = 0.0, 0.5 * (x1 - x0)
     for _ in range(30):
         w = 0.5 * (lo + hi)
-        tri = Polygon([(c - w, z_floor), (c + w, z_floor), (c, z_floor + w)])
+        tri = Polygon([(c - w, z_floor), (c + w, z_floor), (c, z_floor + w * AM_T)])
         if big.contains(tri):
             lo = w
         else:
             hi = w
     if lo < min_half:
         return None
-    return Polygon([(c - lo, z_floor), (c + lo, z_floor), (c, z_floor + lo)])
+    return Polygon([(c - lo, z_floor), (c + lo, z_floor), (c, z_floor + lo * AM_T)])
 
 
 def clean_coords(coords, tol=0.02):
@@ -249,8 +256,11 @@ def build(p):
     info["hueco"] = False; info["camaras"] = 0; info["drenajes"] = 0
     # FABRICACION ADITIVA: cada seccion del hueco se sustituye por el mayor triangulo a 45 grados que cabe
     # dentro (techo autoportante en ambas direcciones -> camaras con techo a cuatro aguas)
-    p1s = [t for t in (tent45(q, zb) for q in polys(in1, 15)) if t is not None]
-    p2s = [t for t in (tent45(q, zb) for q in polys(in2, 15)) if t is not None]
+    if AM_ON:
+        p1s = [t for t in (tent45(q, zb) for q in polys(in1, 15)) if t is not None]
+        p2s = [t for t in (tent45(q, zb) for q in polys(in2, 15)) if t is not None]
+    else:                                         # sin reglas de impresion 3D: hueco con la forma de la seccion
+        p1s, p2s = polys(in1, 15), polys(in2, 15)
     drains = []
     if p1s and p2s:
         cav = None
@@ -279,7 +289,7 @@ def build(p):
             body = body.cut(cav)
             info["hueco"] = True
             # agujero de evacuacion del polvo (D5) desde el suelo de cada camara hasta la cara inferior
-            for s_c, a_c in drains:
+            for s_c, a_c in (drains if AM_ON else []):
                 d = cq.Solid.makeCylinder(2.5, zb - Z0 + 2.0, cq.Vector(s_c, a_c, Z0 - 1.0))
                 cut_d = body.cut(d)
                 if cut_d.isValid():
@@ -330,6 +340,8 @@ def build(p):
         raise GeometryError(f"la pieza no es un unico solido ({len(solid.Solids())} trozos)")
     if not solid.isValid():
         raise GeometryError("solido no valido tras las operaciones booleanas")
+    if AM_ON and len(solid.Shells()) > 1:
+        raise GeometryError("impresion 3D: queda una cavidad cerrada sin salida para el polvo")
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6,
                 pin_half_width=tl / 2, A_eff=A, A_top=A_top, H_eff=zr - Z0)
     info["holes"] = check_holes(solid, tl)

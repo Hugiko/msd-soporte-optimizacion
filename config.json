@@ -7,12 +7,22 @@
   "_margen_nota": "1.00 = la tension no puede superar 215 MPa (lo que dice el enunciado). 0.90 = deja un 10 % de margen para el error de malla.",
   "desplazamiento_max_mm": 0.25,
   "_desplazamiento_nota": "desplazamiento maximo permitido (mm). El original da 0,129 mm con 37,8 kN; 0,25 = aprox. el doble. 0 = sin limite (el enunciado no lo exige).",
+  "reglas_impresion_3d": true,
+  "_impresion_nota": "false = sin restricciones de fabricacion (el enunciado no las exige). true = huecos imprimibles en 3D (techo inclinado + agujero de evacuacion de polvo, ver docs/fabricacion_aditiva.md)",
+  "angulo_voladizo_deg": 45,
+  "_angulo_nota": "pendiente minima (respecto a la horizontal) de los techos interiores para imprimir sin soportes. 45 = regla habitual y conservadora (ver docs/fabricacion_aditiva.md)",
   "familias": ["vaciado", "cero"],
-  "_familias_nota": "vaciado = el original al que se le quita material | cero = diseno nuevo. Se alternan.",
+  "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = se rellena junto a los pernos y se vacia el resto | cero = diseno nuevo. Se alternan.",
   "presupuesto_por_familia": 300,
   "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
   "pruebas_por_rama": 30,
   "_ramas_nota": "cada rama hace estas pruebas; al terminar, su mejor diseno crea 2 ramas hijas (fina y amplia). Arbol en ARBOL.md",
+  "cribado_rapido": 1.5,
+  "_cribado_nota": "pasada rapida con malla gruesa: si el diseno incumple mas de 1,5 veces el limite se descarta sin malla fina (0 = desactivado)",
+  "cribado_rapido_familias": ["cero"],
+  "filtro_prob_minima": 0.05,
+  "filtro_error_max": 0.10,
+  "_filtro_nota": "si el modelo es fiable (error tipico < 10 %), no se calculan los disenos con P(cumplir) < 5 % (1 de cada 10 se calcula igualmente como control)",
   "crear_workbench_en_cada_mejora": true,
   "mejora_minima_para_nuevo_mejor": 0.0001,
   "_mejora_nota": "fraccion de masa que debe mejorar un diseno para contar como nuevo mejor (proyecto Workbench + historial + GitHub). 0.0001 = cualquier mejora real.",
@@ -20,9 +30,21 @@
   "limpieza_mantener_ultimos": 20,
   "limpieza_mantener_mejores": 5,
   "mantener_proyectos_workbench_resueltos": 3,
+  "mantener_wbpz_github": 10,
   "_limpieza_nota": "cada N disenos se borran los ficheros pesados de los disenos antiguos ya superados (nunca sus datos ni su ficha resumen.png)",
+  "discord": true,
+  "_discord_nota": "avisos a Discord (enlaces en discord_webhooks.json, que NO se sube a GitHub): mejor diseno (se edita), arbol y todo lo generado",
+  "disco_minimo_gb": 5,
   "subir_a_github": true
 }
+
+
+
+
+
+
+
+
 
 
 

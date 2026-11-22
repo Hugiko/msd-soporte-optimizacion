@@ -33,3 +33,8 @@ runs/opt_*/*/[0-9][0-9][0-9]/geometria.step
 runs/opt_*/*/[0-9][0-9][0-9]/resumen.png
 runs/opt_*/*/[0-9][0-9][0-9]/vonmises.png
 runs/opt_*/*/[0-9][0-9][0-9]/geometria.png
+
+# enlaces de Discord: secretos, nunca a GitHub
+discord_webhooks.json
+runs/*/discord_estado.json
+runs/*/discord_mensajes_prueba.json
