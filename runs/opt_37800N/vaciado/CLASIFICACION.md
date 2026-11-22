@@ -1,18 +1,19 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:08
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:15
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (2)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (3)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 021 | 2.422 | 200.5 | [rama V1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia cav_z1, r_cut | [ver](021/vonmises.png) |
 | 024 | 2.422 | 200.5 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia cav_s0, cav_z0, r_cut | [ver](024/vonmises.png) |
+| 031 | 2.414 | 193.8 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.15); cambia trim_z, R_pocket | [ver](031/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (25)
 
@@ -23,8 +24,8 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 22:08
 | 003 | 2.413 | 315.5 | reparto inicial (Sobol 3/12): explorar todo el espacio | - |
 | 006 | 2.404 | 310.6 | reparto inicial (Sobol 6/12): explorar todo el espacio | - |
 | 007 | 1.845 | 635.7 | reparto inicial (Sobol 7/12): explorar todo el espacio | - |
-| 008 | 2.002 | 2392.5 | reparto inicial (Sobol 8/12): explorar todo el espacio | [ver](008/vonmises.png) |
-| 009 | 1.968 | 496.8 | reparto inicial (Sobol 9/12): explorar todo el espacio | [ver](009/vonmises.png) |
+| 008 | 2.002 | 2392.5 | reparto inicial (Sobol 8/12): explorar todo el espacio | - |
+| 009 | 1.968 | 496.8 | reparto inicial (Sobol 9/12): explorar todo el espacio | - |
 | 011 | 1.882 | 715.6 | reparto inicial (Sobol 11/12): explorar todo el espacio | [ver](011/vonmises.png) |
 | 012 | 2.229 | 612.6 | reparto inicial (Sobol 12/12): explorar todo el espacio | [ver](012/vonmises.png) |
 | 013 | 2.423 | 212.9 | [rama V1] [aun sin disenos validos] rama nueva (inicial, paso 0.30) desde el diseno 001; cambia cav_z0, cav_z1, trim_z | [ver](013/vonmises.png) |

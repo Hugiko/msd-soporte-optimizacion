@@ -1,0 +1,40 @@
+{
+ "params": {
+  "cav_s0": 34.8807,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 8.4408,
+  "cav_z1": 12.0,
+  "trim_s0": 66.9314,
+  "trim_z": 29.0331,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.4046,
+  "R_pocket": 10.6817
+ },
+ "motivo": "[rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.15); cambia trim_z, R_pocket",
+ "pred": {
+  "mass_kg": 2.3967348262466692,
+  "stress_mpa": 208.52876474686818,
+  "p_cumple": 0.007902010057968895,
+  "paso": 0.15,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.07771284562356716,
+   "cav_len": 0.08115600715212155,
+   "cav_a": 0.2909837290092536,
+   "cav_z0": 0.015727811194697214,
+   "cav_z1": 0.03058708235512172,
+   "trim_s0": 0.02966524848290717,
+   "trim_z": 0.03062520774980067,
+   "trim_ang": 0.020095065562951517,
+   "trim_a": 0.02335183993983518,
+   "r_cut": 0.024332152566425732,
+   "R_pocket": 0.37576301036331844
+  }
+ },
+ "fase": "aprende",
+ "familia": "vaciado",
+ "rama": "V1",
+ "fecha": "2026-11-22T22:15:01.135455"
+}
