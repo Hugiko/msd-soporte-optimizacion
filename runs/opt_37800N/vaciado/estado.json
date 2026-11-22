@@ -35,9 +35,9 @@
    "tipo": "inicial",
    "L": 0.15,
    "L0": 0.3,
-   "succ": 1,
-   "fail": 0,
-   "n": 19,
+   "succ": 0,
+   "fail": 1,
+   "n": 20,
    "best": {
     "score": [
      1,
