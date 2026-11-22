@@ -11,6 +11,8 @@
   "_impresion_nota": "false = sin restricciones de fabricacion (el enunciado no las exige). true = huecos imprimibles en 3D (techo inclinado + agujero de evacuacion de polvo, ver docs/fabricacion_aditiva.md)",
   "angulo_voladizo_deg": 45,
   "_angulo_nota": "pendiente minima (respecto a la horizontal) de los techos interiores para imprimir sin soportes. 45 = regla habitual y conservadora (ver docs/fabricacion_aditiva.md)",
+  "peso_seguridad": 0.5,
+  "_peso_seguridad_nota": "cuando una pieza es MEJOR que otra: puntuacion = masa x aprovechamiento^p (aprovechamiento = 1/coef. seguridad). 0 = solo masa (enunciado literal); 0.5 = 1 % de masa vale lo mismo que 2 % de tension; 1 = mismo peso. Los limites (215 MPa, 0,25 mm) siempre son obligatorios",
   "familias": ["vaciado", "refuerzo", "cero"],
   "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = collares junto a los tornillos (punto critico) + vaciado del resto | cero = diseno nuevo. Se alternan.",
   "presupuesto_por_familia": 300,
@@ -42,6 +44,7 @@
   "disco_minimo_gb": 5,
   "subir_a_github": true
 }
+
 
 
 

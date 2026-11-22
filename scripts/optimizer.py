@@ -54,6 +54,15 @@ U_LIM = float(USER.get("desplazamiento_max_mm", 0.25))     # 0 = sin limite de d
 M_ORIG = 2.4234     # masa del original con el MISMO modelo de EF (malla de 4 mm); la del CAD es 2,4115 kg
 
 
+SCORE_P = float(USER.get("peso_seguridad", 0.5))    # 0 = solo masa; 0,5 = 1 % de masa vale 2 % de tension
+
+
+def score(m):
+    """Puntuacion de compromiso masa-seguridad (menor = mejor): masa x aprovechamiento^p.
+    aprovechamiento = max(tension/limite, desplazamiento/limite) = 1 / coeficiente de seguridad."""
+    return m["mass_kg"] * max(violation(m), 1e-6) ** SCORE_P
+
+
 def violation(m):
     """>1 si incumple alguna condicion (tension o desplazamiento); se usa cuando aun no hay disenos validos."""
     v = m["vm_metric"] / SIG_OBJ
@@ -269,7 +278,7 @@ class Family:
         ok = [r for r in rs if r and r["m"].get("status") == "ok"]
         val = [r for r in ok if category(r["m"]) == "valido"]
         if val:
-            b = min(val, key=lambda r: r["m"]["mass_kg"]); return (0, b["m"]["mass_kg"]), b
+            b = min(val, key=lambda r: score(r["m"])); return (0, score(b["m"])), b
         if ok:
             b = min(ok, key=lambda r: violation(r["m"])); return (1, violation(b["m"])), b
         return (2, 1e9), None
@@ -378,9 +387,14 @@ class Family:
             db = np.min(np.linalg.norm(cand[:, None] - np.array(bad)[None], axis=2), axis=1)
             pen = 1 - 0.9 * np.exp(-(db / 0.06) ** 2)
         if feas_b:
-            imp = math.log(center_r["m"]["mass_kg"]) - mu_m
-            z = imp / sd_m
-            acq = (imp * norm.cdf(z) + sd_m * norm.pdf(z)) * pof * pen
+            lu = mu_s - math.log(SIG_OBJ)                              # log del aprovechamiento previsto (tension)
+            if gu is not None:
+                lu = np.maximum(lu, mu_u - math.log(U_LIM))
+            mu_sc = mu_m + SCORE_P * lu
+            sd_sc = np.sqrt(sd_m ** 2 + (SCORE_P * sd_s) ** 2)
+            imp = math.log(score(center_r["m"])) - mu_sc
+            z = imp / sd_sc
+            acq = (imp * norm.cdf(z) + sd_sc * norm.pdf(z)) * pof * pen
             mode = "mejorar masa"
         else:
             acq = (pof + 0.02 * (mu_s.max() - mu_s)) * pen           # rama aun sin disenos validos: bajar tension
@@ -531,8 +545,8 @@ def write_clasificacion(fam, runs):
     groups = {k: [] for k in ("valido", "cerca_del_limite", "descartado", "fallido", "filtrado")}
     for r in runs:
         groups[category(r["m"])].append(r)
-    groups["valido"].sort(key=lambda r: r["m"]["mass_kg"])
-    title = {"valido": f"VALIDOS (tension <= {SIG_OBJ:.0f} MPa" + (f" y desplazamiento <= {U_LIM:.2f} mm" if U_LIM > 0 else "") + "), del mas ligero al mas pesado",
+    groups["valido"].sort(key=lambda r: score(r["m"]))
+    title = {"valido": f"VALIDOS, ordenados por puntuacion masa-seguridad (tension <= {SIG_OBJ:.0f} MPa" + (f" y desplazamiento <= {U_LIM:.2f} mm" if U_LIM > 0 else "") + ")",
              "cerca_del_limite": "CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina",
              "descartado": "DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen",
              "fallido": "FALLIDOS (geometria / malla / solver): registrados y penalizados",
@@ -584,6 +598,13 @@ def retry_pending_workbench(git):
     atomic_json(PEND, pend)
 
 
+def gb_score(gb):
+    """Puntuacion del ultimo mejor registrado (compatible con registros antiguos sin puntuacion)."""
+    if gb.get("puntuacion") is not None:
+        return gb["puntuacion"]
+    return score(dict(mass_kg=gb["mass_kg"], vm_metric=gb["vm_metric"], u_max=gb.get("u_max") or 0.0))
+
+
 def global_best():
     path = os.path.join(TOP, "MEJOR_GLOBAL.json")
     return json.load(open(path, encoding="utf-8")) if os.path.exists(path) else None
@@ -609,6 +630,7 @@ def register_new_best(fam, r, git):
             log("  (proyecto Workbench pendiente: se reintentara en las siguientes iteraciones;"
                 " si teneis Workbench abierto, cerradlo: la licencia Student solo admite una sesion)")
     best = dict(familia=fam.key, titulo=fam.title, iter=r["id"], carpeta=hd, mass_kg=m["mass_kg"], vm_metric=m["vm_metric"],
+                puntuacion=score(m), coef_seguridad=1 / max(violation(m), 1e-6),
                 vm_max_raw=m.get("vm_max_raw"), u_max=m.get("u_max"), params=r["p"]["params"], workbench=wb_ok,
                 fecha=datetime.datetime.now().isoformat())
     atomic_json(os.path.join(TOP, "MEJOR_GLOBAL.json"), best)
@@ -699,7 +721,7 @@ def write_tree():
     for f in FAMS:
         for r in f.runs():
             if category(r["m"]) == "valido":
-                allv.append((r["m"]["mass_kg"], f.key, r["id"]))
+                allv.append((score(r["m"]), f.key, r["id"]))
     best_glob = min(allv) if allv else None
     L = ["# Arbol genealogico de la busqueda", "",
          "Cada caja es una **rama**: una linea de busqueda que parte de un diseno y prueba cambios a su alrededor.",
@@ -846,7 +868,7 @@ def cleanup():
     freed = 0.0
     for f in FAMS:
         rs = f.runs()
-        best = sorted([r for r in rs if category(r["m"]) == "valido"], key=lambda r: r["m"]["mass_kg"])[:keep_best]
+        best = sorted([r for r in rs if category(r["m"]) == "valido"], key=lambda r: score(r["m"]))[:keep_best]
         protect = {r["id"] for r in best} | {r["id"] for r in rs[-keep_recent:]}
         for r in rs:
             if r["id"] in protect:
@@ -908,8 +930,8 @@ def write_dashboard(estado="EN MARCHA"):
     allruns.sort(key=lambda r: r["t"])
     improvements, best = [], None              # TODAS las mejoras del mejor valido (aunque sean pequenas)
     for r in allruns:
-        if category(r["m"]) == "valido" and (best is None or r["m"]["mass_kg"] < best):
-            best = r["m"]["mass_kg"]; improvements.append(r)
+        if category(r["m"]) == "valido" and (best is None or score(r["m"]) < best):
+            best = score(r["m"]); improvements.append(r)
     col = {"vaciado": "#2c7fb8", "refuerzo": "#7b3294", "cero": "#d95f0e"}
     # grafica estatica (README): eje horizontal = HORA real
     try:
@@ -973,7 +995,7 @@ def write_dashboard(estado="EN MARCHA"):
         log(f"(grafica interactiva: {e!r})")
     gb = global_best()        # ultimo diseno REGISTRADO (con proyecto de Workbench e historial)
     vals = [r for r in allruns if category(r["m"]) == "valido"]
-    tb = min(vals, key=lambda r: r["m"]["mass_kg"]) if vals else None   # mejor diseno REAL (aunque mejore poco)
+    tb = min(vals, key=lambda r: score(r["m"])) if vals else None   # mejor diseno REAL (compromiso masa-seguridad)
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
     L = ["# Optimizacion del soporte - panel en directo", "",
          f"> **Ultima actualizacion:** {now} &nbsp;|&nbsp; **Estado:** {estado} &nbsp;|&nbsp; carga {CFG['force']:.0f} N "
@@ -981,7 +1003,8 @@ def write_dashboard(estado="EN MARCHA"):
          "| Familia | disenos calculados | cumplen | mejor masa | estado |", "|---|---|---|---|---|"]
     for f in FAMS:
         rs = f.runs(); val = [r for r in rs if category(r["m"]) == "valido"]
-        bm = f"{min(r['m']['mass_kg'] for r in val):.3f} kg" if val else "-"
+        bb = min(val, key=lambda r: score(r["m"])) if val else None
+        bm = f"{bb['m']['mass_kg']:.3f} kg (CS {1 / violation(bb['m']):.2f})" if bb else "-"
         L.append(f"| {f.title} | {len(rs)} | {len(val)} | {bm} | {'terminada: ' + f.st.get('motivo_fin', '') if f.st.get('done') else 'en marcha'} |")
     L.append("")
     # ahorro de calculo y fiabilidad del modelo
@@ -997,7 +1020,8 @@ def write_dashboard(estado="EN MARCHA"):
         tm = tb["m"]; red = (1 - tm["mass_kg"] / M_ORIG) * 100
         L += ["## Mejor diseno actual", "",
               f"**{tm['mass_kg']:.4f} kg** ({-red:+.2f} % de masa frente al original, {M_ORIG:.3f} kg con el mismo modelo) &nbsp;|&nbsp; tension **{tm['vm_metric']:.1f} MPa** "
-              f"&nbsp;|&nbsp; desplazamiento **{(tm.get('u_max') or 0):.3f} mm** &nbsp;|&nbsp; {tb['title']}, diseno {tb['id']:03d} "
+              f"&nbsp;|&nbsp; desplazamiento **{(tm.get('u_max') or 0):.3f} mm** &nbsp;|&nbsp; coef. seguridad **{1 / violation(tm):.2f}** "
+              f"&nbsp;|&nbsp; puntuacion **{score(tm):.4f}** &nbsp;|&nbsp; {tb['title']}, diseno {tb['id']:03d} "
               f"&nbsp;|&nbsp; calculado {tb['p'].get('fecha', '')[:16].replace('T', ' ')}"
               + (f" &nbsp;|&nbsp; **verificado con malla fina: {tm['verif_vm']:.1f} MPa**" if tm.get("verif_vm") else ""), ""]
         same = gb and gb["familia"] == tb["fam"] and gb["iter"] == tb["id"]
@@ -1047,14 +1071,14 @@ def write_dashboard(estado="EN MARCHA"):
               "|---|---|---|---|---|---|---|---|---|"]
         rows_imp, prev = [], None
         for n, r in enumerate(improvements, 1):
-            gain = "-" if prev is None else f"-{(1 - r['m']['mass_kg'] / prev) * 100:.2f} %"
+            gain = "-" if prev is None else f"-{(1 - score(r['m']) / prev) * 100:.2f} % (punt.)"
             img = fig_of(r)
             key = (r["fam"], r["id"])
             proj = f"[Workbench]({reg[key]})" if reg.get(key) else ("registrado" if key in reg else "-")
             rows_imp.append(f"| {n} | {r['t']:%d/%m %H:%M} | {r['m']['mass_kg']:.4f} kg | {gain} | {r['m']['vm_metric']:.1f} MPa | "
                             f"{(r['m'].get('u_max') or 0):.3f} mm | {r['title']} {r['id']:03d} | {proj} | "
                             + (f"<img src=\"{rel(img)}\" width=\"320\">" if os.path.exists(img) else "-") + " |")
-            prev = r["m"]["mass_kg"]
+            prev = score(r["m"])
         L += rows_imp[::-1][:60] + [""]
     L += ["## Ultimos disenos calculados", "", "| familia | # | masa | tension | resultado | motivo | ficha |", "|---|---|---|---|---|---|---|"]
     for r in allruns[-10:][::-1]:
@@ -1217,7 +1241,7 @@ def notify_top(force=False):
     allr = [r for f in FAMS for r in f.runs()]
     vals = [r for r in allr if category(r["m"]) == "valido"]
     n_tot = len(allr)
-    tb = min(vals, key=lambda r: r["m"]["mass_kg"]) if vals else None
+    tb = min(vals, key=lambda r: score(r["m"])) if vals else None
     key = [tb["fam"], tb["id"]] if tb else None
     if not force and key == st.get("key") and n_tot - st.get("n", 0) < 15:
         return
@@ -1235,7 +1259,8 @@ def notify_top(force=False):
     fields = [dict(name="Masa", value=f"**{m['mass_kg']:.4f} kg** ({-red:+.2f} % frente al original {M_ORIG:.3f} kg)", inline=False),
               dict(name="Tension", value=f"{m['vm_metric']:.1f} / {SIG_OBJ:.0f} MPa", inline=True),
               dict(name="Desplazamiento", value=f"{m['u_max']:.3f} / {U_LIM:.2f} mm", inline=True),
-              dict(name="Coef. seguridad", value=f"{CFG['sigma_y'] / m['vm_metric']:.2f}", inline=True),
+              dict(name="Coef. seguridad", value=f"{1 / violation(m):.2f}", inline=True),
+              dict(name="Puntuacion (masa x aprovechamiento^p)", value=f"{score(m):.4f} (p = {SCORE_P:g})", inline=True),
               dict(name="Origen", value=f"{fam_t}, rama {tb['p'].get('rama')}, diseno {tb['id']:03d}", inline=False),
               dict(name="Encontrado", value=tb["p"].get("fecha", "")[:16].replace("T", " "), inline=True),
               dict(name="Fiabilidad del modelo", value=(f"error tipico {fiab[1] * 100:.0f} %" if fiab[1] is not None else "aprendiendo"), inline=True)]
@@ -1366,7 +1391,7 @@ def step(fam, git, t_session):
     cat = category(m)
     min_gain = float(USER.get("mejora_minima_para_nuevo_mejor", 0.0001))
     if cat == "valido" and not m.get("duplicado_de") and USER.get("verificar_mejores", True) \
-            and (gb is None or m["mass_kg"] < gb["mass_kg"] * (1 - min_gain)):
+            and (gb is None or score(m) < gb_score(gb) * (1 - min_gain)):
         verify_fine(fam, r)          # candidato a nuevo mejor: se recalcula con malla fina antes de aceptarlo
         cat = category(m)
     try:
@@ -1397,7 +1422,7 @@ def step(fam, git, t_session):
     else:
         log(f"  RESULTADO: FALLO ({m.get('status')}): {(m.get('error') or '')[:100]} -> se penaliza y se sigue")
     # nuevo mejor = cumple (tambien con malla fina) y pesa menos que el anterior -> proyecto Workbench + historial + GitHub
-    is_best = cat == "valido" and (gb is None or m["mass_kg"] < gb["mass_kg"] * (1 - min_gain))
+    is_best = cat == "valido" and (gb is None or score(m) < gb_score(gb) * (1 - min_gain))
     if is_best:
         register_new_best(fam, r, git)       # Workbench + historial + timelapse (solo en mejoras)
     try:
@@ -1455,8 +1480,7 @@ def main():
     print("=" * 86)
     global DISCORD, REPO_URL
     import discord_notify
-    DISCORD = discord_notify.make(ROOT, TOP, log, test=TEST) if (not TEST or "--discord" in sys.argv) \
-        else discord_notify._Null()          # en las pruebas no se envia nada salvo que se pida (--discord)
+    DISCORD = discord_notify.make(ROOT, TOP, log, test=TEST)
     REPO_URL = _repo_url()
     if DISCORD.enabled:
         log("Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)")

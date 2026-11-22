@@ -124,3 +124,10 @@
 - Rapidez: la geometría de cada pieza se construye una sola vez (antes, dos: comprobación de repetidas + cálculo).
 - En el modo de prueba no se envía nada a Discord salvo que se pida (`--discord`).
 - No implementado (decisión): cálculo en paralelo geometría/ANSYS (riesgo alto, ganancia ~1,5×), pulido final con CMA-ES (las ramas «finas» ya afinan), mapa topológico tipo BESO (queda como posible análisis para el informe).
+
+## 2026-11-22 – Criterio de «mejor diseño»: compromiso masa-seguridad
+- Petición del grupo: que «mejor» no sea solo «más ligero», sino un consenso entre masa y coeficiente de seguridad.
+- **Puntuación = masa × aprovechamiento^p** (menor = mejor), con aprovechamiento = max(σ/215 MPa, u/0,25 mm) = 1/CS. `peso_seguridad` p = 0,5 por defecto: 1 % menos de masa equivale a 2 % menos de tensión. p = 0 recupera el criterio literal del enunciado (solo masa). Los límites siguen siendo obligatorios; la puntuación solo ordena las piezas válidas.
+- Se aplica en todo: nuevo mejor (y su verificación con malla fina), mejor de cada rama (región de confianza, cruces), adquisición (mejora esperada de log masa + p·log aprovechamiento, con varianza combinada), panel, Discord, árbol, clasificación y limpieza.
+- Ejemplos (p = 0,5): original 2,423 kg / 212,9 MPa → 2,411; vaciado n.º 4 2,420 kg → 2,408; refuerzo n.º 5 2,543 kg / 177 MPa (CS 1,21) → 2,307 (mejor).
+- Discord activo siempre, también en las pruebas.

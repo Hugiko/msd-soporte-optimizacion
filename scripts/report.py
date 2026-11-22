@@ -1,4 +1,4 @@
-﻿"""Graficas de cada familia: evolucion, importancia de parametros y comparacion con el original."""
+"""Graficas de cada familia: evolucion, importancia de parametros y comparacion con el original."""
 import os, sys, json, glob, math
 import numpy as np
 import matplotlib
@@ -11,7 +11,7 @@ COL = {"valido": "#1a9850", "cerca_del_limite": "#fdae61", "descartado": "#d7302
 
 
 def make(fam):
-    from optimizer import category, SIG_OBJ, fit_gp, gp_lengthscales
+    from optimizer import category, SIG_OBJ, fit_gp, gp_lengthscales, score
     runs = fam.runs()
     if not runs:
         return
@@ -24,14 +24,14 @@ def make(fam):
         m = r["m"]; c = category(m); mass = m.get("mass_kg") or m.get("mass_cad_kg")
         if mass:
             ax[0].scatter(r["id"], mass, c=COL[c], s=26, zorder=3)
-        if c == "valido" and (best is None or m["mass_kg"] < best):
-            best = m["mass_kg"]
+        if c == "valido" and (best is None or score(m) < best[0]):
+            best = (score(m), m["mass_kg"])
         if best:
-            bx.append(r["id"]); by.append(best)
+            bx.append(r["id"]); by.append(best[1])
         if m.get("vm_metric"):
             ax[1].scatter(r["id"], m["vm_metric"], c=COL[c], s=26, zorder=3)
     if bx:
-        ax[0].step(bx, by, where="post", c="k", lw=2, label="mejor diseno valido")
+        ax[0].step(bx, by, where="post", c="k", lw=2, label="mejor diseno (compromiso masa-seguridad)")
     ax[0].axhline(2.411, c="0.5", ls=":", label="original (2,411 kg)")
     for k, v in COL.items():
         ax[0].scatter([], [], c=v, label=k.replace("_", " "))
@@ -66,7 +66,7 @@ def make(fam):
                       open(os.path.join(gd, "importancia_parametros.json"), "w"), indent=1)
 
     # 3) original frente al mejor de la familia
-    val = sorted([r for r in ok if category(r["m"]) == "valido"], key=lambda r: r["m"]["mass_kg"])
+    val = sorted([r for r in ok if category(r["m"]) == "valido"], key=lambda r: score(r["m"]))
     ref = os.path.join(fem.ROOT, "cad", "referencia_original", "resultados_referencia.json")
     if val and os.path.exists(ref):
         mb = json.load(open(ref)); mf = val[0]["m"]

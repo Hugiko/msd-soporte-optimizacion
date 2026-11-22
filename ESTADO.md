@@ -44,7 +44,9 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
 7. [hecho] Limpieza automatica: wbpz solo de los 10 ultimos mejores en GitHub; wbpj resueltos solo 3 en el PC; datos y fichas siempre.
 8. [hecho] Pruebas borradas (PC y Discord), programa subido a GitHub y listo: doble clic en `optimizar.bat`.
 9. [hecho] Verificación automática con malla fina de cada candidato a nuevo mejor; geometría construida una sola vez por pieza.
-10. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
+10. [hecho] «Mejor» = menor puntuación masa × aprovechamiento^p (p = 0,5; `peso_seguridad`). Discord activo siempre.
+11. Más adelante (fase 5): verificación del mejor diseño con malla fina y modelo de tornillo realista; informe y defensa.
+
 
 
 
