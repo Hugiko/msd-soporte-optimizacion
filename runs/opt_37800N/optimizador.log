@@ -4149,3 +4149,24 @@
 [22:37:33]   [4/5] resultados
 [22:37:33]   [5/5] imagenes
 [22:37:35]   RESULTADO: masa 2.409 kg | tension 302.8 MPa (bruta 755) | NO cumple
+[22:37:42]   (GitHub: subido)
+[22:37:45] [Refuerzo + vaciado] DISENO 042  |  mejor global: 2.493 kg (Refuerzo + vaciado #039)
+[22:37:45]   motivo: [rama R1] varios pasos sin mejora: paso mas corto (0.04); cambia trim_s0, r_cut
+[22:37:45]   el modelo predice: masa 2.480 kg | tension 180 MPa | P(cumplir) 1.00
+[22:37:51]   [1/5] geometria parametrica (cadquery)
+[22:37:52]         masa CAD = 2.4765 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 10.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco estrechado 16.0->3.0 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[22:37:55]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[22:38:03]         fallo de malla: Exception: HXT 3D mesh failed
+[22:38:03]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[22:38:12]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[22:38:12]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[22:38:19]         fallo de malla: Exception: HXT 3D mesh failed
+[22:38:19]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[22:38:28]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[22:38:28]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[22:38:37]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[22:38:37]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[22:38:47]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[22:38:47]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[22:38:47] [refuerzo] rama R1 terminada (30 pruebas); su mejor diseno (039) crea las ramas R1.1 (fina) y R1.2 (amplia)
+[22:38:48]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue

@@ -20,8 +20,20 @@
  [
   "refuerzo",
   "R1",
-  "activa",
+  "terminada",
   39
+ ],
+ [
+  "refuerzo",
+  "R1.1",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "R1.2",
+  "activa",
+  null
  ],
  [
   "cero",
