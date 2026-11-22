@@ -1,0 +1,21 @@
+{
+ "params": {
+  "cav_s0": 15.9672,
+  "cav_len": 64.5372,
+  "cav_a": 23.0597,
+  "cav_z0": 8.1046,
+  "cav_z1": 42.3331,
+  "trim_s0": 33.4823,
+  "trim_z": 20.5674,
+  "trim_ang": 19.3349,
+  "trim_a": 34.6646,
+  "r_cut": 5.0456,
+  "R_pocket": 10.6402
+ },
+ "motivo": "reparto inicial (Sobol 11/12): explorar todo el espacio",
+ "pred": null,
+ "fase": "DOE",
+ "familia": "vaciado",
+ "rama": "V0",
+ "fecha": "2026-11-22T21:02:36.467112"
+}
