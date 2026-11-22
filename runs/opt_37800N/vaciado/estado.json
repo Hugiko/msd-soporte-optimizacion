@@ -77,11 +77,11 @@
    "padre": "V1",
    "semilla": 31,
    "tipo": "fina",
-   "L": 0.025,
+   "L": 0.0125,
    "L0": 0.1,
    "succ": 0,
-   "fail": 3,
-   "n": 12,
+   "fail": 0,
+   "n": 13,
    "best": {
     "score": [
      1,
@@ -90,15 +90,19 @@
     "id": 31
    },
    "prev_x": null,
-   "estado": "activa",
-   "hijos": [],
+   "estado": "terminada",
+   "hijos": [
+    "V1.1.1",
+    "V1.1.2"
+   ],
    "seed_score": [
     1,
     1.0368268871136985
    ],
    "seed_x": null,
    "nota": "",
-   "creada": "2026-11-22T23:36:54.211246"
+   "creada": "2026-11-22T23:36:54.211246",
+   "motivo_fin": "paso diminuto (ya no mejora)"
   },
   "V1.2": {
    "id": "V1.2",
@@ -121,6 +125,50 @@
    "seed_x": null,
    "nota": "",
    "creada": "2026-11-22T23:36:54.211246"
+  },
+  "V1.1.1": {
+   "id": "V1.1.1",
+   "padre": "V1.1",
+   "semilla": 31,
+   "tipo": "fina",
+   "L": 0.1,
+   "L0": 0.1,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    1.0368268871136985
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T00:49:25.754896"
+  },
+  "V1.1.2": {
+   "id": "V1.1.2",
+   "padre": "V1.1",
+   "semilla": 31,
+   "tipo": "amplia",
+   "L": 0.35,
+   "L0": 0.35,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    1.0368268871136985
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T00:49:25.754896"
   }
  },
  "done": false,
