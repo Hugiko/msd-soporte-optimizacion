@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:48
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:53
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (1)
 
@@ -8,11 +8,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:48
 |---|---|---|---|---|
 | 023 **MEJOR** | 2.528 | 179.6 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del | [ver](023/vonmises.png) |
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (11)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (12)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
-| 001 | 2.544 | 179.4 | reparto inicial (Sobol 1/12): explorar todo el espacio | [ver](001/vonmises.png) |
+| 001 | 2.544 | 179.4 | reparto inicial (Sobol 1/12): explorar todo el espacio | - |
 | 013 | 2.544 | 179.4 | [rama R1] [aun sin disenos validos] rama nueva (inicial, paso 0.30) desde el diseno 001; cambia  | [ver](013/vonmises.png) |
 | 014 | 2.544 | 179.4 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia  | [ver](014/vonmises.png) |
 | 015 | 2.541 | 179.7 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia  | [ver](015/vonmises.png) |
@@ -23,12 +23,13 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-22 21:48
 | 020 | 2.552 | 178.1 | [rama R1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia t_col_del | [ver](020/vonmises.png) |
 | 021 | 2.556 | 178.2 | [rama R1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia t_col_del | [ver](021/vonmises.png) |
 | 022 | 2.565 | 183.8 | [rama R1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del | [ver](022/vonmises.png) |
+| 024 | 2.499 | 185.9 | [rama R1] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia t_col_del | [ver](024/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
-| 003 | 1.565 | 779.7 | reparto inicial (Sobol 3/12): explorar todo el espacio | [ver](003/vonmises.png) |
+| 003 | 1.565 | 779.7 | reparto inicial (Sobol 3/12): explorar todo el espacio | - |
 | 005 | 2.195 | 618.0 | reparto inicial (Sobol 5/12): explorar todo el espacio | [ver](005/vonmises.png) |
 | 006 | 2.409 | 302.8 | reparto inicial (Sobol 6/12): explorar todo el espacio | [ver](006/vonmises.png) |
 | 007 | 1.971 | 331.5 | reparto inicial (Sobol 7/12): explorar todo el espacio | [ver](007/vonmises.png) |
