@@ -8,8 +8,20 @@
  [
   "vaciado",
   "V1",
-  "activa",
+  "terminada",
   31
+ ],
+ [
+  "vaciado",
+  "V1.1",
+  "activa",
+  null
+ ],
+ [
+  "vaciado",
+  "V1.2",
+  "activa",
+  null
  ],
  [
   "refuerzo",

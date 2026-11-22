@@ -6174,3 +6174,10 @@
 [23:34:52] Workbench (sin ventana): creando soporte_refuerzo_065.wbpj con F = 37800 N ...
 [23:36:45] Workbench termino en 113 s: montaje OK, resuelto SI
 [23:36:45]   >>> NUEVO MEJOR DISENO GLOBAL #9: 2.460 kg  (Refuerzo + vaciado, diseno 65) | proyecto Workbench creado
+[23:36:49] [Vaciado del original] DISENO 042  |  mejor global: 2.460 kg (Refuerzo + vaciado #065)
+[23:36:49]   motivo: [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.04); cambia R_pocket
+[23:36:49]   el modelo predice: masa 2.403 kg | tension 203 MPa | P(cumplir) 0.00
+[23:36:54]   (GitHub: subido)
+[23:36:54]   geometria IDENTICA al diseno 031 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[23:36:54] [vaciado] rama V1 terminada (30 pruebas); su mejor diseno (031) crea las ramas V1.1 (fina) y V1.2 (amplia)
+[23:36:54]   RESULTADO: masa 2.414 kg | tension 193.8 MPa (bruta 774) | casi (hasta +10 %)
