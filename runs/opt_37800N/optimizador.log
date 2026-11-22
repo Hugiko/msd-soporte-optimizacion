@@ -381,3 +381,9 @@
 [20:47:11]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
 [20:47:11] [Refuerzo + vaciado] DISENO 004  |  mejor global: aun ninguno valido
 [20:47:11]   motivo: reparto inicial (Sobol 4/12): explorar todo el espacio
+[20:47:19]   (GitHub: subido)
+[20:47:19]   [1/5] geometria parametrica (cadquery)
+[20:47:23]   !! fallo en geometria: GeometryError: el corte del hueco no es valido
+[20:47:23]   RESULTADO: FALLO (geom_fail): GeometryError: el corte del hueco no es valido -> se penaliza y se sigue
+[20:47:23] [Diseno desde cero] DISENO 004  |  mejor global: aun ninguno valido
+[20:47:23]   motivo: reparto inicial (Sobol 4/12): explorar todo el espacio
