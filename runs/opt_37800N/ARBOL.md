@@ -92,7 +92,7 @@ RX2_1["RX2.1 - fina, paso 0.10<br/>1 pruebas<br/>aun sin validos; el mas cercano
 RX2 --> RX2_1
 RX2_2["RX2.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_2
-RX2_3["RX2.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.345 kg, 185 MPa (#183)"]:::activa
+RX2_3["RX2.3 - cruce, paso 0.20<br/>4 pruebas<br/>mejor: 2.348 kg, 181 MPa (#193)"]:::activa
 RX2 --> RX2_3
 ```
 
