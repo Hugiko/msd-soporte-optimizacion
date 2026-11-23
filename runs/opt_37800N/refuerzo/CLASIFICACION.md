@@ -1,8 +1,8 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:53
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:54
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (28)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (29)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -13,6 +13,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:53
 | 122 | 2.424 | 182.6 | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | [ver](122/vonmises.png) |
 | 121 | 2.428 | 180.7 | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | [ver](121/vonmises.png) |
 | 085 | 2.428 | 183.5 | [rama R1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_z, r_cut (rama fina: solo mueve trim_s0, r_cut, trim_z, R_pocket, trim_a, trim_ang, z_col) | - |
+| 134 | 2.435 | 181.9 | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, r_cut, t_col_del (rama fina: solo mueve trim_s0, trim_a, r_cut, trim_z, R_pocket, t_col_del, trim_ang) | [ver](134/vonmises.png) |
 | 071 | 2.436 | 182.7 | [rama R1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_a, trim_a, cav_z1, trim_ang) | - |
 | 075 | 2.436 | 182.7 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.40); cambia  (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, cav_a, cav_len, trim_ang) | - |
 | 070 | 2.443 | 182.6 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.20); cambia trim_z, r_cut, z_col (rama fina: solo mueve trim_s0, trim_z, r_cut, cav_z1, trim_a, R_pocket, z_col) | - |
