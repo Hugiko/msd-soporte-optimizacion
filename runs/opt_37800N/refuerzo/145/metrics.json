@@ -1,0 +1,41 @@
+{
+ "status": "mesh_fail",
+ "params": {
+  "cav_s0": 29.5061,
+  "cav_len": 11.0022,
+  "cav_a": 9.5561,
+  "cav_z0": 11.4094,
+  "cav_z1": 12.0,
+  "trim_s0": 52.2689,
+  "trim_z": 18.5744,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 4.6793,
+  "R_pocket": 10.54,
+  "t_col_del": 3.687,
+  "t_col_tra": 2.8609,
+  "z_col": 20.997
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 2.3504507029746753,
+ "volume_cad_mm3": 299420.47171651915,
+ "hueco": false,
+ "clamped": [
+  "hueco acortado 11.0->4.2 mm (techo a 45 para impresion 3D)",
+  "hueco estrechado 19.1->4.2 mm (techo a 45 para impresion 3D)",
+  "hueco demasiado pequeno -> no se hace"
+ ],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 407 | malla alg1 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h3.60: Exception: Could not fix wire in surface 407 | malla alg4 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h4.00: Exception: Could not fix wire in surface 429 | malla alg1 h4.40: Exception: Could not fix wire in surface 429",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 157, in evaluate\n    if v > prescreen:\n          ^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 129, in level\n    err = open(os.path.join(wd, \"file.err\"), errors=\"ignore\").read() if os.path.exists(os.path.join(wd, \"file.err\")) else \"\"\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 407 | malla alg1 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h3.60: Exception: Could not fix wire in surface 407 | malla alg4 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h4.00: Exception: Could not fix wire in surface 429 | malla alg1 h4.40: Exception: Could not fix wire in surface 429\n",
+ "total_s": 38.134546518325806,
+ "galeria": "galeria/20261123_071649_refuerzo_145_FALLO_2.350kg.jpg"
+}
