@@ -118,7 +118,7 @@ RX4["RX4 - exploradora, paso 0.30<br/>10 pruebas<br/>aun sin validos; el mas cer
 R0 --> RX4
 RX5["RX5 - exploradora, paso 0.30<br/>5 pruebas<br/>aun sin validos; el mas cercano 302 MPa (#236)"]:::activa
 R0 --> RX5
-RX6["RX6 - exploradora, paso 0.30<br/>4 pruebas<br/>aun sin validos; el mas cercano 321 MPa (#233)"]:::activa
+RX6["RX6 - exploradora, paso 0.30<br/>5 pruebas<br/>aun sin validos; el mas cercano 283 MPa (#237)"]:::activa
 R0 --> RX6
 ```
 
