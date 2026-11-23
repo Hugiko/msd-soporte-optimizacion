@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 23/11/2026 21:17. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 23/11/2026 21:19. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -38,12 +38,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 18 veces (5 descartadas en la evaluacion rapida, 7 aceptadas, 2 rechazadas); tension +1.3 % (mediana), masa -27 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.4 % frente a +1.3 % real (mediana de 9)
-  - iteracion 10: aceptada: aligeramiento pasante vertical D8 mm en (40, -62) (tension -0.3 %, masa -13 g)
+- **Aplicada en el optimizador:** 21 veces (5 descartadas en la evaluacion rapida, 8 aceptadas, 2 rechazadas); tension +1.6 % (mediana), masa -25 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.4 % frente a +1.6 % real (mediana de 10)
   - iteracion 11: rechazada: aligeramiento pasante vertical D16 mm en (10, -113) (tension +11.9 %, masa -58 g)
   - iteracion 12: aceptada: aligeramiento pasante vertical D16 mm en (34, -74) (tension +2.0 %, masa -38 g)
   - iteracion 16: rechazada: aligeramiento pasante vertical D12 mm en (49, -122) (tension +11.8 %, masa -23 g)
+  - iteracion 17: aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +2.9 %, masa -16 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
