@@ -1,22 +1,22 @@
 {
  "familia": "refuerzo",
  "titulo": "Refuerzo + vaciado",
- "iter": 119,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\14_refuerzo_119_2.422kg",
- "mass_kg": 2.42237878725,
- "vm_metric": 183.098,
- "puntuacion": 2.414813072070294,
- "coef_seguridad": 1.1742345629116646,
- "vm_max_raw": 800.1071,
- "u_max": 0.12784755862603048,
+ "iter": 127,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\15_refuerzo_127_2.412kg",
+ "mass_kg": 2.4121004211500003,
+ "vm_metric": 184.259,
+ "puntuacion": 2.4068477242608117,
+ "coef_seguridad": 1.1668358126333043,
+ "vm_max_raw": 687.1373,
+ "u_max": 0.12840946726542146,
  "params": {
   "cav_s0": 29.5061,
   "cav_len": 11.0022,
   "cav_a": 8.0,
   "cav_z0": 11.4094,
   "cav_z1": 12.0,
-  "trim_s0": 53.8525,
-  "trim_z": 22.3849,
+  "trim_s0": 52.5842,
+  "trim_z": 21.9842,
   "trim_ang": 0.0,
   "trim_a": 20.0,
   "r_cut": 4.6793,
@@ -26,5 +26,5 @@
   "z_col": 21.5408
  },
  "workbench": true,
- "fecha": "2026-11-23T06:18:04.406084"
+ "fecha": "2026-11-23T06:38:27.656751"
 }
