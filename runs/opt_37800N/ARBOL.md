@@ -20,7 +20,7 @@ S3["S3 - inicial, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
 S0 --> S3
 S1_1["S1.1 - fina, paso 0.10<br/>3 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::activa
 S1 --> S1_1
-S1_2["S1.2 - amplia, paso 0.35<br/>2 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]:::activa
+S1_2["S1.2 - amplia, paso 0.35<br/>3 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]:::activa
 S1 --> S1_2
 ```
 
