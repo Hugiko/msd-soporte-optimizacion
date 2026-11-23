@@ -1,26 +1,26 @@
 {
  "familia": "simjeb",
  "titulo": "SimJEB modificado",
- "iter": 33,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\22_simjeb_033_1.921kg",
- "mass_kg": 1.9212843600000002,
- "vm_metric": 167.6973,
- "puntuacion": 1.8902074969963072,
- "coef_seguridad": 1.2820719236386036,
- "vm_max_raw": 589.0781,
- "u_max": 0.12652389303055134,
+ "iter": 37,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\23_simjeb_037_1.914kg",
+ "mass_kg": 1.9136021930000002,
+ "vm_metric": 165.3308,
+ "puntuacion": 1.8786403605459323,
+ "coef_seguridad": 1.3004231516450655,
+ "vm_max_raw": 613.29,
+ "u_max": 0.1297237483270095,
  "params": {
   "semilla": 43.0,
   "t_col_del": 0.0,
   "t_col_tra": 0.0,
   "z_col": 8.0,
-  "ali1_x": 11.1421,
+  "ali1_x": -35.0,
   "ali1_y": -158.0,
-  "ali1_r": 2.4359,
-  "ali2_x": 16.6342,
+  "ali1_r": 0.0,
+  "ali2_x": 42.6261,
   "ali2_y": -73.1435,
   "ali2_r": 10.0
  },
  "workbench": true,
- "fecha": "2026-11-23T08:16:33.406449"
+ "fecha": "2026-11-23T08:23:50.302848"
 }

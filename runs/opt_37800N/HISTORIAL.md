@@ -14,10 +14,10 @@ Original: 2,411 kg (CAD) | limite 187 MPa | carga 37800 N
 | 06 | 06_refuerzo_049_2.488kg | 2.488 | 180.4 | ![](historial/06_refuerzo_049_2.488kg/resumen.png) | - |
 | 07 | 07_refuerzo_054_2.488kg | 2.488 | 180.3 | ![](historial/07_refuerzo_054_2.488kg/resumen.png) | - |
 | 08 | 08_refuerzo_063_2.463kg | 2.463 | 180.3 | ![](historial/08_refuerzo_063_2.463kg/resumen.png) | - |
-| 09 | 09_refuerzo_065_2.460kg | 2.460 | 180.2 | ![](historial/09_refuerzo_065_2.460kg/resumen.png) | [Workbench](historial/09_refuerzo_065_2.460kg/workbench/soporte_refuerzo_065.wbpz) |
-| 10 | 10_refuerzo_066_2.459kg | 2.459 | 179.8 | ![](historial/10_refuerzo_066_2.459kg/resumen.png) | [Workbench](historial/10_refuerzo_066_2.459kg/workbench/soporte_refuerzo_066.wbpz) |
-| 11 | 11_refuerzo_070_2.443kg | 2.443 | 182.6 | ![](historial/11_refuerzo_070_2.443kg/resumen.png) | [Workbench](historial/11_refuerzo_070_2.443kg/workbench/soporte_refuerzo_070.wbpz) |
-| 12 | 12_refuerzo_071_2.436kg | 2.436 | 182.7 | ![](historial/12_refuerzo_071_2.436kg/resumen.png) | [Workbench](historial/12_refuerzo_071_2.436kg/workbench/soporte_refuerzo_071.wbpz) |
+| 09 | 09_refuerzo_065_2.460kg | 2.460 | 180.2 | ![](historial/09_refuerzo_065_2.460kg/resumen.png) | - |
+| 10 | 10_refuerzo_066_2.459kg | 2.459 | 179.8 | ![](historial/10_refuerzo_066_2.459kg/resumen.png) | - |
+| 11 | 11_refuerzo_070_2.443kg | 2.443 | 182.6 | ![](historial/11_refuerzo_070_2.443kg/resumen.png) | - |
+| 12 | 12_refuerzo_071_2.436kg | 2.436 | 182.7 | ![](historial/12_refuerzo_071_2.436kg/resumen.png) | - |
 | 13 | 13_refuerzo_085_2.428kg | 2.428 | 183.5 | ![](historial/13_refuerzo_085_2.428kg/resumen.png) | [Workbench](historial/13_refuerzo_085_2.428kg/workbench/soporte_refuerzo_085.wbpz) |
 | 14 | 14_refuerzo_119_2.422kg | 2.422 | 183.1 | ![](historial/14_refuerzo_119_2.422kg/resumen.png) | [Workbench](historial/14_refuerzo_119_2.422kg/workbench/soporte_refuerzo_119.wbpz) |
 | 15 | 15_refuerzo_127_2.412kg | 2.412 | 184.3 | ![](historial/15_refuerzo_127_2.412kg/resumen.png) | [Workbench](historial/15_refuerzo_127_2.412kg/workbench/soporte_refuerzo_127.wbpz) |
@@ -28,3 +28,4 @@ Original: 2,411 kg (CAD) | limite 187 MPa | carga 37800 N
 | 20 | 20_simjeb_031_2.132kg | 2.132 | 165.5 | ![](historial/20_simjeb_031_2.132kg/resumen.png) | [Workbench](historial/20_simjeb_031_2.132kg/workbench/soporte_simjeb_031.wbpz) |
 | 21 | 21_simjeb_032_1.953kg | 1.953 | 167.2 | ![](historial/21_simjeb_032_1.953kg/resumen.png) | [Workbench](historial/21_simjeb_032_1.953kg/workbench/soporte_simjeb_032.wbpz) |
 | 22 | 22_simjeb_033_1.921kg | 1.921 | 167.7 | ![](historial/22_simjeb_033_1.921kg/resumen.png) | [Workbench](historial/22_simjeb_033_1.921kg/workbench/soporte_simjeb_033.wbpz) |
+| 23 | 23_simjeb_037_1.914kg | 1.914 | 165.3 | ![](historial/23_simjeb_037_1.914kg/resumen.png) | [Workbench](historial/23_simjeb_037_1.914kg/workbench/soporte_simjeb_037.wbpz) |
