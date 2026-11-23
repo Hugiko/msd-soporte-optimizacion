@@ -14912,3 +14912,9 @@
 [08:32:10]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [08:32:10] [simjeb] rama S1 terminada (12 pruebas); su mejor diseno (037) crea las ramas S1.1 (fina) y S1.2 (amplia)
 [08:32:11]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
+[08:32:15] [SimJEB modificado] DISENO 044  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:32:15]   motivo: [rama S1.1] rama nueva (fina, paso 0.10) desde el diseno 037; cambia ali1_r (rama fina: solo mueve semilla, t_col_del, ali2_r, z_col, ali1_r)
+[08:32:15]   el modelo predice: masa 1.942 kg | tension 165 MPa | P(cumplir) 0.86
+[08:32:18]   (GitHub: subido)
+[08:32:19]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[08:32:21]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
