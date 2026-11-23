@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:22
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:25
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (69)
 
@@ -139,11 +139,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:22
 | 138 | 2.383 | 185.1 | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia cav_s0, t_col_del (rama fina: solo mueve trim_a, trim_s0, R_pocket, r_cut, t_col_tra, cav_s0, t_col_del) | - |
 | 143 | 2.357 | 186.8 | [rama R1.1.1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.05); cambia cav_a, t_col_del (rama fina: solo mueve trim_a, trim_s0, R_pocket, r_cut, t_col_tra, t_col_del, z_col) | - |
 | 154 | 2.350 | 183.8 | [rama R1.1.1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia cav_a, cav_z0, trim_z, t_col_del... | - |
-| 184 | 2.497 | 190.8 | [rama R1.1.1.1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.10); cambia cav_s0, trim_s0, trim_z, r_cut... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_s0) | [ver](184/vonmises.png) |
+| 184 | 2.497 | 190.8 | [rama R1.1.1.1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.10); cambia cav_s0, trim_s0, trim_z, r_cut... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_s0) | - |
 | 195 | 2.323 | 188.2 | [rama R1.1.1.1.1.2] varios pasos sin mejora: paso mas corto (0.35); cambia cav_s0, cav_a, cav_z0, cav_z1... | [ver](195/vonmises.png) |
 | 196 | 2.326 | 194.6 | [rama R1.1.1.1.1.3] varios pasos sin mejora: paso mas corto (0.20); cambia cav_a, cav_z0, t_col_del, t_col_tra | [ver](196/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (58)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (59)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -200,11 +200,12 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:22
 | 172 | 2.511 | 286.7 | [rama RX2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.60); cambia cav_s0, cav_len, cav_z0, cav_z1... | - |
 | 174 | 2.528 | 480.9 | [rama RX2] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia cav_z0, trim_ang, z_col | - |
 | 181 | 2.483 | 302.0 | [rama RX1.2] [aun sin disenos validos] rama nueva (amplia, paso 0.35) desde el diseno 104; cambia cav_len, cav_z1, trim_ang | - |
-| 185 | 2.482 | 388.6 | [rama RX2.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 172; cambia cav_z0, trim_s0, trim_z, trim_ang... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_z0) | [ver](185/vonmises.png) |
+| 185 | 2.482 | 388.6 | [rama RX2.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 172; cambia cav_z0, trim_s0, trim_z, trim_ang... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_z0) | - |
 | 192 | 2.339 | 217.8 | [rama R1.1.1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](192/vonmises.png) |
 | 200 | 2.060 | 441.3 | [rama RX1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](200/vonmises.png) |
 | 203 | 1.382 | 1303.1 | [rama RX4] exploradora: punto al azar en una zona nunca probada (a 1.47 del diseno probado mas cercano (anti-estancamiento)) | [ver](203/vonmises.png) |
 | 205 | 1.938 | 327.7 | [rama RX4] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia trim_s0, trim_a, t_col_del, z_col | [ver](205/vonmises.png) |
+| 207 | 2.317 | 236.5 | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_len, trim_s0, trim_z... | [ver](207/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (17)
 
