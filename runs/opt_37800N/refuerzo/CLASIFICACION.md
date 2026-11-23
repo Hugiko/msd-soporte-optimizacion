@@ -1,12 +1,13 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:47
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:49
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (26)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (27)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
-| 127 **MEJOR** | 2.412 | 184.3 | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.03); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_a, r_cut, trim_z, R_pocket, cav_s0, trim_ang) | [ver](127/vonmises.png) |
+| 132 **MEJOR** | 2.392 | 185.0 | [rama R1.1.1.1.1] rama nueva (fina, paso 0.10) desde el diseno 127; cambia trim_z (rama fina: solo mueve trim_s0, trim_a, r_cut, cav_s0, trim_z, R_pocket, cav_z1) | [ver](132/vonmises.png) |
+| 127 | 2.412 | 184.3 | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.03); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_a, r_cut, trim_z, R_pocket, cav_s0, trim_ang) | [ver](127/vonmises.png) |
 | 119 | 2.422 | 183.1 | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | [ver](119/vonmises.png) |
 | 122 | 2.424 | 182.6 | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | [ver](122/vonmises.png) |
 | 121 | 2.428 | 180.7 | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | [ver](121/vonmises.png) |

@@ -7,17 +7,21 @@ agujeros en las mismas posiciones. Su tabla da la tension maxima en el caso HORI
 Candidatos: disenos mas ligeros que el original cuya tension horizontal, escalada con el factor medido en el original
 (nuestra metrica / tension bruta SimJEB = 212,9 / 414,3), queda por debajo de ~260 MPa. Se ordenan de mas ligero a mas pesado.
 
-Variables:
+Variables (MODIFICACIONES sobre el diseno elegido):
   semilla   : que diseno de SimJEB se usa (indice en la lista de candidatos; variable categorica)
-  t_col_del : collar alrededor de los 2 pernos delanteros (refuerzo del punto critico habitual) (mm)
-  t_col_tra : collar alrededor de los 2 pernos traseros (mm)
+  t_col_del : collar alrededor de los 2 pernos delanteros (refuerzo del punto critico habitual) (mm)  -> AnADE material
+  t_col_tra : collar alrededor de los 2 pernos traseros (mm)                                           -> AnADE material
   z_col     : altura de los collares (mm)
+  ali1_x, ali1_y, ali1_r ; ali2_x, ali2_y, ali2_r : dos ALIGERAMIENTOS (agujeros verticales pasantes, en la direccion
+              de impresion: paredes verticales, sin voladizos ni polvo atrapado) donde la pieza no trabaja  -> QUITA material.
+              Nunca tocan las zonas protegidas (alrededor de los 4 pernos y de las orejetas del bulon).
 Los agujeros de cada diseno se detectan en la malla (cada autor los modelo a su manera).
 """
 import os, csv, json, math
 import numpy as np
 import cadquery as cq
 import geometry as G
+import fem
 
 ROOT = G.ROOT
 DATA = os.path.join(ROOT, "datos_simjeb")
@@ -49,13 +53,19 @@ PARAMS = [
     ("t_col_del", 0.0, 9.0, 0.0, "espesor del collar en los 2 pernos delanteros (mm); 0 = sin collar"),
     ("t_col_tra", 0.0, 9.0, 0.0, "espesor del collar en los 2 pernos traseros (mm); 0 = sin collar"),
     ("z_col", 8.0, 30.0, 18.0, "altura del borde superior de los collares (mm)"),
+    ("ali1_x", -35.0, 62.0, 13.5, "aligeramiento 1: posicion x del agujero vertical pasante (mm)"),
+    ("ali1_y", -158.0, 12.0, -73.0, "aligeramiento 1: posicion y (mm)"),
+    ("ali1_r", 0.0, 10.0, 0.0, "aligeramiento 1: radio (mm); < 1,5 = sin agujero"),
+    ("ali2_x", -35.0, 62.0, 13.5, "aligeramiento 2: posicion x (mm)"),
+    ("ali2_y", -158.0, 12.0, -73.0, "aligeramiento 2: posicion y (mm)"),
+    ("ali2_r", 0.0, 10.0, 0.0, "aligeramiento 2: radio (mm); < 1,5 = sin agujero"),
 ]
 NAMES = [p[0] for p in PARAMS]
 LO = np.array([p[1] for p in PARAMS]); HI = np.array([p[2] for p in PARAMS])
 CATEGORICAL = ["semilla"]
 GeometryError = G.GeometryError
 export = G.export
-VERSION = f"simjeb-v1-{K}candidatos"
+VERSION = f"simjeb-v2-{K}candidatos-aligeramientos"
 FRONT = (0, 1)
 R_HEAD = 10.84                     # holgura para cabeza/arandela del tornillo (como el alojamiento del original)
 _CACHE = {}
@@ -65,9 +75,21 @@ def default_params():
     return {p[0]: p[3] for p in PARAMS}
 
 
+def _sig_obj():
+    try:
+        c = json.load(open(os.path.join(ROOT, "config.json"), encoding="utf-8-sig"))
+        return float(c.get("sigma_y_MPa", 215.0)) * float(c.get("margen_optimizacion", 1.0))
+    except Exception:
+        return 187.0
+
+
 def first_designs():
-    """Torneo inicial: cada candidato tal cual (sin collares), en el cubo unidad."""
-    return [[i / (K - 1), 0.0, 0.0, 0.5] for i in range(len(POOL))]
+    """Torneo inicial: cada candidato TAL CUAL (sin collares ni aligeramientos), en el cubo unidad, del MAS PROMETEDOR
+    al menos (primero los que segun SimJEB ya cumplirian, ordenados por masa x (tension/limite)^0,15)."""
+    so = _sig_obj()
+    order = sorted(range(len(POOL)), key=lambda i: (POOL[i]["est"] > so * 1.05,
+                                                     POOL[i]["vol"] * 7.85e-6 * (POOL[i]["est"] / so) ** 0.15))
+    return [[i / (K - 1), 0.0, 0.0, 0.5, 0.5, 0.5, 0.0, 0.5, 0.5, 0.0] for i in order]
 
 
 def seed_info(p):
@@ -90,6 +112,25 @@ def _fill_closed_voids(solid):
         except Exception:
             pass
     return sorted(solid.Solids(), key=lambda x: x.Volume(), reverse=True)[0]
+
+
+_PROT = []
+
+
+def protected():
+    """Zonas que los aligeramientos NUNCA tocan: cilindros alrededor de los 4 pernos (alojamiento de la cabeza + 3 mm)
+    y un cilindro alrededor del bulon que cubre las dos orejetas (radio del agujero + 6 mm)."""
+    if not _PROT:
+        s = None
+        for b in G.BOLTS:
+            c = cq.Solid.makeCylinder(R_HEAD + 3.0, 140.0, cq.Vector(b["c"][0], b["c"][1], -20.0))
+            s = c if s is None else s.fuse(c)
+        a = np.array(fem.HOLES["bulon"]["axis"], float); a /= np.linalg.norm(a)
+        P = np.mean(np.array(fem.HOLES["bulon"]["centers"], float), axis=0)
+        st = P - 26.0 * a
+        pin = cq.Solid.makeCylinder(G.RP + 6.0, 52.0, cq.Vector(*st), cq.Vector(*a))
+        _PROT.append(s.fuse(pin))
+    return _PROT[0]
 
 
 def _load(idx):
@@ -132,6 +173,28 @@ def build(p):
     if G.AM_ON and len(solid.Shells()) > 1:
         solid = _fill_closed_voids(solid)
         info["clamped"].append("cavidad cerrada rellenada (impresion 3D)")
+    n_ali = 0
+    for k in (1, 2):
+        r = p[f"ali{k}_r"]
+        if r < 1.5:
+            continue
+        tool = cq.Solid.makeCylinder(r, 140.0, cq.Vector(p[f"ali{k}_x"], p[f"ali{k}_y"], -20.0)).cut(protected())
+        if tool.Volume() < 1.0:
+            info["clamped"].append(f"aligeramiento {k} entero dentro de zona protegida: no se aplica")
+            continue
+        v0 = solid.Volume()
+        cut = solid.cut(tool, tol=1e-4)
+        sols = sorted(cut.Solids(), key=lambda s: s.Volume(), reverse=True)
+        if not sols:
+            raise GeometryError(f"el aligeramiento {k} ha fallado")
+        if len(sols) > 1 and sols[1].Volume() > 0.01 * sols[0].Volume():
+            raise GeometryError(f"el aligeramiento {k} parte la pieza en dos")
+        if not sols[0].isValid() or sols[0].Volume() > v0 + 1.0:
+            raise GeometryError(f"el aligeramiento {k} ha fallado (booleana)")
+        if v0 - sols[0].Volume() > 1.0:
+            n_ali += 1
+        solid = sols[0]
+    info["aligeramientos"] = n_ali
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6, pin_half_width=None,
                 auto_interfaces=True, holes={"deteccion": "en la malla"}, simjeb_id=seed["id"],
                 simjeb_categoria=seed["cat"], simjeb_autor=seed["autor"], simjeb_tension_estimada=round(seed["est"], 1))
