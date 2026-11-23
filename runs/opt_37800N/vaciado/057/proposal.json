@@ -1,0 +1,40 @@
+{
+ "params": {
+  "cav_s0": 34.8807,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 8.4408,
+  "cav_z1": 12.0,
+  "trim_s0": 60.8664,
+  "trim_z": 29.0331,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 5.8496,
+  "R_pocket": 10.6817
+ },
+ "motivo": "[rama V1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia trim_s0, r_cut",
+ "pred": {
+  "mass_kg": 2.396792669029483,
+  "stress_mpa": 204.03484009051428,
+  "p_cumple": 0.10418588855771432,
+  "paso": 0.35,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.020388665998595155,
+   "cav_len": 0.022240905323512392,
+   "cav_a": 0.09283704384684713,
+   "cav_z0": 0.019139272594780907,
+   "cav_z1": 0.05804114362485847,
+   "trim_s0": 0.30498543764241604,
+   "trim_z": 0.018465009047751866,
+   "trim_ang": 0.01781984557649704,
+   "trim_a": 0.028281710854355734,
+   "r_cut": 0.054091231765742806,
+   "R_pocket": 0.36370973372464244
+  }
+ },
+ "fase": "aprende",
+ "familia": "vaciado",
+ "rama": "V1.2",
+ "fecha": "2026-11-23T05:59:34.243513"
+}
