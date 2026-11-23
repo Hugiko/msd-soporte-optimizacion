@@ -134,8 +134,26 @@
  [
   "cero",
   "C1.2",
-  "activa",
+  "terminada",
   58
+ ],
+ [
+  "cero",
+  "C1.2.1",
+  "activa",
+  null
+ ],
+ [
+  "cero",
+  "C1.2.2",
+  "activa",
+  null
+ ],
+ [
+  "cero",
+  "C1.2.3",
+  "activa",
+  null
  ],
  [
   "vaciado",

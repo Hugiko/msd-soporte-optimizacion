@@ -110,11 +110,11 @@
    "padre": "C1",
    "semilla": 31,
    "tipo": "amplia",
-   "L": 0.0875,
+   "L": 0.04375,
    "L0": 0.35,
    "succ": 0,
-   "fail": 3,
-   "n": 14,
+   "fail": 0,
+   "n": 15,
    "best": {
     "score": [
      1,
@@ -136,15 +136,20 @@
     0.5870065359477125,
     1.0
    ],
-   "estado": "activa",
-   "hijos": [],
+   "estado": "terminada",
+   "hijos": [
+    "C1.2.1",
+    "C1.2.2",
+    "C1.2.3"
+   ],
    "seed_score": [
     1,
     2.076719193598403
    ],
    "seed_x": null,
    "nota": "",
-   "creada": "2026-11-22T23:41:03.395682"
+   "creada": "2026-11-22T23:41:03.395682",
+   "motivo_fin": "15 pruebas"
   },
   "C1.1.1": {
    "id": "C1.1.1",
@@ -189,6 +194,85 @@
    "seed_x": null,
    "nota": "",
    "creada": "2026-11-23T05:53:58.772378"
+  },
+  "C1.2.1": {
+   "id": "C1.2.1",
+   "padre": "C1.2",
+   "semilla": 58,
+   "tipo": "fina",
+   "L": 0.1,
+   "L0": 0.1,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    2.035988322950569
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T07:28:32.981740"
+  },
+  "C1.2.2": {
+   "id": "C1.2.2",
+   "padre": "C1.2",
+   "semilla": 58,
+   "tipo": "amplia",
+   "L": 0.35,
+   "L0": 0.35,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    2.035988322950569
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T07:28:32.981740"
+  },
+  "C1.2.3": {
+   "id": "C1.2.3",
+   "padre": "C1.2",
+   "semilla": null,
+   "tipo": "cruce",
+   "L": 0.2,
+   "L0": 0.2,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    1,
+    2.035988322950569
+   ],
+   "seed_x": [
+    0.895824175824176,
+    0.12267272727272728,
+    0.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    0.0,
+    1.0,
+    0.0,
+    0.5870065359477125,
+    1.0
+   ],
+   "nota": "C1.2 (#058) y C1 (#031)",
+   "creada": "2026-11-23T07:28:32.983139"
   }
  },
  "done": false,

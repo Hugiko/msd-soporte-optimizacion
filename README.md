@@ -6,10 +6,10 @@
 |---|---|---|---|---|
 | SimJEB modificado | 6 | 1 | 3.644 kg (CS 1.41) | en marcha |
 | Refuerzo + vaciado | 151 | 41 | 2.372 kg (CS 1.16) | en marcha |
-| Diseno desde cero | 69 | 0 | - | en marcha |
+| Diseno desde cero | 70 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 69 descartados en la pasada rapida, 34 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: aun aprendiendo | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 70 descartados en la pasada rapida, 35 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: aun aprendiendo | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 295 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 296 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -61,6 +61,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Diseno desde cero | 070 | 2.264 | 380.6 | descartado | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso ma | [ver](runs/opt_37800N/galeria/20261123_072832_cero_070_NO_VALIDO_2.264kg.jpg) |
 | Refuerzo + vaciado | 151 | 2.376 | 185.4 | valido | [rama R1.1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_072825_refuerzo_151_VALIDO_2.376kg.jpg) |
 | SimJEB modificado | 006 | 1.824 | 368.7 | descartado | torneo de referencias SimJEB (6/30): SimJEB n.o 380 (block, Richard Am | [ver](runs/opt_37800N/galeria/20261123_072728_simjeb_006_NO_VALIDO_1.824kg.jpg) |
 | SimJEB modificado | 005 | 1.739 | 215.3 | descartado | torneo de referencias SimJEB (5/30): SimJEB n.o 485 (block, saeid mirs | [ver](runs/opt_37800N/galeria/20261123_072646_simjeb_005_NO_VALIDO_1.739kg.jpg) |
@@ -70,7 +71,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 149 | 0.000 | - | fallido | [rama R1.1.1.1.2] rama nueva (amplia, paso 0.35) desde el diseno 127;  | [ver](runs/opt_37800N/galeria/20261123_072351_refuerzo_149_FALLO_0.000kg.jpg) |
 | SimJEB modificado | 002 | 3.644 | 152.8 | valido | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) t | [ver](runs/opt_37800N/galeria/20261123_072324_simjeb_002_VALIDO_3.644kg.jpg) |
 | SimJEB modificado | 001 | 1.301 | 284.6 | descartado | torneo de referencias SimJEB (1/30): SimJEB n.o 321 (block, Antonio Cr | [ver](runs/opt_37800N/galeria/20261123_072241_simjeb_001_NO_VALIDO_1.301kg.jpg) |
-| Refuerzo + vaciado | 148 | 2.372 | 185.4 | valido | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_072002_refuerzo_148_VALIDO_2.372kg.jpg) |
 
 ---
 
