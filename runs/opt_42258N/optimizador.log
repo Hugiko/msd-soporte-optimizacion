@@ -1,3 +1,46 @@
 [18:46:21] ESTUDIO de las soluciones publicadas: quedan 41 disenos por calcular con 42258 N
 [19:39:34]   caracteristicas de 217 disenos publicados calculadas
 [19:39:40] Estudio de las soluciones publicadas: 381 disenos calculados con 42258 N, 16 cumplen. Reglas de diseno actualizadas en DESIGN_RULES.md.
+[19:39:40] ITERACION 0: la pieza del enunciado (0.stp) tal cual
+[19:39:44]   (GitHub: subido)
+[19:39:44]   [1/5] geometria parametrica (cadquery)
+[19:39:44]         masa CAD = 2.4115 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[19:39:47]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[19:39:52]   malla h=4.0: 80282 nodos, 47008 tet10 (3.4s)
+[19:39:53]   [3/5] ANSYS MAPDL normal (80282 nodos, 47008 elementos)
+[19:39:53] Lanzando MAPDL: model.inp (timeout 1200s)
+[19:40:00]   [fase] 4  /PREP7
+[19:40:03]   [fase] 175351  /SOLU
+[19:40:03]   [solver] 175353  EQSLV,SPARSE
+[19:40:03]   [fase] 175356  /POST1
+[19:40:03]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.124   TIME= 19:40:01
+[19:40:03]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.163
+[19:40:03]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[19:40:03]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.383   TIME= 19:40:01
+[19:40:03]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[19:40:03]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[19:40:04]   [solver] Equation solver memory allocated                     =  1778.283 MB
+[19:40:04]   [solver] Equation solver memory required for in-core mode     =  1701.240 MB
+[19:40:04]   [solver] Equation solver memory required for out-of-core mode =   379.174 MB
+[19:40:04]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[19:40:10]   [solver] Sparse solver maximum pivot= 284517538 at node 46794 UY.
+[19:40:10]   [solver] Sparse solver minimum pivot= 34180.1839 at node 2709 UY.
+[19:40:10]   [solver] Sparse solver minimum pivot in absolute value= 34180.1839 at node 2709
+[19:40:12]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        17.984
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.019   TIME= 19:40:12
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.092   TIME= 19:40:13
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.098   TIME= 19:40:13
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.105   TIME= 19:40:13
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.112   TIME= 19:40:13
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.118   TIME= 19:40:13
+[19:40:13]   [AVISO] *** WARNING ***                         ELAPSED TIME =      19.125   TIME= 19:40:13
+[19:40:13]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        19.197
+[19:40:24]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.4 seconds
+[19:40:24]   [solver] Elapsed time in equation solver                :        7.9 seconds
+[19:40:24]   [fase] Elapsed time spent post-processing model (/POST1) :        1.2 seconds
+[19:40:24]   [solver] Equation solver used                              :            Sparse (symmetric)
+[19:40:24]   [solver] Sparse direct equation solver computational rate  :       53.9 Gflops
+[19:40:25] MAPDL termino: estado=ok codigo=0 tiempo=31.9s
+[19:40:25]   [4/5] resultados
+[19:40:25]   [5/5] imagenes
+[19:40:27]   original: 2.4234 kg | 238.0 MPa | CS 0.90 | 0.144 mm -> NO cumple (238 MPa > 215): primero hay que reforzar donde esta el pico

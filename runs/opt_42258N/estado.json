@@ -1,0 +1,78 @@
+{
+ "iter": 0,
+ "actual": {
+  "ops": [],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "m": {
+   "mass_kg": 2.4234392280500003,
+   "vm_metric": 238.0426,
+   "u_max": 0.14448519672811938,
+   "vm_metric_xyz": [
+    3.5601297304722803,
+    -9.92159955231782,
+    10.388599925420822
+   ],
+   "n_nodes": 80282,
+   "cs": 0.9031996793851185,
+   "viol": 1.10717488372093,
+   "score": 2.4234392280500003,
+   "valido": false
+  },
+  "rapida": null,
+  "galeria": "galeria/20261123_194027_it000_INICIO_2.423kg.jpg"
+ },
+ "mejor": null,
+ "verificado": null,
+ "tau_idx": 0,
+ "rechazos": [],
+ "stats": {},
+ "sin_mejora": 0,
+ "inversiones": 0,
+ "inversion_desde": null,
+ "wb_masa": null,
+ "fin": false,
+ "motivo_fin": "",
+ "historia": [
+  {
+   "iter": 0,
+   "fecha": "2026-11-23T19:40:27.655214",
+   "decision": "INICIO",
+   "titulo": "pieza del enunciado (0.stp)",
+   "despues": "2.4234 kg | 238.0 MPa | CS 0.90 | 0.144 mm",
+   "galeria": "galeria/20261123_194027_it000_INICIO_2.423kg.jpg",
+   "m_cand": {
+    "mass_kg": 2.4234392280500003,
+    "vm_metric": 238.0426,
+    "u_max": 0.14448519672811938,
+    "vm_metric_xyz": [
+     3.5601297304722803,
+     -9.92159955231782,
+     10.388599925420822
+    ],
+    "n_nodes": 80282,
+    "cs": 0.9031996793851185,
+    "viol": 1.10717488372093,
+    "score": 2.4234392280500003,
+    "valido": false
+   },
+   "motivo": "NO cumple (238 MPa > 215): primero hay que reforzar donde esta el pico",
+   "m_actual": {
+    "mass_kg": 2.4234392280500003,
+    "vm_metric": 238.0426,
+    "u_max": 0.14448519672811938,
+    "vm_metric_xyz": [
+     3.5601297304722803,
+     -9.92159955231782,
+     10.388599925420822
+    ],
+    "n_nodes": 80282,
+    "cs": 0.9031996793851185,
+    "viol": 1.10717488372093,
+    "score": 2.4234392280500003,
+    "valido": false
+   }
+  }
+ ],
+ "creado": "2026-11-23T18:46:21",
+ "estudio_anunciado": true
+}
