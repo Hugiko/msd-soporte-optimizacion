@@ -32,7 +32,7 @@ SX1["SX1 - exploradora, paso 0.30<br/>6 pruebas<br/>mejor: 1.928 kg, 170 MPa (#0
 S0 --> SX1
 SX2["SX2 - exploradora, paso 0.30<br/>6 pruebas<br/>aun sin validos; el mas cercano 358 MPa (#064)"]:::activa
 S0 --> SX2
-SX3["SX3 - exploradora, paso 0.30<br/>5 pruebas<br/>mejor: 3.708 kg, 153 MPa (#068)"]:::activa
+SX3["SX3 - exploradora, paso 0.30<br/>6 pruebas<br/>mejor: 3.708 kg, 153 MPa (#068)"]:::activa
 S0 --> SX3
 ```
 
