@@ -24322,3 +24322,9 @@
 [14:19:38]   [4/5] resultados
 [14:19:38]   [5/5] imagenes
 [14:19:40]   RESULTADO: masa 1.918 kg | tension 281.1 MPa (bruta 687) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)
+[14:20:00] [Refuerzo + vaciado] DISENO 248  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[14:20:00]   motivo: [rama RX6] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_z1
+[14:20:00]   el modelo predice: masa 2.391 kg | tension 188 MPa | P(cumplir) 0.48
+[14:20:10]   geometria IDENTICA al diseno 244 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[14:20:12]   RESULTADO: masa 2.486 kg | tension 184.5 MPa (bruta 842) | CUMPLE
+[14:20:13]   (GitHub: subido)

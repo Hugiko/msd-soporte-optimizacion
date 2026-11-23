@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 40.978,
+  "cav_len": 61.6194,
+  "cav_a": 40.6264,
+  "cav_z0": 9.046,
+  "cav_z1": 17.9775,
+  "trim_s0": 44.3401,
+  "trim_z": 45.0,
+  "trim_ang": 35.0,
+  "trim_a": 32.6432,
+  "r_cut": 4.4259,
+  "R_pocket": 10.644,
+  "t_col_del": 6.6402,
+  "t_col_tra": 8.2705,
+  "z_col": 10.5817
+ },
+ "motivo": "[rama RX6] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_z1",
+ "pred": {
+  "mass_kg": 2.3906692298384202,
+  "stress_mpa": 187.57272584999689,
+  "p_cumple": 0.4846804133018079,
+  "paso": 0.6,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "cav_s0": 0.0030686639980043997,
+   "cav_len": 0.0010281347019532685,
+   "cav_a": 0.010401831647813877,
+   "cav_z0": 0.03789034806202178,
+   "cav_z1": 0.00324033070774728,
+   "trim_s0": 0.34909540812432843,
+   "trim_z": 0.0013084502750447626,
+   "trim_ang": 0.011196759446275736,
+   "trim_a": 0.4916321496320066,
+   "r_cut": 0.0285652135216473,
+   "R_pocket": 0.05027206445960198,
+   "t_col_del": 0.004538994211733098,
+   "t_col_tra": 0.004776470395965205,
+   "z_col": 0.002985180815856321
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX6",
+ "fecha": "2026-11-23T14:20:00.510234"
+}
