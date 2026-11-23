@@ -13913,3 +13913,41 @@
 [07:57:05] Workbench (sin ventana): creando soporte_refuerzo_162.wbpj con F = 37800 N ...
 [07:59:00] Workbench termino en 116 s: montaje OK, resuelto SI
 [07:59:00]   >>> NUEVO MEJOR DISENO GLOBAL #19: 2.366 kg  (Refuerzo + vaciado, diseno 162) | proyecto Workbench creado
+[07:59:03] [SimJEB modificado] DISENO 029  |  mejor global: 2.366 kg (Refuerzo + vaciado #162)
+[07:59:03]   motivo: torneo de referencias SimJEB (29/30): SimJEB n.o 256 (butterfly, Richard) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 242 MPa)
+[07:59:06]   [1/5] geometria parametrica (cadquery)
+[07:59:07]         masa CAD = 1.2964 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[07:59:08]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[07:59:14]   (GitHub: subido)
+[07:59:14]   malla h=4.0: 44701 nodos, 24997 tet10 (2.8s)
+[07:59:15]   [3/5] ANSYS MAPDL normal (44701 nodos, 24997 elementos)
+[07:59:15] Lanzando MAPDL: model.inp (timeout 1200s)
+[07:59:21]   [fase] 4  /PREP7
+[07:59:23]   [fase] 95741  /SOLU
+[07:59:23]   [solver] 95743  EQSLV,SPARSE
+[07:59:23]   [fase] 95746  /POST1
+[07:59:23]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.376   TIME= 07:59:22
+[07:59:23]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.412
+[07:59:23]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[07:59:23]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.537   TIME= 07:59:22
+[07:59:23]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[07:59:24]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[07:59:24]   [solver] Equation solver memory allocated                     =   675.823 MB
+[07:59:24]   [solver] Equation solver memory required for in-core mode     =   647.749 MB
+[07:59:24]   [solver] Equation solver memory required for out-of-core mode =   204.286 MB
+[07:59:24]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[07:59:25]   [solver] Sparse solver maximum pivot= 96337136.4 at node 17467 UX.
+[07:59:25]   [solver] Sparse solver minimum pivot= 23606.0944 at node 19788 UY.
+[07:59:25]   [solver] Sparse solver minimum pivot in absolute value= 23606.0944 at node 19788
+[07:59:25]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         9.415
+[07:59:26]   [AVISO] *** WARNING ***                         ELAPSED TIME =       9.921   TIME= 07:59:26
+[07:59:26]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         9.958
+[07:59:36]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.2 seconds
+[07:59:36]   [solver] Elapsed time in equation solver                :        1.7 seconds
+[07:59:36]   [fase] Elapsed time spent post-processing model (/POST1) :        0.5 seconds
+[07:59:36]   [solver] Equation solver used                              :            Sparse (symmetric)
+[07:59:36]   [solver] Sparse direct equation solver computational rate  :       64.3 Gflops
+[07:59:36] MAPDL termino: estado=ok codigo=0 tiempo=21.0s
+[07:59:36]   [4/5] resultados
+[07:59:37]   [5/5] imagenes
+[07:59:38]   RESULTADO: masa 1.298 kg | tension 342.6 MPa (bruta 715) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)
