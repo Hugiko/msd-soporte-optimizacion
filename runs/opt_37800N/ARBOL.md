@@ -52,7 +52,7 @@ SX3_2["SX3.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 SX3 --> SX3_2
 SX3_3["SX3.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 SX3 --> SX3_3
-SX10["SX10 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 682 MPa (#164)"]:::activa
+SX10["SX10 - exploradora, paso 0.30<br/>3 pruebas<br/>mejor: 3.513 kg, 159 MPa (#168)"]:::activa
 S0 --> SX10
 SX11["SX11 - exploradora, paso 0.30<br/>2 pruebas<br/>mejor: 3.662 kg, 161 MPa (#167)"]:::activa
 S0 --> SX11
