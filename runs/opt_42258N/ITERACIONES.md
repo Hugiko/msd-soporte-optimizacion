@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 9 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (22, -71)
+
+*2026-11-23 20:42*
+
+- **Pieza de partida:** 2.2877 kg | 196.7 MPa | CS 1.09 | 0.144 mm
+- **Por que (regla R1):** Toda la columna en (22, -71) hasta 8 mm de radio trabaja como maximo al 21 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~64 %; el pico (197 MPa, en alrededor de los pernos traseros) esta a 71 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 4 veces que se ha aplicado: -0.9 % (prevision rapida: 2.2753 kg | 195.6 MPa | CS 1.10 | 0.144 mm)
+- **Resultado (malla completa):** 2.2736 kg | 199.2 MPa | CS 1.08 | 0.144 mm (tension +1.3 %, masa -14 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2877 -> 2.2736; masa 2.2877 -> 2.2736 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D16 mm en (-23, -119) -> tension prevista 432 MPa: supera el limite (215 MPa)
+- Nota: R11 (Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)) suspendida: 9 intentos sin ninguna mejora
+
+<img src="galeria/20261123_204509_it009_ACEPTADA_2.274kg.jpg" width="520">
+
 ## Iteracion 8 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (40, -86)
 
 *2026-11-23 20:39*

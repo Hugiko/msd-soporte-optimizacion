@@ -1,16 +1,16 @@
 {
- "iter": 7,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\07_it007_2.308kg",
- "mass_kg": 2.3084781211000003,
- "vm_metric": 203.4776,
- "u_max": 0.1436765298177064,
- "coef_seguridad": 1.056627363405112,
- "puntuacion": 2.3084781211000003,
+ "iter": 9,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\08_it009_2.274kg",
+ "mass_kg": 2.2735697127500005,
+ "vm_metric": 199.2375,
+ "u_max": 0.1443984433020598,
+ "coef_seguridad": 1.0791141225923835,
+ "puntuacion": 2.2735697127500005,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 212.55,
-  "u_max": 0.14847138792525313,
-  "n_nodes": 106802,
+  "vm_metric": 210.6781,
+  "u_max": 0.14941445758003877,
+  "n_nodes": 107258,
   "ok": true
  },
  "operaciones": [
@@ -20,8 +20,10 @@
   "rebaje desde arriba hasta z = 7 mm en x 54..66, y -124..-28 mm (esquinas R3)",
   "rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52 mm (esquinas R3)",
   "aligeramiento pasante vertical D16 mm en (-20, -26)",
-  "aligeramiento pasante vertical D12 mm en (4, -74)"
+  "aligeramiento pasante vertical D12 mm en (4, -74)",
+  "aligeramiento pasante vertical D10 mm en (40, -86)",
+  "aligeramiento pasante vertical D10 mm en (22, -71)"
  ],
- "fecha": "2026-11-23T20:39:10",
+ "fecha": "2026-11-23T20:47:25",
  "final": false
 }
