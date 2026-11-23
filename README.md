@@ -4,12 +4,12 @@
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 98 | 24 | 1.914 kg (CS 1.30) | en marcha |
+| SimJEB modificado | 99 | 24 | 1.914 kg (CS 1.30) | en marcha |
 | Refuerzo + vaciado | 197 | 64 | 2.314 kg (CS 1.15) | en marcha |
 | Diseno desde cero | 85 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 85 descartados en la pasada rapida, 49 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 34 % | Refuerzo + vaciado: error tipico 2 % | Diseno desde cero: error tipico 3 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 85 descartados en la pasada rapida, 49 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 35 % | Refuerzo + vaciado: error tipico 2 % | Diseno desde cero: error tipico 3 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 449 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 450 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -66,6 +66,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 099 | 2.225 | 293.7 | descartado | [rama S2] pequeno cambio alrededor del mejor de la rama (paso 0.30); c | [ver](runs/opt_37800N/galeria/20261123_105342_simjeb_099_NO_VALIDO_2.225kg.jpg) |
 | Refuerzo + vaciado | 197 | 2.400 | 184.3 | valido | [rama R1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); | [ver](runs/opt_37800N/galeria/20261123_105256_refuerzo_197_VALIDO_2.400kg.jpg) |
 | SimJEB modificado | 098 | 1.726 | 256.1 | descartado | [rama SX1] varios pasos sin mejora: paso mas corto (0.30); cambia semi | [ver](runs/opt_37800N/galeria/20261123_105154_simjeb_098_NO_VALIDO_1.726kg.jpg) |
 | SimJEB modificado | 097 | 1.927 | 199.9 | cerca_del_limite | [rama SX5] [aun sin disenos validos] el ultimo paso mejoro: sigue en e | [ver](runs/opt_37800N/galeria/20261123_105056_simjeb_097_CASI_1.927kg.jpg) |
@@ -75,7 +76,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 095 | 2.031 | 302.1 | descartado | [rama SX4] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_104740_simjeb_095_NO_VALIDO_2.031kg.jpg) |
 | Refuerzo + vaciado | 195 | 2.323 | 188.2 | cerca_del_limite | [rama R1.1.1.1.1.2] varios pasos sin mejora: paso mas corto (0.35); ca | [ver](runs/opt_37800N/galeria/20261123_104658_refuerzo_195_CASI_2.323kg.jpg) |
 | SimJEB modificado | 094 | 2.002 | 335.7 | descartado | [rama SX5] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_104556_simjeb_094_NO_VALIDO_2.002kg.jpg) |
-| SimJEB modificado | 093 | 2.029 | 222.3 | descartado | [rama SX4] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_104503_simjeb_093_NO_VALIDO_2.029kg.jpg) |
 
 ---
 
