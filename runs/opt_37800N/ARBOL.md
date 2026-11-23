@@ -102,7 +102,7 @@ R1_1_1_1_1_3["R1.1.1.1.1.3 - cruce, paso 0.20<br/>5 pruebas<br/>mejor: 2.352 kg,
 R1_1_1_1_1 --> R1_1_1_1_1_3
 RX2["RX2 - exploradora, paso 0.30<br/>12 pruebas<br/>aun sin validos; el mas cercano 287 MPa (#172)"]:::fin
 R0 --> RX2
-RX2_1["RX2.1 - fina, paso 0.10<br/>1 pruebas<br/>aun sin validos; el mas cercano 287 MPa (#172)"]:::activa
+RX2_1["RX2.1 - fina, paso 0.10<br/>2 pruebas<br/>aun sin validos; el mas cercano 287 MPa (#172)"]:::activa
 RX2 --> RX2_1
 RX2_2["RX2.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_2
