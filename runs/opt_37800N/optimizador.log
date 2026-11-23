@@ -14470,3 +14470,8 @@
 [08:20:36]   [4/5] resultados
 [08:20:36]   [5/5] imagenes
 [08:20:39]   RESULTADO: masa 2.364 kg | tension 329.1 MPa (bruta 873) | NO cumple
+[08:20:41] [Diseno desde cero] DISENO 075  |  mejor global: 1.921 kg (SimJEB modificado #033)
+[08:20:41]   motivo: [rama C1.2.3] cruce: mezcla de los parametros de C1.2 (#058) y C1 (#031)
+[08:20:42]   geometria IDENTICA al diseno 031 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[08:20:44]   RESULTADO: masa 2.243 kg | tension 388.3 MPa (bruta 848) | NO cumple
+[08:20:46]   (GitHub: subido)
