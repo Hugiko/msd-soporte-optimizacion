@@ -130,7 +130,7 @@ C1_2_3["C1.2.3 - cruce, paso 0.20<br/>3 pruebas<br/>aun sin validos; el mas cerc
 C1_2 --> C1_2_3
 CX1["CX1 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 685 MPa (#087)"]:::activa
 C0 --> CX1
-CX2["CX2 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 5278 MPa (#085)"]:::activa
+CX2["CX2 - exploradora, paso 0.30<br/>3 pruebas<br/>aun sin validos; el mas cercano 4376 MPa (#090)"]:::activa
 C0 --> CX2
 ```
 
