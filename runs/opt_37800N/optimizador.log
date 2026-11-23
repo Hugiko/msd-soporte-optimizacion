@@ -15467,3 +15467,9 @@
 [08:46:02]   (GitHub: subido)
 [08:46:05]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [08:46:06]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
+[08:46:10] [SimJEB modificado] DISENO 056  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:46:10]   motivo: [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia t_col_tra, z_col, ali1_r
+[08:46:10]   el modelo predice: masa 1.910 kg | tension 177 MPa | P(cumplir) 0.65
+[08:46:12]   (GitHub: subido)
+[08:46:17]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[08:46:18]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
