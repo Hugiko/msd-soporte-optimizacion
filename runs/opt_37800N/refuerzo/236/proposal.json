@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 42.427,
+  "cav_len": 60.0692,
+  "cav_a": 39.8958,
+  "cav_z0": 11.3566,
+  "cav_z1": 42.4541,
+  "trim_s0": 63.9926,
+  "trim_z": 32.3276,
+  "trim_ang": 7.0721,
+  "trim_a": 20.0,
+  "r_cut": 5.0746,
+  "R_pocket": 10.8387,
+  "t_col_del": 1.8699,
+  "t_col_tra": 8.1891,
+  "z_col": 10.1142
+ },
+ "motivo": "[rama RX5] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia trim_s0, trim_a, t_col_del",
+ "pred": {
+  "mass_kg": 2.2316924992414924,
+  "stress_mpa": 268.92991062363546,
+  "p_cumple": 0.08524736466160855,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.004309419820884083,
+   "cav_len": 0.0006280461850860251,
+   "cav_a": 0.009297833665096919,
+   "cav_z0": 0.04425940195532942,
+   "cav_z1": 0.002177037126458413,
+   "trim_s0": 0.33891020312291753,
+   "trim_z": 0.0017922355754221373,
+   "trim_ang": 0.010147668128396794,
+   "trim_a": 0.4970236333928855,
+   "r_cut": 0.028652113445368808,
+   "R_pocket": 0.04887601205374435,
+   "t_col_del": 0.0073980994681551535,
+   "t_col_tra": 0.004648469327866806,
+   "z_col": 0.0018798267323882482
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX5",
+ "fecha": "2026-11-23T13:29:50.162406"
+}
