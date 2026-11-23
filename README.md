@@ -1,23 +1,23 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 08:09 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 08:12 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 31 | 2 | 2.132 kg (CS 1.30) | en marcha |
+| SimJEB modificado | 32 | 3 | 1.953 kg (CS 1.29) | en marcha |
 | Refuerzo + vaciado | 163 | 47 | 2.366 kg (CS 1.18) | en marcha |
 | Diseno desde cero | 74 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 74 descartados en la pasada rapida, 37 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 56 % | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 74 descartados en la pasada rapida, 37 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 50 % | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
-**2.1321 kg** (-12.02 % de masa frente al original, 2.423 kg con el mismo modelo) &nbsp;|&nbsp; tension **165.5 MPa** &nbsp;|&nbsp; desplazamiento **0.121 mm** &nbsp;|&nbsp; coef. seguridad **1.30** &nbsp;|&nbsp; puntuacion **2.0934** &nbsp;|&nbsp; SimJEB modificado, diseno 031 &nbsp;|&nbsp; calculado 2026-11-23 08:05 &nbsp;|&nbsp; **verificado con malla fina: 171.2 MPa**
+**1.9527 kg** (-19.42 % de masa frente al original, 2.423 kg con el mismo modelo) &nbsp;|&nbsp; tension **167.2 MPa** &nbsp;|&nbsp; desplazamiento **0.126 mm** &nbsp;|&nbsp; coef. seguridad **1.29** &nbsp;|&nbsp; puntuacion **1.9202** &nbsp;|&nbsp; SimJEB modificado, diseno 032 &nbsp;|&nbsp; calculado 2026-11-23 08:09 &nbsp;|&nbsp; **verificado con malla fina: 171.2 MPa**
 
-[Proyecto Workbench (.wbpz)](runs/opt_37800N/historial/20_simjeb_031_2.132kg/workbench/soporte_simjeb_031.wbpz) &nbsp;|&nbsp; [Modelo APDL](runs/opt_37800N/historial/20_simjeb_031_2.132kg/modelo_apdl.zip) &nbsp;|&nbsp; [Geometria STEP](runs/opt_37800N/historial/20_simjeb_031_2.132kg/geometria.step)
+[Proyecto Workbench (.wbpz)](runs/opt_37800N/historial/21_simjeb_032_1.953kg/workbench/soporte_simjeb_032.wbpz) &nbsp;|&nbsp; [Modelo APDL](runs/opt_37800N/historial/21_simjeb_032_1.953kg/modelo_apdl.zip) &nbsp;|&nbsp; [Geometria STEP](runs/opt_37800N/historial/21_simjeb_032_1.953kg/geometria.step)
 
-![mejor diseno](runs/opt_37800N/galeria/20261123_080715_simjeb_031_VALIDO_2.132kg.jpg)
+![mejor diseno](runs/opt_37800N/galeria/20261123_081021_simjeb_032_VALIDO_1.953kg.jpg)
 
 ## Evolucion en el tiempo
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 337 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 338 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -37,6 +37,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | n | hora | masa | mejora | tension | desplaz. | familia / diseno | proyecto | ficha |
 |---|---|---|---|---|---|---|---|---|
+| 22 | 23/11 08:09 | 1.9527 kg | -8.28 % (punt.) | 167.2 MPa | 0.126 mm | SimJEB modificado 032 | [Workbench](runs/opt_37800N/historial/21_simjeb_032_1.953kg/workbench/soporte_simjeb_032.wbpz) | <img src="runs/opt_37800N/galeria/20261123_081021_simjeb_032_VALIDO_1.953kg.jpg" width="320"> |
 | 21 | 23/11 08:06 | 2.1321 kg | -11.16 % (punt.) | 165.5 MPa | 0.121 mm | SimJEB modificado 031 | [Workbench](runs/opt_37800N/historial/20_simjeb_031_2.132kg/workbench/soporte_simjeb_031.wbpz) | <img src="runs/opt_37800N/galeria/20261123_080715_simjeb_031_VALIDO_2.132kg.jpg" width="320"> |
 | 20 | 23/11 07:56 | 2.3657 kg | -0.52 % (punt.) | 182.2 MPa | 0.128 mm | Refuerzo + vaciado 162 | [Workbench](runs/opt_37800N/historial/19_refuerzo_162_2.366kg/workbench/soporte_refuerzo_162.wbpz) | <img src="runs/opt_37800N/galeria/20261123_075703_refuerzo_162_VALIDO_2.366kg.jpg" width="320"> |
 | 19 | 23/11 07:08 | 2.3720 kg | -0.26 % (punt.) | 185.4 MPa | 0.130 mm | Refuerzo + vaciado 142 | [Workbench](runs/opt_37800N/historial/18_refuerzo_142_2.372kg/workbench/soporte_refuerzo_142.wbpz) | <img src="runs/opt_37800N/galeria/20261123_070858_refuerzo_142_VALIDO_2.372kg.jpg" width="320"> |
@@ -63,6 +64,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 032 | 1.953 | 167.2 | valido | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.30); c | [ver](runs/opt_37800N/galeria/20261123_081021_simjeb_032_VALIDO_1.953kg.jpg) |
 | SimJEB modificado | 031 | 2.132 | 165.5 | valido | [rama S1] rama nueva (inicial, paso 0.30) desde el diseno 011; cambia  | [ver](runs/opt_37800N/galeria/20261123_080715_simjeb_031_VALIDO_2.132kg.jpg) |
 | Diseno desde cero | 074 | 2.264 | 380.6 | descartado | [rama C1.2.2] [aun sin disenos validos] rama nueva (amplia, paso 0.35) | [ver](runs/opt_37800N/galeria/20261123_080135_cero_074_NO_VALIDO_2.264kg.jpg) |
 | Refuerzo + vaciado | 163 | 2.393 | 594.7 | descartado | [rama RX2] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_080127_refuerzo_163_NO_VALIDO_2.393kg.jpg) |
@@ -72,7 +74,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 028 | 1.191 | 526.9 | descartado | torneo de referencias SimJEB (28/30): SimJEB n.o 120 (arch, Arfi'an) t | [ver](runs/opt_37800N/galeria/20261123_075522_simjeb_028_NO_VALIDO_1.191kg.jpg) |
 | SimJEB modificado | 027 | 1.179 | 296.4 | descartado | torneo de referencias SimJEB (27/30): SimJEB n.o 375 (arch, Andrew Coy | [ver](runs/opt_37800N/galeria/20261123_075428_simjeb_027_NO_VALIDO_1.179kg.jpg) |
 | Refuerzo + vaciado | 161 | 2.440 | 362.6 | descartado | [rama RX2] exploradora: punto al azar en una zona nunca probada (a 1.4 | [ver](runs/opt_37800N/galeria/20261123_075347_refuerzo_161_NO_VALIDO_2.440kg.jpg) |
-| SimJEB modificado | 026 | 0.988 | 602.7 | descartado | torneo de referencias SimJEB (26/30): SimJEB n.o 63 (block, Arfi'an) t | [ver](runs/opt_37800N/galeria/20261123_075239_simjeb_026_NO_VALIDO_0.988kg.jpg) |
 
 ---
 
