@@ -5,6 +5,7 @@ Veredicto: VALIDO (cumple tension y desplazamiento), CASI (hasta +10 %), no vali
 
 | fecha | diseno | veredicto | masa | ficha (clic para ampliar) |
 |---|---|---|---|---|
+| 23/11 14:00 | SimJEB modificado 196 | no valido | 1.717 kg | <a href="galeria/20261123_140056_simjeb_196_NO_VALIDO_1.717kg.jpg"><img src="galeria/20261123_140056_simjeb_196_NO_VALIDO_1.717kg.jpg" width="420"></a> |
 | 23/11 13:59 | SimJEB modificado 195 | no valido | 1.865 kg | <a href="galeria/20261123_135948_simjeb_195_NO_VALIDO_1.865kg.jpg"><img src="galeria/20261123_135948_simjeb_195_NO_VALIDO_1.865kg.jpg" width="420"></a> |
 | 23/11 13:59 | Refuerzo + vaciado 245 | CASI | 2.478 kg | <a href="galeria/20261123_135903_refuerzo_245_CASI_2.478kg.jpg"><img src="galeria/20261123_135903_refuerzo_245_CASI_2.478kg.jpg" width="420"></a> |
 | 23/11 13:57 | SimJEB modificado 194 | no valido | 1.734 kg | <a href="galeria/20261123_135755_simjeb_194_NO_VALIDO_1.734kg.jpg"><img src="galeria/20261123_135755_simjeb_194_NO_VALIDO_1.734kg.jpg" width="420"></a> |

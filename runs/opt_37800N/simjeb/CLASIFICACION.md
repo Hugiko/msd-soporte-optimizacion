@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:59
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:00
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (52)
 
@@ -81,7 +81,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:59
 | 183 | 2.148 | 190.7 | [rama SX3.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia t_col_del, z_col, ali1_r (rama fina: solo mueve semilla, ali1_r, ali1_y, t_col_del, z_col) | [ver](183/vonmises.png) |
 | 186 | 2.150 | 189.7 | [rama SX3.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia t_col_del, ali1_r (rama fina: solo mueve semilla, ali1_r, ali1_y, t_col_del, z_col) | [ver](186/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (105)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (106)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -177,10 +177,10 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:59
 | 164 | 1.358 | 682.4 | [rama SX10] exploradora: punto al azar en una zona nunca probada (a 1.15 del diseno probado mas cercano (anti-estancamiento)) | - |
 | 165 | 1.355 | 343.6 | [rama SX11] exploradora: punto al azar en una zona nunca probada (a 1.19 del diseno probado mas cercano (anti-estancamiento)) | - |
 | 169 | 1.407 | 384.1 | [rama SX11] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra, z_col, ali2_y | - |
-| 170 | 1.379 | 530.1 | [rama SX10] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, ali1_x, ali1_y, ali2_r | [ver](170/vonmises.png) |
-| 171 | 1.786 | 209.2 | [rama SX11] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_y, ali2_x | [ver](171/vonmises.png) |
-| 172 | 1.382 | 506.2 | [rama SX10] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_y... | [ver](172/vonmises.png) |
-| 175 | 1.290 | 926.5 | [rama SX10] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, ali1_x... | [ver](175/vonmises.png) |
+| 170 | 1.379 | 530.1 | [rama SX10] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, ali1_x, ali1_y, ali2_r | - |
+| 171 | 1.786 | 209.2 | [rama SX11] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_y, ali2_x | - |
+| 172 | 1.382 | 506.2 | [rama SX10] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_y... | - |
+| 175 | 1.290 | 926.5 | [rama SX10] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, ali1_x... | - |
 | 176 | 1.780 | 217.4 | [rama SX11] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, ali1_y, ali2_x... | [ver](176/vonmises.png) |
 | 178 | 1.712 | 297.2 | [rama SX10] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, ali1_y... | [ver](178/vonmises.png) |
 | 180 | 1.819 | 251.4 | [rama SX11] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, z_col, ali1_y, ali2_r | [ver](180/vonmises.png) |
@@ -190,6 +190,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:59
 | 192 | 1.737 | 254.9 | [rama SX5.2] rama nueva (amplia, paso 0.35) desde el diseno 102; cambia semilla, t_col_tra, z_col, ali1_y... | [ver](192/vonmises.png) |
 | 194 | 1.734 | 214.8 | [rama SX12] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, z_col, ali2_y | [ver](194/vonmises.png) |
 | 195 | 1.865 | 490.9 | [rama SX13] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali1_y, ali2_x... | [ver](195/vonmises.png) |
+| 196 | 1.717 | 339.9 | [rama SX12] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra | [ver](196/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (21)
 
