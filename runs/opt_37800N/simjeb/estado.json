@@ -277,9 +277,9 @@
    "tipo": "exploradora",
    "L": 0.3,
    "L0": 0.3,
-   "succ": 1,
-   "fail": 0,
-   "n": 4,
+   "succ": 0,
+   "fail": 1,
+   "n": 5,
    "best": {
     "score": [
      1,
