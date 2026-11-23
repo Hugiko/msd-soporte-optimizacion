@@ -85,13 +85,42 @@ El original está **prácticamente en el límite** del S235 con esta carga: se d
 
 Una **familia** es una forma de construir la pieza con unas variables. El programa busca los mejores valores de esas variables. En **todas** se comprueba en cada diseño que los 6 agujeros están exactamente en su sitio (área de cada superficie cilíndrica dividida por la de referencia = 1,000 ± 1 %).
 
-### 5.1 «Vaciado del original» (11 variables)
+### 5.0 «SimJEB modificado» (10 variables) — nueva (23/11/2026)
+**Por qué**: la búsqueda se estancaba (cambios diminutos alrededor del mismo diseño). El conjunto de datos **SimJEB**
+(Whalen, Beyene y Mueller, 2021; Harvard Dataverse, doi:10.7910/DVN/XFUWJG, licencia abierta) recoge los ~380 diseños del
+concurso GE Jet Engine Bracket Challenge **en el mismo sistema de coordenadas que nuestro 0.stp** (el 0.stp es su diseño
+n.º 0, byte a byte) y su tabla da la tensión máxima en el caso **horizontal de 37,8 kN**, que es nuestro caso.
+
+**Cómo se usan**:
+- **Candidatos**: diseños más ligeros que el original cuya tensión horizontal, escalada con el factor medido en el original
+  (nuestra métrica / tensión bruta de SimJEB = 212,9 / 414,3), queda por debajo de ~260 MPa. Es solo una **estimación** para
+  ordenar; la tensión real la da ANSYS.
+- **Compatibilidad**: se malla cada candidato y se comprueba que tiene los 4 agujeros de perno M10 y el agujero del bulón del
+  enunciado (algunos autores modelaron el bulón macizo o agrandaron los agujeros: se excluyen). Resultado en
+  `datos_simjeb/compatibilidad.json` (`python scripts/geometry_simjeb.py --comprobar`).
+- **Torneo**: se calculan **tal cual** los 40 más prometedores (primero los que según SimJEB ya cumplirían, ordenados por
+  masa × (tensión/límite)^0,15). Después se abre una rama desde cada una de las **3 mejores semillas distintas**.
+- **Modificaciones** sobre la semilla elegida:
+  - **collares** alrededor de los alojamientos de los pernos delanteros y traseros (espesor y altura): **añaden** material
+    en el punto crítico habitual;
+  - **2 aligeramientos**: agujeros **verticales pasantes** (posición x, y y radio) que **quitan** material donde no trabaja.
+    Son verticales (dirección de impresión): paredes sin voladizo y sin polvo atrapado. Nunca tocan las **zonas protegidas**
+    (cilindros alrededor de los 4 pernos y de las orejetas del bulón) y se rechazan si parten la pieza.
+- La **semilla** (qué diseño de SimJEB) es una variable categórica: las ramas finas, iniciales y de cruce la mantienen; las
+  amplias la cambian a veces (30 %) y las exploradoras eligen una al azar (así se visitan también los diseños fuera del torneo).
+- Los **agujeros se detectan en la malla** de cada pieza (radio, altura y tramos de orejeta), porque cada autor los modeló a
+  su manera; las condiciones de contorno y la exclusión de 5 mm / 2 mm se aplican sobre lo detectado.
+
+### 5.1 «Vaciado del original» (11 variables) — retirada (sus resultados se conservan)
 Al 0.stp le quita material donde casi no trabaja:
 - **hueco interior** (posición, longitud, anchura, suelo y techo), con al menos 3 mm de pared por encima según el mapa de alturas del original;
 - **recorte inclinado** del bloque por el lado alejado de las orejetas (inicio, altura, inclinación y anchura);
 - **remodelado de los alojamientos** de los tornillos (radio entre 10,54 y 12 mm).
 
 Todas las herramientas de corte tienen sus aristas redondeadas. Se usan booleanas «difusas» (tolerancia 10⁻⁴), porque sin ellas OCC falla en silencio con la geometría del original. Hallazgo: agrandar el alojamiento a R = 14 mm dispara la tensión a 800 MPa, porque adelgaza la pared frente a las cavidades interiores.
+
+**Retirada el 23/11/2026** (`familias_retiradas` en `config.json`): 62 diseños sin ninguno válido con σ ≤ 187 MPa; sus operaciones
+siguen dentro de la familia «refuerzo». Sus resultados siguen en el panel, la galería y el árbol.
 
 ### 5.2 «Refuerzo + vaciado» (14 variables) — la más prometedora
 - Añade un **collar cilíndrico** alrededor de cada alojamiento de tornillo (espesor delantero, espesor trasero y altura), justo donde está el punto crítico del original.
@@ -133,19 +162,20 @@ Fuentes en `docs/fabricacion_aditiva.md` (ISO/ASTM 52911-1:2019, NASA, Cambridge
 6. **Ficha, galería, registro, árbol, panel, Discord y GitHub.**
 
 ### 6.2 Cómo decide qué probar (cómo aprende)
-1. **Reparto inicial**: 12 diseños por familia (secuencia de Sobol) repartidos por todo el espacio.
+1. **Reparto inicial**: 12 diseños por familia (secuencia de Sobol) repartidos por todo el espacio; en «SimJEB modificado», el **torneo** de 40 diseños SimJEB sin modificar (§5.0).
 2. **Modelos sustitutos**: procesos gaussianos (BoTorch) que predicen **masa, tensión y desplazamiento** de cualquier pieza, con su incertidumbre, a partir de todo lo calculado. Para la masa se usan además 48 geometrías construidas sin ANSYS por familia.
-3. **Elección del candidato**: entre unos 4 500 candidatos al azar alrededor del mejor diseño de la rama (cambios de todas las variables, cambios de 1–3 variables y continuaciones de la dirección que funcionó), se elige el de mayor **mejora esperada de la puntuación × probabilidad de cumplir**. Se penalizan las zonas donde hubo fallos.
+3. **Elección del candidato**: entre unos 5 000 candidatos al azar alrededor del mejor diseño de la rama (cambios de todas las variables, cambios de 1–3 variables, **mutaciones grandes de 2–5 variables** —salvo en las ramas finas— y continuaciones de la dirección que funcionó), se elige el de mayor **mejora esperada de la puntuación × probabilidad de cumplir**. Se penalizan las zonas donde hubo fallos y se descartan los candidatos a menos de **0,03** (espacio normalizado 0–1) de cualquier diseño ya probado, para que cada prueba sea un cambio real.
 4. **Ramas (árbol genealógico)**:
-   - Una rama hace 30 pruebas alrededor de su mejor diseño. Si mejora, sigue en esa línea y alarga el paso; si falla 4 veces, lo acorta.
+   - Una rama hace **12 pruebas** alrededor de su mejor diseño. Si mejora, sigue en esa línea y alarga el paso; si falla 4 veces, lo acorta; si el paso baja de 0,05, la rama termina.
    - Al terminar, su mejor diseño crea ramas hijas:
      - **fina** (paso 0,10; solo mueve las variables que más influyen según los modelos);
      - **amplia** (paso 0,35);
      - **cruce** (mezcla al azar con el mejor diseño de otra rama).
-   - **Cada 3 ramas terminadas nace una rama exploradora**, que parte de un punto al azar alejado de todo lo probado para no quedarse atrapada en una zona. ≈ 25 % del tiempo es exploración.
-   - Siempre se trabaja en la rama activa cuyo origen es mejor. Todas comparten los mismos modelos.
-5. **Reparto entre familias**: se alternan. Una familia sin ninguna pieza válida tras 30 intentos solo calcula 1 de cada 3 turnos.
-6. **Parada**: 300 diseños por familia, o 8 fallos seguidos en una familia.
+   - **Cada 2 ramas terminadas nace una rama exploradora**, que parte de un punto al azar alejado de todo lo probado para no quedarse atrapada en una zona.
+   - **Anti-estancamiento**: si una familia lleva **25 diseños** sin mejorar su mejor puntuación ni un 0,3 %, se lanzan **2 exploradoras nuevas**, se cierran las ramas finas que no avanzan y se avisa por Discord.
+   - Se trabaja en la rama activa cuyo origen es mejor; entre **ramas hermanas** (fina, amplia, cruce) **por turnos**, y un **25 %** de las veces en una rama activa al azar. Todas comparten los mismos modelos.
+5. **Reparto entre familias**: por rondas; «SimJEB modificado» calcula 2 diseños por ronda (`turnos_por_ronda`) y las demás 1. Una familia sin ninguna pieza válida tras 30 intentos (y fuera de su reparto inicial) solo calcula 1 de cada 3 rondas.
+6. **Parada**: 600 diseños por familia, o 8 fallos seguidos en una familia.
 
 ### 6.3 Mientras no hay piezas válidas
 El objetivo pasa a ser **reducir el incumplimiento** (el mayor de tensión/límite y desplazamiento/límite) hasta conseguir una pieza válida. Después, mejorar la puntuación.
@@ -209,7 +239,7 @@ Antes se usó p = 0,5 sin mínimo; se descartó porque premiaba demasiado la seg
   - se borran los archivos pesados de los diseños antiguos ya superados;
   - **nunca** se borran los datos de los que aprende ni las fichas;
   - se conservan los 5 mejores y los 20 últimos completos, los 3 últimos `.wbpj` resueltos en el PC y los 10 últimos `.wbpz` en GitHub.
-- **Versión de la geometría**: si cambia la forma de construir las piezas, los resultados antiguos se archivan en `runs/archivo/` y se empieza limpio.
+- **Versión de la geometría (por familia)**: si cambia la forma de construir las piezas de UNA familia, solo los resultados de esa familia se archivan en `runs/archivo/` y esa familia empieza limpia; las demás, el historial y el mejor global se conservan. Añadir o retirar una familia no archiva nada.
 - **Seguridad**: los enlaces de Discord están en `discord_webhooks.json`, que **no se sube a GitHub**.
 
 ---
@@ -230,9 +260,12 @@ Antes se usó p = 0,5 sin mínimo; se descartó porque premiaba demasiado la seg
 | `sigma_y_MPa` / `margen_optimizacion` | 215 / 0,8696 | Límite = 215 × 0,8696 = 187 MPa (coef. seguridad ≥ 1,15); 1,00 = 215 MPa |
 | `desplazamiento_max_mm` | 0,25 | 0 = sin límite |
 | `peso_seguridad` | 0,15 | Peso de la seguridad entre piezas válidas (0 = solo masa) |
-| `familias` | vaciado, refuerzo, cero | Familias activas |
-| `presupuesto_por_familia` | 300 | Diseños máximos por familia |
-| `pruebas_por_rama` / `rama_exploradora_cada` | 30 / 3 | Árbol de ramas |
+| `familias` / `familias_retiradas` | simjeb, refuerzo, cero, vaciado / vaciado | Familias (las retiradas se conservan pero no se calculan) |
+| `turnos_por_ronda` | simjeb: 2 | Diseños por ronda de cada familia |
+| `torneo_simjeb_disenos` / `ramas_iniciales_simjeb` | 40 / 3 | Torneo de diseños SimJEB |
+| `presupuesto_por_familia` | 600 | Diseños máximos por familia |
+| `pruebas_por_rama` / `rama_exploradora_cada` | 12 / 2 | Árbol de ramas |
+| `estancamiento_disenos` / `prob_rama_al_azar` / `distancia_minima` | 25 / 0,25 / 0,03 | Anti-estancamiento y variedad |
 | `reglas_impresion_3d` / `angulo_voladizo_deg` | true / 45 | Fabricación aditiva |
 | `cribado_rapido` / `cribado_rapido_familias` | 1,5 / cero | Pasada rápida |
 | `filtro_prob_minima` / `filtro_error_max` | 0,05 / 0,10 | Filtro por predicción |
@@ -264,10 +297,12 @@ Trabajo/
 │   ├── geometry.py             familia «desde cero» y utilidades comunes
 │   ├── geometry_vaciado.py     familia «vaciado»
 │   ├── geometry_refuerzo.py    familia «refuerzo» (collares)
+│   ├── geometry_simjeb.py      familia «SimJEB modificado» (torneo, collares, aligeramientos, comprobación)
 │   ├── exportar_workbench.py   proyectos de Workbench
 │   ├── render.py, report.py    imágenes, fichas y gráficas
 │   ├── discord_notify.py       avisos a Discord
 │   └── fase2_*.py, find_holes.py, exportar_original_ansys.py   fases 0–2
+├── datos_simjeb/               SimJEB descargado (metadata.tab, README, 382 STEP, compatibilidad.json); NO se sube a GitHub
 └── runs/opt_37800N/            resultados (se crea al arrancar): familias, historial, galería, árbol, timelapse...
 ```
 
@@ -281,6 +316,11 @@ Trabajo/
 5. **La malla de optimización es ligeramente conservadora** en el punto crítico: la malla fina da tensiones un ~8 % menores.
 6. **El máximo bruto** (630–975 MPa según la malla) es una singularidad del empotramiento, no una tensión real.
 7. **La familia «desde cero»** aprende, pero todavía no llega a piezas válidas.
+8. **Estancamiento (noche del 22 al 23/11)**: la familia «refuerzo» seguía mejorando, pero a pasos diminutos (ramas largas y finas
+   alrededor del mismo diseño); «vaciado» y «desde cero» sin ninguna pieza válida. De ahí la familia SimJEB y el anti-estancamiento.
+9. **SimJEB**: según su tabla (tensión estimada, sin calcular aún en nuestro modelo), hay decenas de diseños más ligeros que el
+   original (0,85–2,4 kg) con tensión horizontal del orden de la nuestra; varios tienen agujeros distintos a los del enunciado
+   y se excluyen.
 
 ---
 
@@ -297,12 +337,12 @@ Trabajo/
   - preparar la siguiente pieza mientras ANSYS calcula (riesgo alto);
   - pulido final con CMA-ES (las ramas finas ya afinan);
   - mapa topológico tipo BESO (posible análisis para el informe).
-- **Parte 1 (SimJEB)**: borrador en `docs/parte1.md`. Faltan los diseños concretos destacados, porque la web los carga con JavaScript.
+- **Parte 1 (SimJEB)**: borrador en `docs/parte1.md`. Ahora se dispone de la tabla de SimJEB (Harvard Dataverse) para citar diseños concretos (masa, categoría, tensiones).
 
 ---
 
 ## 13. Referencias
 - Enunciado: *Trabajo MSD 26-27* (Proyecto 2) e *Instrucciones generales*, EINA, Universidad de Zaragoza.
-- Whalen, E., Beyene, A., Mueller, C. (2021). *SimJEB: Simulated Jet Engine Bracket Dataset*. Computer Graphics Forum 40(5). doi:10.1111/cgf.14353 · arXiv:2105.03534.
+- Whalen, E., Beyene, A., Mueller, C. (2021). *SimJEB: Simulated Jet Engine Bracket Dataset*. Computer Graphics Forum 40(5). doi:10.1111/cgf.14353 · arXiv:2105.03534. Datos: Harvard Dataverse, doi:10.7910/DVN/XFUWJG.
 - ISO/ASTM 52911-1:2019 y resto de fuentes de fabricación aditiva: `docs/fabricacion_aditiva.md`.
 - Herramientas: ANSYS Student 2026 R1 (MAPDL y Workbench), gmsh, cadquery/OpenCascade, BoTorch/GPyTorch, PyVista, Plotly.
