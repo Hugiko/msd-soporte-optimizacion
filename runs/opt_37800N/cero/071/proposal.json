@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 15.1273,
+  "w_bar": 10.6988,
+  "phi_end": 25.0,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 40.0,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.0,
+  "t_lug": 11.2262,
+  "r_f": 7.0
+ },
+ "motivo": "[rama C1.1.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 031; cambia R_pocket, t_lug (rama fina: solo mueve g_end, H, W_bot, phi_end, t_lug, R_pocket)",
+ "pred": {
+  "mass_kg": 2.2523339979535133,
+  "stress_mpa": 397.1520383478069,
+  "p_cumple": 0.0,
+  "paso": 0.1,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.0939664424816882,
+   "w_bar": 0.03494437306387174,
+   "phi_end": 0.04767884681206326,
+   "H": 0.20177356146962963,
+   "W_top": 0.05059060287429342,
+   "W_bot": 0.08647369936422135,
+   "x_box": 0.0863149443290392,
+   "g_end": 0.16935329640054936,
+   "t_w": 0.035716566562088055,
+   "e_lug": 0.045778886606639244,
+   "t_lug": 0.11382152931216383,
+   "r_f": 0.03358725072375288
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "C1.1.1",
+ "fecha": "2026-11-23T07:35:42.134422"
+}

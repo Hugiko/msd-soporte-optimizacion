@@ -1,6 +1,6 @@
 # Diseno desde cero: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:28
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:36
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -12,7 +12,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:28
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (70)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (71)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -65,7 +65,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:28
 | 047 | 2.221 | 389.6 | [rama C1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia R_pocket, W_bot, t_lug (rama fina: solo mueve g_end, H, W_bot, t_lug, R_pocket, phi_end) | - |
 | 048 | 2.251 | 411.9 | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, R_pocket, phi_end) | - |
 | 049 | 2.230 | 402.6 | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia R_pocket, W_bot (rama fina: solo mueve g_end, H, W_bot, t_lug, phi_end, R_pocket) | - |
-| 050 | 2.241 | 414.3 | [rama C1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, phi_end, R_pocket) | [ver](050/vonmises.png) |
+| 050 | 2.241 | 414.3 | [rama C1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, phi_end, R_pocket) | - |
 | 051 | 2.248 | 404.0 | [rama C1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, phi_end, R_pocket) | [ver](051/vonmises.png) |
 | 052 | 2.247 | 408.3 | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, R_pocket, phi_end) | [ver](052/vonmises.png) |
 | 053 | 2.249 | 393.2 | [rama C1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia R_pocket (rama fina: solo mueve g_end, H, W_bot, t_lug, R_pocket, phi_end) | [ver](053/vonmises.png) |
@@ -86,6 +86,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:28
 | 068 | 2.270 | 414.9 | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia t_w | [ver](068/vonmises.png) |
 | 069 | 2.264 | 380.6 | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.09); cambia t_w | [ver](069/vonmises.png) |
 | 070 | 2.264 | 380.6 | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.09); cambia t_w | [ver](070/vonmises.png) |
+| 071 | 2.256 | 397.0 | [rama C1.1.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 031; cambia R_pocket, t_lug (rama fina: solo mueve g_end, H, W_bot, phi_end, t_lug, R_pocket) | [ver](071/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 

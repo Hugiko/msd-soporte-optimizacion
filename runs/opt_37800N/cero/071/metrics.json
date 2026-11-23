@@ -1,0 +1,84 @@
+{
+ "status": "ok",
+ "params": {
+  "R_pocket": 15.1273,
+  "w_bar": 10.6988,
+  "phi_end": 25.0,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 40.0,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.0,
+  "t_lug": 11.2262,
+  "r_f": 7.0
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 2.251320809048259,
+ "volume_cad_mm3": 286792.4597513706,
+ "hueco": false,
+ "clamped": [
+  "H 30.00->26.04 (techo bajo el agujero)"
+ ],
+ "holes_check": {
+  "pernos": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "bulon": 1.0
+ },
+ "fidelidad": "rapida (descartado en la pasada rapida)",
+ "mesh_h": 6.0,
+ "mesh_algo": 10,
+ "mesh_retries": [],
+ "solve_s": 19.604302883148193,
+ "n_nodes": 28556,
+ "n_elems": 15528,
+ "nodes_per_bolt": [
+  74,
+  74,
+  74,
+  74
+ ],
+ "nodes_per_lug": [
+  112,
+  112
+ ],
+ "volume_mm3": 287364.037,
+ "mass_kg": 2.2558076904500006,
+ "reaction": [
+  -37782.5865,
+  -1147.2284,
+  -3.29921022e-05
+ ],
+ "reaction_err_pct": 2.345666746260051e-06,
+ "vm_max_raw": 920.999,
+ "vm_p999": 726.7652532000095,
+ "u_max": 0.38832673208752305,
+ "ux_max": 0.3515868,
+ "uy_max": 0.02109929,
+ "uz_max": 0.2521615,
+ "vm_max_raw_xyz": [
+  -4.711334326209245,
+  -146.02983239174463,
+  0.63
+ ],
+ "vm_metric": 396.9873,
+ "vm_metric_xyz": [
+  35.22535873768199,
+  -136.18800829908417,
+  8.585018909274
+ ],
+ "vm_metric_p999": 379.8644448000003,
+ "vm_ex_b0_p0": 920.999,
+ "vm_ex_b3_p0": 477.7871,
+ "vm_ex_b5_p0": 447.0609,
+ "vm_ex_b3_p2": 477.7871,
+ "vm_ex_b8_p2": 376.7619,
+ "fs_metric": 0.5415790379188452,
+ "total_s": 31.884740591049194,
+ "galeria": "galeria/20261123_073614_cero_071_NO_VALIDO_2.256kg.jpg"
+}
