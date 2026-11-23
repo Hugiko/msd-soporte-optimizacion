@@ -1,14 +1,15 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 07:20 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 07:22 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| Vaciado del original | 69 | 0 | - | en marcha |
+| SimJEB modificado | 1 | 0 | - | en marcha |
 | Refuerzo + vaciado | 148 | 39 | 2.372 kg (CS 1.16) | en marcha |
 | Diseno desde cero | 69 | 0 | - | en marcha |
+| Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 69 descartados en la pasada rapida, 34 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: error tipico 4 % | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 69 descartados en la pasada rapida, 34 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: aun aprendiendo | Refuerzo + vaciado: error tipico 1 % | Diseno desde cero: error tipico 2 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -24,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 286 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 287 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -60,6 +61,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 001 | 1.301 | 284.6 | descartado | torneo de referencias SimJEB (1/30): SimJEB n.o 321 (block, Antonio Cr | [ver](runs/opt_37800N/galeria/20261123_072241_simjeb_001_NO_VALIDO_1.301kg.jpg) |
 | Refuerzo + vaciado | 148 | 2.372 | 185.4 | valido | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_072002_refuerzo_148_VALIDO_2.372kg.jpg) |
 | Diseno desde cero | 069 | 2.264 | 380.6 | descartado | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso ma | [ver](runs/opt_37800N/galeria/20261123_071938_cero_069_NO_VALIDO_2.264kg.jpg) |
 | Refuerzo + vaciado | 147 | 2.371 | 186.4 | valido | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_071927_refuerzo_147_VALIDO_2.371kg.jpg) |
@@ -69,10 +71,9 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Diseno desde cero | 068 | 2.270 | 414.9 | descartado | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_071545_cero_068_NO_VALIDO_2.270kg.jpg) |
 | Refuerzo + vaciado | 144 | 2.385 | 184.7 | valido | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_071459_refuerzo_144_VALIDO_2.385kg.jpg) |
 | Vaciado del original | 068 | 2.415 | 193.8 | cerca_del_limite | [rama V1.2] [aun sin disenos validos] varios pasos sin mejora: paso ma | [ver](runs/opt_37800N/galeria/20261123_071348_vaciado_068_CASI_2.415kg.jpg) |
-| Refuerzo + vaciado | 143 | 2.357 | 186.8 | cerca_del_limite | [rama R1.1.1.1.1] el ultimo paso mejoro: sigue en esa linea (paso 0.05 | [ver](runs/opt_37800N/galeria/20261123_071251_refuerzo_143_CASI_2.357kg.jpg) |
 
 ---
 
-**Como funciona:** el programa prueba dos familias de piezas (vaciado del original y diseno desde cero). Tras un reparto inicial, aprende con modelos sustitutos (procesos gaussianos) y propone pequenos cambios alrededor del mejor diseno: si mejora, sigue por esa linea y alarga el paso; si no, lo acorta. Cada diseno se calcula en ANSYS MAPDL (SOLID187, pernos empotrados, carga por RBE3). Cada nuevo mejor genera un proyecto de Workbench listo para abrir.
+**Como funciona:** el programa prueba varias familias de piezas (disenos del concurso GE/SimJEB modificados, refuerzo + vaciado del original y diseno desde cero). Tras un reparto inicial, aprende con modelos sustitutos (procesos gaussianos) y propone cambios alrededor del mejor diseno: si mejora, sigue por esa linea y alarga el paso; si no, lo acorta; ramas exploradoras y anti-estancamiento saltan a zonas nuevas. Cada diseno se calcula en ANSYS MAPDL (SOLID187, pernos empotrados, carga por RBE3). Cada nuevo mejor genera un proyecto de Workbench listo para abrir.
 
 **Abrir un proyecto:** descargar el `.wbpz` > Workbench > File > Restore Archive. Todo el detalle esta en `bitacora.md`; cada diseno en `runs/`.

@@ -177,6 +177,7 @@
    "creada": "2026-11-23T00:49:25.754896"
   }
  },
- "done": false,
- "motivo_fin": ""
+ "done": true,
+ "motivo_fin": "retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo",
+ "retirada": true
 }

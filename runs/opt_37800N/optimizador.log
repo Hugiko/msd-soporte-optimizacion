@@ -12177,3 +12177,75 @@
 [07:19:56]   el modelo predice: masa 2.360 kg | tension 185 MPa | P(cumplir) 0.90
 [07:20:02]   geometria IDENTICA al diseno 142 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [07:20:03]   RESULTADO: masa 2.372 kg | tension 185.4 MPa (bruta 730) | CUMPLE
+[07:20:09]   (GitHub: subido)
+[07:20:24] [Refuerzo + vaciado] DISENO 149  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:20:24]   motivo: [rama R1.1.1.1.1] varios pasos sin mejora: paso mas corto (0.03); cambia  (rama fina: solo mueve trim_s0, trim_a, R_pocket, cav_z1, trim_ang, r_cut, t_col_tra)
+[07:20:24]   el modelo predice: masa 2.330 kg | tension 188 MPa | P(cumplir) 0.41
+[07:20:30]   [1/5] geometria parametrica (cadquery)
+[07:20:30]         masa CAD = 2.3527 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 11.0->4.2 mm (techo a 45 para impresion 3D)', 'hueco estrechado 19.1->4.2 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[07:20:33]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[07:20:41]   malla h=4.0: 82495 nodos, 47516 tet10 (4.1s)
+[07:20:43]   [3/5] ANSYS MAPDL normal (82495 nodos, 47516 elementos)
+[07:20:43] Lanzando MAPDL: model.inp (timeout 1200s)
+[07:20:50]   [AVISO] ANSYS LICENSE MANAGER ERROR:
+[07:20:51]   [AVISO] *** ERROR - ANSYS license not available.
+[07:21:16] GitHub: subidas activadas (C:\Program Files\Git\cmd\git.EXE)
+[07:21:16] Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)
+[07:21:16] [refuerzo] el diseno 149 se corto a medias: se repite igual.
+[07:21:16] [Vaciado del original] retirada (62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo); sus resultados se conservan
+[07:21:16] [SimJEB modificado] DISENO 001  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:21:16]   motivo: torneo de referencias SimJEB (1/30): SimJEB n.o 321 (block, Antonio Cruz) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 176 MPa)
+[07:21:22]   [1/5] geometria parametrica (cadquery)
+[07:21:22]         masa CAD = 1.3042 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[07:21:25]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[07:21:31]   malla h=4.0: 39683 nodos, 22025 tet10 (1.7s)
+[07:21:32]   [3/5] ANSYS MAPDL normal (39683 nodos, 22025 elementos)
+[07:21:32] Lanzando MAPDL: model.inp (timeout 1200s)
+[07:21:40]   [AVISO] ANSYS LICENSE MANAGER ERROR:
+[07:21:41]   [AVISO] *** ERROR - ANSYS license not available.
+[07:21:52]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[07:21:52]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[07:21:52]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[07:21:52] MAPDL termino: estado=license codigo=7 tiempo=20.0s
+[07:21:52]   *** LICENCIA DE ANSYS OCUPADA: hay otra sesion abierta (Workbench / Mechanical / APDL).
+[07:21:52]   *** Cierra esa ventana de ANSYS y el calculo continuara solo. Reintento cada minuto...
+[07:22:04] GitHub: subidas activadas (C:\Program Files\Git\cmd\git.EXE)
+[07:22:04] Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)
+[07:22:04] [simjeb] el diseno 001 se corto a medias: se repite igual.
+[07:22:04] [SimJEB modificado] DISENO 001  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:22:04]   motivo: torneo de referencias SimJEB (1/30): SimJEB n.o 321 (block, Antonio Cruz) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 176 MPa)
+[07:22:10]   [1/5] geometria parametrica (cadquery)
+[07:22:10]         masa CAD = 1.3042 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[07:22:12]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[07:22:18]   malla h=4.0: 39683 nodos, 22025 tet10 (1.9s)
+[07:22:19]   [3/5] ANSYS MAPDL normal (39683 nodos, 22025 elementos)
+[07:22:19] Lanzando MAPDL: model.inp (timeout 1200s)
+[07:22:25]   [fase] 4  /PREP7
+[07:22:27]   [fase] 84697  /SOLU
+[07:22:27]   [solver] 84699  EQSLV,SPARSE
+[07:22:27]   [fase] 84702  /POST1
+[07:22:27]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.275   TIME= 07:22:26
+[07:22:27]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.305
+[07:22:27]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[07:22:27]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.415   TIME= 07:22:26
+[07:22:27]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[07:22:28]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[07:22:28]   [solver] Equation solver memory allocated                     =   574.719 MB
+[07:22:28]   [solver] Equation solver memory required for in-core mode     =   550.984 MB
+[07:22:28]   [solver] Equation solver memory required for out-of-core mode =   180.747 MB
+[07:22:28]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[07:22:28]   [solver] Sparse solver maximum pivot= 91120170.1 at node 1808 UY.
+[07:22:28]   [solver] Sparse solver minimum pivot= 17451.3964 at node 3023 UX.
+[07:22:28]   [solver] Sparse solver minimum pivot in absolute value= 17451.3964 at node 3023
+[07:22:29]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         8.839
+[07:22:29]   [AVISO] *** WARNING ***                         ELAPSED TIME =       9.235   TIME= 07:22:28
+[07:22:29]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         9.268
+[07:22:40]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.2 seconds
+[07:22:40]   [solver] Elapsed time in equation solver                :        1.4 seconds
+[07:22:40]   [fase] Elapsed time spent post-processing model (/POST1) :        0.4 seconds
+[07:22:40]   [solver] Equation solver used                              :            Sparse (symmetric)
+[07:22:40]   [solver] Sparse direct equation solver computational rate  :       60.0 Gflops
+[07:22:40] MAPDL termino: estado=ok codigo=0 tiempo=20.8s
+[07:22:40]   [4/5] resultados
+[07:22:40]   [5/5] imagenes
+[07:22:42]   RESULTADO: masa 1.301 kg | tension 284.6 MPa (bruta 521) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)

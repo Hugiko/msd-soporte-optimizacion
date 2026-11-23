@@ -1,41 +1,5 @@
 [
  [
-  "vaciado",
-  "V0",
-  "terminada",
-  1
- ],
- [
-  "vaciado",
-  "V1",
-  "terminada",
-  31
- ],
- [
-  "vaciado",
-  "V1.1",
-  "terminada",
-  31
- ],
- [
-  "vaciado",
-  "V1.1.1",
-  "activa",
-  null
- ],
- [
-  "vaciado",
-  "V1.1.2",
-  "activa",
-  null
- ],
- [
-  "vaciado",
-  "V1.2",
-  "activa",
-  31
- ],
- [
   "refuerzo",
   "R0",
   "terminada",
@@ -172,5 +136,41 @@
   "C1.2",
   "activa",
   58
+ ],
+ [
+  "vaciado",
+  "V0",
+  "terminada",
+  1
+ ],
+ [
+  "vaciado",
+  "V1",
+  "terminada",
+  31
+ ],
+ [
+  "vaciado",
+  "V1.1",
+  "terminada",
+  31
+ ],
+ [
+  "vaciado",
+  "V1.1.1",
+  "activa",
+  null
+ ],
+ [
+  "vaciado",
+  "V1.1.2",
+  "activa",
+  null
+ ],
+ [
+  "vaciado",
+  "V1.2",
+  "activa",
+  31
  ]
 ]
