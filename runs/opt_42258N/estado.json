@@ -1,35 +1,151 @@
 {
- "iter": 0,
+ "iter": 1,
  "actual": {
-  "ops": [],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\001\\completa",
   "m": {
-   "mass_kg": 2.4234392280500003,
-   "vm_metric": 238.0426,
-   "u_max": 0.14448519672811938,
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
    "vm_metric_xyz": [
-    3.5601297304722803,
-    -9.92159955231782,
-    10.388599925420822
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
    ],
-   "n_nodes": 80282,
-   "cs": 0.9031996793851185,
-   "viol": 1.10717488372093,
-   "score": 2.4234392280500003,
-   "valido": false
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9391046511627907,
+   "score": 2.5044295071000002,
+   "valido": true
   },
   "rapida": null,
-  "galeria": "galeria/20261123_194027_it000_INICIO_2.423kg.jpg"
+  "galeria": "galeria/20261123_194312_it001_ACEPTADA_2.504kg.jpg"
  },
- "mejor": null,
- "verificado": null,
+ "mejor": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\001\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9391046511627907,
+   "score": 2.5044295071000002,
+   "valido": true
+  },
+  "iter": 1,
+  "galeria": "galeria/20261123_194312_it001_ACEPTADA_2.504kg.jpg",
+  "verif": {
+   "vm_metric": 212.4811,
+   "u_max": 0.14378809722831024,
+   "n_nodes": 107837,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\01_it001_2.504kg"
+ },
+ "verificado": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\001\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9391046511627907,
+   "score": 2.5044295071000002,
+   "valido": true
+  },
+  "iter": 1,
+  "galeria": "galeria/20261123_194312_it001_ACEPTADA_2.504kg.jpg",
+  "verif": {
+   "vm_metric": 212.4811,
+   "u_max": 0.14378809722831024,
+   "n_nodes": 107837,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\01_it001_2.504kg"
+ },
  "tau_idx": 0,
  "rechazos": [],
- "stats": {},
+ "stats": {
+  "R4": {
+   "intentos": 2,
+   "descartadas_rapido": 0,
+   "evaluadas": 1,
+   "aceptadas": 1,
+   "rechazadas": 0,
+   "dsig": [
+    -15.18
+   ],
+   "dm": [
+    81.0
+   ],
+   "ejemplos": [
+    [
+     1,
+     "aceptada: collar de 6 mm en los pernos 1 y 3 (tension -15.2 %, masa +81 g)"
+    ]
+   ],
+   "dsig_prev": [
+    -6.78
+   ]
+  }
+ },
  "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": null,
+ "wb_masa": 2.5044295071000002,
  "fin": false,
  "motivo_fin": "",
  "historia": [
@@ -71,8 +187,79 @@
     "score": 2.4234392280500003,
     "valido": false
    }
+  },
+  {
+   "iter": 1,
+   "fecha": "2026-11-23T19:40:29.451887",
+   "antes": "2.4234 kg | 238.0 MPa | CS 0.90 | 0.144 mm",
+   "m_antes": {
+    "mass_kg": 2.4234392280500003,
+    "vm_metric": 238.0426,
+    "u_max": 0.14448519672811938,
+    "vm_metric_xyz": [
+     3.5601297304722803,
+     -9.92159955231782,
+     10.388599925420822
+    ],
+    "n_nodes": 80282,
+    "cs": 0.9031996793851185,
+    "viol": 1.10717488372093,
+    "score": 2.4234392280500003,
+    "valido": false
+   },
+   "notas": [
+    "R5 (Alojamiento de la cabeza mas ancho con acuerdo de fondo mayor) desactivada: los datos la contradicen"
+   ],
+   "descartes": [
+    {
+     "regla": "R4",
+     "titulo": "collar de 4 mm en los pernos 1 y 3",
+     "motivo": "pasa la evaluacion rapida (2.4652 kg | 232.7 MPa | CS 0.92 | 0.142 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R4",
+   "titulo": "collar de 6 mm en los pernos 1 y 3",
+   "porque": "El pico (238 MPa, 111 % del limite) esta junto al alojamiento del perno 1 (concentracion local x2.4). El momento de vuelco de la carga (F x 44,7 mm) llega a los pernos por una seccion pequena alrededor del alojamiento: un collar de 6 mm aumenta esa seccion. El perno 3 es su simetrico respecto al plano medio de las orejetas y trabaja igual. Evidencia: prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.",
+   "espero": "del orden de -15 % (collares anteriores: -15 % con 6 mm) (prevision rapida: 2.5045 kg | 221.9 MPa | CS 0.97 | 0.139 mm)",
+   "m_cand": {
+    "mass_kg": 2.5044295071000002,
+    "vm_metric": 201.9075,
+    "u_max": 0.13915347332683817,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 83597,
+    "cs": 1.0648440498743237,
+    "viol": 0.9391046511627907,
+    "score": 2.5044295071000002,
+    "valido": true
+   },
+   "despues": "2.5044 kg | 201.9 MPa | CS 1.06 | 0.139 mm (tension -15.2 %, masa +81 g)",
+   "decision": "ACEPTADA",
+   "motivo": "primera pieza que CUMPLE",
+   "galeria": "galeria/20261123_194312_it001_ACEPTADA_2.504kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.5044295071000002,
+    "vm_metric": 201.9075,
+    "u_max": 0.13915347332683817,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 83597,
+    "cs": 1.0648440498743237,
+    "viol": 0.9391046511627907,
+    "score": 2.5044295071000002,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-23T18:46:21",
- "estudio_anunciado": true
+ "estudio_anunciado": true,
+ "_avisadas": [
+  "R5"
+ ]
 }

@@ -1,0 +1,22 @@
+{
+ "iter": 1,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\01_it001_2.504kg",
+ "mass_kg": 2.5044295071000002,
+ "vm_metric": 201.9075,
+ "u_max": 0.13915347332683817,
+ "coef_seguridad": 1.0648440498743237,
+ "puntuacion": 2.5044295071000002,
+ "workbench": true,
+ "verificacion": {
+  "vm_metric": 212.4811,
+  "u_max": 0.14378809722831024,
+  "n_nodes": 107837,
+  "ok": true
+ },
+ "operaciones": [
+  "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm",
+  "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm"
+ ],
+ "fecha": "2026-11-23T19:52:51",
+ "final": false
+}
