@@ -1,15 +1,15 @@
 {
  "_resumen": {
-  "n": 31,
+  "n": 42,
   "valido": 0,
-  "no_cumple": 25,
+  "no_cumple": 32,
   "incompatible": 2,
-  "fallido": 4,
+  "fallido": 8,
   "n_validos_con_campo": 0,
   "referencia": "los 1 disenos publicados mas cercanos a cumplir (solo 0 cumplen con acero S235 y 42258 N: se disenaron para titanio)",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-23T15:16"
+  "fecha": "2026-11-23T15:24"
  },
  "R1": {
   "respaldo": null,

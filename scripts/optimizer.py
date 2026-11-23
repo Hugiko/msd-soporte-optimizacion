@@ -559,8 +559,8 @@ def write_dashboard(st, estado="EN MARCHA"):
           "para descartar pronto -> evaluacion completa en ANSYS MAPDL (SOLID187, pernos empotrados, carga por RBE3) -> se acepta "
           "o se revierte. Hitos verificados con malla fina y con proyecto de Workbench (`.wbpz`: Workbench > File > Restore Archive).", ""]
     if arch:
-        L.append("Resultados del enfoque anterior (familias de piezas, 37 800 N, hasta el 23/11/2026): "
-                 + ", ".join(f"[{os.path.basename(p)}]({rel(p)})" for p in arch))
+        L.append("Enfoque anterior (familias de piezas, 37 800 N, hasta el 23/11/2026): resultados solo en el PC "
+                 "(`runs/archivo/`); los datos que usan las reglas estan en `estudio/calculos_anteriores.csv`.")
     open(md_path, "w", encoding="utf-8").write("\n".join(L) + "\n")
 
 

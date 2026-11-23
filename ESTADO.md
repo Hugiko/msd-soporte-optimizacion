@@ -27,8 +27,9 @@ Partir del soporte del enunciado (`0.stp`) y modificarlo paso a paso, con un por
   7. [hecho] Limpieza: eliminadas las familias, BoTorch, el árbol de ramas y `report.py`; configuración nueva.
 
 ## Pendiente
-1. Cuando termine el estudio: revisar `DESIGN_RULES.md` con todos los datos (R1–R3 y R7 se completan con SimJEB).
-2. Lanzar `optimizar.bat` (si el estudio sigue en marcha, espera y continúa solo).
+1. **En marcha (23/11, 15:19)**: `optimizar.bat` lanzado. Espera a que termine el estudio (unas 4 h), escribe las reglas y empieza a optimizar solo.
+2. Cuando termine el estudio: revisar `DESIGN_RULES.md` con todos los datos (R1–R3 y R7 se completan con SimJEB).
+3. Prueba corta ya hecha (2 iteraciones): collar de 6 mm en los pernos 1 y 3 → 238 → 201,9 MPa (cumple; malla fina 212,5); después, rebaje de material ocioso: −35 g, +0,9 % de tensión.
 3. Fase 5:
    - verificación final con malla fina y convergencia;
    - modelo de tornillo realista;

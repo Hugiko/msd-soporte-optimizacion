@@ -139,10 +139,22 @@ def features(log=print):
     return rows, cache
 
 
+ARCH_CSV = os.path.join(EST, "calculos_anteriores.csv")
+
+
 def archive_runs():
-    """Calculos anteriores (familias vaciado/refuerzo, 37 800 N): params + metricas."""
+    """Calculos anteriores (familias vaciado/refuerzo, 37 800 N): params + metricas.
+    Se leen de estudio/calculos_anteriores.csv (en GitHub); si no existe, se crea desde runs/archivo/ (solo en el PC)."""
+    import csv
     out = []
-    for d in glob.glob(os.path.join(ROOT, "runs", "archivo", "*familias*", "*", "[0-9][0-9][0-9]")):
+    if os.path.exists(ARCH_CSV):
+        for r in csv.DictReader(open(ARCH_CSV, encoding="utf-8")):
+            p = {k[2:]: float(v) for k, v in r.items() if k.startswith("p_") and v not in ("", None)}
+            out.append((r["familia"], p, dict(vm_metric=float(r["tension_MPa"]), mass_kg=float(r["masa_kg"]),
+                                             u_max=float(r["desp_mm"]) if r.get("desp_mm") else None)))
+        return out
+    rows = []
+    for d in sorted(glob.glob(os.path.join(ROOT, "runs", "archivo", "*familias*", "*", "[0-9][0-9][0-9]"))):
         fam = os.path.basename(os.path.dirname(d))
         if fam not in ("refuerzo", "vaciado"):
             continue
@@ -153,6 +165,13 @@ def archive_runs():
             continue
         if m.get("status") == "ok" and m.get("vm_metric"):
             out.append((fam, p, m))
+            rows.append(dict(familia=fam, diseno=os.path.basename(d), carga_N=37800, masa_kg=m["mass_kg"],
+                             tension_MPa=m["vm_metric"], desp_mm=m.get("u_max"), **{f"p_{k}": v for k, v in p.items()}))
+    if rows:
+        os.makedirs(EST, exist_ok=True)
+        cols = list(dict.fromkeys(k for r in rows for k in r))
+        with open(ARCH_CSV, "w", newline="", encoding="utf-8") as f:
+            w = csv.DictWriter(f, fieldnames=cols); w.writeheader(); w.writerows(rows)
     return out
 
 
@@ -484,7 +503,7 @@ def write_doc(E=None, stats=None, log=print):
              f"({FORCE:.0f} N en -X por el bulon, pernos empotrados) y **nuestro** limite ({SIG_LIM:.0f} MPa, coef. de seguridad >= 1; "
              f"desplazamiento <= {USER.get('desplazamiento_max_mm', 0.25)} mm). Resultados: `estudio/estudio_simjeb.json`.",
          "2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se "
-         f"escalan x{K_LOAD:.3f}). Archivo: `runs/archivo/`.",
+         f"escalan x{K_LOAD:.3f}). Datos: `estudio/calculos_anteriores.csv`.",
          "3. **Lo que pasa al aplicarlas** en el optimizador (cada aplicacion: tension y masa antes/despues). "
          "Una regla que los datos de un cambio DIRECTO contradicen se DESACTIVA (las comparaciones con SimJEB, entre disenos "
          "distintos, pueden respaldarla o ser no concluyentes, pero no la desactivan); una que falla 8 veces sin ninguna mejora "

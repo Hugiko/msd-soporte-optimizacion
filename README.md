@@ -11,4 +11,4 @@
 
 Documentación completa: [DOCUMENTACION.md](DOCUMENTACION.md) · Estado: [ESTADO.md](ESTADO.md) · Bitácora: [bitacora.md](bitacora.md)
 
-Resultados del enfoque anterior (familias de piezas, 37 800 N, hasta el 23/11/2026): [runs/archivo/opt_37800N_familias_hasta_20261123](runs/archivo/opt_37800N_familias_hasta_20261123)
+Enfoque anterior (familias de piezas, 37 800 N, hasta el 23/11/2026): resultados solo en el PC (`runs/archivo/`); los datos que usan las reglas están en `estudio/calculos_anteriores.csv`.

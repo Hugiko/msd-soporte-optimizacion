@@ -9,7 +9,7 @@ Este documento recoge, a fecha 23/11/2026, el problema, las decisiones y su moti
 > 2. la pieza del enunciado se **modifica paso a paso** aplicando esas reglas, cada cambio con su porqué;
 > 3. los cambios que no mejoran se **revierten**.
 >
-> Además: **carga de 42 258 N** (confirmada por el profesor) y **coeficiente de seguridad ≥ 1,0** (215 MPa) obligatorio. Los resultados anteriores se conservan en `runs/archivo/`.
+> Además: **carga de 42 258 N** (confirmada por el profesor) y **coeficiente de seguridad ≥ 1,0** (215 MPa) obligatorio. Los resultados anteriores se conservan en el PC (`runs/archivo/`, ya no en GitHub) y los datos que usan las reglas, en `estudio/calculos_anteriores.csv`.
 
 ---
 
@@ -209,7 +209,7 @@ Trabajo/
 ├── config.json, discord_webhooks.json (NO se sube)
 ├── README.md (panel), DESIGN_RULES.md (reglas), DOCUMENTACION.md, ESTADO.md, bitacora.md
 ├── cad/            0.stp, agujeros_fijos.json, referencia del original
-├── estudio/        estudio de SimJEB: estudio_simjeb.json, caracteristicas.json, evidencia.json, img/
+├── estudio/        estudio de SimJEB (estudio_simjeb.json, caracteristicas.json, evidencia.json, img/) y calculos_anteriores.csv
 ├── scripts/
 │   ├── optimizer.py         optimizador guiado por reglas + panel, Discord, GitHub, Workbench
 │   ├── reglas.py            reglas, evidencia, propuestas y DESIGN_RULES.md
@@ -221,7 +221,7 @@ Trabajo/
 │   └── fase2_*.py, find_holes.py, exportar_original_ansys.py   (fases 0–2)
 ├── datos_simjeb/   381 STEP + metadata (NO se sube) y campos de tensión del estudio
 └── runs/opt_42258N/  iteraciones, galería, historial, ITERACIONES.md, registro.csv, estado.json
-    runs/archivo/     resultados del enfoque anterior (familias, 37 800 N)
+    runs/archivo/     resultados del enfoque anterior (familias, 37 800 N); solo en el PC
 ```
 
 **Eliminado el 23/11** (enfoque anterior):

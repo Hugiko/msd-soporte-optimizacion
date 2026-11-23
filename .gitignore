@@ -64,3 +64,6 @@ runs/**/discord_estado.json
 runs/**/discord_mensajes_prueba.json
 runs/**/res_glob.txt
 runs/**/res_nod.txt
+
+# resultados del enfoque anterior: solo en el PC (sus datos utiles estan en estudio/calculos_anteriores.csv)
+runs/archivo/
