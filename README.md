@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 20:49 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 20:52 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 10 | 9 | 0 | 1 | 0 | 16 |
+| 11 | 9 | 0 | 2 | 0 | 18 |
 
 ## Mejor diseno
 
@@ -39,6 +39,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 11 | RECHAZADA | R1 | aligeramiento pasante vertical D16 mm en (10, -113) | 2.203 kg, 222 MPa | la tension sube a 222.3 MPa (> 215 MPa): no cumple |
 | 10 | ACEPTADA | R1 | aligeramiento pasante vertical D8 mm en (40, -62) | 2.261 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2736 -> 2.2607; masa 2.2736 -> 2.2607 kg) |
 | 9 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (22, -71) | 2.274 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2877 -> 2.2736; masa 2.2877 -> 2.2736 kg) |
 | 8 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (40, -86) | 2.288 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3085 -> 2.2877; masa 2.3085 -> 2.2877 kg) |

@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 11 - RECHAZADA: R1 aligeramiento pasante vertical D16 mm en (10, -113)
+
+*2026-11-23 20:49*
+
+- **Pieza de partida:** 2.2607 kg | 198.7 MPa | CS 1.08 | 0.145 mm
+- **Por que (regla R1):** Toda la columna en (10, -113) hasta 11 mm de radio trabaja como maximo al 35 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (199 MPa, en cuerpo, lado de las orejetas (x < 15 mm)) esta a 85 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 6 veces que se ha aplicado: +0.3 % (prevision rapida: 2.2048 kg | 203.4 MPa | CS 1.06 | 0.150 mm)
+- **Resultado (malla completa):** 2.2031 kg | 222.3 MPa | CS 0.97 | 0.151 mm (tension +11.9 %, masa -58 g)
+- **Decision:** RECHAZADA - la tension sube a 222.3 MPa (> 215 MPa): no cumple
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -26..14, y -120..-104 mm (esquinas R3.2) -> tension prevista 375 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) -> pasa la evaluacion rapida (2.2555 kg | 197.5 MPa | CS 1.09 | 0.145 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: R10: ya no queda material por debajo del 25 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
+<img src="galeria/20261123_205242_it011_RECHAZADA_2.203kg.jpg" width="520">
+
 ## Iteracion 10 - ACEPTADA: R1 aligeramiento pasante vertical D8 mm en (40, -62)
 
 *2026-11-23 20:47*
