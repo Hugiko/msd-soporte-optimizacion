@@ -26,7 +26,7 @@ S1_1_1["S1.1.1 - fina, paso 0.10<br/>1 pruebas<br/>mejor: 1.914 kg, 165 MPa (#10
 S1_1 --> S1_1_1
 S1_1_2["S1.1.2 - amplia, paso 0.35<br/>2 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::activa
 S1_1 --> S1_1_2
-S1_1_3["S1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S1_1_3["S1.1.3 - cruce, paso 0.20<br/>1 pruebas<br/>mejor: 1.914 kg, 165 MPa (#140)"]:::activa
 S1_1 --> S1_1_3
 SX1["SX1 - exploradora, paso 0.30<br/>11 pruebas<br/>mejor: 1.928 kg, 170 MPa (#079)"]:::activa
 S0 --> SX1

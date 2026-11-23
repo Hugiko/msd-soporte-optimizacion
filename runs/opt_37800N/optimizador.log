@@ -20731,3 +20731,8 @@
 [12:21:48]   [4/5] resultados
 [12:21:48]   [5/5] imagenes
 [12:21:50]   RESULTADO: masa 1.009 kg | tension 618.7 MPa (bruta 619) | NO cumple
+[12:21:55] [SimJEB modificado] DISENO 140  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[12:21:55]   motivo: [rama S1.1.3] cruce: mezcla de los parametros de S1.1 (#044) y S1 (#037)
+[12:22:00]   (GitHub: subido)
+[12:22:00]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[12:22:02]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
