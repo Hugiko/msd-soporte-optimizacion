@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:03
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:08
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (75)
 
@@ -153,7 +153,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:03
 | 218 | 2.384 | 193.9 | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia cav_a, cav_z1, t_col_del | [ver](218/vonmises.png) |
 | 225 | 2.482 | 189.5 | [rama RX3] varios pasos sin mejora: paso mas corto (0.15); cambia trim_s0, R_pocket | [ver](225/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (66)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (67)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -223,6 +223,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:03
 | 227 | 2.513 | 293.1 | [rama RX2.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia cav_z0, trim_a, R_pocket, z_col (rama fina: solo mueve trim_s0, trim_a, R_pocket, cav_z0, r_cut, cav_s0, z_col) | [ver](227/vonmises.png) |
 | 228 | 2.294 | 303.1 | [rama RX5] exploradora: punto al azar en una zona nunca probada (a 1.49 del diseno probado mas cercano (anti-estancamiento)) | [ver](228/vonmises.png) |
 | 229 | 2.166 | 458.5 | [rama RX6] exploradora: punto al azar en una zona nunca probada (a 1.39 del diseno probado mas cercano (anti-estancamiento)) | [ver](229/vonmises.png) |
+| 230 | 2.301 | 305.3 | [rama RX5] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_a, cav_z0, t_col_tra | [ver](230/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (22)
 
