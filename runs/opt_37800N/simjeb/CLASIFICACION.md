@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:35
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:37
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (19)
 
@@ -36,7 +36,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:35
 | 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | - |
 | 021 | 2.299 | 201.1 | torneo de referencias SimJEB (21/30): SimJEB n.o 289 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 173 MPa) | - |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (21)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (22)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -61,6 +61,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:35
 | 030 | 1.317 | 686.4 | torneo de referencias SimJEB (30/30): SimJEB n.o 213 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 239 MPa) | [ver](030/vonmises.png) |
 | 045 | 0.842 | 621.8 | [rama S1.2] rama nueva (amplia, paso 0.35) desde el diseno 037; cambia semilla, ali2_x | [ver](045/vonmises.png) |
 | 046 | 1.912 | 232.7 | [rama S1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia ali1_r, ali2_y (rama fina: solo mueve semilla, t_col_del, ali1_r, ali2_y, z_col) | [ver](046/vonmises.png) |
+| 047 | 1.407 | 590.3 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia semilla | [ver](047/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (1)
 
