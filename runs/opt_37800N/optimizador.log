@@ -20498,3 +20498,119 @@
 [12:17:06]   [5/5] imagenes
 [12:17:07]   [simjeb] ESTANCADA: 25 disenos sin mejorar ni un 0,3 % -> nuevas ramas exploradoras SX8, SX9
 [12:17:08]   RESULTADO: masa 1.174 kg | tension 327.8 MPa (bruta 546) | NO cumple
+[12:17:13] [SimJEB modificado] DISENO 138  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[12:17:13]   motivo: [rama SX8] exploradora: punto al azar en una zona nunca probada (a 1.29 del diseno probado mas cercano (anti-estancamiento))
+[12:17:14]   [1/5] geometria parametrica (cadquery)
+[12:17:15]         masa CAD = 1.8428 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False | ajustes: ['aligeramiento 2 entero dentro de zona protegida: no se aplica']
+[12:17:15]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[12:17:17]   (GitHub: subido)
+[12:17:21]   malla h=4.0: 50142 nodos, 29370 tet10 (2.1s)
+[12:17:22]   [3/5] ANSYS MAPDL normal (50142 nodos, 29370 elementos)
+[12:17:22] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:17:28]   [fase] 4  /PREP7
+[12:17:30]   [fase] 109961  /SOLU
+[12:17:30]   [solver] 109963  EQSLV,SPARSE
+[12:17:30]   [fase] 109966  /POST1
+[12:17:30]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.443   TIME= 12:17:29
+[12:17:30]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.477
+[12:17:30]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:17:30]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.622   TIME= 12:17:29
+[12:17:30]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:17:30] MAPDL termino: estado=ok codigo=0 tiempo=8.1s
+[12:17:30]         ANSYS rechazo el calculo (ok codigo 0): se vuelve a mallar
+[12:17:30]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[12:17:36]   malla h=4.0: 51169 nodos, 29835 tet10 (2.9s)
+[12:17:37]   [3/5] ANSYS MAPDL normal (51169 nodos, 29835 elementos)
+[12:17:37] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:17:37]   [fase] 4  /PREP7
+[12:17:38]   [fase] 109961  /SOLU
+[12:17:38]   [solver] 109963  EQSLV,SPARSE
+[12:17:38]   [fase] 109966  /POST1
+[12:17:38]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.443   TIME= 12:17:29
+[12:17:38]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.477
+[12:17:38]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:17:38]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.622   TIME= 12:17:29
+[12:17:38]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:17:44]   [fase] 111918  /SOLU
+[12:17:44]   [solver] 111920  EQSLV,SPARSE
+[12:17:44]   [fase] 111923  /POST1
+[12:17:44]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.534   TIME= 12:17:44
+[12:17:44]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.571
+[12:17:44]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:17:45]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.724   TIME= 12:17:44
+[12:17:45]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:17:45] MAPDL termino: estado=ok codigo=0 tiempo=8.0s
+[12:17:45]         ANSYS rechazo el calculo (ok codigo 0): se vuelve a mallar
+[12:17:45]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[12:17:50]   malla h=3.6: 61005 nodos, 36258 tet10 (1.7s)
+[12:17:51]   [3/5] ANSYS MAPDL normal (61005 nodos, 36258 elementos)
+[12:17:51] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:17:51]   [fase] 4  /PREP7
+[12:17:52]   [fase] 111918  /SOLU
+[12:17:52]   [solver] 111920  EQSLV,SPARSE
+[12:17:52]   [fase] 111923  /POST1
+[12:17:52]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.534   TIME= 12:17:44
+[12:17:52]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.571
+[12:17:52]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:17:52]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.724   TIME= 12:17:44
+[12:17:52]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:17:57] MAPDL termino: estado=ok codigo=0 tiempo=6.1s
+[12:17:57]         ANSYS rechazo el calculo (ok codigo 0): se vuelve a mallar
+[12:17:57]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[12:18:04]   malla h=4.0: 51203 nodos, 29891 tet10 (3.4s)
+[12:18:05]   [3/5] ANSYS MAPDL normal (51203 nodos, 29891 elementos)
+[12:18:05] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:18:05]   [fase] 4  /PREP7
+[12:18:06]   [fase] 111918  /SOLU
+[12:18:06]   [solver] 111920  EQSLV,SPARSE
+[12:18:06]   [fase] 111923  /POST1
+[12:18:06]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.534   TIME= 12:17:44
+[12:18:06]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.571
+[12:18:06]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:18:06]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.724   TIME= 12:17:44
+[12:18:06]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:18:12]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.544
+[12:18:12]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:18:12]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.691   TIME= 12:18:12
+[12:18:12]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:18:13]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[12:18:13] MAPDL termino: estado=ok codigo=0 tiempo=8.0s
+[12:18:13]         ANSYS rechazo el calculo (ok codigo 0): se vuelve a mallar
+[12:18:13]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[12:18:19]   malla h=4.0: 50289 nodos, 29487 tet10 (1.8s)
+[12:18:20]   [3/5] ANSYS MAPDL normal (50289 nodos, 29487 elementos)
+[12:18:20] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:18:20]   [fase] 4  /PREP7
+[12:18:21]   [fase] 112064  /SOLU
+[12:18:21]   [solver] 112066  EQSLV,SPARSE
+[12:18:21]   [fase] 112069  /POST1
+[12:18:21]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.508   TIME= 12:18:12
+[12:18:21]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.544
+[12:18:21]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:18:21]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.691   TIME= 12:18:12
+[12:18:21]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:18:21]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[12:18:30] MAPDL termino: estado=ok codigo=0 tiempo=10.0s
+[12:18:30]         ANSYS rechazo el calculo (ok codigo 0): se vuelve a mallar
+[12:18:30]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[12:18:36]   malla h=4.4: 42311 nodos, 24434 tet10 (2.5s)
+[12:18:37]   [3/5] ANSYS MAPDL normal (42311 nodos, 24434 elementos)
+[12:18:37] Lanzando MAPDL: model.inp (timeout 1200s)
+[12:18:37]   [fase] 4  /PREP7
+[12:18:38]   [fase] 110342  /SOLU
+[12:18:38]   [solver] 110344  EQSLV,SPARSE
+[12:18:38]   [fase] 110347  /POST1
+[12:18:38]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.512   TIME= 12:18:27
+[12:18:38]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.548
+[12:18:38]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[12:18:38]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.699   TIME= 12:18:27
+[12:18:38]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[12:18:38]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[12:18:38]   [solver] Equation solver memory allocated                     =   877.451 MB
+[12:18:38]   [solver] Equation solver memory required for in-core mode     =   840.405 MB
+[12:18:38]   [solver] Equation solver memory required for out-of-core mode =   235.416 MB
+[12:18:38]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[12:18:58] MAPDL termino: estado=ok codigo=0 tiempo=21.1s
+[12:18:58]   [4/5] resultados
+[12:18:58]   [5/5] imagenes
+[12:19:01]   RESULTADO: masa 1.846 kg | tension 434.9 MPa (bruta 435) | NO cumple
