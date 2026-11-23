@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:53
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:37
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (25)
 
@@ -75,12 +75,13 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:53
 | 058 | 1.938 | 899.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia ali2_x (rama fina: solo mueve semilla, t_col_del, ali2_y, z_col, ali2_x) | [ver](058/vonmises.png) |
 | 059 | 1.849 | 902.6 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.17); cambia t_col_tra, z_col, ali1_r, ali2_y | [ver](059/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (2)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 017 | 2.237 | - | torneo de referencias SimJEB (17/30): SimJEB n.o 238 (block, dominic baldrica) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 154 MPa) | - |
 | 057 | 1.529 | - | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia semilla, t_col_del, z_col, ali2_y | - |
+| 061 | 0.000 | - | [rama SX1] exploradora: punto al azar en una zona nunca probada (a 1.56 del diseno probado mas cercano) | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

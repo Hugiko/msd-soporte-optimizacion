@@ -28,7 +28,7 @@ S1_1_2["S1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::acti
 S1_1 --> S1_1_2
 S1_1_3["S1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 S1_1 --> S1_1_3
-SX1["SX1 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+SX1["SX1 - exploradora, paso 0.30<br/>1 pruebas<br/>sin resultados aun"]:::activa
 S0 --> SX1
 ```
 
