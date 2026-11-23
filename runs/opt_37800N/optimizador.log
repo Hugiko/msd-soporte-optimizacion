@@ -15512,3 +15512,68 @@
 [08:47:12]   [4/5] resultados
 [08:47:13]   [5/5] imagenes
 [08:47:15]   RESULTADO: masa 2.314 kg | tension 186.8 MPa (bruta 740) | CUMPLE
+[08:47:20] [SimJEB modificado] DISENO 057  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:47:20]   motivo: [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia semilla, t_col_del, z_col, ali2_y
+[08:47:20]   el modelo predice: masa 1.615 kg | tension 297 MPa | P(cumplir) 0.11
+[08:47:27]   (GitHub: subido)
+[08:47:52]   [1/5] geometria parametrica (cadquery)
+[08:47:53]         masa CAD = 1.5288 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[08:47:58]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[08:48:15]   malla h=4.0: 107453 nodos, 56654 tet10 (11.9s)
+[08:48:17]   [3/5] ANSYS MAPDL normal (107453 nodos, 56654 elementos)
+[08:48:17] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:48:23]   [fase] 4  /PREP7
+[08:48:26]   [fase] 221757  /SOLU
+[08:48:26]   [solver] 221759  EQSLV,SPARSE
+[08:48:26]   [fase] 221762  /POST1
+[08:48:26]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.216   TIME= 08:48:24
+[08:48:36]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[08:48:36]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[08:48:36]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[08:48:36] MAPDL termino: estado=error codigo=1 tiempo=18.9s
+[08:48:36]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[08:48:36]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[08:48:45]         fallo de malla: Exception: Invalid boundary mesh (overlapping facets) on surface 126 surface 126
+[08:48:45]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[08:49:03]   malla h=3.6: 126861 nodos, 67272 tet10 (12.8s)
+[08:49:04]         126861 nodos > limite Student: engrosando malla
+[08:49:22]   malla h=4.14: 102765 nodos, 54082 tet10 (12.2s)
+[08:49:23]   [3/5] ANSYS MAPDL normal (102765 nodos, 54082 elementos)
+[08:49:23] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:49:23]   [fase] 4  /PREP7
+[08:49:25]   [fase] 221757  /SOLU
+[08:49:25]   [solver] 221759  EQSLV,SPARSE
+[08:49:25]   [fase] 221762  /POST1
+[08:49:25]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.216   TIME= 08:48:24
+[08:49:25]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[08:49:25]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[08:49:25]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[08:49:42] MAPDL termino: estado=error codigo=1 tiempo=19.0s
+[08:49:42]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[08:49:42]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[08:50:02]   malla h=4.0: 120589 nodos, 66184 tet10 (13.8s)
+[08:50:03]   [3/5] ANSYS MAPDL normal (120589 nodos, 66184 elementos)
+[08:50:03] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:50:03]   [fase] 4  /PREP7
+[08:50:05]   [fase] 211925  /SOLU
+[08:50:05]   [solver] 211927  EQSLV,SPARSE
+[08:50:05]   [fase] 211930  /POST1
+[08:50:05]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.347   TIME= 08:49:31
+[08:50:05]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[08:50:05]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[08:50:05]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[08:50:11]   [fase] 253953  /SOLU
+[08:50:11]   [solver] 253955  EQSLV,SPARSE
+[08:50:11]   [fase] 253958  /POST1
+[08:50:11]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.550   TIME= 08:50:11
+[08:50:22]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[08:50:22]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[08:50:22]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[08:50:23] MAPDL termino: estado=error codigo=1 tiempo=19.3s
+[08:50:23]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[08:50:23]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[08:50:37]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[08:50:37]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[08:50:51]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[08:50:51]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | malla alg1 h4.00: Exception: Invalid boundary mesh (overlapping facets) on surface 126 surface 126 | MAPDL alg10 h4.14: elementos con forma no valida | MAPDL alg4 h4.00: elementos con forma no valida | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[08:50:52]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con for -> se penaliza y se sigue

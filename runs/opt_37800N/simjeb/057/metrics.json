@@ -1,0 +1,92 @@
+{
+ "status": "mesh_fail",
+ "params": {
+  "semilla": 18.0,
+  "t_col_del": 2.2767,
+  "t_col_tra": 2.2353,
+  "z_col": 12.9866,
+  "ali1_x": -35.0,
+  "ali1_y": -158.0,
+  "ali1_r": 6.594,
+  "ali2_x": 42.6261,
+  "ali2_y": -135.2647,
+  "ali2_r": 10.0
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 1.5288143187336076,
+ "volume_cad_mm3": 194753.4163991857,
+ "hueco": false,
+ "clamped": [],
+ "holes_check": {
+  "deteccion": "en la malla"
+ },
+ "aligeramientos": 0,
+ "sin_modificar": true,
+ "simjeb_id": 428,
+ "simjeb_categoria": "block",
+ "simjeb_autor": "michele di sacco",
+ "simjeb_tension_estimada": 210.2,
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | malla alg1 h4.00: Exception: Invalid boundary mesh (overlapping facets) on surface 126 surface 126 | MAPDL alg10 h4.14: elementos con forma no valida | MAPDL alg4 h4.00: elementos con forma no valida | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 164, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 136, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | malla alg1 h4.00: Exception: Invalid boundary mesh (overlapping facets) on surface 126 surface 126 | MAPDL alg10 h4.14: elementos con forma no valida | MAPDL alg4 h4.00: elementos con forma no valida | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)\n",
+ "interfaces": {
+  "bolts": [
+   {
+    "c": [
+     0.0,
+     0.0
+    ],
+    "r": 5.334000000004658,
+    "z0": -1.7763012844975403e-12,
+    "z1": 7.849000000006
+   },
+   {
+    "c": [
+     52.047,
+     1.58
+    ],
+    "r": 5.334000022642799,
+    "z0": -2.3214561488017694e-12,
+    "z1": 7.849000000005055
+   },
+   {
+    "c": [
+     0.0,
+     -148.125
+    ],
+    "r": 5.334000002229261,
+    "z0": -1.199239954500958e-12,
+    "z1": 7.849000000004
+   },
+   {
+    "c": [
+     38.083,
+     -146.968
+    ],
+    "r": 5.334015709498178,
+    "z0": -1.5621447257036402e-12,
+    "z1": 7.849000000007008
+   }
+  ],
+  "pin": {
+   "r": 9.556807600865987,
+   "P": [
+    -20.923499999999997,
+    -74.69800000000001,
+    44.725
+   ],
+   "spans": [
+    [
+     -18.09630789365651,
+     -10.47626754084933
+    ],
+    [
+     10.477692106273738,
+     18.097732459080607
+    ]
+   ]
+  },
+  "tol": 0.2
+ },
+ "total_s": 179.29116106033325,
+ "galeria": "galeria/20261123_085051_simjeb_057_FALLO_1.529kg.jpg"
+}
