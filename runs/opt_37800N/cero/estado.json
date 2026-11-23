@@ -112,9 +112,9 @@
    "tipo": "amplia",
    "L": 0.35,
    "L0": 0.35,
-   "succ": 1,
-   "fail": 0,
-   "n": 3,
+   "succ": 0,
+   "fail": 1,
+   "n": 4,
    "best": {
     "score": [
      1,
