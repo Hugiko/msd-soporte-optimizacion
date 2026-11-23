@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:30
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:31
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (1)
 
@@ -13,7 +13,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:30
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (8)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -25,6 +25,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:30
 | 007 | 1.823 | 287.9 | torneo de referencias SimJEB (7/30): SimJEB n.o 192 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 174 MPa) | [ver](007/vonmises.png) |
 | 008 | 1.823 | 287.9 | torneo de referencias SimJEB (8/30): SimJEB n.o 191 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 182 MPa) | [ver](008/vonmises.png) |
 | 009 | 1.853 | 446.7 | torneo de referencias SimJEB (9/30): SimJEB n.o 182 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 191 MPa) | [ver](009/vonmises.png) |
+| 010 | 1.853 | 443.9 | torneo de referencias SimJEB (10/30): SimJEB n.o 183 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | [ver](010/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 
