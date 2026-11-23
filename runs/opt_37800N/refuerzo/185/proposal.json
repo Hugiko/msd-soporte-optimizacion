@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 18.7954,
+  "cav_len": 43.2676,
+  "cav_a": 8.0,
+  "cav_z0": 10.2956,
+  "cav_z1": 38.7977,
+  "trim_s0": 72.6038,
+  "trim_z": 17.8649,
+  "trim_ang": 33.3964,
+  "trim_a": 54.4867,
+  "r_cut": 2.9089,
+  "R_pocket": 11.3158,
+  "t_col_del": 6.8199,
+  "t_col_tra": 5.7605,
+  "z_col": 20.117
+ },
+ "motivo": "[rama RX2.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 172; cambia cav_z0, trim_s0, trim_z, trim_ang... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_z0)",
+ "pred": {
+  "mass_kg": 2.4267378841716787,
+  "stress_mpa": 342.9333317516145,
+  "p_cumple": 0.040653793324775984,
+  "paso": 0.1,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.010028362320923828,
+   "cav_len": 0.002498200270230253,
+   "cav_a": 0.0025285085921149327,
+   "cav_z0": 0.030829185904664297,
+   "cav_z1": 0.004256203168163424,
+   "trim_s0": 0.34174943724712464,
+   "trim_z": 0.0011710602922605055,
+   "trim_ang": 0.0200334329457769,
+   "trim_a": 0.5057911399386309,
+   "r_cut": 0.032218214316599825,
+   "R_pocket": 0.035778848198753536,
+   "t_col_del": 0.004935209828001166,
+   "t_col_tra": 0.004263183080535449,
+   "z_col": 0.003919013896220512
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX2.1",
+ "fecha": "2026-11-23T09:56:30.255595"
+}
