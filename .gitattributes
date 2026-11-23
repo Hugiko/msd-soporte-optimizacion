@@ -1,0 +1,7 @@
+# Estadisticas de lenguajes de GitHub (Linguist): solo cuenta el codigo del programa.
+# Resultados, datos y geometria se marcan como generados / externos para que no se cuenten como "lenguajes".
+runs/** linguist-generated
+estudio/** linguist-generated
+*.html linguist-generated
+*.stp linguist-vendored
+*.stp.txt linguist-vendored
