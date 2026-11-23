@@ -82,7 +82,7 @@ R1_1_1_1_3["R1.1.1.1.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.376 kg, 185
 R1_1_1_1 --> R1_1_1_1_3
 R1_1_1_1_1_1["R1.1.1.1.1.1 - fina, paso 0.10<br/>6 pruebas<br/>mejor: 2.322 kg, 186 MPa (#199)"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_1
-R1_1_1_1_1_2["R1.1.1.1.1.2 - amplia, paso 0.35<br/>5 pruebas<br/>mejor: 2.314 kg, 187 MPa (#176)"]:::activa
+R1_1_1_1_1_2["R1.1.1.1.1.2 - amplia, paso 0.35<br/>6 pruebas<br/>mejor: 2.314 kg, 187 MPa (#176)"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_2
 R1_1_1_1_1_3["R1.1.1.1.1.3 - cruce, paso 0.20<br/>5 pruebas<br/>mejor: 2.352 kg, 185 MPa (#182)"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_3
@@ -94,6 +94,10 @@ RX2_2["RX2.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_2
 RX2_3["RX2.3 - cruce, paso 0.20<br/>5 pruebas<br/>mejor: 2.350 kg, 180 MPa (#198)"]:::activa
 RX2 --> RX2_3
+RX3["RX3 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R0 --> RX3
+RX4["RX4 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R0 --> RX4
 ```
 
 ## Diseno desde cero
