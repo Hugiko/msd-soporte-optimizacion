@@ -1,11 +1,11 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 06:07 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 06:09 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | Vaciado del original | 58 | 0 | - | en marcha |
-| Refuerzo + vaciado | 115 | 21 | 2.428 kg (CS 1.17) | en marcha |
+| Refuerzo + vaciado | 116 | 21 | 2.428 kg (CS 1.17) | en marcha |
 | Diseno desde cero | 58 | 0 | - | en marcha |
 
 **Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 58 descartados en la pasada rapida, 26 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** Vaciado del original: error tipico 4 % | Refuerzo + vaciado: error tipico 25 % | Diseno desde cero: error tipico 2 %
@@ -24,7 +24,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 231 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 232 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -55,6 +55,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Refuerzo + vaciado | 116 | 2.401 | 184.5 | cerca_del_limite | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia | [ver](runs/opt_37800N/galeria/20261123_060917_refuerzo_116_CASI_2.401kg.jpg) |
 | Refuerzo + vaciado | 115 | 2.409 | 188.7 | cerca_del_limite | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0. | [ver](runs/opt_37800N/galeria/20261123_060739_refuerzo_115_CASI_2.409kg.jpg) |
 | Diseno desde cero | 058 | 2.264 | 380.6 | descartado | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_060642_cero_058_NO_VALIDO_2.264kg.jpg) |
 | Refuerzo + vaciado | 114 | 2.409 | 446.3 | descartado | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0. | [ver](runs/opt_37800N/galeria/20261123_060603_refuerzo_114_NO_VALIDO_2.409kg.jpg) |
@@ -64,7 +65,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Diseno desde cero | 057 | 2.242 | 400.4 | descartado | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_060140_cero_057_NO_VALIDO_2.242kg.jpg) |
 | Refuerzo + vaciado | 111 | 1.998 | 423.6 | descartado | [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_060134_refuerzo_111_NO_VALIDO_1.998kg.jpg) |
 | Vaciado del original | 057 | 2.398 | 198.7 | cerca_del_limite | [rama V1.2] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_060018_vaciado_057_CASI_2.398kg.jpg) |
-| Refuerzo + vaciado | 110 | 2.483 | 297.7 | descartado | [rama RX1] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_055927_refuerzo_110_NO_VALIDO_2.483kg.jpg) |
 
 ---
 
