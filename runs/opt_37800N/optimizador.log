@@ -18578,3 +18578,22 @@
 [11:08:29]   [4/5] resultados
 [11:08:30]   [5/5] imagenes
 [11:08:32]   RESULTADO: masa 1.546 kg | tension 356.2 MPa (bruta 544) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)
+[11:08:36] [Refuerzo + vaciado] DISENO 202  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[11:08:36]   motivo: [rama RX3] exploradora: punto al azar en una zona nunca probada (a 1.44 del diseno probado mas cercano (anti-estancamiento))
+[11:08:43]   (GitHub: subido)
+[11:08:49]   [1/5] geometria parametrica (cadquery)
+[11:08:49]         masa CAD = 2.3744 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['techo del hueco 41.0->-4.0 mm (pared minima 3.0 mm)', 'hueco acortado 60.2->-24.3 mm (techo a 45 para impresion 3D)', 'hueco estrechado 86.0->-24.3 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[11:08:52]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[11:08:58]         fallo de malla: Exception: HXT 3D mesh failed
+[11:08:58]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[11:09:05]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[11:09:05]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[11:09:11]         fallo de malla: Exception: HXT 3D mesh failed
+[11:09:11]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[11:09:18]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[11:09:18]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[11:09:26]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:09:26]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[11:09:33]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:09:33]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: The 1D mesh seems not to be forming a closed loop | malla alg1 h4.40: Exception: The 1D mesh seems not to be forming a closed loop
+[11:09:34]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
