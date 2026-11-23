@@ -1,15 +1,15 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 13:51 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 13:52 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | SimJEB modificado | 190 | 42 | 1.914 kg (CS 1.30) | en marcha |
-| Refuerzo + vaciado | 242 | 75 | 2.314 kg (CS 1.15) | en marcha |
+| Refuerzo + vaciado | 243 | 75 | 2.314 kg (CS 1.15) | en marcha |
 | Diseno desde cero | 100 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 99 descartados en la pasada rapida, 55 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 8 % | Refuerzo + vaciado: error tipico 10 % | Diseno desde cero: error tipico 5 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 99 descartados en la pasada rapida, 55 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 8 % | Refuerzo + vaciado: error tipico 12 % | Diseno desde cero: error tipico 5 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 601 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 602 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -66,6 +66,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Refuerzo + vaciado | 243 | 2.637 | 195.6 | cerca_del_limite | [rama RX5] [aun sin disenos validos] el ultimo paso mejoro: sigue en e | [ver](runs/opt_37800N/galeria/20261123_135227_refuerzo_243_CASI_2.637kg.jpg) |
 | SimJEB modificado | 190 | 1.738 | 252.7 | descartado | [rama SX1] pequeno cambio alrededor del mejor de la rama (paso 0.15);  | [ver](runs/opt_37800N/galeria/20261123_135117_simjeb_190_NO_VALIDO_1.738kg.jpg) |
 | SimJEB modificado | 189 | 1.736 | 215.6 | descartado | [rama SX5] pequeno cambio alrededor del mejor de la rama (paso 0.30);  | [ver](runs/opt_37800N/galeria/20261123_135016_simjeb_189_NO_VALIDO_1.736kg.jpg) |
 | Refuerzo + vaciado | 242 | 2.488 | 283.5 | descartado | [rama RX6] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_134931_refuerzo_242_NO_VALIDO_2.488kg.jpg) |
@@ -75,7 +76,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 241 | 2.475 | 191.4 | cerca_del_limite | [rama RX5] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_134659_refuerzo_241_CASI_2.475kg.jpg) |
 | SimJEB modificado | 186 | 2.150 | 189.7 | cerca_del_limite | [rama SX3.1] pequeno cambio alrededor del mejor de la rama (paso 0.10) | [ver](runs/opt_37800N/galeria/20261123_134553_simjeb_186_CASI_2.150kg.jpg) |
 | SimJEB modificado | 185 | 2.215 | 176.3 | valido | [rama S2] varios pasos sin mejora: paso mas corto (0.30); cambia t_col | [ver](runs/opt_37800N/galeria/20261123_134453_simjeb_185_VALIDO_2.215kg.jpg) |
-| Refuerzo + vaciado | 240 | 2.305 | 192.1 | cerca_del_limite | [rama R1.1.1.1.2] pequeno cambio alrededor del mejor de la rama (paso  | [ver](runs/opt_37800N/galeria/20261123_134404_refuerzo_240_CASI_2.305kg.jpg) |
 
 ---
 
