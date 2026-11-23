@@ -40,7 +40,7 @@ SX5["SX5 - exploradora, paso 0.30<br/>8 pruebas<br/>mejor: 1.948 kg, 168 MPa (#1
 S0 --> SX5
 SX6["SX6 - exploradora, paso 0.30<br/>3 pruebas<br/>aun sin validos; el mas cercano 246 MPa (#115)"]:::activa
 S0 --> SX6
-SX7["SX7 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 288 MPa (#116)"]:::activa
+SX7["SX7 - exploradora, paso 0.30<br/>3 pruebas<br/>aun sin validos; el mas cercano 263 MPa (#118)"]:::activa
 S0 --> SX7
 ```
 
