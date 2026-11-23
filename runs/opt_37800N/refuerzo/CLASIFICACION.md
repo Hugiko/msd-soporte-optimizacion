@@ -1,8 +1,8 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:12
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:15
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (67)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (68)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -14,8 +14,8 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:12
 | 198 | 2.350 | 180.0 | [rama RX2.3] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia cav_s0, cav_z0 | [ver](198/vonmises.png) |
 | 193 | 2.348 | 181.5 | [rama RX2.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_z0, r_cut, t_col_tra | [ver](193/vonmises.png) |
 | 191 | 2.348 | 182.7 | [rama R1.1.1.1.1.2] varios pasos sin mejora: paso mas corto (0.35); cambia cav_s0, cav_a, z_col | [ver](191/vonmises.png) |
-| 183 | 2.345 | 185.2 | [rama RX2.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_a, t_col_del | [ver](183/vonmises.png) |
-| 182 | 2.352 | 185.1 | [rama R1.1.1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_a, cav_z1, trim_z, z_col | [ver](182/vonmises.png) |
+| 183 | 2.345 | 185.2 | [rama RX2.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_a, t_col_del | - |
+| 182 | 2.352 | 185.1 | [rama R1.1.1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_a, cav_z1, trim_z, z_col | - |
 | 190 | 2.354 | 185.2 | [rama R1.1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, cav_s0, r_cut) | [ver](190/vonmises.png) |
 | 179 | 2.354 | 186.7 | [rama R1.1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_z (rama fina: solo mueve trim_s0, trim_a, cav_s0, r_cut, trim_ang, trim_z, R_pocket) | - |
 | 162 | 2.366 | 182.2 | [rama R1.1.1.1.2] varios pasos sin mejora: paso mas corto (0.35); cambia cav_s0, cav_a, trim_z, z_col | - |
@@ -36,6 +36,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:12
 | 197 | 2.400 | 184.3 | [rama R1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia trim_z, z_col | [ver](197/vonmises.png) |
 | 133 | 2.402 | 184.5 | [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z, trim_ang, r_cut (rama fina: solo mueve trim_s0, trim_a, trim_ang, trim_z, R_pocket, r_cut, cav_s0) | - |
 | 139 | 2.404 | 183.9 | [rama R1.1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia cav_z1, trim_s0 (rama fina: solo mueve trim_a, trim_s0, cav_z1, R_pocket, r_cut, t_col_del, t_col_tra) | - |
+| 204 | 2.404 | 184.3 | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_a, trim_s0, trim_z... | [ver](204/vonmises.png) |
 | 188 | 2.404 | 184.6 | [rama R1.1.1.1.1.3] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia cav_a, trim_z, t_col_del | [ver](188/vonmises.png) |
 | 127 | 2.412 | 184.3 | [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.03); cambia trim_s0 (rama fina: solo mueve trim_s0, trim_a, r_cut, trim_z, R_pocket, cav_s0, trim_ang) | - |
 | 119 | 2.422 | 183.1 | [rama R1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia trim_s0, trim_z (rama fina: solo mueve trim_s0, trim_a, trim_z, R_pocket, trim_ang, r_cut, z_col) | - |
@@ -197,7 +198,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:12
 | 171 | 2.483 | 339.1 | [rama RX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_s0, cav_z0, trim_z, trim_ang... | - |
 | 172 | 2.511 | 286.7 | [rama RX2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.60); cambia cav_s0, cav_len, cav_z0, cav_z1... | - |
 | 174 | 2.528 | 480.9 | [rama RX2] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia cav_z0, trim_ang, z_col | - |
-| 181 | 2.483 | 302.0 | [rama RX1.2] [aun sin disenos validos] rama nueva (amplia, paso 0.35) desde el diseno 104; cambia cav_len, cav_z1, trim_ang | [ver](181/vonmises.png) |
+| 181 | 2.483 | 302.0 | [rama RX1.2] [aun sin disenos validos] rama nueva (amplia, paso 0.35) desde el diseno 104; cambia cav_len, cav_z1, trim_ang | - |
 | 185 | 2.482 | 388.6 | [rama RX2.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 172; cambia cav_z0, trim_s0, trim_z, trim_ang... (rama fina: solo mueve trim_s0, trim_a, R_pocket, trim_z, trim_ang, r_cut, cav_z0) | [ver](185/vonmises.png) |
 | 192 | 2.339 | 217.8 | [rama R1.1.1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](192/vonmises.png) |
 | 200 | 2.060 | 441.3 | [rama RX1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](200/vonmises.png) |
