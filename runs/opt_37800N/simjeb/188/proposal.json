@@ -1,0 +1,20 @@
+{
+ "params": {
+  "semilla": 61.0,
+  "t_col_del": 0.8195,
+  "t_col_tra": 4.0927,
+  "z_col": 10.9617,
+  "ali1_x": 58.0428,
+  "ali1_y": -87.1812,
+  "ali1_r": 8.5718,
+  "ali2_x": -32.1082,
+  "ali2_y": -75.4787,
+  "ali2_r": 1.4612
+ },
+ "motivo": "[rama SX12] exploradora: punto al azar en una zona nunca probada (a 1.14 del diseno probado mas cercano (anti-estancamiento))",
+ "pred": null,
+ "fase": "exploradora",
+ "familia": "simjeb",
+ "rama": "SX12",
+ "fecha": "2026-11-23T13:48:26.502341"
+}
