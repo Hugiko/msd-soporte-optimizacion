@@ -1,5 +1,5 @@
 {
- "iter": 4,
+ "iter": 5,
  "actual": {
   "ops": [
    {
@@ -55,7 +55,21 @@
    "score": 2.3652214614500005,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.37431565505,
+   "vm_metric": 193.0055,
+   "u_max": 0.14166727260339593,
+   "vm_metric_xyz": [
+    47.05616414614755,
+    -7.704069186801425,
+    10.388599920100642
+   ],
+   "n_nodes": 48097,
+   "cs": 1.1139578923916675,
+   "viol": 0.8977,
+   "score": 2.37431565505,
+   "valido": true
+  },
   "galeria": "galeria/20261123_202026_it004_ACEPTADA_2.365kg.jpg"
  },
  "mejor": {
@@ -242,6 +256,45 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 4
+  },
+  {
+   "op": {
+    "tipo": "rebaje_nervio",
+    "x0": -30.48,
+    "x1": 53.52,
+    "y0": -48.32,
+    "y1": -20.32,
+    "zc": 5.0,
+    "rr": 5.6
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R11",
+   "iter": 5
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": -23.48,
+    "y": -26.32,
+    "r": 10.0
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R1",
+   "iter": 5
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -30.48,
+    "x1": -18.48,
+    "y0": -40.32,
+    "y1": -7.5,
+    "zc": 5.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "puntuacion",
+   "regla": "R2",
+   "iter": 5
   }
  ],
  "stats": {
@@ -268,8 +321,8 @@
    ]
   },
   "R11": {
-   "intentos": 3,
-   "descartadas_rapido": 3,
+   "intentos": 4,
+   "descartadas_rapido": 4,
    "evaluadas": 0,
    "aceptadas": 0,
    "rechazadas": 0,
@@ -278,18 +331,20 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 3,
+   "intentos": 4,
    "descartadas_rapido": 0,
-   "evaluadas": 2,
+   "evaluadas": 3,
    "aceptadas": 2,
-   "rechazadas": 0,
+   "rechazadas": 1,
    "dsig": [
     5.87,
-    -5.97
+    -5.97,
+    0.05
    ],
    "dm": [
     -57.8,
-    -47.4
+    -47.4,
+    0.1
    ],
    "ejemplos": [
     [
@@ -299,16 +354,21 @@
     [
      4,
      "aceptada: rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52  (tension -6.0 %, masa -47 g)"
+    ],
+    [
+     5,
+     "rechazada: rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8  (tension +0.0 %, masa +0 g)"
     ]
    ],
    "dsig_prev": [
     -0.05,
-    0.43
+    0.43,
+    -0.5
    ]
   },
   "R1": {
-   "intentos": 3,
-   "descartadas_rapido": 1,
+   "intentos": 4,
+   "descartadas_rapido": 2,
    "evaluadas": 1,
    "aceptadas": 1,
    "rechazadas": 0,
@@ -329,7 +389,7 @@
    ]
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.3652214614500005,
@@ -642,6 +702,77 @@
    "decision": "ACEPTADA",
    "motivo": "cumple y mejora al mejor (puntuacion 2.4126 -> 2.3652; masa 2.4126 -> 2.3652 kg)",
    "galeria": "galeria/20261123_202026_it004_ACEPTADA_2.365kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3652214614500005,
+    "vm_metric": 195.3456,
+    "u_max": 0.1416360575357744,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 83103,
+    "cs": 1.1006134768328542,
+    "viol": 0.9085841860465116,
+    "score": 2.3652214614500005,
+    "valido": true
+   }
+  },
+  {
+   "iter": 5,
+   "fecha": "2026-11-23T20:23:27.571426",
+   "antes": "2.3652 kg | 195.3 MPa | CS 1.10 | 0.142 mm",
+   "m_antes": {
+    "mass_kg": 2.3652214614500005,
+    "vm_metric": 195.3456,
+    "u_max": 0.1416360575357744,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 83103,
+    "cs": 1.1006134768328542,
+    "viol": 0.9085841860465116,
+    "score": 2.3652214614500005,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R11",
+     "titulo": "sustituir el bloque x -30..54, y -48..-20 (por encima de z = 5) por 2 nervio(s) en la trayectoria de la carga",
+     "motivo": "la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)"
+    },
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D20 mm en (-23, -26)",
+     "motivo": "la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)"
+    }
+   ],
+   "regla": "R2",
+   "titulo": "rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8 mm (esquinas R3)",
+   "porque": "Todo el material por encima de z = 5 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 25 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).",
+   "espero": "mediana de las 2 veces que se ha aplicado: -0.0 % (prevision rapida: 2.3647 kg | 194.4 MPa | CS 1.11 | 0.142 mm)",
+   "m_cand": {
+    "mass_kg": 2.3653615447000003,
+    "vm_metric": 195.4378,
+    "u_max": 0.14166725917531525,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 83891,
+    "cs": 1.1000942499352735,
+    "viol": 0.909013023255814,
+    "score": 2.3653615447000003,
+    "valido": true
+   },
+   "despues": "2.3654 kg | 195.4 MPa | CS 1.10 | 0.142 mm (tension +0.0 %, masa +0 g)",
+   "decision": "RECHAZADA",
+   "motivo": "cumple pero no mejora al mejor (puntuacion 2.3654 frente a 2.3652)",
+   "galeria": "galeria/20261123_202753_it005_RECHAZADA_2.365kg.jpg",
    "m_actual": {
     "mass_kg": 2.3652214614500005,
     "vm_metric": 195.3456,
