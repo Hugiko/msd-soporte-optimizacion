@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 11.3469,
+  "w_bar": 9.959,
+  "phi_end": 75.5621,
+  "H": 28.5904,
+  "W_top": 33.7988,
+  "W_bot": 55.1568,
+  "x_box": 13.1096,
+  "g_end": 0.7476,
+  "t_w": 10.4111,
+  "e_lug": 10.5154,
+  "t_lug": 13.873,
+  "r_f": 4.0348
+ },
+ "motivo": "[rama CX2] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia W_bot, g_end, t_w, e_lug...",
+ "pred": {
+  "mass_kg": 1.7166921399405235,
+  "stress_mpa": 1260.0637747704368,
+  "p_cumple": 2.652331051157955e-89,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.0741085326937544,
+   "w_bar": 0.017323058538304768,
+   "phi_end": 0.032868346232177846,
+   "H": 0.08543575716772635,
+   "W_top": 0.09282247334441181,
+   "W_bot": 0.08158779976625032,
+   "x_box": 0.05462222671807291,
+   "g_end": 0.13956357856901896,
+   "t_w": 0.024970093084487305,
+   "e_lug": 0.03822770038984071,
+   "t_lug": 0.10788405029415737,
+   "r_f": 0.2505863832017973
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "CX2",
+ "fecha": "2026-11-23T12:52:51.834361"
+}
