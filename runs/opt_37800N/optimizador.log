@@ -15206,3 +15206,9 @@
 [08:39:55]   [4/5] resultados
 [08:39:55]   [5/5] imagenes
 [08:39:57]   RESULTADO: masa 1.849 kg | tension 310.1 MPa (bruta 692) | NO cumple
+[08:40:01] [SimJEB modificado] DISENO 050  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:40:01]   motivo: [rama S1.1] varios pasos sin mejora: paso mas corto (0.10); cambia ali1_y, ali1_r (rama fina: solo mueve semilla, t_col_del, z_col, ali1_r, ali1_y)
+[08:40:01]   el modelo predice: masa 1.924 kg | tension 179 MPa | P(cumplir) 0.68
+[08:40:04]   (GitHub: subido)
+[08:40:07]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[08:40:08]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
