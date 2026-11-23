@@ -12080,3 +12080,10 @@
 [07:16:49]         fallo de malla: Exception: Could not fix wire in surface 429
 [07:16:49]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could not fix wire in surface 407 | malla alg1 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h3.60: Exception: Could not fix wire in surface 407 | malla alg4 h4.00: Exception: Could not fix wire in surface 407 | malla alg10 h4.00: Exception: Could not fix wire in surface 429 | malla alg1 h4.40: Exception: Could not fix wire in surface 429
 [07:16:50]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Could  -> se penaliza y se sigue
+[07:16:56]   (GitHub: subido)
+[07:17:07] [Refuerzo + vaciado] DISENO 146  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:17:07]   motivo: [rama R1.1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia r_cut, z_col (rama fina: solo mueve trim_a, trim_s0, r_cut, R_pocket, z_col, t_col_tra, t_col_del)
+[07:17:07]   el modelo predice: masa 2.352 kg | tension 184 MPa | P(cumplir) 0.91
+[07:17:08]   [1/5] geometria parametrica (cadquery)
+[07:17:09]   !! fallo en geometria: GeometryError: la union de los collares con el original ha fallado
+[07:17:10]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares con el original ha fallado -> se penaliza y se sigue
