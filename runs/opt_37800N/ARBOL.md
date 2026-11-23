@@ -42,7 +42,7 @@ SX6["SX6 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.218 kg, 176 MPa (#
 S0 --> SX6
 SX7["SX7 - exploradora, paso 0.30<br/>10 pruebas<br/>aun sin validos; el mas cercano 205 MPa (#129)"]:::activa
 S0 --> SX7
-SX8["SX8 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 2.011 kg, 176 MPa (#158)"]:::activa
+SX8["SX8 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.011 kg, 176 MPa (#158)"]:::activa
 S0 --> SX8
 SX9["SX9 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 3.663 kg, 153 MPa (#142)"]:::activa
 S0 --> SX9
