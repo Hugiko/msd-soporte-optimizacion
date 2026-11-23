@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 44.0,
+  "t_col_del": 0.0,
+  "t_col_tra": 0.0,
+  "z_col": 12.3183,
+  "ali1_x": -19.564,
+  "ali1_y": -158.0,
+  "ali1_r": 0.0,
+  "ali2_x": 34.3501,
+  "ali2_y": -59.4823,
+  "ali2_r": 10.0
+ },
+ "motivo": "[rama SX4] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, z_col, ali2_x, ali2_y",
+ "pred": {
+  "mass_kg": 1.995859603904862,
+  "stress_mpa": 149.7773936435721,
+  "p_cumple": 0.8702237170678965,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "semilla": 0.8984502067315318,
+   "t_col_del": 0.00919929772525315,
+   "t_col_tra": 0.011166833667285245,
+   "z_col": 0.009796053419368773,
+   "ali1_x": 0.01088233410122955,
+   "ali1_y": 0.01082456034849429,
+   "ali1_r": 0.018272668645577094,
+   "ali2_x": 0.010617669274769231,
+   "ali2_y": 0.014048945048700724,
+   "ali2_r": 0.0067414310377901495
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "SX4",
+ "fecha": "2026-11-23T10:44:18.066041"
+}
