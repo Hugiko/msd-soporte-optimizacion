@@ -13,3 +13,4 @@ Original: 2.423 kg | limite 215 MPa | carga 42258 N
 | 07 | 07_it007_2.308kg | 2.308 | 203.5 | ![](historial/07_it007_2.308kg/resumen.png) | [Workbench](historial/07_it007_2.308kg/workbench/soporte_it007.wbpz) |
 | 08 | 08_it009_2.274kg | 2.274 | 199.2 | ![](historial/08_it009_2.274kg/resumen.png) | [Workbench](historial/08_it009_2.274kg/workbench/soporte_it009.wbpz) |
 | 09 | 09_it012_2.222kg | 2.222 | 202.5 | ![](historial/09_it012_2.222kg/resumen.png) | [Workbench](historial/09_it012_2.222kg/workbench/soporte_it012.wbpz) |
+| 10 | 10_it013_2.188kg | 2.188 | 205.1 | ![](historial/10_it013_2.188kg/resumen.png) | [Workbench](historial/10_it013_2.188kg/workbench/soporte_it013.wbpz) |

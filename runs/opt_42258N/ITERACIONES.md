@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 13 - ACEPTADA: R2 rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquinas R3)
+
+*2026-11-23 20:58*
+
+- **Pieza de partida:** 2.2224 kg | 202.5 MPa | CS 1.06 | 0.147 mm
+- **Por que (regla R2):** Todo el material por encima de z = 5 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 35 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
+- **Se esperaba:** mediana de las 3 veces que se ha aplicado: +0.1 % (prevision rapida: 2.1888 kg | 208.5 MPa | CS 1.03 | 0.149 mm)
+- **Resultado (malla completa):** 2.1883 kg | 205.1 MPa | CS 1.05 | 0.149 mm (tension +1.3 %, masa -34 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2224 -> 2.1883; masa 2.2224 -> 2.1883 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (43, -44) -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h6.00: elementos con forma no valida | malla)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h6.00: elementos con forma no valida | MAPDL)
+
+<img src="galeria/20261123_210153_it013_ACEPTADA_2.188kg.jpg" width="520">
+
 ## Iteracion 12 - ACEPTADA: R1 aligeramiento pasante vertical D16 mm en (34, -74)
 
 *2026-11-23 20:52*

@@ -1,0 +1,21 @@
+{
+ "status": "mesh_fail",
+ "params": {},
+ "force": 42258.0,
+ "mass_cad_kg": 2.1990714820464796,
+ "volume_cad_mm3": 280136.494528214,
+ "hueco": true,
+ "clamped": [],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h6.00: elementos con forma no valida | MAPDL alg1 h6.00: elementos con forma no valida | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 172, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 143, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h6.00: elementos con forma no valida | MAPDL alg1 h6.00: elementos con forma no valida | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)\n",
+ "total_s": 58.79667329788208
+}
