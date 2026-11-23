@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 15.3053,
+  "w_bar": 10.6988,
+  "phi_end": 25.0,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 40.0,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.0,
+  "t_lug": 11.0332,
+  "r_f": 7.0
+ },
+ "motivo": "[rama C1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.03); cambia R_pocket, t_lug (rama fina: solo mueve g_end, H, W_bot, t_lug, R_pocket, W_top)",
+ "pred": {
+  "mass_kg": 2.2459977131955338,
+  "stress_mpa": 400.0117228678202,
+  "p_cumple": 0.0,
+  "paso": 0.025,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.10345597478017513,
+   "w_bar": 0.029846607818339938,
+   "phi_end": 0.035245859196868165,
+   "H": 0.19736307052024463,
+   "W_top": 0.08331912384075664,
+   "W_bot": 0.03541577464761021,
+   "x_box": 0.07603659013755526,
+   "g_end": 0.17220291357294948,
+   "t_w": 0.03779468008028952,
+   "e_lug": 0.0588337489801564,
+   "t_lug": 0.13280650713634,
+   "r_f": 0.03767914928871443
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "C1.1",
+ "fecha": "2026-11-23T00:50:48.582664"
+}

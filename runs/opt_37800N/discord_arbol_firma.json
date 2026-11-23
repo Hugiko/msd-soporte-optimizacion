@@ -116,8 +116,20 @@
  [
   "cero",
   "C1.1",
-  "activa",
+  "terminada",
   31
+ ],
+ [
+  "cero",
+  "C1.1.1",
+  "activa",
+  null
+ ],
+ [
+  "cero",
+  "C1.1.2",
+  "activa",
+  null
  ],
  [
   "cero",
