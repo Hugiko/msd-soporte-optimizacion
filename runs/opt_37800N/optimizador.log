@@ -10337,3 +10337,10 @@
 [06:25:22]   [4/5] resultados
 [06:25:22]   [5/5] imagenes
 [06:25:24]   RESULTADO: masa 2.388 kg | tension 210.6 MPa (bruta 778) | NO cumple
+[06:25:31]   (GitHub: subido)
+[06:25:32] [Refuerzo + vaciado] DISENO 123  |  mejor global: 2.422 kg (Refuerzo + vaciado #119)
+[06:25:32]   motivo: [rama R1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia t_col_tra (rama fina: solo mueve trim_s0, trim_a, R_pocket, t_col_tra, r_cut, cav_s0, cav_z1)
+[06:25:32]   el modelo predice: masa 2.226 kg | tension 183 MPa | P(cumplir) 0.99
+[06:25:35]   [1/5] geometria parametrica (cadquery)
+[06:25:38]   !! fallo en geometria: GeometryError: la union de los collares con el original ha fallado
+[06:25:39]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares con el original ha fallado -> se penaliza y se sigue
