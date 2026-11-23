@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 43.0,
+  "t_col_del": 3.0656,
+  "t_col_tra": 4.0218,
+  "z_col": 29.4771,
+  "ali1_x": 2.4757,
+  "ali1_y": -153.1897,
+  "ali1_r": 10.0,
+  "ali2_x": 14.6995,
+  "ali2_y": -45.3256,
+  "ali2_r": 5.2699
+ },
+ "motivo": "[rama SX9] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali2_y",
+ "pred": {
+  "mass_kg": 2.092523215959887,
+  "stress_mpa": 199.68938051930772,
+  "p_cumple": 0.4309856608135461,
+  "paso": 0.3,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "semilla": 0.48536183587796633,
+   "t_col_del": 0.005090552324760635,
+   "t_col_tra": 0.0034016119752894886,
+   "z_col": 0.004624884337705942,
+   "ali1_x": 0.0060155522639925565,
+   "ali1_y": 0.024491353511926887,
+   "ali1_r": 0.007134474678512452,
+   "ali2_x": 0.41485303257400896,
+   "ali2_y": 0.04353049769498085,
+   "ali2_r": 0.005496204760855823
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "SX9",
+ "fecha": "2026-11-23T12:38:45.075948"
+}
