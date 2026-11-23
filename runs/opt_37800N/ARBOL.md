@@ -100,7 +100,7 @@ RX2_3["RX2.3 - cruce, paso 0.20<br/>5 pruebas<br/>mejor: 2.350 kg, 180 MPa (#198
 RX2 --> RX2_3
 RX3["RX3 - exploradora, paso 0.30<br/>2 pruebas<br/>mejor: 2.404 kg, 184 MPa (#204)"]:::activa
 R0 --> RX3
-RX4["RX4 - exploradora, paso 0.30<br/>1 pruebas<br/>aun sin validos; el mas cercano 1303 MPa (#203)"]:::activa
+RX4["RX4 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 328 MPa (#205)"]:::activa
 R0 --> RX4
 ```
 
