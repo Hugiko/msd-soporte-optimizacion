@@ -1,6 +1,6 @@
 # Vaciado del original: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:58
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:06
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -19,8 +19,8 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:58
 | 041 | 2.414 | 199.7 | [rama V1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.04); cambia R_pocket | - |
 | 042 | 2.414 | 193.8 | [rama V1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.04); cambia R_pocket | - |
 | 043 | 2.408 | 197.9 | [rama V1.1] [aun sin disenos validos] rama nueva (fina, paso 0.10) desde el diseno 031; cambia trim_s0, trim_z, R_pocket (rama fina: solo mueve R_pocket, cav_len, cav_a, trim_s0, trim_z, trim_a) | - |
-| 045 | 2.408 | 195.0 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a) | [ver](045/vonmises.png) |
-| 046 | 2.411 | 194.1 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](046/vonmises.png) |
+| 045 | 2.408 | 195.0 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.10); cambia trim_s0, trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a) | - |
+| 046 | 2.411 | 194.1 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | - |
 | 047 | 2.411 | 194.1 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.10); cambia trim_z, R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](047/vonmises.png) |
 | 050 | 2.414 | 193.8 | [rama V1.1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.05); cambia R_pocket (rama fina: solo mueve R_pocket, trim_s0, cav_a, trim_ang, trim_z, trim_a) | [ver](050/vonmises.png) |
 | 052 | 2.412 | 193.9 | [rama V1.1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia trim_z (rama fina: solo mueve R_pocket, trim_s0, cav_a, cav_z1, trim_a, trim_z) | [ver](052/vonmises.png) |
@@ -31,7 +31,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:58
 | 065 | 2.408 | 199.2 | [rama V1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia cav_s0, trim_s0, trim_z, trim_a... | [ver](065/vonmises.png) |
 | 066 | 2.413 | 194.0 | [rama V1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia trim_a, r_cut, R_pocket | [ver](066/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (44)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (45)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -79,6 +79,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:58
 | 062 | 2.409 | 211.5 | [rama V1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](062/vonmises.png) |
 | 063 | 2.359 | 207.6 | [rama V1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.17); cambia trim_s0, trim_a | [ver](063/vonmises.png) |
 | 064 | 2.388 | 210.6 | [rama V1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.17); cambia cav_z1, trim_s0, r_cut | [ver](064/vonmises.png) |
+| 067 | 2.423 | 212.9 | [rama V1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.09); cambia trim_s0, r_cut, R_pocket | - |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 
