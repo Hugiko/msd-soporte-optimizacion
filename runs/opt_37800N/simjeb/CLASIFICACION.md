@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:22
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:23
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (45)
 
@@ -72,7 +72,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:22
 | 129 | 2.327 | 204.9 | [rama SX7] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia ali1_x, ali1_y, ali2_r | - |
 | 133 | 2.371 | 203.0 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia ali1_x, ali1_y, ali2_y | - |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (94)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (95)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -154,11 +154,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:22
 | 143 | 1.640 | 293.3 | [rama SX3] varios pasos sin mejora: paso mas corto (0.15); cambia semilla, ali1_x, ali2_r | - |
 | 144 | 1.207 | 439.6 | [rama SX8] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, ali1_r, ali2_y | - |
 | 145 | 1.501 | 679.5 | [rama SX9] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra | - |
-| 146 | 2.165 | 241.0 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_del, t_col_tra, z_col, ali1_x... | [ver](146/vonmises.png) |
-| 147 | 2.004 | 266.4 | [rama SX9] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali2_y | [ver](147/vonmises.png) |
-| 148 | 1.408 | 1717.7 | [rama SX8] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, ali1_x, ali1_y... | [ver](148/vonmises.png) |
-| 149 | 2.041 | 214.2 | [rama SX9] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, ali1_x | [ver](149/vonmises.png) |
-| 150 | 1.780 | 374.9 | [rama SX8] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, ali2_x | [ver](150/vonmises.png) |
+| 146 | 2.165 | 241.0 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_del, t_col_tra, z_col, ali1_x... | - |
+| 147 | 2.004 | 266.4 | [rama SX9] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali2_y | - |
+| 148 | 1.408 | 1717.7 | [rama SX8] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, ali1_x, ali1_y... | - |
+| 149 | 2.041 | 214.2 | [rama SX9] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, ali1_x | - |
+| 150 | 1.780 | 374.9 | [rama SX8] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, ali2_x | - |
 | 152 | 1.525 | 585.4 | [rama SX3] pequeno cambio alrededor del mejor de la rama (paso 0.07); cambia semilla, ali2_x, ali2_y | [ver](152/vonmises.png) |
 | 154 | 2.050 | 778.4 | [rama SX9] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, t_col_tra, ali1_x, ali1_y | [ver](154/vonmises.png) |
 | 155 | 1.978 | 425.9 | [rama SX8] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia t_col_del, t_col_tra, z_col, ali1_x... | [ver](155/vonmises.png) |
@@ -170,6 +170,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:22
 | 169 | 1.407 | 384.1 | [rama SX11] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra, z_col, ali2_y | [ver](169/vonmises.png) |
 | 170 | 1.379 | 530.1 | [rama SX10] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, ali1_x, ali1_y, ali2_r | [ver](170/vonmises.png) |
 | 171 | 1.786 | 209.2 | [rama SX11] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_y, ali2_x | [ver](171/vonmises.png) |
+| 172 | 1.382 | 506.2 | [rama SX10] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_y... | [ver](172/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (17)
 
