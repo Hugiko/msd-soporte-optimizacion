@@ -98,8 +98,14 @@ n.º 0, byte a byte) y su tabla da la tensión máxima en el caso **horizontal d
 - **Compatibilidad**: se malla cada candidato y se comprueba que tiene los 4 agujeros de perno M10 y el agujero del bulón del
   enunciado (algunos autores modelaron el bulón macizo o agrandaron los agujeros: se excluyen). Resultado en
   `datos_simjeb/compatibilidad.json` (`python scripts/geometry_simjeb.py --comprobar`).
-- **Torneo**: se calculan **tal cual** los 40 más prometedores (primero los que según SimJEB ya cumplirían, ordenados por
-  masa × (tensión/límite)^0,15). Después se abre una rama desde cada una de las **3 mejores semillas distintas**.
+- **Torneo de referencias**: se calculan **tal cual** los 30 más prometedores (primero los que según SimJEB ya cumplirían,
+  ordenados por masa × (tensión/límite)^0,15). Son solo **puntos de partida**: como el trabajo consiste en crear una **pieza
+  nueva**, un diseño SimJEB sin modificar (o con cambios de menos del 0,2 % de su volumen) **nunca puede ser el mejor diseño**
+  (ni proyecto Workbench, ni historial, ni panel, ni Discord). Después se abre una rama desde cada una de las **3 mejores
+  semillas distintas** y se van **modificando**.
+- **Prueba en ANSYS** (23/11, SimJEB n.º 321 tal cual): 1,301 kg, 284,6 MPa, 0,17 mm; pico junto al alojamiento del perno
+  delantero derecho. La tensión real es bastante mayor que la estimada desde la tabla de SimJEB (176 MPa): la estimación solo
+  sirve para ordenar el torneo.
 - **Modificaciones** sobre la semilla elegida:
   - **collares** alrededor de los alojamientos de los pernos delanteros y traseros (espesor y altura): **añaden** material
     en el punto crítico habitual;
@@ -162,7 +168,7 @@ Fuentes en `docs/fabricacion_aditiva.md` (ISO/ASTM 52911-1:2019, NASA, Cambridge
 6. **Ficha, galería, registro, árbol, panel, Discord y GitHub.**
 
 ### 6.2 Cómo decide qué probar (cómo aprende)
-1. **Reparto inicial**: 12 diseños por familia (secuencia de Sobol) repartidos por todo el espacio; en «SimJEB modificado», el **torneo** de 40 diseños SimJEB sin modificar (§5.0).
+1. **Reparto inicial**: 12 diseños por familia (secuencia de Sobol) repartidos por todo el espacio; en «SimJEB modificado», el **torneo** de 30 diseños SimJEB sin modificar, solo como referencias (§5.0).
 2. **Modelos sustitutos**: procesos gaussianos (BoTorch) que predicen **masa, tensión y desplazamiento** de cualquier pieza, con su incertidumbre, a partir de todo lo calculado. Para la masa se usan además 48 geometrías construidas sin ANSYS por familia.
 3. **Elección del candidato**: entre unos 5 000 candidatos al azar alrededor del mejor diseño de la rama (cambios de todas las variables, cambios de 1–3 variables, **mutaciones grandes de 2–5 variables** —salvo en las ramas finas— y continuaciones de la dirección que funcionó), se elige el de mayor **mejora esperada de la puntuación × probabilidad de cumplir**. Se penalizan las zonas donde hubo fallos y se descartan los candidatos a menos de **0,03** (espacio normalizado 0–1) de cualquier diseño ya probado, para que cada prueba sea un cambio real.
 4. **Ramas (árbol genealógico)**:
@@ -262,7 +268,7 @@ Antes se usó p = 0,5 sin mínimo; se descartó porque premiaba demasiado la seg
 | `peso_seguridad` | 0,15 | Peso de la seguridad entre piezas válidas (0 = solo masa) |
 | `familias` / `familias_retiradas` | simjeb, refuerzo, cero, vaciado / vaciado | Familias (las retiradas se conservan pero no se calculan) |
 | `turnos_por_ronda` | simjeb: 2 | Diseños por ronda de cada familia |
-| `torneo_simjeb_disenos` / `ramas_iniciales_simjeb` | 40 / 3 | Torneo de diseños SimJEB |
+| `torneo_simjeb_disenos` / `ramas_iniciales_simjeb` | 30 / 3 | Torneo de referencias SimJEB |
 | `presupuesto_por_familia` | 600 | Diseños máximos por familia |
 | `pruebas_por_rama` / `rama_exploradora_cada` | 12 / 2 | Árbol de ramas |
 | `estancamiento_disenos` / `prob_rama_al_azar` / `distancia_minima` | 25 / 0,25 / 0,03 | Anti-estancamiento y variedad |

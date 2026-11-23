@@ -49,9 +49,11 @@ manteniendo fijos los 4 agujeros de los pernos y los 2 del bulón. Carga: 37 800
     - Familia **`simjeb`** (`scripts/geometry_simjeb.py`): SimJEB (Whalen et al., 2021; Harvard Dataverse, doi:10.7910/DVN/XFUWJG)
       recoge los ~380 diseños del GE Jet Engine Bracket Challenge en el MISMO sistema de coordenadas que nuestro `0.stp` (que es su
       diseño n.º 0). Se toman los más ligeros que el original con tensión horizontal estimada ≤ 260 MPa, se descartan los que no
-      tienen los agujeros del enunciado (comprobación previa en `datos_simjeb/compatibilidad.json`), se calculan los 40 más
-      prometedores **tal cual** (torneo) y después se **modifican**: collares junto a los pernos (añaden) y 2 aligeramientos
-      pasantes verticales (quitan; nunca tocan pernos ni orejetas; imprimibles). Los agujeros se detectan en la malla.
+      tienen los agujeros del enunciado (comprobación previa en `datos_simjeb/compatibilidad.json`: 62 compatibles, 10 excluidos),
+      se calculan los 30 más prometedores **tal cual** como **referencias** (nunca pueden ser el mejor: la pieza final debe ser
+      nueva) y después se **modifican**: collares junto a los pernos (añaden) y 2 aligeramientos pasantes verticales (quitan;
+      nunca tocan pernos ni orejetas; imprimibles). Los agujeros se detectan en la malla. Booleanas robustas (tolerancia
+      difusa creciente): 31/32 modificaciones al azar se construyen bien. Probado en ANSYS: SimJEB 321 tal cual 1,301 kg / 284,6 MPa.
     - Optimizador: ramas por turnos entre hermanas, anti-estancamiento, exploradoras más frecuentes, mutaciones grandes.
     - Proyecto Workbench válido también para diseños SimJEB (caras de pernos/bulón según lo detectado en la malla).
     - **Sin perder el progreso**: el archivado es ahora por familia (añadir una familia no archiva nada); `runs/opt_37800N` sigue igual.

@@ -218,7 +218,8 @@ def build(p):
             n_ali += 1
         solid = new
     info["aligeramientos"] = n_ali
-    info["sin_modificar"] = not rings and n_ali == 0     # diseno SimJEB tal cual: solo REFERENCIA (no es pieza nueva)
+    # diseno SimJEB tal cual (o con cambios de menos del 0,2 % de su volumen): solo REFERENCIA, no es una pieza nueva
+    info["sin_modificar"] = abs(solid.Volume() - base.Volume()) < 0.002 * base.Volume()
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6, pin_half_width=None,
                 auto_interfaces=True, holes={"deteccion": "en la malla"}, simjeb_id=seed["id"],
                 simjeb_categoria=seed["cat"], simjeb_autor=seed["autor"], simjeb_tension_estimada=round(seed["est"], 1))

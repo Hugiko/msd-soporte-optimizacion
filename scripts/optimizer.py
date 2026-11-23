@@ -378,8 +378,9 @@ class Family:
             x = self.snap(np.array(rows[n]))
             if n < len(self.x_first_list) and hasattr(self.mod, "seed_info"):
                 sd = self.mod.seed_info(self.to_params(x))
-                why = (f"torneo de disenos SimJEB ({n + 1}/{self.n_init}): SimJEB n.o {sd['id']} ({sd['cat']}, {sd['autor']}) "
-                       f"tal cual, sin modificar (tension estimada {sd['est']:.0f} MPa)")
+                why = (f"torneo de referencias SimJEB ({n + 1}/{self.n_init}): SimJEB n.o {sd['id']} ({sd['cat']}, {sd['autor']}) "
+                       f"tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final "
+                       f"debe ser nueva; tension estimada por SimJEB {sd['est']:.0f} MPa)")
             else:
                 why = f"reparto inicial ({n + 1}/{self.n_init}): explorar todo el espacio"
             return x, why, None, "DOE", self.root_id()
