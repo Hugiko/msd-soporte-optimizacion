@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:59
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:00
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (40)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (41)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -37,6 +37,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:59
 | 084 | 2.166 | 177.7 | [rama SX3] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, z_col, ali1_r | - |
 | 041 | 2.211 | 176.7 | [rama S2] rama nueva (inicial, paso 0.30) desde el diseno 013; cambia ali2_x, ali2_r | - |
 | 156 | 2.212 | 176.7 | [rama S2] varios pasos sin mejora: paso mas corto (0.30); cambia z_col, ali2_x | [ver](156/vonmises.png) |
+| 160 | 2.218 | 176.4 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, z_col... | [ver](160/vonmises.png) |
 | 091 | 2.228 | 174.0 | [rama S2] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_x, ali2_x, ali2_y... | - |
 | 013 | 2.236 | 176.5 | torneo de referencias SimJEB (13/30): SimJEB n.o 474 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 127 MPa) | - |
 | 067 | 2.272 | 174.2 | [rama S3] rama nueva (inicial, paso 0.30) desde el diseno 016; cambia z_col, ali1_y, ali2_x, ali2_r | - |
@@ -141,11 +142,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:59
 | 130 | 1.929 | 3113.5 | [rama SX1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia ali1_y, ali2_y, ali2_r | - |
 | 131 | 2.025 | 209.3 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali2_x, ali2_y, ali2_r | - |
 | 132 | 2.285 | 313.5 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_y, ali2_y | - |
-| 134 | 2.378 | 245.8 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_del, ali1_x | [ver](134/vonmises.png) |
-| 136 | 1.538 | 354.7 | [rama S1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia semilla | [ver](136/vonmises.png) |
-| 137 | 1.174 | 327.8 | [rama SX5] varios pasos sin mejora: paso mas corto (0.60); cambia semilla, ali1_x, ali2_x | [ver](137/vonmises.png) |
-| 138 | 1.846 | 434.9 | [rama SX8] exploradora: punto al azar en una zona nunca probada (a 1.29 del diseno probado mas cercano (anti-estancamiento)) | [ver](138/vonmises.png) |
-| 139 | 1.009 | 618.7 | [rama SX9] exploradora: punto al azar en una zona nunca probada (a 1.22 del diseno probado mas cercano (anti-estancamiento)) | [ver](139/vonmises.png) |
+| 134 | 2.378 | 245.8 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_del, ali1_x | - |
+| 136 | 1.538 | 354.7 | [rama S1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia semilla | - |
+| 137 | 1.174 | 327.8 | [rama SX5] varios pasos sin mejora: paso mas corto (0.60); cambia semilla, ali1_x, ali2_x | - |
+| 138 | 1.846 | 434.9 | [rama SX8] exploradora: punto al azar en una zona nunca probada (a 1.29 del diseno probado mas cercano (anti-estancamiento)) | - |
+| 139 | 1.009 | 618.7 | [rama SX9] exploradora: punto al azar en una zona nunca probada (a 1.22 del diseno probado mas cercano (anti-estancamiento)) | - |
 | 143 | 1.640 | 293.3 | [rama SX3] varios pasos sin mejora: paso mas corto (0.15); cambia semilla, ali1_x, ali2_r | [ver](143/vonmises.png) |
 | 144 | 1.207 | 439.6 | [rama SX8] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, ali1_r, ali2_y | [ver](144/vonmises.png) |
 | 145 | 1.501 | 679.5 | [rama SX9] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra | [ver](145/vonmises.png) |

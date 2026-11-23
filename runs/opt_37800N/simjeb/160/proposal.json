@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 51.0,
+  "t_col_del": 2.2963,
+  "t_col_tra": 0.4493,
+  "z_col": 8.8936,
+  "ali1_x": 43.8931,
+  "ali1_y": -76.1581,
+  "ali1_r": 0.0,
+  "ali2_x": 39.8861,
+  "ali2_y": -11.0313,
+  "ali2_r": 5.5813
+ },
+ "motivo": "[rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, z_col...",
+ "pred": {
+  "mass_kg": 2.213388015411929,
+  "stress_mpa": 185.01530954937147,
+  "p_cumple": 0.5198809797182223,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "semilla": 0.803692953939724,
+   "t_col_del": 0.005682091276255969,
+   "t_col_tra": 0.005840398660600218,
+   "z_col": 0.006689348881564422,
+   "ali1_x": 0.007030973385633813,
+   "ali1_y": 0.13495588214422552,
+   "ali1_r": 0.0138548356610878,
+   "ali2_x": 0.006696148111242003,
+   "ali2_y": 0.009020965023989351,
+   "ali2_r": 0.006536402915676983
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "SX6",
+ "fecha": "2026-11-23T13:00:00.161809"
+}
