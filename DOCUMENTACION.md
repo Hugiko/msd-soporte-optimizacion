@@ -15,7 +15,7 @@ Este documento recoge, a fecha 23/11/2026, el problema, las decisiones y su moti
 
 ## 1. Resumen en una frase
 
-Un programa que **parte del soporte del enunciado y lo va modificando con sentido**: añade material donde está el pico de tensión y lo quita donde no trabaja. Cada cambio sale de una **regla de diseño respaldada por datos**, se calcula en ANSYS y se acepta o se revierte según el resultado. El objetivo es el soporte más ligero con **coeficiente de seguridad ≥ 1** (σ ≤ 215 MPa) y desplazamiento ≤ 0,25 mm, sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón.
+Un **creador de piezas**: se le dan las premisas (carga, límites de tensión y desplazamiento, agujeros fijos) y busca la pieza de **mínima masa**. Parte del soporte del enunciado y lo va modificando con sentido: añade material donde está el pico de tensión, lo quita donde no trabaja y **crea formas nuevas** (nervios) en la trayectoria de la carga. Cada cambio sale de una **regla de diseño respaldada por datos**, se calcula en ANSYS y se acepta o se revierte según el resultado. El objetivo es el soporte más ligero con **coeficiente de seguridad ≥ 1** (σ ≤ 215 MPa) y desplazamiento ≤ 0,25 mm, sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón.
 
 ---
 
@@ -39,7 +39,7 @@ Un programa que **parte del soporte del enunciado y lo va modificando con sentid
 | **Tensión admisible** | **Coeficiente de seguridad ≥ 1,0**, es decir, **σ ≤ 215 MPa**, obligatorio | Límite del enunciado. Ninguna pieza que lo supere cuenta como válida |
 | **Desplazamiento** | **≤ 0,25 mm** | No lo exige el enunciado; evita piezas ligeras pero blandas |
 | **Impresión 3D** | Reglas de fabricación aditiva activadas | Decisión de diseño propia: techos a 45°, evacuación de polvo, sin cavidades cerradas |
-| **Cuándo una pieza es «mejor»** | Entre piezas válidas, menor **masa × aprovechamiento^0,15** | Manda la masa; la seguridad por encima del mínimo solo desempata |
+| **Objetivo** | **Mínima masa**; tensión y desplazamiento son límites obligatorios | Lo que pide el grupo (23/11): el parámetro es la masa. La seguridad sobrante no puntúa (`peso_seguridad` = 0) |
 
 ---
 
@@ -113,6 +113,7 @@ Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (o
 | R8 | el pico está en el borde de un corte anterior | reducir o deshacer ese corte | ese material sí trabajaba |
 | R9 | un corte fue rechazado | en esa zona, cortes ≤ 0,6 × el rechazado | búsqueda por bisección del tamaño |
 | R10 | no queda material ocioso donde cortar | subir el umbral 15 % → 25 % → 35 % | primero lo más seguro |
+| **R11** | un bloque trabaja algo (< 45–60 % del límite) o quitarlo entero se rechazó | **forma nueva**: se quita el bloque y se crean **nervios**, uno por cada familia de la carga (tracción y compresión) que lleve ≥ 25 % de ella, en su dirección principal, dimensionados para trabajar al 50 % del límite y con acuerdo de 3 mm en la raíz | Michell (1904): la estructura mínima lleva cada familia por su trayectoria, con un volumen ∫\|σ\| dV / σ_trabajo |
 
 **Datos de las reglas**
 - **Las reglas se juzgan con datos.** Una regla que contradicen los datos de un cambio **directo** (mismo diseño, cambiando solo eso) **se desactiva**. Las comparaciones con SimJEB (diseños distintos) pueden respaldarla o ser «no concluyentes», pero no la desactivan. Una regla que se prueba 8 veces en el optimizador sin que ninguna se acepte **se suspende**. Ejemplo real: R5 parecía lógica (agrandar el radio del acuerdo baja Kt), pero en los 294 diseños calculados antes, agrandar el alojamiento **sube** la tensión (Spearman +0,76: mediana de 360 MPa con R > 11 mm frente a 206 MPa con el del original). Pesa más la sección que se pierde que el acuerdo que se gana, así que está desactivada.
@@ -122,10 +123,10 @@ Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (o
 ## 7. Paso 3: el optimizador guiado por reglas (`scripts/optimizer.py`)
 
 ### 7.1 Una iteración
-1. **Mapa de tensiones** de la pieza actual (`campo.py`): material ocioso, pico y concentración.
+1. **Mapa de tensiones** de la pieza actual (`campo.py`): material ocioso, pico, concentración y **direcciones principales** (trayectorias de carga). Se calculan con el tensor completo que exporta ANSYS; el von Mises reconstruido coincide con el de ANSYS (error 1e-7).
 2. **Propuestas** (`reglas.py`): hasta 3 modificaciones, cada una con su regla, su porqué con números de la pieza actual y lo que se espera.
    - Si la pieza **no cumple** o está a menos de un 3 % del límite, primero refuerzos (R4, R6, R7, R8).
-   - Si hay margen, aligeramientos (R1–R3), al menos uno de cada regla disponible.
+   - Si hay margen, aligeramientos (R1–R3) y sustituciones de bloques por nervios (R11), al menos una de cada regla disponible.
 3. **Evaluación rápida** (malla gruesa) de cada propuesta, **comparada con la pieza actual en la misma malla gruesa**: así se cancela el error de la malla gruesa. Se descarta si la tensión prevista supera el límite en más de un 3 % o si no mejora la pieza.
 4. **Evaluación completa** (malla de 4 mm) solo de la más prometedora.
 5. **Decisión**:
@@ -138,7 +139,9 @@ Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (o
 ### 7.2 Operaciones (`scripts/operaciones.py`)
 La pieza es siempre **0.stp + una lista de operaciones** y se puede reconstruir desde cero.
 - **Quitan material**: agujero vertical pasante, rebaje desde arriba, hueco interior.
-- **Añaden o reforman**: collar en un perno, alojamiento, redondeo, anillo de orejetas.
+- **Añaden o reforman**: collar en un perno, alojamiento, redondeo, anillo de orejetas y **nervio**. El nervio es una pared vertical con el borde superior inclinado (también hace de cartela) en la dirección de la carga; nace de la base, así que se imprime sin soportes.
+- Lo que se añade nunca invade el paso de los tornillos y sus cabezas, el del bulón ni el hueco entre orejetas, y no sale de la caja que ocupa el soporte original (volumen de diseño).
+- **Ninguna forma se pone «a ver si funciona»**: cada una sale del campo de tensiones (dónde, en qué dirección y de qué tamaño) y se comprueba en ANSYS.
 
 Las que quitan nunca entran en las zonas protegidas: alojamiento + 3 mm alrededor de cada perno y radio del bulón + 6 mm en las orejetas. **Los 6 agujeros se verifican en cada pieza.**
 
@@ -190,7 +193,7 @@ Las que quitan nunca entran en las zonas protegidas: alojamiento + 3 mm alrededo
 | `carga_N` | 42258 | Carga del enunciado (Tabla 2) |
 | `sigma_y_MPa` / `margen_optimizacion` | 215 / 1,0 | Límite = 215 MPa (CS ≥ 1, obligatorio) |
 | `desplazamiento_max_mm` | 0,25 | 0 = sin límite |
-| `peso_seguridad` | 0,15 | Desempate entre piezas válidas |
+| `peso_seguridad` | 0 | 0 = objetivo solo masa; > 0 = la seguridad sobrante desempata |
 | `estudio_simjeb` | true | Estudio de las soluciones publicadas antes de optimizar |
 | `candidatos_por_iteracion` | 3 | Propuestas que se prueban en la evaluación rápida |
 | `umbrales_ocioso` | 0,15 / 0,25 / 0,35 | Umbral de material ocioso (R10) |

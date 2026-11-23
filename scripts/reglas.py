@@ -41,7 +41,8 @@ REGLAS = {
                espero="baja la masa; la tension maxima casi no cambia"),
     "R2": dict(titulo="Rebaje desde arriba de la capa ociosa", tipo="quitar",
                si="todo el material por encima de una cota zc, en un rectangulo (con 4 mm de margen), esta por debajo del umbral",
-               hago="rebaje desde arriba hasta zc con acuerdos redondeados (suelo horizontal: imprimible); deja >= 5 mm de suelo",
+               hago=("rebaje desde arriba hasta zc (suelo horizontal: imprimible) con esquinas redondeadas de radio = 20 % de su lado "
+                     "menor (3-8 mm); deja >= 5 mm de suelo y nunca una pared de menos de 5 mm al borde"),
                porque="material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan "
                       "por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.",
                espero="baja la masa; la tension maxima casi no cambia"),
@@ -95,7 +96,79 @@ REGLAS = {
                 porque="se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y "
                        "solo despues se aprovecha material que trabaja algo mas.",
                 espero="permite seguir aligerando con un riesgo controlado"),
+    "R11": dict(titulo="Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)", tipo="sustituir",
+                si=("un bloque trabaja por debajo del 45-60 % del limite (no es ocioso: lleva algo de carga) o un rebaje se rechazo "
+                    "porque ese material si trabajaba"),
+                hago=("se quita el bloque y se crean NERVIOS (paredes verticales, imprimibles, con acuerdo de 3 mm en la raiz): uno "
+                      "por cada familia de la carga (traccion y compresion) en su direccion principal, dimensionado para llevarla al "
+                      "50 % del limite"),
+                porque=("Michell (1904): la estructura de volumen minimo que lleva una carga sigue las trayectorias de las tensiones "
+                        "principales, y su volumen es la integral de |s| dV dividida por la tension de trabajo. En un bloque macizo "
+                        "casi todo el material trabaja muy por debajo del limite; un nervio en la direccion de la carga lleva lo "
+                        "mismo (traccion/compresion, que aprovecha toda la seccion) con mucho menos material."),
+                espero="baja la masa (bloque menos nervio); la tension sube algo, pero el nervio trabaja por debajo del limite"),
 }
+TAU_NERVIO = (0.45, 0.6)        # bloques que trabajan "algo": candidatos a sustituirse por un nervio (R11)
+SIG_TRABAJO = 0.5               # tension de trabajo de los nervios (fraccion del limite): margen para las uniones
+
+
+def rib_for_block(C, reg, lim):
+    """Nervios que sustituyen al material del bloque 'reg' (rectangulo x0..x1, y0..y1 por encima de zc).
+    Michell: la estructura minima tiene DOS familias de barras, a traccion y a compresion. Para cada familia que lleve al
+    menos el 25 % de la carga del bloque se crea un nervio en su direccion principal dominante (trayectoria de carga),
+    dimensionado para que su volumen sea la integral de |s| dV de esa familia / (0,5 x limite).
+    Devuelve (lista de operaciones nervio, datos) o (None, motivo)."""
+    c = C.cen
+    m = ((c[:, 0] > reg["x0"]) & (c[:, 0] < reg["x1"]) & (c[:, 1] > reg["y0"]) & (c[:, 1] < reg["y1"]) &
+         (c[:, 2] > reg["zc"]) & ~C.prot)
+    if m.sum() < 10:
+        return None, "bloque demasiado pequeno"
+    if C.pdir is None:
+        return None, "sin direcciones principales (calculo antiguo)"
+    k = np.abs(C.pval).argmax(axis=1)
+    sdom = C.pval[np.arange(len(k)), k]                      # tension principal dominante con signo
+    w_all = float((np.abs(sdom[m]) * C.vol[m]).sum())
+    V_block = float(C.vol[m].sum())
+    ribs, fams = [], []
+    for fam, mf in (("traccion", m & (sdom > 0)), ("compresion", m & (sdom < 0))):
+        Sf = float((np.abs(sdom[mf]) * C.vol[mf]).sum())
+        if mf.sum() < 6 or Sf < 0.25 * w_all:
+            continue
+        d, coh, cg, _ = C.load_path(mf)
+        hp = float(np.hypot(d[0], d[1]))
+        if hp < 0.35:
+            continue                                          # esa familia trabaja casi en vertical
+        dp = np.array([d[0], d[1]]) / hp
+        ts = []
+        for i, (lo, hi) in enumerate(((reg["x0"], reg["x1"]), (reg["y0"], reg["y1"]))):
+            if abs(dp[i]) > 1e-9:
+                ts += [(lo - cg[i]) / dp[i], (hi - cg[i]) / dp[i]]
+        ts = sorted(ts)
+        L_in = ts[2] - ts[1]
+        if L_in < 10.0:
+            continue
+        P0 = cg[:2] + dp * (ts[1] - 8.0); P1 = cg[:2] + dp * (ts[2] + 8.0)   # 8 mm de anclaje en el material que queda
+
+        def top_at(P):
+            near = np.hypot(c[:, 0] - P[0], c[:, 1] - P[1]) < 6.0
+            return float(c[near, 2].max() + 1.5) if near.any() else float(c[mf, 2].max())
+        zt0, zt1 = top_at(P0), top_at(P1)
+        h_eff = max((zt0 + zt1) / 2 - reg["zc"], 3.0)
+        A = Sf / (L_in * SIG_TRABAJO * lim)
+        t = A / h_eff
+        if t > 14.0:
+            return None, f"la familia a {fam} lleva demasiada carga para un nervio ({t:.0f} mm de espesor necesario)"
+        t = float(max(t, 4.0))
+        ribs.append(dict(tipo="nervio", x0=round(float(P0[0]), 2), y0=round(float(P0[1]), 2), x1=round(float(P1[0]), 2),
+                         y1=round(float(P1[1]), 2), zt0=round(zt0, 2), zt1=round(zt1, 2), t=round(t, 2), zb=0.0))
+        fams.append(dict(fam=fam, dir=d, coh=coh, S=Sf, share=Sf / w_all, A=A, t=t, h=h_eff, L=L_in, V=t * h_eff * L_in,
+                         ang=float(np.degrees(np.arctan2(dp[1], dp[0])))))
+    if not ribs:
+        return None, "ninguna familia de la carga cruza el bloque en horizontal"
+    V_rib = sum(f["V"] for f in fams)
+    if V_rib > 0.6 * V_block:
+        return None, "los nervios necesarios serian casi tan grandes como el bloque"
+    return ribs, dict(fams=fams, V_block=V_block, V_rib=V_rib, util_max=float(C.smax[m].max() / lim), S=w_all)
 
 
 # =============================================================================================== evidencia
@@ -277,6 +350,21 @@ def evidence(log=print):
         E["R7"] = dict(respaldo=None, texto="estudio aun incompleto: regla basada en la mecanica (aplastamiento/cortadura)", tabla=[])
     for r in ("R8", "R9", "R10"):
         E[r] = dict(respaldo=None, texto="regla de procedimiento: se juzga por sus resultados en el optimizador", tabla=[])
+    full = [k for k in allf if k != "0" and str(rows[k].get("fidelidad", "")).startswith("normal")]
+    ribs = [k for k in full if rows[k].get("categoria") in ("beam", "arch", "butterfly")]
+    blocks = [k for k in full if rows[k].get("categoria") == "block"]
+    if len(ribs) >= 3 and len(blocks) >= 3:
+        orb, obl = med(ribs, "ocioso_rel"), med(blocks, "ocioso_rel")
+        mrb, mbl = float(np.median([rows[k]["masa_kg"] for k in ribs])), float(np.median([rows[k]["masa_kg"] for k in blocks]))
+        E["R11"] = dict(respaldo=(True if orb < obl - 0.03 else None),
+                        texto=(("" if orb < obl - 0.03 else "NO CONCLUYENTE: ") +
+                               f"entre los disenos publicados calculados con malla completa, los de nervios / arcos / vigas ({len(ribs)}) "
+                               f"tienen de mediana un {pct(orb)} de material ocioso y {mrb:.3f} kg, frente al {pct(obl)} y {mbl:.3f} kg "
+                               f"de los tipo bloque ({len(blocks)}). Teoria: Michell (1904), estructuras de volumen minimo"), tabla=[])
+    else:
+        E["R11"] = dict(respaldo=None, texto=("teoria de Michell (1904): el volumen minimo para llevar una carga sigue las trayectorias "
+                                              "principales; comparacion con SimJEB cuando el estudio tenga disenos de nervios y de bloque "
+                                              "calculados con malla completa"), tabla=[])
     # disenos publicados validos (tabla general)
     E["_validos"] = [dict(id=int(k), masa=rows[k]["masa_kg"], tension=rows[k]["tension_MPa"], desp=rows[k]["desp_mm"],
                           categoria=rows[k]["categoria"], autor=rows[k]["autor"], ocioso=feat[k].get("ocioso"),
@@ -304,6 +392,17 @@ def activa(rid, E, stats):
 def symmetric_bolt(k):
     ym = float(O.PIN_P[1]); x, y = G.BOLTS[k]["c"]
     return int(np.argmin([abs(b["c"][0] - x) + abs(b["c"][1] - (2 * ym - y)) if j != k else 1e9 for j, b in enumerate(G.BOLTS)]))
+
+
+def corner_r(reg):
+    """Radio de las esquinas de un vaciado: 20 % de su lado menor (entre 3 y 8 mm). La carga que rodea el vaciado se
+    concentra en sus esquinas y el factor de concentracion baja al crecer r respecto al tamano del vaciado (Peterson)."""
+    return round(float(np.clip(0.2 * min(reg["x1"] - reg["x0"], reg["y1"] - reg["y0"]), 3.0, 8.0)), 1)
+
+
+def _overlap_rect(a, b):
+    ix = max(0.0, min(a["x1"], b["x1"]) - max(a["x0"], b["x0"])); iy = max(0.0, min(a["y1"], b["y1"]) - max(a["y0"], b["y0"]))
+    return ix * iy / max((a["x1"] - a["x0"]) * (a["y1"] - a["y0"]), 1e-9)
 
 
 def make_veto(rechazos):
@@ -459,7 +558,7 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                         f"{far((c['x'], c['y'], pk['xyz'][2])):.0f} mm." + ev("R1")),
                                 espero=dict(dm_g=-c["V"] * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
             for c in cuts:
-                op = dict(tipo="rebaje", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1", "zc")})
+                op = dict(tipo="rebaje", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1", "zc")}, rr=corner_r(c))
                 d, hist = _expect("R2", stats, 0.0)
                 rem.append(dict(regla="R2", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=c["V"],
                                 porque=(f"Todo el material por encima de z = {c['zc']:.0f} mm en esa zona (y 4 mm alrededor) trabaja "
@@ -474,6 +573,37 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                         f"{tau * 100:.0f} % del limite: en flexion la tension crece con la distancia a la fibra neutra, asi "
                                         f"que vaciarlo conserva las pieles, que son las que trabajan." + ev("R3")),
                                 espero=dict(dm_g=-c["V"] * 0.6 * RHO * 1000, dsig_pct=d, txt=hist or "la tension sube poco")))
+        # ---------------- R11: sustituir bloques que trabajan poco por nervios en la trayectoria de la carga
+        if ok("R11") and C.pdir is not None:
+            vrn = lambda op: veto(dict(op, tipo="rebaje_nervio"))
+            regs = [dict(rj["op"], origen="rechazo") for rj in st.get("rechazos", [])
+                    if rj["op"]["tipo"] == "rebaje" and rj["motivo_tipo"] == "tension" and not vrn(rj["op"])]
+            for tau2 in TAU_NERVIO:
+                regs += [dict(r_, origen=f"umbral {tau2 * 100:.0f} %") for r_ in C.top_cuts(tau2, veto=vrn, n_max=3)]
+            seen = []
+            for reg in regs:
+                if any(_overlap_rect(reg, q) > 0.5 for q in seen):
+                    continue
+                seen.append(reg)
+                ribs, info = rib_for_block(C, reg, lim)
+                if ribs is None:
+                    continue
+                cut = dict(tipo="rebaje", **{k: round(reg[k], 2) for k in ("x0", "x1", "y0", "y1", "zc")}, rr=corner_r(reg))
+                net = info["V_block"] - info["V_rib"]
+                d, hist = _expect("R11", stats, 3.0)
+                desc = "; ".join(f"a {f['fam']}: {f['share'] * 100:.0f} % de la carga, direccion ({f['dir'][0]:+.2f}, {f['dir'][1]:+.2f}, "
+                                 f"{f['dir'][2]:+.2f}), coherencia {f['coh'] * 100:.0f} % -> nervio de {f['t']:.1f} mm x {f['h']:.0f} mm "
+                                 f"({f['A']:.0f} mm2)" for f in info["fams"])
+                rem.append(dict(regla="R11", op=dict(cut, tipo="rebaje_nervio"), ops_nuevas=ops + [cut] + ribs, V=net,
+                                titulo=(f"sustituir el bloque x {reg['x0']:.0f}..{reg['x1']:.0f}, y {reg['y0']:.0f}..{reg['y1']:.0f} "
+                                        f"(por encima de z = {reg['zc']:.0f}) por {len(ribs)} nervio(s) en la trayectoria de la carga"),
+                                porque=(f"Ese bloque ({info['V_block'] / 1e3:.0f} cm3) trabaja como maximo al {info['util_max'] * 100:.0f} % del limite"
+                                        + (" y quitarlo entero se rechazo (si llevaba carga)" if reg.get("origen") == "rechazo" else "")
+                                        + f". Su carga (integral de |s| dV = {info['S'] / 1e3:.0f} kN mm) se reparte asi: {desc}. "
+                                        f"Michell: la estructura minima lleva cada familia (traccion y compresion) por su trayectoria; "
+                                        f"cada nervio se dimensiona para trabajar al {SIG_TRABAJO * 100:.0f} % del limite: "
+                                        f"{info['V_rib'] / 1e3:.1f} cm3 en lugar de {info['V_block'] / 1e3:.0f}. Acuerdo de 3 mm en su raiz." + ev("R11")),
+                                espero=dict(dm_g=-net * RHO * 1000, dsig_pct=d, txt=hist or "baja la masa; la tension sube algo")))
     # ---------------- seleccion: diversidad de reglas
     sel = []
     if ratio > 0.97:

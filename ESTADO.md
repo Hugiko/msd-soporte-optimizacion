@@ -18,19 +18,21 @@ Partir del soporte del enunciado (`0.stp`) y modificarlo paso a paso, con un por
   3. [hecho] `reglas.py` + `DESIGN_RULES.md`: 10 reglas con condición, operación, porqué, evidencia y estadísticas.
      - R5 (alojamiento más ancho) ya está **desactivada por los datos**.
      - R4 (collar) está **respaldada** por una prueba directa.
-  4. [hecho] `operaciones.py`: 7 operaciones (3 quitan, 4 añaden o reforman) con zonas protegidas y verificación de los 6 agujeros.
+  4. [hecho] `operaciones.py`: 8 operaciones (3 quitan, 5 añaden o reforman, incluido el nervio) con zonas protegidas y verificación de los 6 agujeros.
   5. [hecho] `optimizer.py` nuevo:
      - iteraciones con evaluación rápida comparada en la misma malla y evaluación completa solo de la mejor;
      - aceptar, revertir o invertir;
      - hitos con malla fina y Workbench.
   6. [hecho] Trazabilidad: `ITERACIONES.md`, un commit por iteración y un mensaje de Discord por iteración.
   7. [hecho] Limpieza: eliminadas las familias, BoTorch, el árbol de ramas y `report.py`; configuración nueva.
+  8. [hecho] **Formas nuevas con fundamento**: tensor de tensiones desde ANSYS → direcciones principales; operación `nervio` y regla R11 (sustituir un bloque por un nervio en la trayectoria de la carga, dimensionado por Michell). Objetivo: solo masa (`peso_seguridad` = 0).
+  9. [hecho] GitHub limpio: fuera `runs/archivo/` (4 413 ficheros); los datos de las reglas, en `estudio/calculos_anteriores.csv`.
 
 ## Pendiente
-1. **En marcha (23/11, 15:19)**: `optimizar.bat` lanzado. Espera a que termine el estudio (unas 4 h), escribe las reglas y empieza a optimizar solo.
+1. **En marcha (23/11, 16:05)**: `optimizar.bat` lanzado. Espera a que termine el estudio (unas 4 h), escribe las reglas y empieza a optimizar solo.
 2. Cuando termine el estudio: revisar `DESIGN_RULES.md` con todos los datos (R1–R3 y R7 se completan con SimJEB).
-3. Prueba corta ya hecha (2 iteraciones): collar de 6 mm en los pernos 1 y 3 → 238 → 201,9 MPa (cumple; malla fina 212,5); después, rebaje de material ocioso: −35 g, +0,9 % de tensión.
-3. Fase 5:
+3. Primera prueba corta (2 iteraciones): collar de 6 mm en los pernos 1 y 3 → 238 → 201,9 MPa (cumple; malla fina 212,5); después, rebaje de material ocioso: −35 g, +0,9 % de tensión.
+4. Fase 5:
    - verificación final con malla fina y convergencia;
    - modelo de tornillo realista;
    - comparación del original con el final;

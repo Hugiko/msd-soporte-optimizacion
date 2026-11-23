@@ -85,7 +85,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         def level(h0, hmin0, tag, quick=False):
             """Malla -> ANSYS -> resultados, con reintentos de malla. Devuelve todo lo necesario."""
             nonlocal stage
-            strategies = [(10, h0, False), (1, h0, False), (10, h0 * 0.9, False), (4, h0, False), (10, h0, True), (1, h0 * 1.1, True)]
+            # la 3.a estrategia repara la geometria al importar (caras que se cruzan tras una booleana: "PLC error")
+            strategies = [(10, h0, False), (1, h0, False), (10, h0, True), (10, h0 * 0.9, False), (4, h0, False), (1, h0 * 1.1, True)]
             if quick:                                   # pasada rapida: solo 2 intentos (es opcional)
                 strategies = strategies[:2]
             if n_strategies:
@@ -186,8 +187,11 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         res["mass_kg"] = m["mass_kg"]
         tets4 = (np.asarray(out["tets"])[:, :4] - 1).astype(np.int32)      # vertices de cada tetraedro (0-based)
         LAST.update(nodes=nodes, tets4=tets4, tris=tris, vm=s, u=u, iface=fem.IFACE)
+        extra = {}
+        if fem.LAST_COMP is not None and len(fem.LAST_COMP) == len(nodes):
+            extra["sig6"] = fem.LAST_COMP.astype(np.float32)               # tensor de tensiones (direcciones principales)
         np.savez_compressed(os.path.join(wd, "campos.npz"), nodes=nodes.astype(np.float32), tris=tris, vm=s.astype(np.float32),
-                            u=u.astype(np.float32), tets4=tets4)
+                            u=u.astype(np.float32), tets4=tets4, **extra)
         if images:
             L("  [5/5] imagenes")
             render.results_png(nodes, tris, s, os.path.join(wd, "vonmises.png"),

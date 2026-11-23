@@ -176,3 +176,33 @@
   - **R5 desactivada por los datos**: agrandar el alojamiento (radio del acuerdo mayor, Peterson) SUBE la tensión en los 294 diseños anteriores (Spearman +0,76; mediana de 360 frente a 206 MPa). Domina la sección que se pierde.
   - **R4 (collar) respaldada**: prueba directa de −15 % con 6 mm (+159 g); en la familia refuerzo, más collar delantero → menos tensión (Spearman −0,25).
 - **Redondeo junto al pico**: la primera prueba fallaba porque tocaba el borde del agujero del perno, y la verificación de agujeros lo detectó. Ahora las aristas de los 6 agujeros fijos se excluyen siempre.
+
+## 2026-11-23 – Formas nuevas con fundamento y objetivo «solo masa»
+
+- **Petición del grupo**:
+  - que sea un «creador de piezas»: con unas premisas, la mínima masa con la tensión y el desplazamiento como límites;
+  - que pueda **añadir formas nuevas** si mejoran la pieza, pero nunca «pegotes a ver si funcionan».
+- **Objetivo**: `peso_seguridad` = 0, es decir, solo masa. La seguridad sobrante ya no puntúa.
+- **Direcciones principales**: MAPDL exporta ahora el tensor completo (SX, SY, SZ, SXY, SYZ, SXZ) en cada nodo. `campo.py` calcula las tensiones y direcciones principales de cada elemento y la **dirección dominante** de una zona (tensor de orientación ponderado por |σ|·V). Comprobación: el von Mises reconstruido coincide con el de ANSYS (error relativo 1e-7).
+- **Operación `nervio`**:
+  - pared vertical de espesor t con el borde superior inclinado (también hace de cartela), que nace de la base y es imprimible;
+  - nunca invade los tornillos, sus cabezas, el bulón ni el hueco entre orejetas;
+  - no sale de la caja del original.
+- **Regla R11 (sustituir un bloque por un nervio)**:
+  - **Cuándo**: un bloque que trabaja algo (< 45–60 % del límite), o un rebaje que se rechazó por tensión.
+  - **Dirección del nervio**: la principal dominante del material quitado.
+  - **Tamaño (Michell 1904)**: el volumen mínimo que lleva la carga es ∫|σ| dV / σ_trabajo, con el nervio al 60 % del límite.
+  - **Ejemplo sobre el original** (carga escalada a una pieza que cumple): bloque trasero de 64 cm³ (máx. 41 % del límite) → nervio de 4 mm a 60° en la dirección (+0,46; +0,81; −0,36), de las orejetas hacia el perno 2. Son 8,9 cm³ en lugar de 64 (−430 g previstos). La geometría se construye y conserva los 6 agujeros.
+- **GitHub**: fuera `runs/archivo/` (4 413 ficheros del enfoque anterior; quedan en el PC). Los datos que usan las reglas pasan a `estudio/calculos_anteriores.csv`.
+- **Primeras pruebas de R11 en ANSYS** (pieza de 2,450 kg y 201,9 MPa; bloque trasero de 31 cm³ que trabaja al 43 % como máximo):
+  - 1 nervio en la dirección dominante → 515 MPa. El pico estaba en el propio nervio: un bloque a flexión lleva tracción Y compresión y un solo nervio no equilibra.
+  - Mejoras con fundamento:
+    - **dos familias** (Michell: un nervio por cada familia que lleve ≥ 25 % de la carga);
+    - nervios dimensionados al 50 % del límite;
+    - **acuerdo de 3 mm en la raíz** del nervio;
+    - **no dejar paredes < 5 mm** al borde de un rebaje (se abre hasta el borde);
+    - **radio de las esquinas** del vaciado = 20 % de su lado menor (3–8 mm).
+  - Resultado tras las mejoras: 515 → 404 → 362 MPa. Ese bloque sigue sin poder sustituirse entero, porque está en el camino de la carga hacia el perno 2.
+  - El optimizador lo rechazará y, por R9, en esa zona solo probará sustituciones menores. Si R11 falla 8 veces sin acierto, se suspende y queda reflejado en DESIGN_RULES.md.
+- Booleanas: algunos cortes daban sólidos que OCC marca como no válidos; ida y vuelta por STEP los repara (comprobado). La malla rápida prueba ahora la reparación de geometría de gmsh en su 3.er intento.
+- Los cortes que atraviesan la zona de cartelas y alojamientos pueden dejar caras diminutas que gmsh no malla. Esas propuestas se descartan solas y quedan anotadas.

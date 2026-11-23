@@ -133,9 +133,13 @@ def run(max_n=None, stop_flag=None):
             f"{d['vol'] * 7.85e-6:.3f} kg de acero{eta}")
         wd = os.path.join(WORK, f"{d['id']:03d}")
         t0 = time.time()
+        prev = res.get(str(d["id"]))
+        retry = bool(prev and prev.get("fuerza_N") == FORCE and prev.get("veredicto") == "fallido")
+        if retry:
+            log("  reintento con todas las estrategias de malla (incluida la reparacion de la geometria)")
         try:
             m = evaluate({}, wd, force=FORCE, geom=SimJEBGeom(d), prescreen=1.5, log=LOG, images=False,
-                         mesh_timeout=120, n_strategies=3)
+                         mesh_timeout=120, n_strategies=None if retry else 3)
         except Exception as e:
             m = dict(status="error", error=f"{type(e).__name__}: {e}")
         v = verdict(m)

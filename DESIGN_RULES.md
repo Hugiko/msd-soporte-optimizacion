@@ -1,14 +1,14 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 23/11/2026 15:16. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 23/11/2026 16:06. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
-2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Archivo: `runs/archivo/`.
+2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
 3. **Lo que pasa al aplicarlas** en el optimizador (cada aplicacion: tension y masa antes/despues). Una regla que los datos de un cambio DIRECTO contradicen se DESACTIVA (las comparaciones con SimJEB, entre disenos distintos, pueden respaldarla o ser no concluyentes, pero no la desactivan); una que falla 8 veces sin ninguna mejora en el optimizador se SUSPENDE.
 
 ## Estudio de las soluciones publicadas
 
-31 disenos calculados: **0 cumplen**, 25 no cumplen, 2 no tienen los agujeros del enunciado (bulon macizo o agujeros de otro tamano), 4 fallaron (malla). Los que superaban 1,5 veces el limite en la pasada rapida (malla gruesa) se descartaron sin calculo fino.
+101 disenos calculados: **0 cumplen**, 80 no cumplen, 6 no tienen los agujeros del enunciado (bulon macizo o agujeros de otro tamano), 15 fallaron (malla). Los que superaban 1,5 veces el limite en la pasada rapida (malla gruesa) se descartaron sin calculo fino.
 
 ## Reglas
 
@@ -23,7 +23,7 @@ Actualizado: 23/11/2026 15:16. Generado por `scripts/reglas.py` a partir de:
 ### R2. Rebaje desde arriba de la capa ociosa  (ACTIVA)
 
 - **Si:** todo el material por encima de una cota zc, en un rectangulo (con 4 mm de margen), esta por debajo del umbral.
-- **Hago:** rebaje desde arriba hasta zc con acuerdos redondeados (suelo horizontal: imprimible); deja >= 5 mm de suelo.
+- **Hago:** rebaje desde arriba hasta zc (suelo horizontal: imprimible) con esquinas redondeadas de radio = 20 % de su lado menor (3-8 mm); deja >= 5 mm de suelo y nunca una pared de menos de 5 mm al borde.
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (basada en la teoria / en sus resultados):** estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion).
@@ -91,6 +91,14 @@ Actualizado: 23/11/2026 15:16. Generado por `scripts/reglas.py` a partir de:
 - **Porque:** se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y solo despues se aprovecha material que trabaja algo mas.
 - **Espero:** permite seguir aligerando con un riesgo controlado.
 - **Evidencia (basada en la teoria / en sus resultados):** regla de procedimiento: se juzga por sus resultados en el optimizador.
+
+### R11. Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)  (ACTIVA)
+
+- **Si:** un bloque trabaja por debajo del 45-60 % del limite (no es ocioso: lleva algo de carga) o un rebaje se rechazo porque ese material si trabajaba.
+- **Hago:** se quita el bloque y se crean NERVIOS (paredes verticales, imprimibles, con acuerdo de 3 mm en la raiz): uno por cada familia de la carga (traccion y compresion) en su direccion principal, dimensionado para llevarla al 50 % del limite.
+- **Porque:** Michell (1904): la estructura de volumen minimo que lleva una carga sigue las trayectorias de las tensiones principales, y su volumen es la integral de |s| dV dividida por la tension de trabajo. En un bloque macizo casi todo el material trabaja muy por debajo del limite; un nervio en la direccion de la carga lleva lo mismo (traccion/compresion, que aprovecha toda la seccion) con mucho menos material.
+- **Espero:** baja la masa (bloque menos nervio); la tension sube algo, pero el nervio trabaja por debajo del limite.
+- **Evidencia (basada en la teoria / en sus resultados):** teoria de Michell (1904): el volumen minimo para llevar una carga sigue las trayectorias principales; comparacion con SimJEB cuando el estudio tenga disenos de nervios y de bloque calculados con malla completa.
 
 ---
 Las reglas R9 y R10 son de procedimiento (como aplicar las demas). La lista completa de iteraciones, con el antes y el despues de cada cambio, esta en `runs/opt_<carga>N/ITERACIONES.md`.

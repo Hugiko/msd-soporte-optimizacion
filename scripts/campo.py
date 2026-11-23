@@ -47,7 +47,7 @@ def zone_of(xyz):
 
 
 class Campo:
-    def __init__(self, nodes, tets4, vm, tris=None, sig_lim=215.0, peak_xyz=None, peak_vm=None):
+    def __init__(self, nodes, tets4, vm, tris=None, sig_lim=215.0, peak_xyz=None, peak_vm=None, sig6=None):
         nodes = np.asarray(nodes, float); tets4 = np.asarray(tets4, int); vm = np.asarray(vm, float)
         P = nodes[tets4]
         a, b, c, d = P[:, 0], P[:, 1], P[:, 2], P[:, 3]
@@ -65,6 +65,31 @@ class Campo:
         import operaciones as O
         self.prot = O.in_protected(self.cen)
         self._tree2 = None
+        self.pval = self.pdir = None
+        if sig6 is not None:                      # tensor medio de cada elemento -> tensiones y direcciones principales
+            t = np.asarray(sig6, float)[tets4].mean(axis=1)
+            T = np.empty((len(t), 3, 3))
+            T[:, 0, 0], T[:, 1, 1], T[:, 2, 2] = t[:, 0], t[:, 1], t[:, 2]
+            T[:, 0, 1] = T[:, 1, 0] = t[:, 3]; T[:, 1, 2] = T[:, 2, 1] = t[:, 4]; T[:, 0, 2] = T[:, 2, 0] = t[:, 5]
+            self.pval, self.pdir = np.linalg.eigh(T)          # valores ascendentes; columnas = direcciones
+
+    def load_path(self, mask):
+        """Direccion DOMINANTE en la que trabaja el material de 'mask' (trayectoria de carga): media, ponderada por
+        |s| x volumen, de la direccion principal de mayor |s| de cada elemento (tensor de orientacion, sin signo).
+        Devuelve (direccion unitaria 3D, coherencia 0-1, centroide ponderado, 'traccion'/'compresion')."""
+        if self.pdir is None or not mask.any():
+            return None
+        idx = np.flatnonzero(mask)
+        k = np.abs(self.pval[idx]).argmax(axis=1)
+        v = np.take_along_axis(self.pdir[idx], k[:, None, None].repeat(3, 1), 2)[:, :, 0]   # columna k de cada matriz
+        sv = np.take_along_axis(self.pval[idx], k[:, None], 1)[:, 0]
+        w = np.abs(sv) * self.vol[idx]
+        M = np.einsum("i,ij,ik->jk", w, v, v) / max(w.sum(), 1e-12)
+        ev, evec = np.linalg.eigh(M)
+        d = evec[:, -1]
+        c = (self.cen[idx] * w[:, None]).sum(0) / max(w.sum(), 1e-12)
+        sign = "traccion" if (sv * w).sum() > 0 else "compresion"
+        return d, float(ev[-1]), c, sign
 
     # ------------------------------------------------------------------ caracteristicas (estudio y reglas)
     def low(self, tau):
@@ -202,6 +227,7 @@ class Campo:
         cands.sort(key=lambda d: -d["V"])
         sel = []
         for cd in cands:
+            self._open_slivers(cd)
             if veto and veto(dict(tipo="rebaje", **{k: cd[k] for k in ("x0", "x1", "y0", "y1", "zc")})):
                 continue
             if all(_rect_overlap(cd, s) < 0.3 for s in sel):
@@ -209,6 +235,22 @@ class Campo:
             if len(sel) >= n_max:
                 break
         return sel
+
+    def _open_slivers(self, cd, wall=5.0):
+        """Si al lado de un rebaje solo quedaria una pared de menos de 'wall' mm hasta el borde de la pieza, el rebaje se
+        abre hasta el borde: una lamina fina se carga y concentra la tension (y apenas pesa)."""
+        c = self.cen
+        up = c[:, 2] > cd["zc"]
+        by = up & (c[:, 1] > cd["y0"]) & (c[:, 1] < cd["y1"])
+        bx = up & (c[:, 0] > cd["x0"]) & (c[:, 0] < cd["x1"])
+        for ax, band, lo, hi in ((0, by, "x0", "x1"), (1, bx, "y0", "y1")):
+            out_hi = c[band & (c[:, ax] >= cd[hi]), ax]
+            if out_hi.size and out_hi.max() - cd[hi] < wall:
+                cd[hi] = float(out_hi.max() + 4.0)
+            out_lo = c[band & (c[:, ax] <= cd[lo]), ax]
+            if out_lo.size and cd[lo] - out_lo.min() < wall:
+                cd[lo] = float(out_lo.min() - 4.0)
+        return cd
 
     def cavities(self, tau, b=4.0, wall=4.0, n_max=4, v_min=1500.0, veto=None):
         """Huecos interiores (caja) en material ocioso, a >= 'wall' mm de cualquier superficie."""
@@ -280,4 +322,5 @@ def from_npz(path, sig_lim=215.0, metrics=None):
     if "tets4" not in d:
         raise ValueError("campos.npz sin tetraedros (calculado con una version anterior)")
     m = metrics or {}
-    return Campo(d["nodes"], d["tets4"], d["vm"], d["tris"], sig_lim, m.get("vm_metric_xyz"), m.get("vm_metric"))
+    return Campo(d["nodes"], d["tets4"], d["vm"], d["tris"], sig_lim, m.get("vm_metric_xyz"), m.get("vm_metric"),
+                 d["sig6"] if "sig6" in d else None)

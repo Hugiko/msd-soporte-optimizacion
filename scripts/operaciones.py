@@ -8,11 +8,14 @@ QUITAN material (donde no trabaja):
   agujero    aligeramiento vertical pasante (paredes verticales: imprimible sin soportes)
   rebaje     rebaje desde arriba de una zona (suelo horizontal y acuerdos redondeados)
   hueco      hueco interior con techo a cuatro aguas a 45 grados + agujero de evacuacion del polvo (D5)
-ANADEN o REFORMAN material (donde esta el pico de tension):
+ANADEN o REFORMAN material (donde esta el pico de tension, o FORMAS NUEVAS en la trayectoria de la carga):
   collar     anillo de refuerzo alrededor del alojamiento de un perno
   alojamiento alojamiento de cabeza mas ancho con acuerdo de fondo mayor (menor concentracion de tensiones)
   redondeo   redondeo de las aristas junto al pico (acuerdo: baja el factor de concentracion Kt)
   orejeta    engrosa el anillo de material alrededor del bulon en las dos orejetas
+  nervio     FORMA NUEVA: pared vertical (nervio / cartela) en la direccion principal de tension (trayectoria de carga)
+Las que ANADEN nunca invaden el paso de los tornillos, de sus cabezas ni del bulon, ni el hueco entre orejetas, y no
+salen de la caja que ocupa el soporte original (volumen de diseno).
 Las operaciones que QUITAN nunca tocan las zonas protegidas (alrededor de los 4 pernos y de las orejetas).
 Los 6 agujeros del enunciado se verifican al final de cada pieza (geometry.check_holes).
 """
@@ -92,12 +95,31 @@ def boolean(op, vol_ok, what, split_msg=None):
         if not sols:
             last = "sin solidos"; continue
         big, rest = sols[0], [q.Volume() for q in sols[1:]]
+        if not big.isValid():
+            big = _heal(big)
         if split_msg and rest and rest[0] > 0.01 * big.Volume() and big.isValid():
             raise GeometryError(split_msg)
         if big.isValid() and sum(rest) < 1.0 and vol_ok(big.Volume()):
             return big
         last = f"{len(sols)} solidos, resto {sum(rest):.0f} mm3"
     raise GeometryError(f"{what} ha fallado ({last})")
+
+
+def _heal(solid):
+    """Solido marcado como no valido por OCC tras una booleana (tolerancias): ida y vuelta por STEP, que lo reconstruye
+    con tolerancias coherentes. Si sigue sin ser valido se devuelve tal cual (y la booleana prueba otra tolerancia)."""
+    import tempfile
+    try:
+        fd, p = tempfile.mkstemp(suffix=".step"); os.close(fd)
+        G.export(solid, p)
+        s2 = cq.importers.importStep(p).val()
+        os.remove(p)
+        s2 = sorted(s2.Solids(), key=lambda q: q.Volume(), reverse=True)[0]
+        if s2.isValid() and abs(s2.Volume() - solid.Volume()) < 1e-3 * solid.Volume() + 1.0:
+            return s2
+    except Exception:
+        pass
+    return solid
 
 
 def cut(solid, tool, what):
@@ -244,10 +266,87 @@ def op_orejeta(solid, ro, t_lug=G.T_LUG):
     return new
 
 
+_KEEP = []
+_ENV = []
+
+
+def keep_out():
+    """Zonas donde NUNCA se anade material: paso de los 4 tornillos y de sus cabezas, paso del bulon y hueco entre
+    las orejetas (donde entra la pieza que se une)."""
+    if not _KEEP:
+        s = None
+        for b in G.BOLTS:
+            c = cq.Solid.makeCylinder(R_HEAD, 240.0, cq.Vector(b["c"][0], b["c"][1], -30.0))
+            s = c if s is None else s.fuse(c)
+        st = PIN_P - 60.0 * PIN_A
+        s = s.fuse(cq.Solid.makeCylinder(G.RP + 0.5, 120.0, cq.Vector(*st), cq.Vector(*PIN_A)))
+        gap = float(np.linalg.norm(PIN_C[1] - PIN_C[0])) - G.T_LUG - 0.2          # entre las caras interiores
+        st = PIN_P - PIN_A * gap / 2
+        s = s.fuse(cq.Solid.makeCylinder(G.RP + 14.0, gap, cq.Vector(*st), cq.Vector(*PIN_A)))
+        _KEEP.append(s)
+    return _KEEP[0]
+
+
+def envelope():
+    """Volumen de diseno: la caja que ocupa el soporte original (la pieza nueva no sale de ella)."""
+    if not _ENV:
+        bb = original().BoundingBox()
+        _ENV.append(cq.Solid.makeBox(bb.xlen + 1, bb.ylen + 1, bb.zlen + 0.5, cq.Vector(bb.xmin - 0.5, bb.ymin - 0.5, bb.zmin)))
+    return _ENV[0]
+
+
+def op_nervio(solid, x0, y0, x1, y1, zt0, zt1, t, zb=0.0):
+    """Nervio: pared vertical de espesor t sobre el segmento (x0,y0)-(x1,y1), desde zb hasta un borde superior
+    inclinado (zt0 -> zt1). Vertical = imprimible sin soportes; nace de la base."""
+    L = math.hypot(x1 - x0, y1 - y0)
+    if L < 6.0 or t < 2.0:
+        raise GeometryError("nervio demasiado pequeno")
+    u = np.array([x1 - x0, y1 - y0]) / L
+    n = np.array([-u[1], u[0]])
+    o = -n * t / 2
+    pts = [cq.Vector(x0 + o[0], y0 + o[1], zb), cq.Vector(x1 + o[0], y1 + o[1], zb),
+           cq.Vector(x1 + o[0], y1 + o[1], zt1), cq.Vector(x0 + o[0], y0 + o[1], zt0)]
+    rib = cq.Solid.extrudeLinear(cq.Face.makeFromWires(cq.Wire.makePolygon(pts, close=True)), cq.Vector(n[0] * t, n[1] * t, 0))
+    try:
+        rib = rounded(rib, min(1.5, t / 3))
+    except GeometryError:
+        pass
+    rib = rib.intersect(envelope()).cut(keep_out())
+    if rib.Volume() < 1.0:
+        raise GeometryError("el nervio cae entero en zonas reservadas (tornillos, bulon) o fuera del volumen de diseno")
+    new = fuse(solid, rib, "el nervio")
+    return root_fillet(new, solid, rib, r=min(3.0, max(1.5, t / 2)))
+
+
+def root_fillet(new, part, rib, r=3.0):
+    """Acuerdo (radio r) en la RAIZ del nervio: las aristas nuevas donde el nervio se une a la pieza son esquinas entrantes
+    (entallas); un acuerdo baja su concentracion de tensiones (Peterson). Si OCC no puede hacerlo, se deja sin acuerdo."""
+    bb = rib.BoundingBox()
+    pf = cq.Compound.makeCompound(part.Faces()); rf = cq.Compound.makeCompound(rib.Faces())
+    edges = []
+    for e in new.Edges():
+        c = e.Center()
+        if not (bb.xmin - 2 <= c.x <= bb.xmax + 2 and bb.ymin - 2 <= c.y <= bb.ymax + 2 and bb.zmin - 2 <= c.z <= bb.zmax + 2):
+            continue
+        v = cq.Vertex.makeVertex(*e.positionAt(0.5).toTuple())
+        if v.distance(pf) < 0.05 and v.distance(rf) < 0.05:
+            edges.append(e)
+    if not edges:
+        return new
+    for rr in (r, 0.6 * r, 0.4 * r):
+        try:
+            f = new.fillet(rr, edges)
+            if f.isValid() and len(f.Solids()) == 1 and f.Volume() >= new.Volume() - 1.0:
+                return f
+        except Exception:
+            pass
+    return new
+
+
 OPS = dict(agujero=op_agujero, rebaje=op_rebaje, hueco=op_hueco, collar=op_collar, alojamiento=op_alojamiento,
-           redondeo=op_redondeo, orejeta=op_orejeta)
+           redondeo=op_redondeo, orejeta=op_orejeta, nervio=op_nervio)
 QUITA = ("agujero", "rebaje", "hueco")
-ANADE = ("collar", "alojamiento", "redondeo", "orejeta")
+ANADE = ("collar", "alojamiento", "redondeo", "orejeta", "nervio")
 
 
 def apply(solid, op):
@@ -261,7 +360,7 @@ def describe(op):
         return f"aligeramiento pasante vertical D{2 * op['r']:.0f} mm en ({op['x']:.0f}, {op['y']:.0f})"
     if t == "rebaje":
         return (f"rebaje desde arriba hasta z = {op['zc']:.0f} mm en x {op['x0']:.0f}..{op['x1']:.0f}, "
-                f"y {op['y0']:.0f}..{op['y1']:.0f} mm")
+                f"y {op['y0']:.0f}..{op['y1']:.0f} mm (esquinas R{op.get('rr', 3.0):g})")
     if t == "hueco":
         return (f"hueco interior {op['x1'] - op['x0']:.0f} x {op['y1'] - op['y0']:.0f} x {op['z1'] - op['z0']:.0f} mm "
                 f"(techo a 45 grados + evacuacion D5) en ({(op['x0'] + op['x1']) / 2:.0f}, {(op['y0'] + op['y1']) / 2:.0f})")
@@ -273,6 +372,9 @@ def describe(op):
         return f"redondeo R{op['r']:.1f} de las aristas junto a ({op['x']:.0f}, {op['y']:.0f}, {op['z']:.0f})"
     if t == "orejeta":
         return f"anillo de las orejetas hasta radio {op['ro']:.1f} mm (ligamento {op['ro'] - G.RP:.1f} mm)"
+    if t == "nervio":
+        return (f"nervio de {op['t']:.0f} mm de ({op['x0']:.0f}, {op['y0']:.0f}) a ({op['x1']:.0f}, {op['y1']:.0f}), "
+                f"borde superior de z = {op['zt0']:.0f} a {op['zt1']:.0f} mm")
     return t
 
 
@@ -281,8 +383,10 @@ def size(op):
     t = op["tipo"]
     if t == "agujero":
         return op["r"]
-    if t in ("rebaje", "hueco"):
+    if t in ("rebaje", "hueco", "rebaje_nervio"):
         return (op["x1"] - op["x0"]) * (op["y1"] - op["y0"])
+    if t == "nervio":
+        return math.hypot(op["x1"] - op["x0"], op["y1"] - op["y0"]) * op["t"]
     return op.get("t", op.get("r", op.get("R", op.get("ro", 1.0))))
 
 
@@ -291,8 +395,12 @@ def box_of(op):
     t = op["tipo"]
     if t == "agujero":
         return (op["x"] - op["r"], op["x"] + op["r"], op["y"] - op["r"], op["y"] + op["r"], -30.0, 150.0)
-    if t == "rebaje":
+    if t in ("rebaje", "rebaje_nervio"):
         return (op["x0"], op["x1"], op["y0"], op["y1"], op["zc"], 220.0)
+    if t == "nervio":
+        h = op["t"] / 2
+        return (min(op["x0"], op["x1"]) - h, max(op["x0"], op["x1"]) + h, min(op["y0"], op["y1"]) - h,
+                max(op["y0"], op["y1"]) + h, op.get("zb", 0.0), max(op["zt0"], op["zt1"]))
     if t == "hueco":
         return (op["x0"], op["x1"], op["y0"], op["y1"], op["z0"], op["z1"])
     return None

@@ -48,6 +48,8 @@ def load_dir():
     return -d / np.linalg.norm(d)   # sentido -X (convenio del grupo); con RBE3 lineal, vM no depende del signo
 
 
+LAST_COMP = None    # componentes del tensor de tensiones del ultimo calculo leido (read_results)
+
 # Interfaces DETECTADAS en la malla (disenos externos, p. ej. SimJEB, donde cada autor modelo los agujeros a su
 # manera: otra longitud, alojamiento o superficie no cilindrica). Si es None se usan los agujeros exactos de 0.stp.
 IFACE = None
@@ -295,6 +297,10 @@ def write_inp(path, nodes, tets, tris, force=42258.0, results="res", pin_half=No
     w("*DIM,NM,ARRAY,NMAX\n*DIM,UX_,ARRAY,NMAX\n*DIM,UY_,ARRAY,NMAX\n*DIM,UZ_,ARRAY,NMAX\n*DIM,SE_,ARRAY,NMAX\n")
     w("*VGET,NM,NODE,1,NSEL\n*VGET,UX_,NODE,1,U,X\n*VGET,UY_,NODE,1,U,Y\n*VGET,UZ_,NODE,1,U,Z\n*VGET,SE_,NODE,1,S,EQV\n")
     w(f"*CFOPEN,{results}_nod,txt\n*VMASK,NM\n*VWRITE,UX_(1),UY_(1),UZ_(1),SE_(1)\n(4E16.7)\n*CFCLOS\n")
+    # componentes del tensor de tensiones (direcciones principales = trayectorias de carga, para las reglas)
+    w("*DIM,SX_,ARRAY,NMAX\n*DIM,SY_,ARRAY,NMAX\n*DIM,SZ_,ARRAY,NMAX\n*DIM,SXY_,ARRAY,NMAX\n*DIM,SYZ_,ARRAY,NMAX\n*DIM,SXZ_,ARRAY,NMAX\n")
+    w("*VGET,SX_,NODE,1,S,X\n*VGET,SY_,NODE,1,S,Y\n*VGET,SZ_,NODE,1,S,Z\n*VGET,SXY_,NODE,1,S,XY\n*VGET,SYZ_,NODE,1,S,YZ\n*VGET,SXZ_,NODE,1,S,XZ\n")
+    w(f"*CFOPEN,{results}_comp,txt\n*VMASK,NM\n*VWRITE,SX_(1),SY_(1),SZ_(1),SXY_(1),SYZ_(1),SXZ_(1)\n(6E16.7)\n*CFCLOS\n")
     w("ALLSEL\nFINISH\n")
     with open(path, "w") as f:
         f.writelines(L)
@@ -336,6 +342,12 @@ def read_results(workdir, nodes, results="res", force=42258.0, excl=(3.0,), pin_
     for eb, ep in ((0.0, 0.0), (3.0, 0.0), (5.0, 0.0), (3.0, 2.0), (8.0, 2.0)):
         out[f"vm_ex_b{eb:g}_p{ep:g}"] = stress_metric(nodes, s, pin_half, eb, ep)[0]
     out["fs_metric"] = SY / out["vm_metric"]
+    global LAST_COMP
+    cp = os.path.join(workdir, f"{results}_comp.txt")
+    try:
+        LAST_COMP = np.loadtxt(cp)[:n] if os.path.exists(cp) else None   # SX SY SZ SXY SYZ SXZ por nodo
+    except Exception:
+        LAST_COMP = None
     for e in excl:
         keep = ~bolt_mask(nodes, extra=e)  # solo pernos
         out[f"vm_metric_ex{e:g}"] = float(s[keep].max())

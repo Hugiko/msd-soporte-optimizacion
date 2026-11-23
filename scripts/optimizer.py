@@ -11,8 +11,9 @@ COMO FUNCIONA (version corta para la defensa)
   1. Se parte SIEMPRE de la pieza del enunciado (0.stp), calculada en ANSYS.
   2. Cada ITERACION:
        a) mapa de tensiones de la pieza actual: que material trabaja, cual esta ocioso y donde esta el pico;
-       b) las reglas proponen hasta 3 modificaciones (anadir donde esta el pico, quitar donde no trabaja), cada una
-          con su PORQUE y lo que se espera;
+       b) las reglas proponen hasta 3 modificaciones (anadir donde esta el pico, quitar donde no trabaja, o crear
+          FORMAS NUEVAS: nervios en la direccion principal de tension dimensionados con la carga que llevan, Michell),
+          cada una con su PORQUE y lo que se espera;
        c) EVALUACION RAPIDA (malla gruesa) de cada una, comparada con la pieza actual en la MISMA malla: las que no
           van a mejorar se descartan ahi;
        d) la mas prometedora pasa a la EVALUACION COMPLETA (malla de 4 mm validada);
@@ -513,8 +514,9 @@ def write_dashboard(st, estado="EN MARCHA"):
          f"limite **{SIG_OBJ:.0f} MPa** (coef. de seguridad >= {SY / SIG_OBJ:.2f}, obligatorio) y {U_LIM:.2f} mm &nbsp;|&nbsp; acero S235", "",
          "La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** "
          "(sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone "
-         "anadir material donde esta el pico o quitarlo donde no trabaja, **con su porque**; se prueba en ANSYS y se acepta o se "
-         "revierte. Cada cambio esta en [ITERACIONES.md](" + rel(os.path.join(TOP, "ITERACIONES.md")) + ").", "",
+         "anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal "
+         "de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. "
+         "Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](" + rel(os.path.join(TOP, "ITERACIONES.md")) + ").", "",
          "| iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |",
          "|---|---|---|---|---|---|",
          f"| {n_it} | {cnt['ACEPTADA']} | {cnt['INVERSION']} | {cnt['RECHAZADA']} | {cnt['SIN CAMBIO']} | {n_q} |", ""]
@@ -962,7 +964,7 @@ def main():
         # ---- 2. iteraciones
         crash = 0
         while not st.get("fin"):
-            if TEST and st["iter"] >= 2:
+            if TEST and st["iter"] >= int(os.environ.get("PRUEBA_ITERACIONES", "3")):
                 break
             try:
                 step(st, git, E)

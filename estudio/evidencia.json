@@ -1,15 +1,15 @@
 {
  "_resumen": {
-  "n": 42,
+  "n": 101,
   "valido": 0,
-  "no_cumple": 32,
-  "incompatible": 2,
-  "fallido": 8,
+  "no_cumple": 80,
+  "incompatible": 6,
+  "fallido": 15,
   "n_validos_con_campo": 0,
-  "referencia": "los 1 disenos publicados mas cercanos a cumplir (solo 0 cumplen con acero S235 y 42258 N: se disenaron para titanio)",
+  "referencia": "los 5 disenos publicados mas cercanos a cumplir (solo 0 cumplen con acero S235 y 42258 N: se disenaron para titanio)",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-23T15:24"
+  "fecha": "2026-11-23T16:06"
  },
  "R1": {
   "respaldo": null,
@@ -59,6 +59,11 @@
  "R10": {
   "respaldo": null,
   "texto": "regla de procedimiento: se juzga por sus resultados en el optimizador",
+  "tabla": []
+ },
+ "R11": {
+  "respaldo": null,
+  "texto": "teoria de Michell (1904): el volumen minimo para llevar una carga sigue las trayectorias principales; comparacion con SimJEB cuando el estudio tenga disenos de nervios y de bloque calculados con malla completa",
   "tabla": []
  },
  "_validos": []
