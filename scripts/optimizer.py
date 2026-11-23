@@ -217,7 +217,8 @@ class Family:
         self.rng = np.random.default_rng(CFG["seed"] + {"vaciado": 0, "refuerzo": 3, "cero": 7, "simjeb": 5}.get(key, 11))
         if self.x_first == "auto":                       # primeros disenos propios de la familia (torneo SimJEB)
             self.x_first_list = [list(map(float, x)) for x in self.mod.first_designs()]
-            self.n_init = CFG["n_init"] if TEST else max(CFG["n_init"], len(self.x_first_list))
+            self.n_init = CFG["n_init"] if TEST else max(CFG["n_init"], min(len(self.x_first_list),
+                                                                            int(USER.get("torneo_simjeb_disenos", 40))))
         else:
             self.x_first_list = [] if self.x_first is None else [self.x_first]
             self.n_init = CFG["n_init"]
@@ -340,6 +341,21 @@ class Family:
             if b:
                 self.new_branch(root[0] + "1", root, b, CFG["tr_init"], "inicial", sc)
                 log(f"[{self.key}] reparto inicial terminado: la rama {root[0]}1 arranca del diseno {b['id']:03d}")
+                if self.cat_dims:          # torneo de semillas: una rama por cada una de las 3 mejores semillas DISTINTAS
+                    d0 = self.cat_dims[0]
+                    used = {round(float(self.to_unit(b["p"]["params"])[d0]), 6)}
+                    init = [r for r in runs if r["p"].get("rama") in (None, root) and r["m"].get("status") == "ok"]
+                    k = 2
+                    for rr in sorted(init, key=lambda q: self.score_of([q])[0]):
+                        if k > int(USER.get("ramas_iniciales_simjeb", 3)):
+                            break
+                        sd = round(float(self.to_unit(rr["p"]["params"])[d0]), 6)
+                        if sd in used:
+                            continue
+                        used.add(sd)
+                        self.new_branch(f"{root[0]}{k}", root, rr, CFG["tr_init"], "inicial", self.score_of([rr])[0])
+                        log(f"[{self.key}] la rama {root[0]}{k} arranca de otra semilla: el diseno {rr['id']:03d}")
+                        k += 1
         self.save_state()
 
     def current(self):
@@ -474,6 +490,38 @@ class Family:
         i = int(self.rng.choice(top))
         return self.snap(cand[i]), float(dmin[i])
 
+    def spawn_explorer(self, runs, sc, nota=""):
+        """Rama EXPLORADORA: arranca de un punto al azar lejos de todo lo probado y se trabaja en ella enseguida."""
+        R = self.st["ramas"]
+        xe, dmin = self.far_point(runs)
+        k = 1 + sum(1 for b in R.values() if b["tipo"] == "exploradora")
+        eid = f"{self.root_id()[0]}X{k}"
+        while eid in R:
+            k += 1; eid = f"{self.root_id()[0]}X{k}"
+        self.new_branch(eid, self.root_id(), None, CFG["tr_init"], "exploradora", (sc[0], sc[1] * (1 - 1e-9)),
+                        seed_x=xe.tolist(), nota=f"a {dmin:.2f} del diseno probado mas cercano" + nota)
+        return eid
+
+    def check_stagnation(self, runs):
+        """ANTI-ESTANCAMIENTO: si en los ultimos N disenos la familia no ha mejorado su mejor puntuacion ni un 0,3 %,
+        se lanzan 2 ramas exploradoras nuevas (saltos a zonas nunca probadas) y se cierran las ramas finas
+        que ya no avanzan. Devuelve las ramas creadas (o None)."""
+        N = int(USER.get("estancamiento_disenos", 25))
+        if N <= 0 or len(runs) < self.n_init + N or len(runs) - int(self.st.get("ultimo_estancamiento", 0)) < N:
+            return None
+        rs = sorted(runs, key=lambda r: r["id"])
+        so, _ = self.score_of(rs[:-N]); sn, _ = self.score_of(rs)
+        if sn[0] < so[0] or (sn[0] == so[0] and sn[1] < so[1] * (1 - 0.003)):
+            return None
+        self.st["ultimo_estancamiento"] = len(runs)
+        cerradas = []
+        for b in self.st["ramas"].values():       # ramas finas que llevan muchas pruebas sin mejorar: se cierran
+            if b["estado"] == "activa" and b["tipo"] == "fina" and b["n"] >= 6 and b.get("fail", 0) >= 2:
+                b["estado"] = "terminada"; b["motivo_fin"] = "estancamiento (sin mejora)"; cerradas.append(b["id"])
+        new = [self.spawn_explorer(runs, sn, nota=" (anti-estancamiento)") for _ in range(2)]
+        self.save_state()
+        return new, cerradas
+
     def update_branch(self, runs, r_new):
         """Actualiza la rama del diseno recien calculado: paso mas largo si mejora, mas corto si no; al terminar
         la rama, su mejor diseno genera dos ramas hijas."""
@@ -533,12 +581,7 @@ class Family:
                 every = int(USER.get("rama_exploradora_cada", 3))
                 n_fin = sum(1 for b in R.values() if b["estado"] == "terminada" and b["padre"] is not None)
                 if every > 0 and n_fin % every == 0:
-                    xe, dmin = self.far_point(runs)
-                    k = 1 + sum(1 for b in R.values() if b["tipo"] == "exploradora")
-                    eid = f"{self.root_id()[0]}X{k}"
-                    self.new_branch(eid, self.root_id(), None, CFG["tr_init"], "exploradora",
-                                    (sc[0], sc[1] * (1 - 1e-9)), seed_x=xe.tolist(),
-                                    nota=f"a {dmin:.2f} del diseno probado mas cercano")
+                    eid = self.spawn_explorer(runs, sc)
                     msg += f"; ademas nace la rama exploradora {eid}"
                 log(f"[{self.key}] rama {bid} terminada ({br['motivo_fin']}); su mejor diseno ({best_r['id']:03d}) {msg}")
         self.save_state()
@@ -1459,6 +1502,16 @@ def step(fam, git, t_session):
     runs = fam.runs()
     fam.update_branch(runs, r)
     try:
+        stg = fam.check_stagnation(runs)
+    except Exception as e:
+        stg = None; log(f"(anti-estancamiento: {e!r})")
+    if stg:
+        new, cerradas = stg
+        txt = (f"[{fam.key}] ESTANCADA: {USER.get('estancamiento_disenos', 25)} disenos sin mejorar ni un 0,3 % -> "
+               f"nuevas ramas exploradoras {', '.join(new)}" + (f"; se cierran las ramas finas {', '.join(cerradas)}" if cerradas else ""))
+        log("  " + txt)
+        DISCORD.alert(txt)
+    try:
         write_tree()
         notify_tree()               # Discord: imagen del arbol si ha cambiado
     except Exception as e:
@@ -1494,19 +1547,24 @@ def geometry_version():
 
 
 def archive_if_outdated():
-    """Si los resultados guardados son de una version anterior de la geometria, se archivan (no se borran)."""
+    """POR FAMILIA: si los resultados guardados de una familia son de una version anterior de SU geometria, se archiva
+    solo esa familia (no se borra nada). Las demas familias, el historial y el mejor global se conservan.
+    Anadir una familia nueva no archiva nada."""
     vpath = os.path.join(TOP, "version_geometria.json")
     now = geometry_version()
-    if os.path.isdir(TOP) and os.listdir(TOP):
-        old = json.load(open(vpath)) if os.path.exists(vpath) else {"?": "sin version"}
-        if old != now:
-            dest = os.path.join(ROOT, "runs", "archivo", f"{os.path.basename(TOP)}_{datetime.datetime.now():%Y%m%d_%H%M%S}")
-            os.makedirs(os.path.dirname(dest), exist_ok=True)
-            shutil.move(TOP, dest)
-            print(f"La geometria ha cambiado ({old} -> {now}).\nResultados anteriores archivados en {dest}\n"
-                  "Se empieza una optimizacion nueva y limpia.", flush=True)
     os.makedirs(TOP, exist_ok=True)
-    atomic_json(vpath, now)
+    old = json.load(open(vpath, encoding="utf-8")) if os.path.exists(vpath) else {}
+    stamp = datetime.datetime.now()
+    for k, v in now.items():
+        d = os.path.join(TOP, k)
+        if os.path.isdir(d) and os.listdir(d) and old.get(k) != v:
+            dest = os.path.join(ROOT, "runs", "archivo", f"{os.path.basename(TOP)}_{k}_{stamp:%Y%m%d_%H%M%S}")
+            os.makedirs(os.path.dirname(dest), exist_ok=True)
+            shutil.move(d, dest)
+            print(f"La geometria de la familia '{k}' ha cambiado ({old.get(k)} -> {v}).\n"
+                  f"Sus resultados anteriores se han archivado en {dest}; esa familia empieza de nuevo.", flush=True)
+    merged = dict(old); merged.update(now)
+    atomic_json(vpath, merged)
 
 
 def main():
@@ -1534,6 +1592,15 @@ def main():
         log("Discord: avisos activados (canales: mejor diseno, arbol y todo lo generado)")
     fams = [Family(k) for k in CFG["families"]]
     FAMS[:] = fams
+    retiradas = USER.get("familias_retiradas", {}) or {}
+    for f in fams:                 # familias retiradas: se conservan (panel, galeria, historial) pero ya no se calculan
+        if f.key in retiradas and not f.st.get("retirada"):
+            f.st.update(done=True, retirada=True, motivo_fin=f"retirada: {retiradas[f.key]}"); f.save_state()
+            log(f"[{f.title}] retirada ({retiradas[f.key]}); sus resultados se conservan")
+        elif f.key not in retiradas and f.st.get("retirada"):
+            f.st.update(done=False, retirada=False, motivo_fin=""); f.save_state()
+            log(f"[{f.title}] vuelve a estar activa")
+    turnos = USER.get("turnos_por_ronda", {}) or {}
     crash_streak = 0
     t0 = time.time()
     final_state = "DETENIDO (al relanzar optimizar.bat continua)"
@@ -1543,10 +1610,15 @@ def main():
             if not active:
                 break
             rnd = getattr(main, "_round", 0) + 1; main._round = rnd
-            for f in active:
+            sched = [f for f in active for _ in range(max(1, int(turnos.get(f.key, 1))))]
+            for f in sched:
+                if f.st.get("done"):
+                    continue
                 rs_f = f.runs()
-                # reparto del tiempo: una familia sin NINGUN diseno valido tras 30 intentos solo juega 1 de cada 3 turnos
-                if len(active) > 1 and len(rs_f) >= 30 and not any(category(r["m"]) == "valido" for r in rs_f) and rnd % 3:
+                # reparto del tiempo: una familia sin NINGUN diseno valido tras 30 intentos (y fuera de su reparto
+                # inicial) solo juega 1 de cada 3 rondas
+                if len(active) > 1 and len(rs_f) >= max(30, f.n_init) and not any(category(r["m"]) == "valido" for r in rs_f) \
+                        and rnd % 3:
                     continue
                 try:
                     alive = step(f, git, t0)

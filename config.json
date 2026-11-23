@@ -1,4 +1,4 @@
-﻿{
+{
   "_LEEME": "Ajustes del optimizador. Cambia un valor, guarda y vuelve a lanzar optimizar.bat. Cada carga guarda sus resultados en runs/opt_<carga>N.",
   "carga_N": 37800,
   "_carga_opciones": "37800 = caso Horizontal de la Fig. 2 (por defecto) | 42258 = valor de la Tabla 2",
@@ -13,19 +13,43 @@
   "_angulo_nota": "pendiente minima (respecto a la horizontal) de los techos interiores para imprimir sin soportes. 45 = regla habitual y conservadora (ver docs/fabricacion_aditiva.md)",
   "peso_seguridad": 0.15,
   "_peso_seguridad_nota": "cuando una pieza es MEJOR que otra: puntuacion = masa x aprovechamiento^p (aprovechamiento = 1/coef. seguridad). 0 = solo masa; 0.15 = 1 % de masa vale ~7 % de tension (pieza aeronautica: manda la masa, la seguridad desempata); 0.5 = 1 % de masa vale 2 % de tension. Los limites (215 MPa, 0,25 mm) siempre son obligatorios",
-  "familias": ["vaciado", "refuerzo", "cero"],
-  "_familias_nota": "vaciado = el original al que se le quita material | refuerzo = collares junto a los tornillos (punto critico) + vaciado del resto | cero = diseno nuevo. Se alternan.",
-  "presupuesto_por_familia": 300,
+  "familias": [
+    "simjeb",
+    "refuerzo",
+    "cero",
+    "vaciado"
+  ],
+  "_familias_nota": "simjeb = los mejores disenos del concurso GE/SimJEB (mismos agujeros que el 0.stp) con modificaciones: collares junto a los pernos (anade material) y aligeramientos pasantes (quita material) | refuerzo = collares + vaciado del original | cero = diseno nuevo | vaciado = el original al que se le quita material. Se alternan.",
+  "familias_retiradas": {
+    "vaciado": "62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo"
+  },
+  "_retiradas_nota": "familias que ya no se calculan pero cuyos resultados se conservan (panel, galeria, historial). Quitala de aqui para reactivarla.",
+  "turnos_por_ronda": {
+    "simjeb": 2
+  },
+  "_turnos_nota": "cuantos disenos calcula cada familia por ronda (por defecto 1)",
+  "torneo_simjeb_disenos": 40,
+  "ramas_iniciales_simjeb": 3,
+  "_torneo_nota": "la familia simjeb empieza calculando tal cual los N disenos SimJEB mas prometedores (torneo); despues abre una rama por cada una de las 3 mejores semillas distintas. El resto de disenos SimJEB los pueden visitar las ramas amplias y exploradoras.",
+  "presupuesto_por_familia": 600,
   "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
-  "pruebas_por_rama": 30,
-  "rama_exploradora_cada": 3,
+  "pruebas_por_rama": 12,
+  "rama_exploradora_cada": 2,
   "_exploradora_nota": "cada N ramas terminadas nace una rama exploradora que parte de un punto al azar lejos de todo lo probado (0 = nunca)",
-  "_ramas_nota": "cada rama hace estas pruebas; al terminar, su mejor diseno crea 2 ramas hijas (fina y amplia). Arbol en ARBOL.md",
+  "_ramas_nota": "cada rama hace estas pruebas; al terminar, su mejor diseno crea ramas hijas (fina, amplia y cruce). Arbol en ARBOL.md",
+  "estancamiento_disenos": 25,
+  "_estancamiento_nota": "anti-estancamiento: si una familia lleva N disenos sin mejorar su mejor puntuacion ni un 0,3 %, se lanzan 2 ramas exploradoras nuevas y se cierran las ramas finas que no avanzan (0 = desactivado)",
+  "prob_rama_al_azar": 0.25,
+  "_rama_al_azar_nota": "probabilidad de trabajar en una rama activa elegida al azar en vez de en la de mejor origen (variedad)",
+  "distancia_minima": 0.03,
+  "_distancia_nota": "distancia minima (en el espacio de parametros normalizado 0-1) entre un diseno nuevo y todos los ya probados: obliga a cambios reales",
   "cribado_rapido": 1.5,
   "_cribado_nota": "pasada rapida con malla gruesa: si el diseno incumple mas de 1,5 veces el limite se descarta sin malla fina (0 = desactivado)",
-  "cribado_rapido_familias": ["cero"],
+  "cribado_rapido_familias": [
+    "cero"
+  ],
   "filtro_prob_minima": 0.05,
-  "filtro_error_max": 0.10,
+  "filtro_error_max": 0.1,
   "_filtro_nota": "si el modelo es fiable (error tipico < 10 %), no se calculan los disenos con P(cumplir) < 5 % (1 de cada 10 se calcula igualmente como control)",
   "verificar_mejores": true,
   "verificacion_h_mm": 3.5,
@@ -44,18 +68,3 @@
   "disco_minimo_gb": 5,
   "subir_a_github": true
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
