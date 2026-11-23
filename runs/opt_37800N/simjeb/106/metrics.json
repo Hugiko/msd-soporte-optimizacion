@@ -1,0 +1,145 @@
+{
+ "status": "ok",
+ "params": {
+  "semilla": 34.0,
+  "t_col_del": 0.0,
+  "t_col_tra": 4.2122,
+  "z_col": 8.0,
+  "ali1_x": 30.8442,
+  "ali1_y": -158.0,
+  "ali1_r": 1.1611,
+  "ali2_x": -2.2725,
+  "ali2_y": -107.9184,
+  "ali2_r": 9.6477
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 1.8133294039254173,
+ "volume_cad_mm3": 230997.37629623152,
+ "hueco": false,
+ "clamped": [],
+ "holes_check": {
+  "deteccion": "en la malla"
+ },
+ "aligeramientos": 1,
+ "sin_modificar": false,
+ "simjeb_id": 119,
+ "simjeb_categoria": "block",
+ "simjeb_autor": "Mike Madsen",
+ "simjeb_tension_estimada": 250.2,
+ "fidelidad": "normal",
+ "mesh_h": 4.4,
+ "mesh_algo": 1,
+ "mesh_retries": [
+  "MAPDL alg10 h4.00: elementos con forma no valida",
+  "MAPDL alg1 h4.00: elementos con forma no valida",
+  "MAPDL alg10 h3.60: elementos con forma no valida",
+  "MAPDL alg4 h4.00: elementos con forma no valida",
+  "MAPDL alg10 h4.00: elementos con forma no valida"
+ ],
+ "solve_s": 23.099700927734375,
+ "n_nodes": 52129,
+ "n_elems": 29303,
+ "nodes_per_bolt": [
+  104,
+  104,
+  104,
+  104
+ ],
+ "nodes_per_lug": [
+  164,
+  164
+ ],
+ "volume_mm3": 233746.908,
+ "mass_kg": 1.8349132278,
+ "reaction": [
+  -37782.5865,
+  -1147.22897,
+  4.59076837e-05
+ ],
+ "reaction_err_pct": 1.059799912041473e-06,
+ "vm_max_raw": 659.5158,
+ "vm_p999": 552.4692046000017,
+ "u_max": 0.39452300696160786,
+ "ux_max": 0.3205378,
+ "uy_max": 0.0470636,
+ "uz_max": 0.2771427,
+ "vm_max_raw_xyz": [
+  -3.5316732112325573,
+  -3.7540653713640206,
+  1.148133748994186e-17
+ ],
+ "vm_metric": 599.0974,
+ "vm_metric_xyz": [
+  -10.573731472997725,
+  -103.00233741682331,
+  14.755436538716
+ ],
+ "vm_metric_p999": 512.3524281000036,
+ "vm_ex_b0_p0": 659.5158,
+ "vm_ex_b3_p0": 599.0974,
+ "vm_ex_b5_p0": 599.0974,
+ "vm_ex_b3_p2": 599.0974,
+ "vm_ex_b8_p2": 599.0974,
+ "fs_metric": 0.3588731982478976,
+ "interfaces": {
+  "bolts": [
+   {
+    "c": [
+     0.0,
+     0.0
+    ],
+    "r": 5.1550279943940165,
+    "z0": -3.124018716997953e-17,
+    "z1": 7.85
+   },
+   {
+    "c": [
+     52.047,
+     1.58
+    ],
+    "r": 5.1550000236252105,
+    "z0": -7.272467766830061e-17,
+    "z1": 7.85
+   },
+   {
+    "c": [
+     0.0,
+     -148.125
+    ],
+    "r": 5.155065220379678,
+    "z0": -1.568803315856352e-15,
+    "z1": 7.8500000000000005
+   },
+   {
+    "c": [
+     38.083,
+     -146.968
+    ],
+    "r": 5.155672226755843,
+    "z0": -1.600410209752352e-15,
+    "z1": 7.85
+   }
+  ],
+  "pin": {
+   "r": 9.555001581152395,
+   "P": [
+    -20.923499999999997,
+    -74.69800000000001,
+    44.725
+   ],
+   "spans": [
+    [
+     -17.318757922504055,
+     -11.286217502022467
+    ],
+    [
+     11.261242077431689,
+     17.293782497913277
+    ]
+   ]
+  },
+  "tol": 0.2
+ },
+ "total_s": 163.53290343284607,
+ "galeria": "galeria/20261123_110509_simjeb_106_NO_VALIDO_1.835kg.jpg"
+}

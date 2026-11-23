@@ -18355,3 +18355,110 @@
 [11:02:11]   (GitHub: subido)
 [11:02:15]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [11:02:17]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
+[11:02:21] Limpieza automatica: liberados 227 MB (disenos antiguos ya superados)
+[11:02:23]   (GitHub: subido)
+[11:02:23] [SimJEB modificado] DISENO 106  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[11:02:23]   motivo: [rama SX5] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia semilla, t_col_tra, z_col, ali1_x...
+[11:02:23]   el modelo predice: masa 1.865 kg | tension 184 MPa | P(cumplir) 0.45
+[11:02:25]   [1/5] geometria parametrica (cadquery)
+[11:02:25]         masa CAD = 1.8133 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[11:02:26]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[11:02:31]   malla h=4.0: 56358 nodos, 31159 tet10 (1.5s)
+[11:02:32]   [3/5] ANSYS MAPDL normal (56358 nodos, 31159 elementos)
+[11:02:32] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:02:38]   [fase] 4  /PREP7
+[11:02:40]   [fase] 119640  /SOLU
+[11:02:40]   [solver] 119642  EQSLV,SPARSE
+[11:02:40]   [fase] 119645  /POST1
+[11:02:40]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.512   TIME= 11:02:39
+[11:02:51]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:02:51]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:02:51]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:02:51] MAPDL termino: estado=error codigo=1 tiempo=19.2s
+[11:02:51]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:02:51]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[11:02:58]   malla h=4.0: 62094 nodos, 35135 tet10 (3.6s)
+[11:02:59]   [3/5] ANSYS MAPDL normal (62094 nodos, 35135 elementos)
+[11:02:59] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:02:59]   [fase] 4  /PREP7
+[11:03:00]   [fase] 119640  /SOLU
+[11:03:00]   [solver] 119642  EQSLV,SPARSE
+[11:03:00]   [fase] 119645  /POST1
+[11:03:00]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.512   TIME= 11:02:39
+[11:03:00]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:03:00]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:03:00]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:03:06]   [fase] 133328  /SOLU
+[11:03:06]   [solver] 133330  EQSLV,SPARSE
+[11:03:06]   [fase] 133333  /POST1
+[11:03:06]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.658   TIME= 11:03:06
+[11:03:18]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:03:18]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:03:18]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:03:19] MAPDL termino: estado=error codigo=1 tiempo=19.2s
+[11:03:19]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:03:19]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[11:03:24]   malla h=3.6: 69297 nodos, 39139 tet10 (1.6s)
+[11:03:25]   [3/5] ANSYS MAPDL normal (69297 nodos, 39139 elementos)
+[11:03:25] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:03:25]   [fase] 4  /PREP7
+[11:03:26]   [fase] 133328  /SOLU
+[11:03:26]   [solver] 133330  EQSLV,SPARSE
+[11:03:26]   [fase] 133333  /POST1
+[11:03:26]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.658   TIME= 11:03:06
+[11:03:26]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:03:26]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:03:26]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:03:32]   [fase] 148687  /SOLU
+[11:03:32]   [solver] 148689  EQSLV,SPARSE
+[11:03:32]   [fase] 148692  /POST1
+[11:03:32]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.721   TIME= 11:03:32
+[11:03:43]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:03:43]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:03:43]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:03:43] MAPDL termino: estado=error codigo=1 tiempo=18.4s
+[11:03:43]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:03:43]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[11:03:51]   malla h=4.0: 67449 nodos, 39170 tet10 (4.6s)
+[11:03:52]   [3/5] ANSYS MAPDL normal (67449 nodos, 39170 elementos)
+[11:03:52] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:03:52]   [fase] 4  /PREP7
+[11:03:54]   [fase] 148687  /SOLU
+[11:03:54]   [solver] 148689  EQSLV,SPARSE
+[11:03:54]   [fase] 148692  /POST1
+[11:03:54]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.721   TIME= 11:03:32
+[11:03:54]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:03:54]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:03:54]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:04:11] MAPDL termino: estado=error codigo=1 tiempo=18.4s
+[11:04:11]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:04:11]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[11:04:16]   malla h=4.0: 56358 nodos, 31159 tet10 (1.5s)
+[11:04:18]   [3/5] ANSYS MAPDL normal (56358 nodos, 31159 elementos)
+[11:04:18] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:04:18]   [fase] 4  /PREP7
+[11:04:19]   [fase] 146753  /SOLU
+[11:04:19]   [solver] 146755  EQSLV,SPARSE
+[11:04:19]   [fase] 146758  /POST1
+[11:04:19]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.776   TIME= 11:03:59
+[11:04:19]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:04:19]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:04:19]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:04:36] MAPDL termino: estado=error codigo=1 tiempo=18.4s
+[11:04:36]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:04:36]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[11:04:43]   malla h=4.4: 52129 nodos, 29303 tet10 (3.3s)
+[11:04:44]   [3/5] ANSYS MAPDL normal (52129 nodos, 29303 elementos)
+[11:04:44] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:04:44]   [fase] 4  /PREP7
+[11:04:45]   [fase] 119640  /SOLU
+[11:04:45]   [solver] 119642  EQSLV,SPARSE
+[11:04:45]   [fase] 119645  /POST1
+[11:04:45]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.398   TIME= 11:04:24
+[11:04:45]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:04:45]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:04:45]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:05:07] MAPDL termino: estado=ok codigo=0 tiempo=23.1s
+[11:05:08]   [4/5] resultados
+[11:05:08]   [5/5] imagenes
+[11:05:10]   RESULTADO: masa 1.835 kg | tension 599.1 MPa (bruta 660) | NO cumple
