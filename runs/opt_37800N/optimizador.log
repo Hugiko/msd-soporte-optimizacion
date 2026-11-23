@@ -17680,3 +17680,42 @@
 [10:46:56]   [4/5] resultados
 [10:46:57]   [5/5] imagenes
 [10:46:59]   RESULTADO: masa 2.323 kg | tension 188.2 MPa (bruta 820) | casi (hasta +10 %)
+[10:47:05] [SimJEB modificado] DISENO 095  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[10:47:05]   motivo: [rama SX4] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali2_x
+[10:47:05]   el modelo predice: masa 2.062 kg | tension 188 MPa | P(cumplir) 0.48
+[10:47:07]   [1/5] geometria parametrica (cadquery)
+[10:47:07]         masa CAD = 2.0412 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[10:47:08]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[10:47:09]   (GitHub: subido)
+[10:47:13]   malla h=4.0: 60761 nodos, 36608 tet10 (1.3s)
+[10:47:14]   [3/5] ANSYS MAPDL normal (60761 nodos, 36608 elementos)
+[10:47:14] Lanzando MAPDL: model.inp (timeout 1200s)
+[10:47:20]   [fase] 4  /PREP7
+[10:47:22]   [fase] 135021  /SOLU
+[10:47:22]   [solver] 135023  EQSLV,SPARSE
+[10:47:22]   [fase] 135026  /POST1
+[10:47:22]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.548   TIME= 10:47:21
+[10:47:22]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.581
+[10:47:22]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[10:47:22]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.734   TIME= 10:47:21
+[10:47:22]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[10:47:23]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[10:47:23]   [solver] Equation solver memory allocated                     =  1156.293 MB
+[10:47:23]   [solver] Equation solver memory required for in-core mode     =  1107.054 MB
+[10:47:23]   [solver] Equation solver memory required for out-of-core mode =   289.200 MB
+[10:47:23]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[10:47:25]   [solver] Sparse solver maximum pivot= 12849811.6 at node 3518 UY.
+[10:47:25]   [solver] Sparse solver minimum pivot= 26380.0496 at node 33883 UY.
+[10:47:25]   [solver] Sparse solver minimum pivot in absolute value= 26380.0496 at node 33883
+[10:47:26]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        11.677
+[10:47:27]   [AVISO] *** WARNING ***                         ELAPSED TIME =      12.333   TIME= 10:47:26
+[10:47:27]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        12.380
+[10:47:39]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.3 seconds
+[10:47:39]   [solver] Elapsed time in equation solver                :        3.2 seconds
+[10:47:39]   [fase] Elapsed time spent post-processing model (/POST1) :        0.7 seconds
+[10:47:39]   [solver] Equation solver used                              :            Sparse (symmetric)
+[10:47:39]   [solver] Sparse direct equation solver computational rate  :       71.9 Gflops
+[10:47:39] MAPDL termino: estado=ok codigo=0 tiempo=25.3s
+[10:47:39]   [4/5] resultados
+[10:47:39]   [5/5] imagenes
+[10:47:42]   RESULTADO: masa 2.031 kg | tension 302.1 MPa (bruta 785) | NO cumple
