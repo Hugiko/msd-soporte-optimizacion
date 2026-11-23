@@ -66,7 +66,7 @@ RX1["RX1 - exploradora, paso 0.30<br/>24 pruebas<br/>aun sin validos; el mas cer
 R0 --> RX1
 RX1_1["RX1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX1 --> RX1_1
-RX1_2["RX1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+RX1_2["RX1.2 - amplia, paso 0.35<br/>1 pruebas<br/>aun sin validos; el mas cercano 285 MPa (#104)"]:::activa
 RX1 --> RX1_2
 RX1_3["RX1.3 - cruce, paso 0.20<br/>2 pruebas<br/>mejor: 2.429 kg, 183 MPa (#173)"]:::activa
 RX1 --> RX1_3
