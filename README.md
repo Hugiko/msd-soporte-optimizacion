@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 21:13 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 21:17 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 15 | 13 | 0 | 2 | 0 | 26 |
+| 16 | 13 | 0 | 3 | 0 | 28 |
 
 ## Mejor diseno
 
@@ -43,6 +43,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 16 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (49, -122) | 2.133 kg, 231 MPa | la tension sube a 230.6 MPa (> 215 MPa): no cumple |
 | 15 | ACEPTADA | R3 | hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.156 kg, 206 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1561; masa 2.1608 -> 2.1561 kg) |
 | 14 | ACEPTADA | R2 | rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esq | 2.161 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.1883 -> 2.1608; masa 2.1883 -> 2.1608 kg) |
 | 13 | ACEPTADA | R2 | rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquina | 2.188 kg, 205 MPa | cumple y mejora al mejor (puntuacion 2.2224 -> 2.1883; masa 2.2224 -> 2.1883 kg) |
@@ -54,7 +55,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 7 | ACEPTADA | R1 | aligeramiento pasante vertical D12 mm en (4, -74) | 2.308 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.3358 -> 2.3085; masa 2.3358 -> 2.3085 kg) |
 | 6 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (-20, -26) | 2.336 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3652 -> 2.3358; masa 2.3652 -> 2.3358 kg) |
 | 5 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8 mm (esquin | 2.365 kg, 195 MPa | cumple pero no mejora al mejor (puntuacion 2.3654 frente a 2.3652) |
-| 4 | ACEPTADA | R2 | rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52 mm (esquin | 2.365 kg, 195 MPa | cumple y mejora al mejor (puntuacion 2.4126 -> 2.3652; masa 2.4126 -> 2.3652 kg) |
 
 ---
 

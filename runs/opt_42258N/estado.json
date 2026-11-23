@@ -1,5 +1,5 @@
 {
- "iter": 15,
+ "iter": 16,
  "actual": {
   "ops": [
    {
@@ -118,7 +118,21 @@
    "score": 2.1561045814000006,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.1695077420500004,
+   "vm_metric": 195.3248,
+   "u_max": 0.15552261537245957,
+   "vm_metric_xyz": [
+    -0.1439796340353663,
+    -87.09029429461255,
+    57.37325360368376
+   ],
+   "n_nodes": 50443,
+   "cs": 1.1007306803846721,
+   "viol": 0.9084874418604652,
+   "score": 2.1695077420500004,
+   "valido": true
+  },
   "galeria": "galeria/20261123_211348_it015_ACEPTADA_2.156kg.jpg"
  },
  "mejor": {
@@ -624,6 +638,17 @@
    "motivo_tipo": "tension",
    "regla": "R2",
    "iter": 15
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 48.52,
+    "y": -122.32,
+    "r": 6.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 16
   }
  ],
  "stats": {
@@ -710,11 +735,11 @@
    ]
   },
   "R1": {
-   "intentos": 15,
+   "intentos": 18,
    "descartadas_rapido": 5,
-   "evaluadas": 8,
+   "evaluadas": 9,
    "aceptadas": 7,
-   "rechazadas": 1,
+   "rechazadas": 2,
    "dsig": [
     -2.81,
     0.93,
@@ -723,7 +748,8 @@
     1.27,
     -0.29,
     11.88,
-    1.95
+    1.95,
+    11.8
    ],
    "dm": [
     -34.0,
@@ -733,13 +759,10 @@
     -14.1,
     -12.8,
     -57.6,
-    -38.4
+    -38.4,
+    -22.8
    ],
    "ejemplos": [
-    [
-     2,
-     "aceptada: aligeramiento pasante vertical D12 mm en (40, -71) (tension -2.8 %, masa -34 g)"
-    ],
     [
      6,
      "aceptada: aligeramiento pasante vertical D16 mm en (-20, -26) (tension +0.9 %, masa -29 g)"
@@ -767,6 +790,10 @@
     [
      12,
      "aceptada: aligeramiento pasante vertical D16 mm en (34, -74) (tension +2.0 %, masa -38 g)"
+    ],
+    [
+     16,
+     "rechazada: aligeramiento pasante vertical D12 mm en (49, -122) (tension +11.8 %, masa -23 g)"
     ]
    ],
    "dsig_prev": [
@@ -777,7 +804,8 @@
     -0.58,
     0.42,
     2.37,
-    -0.87
+    -0.87,
+    0.43
    ]
   },
   "R3": {
@@ -803,7 +831,7 @@
    ]
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.1607990855000003,
@@ -1885,6 +1913,77 @@
    "decision": "ACEPTADA",
    "motivo": "cumple y mejora al mejor (puntuacion 2.1608 -> 2.1561; masa 2.1608 -> 2.1561 kg)",
    "galeria": "galeria/20261123_211348_it015_ACEPTADA_2.156kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.1561045814000006,
+    "vm_metric": 206.2704,
+    "u_max": 0.1552259356834193,
+    "vm_metric_xyz": [
+     -1.2035739666749734,
+     -58.53429857027285,
+     57.428415352359316
+    ],
+    "n_nodes": 85411,
+    "cs": 1.042321147387119,
+    "viol": 0.9593972093023255,
+    "score": 2.1561045814000006,
+    "valido": true
+   }
+  },
+  {
+   "iter": 16,
+   "fecha": "2026-11-23T21:13:54.193713",
+   "antes": "2.1561 kg | 206.3 MPa | CS 1.04 | 0.155 mm",
+   "m_antes": {
+    "mass_kg": 2.1561045814000006,
+    "vm_metric": 206.2704,
+    "u_max": 0.1552259356834193,
+    "vm_metric_xyz": [
+     -1.2035739666749734,
+     -58.53429857027285,
+     57.428415352359316
+    ],
+    "n_nodes": 85411,
+    "cs": 1.042321147387119,
+    "viol": 0.9593972093023255,
+    "score": 2.1561045814000006,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D10 mm en (43, -98)",
+     "motivo": "pasa la evaluacion rapida (2.1404 kg | 205.8 MPa | CS 1.04 | 0.156 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    },
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D8 mm en (16, -104)",
+     "motivo": "pasa la evaluacion rapida (2.1429 kg | 206.0 MPa | CS 1.04 | 0.157 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D12 mm en (49, -122)",
+   "porque": "Toda la columna en (49, -122) hasta 9 mm de radio trabaja como maximo al 32 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~96 %; el pico (206 MPa, en orejetas del bulon) esta a 81 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 8 veces que se ha aplicado: +1.1 % (prevision rapida: 2.1336 kg | 207.2 MPa | CS 1.04 | 0.160 mm)",
+   "m_cand": {
+    "mass_kg": 2.1332932821000004,
+    "vm_metric": 230.6159,
+    "u_max": 0.15957606983662126,
+    "vm_metric_xyz": [
+     44.27482088671259,
+     -126.56010079562377,
+     28.275204041121924
+    ],
+    "n_nodes": 86375,
+    "cs": 0.9322861086334463,
+    "viol": 1.0726320930232558,
+    "score": 2.1332932821000004,
+    "valido": false
+   },
+   "despues": "2.1333 kg | 230.6 MPa | CS 0.93 | 0.160 mm (tension +11.8 %, masa -23 g)",
+   "decision": "RECHAZADA",
+   "motivo": "la tension sube a 230.6 MPa (> 215 MPa): no cumple",
+   "galeria": "galeria/20261123_211700_it016_RECHAZADA_2.133kg.jpg",
    "m_actual": {
     "mass_kg": 2.1561045814000006,
     "vm_metric": 206.2704,
