@@ -64,7 +64,7 @@ R1_1_1_1_2["R1.1.1.1.2 - amplia, paso 0.35<br/>5 pruebas<br/>mejor: 2.366 kg, 18
 R1_1_1_1 --> R1_1_1_1_2
 R1_1_1_1_3["R1.1.1.1.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.376 kg, 185 MPa (#151)"]:::activa
 R1_1_1_1 --> R1_1_1_1_3
-R1_1_1_1_1_1["R1.1.1.1.1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R1_1_1_1_1_1["R1.1.1.1.1.1 - fina, paso 0.10<br/>1 pruebas<br/>mejor: 2.372 kg, 185 MPa (#142)"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_1
 R1_1_1_1_1_2["R1.1.1.1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_2
