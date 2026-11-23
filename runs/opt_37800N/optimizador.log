@@ -19689,3 +19689,23 @@
 [11:53:26]   [4/5] resultados
 [11:53:26]   [5/5] imagenes
 [11:53:29]   RESULTADO: masa 2.395 kg | tension 213.6 MPa (bruta 260) | NO cumple
+[11:53:37]   (GitHub: subido)
+[11:53:43] [Refuerzo + vaciado] DISENO 210  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[11:53:43]   motivo: [rama RX4] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_len, cav_a, cav_z0...
+[11:53:43]   el modelo predice: masa 2.407 kg | tension 380 MPa | P(cumplir) 0.04
+[11:53:54]   [1/5] geometria parametrica (cadquery)
+[11:53:55]         masa CAD = 2.1055 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['techo del hueco 24.8->6.9 mm (pared minima 3.0 mm)', 'hueco acortado 10.0->2.7 mm (techo a 45 para impresion 3D)', 'hueco estrechado 92.1->2.7 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[11:53:57]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[11:54:04]         fallo de malla: Exception: HXT 3D mesh failed
+[11:54:04]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[11:54:10]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[11:54:10]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[11:54:17]         fallo de malla: Exception: HXT 3D mesh failed
+[11:54:17]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[11:54:24]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[11:54:24]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[11:54:31]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:54:31]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[11:54:38]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:54:38]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: The 1D mesh seems not to be forming a closed loop | malla alg1 h4.40: Exception: The 1D mesh seems not to be forming a closed loop
+[11:54:39]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
