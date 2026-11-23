@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 51.0,
+  "t_col_del": 0.0,
+  "t_col_tra": 0.0,
+  "z_col": 19.0,
+  "ali1_x": 13.5,
+  "ali1_y": -73.0,
+  "ali1_r": 0.0,
+  "ali2_x": -1.8529,
+  "ali2_y": -73.0,
+  "ali2_r": 7.314
+ },
+ "motivo": "[rama S2] rama nueva (inicial, paso 0.30) desde el diseno 013; cambia ali2_x, ali2_r",
+ "pred": {
+  "mass_kg": 2.216736727836153,
+  "stress_mpa": 184.00274913227102,
+  "p_cumple": 0.5247574238994818,
+  "paso": 0.3,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "semilla": 0.1288682482034029,
+   "t_col_del": 0.1767376960586695,
+   "t_col_tra": 0.06979612803212808,
+   "z_col": 0.1175670381455442,
+   "ali1_x": 0.05846754694989886,
+   "ali1_y": 0.126085165629959,
+   "ali1_r": 0.07659409654397199,
+   "ali2_x": 0.05816323091281691,
+   "ali2_y": 0.06603054912764793,
+   "ali2_r": 0.12169030039596072
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "S2",
+ "fecha": "2026-11-23T08:28:29.695741"
+}
