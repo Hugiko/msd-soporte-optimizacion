@@ -58,7 +58,7 @@ SX11["SX11 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 2.271 kg, 171 MPa (
 S0 --> SX11
 SX12["SX12 - exploradora, paso 0.30<br/>3 pruebas<br/>mejor: 2.372 kg, 176 MPa (#188)"]:::activa
 S0 --> SX12
-SX13["SX13 - exploradora, paso 0.30<br/>2 pruebas<br/>mejor: 2.245 kg, 174 MPa (#193)"]:::activa
+SX13["SX13 - exploradora, paso 0.30<br/>3 pruebas<br/>mejor: 2.245 kg, 174 MPa (#193)"]:::activa
 S0 --> SX13
 SX5_1["SX5.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 SX5 --> SX5_1

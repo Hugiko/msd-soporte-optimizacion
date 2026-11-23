@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:00
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:02
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (52)
 
@@ -192,7 +192,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:00
 | 195 | 1.865 | 490.9 | [rama SX13] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali1_y, ali2_x... | [ver](195/vonmises.png) |
 | 196 | 1.717 | 339.9 | [rama SX12] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra | [ver](196/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (21)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (22)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -217,6 +217,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:00
 | 174 | 0.000 | - | [rama SX8] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, ali1_y | - |
 | 184 | 1.489 | - | [rama SX10] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, ali1_r, ali2_r | - |
 | 187 | 0.000 | - | [rama SX11] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, ali2_y | - |
+| 197 | 0.000 | - | [rama SX13] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, ali2_y | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

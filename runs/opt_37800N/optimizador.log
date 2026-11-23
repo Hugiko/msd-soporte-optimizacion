@@ -24152,3 +24152,10 @@
 [14:02:04]   [4/5] resultados
 [14:02:05]   [5/5] imagenes
 [14:02:08]   RESULTADO: masa 2.714 kg | tension 184.8 MPa (bruta 738) | CUMPLE
+[14:02:17] [SimJEB modificado] DISENO 197  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[14:02:17]   motivo: [rama SX13] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, ali2_y
+[14:02:17]   el modelo predice: masa 1.723 kg | tension 282 MPa | P(cumplir) 0.15
+[14:02:20]   (GitHub: subido)
+[14:02:27]   [1/5] geometria parametrica (cadquery)
+[14:02:35]   !! fallo en geometria: GeometryError: el aligeramiento 1 ha fallado (1 solidos, resto 0 mm3)
+[14:02:37]   RESULTADO: FALLO (geom_fail): GeometryError: el aligeramiento 1 ha fallado (1 solidos, resto 0 mm3) -> se penaliza y se sigue
