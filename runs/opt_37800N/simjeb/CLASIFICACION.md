@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:29
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:31
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (45)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (46)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -32,6 +32,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:29
 | 035 | 1.970 | 167.5 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_r, ali2_x, ali2_y | - |
 | 158 | 2.011 | 175.7 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del, ali1_r, ali2_y | [ver](158/vonmises.png) |
 | 153 | 2.066 | 167.3 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del, z_col, ali1_y, ali1_r... | [ver](153/vonmises.png) |
+| 177 | 2.084 | 179.3 | [rama SX3.2] rama nueva (amplia, paso 0.35) desde el diseno 084; cambia t_col_del, t_col_tra, z_col, ali1_y... | [ver](177/vonmises.png) |
 | 141 | 2.115 | 165.3 | [rama SX8] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_y, ali2_y | - |
 | 031 | 2.132 | 165.5 | [rama S1] rama nueva (inicial, paso 0.30) desde el diseno 011; cambia t_col_del, z_col, ali1_r, ali2_y | - |
 | 084 | 2.166 | 177.7 | [rama SX3] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, z_col, ali1_r | - |
