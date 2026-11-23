@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:48
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:49
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (38)
 
@@ -62,10 +62,10 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:48
 | 120 | 2.412 | 204.2 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, z_col, ali1_x, ali1_y... | - |
 | 125 | 2.361 | 201.9 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_del, z_col, ali1_y | - |
 | 127 | 2.328 | 205.1 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia semilla, ali1_x, ali1_y, ali2_y... | - |
-| 129 | 2.327 | 204.9 | [rama SX7] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia ali1_x, ali1_y, ali2_r | [ver](129/vonmises.png) |
-| 133 | 2.371 | 203.0 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia ali1_x, ali1_y, ali2_y | [ver](133/vonmises.png) |
+| 129 | 2.327 | 204.9 | [rama SX7] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia ali1_x, ali1_y, ali2_r | - |
+| 133 | 2.371 | 203.0 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia ali1_x, ali1_y, ali2_y | - |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (84)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (85)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -135,10 +135,10 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:48
 | 119 | 1.919 | 273.1 | [rama SX4] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia ali1_r, ali2_r | - |
 | 121 | 2.486 | 239.3 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_del, t_col_tra, z_col | - |
 | 124 | 2.395 | 213.6 | [rama SX7] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia semilla, t_col_del, z_col, ali1_y... | - |
-| 128 | 2.380 | 451.9 | [rama SX6] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra, ali1_x, ali1_y... | [ver](128/vonmises.png) |
-| 130 | 1.929 | 3113.5 | [rama SX1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia ali1_y, ali2_y, ali2_r | [ver](130/vonmises.png) |
-| 131 | 2.025 | 209.3 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali2_x, ali2_y, ali2_r | [ver](131/vonmises.png) |
-| 132 | 2.285 | 313.5 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_y, ali2_y | [ver](132/vonmises.png) |
+| 128 | 2.380 | 451.9 | [rama SX6] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, t_col_tra, ali1_x, ali1_y... | - |
+| 130 | 1.929 | 3113.5 | [rama SX1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia ali1_y, ali2_y, ali2_r | - |
+| 131 | 2.025 | 209.3 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali2_x, ali2_y, ali2_r | - |
+| 132 | 2.285 | 313.5 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_y, ali2_y | - |
 | 134 | 2.378 | 245.8 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_del, ali1_x | [ver](134/vonmises.png) |
 | 136 | 1.538 | 354.7 | [rama S1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia semilla | [ver](136/vonmises.png) |
 | 137 | 1.174 | 327.8 | [rama SX5] varios pasos sin mejora: paso mas corto (0.60); cambia semilla, ali1_x, ali2_x | [ver](137/vonmises.png) |
@@ -153,6 +153,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 12:48
 | 149 | 2.041 | 214.2 | [rama SX9] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, ali1_x | [ver](149/vonmises.png) |
 | 150 | 1.780 | 374.9 | [rama SX8] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, ali2_x | [ver](150/vonmises.png) |
 | 152 | 1.525 | 585.4 | [rama SX3] pequeno cambio alrededor del mejor de la rama (paso 0.07); cambia semilla, ali2_x, ali2_y | [ver](152/vonmises.png) |
+| 154 | 2.050 | 778.4 | [rama SX9] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, t_col_tra, ali1_x, ali1_y | [ver](154/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (16)
 
