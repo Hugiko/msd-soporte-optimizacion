@@ -1,0 +1,24 @@
+{
+ "status": "geom_fail",
+ "params": {
+  "cav_s0": 45.0,
+  "cav_len": 20.117,
+  "cav_a": 51.3405,
+  "cav_z0": 6.9623,
+  "cav_z1": 22.2386,
+  "trim_s0": 43.2908,
+  "trim_z": 24.2409,
+  "trim_ang": 7.1578,
+  "trim_a": 34.7169,
+  "r_cut": 5.3346,
+  "R_pocket": 11.2432,
+  "t_col_del": 4.5764,
+  "t_col_tra": 7.0895,
+  "z_col": 25.9522
+ },
+ "force": 37800.0,
+ "error": "GeometryError: la union de los collares con el original ha fallado",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 69, in evaluate\n    solid, ginfo = geom.build(params)\n                   ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\optimizer.py\", line 204, in build\n    val = self._mod.build(p)\n          ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_refuerzo.py\", line 86, in build\n    base = collared(p[\"t_col_del\"], p[\"t_col_tra\"], p[\"z_col\"])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_refuerzo.py\", line 76, in collared\n    raise GeometryError(\"la union de los collares con el original ha fallado\")\ngeometry.GeometryError: la union de los collares con el original ha fallado\n",
+ "total_s": 2.4431257247924805,
+ "galeria": "galeria/20261123_125242_refuerzo_226_FALLO_0.000kg.jpg"
+}

@@ -21692,3 +21692,11 @@
 [12:52:21]   [4/5] resultados
 [12:52:21]   [5/5] imagenes
 [12:52:24]   RESULTADO: masa 2.212 kg | tension 176.7 MPa (bruta 377) | CUMPLE
+[12:52:33]   (GitHub: subido)
+[12:52:37] [Refuerzo + vaciado] DISENO 226  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[12:52:37]   motivo: [rama RX4] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_s0, cav_len, cav_a, cav_z0...
+[12:52:37]   el modelo predice: masa 2.651 kg | tension 255 MPa | P(cumplir) 0.11
+[12:52:39]   [1/5] geometria parametrica (cadquery)
+[12:52:42]   !! fallo en geometria: GeometryError: la union de los collares con el original ha fallado
+[12:52:42]   [refuerzo] ESTANCADA: 25 disenos sin mejorar ni un 0,3 % -> nuevas ramas exploradoras RX5, RX6
+[12:52:43]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares con el original ha fallado -> se penaliza y se sigue
