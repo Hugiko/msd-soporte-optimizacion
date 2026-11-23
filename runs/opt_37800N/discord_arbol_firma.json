@@ -1,5 +1,29 @@
 [
  [
+  "simjeb",
+  "S0",
+  "terminada",
+  11
+ ],
+ [
+  "simjeb",
+  "S1",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "S2",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "S3",
+  "activa",
+  null
+ ],
+ [
   "refuerzo",
   "R0",
   "terminada",
