@@ -607,6 +607,12 @@ def category(m):
     return "valido" if v <= 1.0 else ("cerca_del_limite" if v <= 1.1 else "descartado")
 
 
+def new_part(m):
+    """La pieza final tiene que ser NUEVA: un diseno SimJEB sin modificar es solo una REFERENCIA (punto de partida);
+    puede cumplir, pero nunca cuenta como mejor diseno (ni Workbench, ni historial, ni panel, ni Discord)."""
+    return not m.get("sin_modificar")
+
+
 def append_registro(fam, r):
     m, p = r["m"], r["p"]; pr = p.get("pred") or {}
     row = dict(familia=fam.key, rama=p.get("rama"), iter=r["id"], fecha=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), motivo=p["motivo"],
@@ -1025,7 +1031,7 @@ def write_dashboard(estado="EN MARCHA"):
     allruns.sort(key=lambda r: r["t"])
     improvements, best = [], None              # TODAS las mejoras del mejor valido (aunque sean pequenas)
     for r in allruns:
-        if category(r["m"]) == "valido" and (best is None or score(r["m"]) < best):
+        if category(r["m"]) == "valido" and new_part(r["m"]) and (best is None or score(r["m"]) < best):
             best = score(r["m"]); improvements.append(r)
     col = {"vaciado": "#2c7fb8", "refuerzo": "#7b3294", "cero": "#d95f0e", "simjeb": "#1a9850"}
     # grafica estatica (README): eje horizontal = HORA real
@@ -1089,7 +1095,7 @@ def write_dashboard(estado="EN MARCHA"):
     except Exception as e:
         log(f"(grafica interactiva: {e!r})")
     gb = global_best()        # ultimo diseno REGISTRADO (con proyecto de Workbench e historial)
-    vals = [r for r in allruns if category(r["m"]) == "valido"]
+    vals = [r for r in allruns if category(r["m"]) == "valido" and new_part(r["m"])]
     tb = min(vals, key=lambda r: score(r["m"])) if vals else None   # mejor diseno REAL (compromiso masa-seguridad)
     now = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
     L = ["# Optimizacion del soporte - panel en directo", "",
@@ -1097,7 +1103,7 @@ def write_dashboard(estado="EN MARCHA"):
          f"&nbsp;|&nbsp; limites: {SIG_OBJ:.0f} MPa (coef. seguridad >= {CFG['sigma_y'] / SIG_OBJ:.2f} sobre sy = {CFG['sigma_y']:.0f} MPa)" + (f" y {U_LIM:.2f} mm" if U_LIM > 0 else "") + " &nbsp;|&nbsp; acero S235", "",
          "| Familia | disenos calculados | cumplen | mejor masa | estado |", "|---|---|---|---|---|"]
     for f in FAMS:
-        rs = f.runs(); val = [r for r in rs if category(r["m"]) == "valido"]
+        rs = f.runs(); val = [r for r in rs if category(r["m"]) == "valido" and new_part(r["m"])]
         bb = min(val, key=lambda r: score(r["m"])) if val else None
         bm = f"{bb['m']['mass_kg']:.3f} kg (CS {fs(bb['m']):.2f})" if bb else "-"
         L.append(f"| {f.title} | {len(rs)} | {len(val)} | {bm} | {'terminada: ' + f.st.get('motivo_fin', '') if f.st.get('done') else 'en marcha'} |")
@@ -1338,7 +1344,7 @@ def notify_top(force=False):
     path = os.path.join(TOP, "discord_top.json")
     st = json.load(open(path)) if os.path.exists(path) else {}
     allr = [r for f in FAMS for r in f.runs()]
-    vals = [r for r in allr if category(r["m"]) == "valido"]
+    vals = [r for r in allr if category(r["m"]) == "valido" and new_part(r["m"])]
     n_tot = len(allr)
     tb = min(vals, key=lambda r: score(r["m"])) if vals else None
     key = [tb["fam"], tb["id"]] if tb else None
@@ -1489,7 +1495,7 @@ def step(fam, git, t_session):
     r = dict(id=iid, dir=wd, m=m, p=prop, fam=fam.key)
     cat = category(m)
     min_gain = float(USER.get("mejora_minima_para_nuevo_mejor", 0.0001))
-    if cat == "valido" and not m.get("duplicado_de") and USER.get("verificar_mejores", True) \
+    if cat == "valido" and new_part(m) and not m.get("duplicado_de") and USER.get("verificar_mejores", True) \
             and (gb is None or score(m) < gb_score(gb) * (1 - min_gain)):
         verify_fine(fam, r)          # candidato a nuevo mejor: se recalcula con malla fina antes de aceptarlo
         cat = category(m)
@@ -1527,11 +1533,12 @@ def step(fam, git, t_session):
     write_clasificacion(fam, runs)
     if m.get("status") == "ok":
         verdict = {"valido": "CUMPLE", "cerca_del_limite": "casi (hasta +10 %)", "descartado": "NO cumple"}[cat]
-        log(f"  RESULTADO: masa {m['mass_kg']:.3f} kg | tension {m['vm_metric']:.1f} MPa (bruta {m['vm_max_raw']:.0f}) | {verdict}")
+        log(f"  RESULTADO: masa {m['mass_kg']:.3f} kg | tension {m['vm_metric']:.1f} MPa (bruta {m['vm_max_raw']:.0f}) | {verdict}"
+            + (" | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)" if not new_part(m) else ""))
     else:
         log(f"  RESULTADO: FALLO ({m.get('status')}): {(m.get('error') or '')[:100]} -> se penaliza y se sigue")
     # nuevo mejor = cumple (tambien con malla fina) y pesa menos que el anterior -> proyecto Workbench + historial + GitHub
-    is_best = cat == "valido" and (gb is None or score(m) < gb_score(gb) * (1 - min_gain))
+    is_best = cat == "valido" and new_part(m) and (gb is None or score(m) < gb_score(gb) * (1 - min_gain))
     if is_best:
         register_new_best(fam, r, git)       # Workbench + historial + timelapse (solo en mejoras)
     try:

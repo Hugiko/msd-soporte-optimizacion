@@ -71,7 +71,7 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         geom.export(solid, step)
         res.update(mass_cad_kg=ginfo["mass_kg"], volume_cad_mm3=ginfo["volume_mm3"], hueco=ginfo["hueco"],
                    clamped=ginfo["clamped"], holes_check=ginfo["holes"])
-        res.update({k: v for k, v in ginfo.items() if k.startswith("simjeb_") or k == "aligeramientos"})
+        res.update({k: v for k, v in ginfo.items() if k.startswith("simjeb_") or k in ("aligeramientos", "sin_modificar")})
         L(f"        masa CAD = {ginfo['mass_kg']:.4f} kg | agujeros OK {ginfo['holes']} | hueco={ginfo['hueco']}"
           + (f" | ajustes: {ginfo['clamped']}" if ginfo["clamped"] else ""))
         if images:
@@ -193,7 +193,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                          f"Carga            {force:.0f} N en -X",
                          f"Malla            {res.get('n_nodes')} nodos (SOLID187)", "", "Parametros:"]
                 if res.get("simjeb_id") is not None:
-                    lines[-1:-1] = [f"Base             diseno SimJEB n.o {res['simjeb_id']} ({res.get('simjeb_autor', '')})"]
+                    lines[-1:-1] = [f"Base             diseno SimJEB n.o {res['simjeb_id']} ({res.get('simjeb_autor', '')})"
+                                    + ("  -> REFERENCIA sin modificar" if res.get("sin_modificar") else "  + modificaciones")]
                 lines += [f"  {k:9s} = {v:g}" for k, v in res["params"].items()]
                 render.panel4(wd, f"{os.path.basename(os.path.dirname(wd))} / diseno {os.path.basename(wd)}", lines)
             except Exception as e:

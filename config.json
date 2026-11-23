@@ -28,9 +28,9 @@
     "simjeb": 2
   },
   "_turnos_nota": "cuantos disenos calcula cada familia por ronda (por defecto 1)",
-  "torneo_simjeb_disenos": 40,
+  "torneo_simjeb_disenos": 30,
   "ramas_iniciales_simjeb": 3,
-  "_torneo_nota": "la familia simjeb empieza calculando tal cual los N disenos SimJEB mas prometedores (torneo); despues abre una rama por cada una de las 3 mejores semillas distintas. El resto de disenos SimJEB los pueden visitar las ramas amplias y exploradoras.",
+  "_torneo_nota": "la familia simjeb empieza calculando tal cual los N disenos SimJEB mas prometedores (torneo de REFERENCIAS: sirven de punto de partida pero nunca pueden ser el mejor diseno, porque la pieza tiene que ser nueva); despues abre una rama por cada una de las 3 mejores semillas distintas y las va MODIFICANDO (collares y aligeramientos). El resto de disenos SimJEB los pueden visitar las ramas amplias y exploradoras.",
   "presupuesto_por_familia": 600,
   "_presupuesto_nota": "maximo de disenos calculados en ANSYS por familia (~1 min cada uno). Cada familia para antes si ya no mejora.",
   "pruebas_por_rama": 12,
