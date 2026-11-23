@@ -36,12 +36,16 @@ SX3["SX3 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.166 kg, 178 MPa (#
 S0 --> SX3
 SX4["SX4 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 1.951 kg, 166 MPa (#110)"]:::activa
 S0 --> SX4
-SX5["SX5 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 1.948 kg, 168 MPa (#102)"]:::activa
+SX5["SX5 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 1.948 kg, 168 MPa (#102)"]:::activa
 S0 --> SX5
 SX6["SX6 - exploradora, paso 0.30<br/>9 pruebas<br/>aun sin validos; el mas cercano 202 MPa (#125)"]:::activa
 S0 --> SX6
 SX7["SX7 - exploradora, paso 0.30<br/>9 pruebas<br/>aun sin validos; el mas cercano 205 MPa (#129)"]:::activa
 S0 --> SX7
+SX8["SX8 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S0 --> SX8
+SX9["SX9 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S0 --> SX9
 ```
 
 ## Refuerzo + vaciado
