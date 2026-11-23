@@ -245,6 +245,36 @@ def light_dir(wd, keep=("metrics.json", "params.json")):
                 pass
 
 
+FOT = os.path.join(TOP, "fotos")
+
+
+def snap(wd, title, name):
+    """Foto (von Mises, con el pico marcado) de cualquier calculo, antes de borrar sus ficheros pesados.
+    Se guarda en fotos/ (en el PC) y se envia a Discord."""
+    try:
+        import render
+        from PIL import Image
+        d = np.load(os.path.join(wd, "campos.npz"))
+        mm = json.load(open(os.path.join(wd, "metrics.json"), encoding="utf-8"))
+        os.makedirs(FOT, exist_ok=True)
+        png = os.path.join(FOT, name + ".png")
+        render.results_png(d["nodes"], d["tris"], d["vm"], png, title, marker=mm.get("vm_metric_xyz"))
+        jpg = png[:-4] + ".jpg"
+        Image.open(png).convert("RGB").save(jpg, "JPEG", quality=80, optimize=True)
+        os.remove(png)
+        return jpg
+    except Exception as e:
+        log(f"  (foto no generada: {e!r})")
+        return None
+
+
+def notify_calc(title, cat, fields, desc, img):
+    try:
+        DISCORD.design(title, cat, fields, desc, img)
+    except Exception as e:
+        log(f"(Discord: {e!r})")
+
+
 def current_quick(st):
     """Evaluacion rapida de la pieza ACTUAL (referencia para comparar a los candidatos en la misma malla)."""
     a = st["actual"]
@@ -255,6 +285,14 @@ def current_quick(st):
     import operaciones as O
     s = current_solid(a["ops"])
     m = run_eval(a["ops"], s, O.finish(s)[1], wd, quick=True)
+    if m.get("status") == "ok":
+        img = snap(wd, f"iteracion {st['iter']}: pieza actual (malla gruesa) {m['mass_kg']:.3f} kg, {m['vm_metric']:.0f} MPa",
+                   f"it{st['iter']:03d}_referencia_rapida")
+        notify_calc(f"Iteracion {st['iter']} - referencia: pieza actual con la malla gruesa", "info",
+                    [dict(name="Masa", value=f"{m['mass_kg']:.4f} kg", inline=True),
+                     dict(name="Tension (malla gruesa)", value=f"{m['vm_metric']:.1f} MPa", inline=True)],
+                    "Calculo de referencia: las propuestas de esta iteracion se comparan con la pieza actual en la MISMA malla "
+                    "gruesa, asi el error de la malla gruesa se cancela.", img)
     light_dir(wd)
     if m.get("status") != "ok":
         raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
@@ -428,11 +466,18 @@ def verify_fine(st, best):
                       h=float(USER.get("verificacion_h_mm", 3.5)), hmin=1.0)
     except Exception as e:
         mv = dict(status="error", error=repr(e))
+    img_v = None
+    if mv.get("status") == "ok":
+        img_v = snap(wd, f"verificacion malla fina (iteracion {best['iter']}): {mv['vm_metric']:.0f} MPa", f"it{best['iter']:03d}_verificacion_fina")
     light_dir(wd)
     if mv.get("status") != "ok":
         log(f"  verificacion no disponible ({str(mv.get('error'))[:80]})")
         return None
     ok = valid(mv)
+    notify_calc(f"Verificacion con malla fina del mejor diseno (iteracion {best['iter']})", "valido" if ok else "descartado",
+                [dict(name="Malla fina", value=f"{mv['vm_metric']:.1f} MPa, {mv['u_max']:.3f} mm ({mv.get('n_nodes')} nodos)", inline=False),
+                 dict(name="Resultado", value="CONFIRMADO" if ok else "NO se confirma", inline=True)],
+                "Antes de registrar un hito (proyecto Workbench) el diseno se recalcula con una malla mas fina (h = 3,5 mm).", img_v)
     best["verif"] = dict(vm_metric=mv["vm_metric"], u_max=mv["u_max"], n_nodes=mv.get("n_nodes"), ok=ok)
     log(f"  verificacion (malla fina, {mv.get('n_nodes')} nodos): {mv['vm_metric']:.1f} MPa, {mv['u_max']:.3f} mm -> "
         + ("CONFIRMADO" if ok else "NO se confirma"))
@@ -726,9 +771,16 @@ def step(st, git, E):
             append_registro(dict(iteracion=it, fecha=datetime.datetime.now().strftime("%Y-%m-%d %H:%M"), candidato=k, regla=c["regla"],
                                  modificacion=c["titulo"], fase="geometria", decision="descartada", motivo=why, porque=c["porque"],
                                  tiempo_s=round(time.time() - t0, 1)))
+            notify_calc(f"Iteracion {it} - propuesta {k}/{len(cands)}: [{c['regla']}] {c['titulo']}"[:250], "fallido",
+                        [dict(name="Resultado", value="DESCARTADA (geometria)", inline=True)],
+                        f"**Por que se propuso:** {c['porque'][:600]}\n**Motivo del descarte:** {why}", None)
             continue
         wq = os.path.join(itd, f"cand{k}_rapida")
         mq = run_eval(c["ops_nuevas"], s, holes, wq, quick=True)
+        img_q = None
+        if mq.get("status") == "ok":
+            img_q = snap(wq, f"iteracion {it}, propuesta {k} [{c['regla']}] (malla gruesa): {mq['mass_kg']:.3f} kg, {mq['vm_metric']:.0f} MPa",
+                         f"it{it:03d}_propuesta{k}_{c['regla']}_rapida")
         light_dir(wq)
         if mq.get("status") != "ok":
             why = f"la malla o el calculo han fallado ({str(mq.get('error'))[:120]})"
@@ -736,6 +788,9 @@ def step(st, git, E):
             h["descartes"].append(dict(regla=c["regla"], titulo=c["titulo"], motivo=why))
             st["rechazos"].append(dict(op=c["op"], motivo_tipo="geometria", regla=c["regla"], iter=it))
             rs["descartadas_rapido"] += 1
+            notify_calc(f"Iteracion {it} - propuesta {k}/{len(cands)}: [{c['regla']}] {c['titulo']}"[:250], "fallido",
+                        [dict(name="Resultado", value="DESCARTADA (malla)", inline=True)],
+                        f"**Por que se propuso:** {c['porque'][:600]}\n**Motivo del descarte:** {why}", None)
             continue
         p = predict(summ(mq), ref_q, ma)
         dsig = (p["vm_metric"] / ma["vm_metric"] - 1) * 100; dm = (p["mass_kg"] - ma["mass_kg"]) * 1000
@@ -752,6 +807,13 @@ def step(st, git, E):
                              modificacion=c["titulo"], fase="rapida (prevision)", masa_kg=p["mass_kg"], tension_MPa=p["vm_metric"],
                              desp_mm=p["u_max"], coef_seguridad=p["cs"], puntuacion=p["score"],
                              decision="descartada" if why else "pasa", motivo=why or "", porque=c["porque"], tiempo_s=round(time.time() - t0, 1)))
+        notify_calc(f"Iteracion {it} - propuesta {k}/{len(cands)}: [{c['regla']}] {c['titulo']}"[:250],
+                    "descartado" if why else "cerca_del_limite",
+                    [dict(name="Evaluacion rapida", value="DESCARTADA" if why else "pasa", inline=True),
+                     dict(name="Prevision", value=txt_m(p), inline=False),
+                     dict(name="Cambio", value=f"tension {dsig:+.1f} %, masa {dm:+.0f} g", inline=True),
+                     dict(name="Se esperaba", value=c["espero"].get("txt", "")[:200] or "-", inline=True)],
+                    f"**Por que se propuso:** {c['porque'][:900]}" + (f"\n**Motivo del descarte:** {why}" if why else ""), img_q)
         if why:
             log(f"      DESCARTADA en la evaluacion rapida: {why}")
             h["descartes"].append(dict(regla=c["regla"], titulo=c["titulo"], motivo=why))

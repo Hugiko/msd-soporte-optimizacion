@@ -154,7 +154,7 @@ def _why(r):
 def notify_design(notify, r, k, total, wd):
     """Un mensaje por diseno publicado calculado (con la imagen de tensiones si se calculo con malla completa)."""
     img = None
-    if r.get("tension_MPa") is not None and str(r.get("fidelidad", "")).startswith("normal"):
+    if r.get("tension_MPa") is not None and os.path.exists(os.path.join(wd, "campos.npz")):
         try:
             import render
             d = np.load(os.path.join(wd, "campos.npz"))

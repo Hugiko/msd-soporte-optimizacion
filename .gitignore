@@ -74,3 +74,6 @@ runs/**/file.*
 # estado de Discord del estudio
 estudio/discord_estado.json
 estudio/discord_enviados.json
+
+# fotos de cada calculo (se envian a Discord y se guardan en el PC)
+runs/**/fotos/

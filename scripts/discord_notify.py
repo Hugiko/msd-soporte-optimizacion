@@ -130,6 +130,11 @@ class DiscordNotifier:
             emb["image"] = dict(url=f"attachment://{os.path.basename(image)}")
         self.q.put(("todo", dict(embeds=[emb]), [image] if image else [], None))
 
+    def gallery(self, title, text, images):
+        """Hasta 10 fotos en un mismo mensaje (Discord las muestra en cuadricula)."""
+        imgs = [p for p in images if p and os.path.exists(p)][:10]
+        self.q.put(("todo", dict(content=(self.prefix + f"**{title}**\n" + text)[:1990]), imgs, None))
+
     def file(self, title, text, path, cat="info"):
         """Mensaje con un fichero adjunto (p. ej. la tabla CSV de resultados)."""
         emb = dict(title=self.prefix + title, description=text[:3900], color=COLORS.get(cat, COLORS["info"]),
