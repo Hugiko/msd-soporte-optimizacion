@@ -84,10 +84,12 @@ def detect_interfaces(nodes, tris):
     th = np.sort(t[cand & (np.abs(rho - Rp) < 0.2)])
     spans, lo = [], th[0]
     for k in range(1, len(th)):
-        if th[k] - th[k - 1] > 2.0:
+        if th[k] - th[k - 1] > 6.0:          # las 2 orejetas estan separadas ~22 mm; los nodos de una misma, < 5 mm
             spans.append((float(lo), float(th[k - 1]))); lo = th[k]
     spans.append((float(lo), float(th[-1])))
     spans = [sp for sp in spans if sp[1] - sp[0] > 1.0]
+    if not spans:
+        raise InterfaceError("no se reconocen las orejetas del bulon")
     return dict(bolts=bolts, pin=dict(r=Rp, P=P.tolist(), spans=spans), tol=0.2)
 
 

@@ -31,14 +31,21 @@ EST_MAX = 260.0                    # MPa estimados como maximo para entrar en la
 VOL_ORIG = 307642.7
 
 
+COMPAT = os.path.join(DATA, "compatibilidad.json")   # comprobacion previa de los agujeros (python geometry_simjeb.py --comprobar)
+
+
 def _pool():
-    """Lista determinista de candidatos (id SimJEB, volumen, tension estimada, categoria), de mas ligero a mas pesado."""
+    """Lista determinista de candidatos (id SimJEB, volumen, tension estimada, categoria), de mas ligero a mas pesado.
+    Se excluyen los disenos cuyos agujeros NO son los del enunciado (bulon macizo, agujeros de perno agrandados...)."""
     path = os.path.join(DATA, "metadata.tab")
+    comp = json.load(open(COMPAT, encoding="utf-8")) if os.path.exists(COMPAT) else {}
     out = []
     for r in csv.DictReader(open(path, encoding="utf-8", errors="ignore")):
         try:
             i, vol, hor = int(r["id"]), float(r["volume"]), float(r["max_hor_stress"])
         except (ValueError, KeyError):
+            continue
+        if comp.get(str(i), {}).get("ok", True) is False:
             continue
         if hor * FACTOR <= EST_MAX and vol < VOL_ORIG and os.path.exists(os.path.join(STEP_DIR, f"{i}.stp")):
             out.append(dict(id=i, vol=vol, est=hor * FACTOR, cat=r.get("category", ""), autor=r.get("author", "")))
@@ -201,7 +208,42 @@ def build(p):
     return solid, info
 
 
+def check_pool():
+    """Malla cada candidato tal cual y comprueba que se reconocen los 4 agujeros de perno (M10) y el del bulon.
+    Guarda el resultado en datos_simjeb/compatibilidad.json (se hace una vez)."""
+    import time
+    from evaluate import mesh_with_timeout
+    comp = json.load(open(COMPAT, encoding="utf-8")) if os.path.exists(COMPAT) else {}
+    tmp = os.path.join(DATA, "_comprobacion"); os.makedirs(tmp, exist_ok=True)
+    for k, d in enumerate(POOL):
+        if str(d["id"]) in comp:
+            continue
+        t0 = time.time()
+        try:
+            p = default_params(); p["semilla"] = k
+            sol, _ = build(p); st = os.path.join(tmp, "c.step"); export(sol, st)
+            nodes, tets, tris = mesh_with_timeout(st, 4.0, 1.0, 10, False, logfile=None, timeout=90)
+            fem.IFACE = fem.detect_interfaces(nodes, tris)
+            inf = fem.write_inp(os.path.join(tmp, "c.inp"), nodes, tets, tris, force=37800.0, pin_half=None)
+            comp[str(d["id"])] = dict(ok=True, nodos=len(nodes), pernos=inf["nodes_per_bolt"], orejetas=inf["nodes_per_lug"])
+        except fem.InterfaceError as e:
+            comp[str(d["id"])] = dict(ok=False, motivo=str(e))
+        except Exception as e:                     # fallo de malla: no se excluye (el optimizador lo reintentara)
+            comp[str(d["id"])] = dict(ok=None, motivo=f"{type(e).__name__}: {e}"[:200])
+        finally:
+            fem.IFACE = None
+        print(f"  {k + 1:2d}/{len(POOL)} SimJEB {d['id']:4d}: {comp[str(d['id'])]} ({time.time() - t0:.0f} s)", flush=True)
+        json.dump(comp, open(COMPAT, "w", encoding="utf-8"), indent=1)
+    import shutil
+    shutil.rmtree(tmp, ignore_errors=True)
+    return comp
+
+
 if __name__ == "__main__":
+    import sys
+    if "--comprobar" in sys.argv:
+        check_pool()
+        sys.exit(0)
     print(f"{len(POOL)} candidatos de SimJEB:")
     for i, d in enumerate(POOL):
         print(f"  {i:3d}: SimJEB {d['id']:4d} {d['cat']:9s} {d['vol'] * 7.85e-6:.3f} kg acero | tension estimada {d['est']:.0f} MPa | {d['autor']}")
