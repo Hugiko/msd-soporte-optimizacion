@@ -1,6 +1,6 @@
 # Diseno desde cero: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:43
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:52
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (0)
 
@@ -12,7 +12,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:43
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (63)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (64)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -79,6 +79,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 06:43
 | 061 | 2.222 | 394.2 | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.35); cambia t_w, r_f | [ver](061/vonmises.png) |
 | 062 | 2.255 | 400.3 | [rama C1.2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.35); cambia t_w, r_f | [ver](062/vonmises.png) |
 | 063 | 2.232 | 414.2 | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia t_w, r_f | [ver](063/vonmises.png) |
+| 064 | 2.265 | 396.8 | [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia  | [ver](064/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 
