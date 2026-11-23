@@ -13,7 +13,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:29
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (6)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (7)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -23,6 +23,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:29
 | 005 | 1.739 | 215.3 | torneo de referencias SimJEB (5/30): SimJEB n.o 485 (block, saeid mirshahidi) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 174 MPa) | [ver](005/vonmises.png) |
 | 006 | 1.824 | 368.7 | torneo de referencias SimJEB (6/30): SimJEB n.o 380 (block, Richard Amancio) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 169 MPa) | [ver](006/vonmises.png) |
 | 007 | 1.823 | 287.9 | torneo de referencias SimJEB (7/30): SimJEB n.o 192 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 174 MPa) | [ver](007/vonmises.png) |
+| 008 | 1.823 | 287.9 | torneo de referencias SimJEB (8/30): SimJEB n.o 191 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 182 MPa) | [ver](008/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (0)
 
