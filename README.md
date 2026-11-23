@@ -1,10 +1,10 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 07:54 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 07:55 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 27 | 1 | 3.644 kg (CS 1.41) | en marcha |
+| SimJEB modificado | 28 | 1 | 3.644 kg (CS 1.41) | en marcha |
 | Refuerzo + vaciado | 161 | 46 | 2.372 kg (CS 1.16) | en marcha |
 | Diseno desde cero | 73 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 330 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 331 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -61,6 +61,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 028 | 1.191 | 526.9 | descartado | torneo de referencias SimJEB (28/30): SimJEB n.o 120 (arch, Arfi'an) t | [ver](runs/opt_37800N/galeria/20261123_075522_simjeb_028_NO_VALIDO_1.191kg.jpg) |
 | SimJEB modificado | 027 | 1.179 | 296.4 | descartado | torneo de referencias SimJEB (27/30): SimJEB n.o 375 (arch, Andrew Coy | [ver](runs/opt_37800N/galeria/20261123_075428_simjeb_027_NO_VALIDO_1.179kg.jpg) |
 | Refuerzo + vaciado | 161 | 2.440 | 362.6 | descartado | [rama RX2] exploradora: punto al azar en una zona nunca probada (a 1.4 | [ver](runs/opt_37800N/galeria/20261123_075347_refuerzo_161_NO_VALIDO_2.440kg.jpg) |
 | SimJEB modificado | 026 | 0.988 | 602.7 | descartado | torneo de referencias SimJEB (26/30): SimJEB n.o 63 (block, Arfi'an) t | [ver](runs/opt_37800N/galeria/20261123_075239_simjeb_026_NO_VALIDO_0.988kg.jpg) |
@@ -70,7 +71,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 024 | 0.852 | 621.0 | descartado | torneo de referencias SimJEB (24/30): SimJEB n.o 519 (flat, Pranav Pan | [ver](runs/opt_37800N/galeria/20261123_074942_simjeb_024_NO_VALIDO_0.852kg.jpg) |
 | SimJEB modificado | 023 | 2.366 | 242.5 | descartado | torneo de referencias SimJEB (23/30): SimJEB n.o 195 (flat, Armin) tal | [ver](runs/opt_37800N/galeria/20261123_074907_simjeb_023_NO_VALIDO_2.366kg.jpg) |
 | Refuerzo + vaciado | 159 | 2.418 | 302.7 | descartado | [rama RX1.3] cruce: mezcla de los parametros de RX1 (#104) y R1.1.1 (# | [ver](runs/opt_37800N/galeria/20261123_074823_refuerzo_159_NO_VALIDO_2.418kg.jpg) |
-| SimJEB modificado | 022 | 2.412 | 175.8 | valido | torneo de referencias SimJEB (22/30): SimJEB n.o 476 (block, Kiran Kum | [ver](runs/opt_37800N/galeria/20261123_074721_simjeb_022_VALIDO_2.412kg.jpg) |
 
 ---
 
