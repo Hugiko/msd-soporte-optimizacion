@@ -19340,3 +19340,53 @@
 [11:40:01]   [4/5] resultados
 [11:40:01]   [5/5] imagenes
 [11:40:03]   RESULTADO: masa 2.412 kg | tension 204.2 MPa (bruta 259) | casi (hasta +10 %)
+[11:40:12]   (GitHub: subido)
+[11:40:17] [Refuerzo + vaciado] DISENO 208  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[11:40:17]   motivo: [rama RX4] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia cav_len, cav_a, cav_z0, cav_z1...
+[11:40:17]   el modelo predice: masa 1.850 kg | tension 383 MPa | P(cumplir) 0.03
+[11:40:32]   [1/5] geometria parametrica (cadquery)
+[11:40:33]         masa CAD = 2.5831 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=True | ajustes: ['hueco estrechado 98.3->30.9 mm (techo a 45 para impresion 3D)']
+[11:40:35]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[11:41:04]   malla h=4.0: 121080 nodos, 68473 tet10 (24.4s)
+[11:41:06]   [3/5] ANSYS MAPDL normal (121080 nodos, 68473 elementos)
+[11:41:06] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:41:12]   [fase] 4  /PREP7
+[11:41:15]   [fase] 259079  /SOLU
+[11:41:15]   [solver] 259081  EQSLV,SPARSE
+[11:41:15]   [fase] 259084  /POST1
+[11:41:16]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.577   TIME= 11:41:13
+[11:41:25]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:41:25]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:41:25]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:41:25] MAPDL termino: estado=error codigo=1 tiempo=19.4s
+[11:41:25]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:41:25]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[11:41:41]   malla h=4.0: 125824 nodos, 71485 tet10 (11.9s)
+[11:41:42]         125824 nodos > limite Student: engrosando malla
+[11:41:58]   malla h=4.6: 113524 nodos, 63678 tet10 (11.5s)
+[11:41:59]   [3/5] ANSYS MAPDL normal (113524 nodos, 63678 elementos)
+[11:41:59] Lanzando MAPDL: model.inp (timeout 1200s)
+[11:42:00]   [fase] 4  /PREP7
+[11:42:02]   [fase] 259079  /SOLU
+[11:42:02]   [solver] 259081  EQSLV,SPARSE
+[11:42:02]   [fase] 259084  /POST1
+[11:42:02]   [AVISO] *** ERROR ***                           ELAPSED TIME =       7.577   TIME= 11:41:13
+[11:42:02]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[11:42:02]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[11:42:02]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[11:42:19] MAPDL termino: estado=error codigo=1 tiempo=19.3s
+[11:42:19]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[11:42:19]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[11:42:59]   malla h=3.6: 154748 nodos, 88549 tet10 (36.1s)
+[11:43:00]         154748 nodos > limite Student: engrosando malla
+[11:43:08]         fallo de malla: Exception: HXT 3D mesh failed
+[11:43:08]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[11:43:47]   malla h=4.0: 204257 nodos, 130284 tet10 (33.9s)
+[11:43:47]         204257 nodos > limite Student: engrosando malla
+[11:44:48]         fallo de malla: el mallado supero 60 s (gmsh colgado): se aborta
+[11:44:48]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[11:44:55]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:44:55]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[11:45:03]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
+[11:45:03]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | MAPDL alg1 h4.60: elementos con forma no valida | malla alg10 h4.14: Exception: HXT 3D mesh failed | malla alg4 h4.60: el mallado supero 60 s (gmsh colgado): se aborta | malla alg10 h4.00: Exception: The 1D mesh seems not to be forming a closed loop | malla alg1 h4.40: Exception: The 1D mesh seems not to be forming a closed loop
+[11:45:05]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con for -> se penaliza y se sigue

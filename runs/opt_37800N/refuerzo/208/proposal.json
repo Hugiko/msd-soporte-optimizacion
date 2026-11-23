@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 43.5293,
+  "cav_len": 19.0284,
+  "cav_a": 49.1476,
+  "cav_z0": 6.3354,
+  "cav_z1": 20.301,
+  "trim_s0": 34.0098,
+  "trim_z": 16.2893,
+  "trim_ang": 30.3548,
+  "trim_a": 36.0799,
+  "r_cut": 3.2588,
+  "R_pocket": 10.8446,
+  "t_col_del": 3.332,
+  "t_col_tra": 8.7207,
+  "z_col": 22.4306
+ },
+ "motivo": "[rama RX4] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia cav_len, cav_a, cav_z0, cav_z1...",
+ "pred": {
+  "mass_kg": 1.850248420267737,
+  "stress_mpa": 382.54967694300007,
+  "p_cumple": 0.03409910331474252,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.0021384342862907626,
+   "cav_len": 0.004238070859640954,
+   "cav_a": 0.010967676779491977,
+   "cav_z0": 0.04154791648359247,
+   "cav_z1": 0.003325184355200629,
+   "trim_s0": 0.3422580676742184,
+   "trim_z": 0.0010832449366437377,
+   "trim_ang": 0.016148155586681794,
+   "trim_a": 0.48496095803493067,
+   "r_cut": 0.028199094938705156,
+   "R_pocket": 0.05240606519937051,
+   "t_col_del": 0.0042265299587192565,
+   "t_col_tra": 0.0047731912441981335,
+   "z_col": 0.0037274096623155684
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX4",
+ "fecha": "2026-11-23T11:40:17.965819"
+}
