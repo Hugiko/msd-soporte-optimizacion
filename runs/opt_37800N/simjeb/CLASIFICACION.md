@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:42
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:44
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (48)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (49)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -40,6 +40,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:42
 | 162 | 2.166 | 177.7 | [rama SX3.1] rama nueva (fina, paso 0.10) desde el diseno 084; cambia ali2_x (rama fina: solo mueve semilla, ali1_y, ali2_x, t_col_tra, ali1_r) | - |
 | 041 | 2.211 | 176.7 | [rama S2] rama nueva (inicial, paso 0.30) desde el diseno 013; cambia ali2_x, ali2_r | - |
 | 156 | 2.212 | 176.7 | [rama S2] varios pasos sin mejora: paso mas corto (0.30); cambia z_col, ali2_x | - |
+| 185 | 2.215 | 176.3 | [rama S2] varios pasos sin mejora: paso mas corto (0.30); cambia t_col_tra, ali1_x, ali1_y, ali2_x | [ver](185/vonmises.png) |
 | 160 | 2.218 | 176.4 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, z_col... | - |
 | 091 | 2.228 | 174.0 | [rama S2] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_x, ali2_x, ali2_y... | - |
 | 013 | 2.236 | 176.5 | torneo de referencias SimJEB (13/30): SimJEB n.o 474 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 127 MPa) | - |
