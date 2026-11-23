@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 6 - ACEPTADA: R1 aligeramiento pasante vertical D16 mm en (-20, -26)
+
+*2026-11-23 20:27*
+
+- **Pieza de partida:** 2.3652 kg | 195.3 MPa | CS 1.10 | 0.142 mm
+- **Por que (regla R1):** Toda la columna en (-20, -26) hasta 11 mm de radio trabaja como maximo al 24 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~72 %; el pico (195 MPa, en alrededor de los pernos traseros) esta a 121 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** la tension maxima casi no cambia (prevision rapida: 2.3360 kg | 197.6 MPa | CS 1.09 | 0.143 mm)
+- **Resultado (malla completa):** 2.3358 kg | 197.2 MPa | CS 1.09 | 0.143 mm (tension +0.9 %, masa -29 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.3652 -> 2.3358; masa 2.3652 -> 2.3358 kg)
+- Descartada en la evaluacion rapida: [R11] sustituir el bloque x -38..58, y -128..-100 (por encima de z = 5) por 2 nervio(s) en la trayectoria de la carga -> la geometria no se puede construir (operacion 6 (rebaje): el rebaje ha fallado (2 solidos, resto 11 mm3))
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-20 mm (esquinas R3) -> pasa la evaluacion rapida (2.3651 kg | 194.3 MPa | CS 1.11 | 0.142 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261123_203004_it006_ACEPTADA_2.336kg.jpg" width="520">
+
 ## Iteracion 5 - RECHAZADA: R2 rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8 mm (esquinas R3)
 
 *2026-11-23 20:23*

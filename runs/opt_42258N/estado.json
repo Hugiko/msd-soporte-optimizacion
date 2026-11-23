@@ -1,5 +1,5 @@
 {
- "iter": 5,
+ "iter": 6,
  "actual": {
   "ops": [
    {
@@ -37,40 +37,32 @@
     "y1": -52.32,
     "zc": 9.0,
     "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -20.48,
+    "y": -26.32,
+    "r": 8.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\004\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\006\\completa",
   "m": {
-   "mass_kg": 2.3652214614500005,
-   "vm_metric": 195.3456,
-   "u_max": 0.1416360575357744,
+   "mass_kg": 2.3358237688,
+   "vm_metric": 197.1701,
+   "u_max": 0.14291611465090764,
    "vm_metric_xyz": [
-    16.721685350674203,
-    -141.97168205546467,
-    13.389599953816933
+    49.095593462182585,
+    -8.538865810174961,
+    10.388599919856446
    ],
-   "n_nodes": 83103,
-   "cs": 1.1006134768328542,
-   "viol": 0.9085841860465116,
-   "score": 2.3652214614500005,
+   "n_nodes": 83855,
+   "cs": 1.0904290254962594,
+   "viol": 0.9170702325581395,
+   "score": 2.3358237688,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.37431565505,
-   "vm_metric": 193.0055,
-   "u_max": 0.14166727260339593,
-   "vm_metric_xyz": [
-    47.05616414614755,
-    -7.704069186801425,
-    10.388599920100642
-   ],
-   "n_nodes": 48097,
-   "cs": 1.1139578923916675,
-   "viol": 0.8977,
-   "score": 2.37431565505,
-   "valido": true
-  },
-  "galeria": "galeria/20261123_202026_it004_ACEPTADA_2.365kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261123_203004_it006_ACEPTADA_2.336kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -109,33 +101,39 @@
     "y1": -52.32,
     "zc": 9.0,
     "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -20.48,
+    "y": -26.32,
+    "r": 8.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\004\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\006\\completa",
   "m": {
-   "mass_kg": 2.3652214614500005,
-   "vm_metric": 195.3456,
-   "u_max": 0.1416360575357744,
+   "mass_kg": 2.3358237688,
+   "vm_metric": 197.1701,
+   "u_max": 0.14291611465090764,
    "vm_metric_xyz": [
-    16.721685350674203,
-    -141.97168205546467,
-    13.389599953816933
+    49.095593462182585,
+    -8.538865810174961,
+    10.388599919856446
    ],
-   "n_nodes": 83103,
-   "cs": 1.1006134768328542,
-   "viol": 0.9085841860465116,
-   "score": 2.3652214614500005,
+   "n_nodes": 83855,
+   "cs": 1.0904290254962594,
+   "viol": 0.9170702325581395,
+   "score": 2.3358237688,
    "valido": true
   },
-  "iter": 4,
-  "galeria": "galeria/20261123_202026_it004_ACEPTADA_2.365kg.jpg",
+  "iter": 6,
+  "galeria": "galeria/20261123_203004_it006_ACEPTADA_2.336kg.jpg",
   "verif": {
-   "vm_metric": 212.8725,
-   "u_max": 0.14659288580492064,
-   "n_nodes": 106073,
+   "vm_metric": 210.6632,
+   "u_max": 0.14769830169843964,
+   "n_nodes": 106393,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it004_2.365kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\06_it006_2.336kg"
  },
  "verificado": {
   "ops": [
@@ -174,33 +172,39 @@
     "y1": -52.32,
     "zc": 9.0,
     "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -20.48,
+    "y": -26.32,
+    "r": 8.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\004\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\006\\completa",
   "m": {
-   "mass_kg": 2.3652214614500005,
-   "vm_metric": 195.3456,
-   "u_max": 0.1416360575357744,
+   "mass_kg": 2.3358237688,
+   "vm_metric": 197.1701,
+   "u_max": 0.14291611465090764,
    "vm_metric_xyz": [
-    16.721685350674203,
-    -141.97168205546467,
-    13.389599953816933
+    49.095593462182585,
+    -8.538865810174961,
+    10.388599919856446
    ],
-   "n_nodes": 83103,
-   "cs": 1.1006134768328542,
-   "viol": 0.9085841860465116,
-   "score": 2.3652214614500005,
+   "n_nodes": 83855,
+   "cs": 1.0904290254962594,
+   "viol": 0.9170702325581395,
+   "score": 2.3358237688,
    "valido": true
   },
-  "iter": 4,
-  "galeria": "galeria/20261123_202026_it004_ACEPTADA_2.365kg.jpg",
+  "iter": 6,
+  "galeria": "galeria/20261123_203004_it006_ACEPTADA_2.336kg.jpg",
   "verif": {
-   "vm_metric": 212.8725,
-   "u_max": 0.14659288580492064,
-   "n_nodes": 106073,
+   "vm_metric": 210.6632,
+   "u_max": 0.14769830169843964,
+   "n_nodes": 106393,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it004_2.365kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\06_it006_2.336kg"
  },
  "tau_idx": 1,
  "rechazos": [
@@ -295,6 +299,20 @@
    "motivo_tipo": "puntuacion",
    "regla": "R2",
    "iter": 5
+  },
+  {
+   "op": {
+    "tipo": "rebaje_nervio",
+    "x0": -38.48,
+    "x1": 57.52,
+    "y0": -128.32,
+    "y1": -100.32,
+    "zc": 5.0,
+    "rr": 5.6
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R11",
+   "iter": 6
   }
  ],
  "stats": {
@@ -321,8 +339,8 @@
    ]
   },
   "R11": {
-   "intentos": 4,
-   "descartadas_rapido": 4,
+   "intentos": 5,
+   "descartadas_rapido": 5,
    "evaluadas": 0,
    "aceptadas": 0,
    "rechazadas": 0,
@@ -331,7 +349,7 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 4,
+   "intentos": 5,
    "descartadas_rapido": 0,
    "evaluadas": 3,
    "aceptadas": 2,
@@ -367,32 +385,39 @@
    ]
   },
   "R1": {
-   "intentos": 4,
+   "intentos": 5,
    "descartadas_rapido": 2,
-   "evaluadas": 1,
-   "aceptadas": 1,
+   "evaluadas": 2,
+   "aceptadas": 2,
    "rechazadas": 0,
    "dsig": [
-    -2.81
+    -2.81,
+    0.93
    ],
    "dm": [
-    -34.0
+    -34.0,
+    -29.4
    ],
    "ejemplos": [
     [
      2,
      "aceptada: aligeramiento pasante vertical D12 mm en (40, -71) (tension -2.8 %, masa -34 g)"
+    ],
+    [
+     6,
+     "aceptada: aligeramiento pasante vertical D16 mm en (-20, -26) (tension +0.9 %, masa -29 g)"
     ]
    ],
    "dsig_prev": [
-    1.24
+    1.24,
+    1.15
    ]
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.3652214614500005,
+ "wb_masa": 2.3358237688,
  "fin": false,
  "motivo_fin": "",
  "historia": [
@@ -786,6 +811,77 @@
     "cs": 1.1006134768328542,
     "viol": 0.9085841860465116,
     "score": 2.3652214614500005,
+    "valido": true
+   }
+  },
+  {
+   "iter": 6,
+   "fecha": "2026-11-23T20:27:59.011473",
+   "antes": "2.3652 kg | 195.3 MPa | CS 1.10 | 0.142 mm",
+   "m_antes": {
+    "mass_kg": 2.3652214614500005,
+    "vm_metric": 195.3456,
+    "u_max": 0.1416360575357744,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 83103,
+    "cs": 1.1006134768328542,
+    "viol": 0.9085841860465116,
+    "score": 2.3652214614500005,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R11",
+     "titulo": "sustituir el bloque x -38..58, y -128..-100 (por encima de z = 5) por 2 nervio(s) en la trayectoria de la carga",
+     "motivo": "la geometria no se puede construir (operacion 6 (rebaje): el rebaje ha fallado (2 solidos, resto 11 mm3))"
+    },
+    {
+     "regla": "R2",
+     "titulo": "rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-20 mm (esquinas R3)",
+     "motivo": "pasa la evaluacion rapida (2.3651 kg | 194.3 MPa | CS 1.11 | 0.142 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D16 mm en (-20, -26)",
+   "porque": "Toda la columna en (-20, -26) hasta 11 mm de radio trabaja como maximo al 24 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~72 %; el pico (195 MPa, en alrededor de los pernos traseros) esta a 121 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "la tension maxima casi no cambia (prevision rapida: 2.3360 kg | 197.6 MPa | CS 1.09 | 0.143 mm)",
+   "m_cand": {
+    "mass_kg": 2.3358237688,
+    "vm_metric": 197.1701,
+    "u_max": 0.14291611465090764,
+    "vm_metric_xyz": [
+     49.095593462182585,
+     -8.538865810174961,
+     10.388599919856446
+    ],
+    "n_nodes": 83855,
+    "cs": 1.0904290254962594,
+    "viol": 0.9170702325581395,
+    "score": 2.3358237688,
+    "valido": true
+   },
+   "despues": "2.3358 kg | 197.2 MPa | CS 1.09 | 0.143 mm (tension +0.9 %, masa -29 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y mejora al mejor (puntuacion 2.3652 -> 2.3358; masa 2.3652 -> 2.3358 kg)",
+   "galeria": "galeria/20261123_203004_it006_ACEPTADA_2.336kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3358237688,
+    "vm_metric": 197.1701,
+    "u_max": 0.14291611465090764,
+    "vm_metric_xyz": [
+     49.095593462182585,
+     -8.538865810174961,
+     10.388599919856446
+    ],
+    "n_nodes": 83855,
+    "cs": 1.0904290254962594,
+    "viol": 0.9170702325581395,
+    "score": 2.3358237688,
     "valido": true
    }
   }
