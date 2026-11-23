@@ -12,7 +12,7 @@ classDef activa fill:#d6eaff,stroke:#1f6fb5,color:#000
 classDef fin fill:#eeeeee,stroke:#888,color:#000
 classDef mejor fill:#c8f0c0,stroke:#1a9850,stroke-width:4px,color:#000
 S0["S0 - reparto inicial<br/>30 pruebas<br/>mejor: 1.975 kg, 164 MPa (#011)"]:::fin
-S1["S1 - inicial, paso 0.30<br/>7 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]:::mejor
+S1["S1 - inicial, paso 0.30<br/>8 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]:::mejor
 S0 --> S1
 S2["S2 - inicial, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
 S0 --> S2
