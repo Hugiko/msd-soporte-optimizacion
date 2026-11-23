@@ -32,7 +32,7 @@ SX1["SX1 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cerc
 S0 --> SX1
 SX2["SX2 - exploradora, paso 0.30<br/>1 pruebas<br/>aun sin validos; el mas cercano 358 MPa (#064)"]:::activa
 S0 --> SX2
-SX3["SX3 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+SX3["SX3 - exploradora, paso 0.30<br/>1 pruebas<br/>aun sin validos; el mas cercano 280 MPa (#065)"]:::activa
 S0 --> SX3
 ```
 
