@@ -1,10 +1,10 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 11:16 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 11:17 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 113 | 27 | 1.914 kg (CS 1.30) | en marcha |
+| SimJEB modificado | 114 | 27 | 1.914 kg (CS 1.30) | en marcha |
 | Refuerzo + vaciado | 204 | 68 | 2.314 kg (CS 1.15) | en marcha |
 | Diseno desde cero | 87 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 473 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 474 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -66,6 +66,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 114 | 2.382 | 697.1 | descartado | [rama SX7] exploradora: punto al azar en una zona nunca probada (a 1.2 | [ver](runs/opt_37800N/galeria/20261123_111712_simjeb_114_NO_VALIDO_2.382kg.jpg) |
 | SimJEB modificado | 113 | 2.382 | 280.4 | descartado | [rama SX6] exploradora: punto al azar en una zona nunca probada (a 1.2 | [ver](runs/opt_37800N/galeria/20261123_111628_simjeb_113_NO_VALIDO_2.382kg.jpg) |
 | Refuerzo + vaciado | 204 | 2.404 | 184.3 | valido | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.30);  | [ver](runs/opt_37800N/galeria/20261123_111540_refuerzo_204_VALIDO_2.404kg.jpg) |
 | SimJEB modificado | 112 | 1.191 | 534.8 | descartado | [rama S1.1.2] rama nueva (amplia, paso 0.35) desde el diseno 044; camb | [ver](runs/opt_37800N/galeria/20261123_111436_simjeb_112_NO_VALIDO_1.191kg.jpg) |
@@ -75,7 +76,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 109 | 1.646 | 547.4 | descartado | [rama SX3] pequeno cambio alrededor del mejor de la rama (paso 0.15);  | [ver](runs/opt_37800N/galeria/20261123_111057_simjeb_109_NO_VALIDO_1.646kg.jpg) |
 | Diseno desde cero | 087 | 1.717 | 684.9 | descartado | [rama CX1] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_111013_cero_087_NO_VALIDO_1.717kg.jpg) |
 | Refuerzo + vaciado | 202 | 2.374 | - | fallido | [rama RX3] exploradora: punto al azar en una zona nunca probada (a 1.4 | [ver](runs/opt_37800N/galeria/20261123_110933_refuerzo_202_FALLO_2.374kg.jpg) |
-| SimJEB modificado | 108 | 1.546 | 356.2 | descartado | [rama SX5] pequeno cambio alrededor del mejor de la rama (paso 0.60);  | [ver](runs/opt_37800N/galeria/20261123_110831_simjeb_108_NO_VALIDO_1.546kg.jpg) |
 
 ---
 
