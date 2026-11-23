@@ -1,0 +1,20 @@
+{
+ "params": {
+  "semilla": 2.0,
+  "t_col_del": 5.6243,
+  "t_col_tra": 0.6598,
+  "z_col": 26.8059,
+  "ali1_x": -25.3777,
+  "ali1_y": 5.7993,
+  "ali1_r": 0.0398,
+  "ali2_x": 47.1059,
+  "ali2_y": -4.206,
+  "ali2_r": 8.8362
+ },
+ "motivo": "[rama SX4] exploradora: punto al azar en una zona nunca probada (a 1.38 del diseno probado mas cercano (anti-estancamiento))",
+ "pred": null,
+ "fase": "exploradora",
+ "familia": "simjeb",
+ "rama": "SX4",
+ "fecha": "2026-11-23T10:17:48.996938"
+}
