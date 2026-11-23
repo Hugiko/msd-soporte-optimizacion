@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 23/11/2026 20:39. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 23/11/2026 20:42. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -38,11 +38,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 6 veces (2 descartadas en la evaluacion rapida, 3 aceptadas, 0 rechazadas); tension +0.9 % (mediana), masa -29 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +1.2 % frente a +0.9 % real (mediana de 3)
+- **Aplicada en el optimizador:** 7 veces (2 descartadas en la evaluacion rapida, 4 aceptadas, 0 rechazadas); tension -0.9 % (mediana), masa -28 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +1.2 % frente a -0.9 % real (mediana de 4)
   - iteracion 2: aceptada: aligeramiento pasante vertical D12 mm en (40, -71) (tension -2.8 %, masa -34 g)
   - iteracion 6: aceptada: aligeramiento pasante vertical D16 mm en (-20, -26) (tension +0.9 %, masa -29 g)
   - iteracion 7: aceptada: aligeramiento pasante vertical D12 mm en (4, -74) (tension +3.2 %, masa -27 g)
+  - iteracion 8: aceptada: aligeramiento pasante vertical D10 mm en (40, -86) (tension -3.3 %, masa -21 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -181,14 +182,14 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Espero:** permite seguir aligerando con un riesgo controlado.
 - **Evidencia (basada en la teoria / en sus resultados):** regla de procedimiento: se juzga por sus resultados en el optimizador.
 
-### R11. Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)  (ACTIVA)
+### R11. Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)  (SUSPENDIDA: 9 INTENTOS SIN NINGUNA MEJORA)
 
 - **Si:** un bloque trabaja por debajo del 45-60 % del limite (no es ocioso: lleva algo de carga) o un rebaje se rechazo porque ese material si trabajaba.
 - **Hago:** se quita el bloque y se crean NERVIOS (paredes verticales, imprimibles, con acuerdo de 3 mm en la raiz): uno por cada familia de la carga (traccion y compresion) en su direccion principal, dimensionado para llevarla al 50 % del limite.
 - **Porque:** Michell (1904): la estructura de volumen minimo que lleva una carga sigue las trayectorias de las tensiones principales, y su volumen es la integral de |s| dV dividida por la tension de trabajo. En un bloque macizo casi todo el material trabaja muy por debajo del limite; un nervio en la direccion de la carga lleva lo mismo (traccion/compresion, que aprovecha toda la seccion) con mucho menos material.
 - **Espero:** baja la masa (bloque menos nervio); la tension sube algo, pero el nervio trabaja por debajo del limite.
 - **Evidencia (basada en la teoria / en sus resultados):** NO CONCLUYENTE: entre los disenos publicados calculados con malla completa, los de nervios / arcos / vigas (9) tienen de mediana un 35 % de material ocioso y 1.048 kg, frente al 32 % y 2.119 kg de los tipo bloque (38). Teoria: Michell (1904), estructuras de volumen minimo.
-- **Aplicada en el optimizador:** 7 veces (7 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 9 veces (9 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ---
 Las reglas R9 y R10 son de procedimiento (como aplicar las demas). La lista completa de iteraciones, con el antes y el despues de cada cambio, esta en `runs/opt_<carga>N/ITERACIONES.md`.

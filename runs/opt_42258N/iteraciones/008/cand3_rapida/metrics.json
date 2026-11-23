@@ -1,0 +1,21 @@
+{
+ "status": "mesh_fail",
+ "params": {},
+ "force": 42258.0,
+ "mass_cad_kg": 2.178237105169416,
+ "volume_cad_mm3": 277482.43377954344,
+ "hueco": false,
+ "clamped": [],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: Invalid boundary mesh (overlapping facets) on surface 533 surface 582 | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 172, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 143, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: Invalid boundary mesh (overlapping facets) on surface 533 surface 582 | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)\n",
+ "total_s": 13.177428007125854
+}

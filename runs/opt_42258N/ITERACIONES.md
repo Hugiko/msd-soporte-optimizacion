@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 8 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (40, -86)
+
+*2026-11-23 20:39*
+
+- **Pieza de partida:** 2.3085 kg | 203.5 MPa | CS 1.06 | 0.144 mm
+- **Por que (regla R1):** Toda la columna en (40, -86) hasta 8 mm de radio trabaja como maximo al 22 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~66 %; el pico (203 MPa, en orejetas del bulon) esta a 52 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 3 veces que se ha aplicado: +0.9 % (prevision rapida: 2.2881 kg | 196.8 MPa | CS 1.09 | 0.144 mm)
+- **Resultado (malla completa):** 2.2877 kg | 196.7 MPa | CS 1.09 | 0.144 mm (tension -3.3 %, masa -21 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.3085 -> 2.2877; masa 2.3085 -> 2.2877 kg)
+- Descartada en la evaluacion rapida: [R11] sustituir el bloque x -6..66, y -48..-20 (por encima de z = 5) por 2 nervio(s) en la trayectoria de la carga -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)
+- Descartada en la evaluacion rapida: [R11] sustituir el bloque x 22..42, y -128..-68 (por encima de z = 5) por 2 nervio(s) en la trayectoria de la carga -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)
+
+<img src="galeria/20261123_204233_it008_ACEPTADA_2.288kg.jpg" width="520">
+
 ## Iteracion 7 - ACEPTADA: R1 aligeramiento pasante vertical D12 mm en (4, -74)
 
 *2026-11-23 20:33*
