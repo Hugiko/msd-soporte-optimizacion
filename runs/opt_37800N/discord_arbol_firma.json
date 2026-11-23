@@ -27,7 +27,7 @@
   "simjeb",
   "S1.1.2",
   "activa",
-  null
+  44
  ],
  [
   "simjeb",
@@ -82,6 +82,18 @@
   "SX5",
   "activa",
   102
+ ],
+ [
+  "simjeb",
+  "SX6",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "SX7",
+  "activa",
+  null
  ],
  [
   "refuerzo",

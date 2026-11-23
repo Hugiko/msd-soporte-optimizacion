@@ -27,7 +27,9 @@
     "SX2",
     "SX3",
     "SX4",
-    "SX5"
+    "SX5",
+    "SX6",
+    "SX7"
    ],
    "seed_score": [
     9,
@@ -232,8 +234,14 @@
    "L0": 0.35,
    "succ": 0,
    "fail": 0,
-   "n": 0,
-   "best": null,
+   "n": 1,
+   "best": {
+    "score": [
+     0,
+     1.8786403605459323
+    ],
+    "id": 44
+   },
    "prev_x": null,
    "estado": "activa",
    "hijos": [],
@@ -527,9 +535,75 @@
    ],
    "nota": "a 1.32 del diseno probado mas cercano (anti-estancamiento)",
    "creada": "2026-11-23T10:17:43.384053"
+  },
+  "SX6": {
+   "id": "SX6",
+   "padre": "S0",
+   "semilla": null,
+   "tipo": "exploradora",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.878640358667292
+   ],
+   "seed_x": [
+    0.7777777777777778,
+    0.7341435756534338,
+    0.8083612686023116,
+    0.9739367151632905,
+    0.7669057529419661,
+    0.8226471254602075,
+    0.2978490851819515,
+    0.6943539464846253,
+    0.9439872531220317,
+    0.9366117008030415
+   ],
+   "nota": "a 1.25 del diseno probado mas cercano (anti-estancamiento)",
+   "creada": "2026-11-23T11:14:36.365720"
+  },
+  "SX7": {
+   "id": "SX7",
+   "padre": "S0",
+   "semilla": null,
+   "tipo": "exploradora",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.878640358667292
+   ],
+   "seed_x": [
+    0.873015873015873,
+    0.5331930434331298,
+    0.9586614323779941,
+    0.9702366031706333,
+    0.17945776134729385,
+    0.2194565674290061,
+    0.9543002089485526,
+    0.21918038930743933,
+    0.8011167962104082,
+    0.9915047939866781
+   ],
+   "nota": "a 1.27 del diseno probado mas cercano (anti-estancamiento)",
+   "creada": "2026-11-23T11:14:36.383708"
   }
  },
  "done": false,
  "motivo_fin": "",
- "ultimo_estancamiento": 87
+ "ultimo_estancamiento": 112
 }

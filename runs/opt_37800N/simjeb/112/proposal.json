@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 4.0,
+  "t_col_del": 0.0,
+  "t_col_tra": 2.8674,
+  "z_col": 8.0,
+  "ali1_x": -35.0,
+  "ali1_y": -158.0,
+  "ali1_r": 9.7686,
+  "ali2_x": 42.6261,
+  "ali2_y": -73.1435,
+  "ali2_r": 8.8067
+ },
+ "motivo": "[rama S1.1.2] rama nueva (amplia, paso 0.35) desde el diseno 044; cambia semilla, t_col_tra, ali1_r, ali2_r",
+ "pred": {
+  "mass_kg": 1.2198002486756676,
+  "stress_mpa": 339.380941629113,
+  "p_cumple": 0.028690618551774346,
+  "paso": 0.35,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "semilla": 0.8898345603647756,
+   "t_col_del": 0.010830163589659861,
+   "t_col_tra": 0.011120461409498881,
+   "z_col": 0.011312847909126593,
+   "ali1_x": 0.007896042858373841,
+   "ali1_y": 0.012516680433338019,
+   "ali1_r": 0.019897261389824897,
+   "ali2_x": 0.01231652615460178,
+   "ali2_y": 0.01567122262141994,
+   "ali2_r": 0.008604233269380424
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "S1.1.2",
+ "fecha": "2026-11-23T11:13:35.439682"
+}

@@ -24,7 +24,7 @@ S1_2["S1.2 - amplia, paso 0.35<br/>10 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037
 S1 --> S1_2
 S1_1_1["S1.1.1 - fina, paso 0.10<br/>1 pruebas<br/>mejor: 1.914 kg, 165 MPa (#105)"]:::activa
 S1_1 --> S1_1_1
-S1_1_2["S1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S1_1_2["S1.1.2 - amplia, paso 0.35<br/>1 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::activa
 S1_1 --> S1_1_2
 S1_1_3["S1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 S1_1 --> S1_1_3
@@ -38,6 +38,10 @@ SX4["SX4 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 1.951 kg, 166 MPa (#1
 S0 --> SX4
 SX5["SX5 - exploradora, paso 0.30<br/>8 pruebas<br/>mejor: 1.948 kg, 168 MPa (#102)"]:::activa
 S0 --> SX5
+SX6["SX6 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S0 --> SX6
+SX7["SX7 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S0 --> SX7
 ```
 
 ## Refuerzo + vaciado
