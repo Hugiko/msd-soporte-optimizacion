@@ -22296,3 +22296,36 @@
 [13:09:19]   [4/5] resultados
 [13:09:20]   [5/5] imagenes
 [13:09:22]   RESULTADO: masa 1.355 kg | tension 343.6 MPa (bruta 700) | NO cumple
+[13:09:27] Limpieza automatica: liberados 213 MB (disenos antiguos ya superados)
+[13:09:30] [SimJEB modificado] DISENO 166  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[13:09:30]   motivo: [rama SX10] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, t_col_tra, z_col...
+[13:09:30]   el modelo predice: masa 5.292 kg | tension 168 MPa | P(cumplir) 0.51
+[13:09:31]   (GitHub: subido)
+[13:09:39]   [1/5] geometria parametrica (cadquery)
+[13:09:39]         masa CAD = 3.5430 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False | ajustes: ['cavidad cerrada rellenada (impresion 3D)']
+[13:09:40]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[13:09:44]         fallo de malla: Exception: HXT 3D mesh failed
+[13:09:44]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[13:09:48]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[13:09:48]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[13:09:53]         fallo de malla: Exception: HXT 3D mesh failed
+[13:09:53]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[13:09:57]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[13:09:57]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[13:10:02]         fallo de malla: Exception: HXT 3D mesh failed
+[13:10:02]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[13:10:09]   malla h=4.4: 53362 nodos, 32568 tet10 (3.2s)
+[13:10:10]   [3/5] ANSYS MAPDL normal (53362 nodos, 32568 elementos)
+[13:10:10] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:10:16]   [fase] 4  /PREP7
+[13:10:18]   [fase] 119246  /SOLU
+[13:10:18]   [solver] 119248  EQSLV,SPARSE
+[13:10:18]   [fase] 119251  /POST1
+[13:10:18]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.658   TIME= 13:10:17
+[13:10:29]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[13:10:29]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[13:10:29]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[13:10:29] MAPDL termino: estado=error codigo=1 tiempo=19.2s
+[13:10:29]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[13:10:29]   !! fallo en solucion: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: HXT 3D mesh failed | MAPDL alg1 h4.40: elementos con forma no valida
+[13:10:31]   RESULTADO: FALLO (solve_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue

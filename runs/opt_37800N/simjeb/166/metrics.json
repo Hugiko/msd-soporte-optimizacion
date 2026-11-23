@@ -1,0 +1,94 @@
+{
+ "status": "solve_fail",
+ "params": {
+  "semilla": 11.0,
+  "t_col_del": 0.9113,
+  "t_col_tra": 3.2434,
+  "z_col": 20.7924,
+  "ali1_x": 47.401,
+  "ali1_y": -53.3004,
+  "ali1_r": 8.7161,
+  "ali2_x": 34.2772,
+  "ali2_y": -158.0,
+  "ali2_r": 7.7985
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 3.542955716680752,
+ "volume_cad_mm3": 451331.9384306691,
+ "hueco": false,
+ "clamped": [
+  "cavidad cerrada rellenada (impresion 3D)"
+ ],
+ "holes_check": {
+  "deteccion": "en la malla"
+ },
+ "aligeramientos": 2,
+ "sin_modificar": false,
+ "simjeb_id": 592,
+ "simjeb_categoria": "block",
+ "simjeb_autor": "Mike raymond",
+ "simjeb_tension_estimada": 224.1,
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: HXT 3D mesh failed | MAPDL alg1 h4.40: elementos con forma no valida",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 164, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 136, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: Exception: HXT 3D mesh failed | MAPDL alg1 h4.40: elementos con forma no valida\n",
+ "interfaces": {
+  "bolts": [
+   {
+    "c": [
+     0.0,
+     0.0
+    ],
+    "r": 5.334000001501537,
+    "z0": -2.2382992735188626e-15,
+    "z1": 7.848600000000003
+   },
+   {
+    "c": [
+     52.047,
+     1.58
+    ],
+    "r": 5.156179308622424,
+    "z0": 2.1147261012387016e-15,
+    "z1": 7.848600000000005
+   },
+   {
+    "c": [
+     0.0,
+     -148.125
+    ],
+    "r": 5.156225819028508,
+    "z0": -8.391218092123225e-14,
+    "z1": 7.848600000000008
+   },
+   {
+    "c": [
+     38.083,
+     -146.968
+    ],
+    "r": 5.156218306229664,
+    "z0": -9.402371611002567e-14,
+    "z1": 7.848600000000004
+   }
+  ],
+  "pin": {
+   "r": 9.556750008833479,
+   "P": [
+    -20.923499999999997,
+    -74.69800000000001,
+    44.725
+   ],
+   "spans": [
+    [
+     -17.46251398934612,
+     -11.112427223403426
+    ],
+    [
+     11.112486010358255,
+     17.46257277625342
+    ]
+   ]
+  },
+  "tol": 0.2
+ },
+ "total_s": 50.845582246780396,
+ "galeria": "galeria/20261123_131030_simjeb_166_FALLO_3.543kg.jpg"
+}
