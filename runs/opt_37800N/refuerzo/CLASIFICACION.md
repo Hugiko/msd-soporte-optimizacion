@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:21
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:24
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (75)
 
@@ -65,11 +65,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:21
 | 043 | 2.494 | 179.8 | [rama R1.1] rama nueva (fina, paso 0.10) desde el diseno 039; cambia cav_z0, r_cut (rama fina: solo mueve trim_z, trim_s0, R_pocket, cav_z0, cav_a, r_cut, trim_a) | - |
 | 047 | 2.488 | 182.9 | [rama R1.1] varios pasos sin mejora: paso mas corto (0.10); cambia cav_s0, trim_s0, trim_z, r_cut (rama fina: solo mueve trim_z, trim_s0, cav_a, R_pocket, cav_s0, r_cut, trim_a) | - |
 | 039 | 2.493 | 182.6 | [rama R1] pequeno cambio alrededor del mejor de la rama (paso 0.04); cambia trim_z | - |
-| 212 | 2.493 | 183.3 | [rama R1.1.3] cruce: mezcla de los parametros de R1.1 (#054) y R1 (#039) | [ver](212/vonmises.png) |
+| 212 | 2.493 | 183.3 | [rama R1.1.3] cruce: mezcla de los parametros de R1.1 (#054) y R1 (#039) | - |
 | 223 | 2.505 | 179.5 | [rama R1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia cav_s0, cav_z1, z_col | [ver](223/vonmises.png) |
 | 037 | 2.505 | 180.0 | [rama R1] pequeno cambio alrededor del mejor de la rama (paso 0.04); cambia trim_z | - |
 | 074 | 2.506 | 180.4 | [rama R1.1.1] varios pasos sin mejora: paso mas corto (0.40); cambia trim_s0, trim_ang, r_cut (rama fina: solo mueve trim_s0, r_cut, trim_z, trim_a, R_pocket, trim_ang, cav_z1) | - |
-| 213 | 2.502 | 183.1 | [rama R1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_z1, trim_s0, trim_ang | [ver](213/vonmises.png) |
+| 213 | 2.502 | 183.1 | [rama R1.1.1.3] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_z1, trim_s0, trim_ang | - |
 | 135 | 2.511 | 179.4 | [rama R1.1.1.1.1] varios pasos sin mejora: paso mas corto (0.10); cambia cav_z1, trim_z, r_cut (rama fina: solo mueve trim_s0, trim_a, r_cut, trim_z, R_pocket, cav_z1, t_col_del) | - |
 | 158 | 2.512 | 179.4 | [rama R1.1.1.1.3] el ultimo paso mejoro: sigue en esa linea (paso 0.20); cambia cav_z1, trim_s0, trim_z | - |
 | 029 | 2.510 | 181.7 | [rama R1] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia trim_s0, trim_z | - |
@@ -149,11 +149,11 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:21
 | 195 | 2.323 | 188.2 | [rama R1.1.1.1.1.2] varios pasos sin mejora: paso mas corto (0.35); cambia cav_s0, cav_a, cav_z0, cav_z1... | - |
 | 196 | 2.326 | 194.6 | [rama R1.1.1.1.1.3] varios pasos sin mejora: paso mas corto (0.20); cambia cav_a, cav_z0, t_col_del, t_col_tra | - |
 | 209 | 2.458 | 197.8 | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_len, cav_a, cav_z0... | - |
-| 211 | 2.398 | 188.5 | [rama RX3] varios pasos sin mejora: paso mas corto (0.30); cambia cav_len, cav_a, trim_z, trim_ang... | [ver](211/vonmises.png) |
+| 211 | 2.398 | 188.5 | [rama RX3] varios pasos sin mejora: paso mas corto (0.30); cambia cav_len, cav_a, trim_z, trim_ang... | - |
 | 218 | 2.384 | 193.9 | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia cav_a, cav_z1, t_col_del | [ver](218/vonmises.png) |
 | 225 | 2.482 | 189.5 | [rama RX3] varios pasos sin mejora: paso mas corto (0.15); cambia trim_s0, R_pocket | [ver](225/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (70)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (71)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -227,6 +227,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:21
 | 231 | 2.257 | 374.5 | [rama RX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia trim_z, trim_a | [ver](231/vonmises.png) |
 | 232 | 2.466 | 322.1 | [rama RX5] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](232/vonmises.png) |
 | 233 | 2.484 | 320.7 | [rama RX6] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](233/vonmises.png) |
+| 234 | 2.457 | 352.7 | [rama RX5] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](234/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (22)
 
