@@ -62,7 +62,7 @@ SX13["SX13 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::act
 S0 --> SX13
 SX5_1["SX5.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 SX5 --> SX5_1
-SX5_2["SX5.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+SX5_2["SX5.2 - amplia, paso 0.35<br/>1 pruebas<br/>mejor: 1.948 kg, 168 MPa (#102)"]:::activa
 SX5 --> SX5_2
 SX5_3["SX5.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 SX5 --> SX5_3
