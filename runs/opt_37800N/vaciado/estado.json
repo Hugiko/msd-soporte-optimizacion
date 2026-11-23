@@ -109,11 +109,11 @@
    "padre": "V1",
    "semilla": 31,
    "tipo": "amplia",
-   "L": 0.0875,
+   "L": 0.04375,
    "L0": 0.35,
    "succ": 0,
-   "fail": 3,
-   "n": 12,
+   "fail": 0,
+   "n": 13,
    "best": {
     "score": [
      1,
