@@ -43,7 +43,7 @@ CFG = dict(
     workbench=bool(USER.get("crear_workbench_en_cada_mejora", True)),
     n_init=12, n_mass_cache=48, n_cand=3000, seed=2026,
     max_fail_streak=8,
-    tr_init=0.30, tr_min=0.02, tr_max=0.6, tr_succ=2, tr_fail=4, max_restarts=3,
+    tr_init=0.30, tr_min=0.05, tr_max=0.6, tr_succ=2, tr_fail=4, max_restarts=3,
 )
 TEST = "--prueba" in sys.argv          # prueba corta en carpeta aparte (no toca los resultados reales)
 if TEST:
@@ -82,8 +82,9 @@ FAMILIES = {
     "refuerzo": ("geometry_refuerzo", "Refuerzo + vaciado",
                  [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.667, 0.444, 0.75]),  # 1er diseno: collares, cortes minimos
     "cero": ("geometry", "Diseno desde cero", None),
+    "simjeb": ("geometry_simjeb", "Disenos SimJEB + refuerzo", "auto"),     # 1os disenos: torneo de candidatos SimJEB
 }
-BRANCH_PREFIX = {"vaciado": "V", "refuerzo": "R", "cero": "C"}
+BRANCH_PREFIX = {"vaciado": "V", "refuerzo": "R", "cero": "C", "simjeb": "S"}
 
 
 # ============================================================================ utilidades
@@ -213,7 +214,14 @@ class Family:
         self.state_path = os.path.join(self.out, "estado.json")
         self.st = json.load(open(self.state_path)) if os.path.exists(self.state_path) else \
             dict(ramas={}, done=False, motivo_fin="")
-        self.rng = np.random.default_rng(CFG["seed"] + {"vaciado": 0, "refuerzo": 3, "cero": 7}.get(key, 11))
+        self.rng = np.random.default_rng(CFG["seed"] + {"vaciado": 0, "refuerzo": 3, "cero": 7, "simjeb": 5}.get(key, 11))
+        if self.x_first == "auto":                       # primeros disenos propios de la familia (torneo SimJEB)
+            self.x_first_list = [list(map(float, x)) for x in self.mod.first_designs()]
+            self.n_init = CFG["n_init"] if TEST else max(CFG["n_init"], len(self.x_first_list))
+        else:
+            self.x_first_list = [] if self.x_first is None else [self.x_first]
+            self.n_init = CFG["n_init"]
+        self.cat_dims = [self.names.index(c) for c in getattr(self.mod, "CATEGORICAL", [])]
         self.cache = None
         self.pending = self.recover_interrupted()
 
@@ -221,6 +229,17 @@ class Family:
     def to_params(self, xu):
         v = self.lo + np.clip(np.asarray(xu, float), 0, 1) * (self.hi - self.lo)
         return {k: round(float(x), 4) for k, x in zip(self.names, v)}
+
+    def snap(self, X):
+        """Redondea las variables categoricas a sus valores enteros (en el cubo unidad)."""
+        X = np.array(X, float, copy=True)
+        for d in self.cat_dims:
+            g = max(self.hi[d] - self.lo[d], 1e-9)
+            if X.ndim == 1:
+                X[d] = np.round(X[d] * g) / g
+            else:
+                X[:, d] = np.round(X[:, d] * g) / g
+        return X
 
     def to_unit(self, p):
         return (np.array([p[k] for k in self.names], float) - self.lo) / (self.hi - self.lo)
@@ -327,16 +346,23 @@ class Family:
         act = [b for b in self.st["ramas"].values() if b["estado"] == "activa"]
         if not act:
             return None
+        if len(act) > 1 and self.rng.random() < float(USER.get("prob_rama_al_azar", 0.25)):
+            return act[int(self.rng.integers(len(act)))]        # variedad: de vez en cuando, una rama activa al azar
         return min(act, key=lambda b: (tuple(b["seed_score"]), b["creada"]))
 
     # ---- propuesta: DOE -> rama activa (region de confianza) con modelos sustitutos
     def propose(self, runs):
         n = len(runs)
-        if n < CFG["n_init"]:
-            doe = qmc.Sobol(self.D, scramble=True, seed=CFG["seed"]).random(16)
-            if self.x_first is not None:
-                doe = np.vstack([np.array(self.x_first), doe])
-            return doe[n], f"reparto inicial (Sobol {n + 1}/{CFG['n_init']}): explorar todo el espacio", None, "DOE", self.root_id()
+        if n < self.n_init:
+            rows = self.x_first_list + qmc.Sobol(self.D, scramble=True, seed=CFG["seed"]).random(16).tolist()
+            x = self.snap(np.array(rows[n]))
+            if n < len(self.x_first_list) and hasattr(self.mod, "seed_info"):
+                sd = self.mod.seed_info(self.to_params(x))
+                why = (f"torneo de disenos SimJEB ({n + 1}/{self.n_init}): SimJEB n.o {sd['id']} ({sd['cat']}, {sd['autor']}) "
+                       f"tal cual, sin modificar (tension estimada {sd['est']:.0f} MPa)")
+            else:
+                why = f"reparto inicial ({n + 1}/{self.n_init}): explorar todo el espacio"
+            return x, why, None, "DOE", self.root_id()
         self.ensure_branches(runs)
         br = self.current()
         bid, L = br["id"], br["L"]
@@ -372,14 +398,29 @@ class Family:
             idx = self.rng.choice(dims, min(len(dims), self.rng.integers(1, 4)), replace=False)
             row[idx] = np.clip(row[idx] + self.rng.normal(0, L / 2, len(idx)), 0, 1)
         cand = [box, few]
+        if br["tipo"] != "fina":                 # MUTACIONES GRANDES: 2-5 variables con saltos amplios
+            big = np.repeat(c[None], 800, 0)
+            for row in big:
+                idx = self.rng.choice(self.D, int(self.rng.integers(min(2, self.D), min(5, self.D) + 1)), replace=False)
+                row[idx] = np.clip(row[idx] + self.rng.normal(0, 0.25, len(idx)), 0, 1)
+            cand.append(big)
         if br.get("prev_x") is not None and br.get("succ", 0) > 0:
             dvec = c - np.array(br["prev_x"])
             if np.linalg.norm(dvec) > 1e-6:
                 t = self.rng.uniform(0.3, 2.0, (300, 1))
                 cand.append(np.clip(c + t * dvec + self.rng.normal(0, L / 8, (300, self.D)), 0, 1))
         cand = np.vstack(cand)
+        for d in self.cat_dims:                  # variable categorica (p. ej. que diseno SimJEB): valores enteros
+            cand[:, d] = self.snap(cand)[:, d]
+            if br["tipo"] in ("fina", "inicial", "cruce"):
+                cand[:, d] = c[d]                # se afina sobre la misma semilla
+            elif br["tipo"] == "amplia":
+                keep = self.rng.random(len(cand)) < 0.7
+                cand[keep, d] = c[d]
         allX = np.array([self.to_unit(r["p"]["params"]) for r in runs])
-        cand = cand[np.min(np.linalg.norm(cand[:, None] - allX[None], axis=2), axis=1) > 0.01]
+        dmin_req = float(USER.get("distancia_minima", 0.03))   # cambios REALES: nada casi identico a lo ya probado
+        far = np.min(np.linalg.norm(cand[:, None] - allX[None], axis=2), axis=1) > dmin_req
+        cand = cand[far] if far.sum() >= 50 else cand
         mu_m, sd_m = gp_predict(gm, cand)
         mu_s, sd_s = gp_predict(gs, cand)
         pof = norm.cdf((math.log(SIG_OBJ) - mu_s) / sd_s)          # P(tension <= limite)
@@ -431,7 +472,7 @@ class Family:
         dmin = np.min(np.linalg.norm(cand[:, None] - X[None], axis=2), axis=1)
         top = np.argsort(dmin)[::-1][:20]               # los 20 mas alejados; se elige uno al azar entre ellos
         i = int(self.rng.choice(top))
-        return cand[i], float(dmin[i])
+        return self.snap(cand[i]), float(dmin[i])
 
     def update_branch(self, runs, r_new):
         """Actualiza la rama del diseno recien calculado: paso mas largo si mejora, mas corto si no; al terminar
@@ -439,7 +480,7 @@ class Family:
         R = self.st.get("ramas", {})
         bid = r_new["p"].get("rama")
         if bid not in R or R[bid]["estado"] != "activa":
-            if len(runs) >= CFG["n_init"]:
+            if len(runs) >= self.n_init:
                 self.ensure_branches(runs)
             return
         br = R[bid]; br["n"] += 1

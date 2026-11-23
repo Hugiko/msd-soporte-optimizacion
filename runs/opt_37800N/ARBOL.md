@@ -44,7 +44,7 @@ R1_1_2["R1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::acti
 R1_1 --> R1_1_2
 R1_1_3["R1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1 --> R1_1_3
-R1_1_1_1["R1.1.1.1 - fina, paso 0.10<br/>18 pruebas<br/>mejor: 2.412 kg, 184 MPa (#127)"]:::mejor
+R1_1_1_1["R1.1.1.1 - fina, paso 0.10<br/>19 pruebas<br/>mejor: 2.412 kg, 184 MPa (#127)"]:::mejor
 R1_1_1 --> R1_1_1_1
 R1_1_1_2["R1.1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1_1 --> R1_1_1_2
@@ -58,6 +58,12 @@ RX1_2["RX1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX1 --> RX1_2
 RX1_3["RX1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX1 --> RX1_3
+R1_1_1_1_1["R1.1.1.1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R1_1_1_1 --> R1_1_1_1_1
+R1_1_1_1_2["R1.1.1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R1_1_1_1 --> R1_1_1_1_2
+R1_1_1_1_3["R1.1.1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
+R1_1_1_1 --> R1_1_1_1_3
 ```
 
 ## Diseno desde cero
