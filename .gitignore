@@ -38,3 +38,6 @@ runs/opt_*/*/[0-9][0-9][0-9]/geometria.png
 discord_webhooks.json
 runs/*/discord_estado.json
 runs/*/discord_mensajes_prueba.json
+
+# datos descargados de SimJEB (grandes, se descargan con el script)
+datos_simjeb/
