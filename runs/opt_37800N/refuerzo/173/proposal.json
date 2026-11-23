@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 28.2817,
+  "cav_len": 11.0022,
+  "cav_a": 8.0,
+  "cav_z0": 11.4094,
+  "cav_z1": 32.8524,
+  "trim_s0": 52.6789,
+  "trim_z": 25.0607,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 5.2176,
+  "R_pocket": 10.54,
+  "t_col_del": 5.2716,
+  "t_col_tra": 2.8609,
+  "z_col": 21.5408
+ },
+ "motivo": "[rama RX1.3] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.20); cambia cav_s0, cav_z1, R_pocket",
+ "pred": {
+  "mass_kg": 2.333910138019067,
+  "stress_mpa": 180.5541045280637,
+  "p_cumple": 0.6698804408171507,
+  "paso": 0.2,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "cav_s0": 0.05231114607410782,
+   "cav_len": 0.0022122810113770776,
+   "cav_a": 0.0031808920111261567,
+   "cav_z0": 0.004714476215363327,
+   "cav_z1": 0.005262164782880642,
+   "trim_s0": 0.3329747848654297,
+   "trim_z": 0.0013423090334779314,
+   "trim_ang": 0.020354480298729036,
+   "trim_a": 0.4788850490585788,
+   "r_cut": 0.05403053184315906,
+   "R_pocket": 0.031693352539421016,
+   "t_col_del": 0.0031875412854789186,
+   "t_col_tra": 0.004093977760640956,
+   "z_col": 0.005757013220229639
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX1.3",
+ "fecha": "2026-11-23T08:40:18.295394"
+}
