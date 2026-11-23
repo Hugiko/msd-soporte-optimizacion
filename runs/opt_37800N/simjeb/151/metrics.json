@@ -1,0 +1,20 @@
+{
+ "status": "geom_fail",
+ "params": {
+  "semilla": 13.0,
+  "t_col_del": 3.0656,
+  "t_col_tra": 4.0218,
+  "z_col": 29.4771,
+  "ali1_x": -8.8998,
+  "ali1_y": -153.1897,
+  "ali1_r": 9.035,
+  "ali2_x": 14.6995,
+  "ali2_y": -44.6632,
+  "ali2_r": 5.2699
+ },
+ "force": 37800.0,
+ "error": "GeometryError: el aligeramiento 2 ha fallado (1 solidos, resto 0 mm3)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 69, in evaluate\n    solid, ginfo = geom.build(params)\n                   ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\optimizer.py\", line 204, in build\n    val = self._mod.build(p)\n          ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_simjeb.py\", line 215, in build\n    new = _boolean(lambda tol, sol=solid, tl=tool: sol.cut(tl, tol=tol), lambda v, v0=v0: v <= v0 + 1.0,\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_simjeb.py\", line 161, in _boolean\n    raise GeometryError(f\"{what} ha fallado ({last})\")\ngeometry.GeometryError: el aligeramiento 2 ha fallado (1 solidos, resto 0 mm3)\n",
+ "total_s": 9.653803586959839,
+ "galeria": "galeria/20261123_124619_simjeb_151_FALLO_0.000kg.jpg"
+}
