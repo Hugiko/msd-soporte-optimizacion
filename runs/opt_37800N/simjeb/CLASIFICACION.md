@@ -2,13 +2,14 @@
 
 Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:29
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (16)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (17)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 037 **MEJOR** | 1.914 | 165.3 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia ali1_x, ali1_r, ali2_x | [ver](037/vonmises.png) |
 | 040 | 1.923 | 164.9 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | [ver](040/vonmises.png) |
 | 033 | 1.921 | 167.7 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia z_col, ali1_x, ali1_y, ali1_r... | [ver](033/vonmises.png) |
+| 042 | 1.926 | 166.1 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | [ver](042/vonmises.png) |
 | 032 | 1.953 | 167.2 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_y, ali1_r, ali2_r | [ver](032/vonmises.png) |
 | 034 | 1.968 | 163.8 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_tra, ali1_r, ali2_x | [ver](034/vonmises.png) |
 | 039 | 1.968 | 164.0 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali2_x, ali2_y | [ver](039/vonmises.png) |
