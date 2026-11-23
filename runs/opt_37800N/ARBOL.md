@@ -46,7 +46,7 @@ SX8["SX8 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.011 kg, 176 MPa (#
 S0 --> SX8
 SX9["SX9 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 3.663 kg, 153 MPa (#142)"]:::activa
 S0 --> SX9
-SX3_1["SX3.1 - fina, paso 0.10<br/>1 pruebas<br/>mejor: 2.166 kg, 178 MPa (#162)"]:::activa
+SX3_1["SX3.1 - fina, paso 0.10<br/>2 pruebas<br/>mejor: 2.166 kg, 178 MPa (#162)"]:::activa
 SX3 --> SX3_1
 SX3_2["SX3.2 - amplia, paso 0.35<br/>1 pruebas<br/>mejor: 2.084 kg, 179 MPa (#177)"]:::activa
 SX3 --> SX3_2
