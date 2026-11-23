@@ -21490,3 +21490,9 @@
 [12:47:19]   [5/5] imagenes
 [12:47:20] [simjeb] rama SX3 terminada (12 pruebas); su mejor diseno (084) crea las ramas SX3.1 (fina) y SX3.2 (amplia) y SX3.3 (cruce con la rama S1)
 [12:47:22]   RESULTADO: masa 1.525 kg | tension 585.4 MPa (bruta 585) | NO cumple
+[12:47:31]   (GitHub: subido)
+[12:47:38] [Refuerzo + vaciado] DISENO 224  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[12:47:38]   motivo: [rama RX4] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia cav_a, trim_ang, r_cut
+[12:47:38]   el modelo predice: masa 2.599 kg | tension 227 MPa | P(cumplir) 0.23
+[12:47:46]   geometria IDENTICA al diseno 221 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[12:47:48]   RESULTADO: masa 2.641 kg | tension 256.9 MPa (bruta 685) | NO cumple
