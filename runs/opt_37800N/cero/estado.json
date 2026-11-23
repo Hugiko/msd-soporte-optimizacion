@@ -214,11 +214,11 @@
    "padre": "C1.2",
    "semilla": 58,
    "tipo": "fina",
-   "L": 0.1,
+   "L": 0.05,
    "L0": 0.1,
    "succ": 0,
-   "fail": 3,
-   "n": 4,
+   "fail": 0,
+   "n": 5,
    "best": {
     "score": [
      1,
