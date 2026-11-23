@@ -1,6 +1,6 @@
 # Refuerzo + vaciado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:31
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:32
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (47)
 
@@ -172,7 +172,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:31
 | 168 | 2.453 | 292.9 | [rama RX2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.60); cambia cav_s0, cav_len, cav_a, cav_z0... | [ver](168/vonmises.png) |
 | 169 | 2.459 | 288.6 | [rama RX2] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia cav_a, trim_ang, R_pocket, z_col | [ver](169/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (14)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (15)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -190,6 +190,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:31
 | 146 | 0.000 | - | [rama R1.1.1.1.1] varios pasos sin mejora: paso mas corto (0.05); cambia r_cut, z_col (rama fina: solo mueve trim_a, trim_s0, r_cut, R_pocket, z_col, t_col_tra, t_col_del) | - |
 | 149 | 0.000 | - | [rama R1.1.1.1.2] rama nueva (amplia, paso 0.35) desde el diseno 127; cambia cav_z1, trim_z, t_col_tra | - |
 | 156 | 2.400 | - | [rama R1.1.2] rama nueva (amplia, paso 0.35) desde el diseno 054; cambia cav_a, cav_z0, cav_z1, trim_s0... | - |
+| 170 | 0.000 | - | [rama RX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_s0, cav_len, cav_a, cav_z1... | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

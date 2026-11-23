@@ -14918,3 +14918,10 @@
 [08:32:18]   (GitHub: subido)
 [08:32:19]   geometria IDENTICA al diseno 037 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [08:32:21]   RESULTADO: masa 1.914 kg | tension 165.3 MPa (bruta 613) | CUMPLE
+[08:32:26]   (GitHub: subido)
+[08:32:32] [Refuerzo + vaciado] DISENO 170  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:32:32]   motivo: [rama RX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia cav_s0, cav_len, cav_a, cav_z1...
+[08:32:32]   el modelo predice: masa 2.453 kg | tension 346 MPa | P(cumplir) 0.04
+[08:32:40]   [1/5] geometria parametrica (cadquery)
+[08:32:44]   !! fallo en geometria: GeometryError: el corte del hueco no es valido
+[08:32:45]   RESULTADO: FALLO (geom_fail): GeometryError: el corte del hueco no es valido -> se penaliza y se sigue
