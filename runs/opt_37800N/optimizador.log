@@ -23589,3 +23589,11 @@
 [13:47:46]   [4/5] resultados
 [13:47:46]   [5/5] imagenes
 [13:47:48]   RESULTADO: masa 2.261 kg | tension 394.9 MPa (bruta 894) | NO cumple
+[13:47:57]   (GitHub: subido)
+[13:48:02] [SimJEB modificado] DISENO 187  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[13:48:02]   motivo: [rama SX11] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, ali2_y
+[13:48:02]   el modelo predice: masa 1.770 kg | tension 265 MPa | P(cumplir) 0.16
+[13:48:12]   [1/5] geometria parametrica (cadquery)
+[13:48:19]   !! fallo en geometria: GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3)
+[13:48:20]   [simjeb] ESTANCADA: 25 disenos sin mejorar ni un 0,3 % -> nuevas ramas exploradoras SX12, SX13
+[13:48:21]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3) -> se penaliza y se sigue
