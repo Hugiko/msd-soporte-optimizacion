@@ -1,0 +1,46 @@
+{
+ "params": {
+  "cav_s0": 28.3377,
+  "cav_len": 10.0,
+  "cav_a": 13.1623,
+  "cav_z0": 11.4802,
+  "cav_z1": 12.6373,
+  "trim_s0": 59.3706,
+  "trim_z": 8.0,
+  "trim_ang": 17.7106,
+  "trim_a": 20.0,
+  "r_cut": 4.2046,
+  "R_pocket": 10.54,
+  "t_col_del": 3.018,
+  "t_col_tra": 4.0405,
+  "z_col": 23.9373
+ },
+ "motivo": "[rama RX3] varios pasos sin mejora: paso mas corto (0.30); cambia cav_len, cav_a, trim_z, trim_ang...",
+ "pred": {
+  "mass_kg": 2.2581624753365785,
+  "stress_mpa": 193.0973321482339,
+  "p_cumple": 0.428556788150048,
+  "paso": 0.3,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "cav_s0": 0.0036153520762759,
+   "cav_len": 0.0020324111312820174,
+   "cav_a": 0.010158727105644513,
+   "cav_z0": 0.044714664916042784,
+   "cav_z1": 0.003139762319424343,
+   "trim_s0": 0.34525878024075496,
+   "trim_z": 0.0011047538645497738,
+   "trim_ang": 0.0121480642725269,
+   "trim_a": 0.4904326335990023,
+   "r_cut": 0.028495063411983292,
+   "R_pocket": 0.049452011202098904,
+   "t_col_del": 0.003321123067229863,
+   "t_col_tra": 0.0028998864448983278,
+   "z_col": 0.0032267663482860682
+  }
+ },
+ "fase": "aprende",
+ "familia": "refuerzo",
+ "rama": "RX3",
+ "fecha": "2026-11-23T11:56:00.892636"
+}
