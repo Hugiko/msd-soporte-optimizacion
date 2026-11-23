@@ -15701,3 +15701,37 @@
 [08:53:09]   [5/5] imagenes
 [08:53:11] [simjeb] rama S1.1 terminada (paso diminuto (ya no mejora)); su mejor diseno (044) crea las ramas S1.1.1 (fina) y S1.1.2 (amplia) y S1.1.3 (cruce con la rama S1); ademas nace la rama exploradora SX1
 [08:53:12]   RESULTADO: masa 1.916 kg | tension 189.3 MPa (bruta 619) | casi (hasta +10 %)
+[08:53:15] [Refuerzo + vaciado] DISENO 178  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[08:53:15]   motivo: [rama RX2.3] cruce: mezcla de los parametros de RX2 (#172) y R1.1.1.1.1 (#142)
+[08:53:25]   [1/5] geometria parametrica (cadquery)
+[08:53:25]         masa CAD = 2.4091 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['techo del hueco 38.8->16.0 mm (pared minima 3.0 mm)', 'hueco acortado 43.3->14.9 mm (techo a 45 para impresion 3D)', 'hueco estrechado 19.1->14.9 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[08:53:27]   (GitHub: subido)
+[08:53:28]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[08:53:36]   malla h=4.0: 83952 nodos, 48559 tet10 (3.8s)
+[08:53:37]   [3/5] ANSYS MAPDL normal (83952 nodos, 48559 elementos)
+[08:53:37] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:53:43]   [fase] 4  /PREP7
+[08:53:46]   [fase] 182123  /SOLU
+[08:53:46]   [solver] 182125  EQSLV,SPARSE
+[08:53:46]   [fase] 182128  /POST1
+[08:53:47]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.956   TIME= 08:53:44
+[08:53:47]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.990
+[08:53:47]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[08:53:47]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.170   TIME= 08:53:44
+[08:53:47]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[08:53:47]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[08:53:48]   [solver] Equation solver memory allocated                     =  1747.511 MB
+[08:53:48]   [solver] Equation solver memory required for in-core mode     =  1672.236 MB
+[08:53:48]   [solver] Equation solver memory required for out-of-core mode =   394.334 MB
+[08:53:48]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[08:53:52]   [solver] Sparse solver maximum pivot= 158234966 at node 66467 UY.
+[08:53:52]   [solver] Sparse solver minimum pivot= 18406.2023 at node 942 UX.
+[08:53:52]   [solver] Sparse solver minimum pivot in absolute value= 18406.2023 at node 942
+[08:53:53]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        15.356
+[08:53:54]   [AVISO] *** WARNING ***                         ELAPSED TIME =      16.333   TIME= 08:53:53
+[08:53:54]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        16.399
+[09:36:23]   TIMEOUT tras 1200s: matando arbol de procesos PID 5632
+[09:36:25] MAPDL termino: estado=timeout codigo=None tiempo=2568.2s
+[09:36:25]         ANSYS rechazo el calculo (timeout codigo None): se vuelve a mallar
+[09:36:25]   !! fallo en solucion: RuntimeError: MAPDL: timeout
+[09:36:27]   RESULTADO: FALLO (solve_fail): RuntimeError: MAPDL: timeout -> se penaliza y se sigue

@@ -84,7 +84,7 @@ RX2_1["RX2.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_1
 RX2_2["RX2.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_2
-RX2_3["RX2.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
+RX2_3["RX2.3 - cruce, paso 0.20<br/>1 pruebas<br/>sin resultados aun"]:::activa
 RX2 --> RX2_3
 ```
 

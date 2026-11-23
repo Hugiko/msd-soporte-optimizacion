@@ -1,0 +1,42 @@
+{
+ "status": "solve_fail",
+ "params": {
+  "cav_s0": 29.5061,
+  "cav_len": 43.2676,
+  "cav_a": 9.5561,
+  "cav_z0": 10.0993,
+  "cav_z1": 38.7977,
+  "trim_s0": 52.2689,
+  "trim_z": 19.0257,
+  "trim_ang": 0.0,
+  "trim_a": 20.0,
+  "r_cut": 2.7451,
+  "R_pocket": 10.54,
+  "t_col_del": 6.8199,
+  "t_col_tra": 2.8609,
+  "z_col": 21.5408
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 2.409101065164152,
+ "volume_cad_mm3": 306891.85543492384,
+ "hueco": false,
+ "clamped": [
+  "techo del hueco 38.8->16.0 mm (pared minima 3.0 mm)",
+  "hueco acortado 43.3->14.9 mm (techo a 45 para impresion 3D)",
+  "hueco estrechado 19.1->14.9 mm (techo a 45 para impresion 3D)",
+  "hueco demasiado pequeno -> no se hace"
+ ],
+ "holes_check": {
+  "pernos": [
+   0.9991,
+   0.9991,
+   0.9991,
+   0.9991
+  ],
+  "bulon": 1.0
+ },
+ "error": "RuntimeError: MAPDL: timeout",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 164, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 134, in level\n    raise RuntimeError(\"MAPDL: timeout\")\nRuntimeError: MAPDL: timeout\n",
+ "total_s": 2580.4386467933655,
+ "galeria": "galeria/20261123_093625_refuerzo_178_FALLO_2.409kg.jpg"
+}
