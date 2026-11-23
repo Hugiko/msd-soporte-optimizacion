@@ -98,8 +98,26 @@
  [
   "refuerzo",
   "RX1",
-  "activa",
+  "terminada",
   104
+ ],
+ [
+  "refuerzo",
+  "RX1.1",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "RX1.2",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "RX1.3",
+  "activa",
+  null
  ],
  [
   "cero",
