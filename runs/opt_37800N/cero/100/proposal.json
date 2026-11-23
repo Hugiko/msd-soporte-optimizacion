@@ -1,0 +1,42 @@
+{
+ "params": {
+  "R_pocket": 15.6057,
+  "w_bar": 16.5541,
+  "phi_end": 25.0,
+  "H": 30.0,
+  "W_top": 40.0,
+  "W_bot": 95.0,
+  "x_box": 39.7345,
+  "g_end": -12.0,
+  "t_w": 12.0,
+  "e_lug": 4.4457,
+  "t_lug": 10.7672,
+  "r_f": 7.0
+ },
+ "motivo": "[rama CX1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia H, g_end",
+ "pred": {
+  "mass_kg": 2.267182118669199,
+  "stress_mpa": 401.8529212301786,
+  "p_cumple": 0.0,
+  "paso": 0.6,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "R_pocket": 0.060367913484307596,
+   "w_bar": 0.014525816847171842,
+   "phi_end": 0.0384978920388147,
+   "H": 0.03910075998156534,
+   "W_top": 0.09945105751564981,
+   "W_bot": 0.11452744419212058,
+   "x_box": 0.10181040679443751,
+   "g_end": 0.0792150483150136,
+   "t_w": 0.038940379924562465,
+   "e_lug": 0.1070580336876048,
+   "t_lug": 0.10489256278264228,
+   "r_f": 0.20161268443610944
+  }
+ },
+ "fase": "aprende",
+ "familia": "cero",
+ "rama": "CX1",
+ "fecha": "2026-11-23T13:47:11.176669"
+}
