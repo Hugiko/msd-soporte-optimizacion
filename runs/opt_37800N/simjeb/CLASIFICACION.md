@@ -22,7 +22,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:52
 | 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | [ver](019/vonmises.png) |
 | 021 | 2.299 | 201.1 | torneo de referencias SimJEB (21/30): SimJEB n.o 289 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 173 MPa) | [ver](021/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (14)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (15)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -40,6 +40,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:52
 | 023 | 2.366 | 242.5 | torneo de referencias SimJEB (23/30): SimJEB n.o 195 (flat, Armin) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 189 MPa) | [ver](023/vonmises.png) |
 | 024 | 0.852 | 621.0 | torneo de referencias SimJEB (24/30): SimJEB n.o 519 (flat, Pranav Panchal) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 250 MPa) | [ver](024/vonmises.png) |
 | 025 | 0.934 | 494.7 | torneo de referencias SimJEB (25/30): SimJEB n.o 395 (block, Ririwin) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 233 MPa) | [ver](025/vonmises.png) |
+| 026 | 0.988 | 602.7 | torneo de referencias SimJEB (26/30): SimJEB n.o 63 (block, Arfi'an) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 247 MPa) | [ver](026/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (1)
 
