@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:32
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:34
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (46)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (47)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -26,6 +26,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:32
 | 032 | 1.953 | 167.2 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_y, ali1_r, ali2_r | - |
 | 034 | 1.968 | 163.8 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_tra, ali1_r, ali2_x | - |
 | 039 | 1.968 | 164.0 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali2_x, ali2_y | - |
+| 179 | 1.964 | 167.7 | [rama SX5] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_tra, z_col, ali1_y, ali1_r... | [ver](179/vonmises.png) |
 | 038 | 1.974 | 163.9 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia ali2_x, ali2_y | - |
 | 011 | 1.975 | 164.1 | torneo de referencias SimJEB (11/30): SimJEB n.o 237 (block, Bol) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 178 MPa) | - |
 | 036 | 1.975 | 164.1 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia ali1_x, ali2_x | - |
