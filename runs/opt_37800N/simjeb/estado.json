@@ -23,7 +23,9 @@
     "S1",
     "S2",
     "S3",
-    "SX1"
+    "SX1",
+    "SX2",
+    "SX3"
    ],
    "seed_score": [
     9,
@@ -271,8 +273,14 @@
    "L0": 0.3,
    "succ": 0,
    "fail": 0,
-   "n": 1,
-   "best": null,
+   "n": 2,
+   "best": {
+    "score": [
+     1,
+     1.249509010051671
+    ],
+    "id": 62
+   },
    "prev_x": null,
    "estado": "activa",
    "hijos": [],
@@ -294,8 +302,75 @@
    ],
    "nota": "a 1.56 del diseno probado mas cercano",
    "creada": "2026-11-23T08:53:11.065564"
+  },
+  "SX2": {
+   "id": "SX2",
+   "padre": "S0",
+   "semilla": null,
+   "tipo": "exploradora",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.878640358667292
+   ],
+   "seed_x": [
+    0.6031746031746031,
+    0.49026547092944384,
+    0.8257587105035782,
+    0.659080701880157,
+    0.5524685606360435,
+    0.7071864232420921,
+    0.8877073768526316,
+    0.9508710950613022,
+    0.010130999609827995,
+    0.24041918758302927
+   ],
+   "nota": "a 1.47 del diseno probado mas cercano (anti-estancamiento)",
+   "creada": "2026-11-23T09:38:16.962032"
+  },
+  "SX3": {
+   "id": "SX3",
+   "padre": "S0",
+   "semilla": null,
+   "tipo": "exploradora",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.878640358667292
+   ],
+   "seed_x": [
+    0.047619047619047616,
+    0.5200040461495519,
+    0.9554839478805661,
+    0.31756172981113195,
+    0.9379060417413712,
+    0.005071698687970638,
+    0.8654323071241379,
+    0.6254270412027836,
+    0.04523406457155943,
+    0.07453190721571445
+   ],
+   "nota": "a 1.56 del diseno probado mas cercano (anti-estancamiento)",
+   "creada": "2026-11-23T09:38:16.972331"
   }
  },
  "done": false,
- "motivo_fin": ""
+ "motivo_fin": "",
+ "ultimo_estancamiento": 62
 }
