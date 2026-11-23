@@ -1,16 +1,16 @@
 {
- "iter": 9,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\08_it009_2.274kg",
- "mass_kg": 2.2735697127500005,
- "vm_metric": 199.2375,
- "u_max": 0.1443984433020598,
- "coef_seguridad": 1.0791141225923835,
- "puntuacion": 2.2735697127500005,
+ "iter": 12,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it012_2.222kg",
+ "mass_kg": 2.2223692731,
+ "vm_metric": 202.5312,
+ "u_max": 0.1473417609405433,
+ "coef_seguridad": 1.061564835442638,
+ "puntuacion": 2.2223692731,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 210.6781,
-  "u_max": 0.14941445758003877,
-  "n_nodes": 107258,
+  "vm_metric": 212.3269,
+  "u_max": 0.1528803731640167,
+  "n_nodes": 105062,
   "ok": true
  },
  "operaciones": [
@@ -22,8 +22,10 @@
   "aligeramiento pasante vertical D16 mm en (-20, -26)",
   "aligeramiento pasante vertical D12 mm en (4, -74)",
   "aligeramiento pasante vertical D10 mm en (40, -86)",
-  "aligeramiento pasante vertical D10 mm en (22, -71)"
+  "aligeramiento pasante vertical D10 mm en (22, -71)",
+  "aligeramiento pasante vertical D8 mm en (40, -62)",
+  "aligeramiento pasante vertical D16 mm en (34, -74)"
  ],
- "fecha": "2026-11-23T20:47:25",
+ "fecha": "2026-11-23T20:58:10",
  "final": false
 }

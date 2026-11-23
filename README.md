@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 20:52 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 20:58 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 11 | 9 | 0 | 2 | 0 | 18 |
+| 12 | 10 | 0 | 2 | 0 | 20 |
 
 ## Mejor diseno
 
-**2.2607 kg** (-6.7 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **198.7 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.145 mm** &nbsp;|&nbsp; iteracion 10
+**2.2224 kg** (-8.3 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **202.5 MPa** &nbsp;|&nbsp; coef. seguridad **1.06** &nbsp;|&nbsp; desplazamiento **0.147 mm** &nbsp;|&nbsp; iteracion 12 &nbsp;|&nbsp; **malla fina: 212.3 MPa**
 
 Operaciones sobre el original:
 
@@ -24,10 +24,11 @@ Operaciones sobre el original:
 8. aligeramiento pasante vertical D10 mm en (40, -86)
 9. aligeramiento pasante vertical D10 mm en (22, -71)
 10. aligeramiento pasante vertical D8 mm en (40, -62)
+11. aligeramiento pasante vertical D16 mm en (34, -74)
 
-Ultimo hito verificado (2.274 kg, iteracion 9): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/08_it009_2.274kg/workbench/soporte_it009.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/08_it009_2.274kg/geometria.step)
+Ultimo hito verificado (2.222 kg, iteracion 12): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/09_it012_2.222kg/workbench/soporte_it012.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/09_it012_2.222kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261123_204923_it010_ACEPTADA_2.261kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261123_205527_it012_ACEPTADA_2.222kg.jpg)
 
 ## Camino de la pieza
 
@@ -39,6 +40,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 12 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (34, -74) | 2.222 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.2607 -> 2.2224; masa 2.2607 -> 2.2224 kg) |
 | 11 | RECHAZADA | R1 | aligeramiento pasante vertical D16 mm en (10, -113) | 2.203 kg, 222 MPa | la tension sube a 222.3 MPa (> 215 MPa): no cumple |
 | 10 | ACEPTADA | R1 | aligeramiento pasante vertical D8 mm en (40, -62) | 2.261 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2736 -> 2.2607; masa 2.2736 -> 2.2607 kg) |
 | 9 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (22, -71) | 2.274 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2877 -> 2.2736; masa 2.2877 -> 2.2736 kg) |
@@ -50,7 +52,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 3 | ACEPTADA | R2 | rebaje desde arriba hasta z = 7 mm en x 54..66, y -124..-28 mm (esquin | 2.413 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.4704 -> 2.4126; masa 2.4704 -> 2.4126 kg) |
 | 2 | ACEPTADA | R1 | aligeramiento pasante vertical D12 mm en (40, -71) | 2.470 kg, 196 MPa | cumple y mejora al mejor (puntuacion 2.5044 -> 2.4704; masa 2.5044 -> 2.4704 kg) |
 | 1 | ACEPTADA | R4 | collar de 6 mm en los pernos 1 y 3 | 2.504 kg, 202 MPa | primera pieza que CUMPLE |
-| 0 | INICIO | - | pieza del enunciado (0.stp) | 2.423 kg, 238 MPa | NO cumple (238 MPa > 215): primero hay que reforzar donde esta el pico |
 
 ---
 
