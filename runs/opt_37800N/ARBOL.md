@@ -72,7 +72,7 @@ C1_1_1["C1.1.1 - fina, paso 0.10<br/>1 pruebas<br/>aun sin validos; el mas cerca
 C1_1 --> C1_1_1
 C1_1_2["C1.1.2 - amplia, paso 0.35<br/>1 pruebas<br/>aun sin validos; el mas cercano 388 MPa (#031)"]:::activa
 C1_1 --> C1_1_2
-C1_2_1["C1.2.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
+C1_2_1["C1.2.1 - fina, paso 0.10<br/>1 pruebas<br/>aun sin validos; el mas cercano 381 MPa (#058)"]:::activa
 C1_2 --> C1_2_1
 C1_2_2["C1.2.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
 C1_2 --> C1_2_2
