@@ -1,0 +1,24 @@
+{
+ "params": {
+  "cav_s0": 30.0,
+  "cav_len": 10.0,
+  "cav_a": 8.0,
+  "cav_z0": 12.0,
+  "cav_z1": 12.0,
+  "trim_s0": 58.7637,
+  "trim_z": 34.3476,
+  "trim_ang": 0.0,
+  "trim_a": 20.3675,
+  "r_cut": 4.0,
+  "R_pocket": 10.54,
+  "t_col_del": 5.2496,
+  "t_col_tra": 2.8328,
+  "z_col": 21.9073
+ },
+ "motivo": "[rama R1.1.3] cruce: mezcla de los parametros de R1.1 (#054) y R1 (#039)",
+ "pred": null,
+ "fase": "cruce",
+ "familia": "refuerzo",
+ "rama": "R1.1.3",
+ "fecha": "2026-11-23T11:59:09.070371"
+}
