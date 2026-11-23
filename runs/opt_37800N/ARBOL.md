@@ -16,7 +16,7 @@ V1["V1 - inicial, paso 0.30<br/>30 pruebas<br/>aun sin validos; el mas cercano 1
 V0 --> V1
 V1_1["V1.1 - fina, paso 0.10<br/>13 pruebas<br/>aun sin validos; el mas cercano 194 MPa (#031)"]:::fin
 V1 --> V1_1
-V1_2["V1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+V1_2["V1.2 - amplia, paso 0.35<br/>1 pruebas<br/>aun sin validos; el mas cercano 194 MPa (#031)"]:::activa
 V1 --> V1_2
 V1_1_1["V1.1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 V1_1 --> V1_1_1
