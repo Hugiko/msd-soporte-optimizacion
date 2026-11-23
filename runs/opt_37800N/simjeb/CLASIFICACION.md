@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:51
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:55
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (27)
 
@@ -45,7 +45,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:51
 | 021 | 2.299 | 201.1 | torneo de referencias SimJEB (21/30): SimJEB n.o 289 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 173 MPa) | - |
 | 060 | 1.916 | 189.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia z_col, ali1_r, ali2_y (rama fina: solo mueve semilla, ali1_r, t_col_del, z_col, ali2_y) | [ver](060/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (36)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (37)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -85,6 +85,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:51
 | 070 | 1.908 | 362.9 | [rama SX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_del, t_col_tra, z_col, ali1_y... | [ver](070/vonmises.png) |
 | 071 | 2.416 | 388.9 | [rama SX2] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, z_col | [ver](071/vonmises.png) |
 | 072 | 0.999 | 491.4 | [rama SX3] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, z_col, ali1_x... | [ver](072/vonmises.png) |
+| 073 | 1.936 | 211.7 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia t_col_tra, ali1_r, ali2_x | [ver](073/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (3)
 
