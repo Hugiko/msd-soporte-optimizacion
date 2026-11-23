@@ -4,7 +4,7 @@
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 23 | 1 | 3.644 kg (CS 1.41) | en marcha |
+| SimJEB modificado | 24 | 1 | 3.644 kg (CS 1.41) | en marcha |
 | Refuerzo + vaciado | 159 | 45 | 2.372 kg (CS 1.16) | en marcha |
 | Diseno desde cero | 72 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 323 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 324 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -61,6 +61,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 024 | 0.852 | 621.0 | descartado | torneo de referencias SimJEB (24/30): SimJEB n.o 519 (flat, Pranav Pan | [ver](runs/opt_37800N/galeria/20261123_074942_simjeb_024_NO_VALIDO_0.852kg.jpg) |
 | SimJEB modificado | 023 | 2.366 | 242.5 | descartado | torneo de referencias SimJEB (23/30): SimJEB n.o 195 (flat, Armin) tal | [ver](runs/opt_37800N/galeria/20261123_074907_simjeb_023_NO_VALIDO_2.366kg.jpg) |
 | Refuerzo + vaciado | 159 | 2.418 | 302.7 | descartado | [rama RX1.3] cruce: mezcla de los parametros de RX1 (#104) y R1.1.1 (# | [ver](runs/opt_37800N/galeria/20261123_074823_refuerzo_159_NO_VALIDO_2.418kg.jpg) |
 | SimJEB modificado | 022 | 2.412 | 175.8 | valido | torneo de referencias SimJEB (22/30): SimJEB n.o 476 (block, Kiran Kum | [ver](runs/opt_37800N/galeria/20261123_074721_simjeb_022_VALIDO_2.412kg.jpg) |
@@ -70,7 +71,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 019 | 2.253 | 201.3 | cerca_del_limite | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) t | [ver](runs/opt_37800N/galeria/20261123_074421_simjeb_019_CASI_2.253kg.jpg) |
 | Diseno desde cero | 072 | 2.255 | 416.2 | descartado | [rama C1.1.2] [aun sin disenos validos] rama nueva (amplia, paso 0.35) | [ver](runs/opt_37800N/galeria/20261123_074346_cero_072_NO_VALIDO_2.255kg.jpg) |
 | Refuerzo + vaciado | 157 | 2.461 | 183.2 | valido | [rama R1.1.1.3] cruce: mezcla de los parametros de R1.1.1 (#085) y R1. | [ver](runs/opt_37800N/galeria/20261123_074305_refuerzo_157_VALIDO_2.461kg.jpg) |
-| SimJEB modificado | 018 | 2.369 | 207.1 | descartado | torneo de referencias SimJEB (18/30): SimJEB n.o 165 (block, Andy Broo | [ver](runs/opt_37800N/galeria/20261123_074210_simjeb_018_NO_VALIDO_2.369kg.jpg) |
 
 ---
 
