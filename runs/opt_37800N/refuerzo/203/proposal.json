@@ -1,0 +1,24 @@
+{
+ "params": {
+  "cav_s0": 43.0957,
+  "cav_len": 11.6523,
+  "cav_a": 51.171,
+  "cav_z0": 6.7193,
+  "cav_z1": 24.321,
+  "trim_s0": 24.9876,
+  "trim_z": 13.252,
+  "trim_ang": 29.0992,
+  "trim_a": 52.5583,
+  "r_cut": 2.815,
+  "R_pocket": 10.793,
+  "t_col_del": 1.8302,
+  "t_col_tra": 7.414,
+  "z_col": 24.97
+ },
+ "motivo": "[rama RX4] exploradora: punto al azar en una zona nunca probada (a 1.47 del diseno probado mas cercano (anti-estancamiento))",
+ "pred": null,
+ "fase": "exploradora",
+ "familia": "refuerzo",
+ "rama": "RX4",
+ "fecha": "2026-11-23T11:11:49.291246"
+}
