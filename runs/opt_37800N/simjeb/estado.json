@@ -35,7 +35,8 @@
     "SX10",
     "SX11",
     "SX12",
-    "SX13"
+    "SX13",
+    "SX14"
    ],
    "seed_score": [
     9,
@@ -522,8 +523,8 @@
    "L": 0.3,
    "L0": 0.3,
    "succ": 0,
-   "fail": 1,
-   "n": 11,
+   "fail": 2,
+   "n": 12,
    "best": {
     "score": [
      0,
@@ -543,8 +544,12 @@
     0.2807594117647059,
     1.0
    ],
-   "estado": "activa",
-   "hijos": [],
+   "estado": "terminada",
+   "hijos": [
+    "SX5.1",
+    "SX5.2",
+    "SX5.3"
+   ],
    "seed_score": [
     0,
     1.878640358667292
@@ -562,7 +567,8 @@
     0.6898516286164522
    ],
    "nota": "a 1.32 del diseno probado mas cercano (anti-estancamiento)",
-   "creada": "2026-11-23T10:17:43.384053"
+   "creada": "2026-11-23T10:17:43.384053",
+   "motivo_fin": "12 pruebas"
   },
   "SX6": {
    "id": "SX6",
@@ -1024,6 +1030,116 @@
    ],
    "nota": "a 1.08 del diseno probado mas cercano (anti-estancamiento)",
    "creada": "2026-11-23T13:48:19.996992"
+  },
+  "SX5.1": {
+   "id": "SX5.1",
+   "padre": "SX5",
+   "semilla": 102,
+   "tipo": "fina",
+   "L": 0.1,
+   "L0": 0.1,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.9168493163110039
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T13:50:16.889209"
+  },
+  "SX5.2": {
+   "id": "SX5.2",
+   "padre": "SX5",
+   "semilla": 102,
+   "tipo": "amplia",
+   "L": 0.35,
+   "L0": 0.35,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.9168493163110039
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T13:50:16.889209"
+  },
+  "SX5.3": {
+   "id": "SX5.3",
+   "padre": "SX5",
+   "semilla": null,
+   "tipo": "cruce",
+   "L": 0.2,
+   "L0": 0.2,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.8786403605459323
+   ],
+   "seed_x": [
+    0.6825396825396826,
+    0.0,
+    0.21084444444444445,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.8002690721649486,
+    0.503395294117647,
+    0.7461599999999999
+   ],
+   "nota": "SX5 (#102) y S1 (#037)",
+   "creada": "2026-11-23T13:50:16.889209"
+  },
+  "SX14": {
+   "id": "SX14",
+   "padre": "S0",
+   "semilla": null,
+   "tipo": "exploradora",
+   "L": 0.3,
+   "L0": 0.3,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.9168493143941545
+   ],
+   "seed_x": [
+    0.047619047619047616,
+    0.23443318251520395,
+    0.07185282371938229,
+    0.7166251987218857,
+    0.9007168188691139,
+    0.9163573086261749,
+    0.7161532500758767,
+    0.9287277525290847,
+    0.7866227990016341,
+    0.08731174562126398
+   ],
+   "nota": "a 1.11 del diseno probado mas cercano",
+   "creada": "2026-11-23T13:50:16.919243"
   }
  },
  "done": false,
