@@ -431,8 +431,14 @@
    "L0": 0.3,
    "succ": 0,
    "fail": 0,
-   "n": 1,
-   "best": null,
+   "n": 2,
+   "best": {
+    "score": [
+     1,
+     1.1408184712511293
+    ],
+    "id": 90
+   },
    "prev_x": null,
    "estado": "activa",
    "hijos": [],
