@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:20
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:21
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (34)
 
@@ -56,7 +56,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:20
 | 097 | 1.927 | 199.9 | [rama SX5] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia ali1_x, ali2_y | [ver](097/vonmises.png) |
 | 100 | 1.926 | 193.6 | [rama SX5] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_r | [ver](100/vonmises.png) |
 
-## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (60)
+## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (61)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -120,6 +120,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:20
 | 113 | 2.382 | 280.4 | [rama SX6] exploradora: punto al azar en una zona nunca probada (a 1.25 del diseno probado mas cercano (anti-estancamiento)) | [ver](113/vonmises.png) |
 | 114 | 2.382 | 697.1 | [rama SX7] exploradora: punto al azar en una zona nunca probada (a 1.27 del diseno probado mas cercano (anti-estancamiento)) | [ver](114/vonmises.png) |
 | 115 | 2.271 | 246.2 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_tra, ali1_r, ali2_y | [ver](115/vonmises.png) |
+| 116 | 2.724 | 288.2 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, ali1_x, ali1_r, ali2_y | [ver](116/vonmises.png) |
 
 ## FALLIDOS (geometria / malla / solver): registrados y penalizados (11)
 
