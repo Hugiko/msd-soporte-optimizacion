@@ -1,14 +1,21 @@
-# Documentación del proyecto: optimización automática del soporte
+# Documentación del proyecto: optimización del soporte guiada por reglas
 
 **Mecánica de Sólidos Deformables, curso 2026-27. Grupo 831_MSD_13_B. Proyecto 2 «Diseño de un soporte», Soporte 6 (carga 2, acero S235).**
 
-Este documento resume todo lo hecho hasta el 22/11/2026: el problema, las decisiones tomadas y su motivo, cómo funciona el programa, qué produce, cómo se usa y qué queda pendiente. El detalle cronológico de cada decisión está en `bitacora.md` y el estado de las tareas en `ESTADO.md`.
+Este documento recoge, a fecha 23/11/2026, el problema, las decisiones y su motivo, cómo funciona el programa, qué produce, cómo se usa y qué queda pendiente. El detalle cronológico está en `bitacora.md` y el estado de las tareas en `ESTADO.md`.
+
+> **Cambio de enfoque (23/11/2026).** Hasta el 23/11 el programa exploraba varias «familias» de piezas con un optimizador bayesiano. Ninguna convergía de forma clara y descartar una mala costaba mucho. Ahora:
+> 1. las soluciones publicadas se calculan con nuestras condiciones y de ellas se sacan **reglas de diseño con datos**;
+> 2. la pieza del enunciado se **modifica paso a paso** aplicando esas reglas, cada cambio con su porqué;
+> 3. los cambios que no mejoran se **revierten**.
+>
+> Además: **carga de 42 258 N** (confirmada por el profesor) y **coeficiente de seguridad ≥ 1,0** (215 MPa) obligatorio. Los resultados anteriores se conservan en `runs/archivo/`.
 
 ---
 
 ## 1. Resumen en una frase
 
-Hemos construido un programa que **genera piezas automáticamente, las calcula en ANSYS, aprende de cada resultado y se va acercando al soporte más ligero** que cumple un **coeficiente de seguridad mínimo de 1,15** (σ ≤ 187 MPa) y un desplazamiento ≤ 0,25 mm, sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón. Funciona solo durante horas y lo publica todo en GitHub y en Discord.
+Un programa que **parte del soporte del enunciado y lo va modificando con sentido**: añade material donde está el pico de tensión y lo quita donde no trabaja. Cada cambio sale de una **regla de diseño respaldada por datos**, se calcula en ANSYS y se acepta o se revierte según el resultado. El objetivo es el soporte más ligero con **coeficiente de seguridad ≥ 1** (σ ≤ 215 MPa) y desplazamiento ≤ 0,25 mm, sin mover nunca los 4 agujeros de los pernos ni los 2 del bulón.
 
 ---
 
@@ -16,35 +23,34 @@ Hemos construido un programa que **genera piezas automáticamente, las calcula e
 
 ### 2.1 Lo que pide el enunciado
 - Partir del soporte `0.stp` (derivado del GE Jet Engine Bracket Challenge, GrabCAD 2013).
-- **Solo se conservan** las posiciones de los 4 agujeros de anclaje (pernos de Ø10,31 mm) y de los 2 orificios del bulón (Ø19,05 mm). Todo lo demás se puede modificar.
-- Objetivo: (i) que nunca se supere la tensión admisible y (ii) minimizar el material.
-- Material: acero S235, con E = 210 GPa, σy = 215 MPa, ν = 0,30 y ρ = 7850 kg/m³.
-- Informe con portada, índice, objetivo, descripción, modelo de EF, resultados, conclusiones y bibliografía. Defensa oral de unos 10 minutos.
+- **Solo se conservan** las posiciones de los 4 agujeros de anclaje (pernos de Ø10,31 mm) y de los 2 orificios del bulón (Ø19,05 mm).
+- Objetivo: (i) no superar nunca la tensión admisible y (ii) minimizar el material.
+- Material: acero S235 con E = 210 GPa, σy = 215 MPa, ν = 0,30 y ρ = 7850 kg/m³.
+- Informe (portada, índice, objetivo, descripción, modelo de EF, resultados, conclusiones y bibliografía) y defensa oral de unos 10 minutos.
 
 ### 2.2 Decisiones sobre el planteamiento
 
 | Tema | Decisión | Motivo |
 |---|---|---|
-| **Carga** | **37 800 N** (caso «Horizontal» de la Fig. 2), configurable a 42 258 N (Tabla 2) | La Tabla 2 da 42 258 N para la carga 2, que coincide con el módulo del caso diagonal: errata probable. Decisión del grupo |
-| **Dirección** | Horizontal, perpendicular al bulón, en **−X** del STEP | En 0.stp, Z es vertical, Y es el eje del bulón y X la horizontal perpendicular. Con el reparto RBE3, el sentido no cambia la tensión de von Mises |
-| **Apoyo** | Empotramiento de las **superficies cilíndricas de los 4 agujeros de los pernos** | Son las «fixed support interfaces» de la Fig. 3. Empotrar toda la base sería pegarla al suelo y daría tensiones irrealmente bajas |
-| **Aplicación de la carga** | RBE3 desde un nodo piloto, en el punto medio entre orejetas, a las superficies de los 2 agujeros del bulón | Mismo esquema que SimJEB; sin cargas puntuales |
-| **Tensión admisible** | **Coeficiente de seguridad ≥ 1,15** sobre σy, es decir, **σ ≤ 187 MPa** | El enunciado pide no superar σadm (215 MPa). Al ser una pieza aeronáutica con orejetas y uniones atornilladas, se aplica el factor de herraje de 1,15 de la normativa de aviones de transporte (CS/FAR 25.625). Cubre además la incertidumbre de la malla (~8 %). Con 1,00 se vuelve a 215 MPa |
-| **Desplazamiento** | **≤ 0,25 mm** (≈ 2 × el original, 0,129 mm) | No lo exige el enunciado. Se añade para evitar piezas ligeras pero blandas |
-| **Impresión 3D** | Reglas de fabricación aditiva **activadas** | El enunciado no la exige para nosotros (esa frase se refiere al concurso de 2013), pero el original está pensado para ella. Decisión de diseño propia |
-| **Cuándo una pieza es «mejor»** | Menor **puntuación = masa × aprovechamiento^0,15** | En aviación la seguridad se exige (mínimo 1,15) y, por encima de ese mínimo, manda la masa; la seguridad solo desempata (ver §6.4) |
+| **Carga** | **42 258 N** (Tabla 2, carga 2) | Confirmado por el profesor el 23/11/2026. Hasta entonces se usaban 37 800 N (Fig. 2) |
+| **Dirección** | Horizontal, perpendicular al bulón, en **−X** del STEP | En 0.stp, Z es vertical, Y es el eje del bulón y X la horizontal perpendicular. Con el reparto RBE3 el sentido no cambia la tensión de von Mises |
+| **Apoyo** | Empotramiento de las **superficies cilíndricas de los 4 agujeros de los pernos** | Son las «fixed support interfaces» de la Fig. 3 |
+| **Aplicación de la carga** | RBE3 desde un nodo piloto (punto medio entre orejetas) a los 2 agujeros del bulón | Mismo esquema que SimJEB; sin cargas puntuales |
+| **Tensión admisible** | **Coeficiente de seguridad ≥ 1,0**, es decir, **σ ≤ 215 MPa**, obligatorio | Límite del enunciado. Ninguna pieza que lo supere cuenta como válida |
+| **Desplazamiento** | **≤ 0,25 mm** | No lo exige el enunciado; evita piezas ligeras pero blandas |
+| **Impresión 3D** | Reglas de fabricación aditiva activadas | Decisión de diseño propia: techos a 45°, evacuación de polvo, sin cavidades cerradas |
+| **Cuándo una pieza es «mejor»** | Entre piezas válidas, menor **masa × aprovechamiento^0,15** | Manda la masa; la seguridad por encima del mínimo solo desempata |
 
 ---
 
 ## 3. Entorno técnico
 
-- **ANSYS Student 2026 R1** (v261), instalado en `C:\Program Files\ANSYS Inc\ANSYS Student\v261`. Funciona desde una terminal normal, sin el Cloudpaging Player.
-- **Licencia**: Student local. MAPDL se lanza con `MAPDL.exe -b -p ansys` (sin `-p ansys` pide productos que no existen).
-  - **Límite: 128 000 nodos** (comprobado: MAPDL da error al superarlo).
-  - **Solo una sesión de ANSYS a la vez**: con Workbench abierto, el optimizador no puede calcular.
-- **Python 3.12** con entorno propio (`.venv`): cadquery (geometría), gmsh (malla), BoTorch y PyTorch (procesos gaussianos), numpy/scipy, pyvista (imágenes), matplotlib y plotly (gráficas), shapely (perfiles 2D), requests (Discord).
-- **Workbench** se controla por script (`RunWB2 -B -R`) para generar proyectos `.wbpj` y `.wbpz`.
-- **Prueba de validación** (viga en voladizo, SOLID187): flecha 1,9052 mm frente a 1,9048 mm analítica (0,02 %), reacción exacta y σx = 300,13 frente a 300 MPa (0,04 %).
+- **ANSYS Student 2026 R1** (v261). MAPDL se lanza con `MAPDL.exe -b -p ansys`.
+  - **Límite: 128 000 nodos**.
+  - **Solo una sesión de ANSYS a la vez**: con Workbench abierto, el programa espera.
+- **Python 3.12** (`.venv`): cadquery (geometría), gmsh (malla), numpy/scipy, pyvista (imágenes), matplotlib y plotly (gráficas), shapely, requests (Discord).
+- **Workbench** por script (`RunWB2 -B -R`) para los proyectos `.wbpj` y `.wbpz`.
+- **Validación** (viga en voladizo, SOLID187): flecha con un 0,02 % de error, reacción exacta y σx con un 0,04 %.
 
 ---
 
@@ -52,303 +58,191 @@ Hemos construido un programa que **genera piezas automáticamente, las calcula e
 
 ### 4.1 Geometría fija (extraída de 0.stp)
 - **Pernos** (eje Z, superficie de z = 0,63 a 7,85 mm): (0; 0) con R = 5,334; (52,047; 1,580), (0; −148,125) y (38,083; −146,968) con R = 5,156 mm.
-- **Bulón**: R = 9,557 mm, eje (−0,0304; 0,9995; 0), centros (−21,357; −60,417; 44,725) y (−20,490; −88,979; 44,725). Separación entre orejetas: 28,58 mm.
-- **Original**: 307 191 mm³, es decir, **2,4115 kg** (CAD) o 2,4234 kg (volumen de la malla de 4 mm). No es macizo: tiene cavidades interiores con agujeros de evacuación de polvo en la base.
+- **Bulón**: R = 9,557 mm, eje (−0,0304; 0,9995; 0), centros (−21,357; −60,417; 44,725) y (−20,490; −88,979; 44,725).
+- **Original**: 2,4115 kg (CAD) o 2,4234 kg (volumen de la malla de 4 mm).
 
 ### 4.2 Malla y cálculo
-- Tetraedros de 2.º orden **SOLID187** con aristas rectas (los curvos daban elementos distorsionados), mallados con gmsh. Orden de nodos y signo del volumen verificados en cada malla.
-- **Malla de optimización**: h = 4 mm, hmin = 1 mm (unos 60 000–90 000 nodos, 30–60 s por cálculo).
-- **Malla de verificación**: h = 3,5 mm.
-- **Pasada rápida** (solo familia «desde cero»): h = 6 mm.
-- Equilibrio comprobado en cada cálculo: la suma de reacciones coincide con la carga (error < 0,1 %).
+- Tetraedros de 2.º orden **SOLID187** (gmsh) con orden de nodos y signo del volumen verificados.
+- Mallas:
+  - **completa**: h = 4 mm, unos 80 000 nodos, unos 45 s por cálculo;
+  - **rápida**: h = 6 mm, unos 25 s, para el descarte temprano;
+  - **fina**: h = 3,5 mm, para verificar los hitos.
+- Equilibrio comprobado en cada cálculo (error de reacción < 0,1 %).
+- **El modelo es lineal**: tensiones y desplazamientos son proporcionales a la carga. Comprobado al cambiar de 37 800 a 42 258 N: SimJEB n.º 373 pasa de 3 883 a 4 341 MPa, es decir, ×1,118 = 42 258/37 800.
 
 ### 4.3 Métrica de tensión
-- El máximo bruto de von Mises **no sirve**: está en el borde del agujero empotrado, que es una singularidad. Crece sin límite al refinar la malla: 474 → 888 → 973 → 975 MPa.
-- **Métrica usada**: máximo de von Mises excluyendo **5 mm alrededor de cada agujero de perno** (zona de apoyo de la cabeza del tornillo) y **2 mm alrededor del bulón** (esquinas del RBE3).
-- **Convergencia** (original, 42 258 N): 204,0 → 210,4 → 218,2 → 215,7 MPa con 45k a 103k nodos. Las dos mallas más finas difieren un 1,2 %.
-- En cada diseño se guarda también la tensión sin exclusión y con exclusiones de 3, 5 y 8 mm (sensibilidad para el informe).
+- El máximo bruto de von Mises está en el borde del agujero empotrado: es una **singularidad** y crece sin límite al refinar.
+- **Métrica**: máximo de von Mises excluyendo **5 mm alrededor de cada perno** (apoyo de la cabeza del tornillo) y **2 mm alrededor del bulón** (esquinas del RBE3). Justificación con el estudio de convergencia de la Fase 2 (`bitacora.md`).
 
-### 4.4 Resultados de referencia del original (37 800 N)
+### 4.4 El original con la carga de 42 258 N
+- Calculado con 37 800 N: 212,9 MPa (malla de 4 mm), 195,2 MPa (malla fina) y 0,129 mm.
+- Con 42 258 N (factor lineal ×1,118): **≈ 238 MPa** con la malla de 4 mm y ≈ 218 MPa con la fina, es decir, **coeficiente de seguridad ≈ 0,90**.
+- **El original NO cumple** con la carga del enunciado. El pico está en el fondo del alojamiento de la cabeza del perno 1, en (3,6; −9,9; 10,4).
+- El primer paso del programa es, por tanto, **reforzar**.
 
-| Magnitud | Malla de 4 mm (APDL) | Malla fina 3,5 mm | Workbench (68 849 nodos) |
+---
+
+## 5. Paso 1: estudio de las soluciones publicadas (`scripts/estudio_simjeb.py`)
+
+- **SimJEB** (Whalen et al., 2021; Harvard Dataverse doi:10.7910/DVN/XFUWJG) recoge los **381 diseños** del GE Jet Engine Bracket Challenge en el mismo sistema de coordenadas que nuestro `0.stp`, que es su diseño n.º 0.
+- **Cada diseño se calcula con NUESTRO modelo**: 42 258 N en −X, pernos empotrados, la misma métrica y los mismos límites.
+  1. Primero, una pasada rápida (h = 6 mm). Si supera 1,5 veces el límite, se descarta ahí.
+  2. Si es prometedor, se calcula con la malla completa.
+  3. Los diseños sin los agujeros del enunciado (bulón macizo, agujeros de otro tamaño) quedan como «incompatibles».
+- Se guarda el **campo de tensiones** de cada diseño. Con él, `scripts/campo.py` mide:
+  - material ocioso (por debajo del 15 % del límite);
+  - reparto de masa y tensión por zonas (pernos delanteros y traseros, orejetas, placa base, cuerpo);
+  - dónde está el pico y si es una concentración local;
+  - ligamento de material delante del bulón.
+- Resultados: `estudio/estudio_simjeb.json` (un registro por diseño) y `estudio/caracteristicas.json`.
+- Tarda unas 3–4 h. Se hace una vez y se puede interrumpir.
+
+## 6. Paso 2: reglas de diseño (`scripts/reglas.py` → `DESIGN_RULES.md`)
+
+Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (operación), **porque** (mecánica), **evidencia** (datos) y su **historial de aplicación**.
+
+| Regla | Si… | Hago… | Porque… |
 |---|---|---|---|
-| Tensión métrica | 212,9–213,3 MPa | 195,2 MPa | — |
-| von Mises bruta (singular) | 793 MPa | — | 631,6 MPa |
-| Desplazamiento máximo | 0,129 mm | 0,133 mm | 0,132 mm |
-| Coeficiente de seguridad (215/métrica) | 1,01 | 1,10 | — |
+| R1 | toda una columna vertical trabaja < umbral | aligeramiento pasante vertical | no está en el camino de carga; con Kt ≈ 3 (Kirsch) el borde del agujero queda < 3 × umbral |
+| R2 | todo lo que hay por encima de una cota trabaja < umbral | rebaje desde arriba | material que ni el momento de vuelco ni el cortante usan |
+| R3 | el núcleo de un bloque trabaja < umbral | hueco interior (techo a 45° + evacuación) | a flexión y torsión trabajan las pieles (σ = M·y/I) |
+| R4 | el pico está junto al alojamiento de un perno | collar en ese perno y en su simétrico | más sección frente al momento de vuelco F·h |
+| R5 | el pico está en el acuerdo del fondo del alojamiento | alojamiento más ancho con acuerdo mayor | Peterson… **pero los datos la contradicen** (ver abajo) |
+| R6 | el pico es una entalla fuera de los alojamientos | redondeo de las aristas | Kt baja con el radio del acuerdo |
+| R7 | el pico está en las orejetas | engrosar el anillo de las orejetas | aplastamiento y cortadura ∝ 1/ligamento |
+| R8 | el pico está en el borde de un corte anterior | reducir o deshacer ese corte | ese material sí trabajaba |
+| R9 | un corte fue rechazado | en esa zona, cortes ≤ 0,6 × el rechazado | búsqueda por bisección del tamaño |
+| R10 | no queda material ocioso donde cortar | subir el umbral 15 % → 25 % → 35 % | primero lo más seguro |
 
-El original está **prácticamente en el límite** del S235 con esta carga: se diseñó para titanio (σy = 903 MPa).
+**Datos de las reglas**
+- **Las reglas se juzgan con datos.** Una regla que contradicen los datos de un cambio **directo** (mismo diseño, cambiando solo eso) **se desactiva**. Las comparaciones con SimJEB (diseños distintos) pueden respaldarla o ser «no concluyentes», pero no la desactivan. Una regla que se prueba 8 veces en el optimizador sin que ninguna se acepte **se suspende**. Ejemplo real: R5 parecía lógica (agrandar el radio del acuerdo baja Kt), pero en los 294 diseños calculados antes, agrandar el alojamiento **sube** la tensión (Spearman +0,76: mediana de 360 MPa con R > 11 mm frente a 206 MPa con el del original). Pesa más la sección que se pierde que el acuerdo que se gana, así que está desactivada.
+- **R4 está respaldada** por una prueba directa: collares de 6 mm bajan el pico del original un 15 % (de 238 a 203 MPa con 42 258 N) con +159 g.
+- **R1–R3 y R7** se completan con el estudio de SimJEB: material ocioso, zonas y ligamentos de los diseños válidos frente al original.
 
----
+## 7. Paso 3: el optimizador guiado por reglas (`scripts/optimizer.py`)
 
-## 5. Familias de piezas (cómo se construye cada diseño)
+### 7.1 Una iteración
+1. **Mapa de tensiones** de la pieza actual (`campo.py`): material ocioso, pico y concentración.
+2. **Propuestas** (`reglas.py`): hasta 3 modificaciones, cada una con su regla, su porqué con números de la pieza actual y lo que se espera.
+   - Si la pieza **no cumple** o está a menos de un 3 % del límite, primero refuerzos (R4, R6, R7, R8).
+   - Si hay margen, aligeramientos (R1–R3), al menos uno de cada regla disponible.
+3. **Evaluación rápida** (malla gruesa) de cada propuesta, **comparada con la pieza actual en la misma malla gruesa**: así se cancela el error de la malla gruesa. Se descarta si la tensión prevista supera el límite en más de un 3 % o si no mejora la pieza.
+4. **Evaluación completa** (malla de 4 mm) solo de la más prometedora.
+5. **Decisión**:
+   - **ACEPTADA** si cumple y mejora al mejor, o si la pieza aún no cumplía y se acerca al límite;
+   - **INVERSIÓN** si es un refuerzo eficiente (−% de tensión ≥ 2 × % de masa) cuando no queda margen: se acepta para gastar ese margen aligerando y, si en 3 iteraciones no hay mejora, se deshace;
+   - **RECHAZADA** si no cumple o no mejora: se revierte, se registra el motivo y la zona queda marcada (R9).
+6. **Hito** (mejora de masa ≥ 1 % desde el anterior, y al final): verificación con **malla fina** y **proyecto Workbench**. Si la malla fina no confirma, se vuelve al último diseño verificado.
+7. **Fin**: cuando ninguna regla encuentra modificaciones o tras 8 iteraciones seguidas sin mejorar.
 
-Una **familia** es una forma de construir la pieza con unas variables. El programa busca los mejores valores de esas variables. En **todas** se comprueba en cada diseño que los 6 agujeros están exactamente en su sitio (área de cada superficie cilíndrica dividida por la de referencia = 1,000 ± 1 %).
+### 7.2 Operaciones (`scripts/operaciones.py`)
+La pieza es siempre **0.stp + una lista de operaciones** y se puede reconstruir desde cero.
+- **Quitan material**: agujero vertical pasante, rebaje desde arriba, hueco interior.
+- **Añaden o reforman**: collar en un perno, alojamiento, redondeo, anillo de orejetas.
 
-### 5.0 «SimJEB modificado» (10 variables) — nueva (23/11/2026)
-**Por qué**: la búsqueda se estancaba (cambios diminutos alrededor del mismo diseño). El conjunto de datos **SimJEB**
-(Whalen, Beyene y Mueller, 2021; Harvard Dataverse, doi:10.7910/DVN/XFUWJG, licencia abierta) recoge los ~380 diseños del
-concurso GE Jet Engine Bracket Challenge **en el mismo sistema de coordenadas que nuestro 0.stp** (el 0.stp es su diseño
-n.º 0, byte a byte) y su tabla da la tensión máxima en el caso **horizontal de 37,8 kN**, que es nuestro caso.
+Las que quitan nunca entran en las zonas protegidas: alojamiento + 3 mm alrededor de cada perno y radio del bulón + 6 mm en las orejetas. **Los 6 agujeros se verifican en cada pieza.**
 
-**Cómo se usan**:
-- **Candidatos**: diseños más ligeros que el original cuya tensión horizontal, escalada con el factor medido en el original
-  (nuestra métrica / tensión bruta de SimJEB = 212,9 / 414,3), queda por debajo de ~260 MPa. Es solo una **estimación** para
-  ordenar; la tensión real la da ANSYS.
-- **Compatibilidad**: se malla cada candidato y se comprueba que tiene los 4 agujeros de perno M10 y el agujero del bulón del
-  enunciado (algunos autores modelaron el bulón macizo o agrandaron los agujeros: se excluyen). Resultado en
-  `datos_simjeb/compatibilidad.json` (`python scripts/geometry_simjeb.py --comprobar`).
-- **Torneo de referencias**: se calculan **tal cual** los 30 más prometedores (primero los que según SimJEB ya cumplirían,
-  ordenados por masa × (tensión/límite)^0,15). Son solo **puntos de partida**: como el trabajo consiste en crear una **pieza
-  nueva**, un diseño SimJEB sin modificar (o con cambios de menos del 0,2 % de su volumen) **nunca puede ser el mejor diseño**
-  (ni proyecto Workbench, ni historial, ni panel, ni Discord). Después se abre una rama desde cada una de las **3 mejores
-  semillas distintas** y se van **modificando**.
-- **Prueba en ANSYS** (23/11, SimJEB n.º 321 tal cual): 1,301 kg, 284,6 MPa, 0,17 mm; pico junto al alojamiento del perno
-  delantero derecho. La tensión real es bastante mayor que la estimada desde la tabla de SimJEB (176 MPa): la estimación solo
-  sirve para ordenar el torneo.
-- **Modificaciones** sobre la semilla elegida:
-  - **collares** alrededor de los alojamientos de los pernos delanteros y traseros (espesor y altura): **añaden** material
-    en el punto crítico habitual;
-  - **2 aligeramientos**: agujeros **verticales pasantes** (posición x, y y radio) que **quitan** material donde no trabaja.
-    Son verticales (dirección de impresión): paredes sin voladizo y sin polvo atrapado. Nunca tocan las **zonas protegidas**
-    (cilindros alrededor de los 4 pernos y de las orejetas del bulón) y se rechazan si parten la pieza.
-- La **semilla** (qué diseño de SimJEB) es una variable categórica: las ramas finas, iniciales y de cruce la mantienen; las
-  amplias la cambian a veces (30 %) y las exploradoras eligen una al azar (así se visitan también los diseños fuera del torneo).
-- Los **agujeros se detectan en la malla** de cada pieza (radio, altura y tramos de orejeta), porque cada autor los modeló a
-  su manera; las condiciones de contorno y la exclusión de 5 mm / 2 mm se aplican sobre lo detectado.
-
-### 5.1 «Vaciado del original» (11 variables) — retirada (sus resultados se conservan)
-Al 0.stp le quita material donde casi no trabaja:
-- **hueco interior** (posición, longitud, anchura, suelo y techo), con al menos 3 mm de pared por encima según el mapa de alturas del original;
-- **recorte inclinado** del bloque por el lado alejado de las orejetas (inicio, altura, inclinación y anchura);
-- **remodelado de los alojamientos** de los tornillos (radio entre 10,54 y 12 mm).
-
-Todas las herramientas de corte tienen sus aristas redondeadas. Se usan booleanas «difusas» (tolerancia 10⁻⁴), porque sin ellas OCC falla en silencio con la geometría del original. Hallazgo: agrandar el alojamiento a R = 14 mm dispara la tensión a 800 MPa, porque adelgaza la pared frente a las cavidades interiores.
-
-**Retirada el 23/11/2026** (`familias_retiradas` en `config.json`): 62 diseños sin ninguno válido con σ ≤ 187 MPa; sus operaciones
-siguen dentro de la familia «refuerzo». Sus resultados siguen en el panel, la galería y el árbol.
-
-### 5.2 «Refuerzo + vaciado» (14 variables) — la más prometedora
-- Añade un **collar cilíndrico** alrededor de cada alojamiento de tornillo (espesor delantero, espesor trasero y altura), justo donde está el punto crítico del original.
-- **Prueba en ANSYS**: con un collar de 6 mm, el pico baja de **212,9 a 181,2 MPa** (+159 g) y el punto crítico pasa a la orejeta.
-- Con ese margen aplica las mismas operaciones de vaciado. En la prueba corta dio piezas válidas de 168–177 MPa.
-- La versión 1 (rellenar las cavidades por capas) se retiró porque no se podía mallar.
-
-### 5.3 «Diseño desde cero» (12 variables)
-Soporte nuevo:
-- cajón de torsión entre las dos filas de pernos, opcionalmente hueco con almas bajo las orejetas;
-- 2 orejetas (envolvente del círculo y el pie, con acuerdo de pie 2,5 veces mayor);
-- franja plana en los pernos y paredes extremas inclinadas.
-
-Variables: alojamiento, ancho de barras, inclinación de paredes, altura, anchos superior e inferior, desplazamiento del cajón, posición del pie de pared, espesor de pared, material y espesor de las orejetas, y radio de acuerdos.
-
-Todos los acuerdos entrantes se generan en 2D con un cierre morfológico (sin esquinas vivas). En las pruebas todavía **no ha encontrado ninguna pieza válida**, aunque baja la tensión de rama en rama (≈ 2 000 → 450–750 MPa).
-
-### 5.4 Reglas de impresión 3D (todas las familias)
-- **Techos interiores autoportantes**: pendiente de 45° (`angulo_voladizo_deg`) y techo a cuatro aguas.
-- **Agujero de evacuación de polvo** de Ø5 mm en cada cámara.
-- **Ninguna cavidad cerrada**: si queda alguna al combinar operaciones, se rellena.
-- Espesores mínimos: 3 mm de pared sobre los huecos y 5 mm de suelo.
-
-Fuentes en `docs/fabricacion_aditiva.md` (ISO/ASTM 52911-1:2019, NASA, Cambridge, Diegel et al., TUHH, Assembly Magazine). Matiz para la defensa: el S235 no es un acero habitual en impresión 3D.
+### 7.3 Velocidad (frente al enfoque anterior)
+- **Una sola línea de trabajo**, sin familias ni ramas.
+- **Descarte temprano**: unos 25 s por propuesta en la malla rápida; solo una por iteración pasa a la malla completa (unos 45 s).
+- Unos 2–3 min por iteración. Antes, la familia «desde cero» tardaba 4 min por diseño sin ningún válido en 101.
 
 ---
 
-## 6. Cómo funciona el optimizador
+## 8. Qué produce
 
-### 6.1 El ciclo de cada pieza
-1. **Propuesta** de unos valores de las variables (§6.2).
-2. **Comprobaciones antes de ANSYS:**
-   - **pieza repetida**: si su volumen coincide con una ya calculada, se reutiliza el resultado;
-   - **filtro por predicción**: si el modelo es fiable (error típico < 10 %) y la probabilidad de cumplir es < 5 %, no se calcula; 1 de cada 10 se calcula igualmente como control;
-   - **pasada rápida** (familia «desde cero»): malla gruesa; si incumple más de 1,5 veces el límite, se descarta ahí.
-3. **Geometría → malla → ANSYS → resultados.** La malla tiene un tiempo máximo de 60 s por intento (gmsh se cuelga a veces de forma aleatoria) y 6 estrategias de reintento.
-4. **Clasificación**: válida, casi (hasta un 10 % por encima del límite), no válida, fallida o filtrada.
-5. **Si es candidata a nuevo mejor**: verificación con malla fina. Si ahí no cumple, no se acepta.
-6. **Ficha, galería, registro, árbol, panel, Discord y GitHub.**
+**Trazabilidad**
+- **`ITERACIONES.md`** (en `runs/opt_42258N/`): cada iteración con regla, porqué, lo esperado, resultado antes/después (masa, tensión, CS), decisión y motivo, y las propuestas descartadas en la evaluación rápida.
+- **GitHub**: un **commit por iteración** con mensaje descriptivo. Ejemplo: `Iteracion 3 [ACEPTADA] R1: aligeramiento... | masa 2.52->2.45 kg, tension 212->213 MPa`. El cuerpo del commit lleva el porqué y el motivo.
+- **Discord**:
+  - canal «todo»: un mensaje por iteración;
+  - canal «árbol»: **camino de la pieza** en imagen cada vez que cambia;
+  - canal «top»: el mejor diseño, en un mensaje que se edita.
 
-### 6.2 Cómo decide qué probar (cómo aprende)
-1. **Reparto inicial**: 12 diseños por familia (secuencia de Sobol) repartidos por todo el espacio; en «SimJEB modificado», el **torneo** de 30 diseños SimJEB sin modificar, solo como referencias (§5.0).
-2. **Modelos sustitutos**: procesos gaussianos (BoTorch) que predicen **masa, tensión y desplazamiento** de cualquier pieza, con su incertidumbre, a partir de todo lo calculado. Para la masa se usan además 48 geometrías construidas sin ANSYS por familia.
-3. **Elección del candidato**: entre unos 5 000 candidatos al azar alrededor del mejor diseño de la rama (cambios de todas las variables, cambios de 1–3 variables, **mutaciones grandes de 2–5 variables** —salvo en las ramas finas— y continuaciones de la dirección que funcionó), se elige el de mayor **mejora esperada de la puntuación × probabilidad de cumplir**. Se penalizan las zonas donde hubo fallos y se descartan los candidatos a menos de **0,03** (espacio normalizado 0–1) de cualquier diseño ya probado, para que cada prueba sea un cambio real.
-4. **Ramas (árbol genealógico)**:
-   - Una rama hace **12 pruebas** alrededor de su mejor diseño. Si mejora, sigue en esa línea y alarga el paso; si falla 4 veces, lo acorta; si el paso baja de 0,05, la rama termina.
-   - Al terminar, su mejor diseño crea ramas hijas:
-     - **fina** (paso 0,10; solo mueve las variables que más influyen según los modelos);
-     - **amplia** (paso 0,35);
-     - **cruce** (mezcla al azar con el mejor diseño de otra rama).
-   - **Cada 2 ramas terminadas nace una rama exploradora**, que parte de un punto al azar alejado de todo lo probado para no quedarse atrapada en una zona.
-   - **Anti-estancamiento**: si una familia lleva **25 diseños** sin mejorar su mejor puntuación ni un 0,3 %, se lanzan **2 exploradoras nuevas**, se cierran las ramas finas que no avanzan y se avisa por Discord.
-   - Se trabaja en la rama activa cuyo origen es mejor; entre **ramas hermanas** (fina, amplia, cruce) **por turnos**, y un **25 %** de las veces en una rama activa al azar. Todas comparten los mismos modelos.
-5. **Reparto entre familias**: por rondas; «SimJEB modificado» calcula 2 diseños por ronda (`turnos_por_ronda`) y las demás 1. Una familia sin ninguna pieza válida tras 30 intentos (y fuera de su reparto inicial) solo calcula 1 de cada 3 rondas.
-6. **Parada**: 600 diseños por familia, o 8 fallos seguidos en una familia.
+**Paneles y archivos**
+- **`README.md` = panel en directo**: estado, mejor diseño con sus operaciones, camino de la pieza, últimas iteraciones y enlaces.
+- **`DESIGN_RULES.md`**: reglas, evidencia y estadísticas de aplicación, actualizado en cada iteración.
+- **Galería** (`GALERIA.md`), **hitos** (`HISTORIAL.md`, con STEP, operaciones y proyecto Workbench) y **gráfico interactivo** (`evolucion_interactiva.html`).
+- **Ficha de cada pieza**: geometría | von Mises | deformada | radiografía, con la lista de operaciones aplicadas al original.
 
-### 6.3 Mientras no hay piezas válidas
-El objetivo pasa a ser **reducir el incumplimiento** (el mayor de tensión/límite y desplazamiento/límite) hasta conseguir una pieza válida. Después, mejorar la puntuación.
-
-### 6.4 Cuándo una pieza es «mejor»
-Criterio de pieza aeronáutica: **la seguridad se exige, no se premia**. Una vez cumplido el mínimo, cada gramo de más es peso muerto.
-- **Requisito obligatorio**: coeficiente de seguridad ≥ **1,15** sobre σy (factor de herraje de CS/FAR 25.625), es decir, σ ≤ 187 MPa, y desplazamiento ≤ 0,25 mm.
-- **Entre piezas válidas**: menor **puntuación = masa × aprovechamiento^p**, con aprovechamiento = max(σ/187 MPa; u/0,25 mm).
-- **p = 0,15** (`peso_seguridad`): un 1 % de masa equivale a un ~7 % de tensión, así que manda la masa y la seguridad solo desempata entre piezas casi iguales. Con p = 0, solo masa.
-- El coeficiente de seguridad que muestran el panel, Discord y las fichas es siempre **215 MPa / σ**.
-
-| Pieza (pruebas) | Masa | Coef. seguridad (215/σ) | ¿Cumple ≥ 1,15? | Puntuación |
-|---|---|---|---|---|
-| Original | 2,423 kg | 1,01 | **No** | — |
-| Refuerzo n.º 5 | 2,543 kg | 1,21 | Sí | **2,522** (mejor) |
-| Refuerzo n.º 6 | 2,563 kg | 1,27 | Sí | 2,524 |
-
-Antes se usó p = 0,5 sin mínimo; se descartó porque premiaba demasiado la seguridad para una pieza de avión (el refuerzo, 120 g más pesado, ganaba al original).
-
----
-
-## 7. Qué produce
-
-### 7.1 En cada nuevo mejor diseño
-- **Proyecto de Workbench** listo para abrir: geometría, acero S235, selecciones con nombre, Fixed Support, Remote Force deformable, malla y resultados.
-  - `.wbpj` **resuelto** en el PC;
-  - `.wbpz` **montado** en GitHub (abrir con *File → Restore Archive* y pulsar *Solve*).
-- Entrada en el **historial** (ficha, STEP, modelo APDL, datos), **fotograma del vídeo timelapse** y **mensaje de Discord actualizado**.
-
-### 7.2 En GitHub (repositorio privado `Hugiko/msd-soporte-optimizacion`)
-- **`README.md` = panel en directo**, actualizado en cada pieza:
-  - estado por familia;
-  - cálculos ahorrados y fiabilidad del modelo;
-  - mejor diseño con su ficha, coeficiente de seguridad, puntuación y verificación;
-  - gráfica de la evolución en el tiempo;
-  - **árbol en imagen**;
-  - historial de todas las mejoras;
-  - últimos diseños.
-- **`GALERIA.md`**: todas las piezas (válidas y no válidas) en orden cronológico, con fichas `AAAAMMDD_HHMMSS_familia_n_VEREDICTO_masa.jpg`.
-- **`ARBOL.md`**: árbol de ramas dibujado con Mermaid.
-- **`evolucion_interactiva.html`**: gráfico en el que, al pasar el ratón, se ven la hora y los datos de cada punto. Se descarga y se abre en el navegador.
-- Registros CSV, clasificación por familia y gráficas de evolución e importancia de las variables.
-
-### 7.3 La ficha de cada pieza (`resumen.png`)
-4 vistas: **geometría 3D | tensión de von Mises | deformada amplificada | radiografía del interior** (cavidades visibles y las cerradas en rojo).
-
-### 7.4 En Discord (3 canales)
-- **Mejor versión**: UN mensaje que se **edita** con cada mejora (y cada 15 diseños como señal de vida). Incluye masa y reducción, tensión, desplazamiento, coeficiente de seguridad, puntuación, origen, verificación y enlace al `.wbpz`.
-- **Árbol**: imagen nueva cada vez que cambia la estructura.
-- **Todo lo generado**: ficha de cada pieza y avisos (errores, familia terminada, disco lleno, fin).
-
----
-
-## 8. Robustez y mantenimiento
-- **Reanudación**: guarda tras cada pieza. Si se cierra o se apaga el PC, al relanzar continúa donde iba y repite la pieza que quedó a medias.
-- **Licencia ocupada**: si Workbench está abierto, avisa y reintenta cada minuto sin penalizar el diseño. Los proyectos de Workbench que no se puedan crear quedan pendientes y se reintentan.
-- **Mallado colgado**: tiempo máximo de 60 s por intento (30 s en la pasada rápida), en un proceso aparte.
-- **Errores inesperados**: se registran en `errores.log`, se avisa por Discord y se sigue; con 5 seguidos se detiene. `optimizar.bat` lo **reinicia solo** al minuto.
-- **Disco**: limpieza inmediata si quedan menos de 5 GB y pausa si queda menos de 1 GB.
-- **Limpieza automática** (cada 10 diseños):
-  - se borran los archivos pesados de los diseños antiguos ya superados;
-  - **nunca** se borran los datos de los que aprende ni las fichas;
-  - se conservan los 5 mejores y los 20 últimos completos, los 3 últimos `.wbpj` resueltos en el PC y los 10 últimos `.wbpz` en GitHub.
-- **Versión de la geometría (por familia)**: si cambia la forma de construir las piezas de UNA familia, solo los resultados de esa familia se archivan en `runs/archivo/` y esa familia empieza limpia; las demás, el historial y el mejor global se conservan. Añadir o retirar una familia no archiva nada.
+## 9. Robustez
+- **Reanudación**: guarda tras cada iteración. La pieza actual se guarda en `pieza_actual.step` y siempre se puede reconstruir desde el 0.stp.
+- **Licencia ocupada**: espera y reintenta cada minuto.
+- **Estudio y optimizador nunca a la vez**: si el estudio está en marcha en otra ventana, `optimizar.bat` espera a que termine y sigue solo.
+- **Errores inesperados**: se registran, se avisa por Discord y se sigue; con 5 seguidos se detiene y `optimizar.bat` lo reinicia.
+- **Limpieza** cada 10 iteraciones (archivos pesados de iteraciones antiguas; nunca los datos ni las fichas).
 - **Seguridad**: los enlaces de Discord están en `discord_webhooks.json`, que **no se sube a GitHub**.
 
----
-
-## 9. Cómo se usa
-
+## 10. Cómo se usa
 1. **Cerrad Workbench** (licencia de una sola sesión).
-2. Doble clic en **`optimizar.bat`**. Se puede cerrar la ventana en cualquier momento.
-3. Opcional: **`instalar_autoarranque.bat`** (una vez) para que arranque al iniciar sesión. Se quita con `desinstalar_autoarranque.bat`.
-4. Seguimiento: la consola, el README de GitHub y Discord.
-5. `probar_optimizador.bat`: prueba corta en una carpeta aparte (`runs/prueba_*`).
+2. Doble clic en **`optimizar.bat`**:
+   - primero completa el estudio de SimJEB si falta;
+   - después escribe las reglas;
+   - por último, optimiza.
+   Se puede cerrar en cualquier momento.
+3. Seguimiento: la consola, el README de GitHub y Discord.
+4. `probar_optimizador.bat`: prueba corta (2 iteraciones) en `runs/prueba_*`, sin GitHub ni Discord.
 
-### 9.1 Ajustes principales (`config.json`)
+### 10.1 Ajustes (`config.json`)
 
 | Ajuste | Valor | Para qué |
 |---|---|---|
-| `carga_N` | 37800 | 42258 para la Tabla 2 (resultados en carpeta propia) |
-| `sigma_y_MPa` / `margen_optimizacion` | 215 / 0,8696 | Límite = 215 × 0,8696 = 187 MPa (coef. seguridad ≥ 1,15); 1,00 = 215 MPa |
+| `carga_N` | 42258 | Carga del enunciado (Tabla 2) |
+| `sigma_y_MPa` / `margen_optimizacion` | 215 / 1,0 | Límite = 215 MPa (CS ≥ 1, obligatorio) |
 | `desplazamiento_max_mm` | 0,25 | 0 = sin límite |
-| `peso_seguridad` | 0,15 | Peso de la seguridad entre piezas válidas (0 = solo masa) |
-| `familias` / `familias_retiradas` | simjeb, refuerzo, cero, vaciado / vaciado | Familias (las retiradas se conservan pero no se calculan) |
-| `turnos_por_ronda` | simjeb: 2 | Diseños por ronda de cada familia |
-| `torneo_simjeb_disenos` / `ramas_iniciales_simjeb` | 30 / 3 | Torneo de referencias SimJEB |
-| `presupuesto_por_familia` | 600 | Diseños máximos por familia |
-| `pruebas_por_rama` / `rama_exploradora_cada` | 12 / 2 | Árbol de ramas |
-| `estancamiento_disenos` / `prob_rama_al_azar` / `distancia_minima` | 25 / 0,25 / 0,03 | Anti-estancamiento y variedad |
+| `peso_seguridad` | 0,15 | Desempate entre piezas válidas |
+| `estudio_simjeb` | true | Estudio de las soluciones publicadas antes de optimizar |
+| `candidatos_por_iteracion` | 3 | Propuestas que se prueban en la evaluación rápida |
+| `umbrales_ocioso` | 0,15 / 0,25 / 0,35 | Umbral de material ocioso (R10) |
+| `descarte_rapido_tolerancia` | 0,03 | Margen sobre el límite en la evaluación rápida |
+| `max_iteraciones_sin_mejora` / `max_inversiones_seguidas` | 8 / 2 | Parada e inversiones |
+| `verificar_mejores` / `verificacion_h_mm` | true / 3,5 | Verificación con malla fina en cada hito |
+| `crear_workbench_en_cada_mejora` / `workbench_mejora_minima_pct` | true / 1,0 | Proyecto Workbench cada ≥ 1 % de mejora de masa y al final |
 | `reglas_impresion_3d` / `angulo_voladizo_deg` | true / 45 | Fabricación aditiva |
-| `cribado_rapido` / `cribado_rapido_familias` | 1,5 / cero | Pasada rápida |
-| `filtro_prob_minima` / `filtro_error_max` | 0,05 / 0,10 | Filtro por predicción |
-| `verificar_mejores` / `verificacion_h_mm` | true / 3,5 | Verificación con malla fina |
-| `crear_workbench_en_cada_mejora` / `mejora_minima_para_nuevo_mejor` | true / 0,0001 | Proyectos de Workbench |
-| `limpieza_*`, `mantener_*`, `disco_minimo_gb` | 10, 20, 5, 3, 10, 5 | Limpieza y disco |
 | `discord` / `subir_a_github` | true / true | Publicación |
 
----
-
-## 10. Estructura de archivos
+## 11. Estructura de archivos
 
 ```
 Trabajo/
 ├── optimizar.bat, probar_optimizador.bat, (des)instalar_autoarranque.bat
-├── config.json                 ajustes
-├── discord_webhooks.json       enlaces de Discord (NO se sube a GitHub)
-├── README.md                   panel en directo (lo reescribe el programa)
-├── DOCUMENTACION.md            este documento
-├── ESTADO.md, bitacora.md      estado y decisiones
-├── 0.stp.txt                   archivo original del enunciado (no se modifica)
-├── cad/                        0.stp, agujeros_fijos.json, mapa de alturas, referencia del original
-├── docs/                       parte1.md (SimJEB), fabricacion_aditiva.md
-├── figuras/                    figuras de la Fase 2 (convergencia, von Mises y desplazamiento del original)
+├── config.json, discord_webhooks.json (NO se sube)
+├── README.md (panel), DESIGN_RULES.md (reglas), DOCUMENTACION.md, ESTADO.md, bitacora.md
+├── cad/            0.stp, agujeros_fijos.json, referencia del original
+├── estudio/        estudio de SimJEB: estudio_simjeb.json, caracteristicas.json, evidencia.json, img/
 ├── scripts/
-│   ├── optimizer.py            optimizador (familias, ramas, panel, Discord, GitHub)
-│   ├── evaluate.py             evaluación de una pieza (geometría → malla → ANSYS → métricas → imágenes)
-│   ├── fem.py, run_mapdl.py    modelo de EF, entrada de MAPDL y lanzador
-│   ├── geometry.py             familia «desde cero» y utilidades comunes
-│   ├── geometry_vaciado.py     familia «vaciado»
-│   ├── geometry_refuerzo.py    familia «refuerzo» (collares)
-│   ├── geometry_simjeb.py      familia «SimJEB modificado» (torneo, collares, aligeramientos, comprobación)
-│   ├── exportar_workbench.py   proyectos de Workbench
-│   ├── render.py, report.py    imágenes, fichas y gráficas
-│   ├── discord_notify.py       avisos a Discord
-│   └── fase2_*.py, find_holes.py, exportar_original_ansys.py   fases 0–2
-├── datos_simjeb/               SimJEB descargado (metadata.tab, README, 382 STEP, compatibilidad.json); NO se sube a GitHub
-└── runs/opt_37800N/            resultados (se crea al arrancar): familias, historial, galería, árbol, timelapse...
+│   ├── optimizer.py         optimizador guiado por reglas + panel, Discord, GitHub, Workbench
+│   ├── reglas.py            reglas, evidencia, propuestas y DESIGN_RULES.md
+│   ├── campo.py             análisis del campo de tensiones (ocioso, pico, zonas, candidatos)
+│   ├── operaciones.py       operaciones sobre la pieza (quitar / añadir) y zonas protegidas
+│   ├── estudio_simjeb.py    cálculo de las soluciones publicadas con nuestras condiciones
+│   ├── evaluate.py          geometría → malla → ANSYS → métricas → imágenes
+│   ├── fem.py, run_mapdl.py, geometry.py (agujeros fijos), render.py, exportar_workbench.py, discord_notify.py
+│   └── fase2_*.py, find_holes.py, exportar_original_ansys.py   (fases 0–2)
+├── datos_simjeb/   381 STEP + metadata (NO se sube) y campos de tensión del estudio
+└── runs/opt_42258N/  iteraciones, galería, historial, ITERACIONES.md, registro.csv, estado.json
+    runs/archivo/     resultados del enfoque anterior (familias, 37 800 N)
 ```
 
----
+**Eliminado el 23/11** (enfoque anterior):
+- familias «vaciado», «refuerzo», «desde cero» y «SimJEB modificado»;
+- procesos gaussianos (BoTorch), árbol de ramas, torneo y anti-estancamiento;
+- `report.py`.
 
-## 11. Hallazgos importantes hasta ahora
-1. **El original está en el límite** con la carga de 37,8 kN: 212,9 MPa con la malla de optimización (195,2 MPa con malla fina), coeficiente de seguridad ≈ 1,0–1,1. **No cumple el mínimo de 1,15** exigido a una pieza aeronáutica.
-2. **Su punto crítico** está en el fondo del alojamiento del tornillo delantero. Ahí manda la combinación del alojamiento con las cavidades interiores.
-3. **Vaciar sin reforzar apenas da margen** (−0,35 % de masa): casi cualquier corte grande supera el límite.
-4. **Reforzar ese punto con un collar** baja el pico a 181 MPa y abre margen para vaciar el resto.
-5. **La malla de optimización es ligeramente conservadora** en el punto crítico: la malla fina da tensiones un ~8 % menores.
-6. **El máximo bruto** (630–975 MPa según la malla) es una singularidad del empotramiento, no una tensión real.
-7. **La familia «desde cero»** aprende, pero todavía no llega a piezas válidas.
-8. **Estancamiento (noche del 22 al 23/11)**: la familia «refuerzo» seguía mejorando, pero a pasos diminutos (ramas largas y finas
-   alrededor del mismo diseño); «vaciado» y «desde cero» sin ninguna pieza válida. De ahí la familia SimJEB y el anti-estancamiento.
-9. **SimJEB**: según su tabla (tensión estimada, sin calcular aún en nuestro modelo), hay decenas de diseños más ligeros que el
-   original (0,85–2,4 kg) con tensión horizontal del orden de la nuestra; varios tienen agujeros distintos a los del enunciado
-   y se excluyen.
-
----
+Sus operaciones útiles (collar, hueco con techo a 45°, aligeramientos, booleanas robustas, zonas protegidas) se han reutilizado en `operaciones.py`.
 
 ## 12. Limitaciones y pendientes
-- **Fase 5 (pendiente)**:
-  - verificación del diseño final con malla fina y estudio de convergencia;
-  - modelo de tornillo realista (apoyo de la cabeza y contacto con el suelo, sin empotrar el agujero), que eliminaría la singularidad;
-  - desplazamientos X/Y/Z, deformaciones y coeficiente de seguridad;
-  - comparación entre el original y el final;
+- **Fase 5**:
+  - verificación final con malla fina y convergencia;
+  - modelo de tornillo realista (sin empotrar el agujero);
+  - comparación del original con el final;
   - informe y guion de defensa.
-- **La exclusión de 5 mm alrededor de los pernos** está justificada con el estudio de convergencia, pero hay que explicarla bien en la defensa.
-- **Familia «refuerzo» v1 retirada**: el relleno escalonado de cavidades no se podía mallar.
-- **No implementado (decisión)**:
-  - preparar la siguiente pieza mientras ANSYS calcula (riesgo alto);
-  - pulido final con CMA-ES (las ramas finas ya afinan);
-  - mapa topológico tipo BESO (posible análisis para el informe).
-- **Parte 1 (SimJEB)**: borrador en `docs/parte1.md`. Ahora se dispone de la tabla de SimJEB (Harvard Dataverse) para citar diseños concretos (masa, categoría, tensiones).
-
----
+- La exclusión de 5 mm alrededor de los pernos hay que explicarla bien en la defensa.
+- Las correlaciones de los cálculos anteriores son observacionales: en cada diseño cambiaban varias variables a la vez. Por eso cada regla se comprueba otra vez en el optimizador, que hace un solo cambio cada vez.
 
 ## 13. Referencias
 - Enunciado: *Trabajo MSD 26-27* (Proyecto 2) e *Instrucciones generales*, EINA, Universidad de Zaragoza.
-- Whalen, E., Beyene, A., Mueller, C. (2021). *SimJEB: Simulated Jet Engine Bracket Dataset*. Computer Graphics Forum 40(5). doi:10.1111/cgf.14353 · arXiv:2105.03534. Datos: Harvard Dataverse, doi:10.7910/DVN/XFUWJG.
+- Whalen, E., Beyene, A., Mueller, C. (2021). *SimJEB: Simulated Jet Engine Bracket Dataset*. Computer Graphics Forum 40(5). doi:10.1111/cgf.14353. Datos: Harvard Dataverse, doi:10.7910/DVN/XFUWJG.
+- Concentración de tensiones: Kirsch (placa con agujero circular, Kt = 3); Pilkey & Pilkey, *Peterson's Stress Concentration Factors*.
 - ISO/ASTM 52911-1:2019 y resto de fuentes de fabricación aditiva: `docs/fabricacion_aditiva.md`.
-- Herramientas: ANSYS Student 2026 R1 (MAPDL y Workbench), gmsh, cadquery/OpenCascade, BoTorch/GPyTorch, PyVista, Plotly.
+- Herramientas: ANSYS Student 2026 R1 (MAPDL y Workbench), gmsh, cadquery/OpenCascade, PyVista, Plotly.

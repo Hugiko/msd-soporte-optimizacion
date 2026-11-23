@@ -7,8 +7,10 @@ y deja en la carpeta del diseno: params.json, metrics.json, geometria.step/.png,
 import os, sys, json, time, glob, traceback
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import geometry, fem, render
+import fem, render
 from run_mapdl import run
+
+LAST = {}      # campos del ultimo calculo (nodos, tetraedros, tension, desplazamiento) para analizarlos en memoria
 
 NODE_LIMIT = 125000          # licencia Student: 128 000 nodos (margen de seguridad)
 MESH_H, MESH_HMIN = 4.0, 1.0  # malla de optimizacion (verificada en la Fase 2)
@@ -51,9 +53,11 @@ def mesh_with_timeout(step, hh, hmin, algo, heal, logfile=None, timeout=MESH_TIM
 BIG_FILES = ("*.rst", "*.full", "*.esav", "*.emat", "*.osav", "*.page", "*.mntr", "*.ldhi", "*.r00x", "*.lock", "*.db", "*.dbb")
 
 
-def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=MESH_HMIN, timeout=1200, log=None, images=True, keep_big=False):
+def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=MESH_HMIN, timeout=1200, log=None, images=True,
+             keep_big=False, mesh_timeout=None, n_strategies=None):
+    """geom: objeto con NAMES, build(params) -> (solido, info) y export(solido, ruta) (p. ej. operaciones.Pieza)."""
     os.makedirs(wd, exist_ok=True)
-    geom = geom or geometry
+    LAST.clear()
     if force is None:
         force = float(json.load(open(os.path.join(fem.ROOT, "config.json"), encoding="utf-8-sig"))["carga_N"])
     L = lambda m: fem.log(m, log)
@@ -71,7 +75,7 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         geom.export(solid, step)
         res.update(mass_cad_kg=ginfo["mass_kg"], volume_cad_mm3=ginfo["volume_mm3"], hueco=ginfo["hueco"],
                    clamped=ginfo["clamped"], holes_check=ginfo["holes"])
-        res.update({k: v for k, v in ginfo.items() if k.startswith("simjeb_") or k in ("aligeramientos", "sin_modificar")})
+        res.update({k: v for k, v in ginfo.items() if k.startswith("simjeb_") or k in ("n_shells",)})
         L(f"        masa CAD = {ginfo['mass_kg']:.4f} kg | agujeros OK {ginfo['holes']} | hueco={ginfo['hueco']}"
           + (f" | ajustes: {ginfo['clamped']}" if ginfo["clamped"] else ""))
         if images:
@@ -84,6 +88,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
             strategies = [(10, h0, False), (1, h0, False), (10, h0 * 0.9, False), (4, h0, False), (10, h0, True), (1, h0 * 1.1, True)]
             if quick:                                   # pasada rapida: solo 2 intentos (es opcional)
                 strategies = strategies[:2]
+            if n_strategies:
+                strategies = strategies[:n_strategies]
             attempt_log = []
             for k, (algo, hh, heal) in enumerate(strategies):
                 stage = "malla"
@@ -91,8 +97,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                 try:
                     for _ in range(4):
                         nodes, tets, tris = mesh_with_timeout(step, hh, hmin0, algo, heal, logfile=log,
-                                                              timeout=30 if quick else
-                                                              (MESH_TIMEOUT_EXT if ginfo.get("auto_interfaces") else MESH_TIMEOUT))
+                                                              timeout=mesh_timeout or (30 if quick else
+                                                              (MESH_TIMEOUT_EXT if ginfo.get("auto_interfaces") else MESH_TIMEOUT)))
                         if len(nodes) <= NODE_LIMIT:
                             break
                         L(f"        {len(nodes)} nodos > limite Student: engrosando malla")
@@ -138,9 +144,9 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
             m, s, u = fem.read_results(wd, nodes, force=force, excl=(), pin_half=ginfo["pin_half_width"])
             if m["reaction_err_pct"] > 0.1:
                 raise RuntimeError(f"equilibrio no satisfecho: error de reaccion {m['reaction_err_pct']:.3f} %")
-            return dict(nodes=nodes, tris=tris, info=info, r=r, m=m, s=s, u=u, hh=hh, algo=algo, log=attempt_log)
+            return dict(nodes=nodes, tets=tets, tris=tris, info=info, r=r, m=m, s=s, u=u, hh=hh, algo=algo, log=attempt_log)
 
-        out = None
+        out = quick_out = None
         if prescreen:
             # PASADA RAPIDA (malla gruesa): si el diseno ya incumple claramente, no se gasta la malla fina.
             # Es OPCIONAL: si su malla falla se pasa directamente a la malla normal.
@@ -159,10 +165,18 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                 res["fidelidad"] = "rapida (descartado en la pasada rapida)"
             else:
                 L(f"        pasada rapida: prometedor ({v:.2f} x el limite) -> calculo con la malla normal")
-                out = None
+                quick_out, out = out, None
         if out is None:
-            out = level(h, hmin, "normal")
-            res["fidelidad"] = "normal"
+            try:
+                out = level(h, hmin, "normal")
+                res["fidelidad"] = "normal"
+            except Exception as e:
+                if quick_out is not None:
+                    L(f"        la malla normal ha fallado ({str(e)[:80]}): se conserva el resultado de la pasada rapida")
+                    out = quick_out
+                    res["fidelidad"] = "rapida (la malla normal fallo)"
+                else:
+                    raise
         nodes, tris, info, r, m, s, u = (out[k] for k in ("nodes", "tris", "info", "r", "m", "s", "u"))
         res.update(mesh_h=out["hh"], mesh_algo=out["algo"], mesh_retries=out["log"], solve_s=r["seconds"],
                    n_nodes=info["n_nodes"], n_elems=info["n_elems"],
@@ -170,8 +184,10 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         L("  [4/5] resultados")
         res.update(m)
         res["mass_kg"] = m["mass_kg"]
-        np.savez_compressed(os.path.join(wd, "campos.npz"), nodes=nodes, tris=tris, vm=s.astype(np.float32),
-                            u=u.astype(np.float32))
+        tets4 = (np.asarray(out["tets"])[:, :4] - 1).astype(np.int32)      # vertices de cada tetraedro (0-based)
+        LAST.update(nodes=nodes, tets4=tets4, tris=tris, vm=s, u=u, iface=fem.IFACE)
+        np.savez_compressed(os.path.join(wd, "campos.npz"), nodes=nodes.astype(np.float32), tris=tris, vm=s.astype(np.float32),
+                            u=u.astype(np.float32), tets4=tets4)
         if images:
             L("  [5/5] imagenes")
             render.results_png(nodes, tris, s, os.path.join(wd, "vonmises.png"),
@@ -191,11 +207,14 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                          "VEREDICTO        " + ("VALIDO" if (ok_s and ok_u) else "NO VALIDO"),
                          f"   ux {m['ux_max']:.4f}  uy {m['uy_max']:.4f}  uz {m['uz_max']:.4f}",
                          f"Carga            {force:.0f} N en -X",
-                         f"Malla            {res.get('n_nodes')} nodos (SOLID187)", "", "Parametros:"]
+                         f"Malla            {res.get('n_nodes')} nodos (SOLID187)", ""]
                 if res.get("simjeb_id") is not None:
-                    lines[-1:-1] = [f"Base             diseno SimJEB n.o {res['simjeb_id']} ({res.get('simjeb_autor', '')})"
-                                    + ("  -> REFERENCIA sin modificar" if res.get("sin_modificar") else "  + modificaciones")]
-                lines += [f"  {k:9s} = {v:g}" for k, v in res["params"].items()]
+                    lines += [f"Diseno publicado SimJEB n.o {res['simjeb_id']} ({res.get('simjeb_autor', '')}, "
+                              f"{res.get('simjeb_categoria', '')})", "  evaluado con NUESTRA carga y NUESTRO limite"]
+                if ginfo.get("ficha_lineas"):
+                    lines += ["Operaciones sobre el original:"] + list(ginfo["ficha_lineas"])
+                elif res["params"]:
+                    lines += ["Parametros:"] + [f"  {k:9s} = {v:g}" for k, v in res["params"].items()]
                 render.panel4(wd, f"{os.path.basename(os.path.dirname(wd))} / diseno {os.path.basename(wd)}", lines)
             except Exception as e:
                 L(f"        (ficha resumen no generada: {e})")
@@ -222,10 +241,11 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
 
 
 if __name__ == "__main__":
-    p = geometry.default_params()
-    wd = sys.argv[1] if len(sys.argv) > 1 else os.path.join(fem.ROOT, "tests", "eval_defecto")
-    for a in sys.argv[2:]:
-        k, v = a.split("="); p[k] = float(v)
-    r = evaluate(p, wd, log=os.path.join(wd, "progreso.log") if False else None)
+    # prueba: python evaluate.py <carpeta> ['<lista JSON de operaciones>']  (sin operaciones = pieza original)
+    import operaciones as O
+    wd = sys.argv[1] if len(sys.argv) > 1 else os.path.join(fem.ROOT, "tests", "eval_original")
+    ops = json.loads(sys.argv[2]) if len(sys.argv) > 2 else []
+    solid, holes = O.build(ops)
+    r = evaluate({}, wd, geom=O.Pieza(solid, holes, ops))
     print(json.dumps({k: r.get(k) for k in ("status", "mass_kg", "mass_cad_kg", "vm_metric", "vm_max_raw", "u_max",
                                             "reaction_err_pct", "n_nodes", "total_s", "error")}, indent=1))

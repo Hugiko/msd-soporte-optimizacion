@@ -50,6 +50,9 @@ def panel4(wd, title, info_lines, clim=(0, 250)):
     p.add_mesh(mesh, color="#9db4c8", smooth_shading=True, specular=0.3)
     head = title + ("\n" + info_lines[0] if info_lines else "")
     p.add_text("Geometria 3D  |  " + head, font_size=11, color="black"); p.camera_position = CAM
+    extra = [ln for ln in info_lines[1:] if ln.strip() and not ln.startswith("   ux") and not ln.startswith(("Tension bruta", "Malla"))][:18]
+    if extra:      # datos y operaciones aplicadas al original (abajo a la izquierda)
+        p.add_text("\n".join(extra), position="lower_left", font_size=10, color="#1a1a1a", font="courier")
     p.subplot(0, 1)
     p.add_mesh(mesh, scalars="von Mises (MPa)", cmap="turbo", clim=clim, scalar_bar_args=dict(fmt="%.0f", **sb))
     p.add_text("Tension de von Mises (MPa)", font_size=12, color="black"); p.camera_position = CAM

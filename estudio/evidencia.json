@@ -1,0 +1,65 @@
+{
+ "_resumen": {
+  "n": 31,
+  "valido": 0,
+  "no_cumple": 25,
+  "incompatible": 2,
+  "fallido": 4,
+  "n_validos_con_campo": 0,
+  "referencia": "los 1 disenos publicados mas cercanos a cumplir (solo 0 cumplen con acero S235 y 42258 N: se disenaron para titanio)",
+  "carga": 42258.0,
+  "limite": 215.0,
+  "fecha": "2026-11-23T15:16"
+ },
+ "R1": {
+  "respaldo": null,
+  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
+  "tabla": []
+ },
+ "R2": {
+  "respaldo": null,
+  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
+  "tabla": []
+ },
+ "R3": {
+  "respaldo": null,
+  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
+  "tabla": []
+ },
+ "R4": {
+  "respaldo": true,
+  "texto": "prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014)",
+  "tabla": []
+ },
+ "R5": {
+  "respaldo": false,
+  "texto": "en 294 disenos anteriores, alojamiento mas ancho -> MAS tension (Spearman +0.76, p = 8.7e-56; mediana 360 MPa con R > 11 mm frente a 206 MPa con el del original): pesa mas la seccion que se pierde que el acuerdo que se gana. Regla DESACTIVADA por los datos.",
+  "tabla": []
+ },
+ "R6": {
+  "respaldo": null,
+  "texto": "no se puede medir en las mallas publicadas (radios de acuerdo); regla basada en la teoria (Peterson) y en los resultados del propio optimizador",
+  "tabla": []
+ },
+ "R7": {
+  "respaldo": null,
+  "texto": "estudio aun incompleto: regla basada en la mecanica (aplastamiento/cortadura)",
+  "tabla": []
+ },
+ "R8": {
+  "respaldo": null,
+  "texto": "regla de procedimiento: se juzga por sus resultados en el optimizador",
+  "tabla": []
+ },
+ "R9": {
+  "respaldo": null,
+  "texto": "regla de procedimiento: se juzga por sus resultados en el optimizador",
+  "tabla": []
+ },
+ "R10": {
+  "respaldo": null,
+  "texto": "regla de procedimiento: se juzga por sus resultados en el optimizador",
+  "tabla": []
+ },
+ "_validos": []
+}

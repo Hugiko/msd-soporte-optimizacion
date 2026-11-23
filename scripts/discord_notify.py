@@ -2,8 +2,8 @@
 
 Canales (enlaces en discord_webhooks.json, que NO se sube a GitHub):
   - "top":    UN mensaje con la ficha del mejor diseno, que se EDITA cada vez que hay uno mejor.
-  - "arbol":  una imagen nueva del arbol cuando cambia su estructura.
-  - "todo":   la ficha de cada diseno calculado (y los avisos importantes).
+  - "arbol":  una imagen nueva del CAMINO de la pieza (cambios aceptados) cada vez que la pieza cambia.
+  - "todo":   un mensaje por ITERACION (regla aplicada, porque, antes/despues y decision) y los avisos importantes.
 """
 import os, json, time, queue, threading, datetime
 
@@ -117,8 +117,8 @@ class DiscordNotifier:
             emb["image"] = dict(url=f"attachment://{os.path.basename(image)}")
         self.q.put(("top", dict(embeds=[emb]), [image] if image else [], "top_message_id"))
 
-    def tree(self, image, text):
-        emb = dict(title=self.prefix + "Arbol genealogico de la busqueda", description=text, color=COLORS["info"],
+    def tree(self, image, text, title="Camino de la pieza"):
+        emb = dict(title=self.prefix + title, description=text[:1800], color=COLORS["info"],
                    image=dict(url=f"attachment://{os.path.basename(image)}"),
                    timestamp=datetime.datetime.utcnow().isoformat())
         self.q.put(("arbol", dict(embeds=[emb]), [image], None))

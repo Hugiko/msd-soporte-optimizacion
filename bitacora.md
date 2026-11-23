@@ -149,3 +149,30 @@
 - **Booleanas sobre diseños SimJEB**: muchas superficies son B-spline tipo malla y la unión collar a collar fallaba (p. ej. n.º 321). Ahora se unen todos los collares a la vez y se repite con tolerancia difusa creciente (10⁻⁴ → 0,05 mm); igual para los aligeramientos. 31/32 modificaciones aleatorias se construyen bien.
 - **Prueba completa en ANSYS** (n.º 321 tal cual): 1,301 kg, 284,6 MPa (estimación desde la tabla de SimJEB: 176 MPa; la estimación solo sirve para ordenar), 0,17 mm, error de reacciones 2·10⁻⁶ %. Con collares + un aligeramiento colocado a mano sobre el brazo: 466 MPa en el borde del aligeramiento (cortaba un brazo que trabaja): resultado físico que el optimizador debe aprender a evitar.
 - **Petición del grupo: la pieza tiene que ser NUEVA.** Los diseños SimJEB sin modificar (o con cambios < 0,2 % del volumen) son solo **referencias**: se calculan para elegir puntos de partida, pero nunca cuentan como mejor diseño. Torneo reducido a 30 para empezar antes a modificar.
+
+## 2026-11-23 – Cambio de enfoque: reglas de diseño con datos y carga de 42 258 N
+
+- **Petición del grupo**: las familias no convergían y descartar una mala costaba mucho.
+  1. Coeficiente de seguridad ≥ 1,0 (215 MPa) obligatorio.
+  2. Aprender de las soluciones publicadas: evaluarlas con nuestras condiciones y sacar reglas con datos.
+  3. Algoritmo nuevo que parta del original y lo modifique aplicando reglas (añadir y quitar material), cada cambio con su porqué, revirtiendo lo que no mejora.
+  4. Trazabilidad en GitHub y Discord.
+  5. Mucho más rápido.
+  6. Limpieza.
+- **Carga**: el profesor confirma **42 258 N** (Tabla 2). El modelo es lineal: SimJEB 373 pasa de 3 883 a 4 341 MPa (×1,118 = 42 258/37 800). El original pasa a ≈ 238 MPa (CS ≈ 0,90): **no cumple**, y el primer paso es reforzar.
+- **Archivado** el enfoque anterior en `runs/archivo/opt_37800N_familias_hasta_20261123/` (624 diseños). **Eliminados**:
+  - módulos de familias (`geometry_vaciado/refuerzo/simjeb.py`, la familia «desde cero» de `geometry.py`);
+  - procesos gaussianos, ramas, torneo y anti-estancamiento;
+  - `report.py`;
+  - `cad_stp.zip` (ya descomprimido) y los ficheros de comprobación antiguos de SimJEB.
+- **Nuevos módulos**:
+  - `estudio_simjeb.py`: las 381 soluciones con nuestra carga; pasada rápida (h = 6) y completa solo si es prometedor; unos 30 s por diseño descartado;
+  - `campo.py`: análisis del campo de tensiones;
+  - `operaciones.py`: 7 operaciones con zonas protegidas;
+  - `reglas.py` y `DESIGN_RULES.md`;
+  - `optimizer.py` reescrito.
+- **Datos ya visibles**:
+  - En el original, **el 51 % del material trabaja a menos del 15 % del límite** (el 85 % en la placa base). El pico está en el fondo del alojamiento del perno 1, con una concentración local ×2,4.
+  - **R5 desactivada por los datos**: agrandar el alojamiento (radio del acuerdo mayor, Peterson) SUBE la tensión en los 294 diseños anteriores (Spearman +0,76; mediana de 360 frente a 206 MPa). Domina la sección que se pierde.
+  - **R4 (collar) respaldada**: prueba directa de −15 % con 6 mm (+159 g); en la familia refuerzo, más collar delantero → menos tensión (Spearman −0,25).
+- **Redondeo junto al pico**: la primera prueba fallaba porque tocaba el borde del agujero del perno, y la verificación de agujeros lo detectó. Ahora las aristas de los 6 agujeros fijos se excluyen siempre.

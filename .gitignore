@@ -41,3 +41,26 @@ runs/*/discord_mensajes_prueba.json
 
 # datos descargados de SimJEB (grandes, se descargan con el script)
 datos_simjeb/
+
+# estudio SimJEB: el log es largo (los resultados van en estudio/estudio_simjeb.json)
+estudio/*.log
+
+# archivo del enfoque anterior: mismas exclusiones que tenian sus carpetas
+runs/archivo/*/*/[0-9][0-9][0-9]/geometria.step
+runs/archivo/*/*/[0-9][0-9][0-9]/resumen.png
+runs/archivo/*/*/[0-9][0-9][0-9]/vonmises.png
+runs/archivo/*/*/[0-9][0-9][0-9]/geometria.png
+runs/archivo/*/*/[0-9][0-9][0-9]/verificacion/
+# optimizador guiado por reglas: la ficha de cada iteracion va comprimida a galeria/; STEP solo en historial/
+runs/opt_*/iteraciones/*/*/geometria.step
+runs/opt_*/iteraciones/*/*/resumen.png
+runs/opt_*/iteraciones/*/*/vonmises.png
+runs/opt_*/iteraciones/*/*/geometria.png
+runs/opt_*/pieza_actual.step
+runs/opt_*/pieza_actual.step.json
+
+# estado de Discord y resultados brutos de MAPDL tambien en el archivo
+runs/**/discord_estado.json
+runs/**/discord_mensajes_prueba.json
+runs/**/res_glob.txt
+runs/**/res_nod.txt
