@@ -22015,3 +22015,10 @@
 [13:02:43]   [4/5] resultados
 [13:02:43]   [5/5] imagenes
 [13:02:45]   RESULTADO: masa 1.975 kg | tension 222.8 MPa (bruta 457) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)
+[13:02:52] [SimJEB modificado] DISENO 162  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[13:02:52]   motivo: [rama SX3.1] rama nueva (fina, paso 0.10) desde el diseno 084; cambia ali2_x (rama fina: solo mueve semilla, ali1_y, ali2_x, t_col_tra, ali1_r)
+[13:02:52]   el modelo predice: masa 2.114 kg | tension 199 MPa | P(cumplir) 0.39
+[13:02:55]   (GitHub: subido)
+[13:03:01]   geometria IDENTICA al diseno 084 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[13:03:01]   [simjeb] ESTANCADA: 25 disenos sin mejorar ni un 0,3 % -> nuevas ramas exploradoras SX10, SX11
+[13:03:03]   RESULTADO: masa 2.166 kg | tension 177.7 MPa (bruta 1457) | CUMPLE
