@@ -25,3 +25,4 @@ Original: 2,411 kg (CAD) | limite 187 MPa | carga 37800 N
 | 17 | 17_refuerzo_140_2.378kg | 2.378 | 185.6 | ![](historial/17_refuerzo_140_2.378kg/resumen.png) | [Workbench](historial/17_refuerzo_140_2.378kg/workbench/soporte_refuerzo_140.wbpz) |
 | 18 | 18_refuerzo_142_2.372kg | 2.372 | 185.4 | ![](historial/18_refuerzo_142_2.372kg/resumen.png) | [Workbench](historial/18_refuerzo_142_2.372kg/workbench/soporte_refuerzo_142.wbpz) |
 | 19 | 19_refuerzo_162_2.366kg | 2.366 | 182.2 | ![](historial/19_refuerzo_162_2.366kg/resumen.png) | [Workbench](historial/19_refuerzo_162_2.366kg/workbench/soporte_refuerzo_162.wbpz) |
+| 20 | 20_simjeb_031_2.132kg | 2.132 | 165.5 | ![](historial/20_simjeb_031_2.132kg/resumen.png) | [Workbench](historial/20_simjeb_031_2.132kg/workbench/soporte_simjeb_031.wbpz) |

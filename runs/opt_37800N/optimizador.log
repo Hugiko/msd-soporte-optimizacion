@@ -14037,3 +14037,81 @@
 [08:01:35]   geometria IDENTICA al diseno 058 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [08:01:35]   (GitHub: subido)
 [08:01:36]   RESULTADO: masa 2.264 kg | tension 380.6 MPa (bruta 871) | NO cumple
+[08:01:39] [simjeb] aprendiendo masa(x) con 48 geometrias rapidas (sin ANSYS); hechas 0
+[08:01:42]   (GitHub: subido)
+[08:05:59] [SimJEB modificado] DISENO 031  |  mejor global: 2.366 kg (Refuerzo + vaciado #162)
+[08:05:59]   motivo: [rama S1] rama nueva (inicial, paso 0.30) desde el diseno 011; cambia t_col_del, z_col, ali1_r, ali2_y
+[08:05:59]   el modelo predice: masa 1.932 kg | tension 289 MPa | P(cumplir) 0.12
+[08:06:03]   [1/5] geometria parametrica (cadquery)
+[08:06:03]         masa CAD = 2.1281 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[08:06:05]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[08:06:12]   malla h=4.0: 68564 nodos, 37653 tet10 (2.6s)
+[08:06:13]   [3/5] ANSYS MAPDL normal (68564 nodos, 37653 elementos)
+[08:06:13] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:06:19]   [fase] 4  /PREP7
+[08:06:21]   [fase] 144850  /SOLU
+[08:06:21]   [solver] 144852  EQSLV,SPARSE
+[08:06:21]   [fase] 144855  /POST1
+[08:06:21]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.656   TIME= 08:06:20
+[08:06:21]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.689
+[08:06:21]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[08:06:21]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.843   TIME= 08:06:20
+[08:06:21]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[08:06:22]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[08:06:22]   [solver] Equation solver memory allocated                     =  1166.494 MB
+[08:06:22]   [solver] Equation solver memory required for in-core mode     =  1117.270 MB
+[08:06:22]   [solver] Equation solver memory required for out-of-core mode =   314.308 MB
+[08:06:22]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[08:06:24]   [solver] Sparse solver maximum pivot= 113340564 at node 3319 UZ.
+[08:06:24]   [solver] Sparse solver minimum pivot= 13865.7525 at node 5570 UY.
+[08:06:24]   [solver] Sparse solver minimum pivot in absolute value= 13865.7525 at node 5570
+[08:06:25]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        11.650
+[08:06:26]   [AVISO] *** WARNING ***                         ELAPSED TIME =      12.355   TIME= 08:06:25
+[08:06:26]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        12.408
+[08:06:38]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.3 seconds
+[08:06:38]   [solver] Elapsed time in equation solver                :        3.0 seconds
+[08:06:38]   [fase] Elapsed time spent post-processing model (/POST1) :        0.7 seconds
+[08:06:38]   [solver] Equation solver used                              :            Sparse (symmetric)
+[08:06:38]   [solver] Sparse direct equation solver computational rate  :       76.6 Gflops
+[08:06:38] MAPDL termino: estado=ok codigo=0 tiempo=25.4s
+[08:06:38]   [4/5] resultados
+[08:06:38]   [5/5] imagenes
+[08:06:39]   candidato a NUEVO MEJOR: verificacion con malla fina...
+[08:06:39]   [1/5] geometria parametrica (cadquery)
+[08:06:40]         masa CAD = 2.1281 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[08:06:40]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.50 mm)
+[08:06:47]   malla h=3.5: 88014 nodos, 48888 tet10 (2.9s)
+[08:06:48]   [3/5] ANSYS MAPDL normal (88014 nodos, 48888 elementos)
+[08:06:48] Lanzando MAPDL: model.inp (timeout 1200s)
+[08:06:54]   [fase] 4  /PREP7
+[08:06:57]   [fase] 186826  /SOLU
+[08:06:57]   [solver] 186828  EQSLV,SPARSE
+[08:06:57]   [fase] 186831  /POST1
+[08:06:58]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.073   TIME= 08:06:55
+[08:06:58]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.112
+[08:06:58]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[08:06:58]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.282   TIME= 08:06:55
+[08:06:58]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[08:06:58]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[08:06:59]   [solver] Equation solver memory allocated                     =  1583.731 MB
+[08:06:59]   [solver] Equation solver memory required for in-core mode     =  1516.490 MB
+[08:06:59]   [solver] Equation solver memory required for out-of-core mode =   406.305 MB
+[08:06:59]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[08:07:02]   [solver] Sparse solver maximum pivot= 193116714 at node 80125 UY.
+[08:07:02]   [solver] Sparse solver minimum pivot= 36687.728 at node 6202 UY.
+[08:07:02]   [solver] Sparse solver minimum pivot in absolute value= 36687.728 at node 6202
+[08:07:03]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        13.979
+[08:07:04]   [AVISO] *** WARNING ***                         ELAPSED TIME =      14.910   TIME= 08:07:03
+[08:07:04]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        14.979
+[08:07:15]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.4 seconds
+[08:07:15]   [solver] Elapsed time in equation solver                :        4.4 seconds
+[08:07:15]   [fase] Elapsed time spent post-processing model (/POST1) :        1.0 seconds
+[08:07:15]   [solver] Equation solver used                              :            Sparse (symmetric)
+[08:07:15]   [solver] Sparse direct equation solver computational rate  :       77.5 Gflops
+[08:07:15] MAPDL termino: estado=ok codigo=0 tiempo=26.8s
+[08:07:15]   [4/5] resultados
+[08:07:15]   verificacion (malla fina, 88014 nodos): 171.2 MPa, 0.122 mm -> CONFIRMADO
+[08:07:16]   RESULTADO: masa 2.132 kg | tension 165.5 MPa (bruta 398) | CUMPLE
+[08:07:16] Workbench (sin ventana): creando soporte_simjeb_031.wbpj con F = 37800 N ...
+[08:09:06] Workbench termino en 109 s: montaje OK, resuelto SI
+[08:09:06]   >>> NUEVO MEJOR DISENO GLOBAL #20: 2.132 kg  (SimJEB modificado, diseno 31) | proyecto Workbench creado
