@@ -1,15 +1,15 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 12:30 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 12:32 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
 | SimJEB modificado | 142 | 30 | 1.914 kg (CS 1.30) | en marcha |
-| Refuerzo + vaciado | 218 | 72 | 2.314 kg (CS 1.15) | en marcha |
+| Refuerzo + vaciado | 219 | 72 | 2.314 kg (CS 1.15) | en marcha |
 | Diseno desde cero | 92 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 91 descartados en la pasada rapida, 51 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 8 % | Refuerzo + vaciado: error tipico 4 % | Diseno desde cero: error tipico 3 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 91 descartados en la pasada rapida, 51 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 8 % | Refuerzo + vaciado: error tipico 8 % | Diseno desde cero: error tipico 3 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 521 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 522 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -66,6 +66,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| Refuerzo + vaciado | 219 | 2.650 | 308.0 | descartado | [rama RX4] [aun sin disenos validos] el ultimo paso mejoro: sigue en e | [ver](runs/opt_37800N/galeria/20261123_123219_refuerzo_219_NO_VALIDO_2.650kg.jpg) |
 | SimJEB modificado | 142 | 3.663 | 152.9 | valido | [rama SX9] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_123053_simjeb_142_VALIDO_3.663kg.jpg) |
 | SimJEB modificado | 141 | 2.115 | 165.3 | valido | [rama SX8] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_122401_simjeb_141_VALIDO_2.115kg.jpg) |
 | Refuerzo + vaciado | 218 | 2.384 | 193.9 | cerca_del_limite | [rama RX3] pequeno cambio alrededor del mejor de la rama (paso 0.15);  | [ver](runs/opt_37800N/galeria/20261123_122310_refuerzo_218_CASI_2.384kg.jpg) |
@@ -75,7 +76,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | Refuerzo + vaciado | 217 | 2.649 | 308.1 | descartado | [rama RX4] [aun sin disenos validos] varios pasos sin mejora: paso mas | [ver](runs/opt_37800N/galeria/20261123_122021_refuerzo_217_NO_VALIDO_2.649kg.jpg) |
 | SimJEB modificado | 138 | 1.846 | 434.9 | descartado | [rama SX8] exploradora: punto al azar en una zona nunca probada (a 1.2 | [ver](runs/opt_37800N/galeria/20261123_121859_simjeb_138_NO_VALIDO_1.846kg.jpg) |
 | SimJEB modificado | 137 | 1.174 | 327.8 | descartado | [rama SX5] varios pasos sin mejora: paso mas corto (0.60); cambia semi | [ver](runs/opt_37800N/galeria/20261123_121707_simjeb_137_NO_VALIDO_1.174kg.jpg) |
-| Refuerzo + vaciado | 216 | 0.000 | - | fallido | [rama RX3] varios pasos sin mejora: paso mas corto (0.30); cambia cav_ | [ver](runs/opt_37800N/galeria/20261123_121601_refuerzo_216_FALLO_0.000kg.jpg) |
 
 ---
 
