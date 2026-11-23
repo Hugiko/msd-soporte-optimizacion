@@ -11784,3 +11784,9 @@
 [07:07:01]   [4/5] resultados
 [07:07:01]   [5/5] imagenes
 [07:07:04]   RESULTADO: masa 2.379 kg | tension 185.9 MPa (bruta 732) | CUMPLE
+[07:07:10] [Diseno desde cero] DISENO 067  |  mejor global: 2.378 kg (Refuerzo + vaciado #140)
+[07:07:10]   motivo: [rama C1.2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia t_w
+[07:07:10]   el modelo predice: masa 2.258 kg | tension 391 MPa | P(cumplir) 0.00
+[07:07:11]   geometria IDENTICA al diseno 058 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[07:07:12]   RESULTADO: masa 2.264 kg | tension 380.6 MPa (bruta 871) | NO cumple
+[07:07:12]   (GitHub: subido)
