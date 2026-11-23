@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:42
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:44
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (4)
 
@@ -11,13 +11,14 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 07:42
 | 016 | 2.272 | 174.4 | torneo de referencias SimJEB (16/30): SimJEB n.o 527 (block, NIKHIL KHOBRAGADE) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 135 MPa) | [ver](016/vonmises.png) |
 | 002 | 3.644 | 152.8 | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | [ver](002/vonmises.png) |
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (3)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (4)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 012 | 2.063 | 196.5 | torneo de referencias SimJEB (12/30): SimJEB n.o 186 (block, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 168 MPa) | [ver](012/vonmises.png) |
 | 014 | 2.162 | 195.2 | torneo de referencias SimJEB (14/30): SimJEB n.o 290 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 170 MPa) | [ver](014/vonmises.png) |
 | 015 | 2.241 | 189.5 | torneo de referencias SimJEB (15/30): SimJEB n.o 475 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 142 MPa) | [ver](015/vonmises.png) |
+| 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | [ver](019/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (10)
 
