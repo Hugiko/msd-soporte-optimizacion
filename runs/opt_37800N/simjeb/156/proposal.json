@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 51.0,
+  "t_col_del": 0.0,
+  "t_col_tra": 0.0,
+  "z_col": 25.5059,
+  "ali1_x": 13.5,
+  "ali1_y": -73.0,
+  "ali1_r": 0.0,
+  "ali2_x": 58.6651,
+  "ali2_y": -73.0,
+  "ali2_r": 7.314
+ },
+ "motivo": "[rama S2] varios pasos sin mejora: paso mas corto (0.30); cambia z_col, ali2_x",
+ "pred": {
+  "mass_kg": 2.1132761223236143,
+  "stress_mpa": 195.02926930846718,
+  "p_cumple": 0.4250413596125028,
+  "paso": 0.3,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "semilla": 0.8032210559580517,
+   "t_col_del": 0.009657528958775806,
+   "t_col_tra": 0.00698277366508303,
+   "z_col": 0.009028343852975244,
+   "ali1_x": 0.07488646522696463,
+   "ali1_y": 0.040388118254491394,
+   "ali1_r": 0.013962278904330582,
+   "ali2_x": 0.007485969999966446,
+   "ali2_y": 0.009603661946830292,
+   "ali2_r": 0.024783803232531102
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "S2",
+ "fecha": "2026-11-23T12:51:45.040451"
+}
