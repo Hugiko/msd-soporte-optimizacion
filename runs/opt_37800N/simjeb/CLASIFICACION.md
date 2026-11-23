@@ -1,25 +1,26 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:14
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:17
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (8)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
 | 033 **MEJOR** | 1.921 | 167.7 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia z_col, ali1_x, ali1_y, ali1_r... | [ver](033/vonmises.png) |
 | 032 | 1.953 | 167.2 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_y, ali1_r, ali2_r | [ver](032/vonmises.png) |
+| 034 | 1.968 | 163.8 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_tra, ali1_r, ali2_x | [ver](034/vonmises.png) |
 | 011 | 1.975 | 164.1 | torneo de referencias SimJEB (11/30): SimJEB n.o 237 (block, Bol) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 178 MPa) | [ver](011/vonmises.png) |
 | 031 | 2.132 | 165.5 | [rama S1] rama nueva (inicial, paso 0.30) desde el diseno 011; cambia t_col_del, z_col, ali1_r, ali2_y | [ver](031/vonmises.png) |
 | 013 | 2.236 | 176.5 | torneo de referencias SimJEB (13/30): SimJEB n.o 474 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 127 MPa) | [ver](013/vonmises.png) |
 | 016 | 2.272 | 174.4 | torneo de referencias SimJEB (16/30): SimJEB n.o 527 (block, NIKHIL KHOBRAGADE) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 135 MPa) | [ver](016/vonmises.png) |
 | 022 | 2.412 | 175.8 | torneo de referencias SimJEB (22/30): SimJEB n.o 476 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 130 MPa) | [ver](022/vonmises.png) |
-| 002 | 3.644 | 152.8 | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | [ver](002/vonmises.png) |
+| 002 | 3.644 | 152.8 | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | - |
 
 ## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (5)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
-| 012 | 2.063 | 196.5 | torneo de referencias SimJEB (12/30): SimJEB n.o 186 (block, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 168 MPa) | [ver](012/vonmises.png) |
+| 012 | 2.063 | 196.5 | torneo de referencias SimJEB (12/30): SimJEB n.o 186 (block, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 168 MPa) | - |
 | 014 | 2.162 | 195.2 | torneo de referencias SimJEB (14/30): SimJEB n.o 290 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 170 MPa) | [ver](014/vonmises.png) |
 | 015 | 2.241 | 189.5 | torneo de referencias SimJEB (15/30): SimJEB n.o 475 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 142 MPa) | [ver](015/vonmises.png) |
 | 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | [ver](019/vonmises.png) |
@@ -35,9 +36,9 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 08:14
 | 005 | 1.739 | 215.3 | torneo de referencias SimJEB (5/30): SimJEB n.o 485 (block, saeid mirshahidi) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 174 MPa) | - |
 | 006 | 1.824 | 368.7 | torneo de referencias SimJEB (6/30): SimJEB n.o 380 (block, Richard Amancio) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 169 MPa) | - |
 | 007 | 1.823 | 287.9 | torneo de referencias SimJEB (7/30): SimJEB n.o 192 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 174 MPa) | - |
-| 008 | 1.823 | 287.9 | torneo de referencias SimJEB (8/30): SimJEB n.o 191 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 182 MPa) | [ver](008/vonmises.png) |
-| 009 | 1.853 | 446.7 | torneo de referencias SimJEB (9/30): SimJEB n.o 182 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 191 MPa) | [ver](009/vonmises.png) |
-| 010 | 1.853 | 443.9 | torneo de referencias SimJEB (10/30): SimJEB n.o 183 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | [ver](010/vonmises.png) |
+| 008 | 1.823 | 287.9 | torneo de referencias SimJEB (8/30): SimJEB n.o 191 (flat, Tomek F.) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 182 MPa) | - |
+| 009 | 1.853 | 446.7 | torneo de referencias SimJEB (9/30): SimJEB n.o 182 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 191 MPa) | - |
+| 010 | 1.853 | 443.9 | torneo de referencias SimJEB (10/30): SimJEB n.o 183 (block, ZHICHAO LI) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | - |
 | 018 | 2.369 | 207.1 | torneo de referencias SimJEB (18/30): SimJEB n.o 165 (block, Andy Brookman) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 121 MPa) | [ver](018/vonmises.png) |
 | 020 | 2.266 | 449.4 | torneo de referencias SimJEB (20/30): SimJEB n.o 384 (block, JuanCR) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 187 MPa) | [ver](020/vonmises.png) |
 | 023 | 2.366 | 242.5 | torneo de referencias SimJEB (23/30): SimJEB n.o 195 (flat, Armin) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 189 MPa) | [ver](023/vonmises.png) |
