@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 14 - ACEPTADA: R2 rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esquinas R3.2)
+
+*2026-11-23 21:04*
+
+- **Pieza de partida:** 2.1883 kg | 205.1 MPa | CS 1.05 | 0.149 mm
+- **Por que (regla R2):** Todo el material por encima de z = 7 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 35 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
+- **Se esperaba:** mediana de las 4 veces que se ha aplicado: +0.7 % (prevision rapida: 2.1602 kg | 202.8 MPa | CS 1.06 | 0.155 mm)
+- **Resultado (malla completa):** 2.1608 kg | 203.1 MPa | CS 1.06 | 0.155 mm (tension -0.9 %, masa -27 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1883 -> 2.1608; masa 2.1883 -> 2.1608 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (46, -116) -> pasa la evaluacion rapida (2.1615 kg | 219.2 MPa | CS 0.98 | 0.152 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -44) -> pasa la evaluacion rapida (2.1839 kg | 201.3 MPa | CS 1.07 | 0.149 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261123_210749_it014_ACEPTADA_2.161kg.jpg" width="520">
+
 ## Iteracion 13 - ACEPTADA: R2 rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquinas R3)
 
 *2026-11-23 20:58*

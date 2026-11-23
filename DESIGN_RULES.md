@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 23/11/2026 21:04. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 23/11/2026 21:10. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -38,7 +38,7 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 13 veces (4 descartadas en la evaluacion rapida, 7 aceptadas, 1 rechazadas); tension +1.1 % (mediana), masa -28 g (mediana).
+- **Aplicada en el optimizador:** 14 veces (4 descartadas en la evaluacion rapida, 7 aceptadas, 1 rechazadas); tension +1.1 % (mediana), masa -28 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.8 % frente a +1.1 % real (mediana de 8)
   - iteracion 9: aceptada: aligeramiento pasante vertical D10 mm en (22, -71) (tension +1.3 %, masa -14 g)
   - iteracion 10: aceptada: aligeramiento pasante vertical D8 mm en (40, -62) (tension -0.3 %, masa -13 g)
@@ -71,12 +71,12 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 8 veces (2 descartadas en la evaluacion rapida, 3 aceptadas, 1 rechazadas); tension +0.7 % (mediana), masa -41 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.2 % frente a +0.7 % real (mediana de 4)
-  - iteracion 3: aceptada: rebaje desde arriba hasta z = 7 mm en x 54..66, y -124..-28  (tension +5.9 %, masa -58 g)
+- **Aplicada en el optimizador:** 9 veces (2 descartadas en la evaluacion rapida, 4 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa -34 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a +0.1 % real (mediana de 5)
   - iteracion 4: aceptada: rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52  (tension -6.0 %, masa -47 g)
   - iteracion 5: rechazada: rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8  (tension +0.0 %, masa +0 g)
   - iteracion 13: aceptada: rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 m (tension +1.3 %, masa -34 g)
+  - iteracion 14: aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -104,7 +104,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** a flexion y torsion la tension crece con la distancia a la fibra neutra (s = M y / I, t = T r / J): el nucleo apenas trabaja y la rigidez la dan las pieles. Por eso las vigas son en I o en cajon.
 - **Espero:** baja la masa; la tension sube poco (las pieles siguen).
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).
-- **Aplicada en el optimizador:** 3 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 4 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 Referencia: los 16 disenos publicados VALIDOS.
 
