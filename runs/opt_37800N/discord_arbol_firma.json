@@ -56,8 +56,26 @@
  [
   "simjeb",
   "SX1",
-  "activa",
+  "terminada",
   79
+ ],
+ [
+  "simjeb",
+  "SX1.1",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "SX1.2",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "SX1.3",
+  "activa",
+  null
  ],
  [
   "simjeb",

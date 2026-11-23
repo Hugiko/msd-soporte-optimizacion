@@ -318,8 +318,8 @@
    "L": 0.15,
    "L0": 0.3,
    "succ": 0,
-   "fail": 1,
-   "n": 11,
+   "fail": 2,
+   "n": 12,
    "best": {
     "score": [
      0,
@@ -339,8 +339,12 @@
     0.49915588235294117,
     1.0
    ],
-   "estado": "activa",
-   "hijos": [],
+   "estado": "terminada",
+   "hijos": [
+    "SX1.1",
+    "SX1.2",
+    "SX1.3"
+   ],
    "seed_score": [
     0,
     1.878640358667292
@@ -358,7 +362,8 @@
     0.6460161097347736
    ],
    "nota": "a 1.56 del diseno probado mas cercano",
-   "creada": "2026-11-23T08:53:11.065564"
+   "creada": "2026-11-23T08:53:11.065564",
+   "motivo_fin": "12 pruebas"
   },
   "SX2": {
    "id": "SX2",
@@ -1140,6 +1145,83 @@
    ],
    "nota": "a 1.11 del diseno probado mas cercano",
    "creada": "2026-11-23T13:50:16.919243"
+  },
+  "SX1.1": {
+   "id": "SX1.1",
+   "padre": "SX1",
+   "semilla": 79,
+   "tipo": "fina",
+   "L": 0.1,
+   "L0": 0.1,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.9019756113797703
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T13:51:17.962589"
+  },
+  "SX1.2": {
+   "id": "SX1.2",
+   "padre": "SX1",
+   "semilla": 79,
+   "tipo": "amplia",
+   "L": 0.35,
+   "L0": 0.35,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.9019756113797703
+   ],
+   "seed_x": null,
+   "nota": "",
+   "creada": "2026-11-23T13:51:17.962589"
+  },
+  "SX1.3": {
+   "id": "SX1.3",
+   "padre": "SX1",
+   "semilla": null,
+   "tipo": "cruce",
+   "L": 0.2,
+   "L0": 0.2,
+   "succ": 0,
+   "fail": 0,
+   "n": 0,
+   "best": null,
+   "prev_x": null,
+   "estado": "activa",
+   "hijos": [],
+   "seed_score": [
+    0,
+    1.8786403605459323
+   ],
+   "seed_x": [
+    0.6825396825396826,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.05253,
+    0.8002690721649486,
+    0.49915588235294117,
+    1.0
+   ],
+   "nota": "SX1 (#079) y S1 (#037)",
+   "creada": "2026-11-23T13:51:17.963591"
   }
  },
  "done": false,
