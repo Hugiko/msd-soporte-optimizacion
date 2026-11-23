@@ -9309,3 +9309,9 @@
 [05:57:08]   [4/5] resultados
 [05:57:09]   [5/5] imagenes
 [05:57:10]   RESULTADO: masa 2.255 kg | tension 939.2 MPa (bruta 939) | NO cumple
+[05:57:16]   (GitHub: subido)
+[05:57:17] [Refuerzo + vaciado] DISENO 108  |  mejor global: 2.428 kg (Refuerzo + vaciado #085)
+[05:57:17]   motivo: [rama RX1] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.07); cambia cav_a
+[05:57:17]   el modelo predice: masa 2.235 kg | tension 283 MPa | P(cumplir) 0.03
+[05:57:25]   geometria IDENTICA al diseno 104 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[05:57:26]   RESULTADO: masa 2.483 kg | tension 284.7 MPa (bruta 642) | NO cumple
