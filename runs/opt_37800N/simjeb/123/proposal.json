@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 59.0,
+  "t_col_del": 6.6073,
+  "t_col_tra": 1.216,
+  "z_col": 8.0,
+  "ali1_x": 50.9874,
+  "ali1_y": -74.3766,
+  "ali1_r": 0.0,
+  "ali2_x": 32.3523,
+  "ali2_y": -15.0507,
+  "ali2_r": 6.616
+ },
+ "motivo": "[rama SX6] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia z_col, ali1_y, ali2_y",
+ "pred": {
+  "mass_kg": 2.395931576441368,
+  "stress_mpa": 214.95946877029706,
+  "p_cumple": 0.2179617455109549,
+  "paso": 0.3,
+  "modo": "buscar diseno valido",
+  "importancia_tension": {
+   "semilla": 0.2928083563291311,
+   "t_col_del": 0.057462304362423916,
+   "t_col_tra": 0.08549822118810754,
+   "z_col": 0.07700858010972336,
+   "ali1_x": 0.061766981844441245,
+   "ali1_y": 0.06409843685161515,
+   "ali1_r": 0.16526451426180808,
+   "ali2_x": 0.058223752646133976,
+   "ali2_y": 0.08007297895954715,
+   "ali2_r": 0.057795873447068595
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "SX6",
+ "fecha": "2026-11-23T11:52:12.055971"
+}
