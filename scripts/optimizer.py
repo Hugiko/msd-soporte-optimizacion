@@ -944,7 +944,7 @@ def main():
             log(f"ESTUDIO de las soluciones publicadas: quedan {len(ES.pending())} disenos por calcular con {FORCE:.0f} N")
             DISCORD.alert(f"Empieza (o continua) el estudio de las soluciones publicadas SimJEB con {FORCE:.0f} N: "
                           f"quedan {len(ES.pending())} disenos. Despues se sacan las reglas y empieza la optimizacion.")
-            ES.run()
+            ES.run(notify=DISCORD if DISCORD.enabled else None, checkpoint=lambda msg: git.commit(msg))
         E = R.evidence(log)
         try:
             R.render_valid_images(E, log=log)

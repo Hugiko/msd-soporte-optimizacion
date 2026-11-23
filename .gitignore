@@ -70,3 +70,7 @@ runs/archivo/
 
 # ficheros de salida de MAPDL que quedan en cada calculo (GitHub los contaba como "lenguajes": .DSP = Faust)
 runs/**/file.*
+
+# estado de Discord del estudio
+estudio/discord_estado.json
+estudio/discord_enviados.json

@@ -130,6 +130,12 @@ class DiscordNotifier:
             emb["image"] = dict(url=f"attachment://{os.path.basename(image)}")
         self.q.put(("todo", dict(embeds=[emb]), [image] if image else [], None))
 
+    def file(self, title, text, path, cat="info"):
+        """Mensaje con un fichero adjunto (p. ej. la tabla CSV de resultados)."""
+        emb = dict(title=self.prefix + title, description=text[:3900], color=COLORS.get(cat, COLORS["info"]),
+                   timestamp=datetime.datetime.utcnow().isoformat())
+        self.q.put(("todo", dict(embeds=[emb]), [path] if path else [], None))
+
     def alert(self, text):
         emb = dict(title=self.prefix + "Aviso del optimizador", description=text[:1800], color=COLORS["alerta"],
                    timestamp=datetime.datetime.utcnow().isoformat())

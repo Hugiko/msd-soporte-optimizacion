@@ -108,12 +108,118 @@ def verdict(m):
     return "valido" if ok else "no_cumple"
 
 
-def run(max_n=None, stop_flag=None):
-    """Calcula los disenos pendientes. Devuelve True si el estudio esta completo."""
+CSV = os.path.join(OUT, "estudio_simjeb.csv")
+SENT = os.path.join(OUT, "discord_enviados.json")
+VTXT = {"valido": "CUMPLE", "no_cumple": "no cumple", "incompatible": "INCOMPATIBLE (agujeros distintos a los del enunciado)",
+        "fallido": "FALLO (malla)"}
+VCAT = {"valido": "valido", "no_cumple": "descartado", "incompatible": "filtrado", "fallido": "fallido"}
+
+
+def write_csv(res=None):
+    """Tabla legible (Excel) con todos los disenos calculados con la carga actual."""
+    import csv as _csv
+    res = res if res is not None else load_results()
+    cols = ["id", "categoria", "autor", "veredicto", "fidelidad", "masa_kg", "tension_MPa", "cs", "desp_mm",
+            "tension_simjeb_MPa", "genus", "error", "fecha"]
+    rows = sorted((r for r in res.values() if r.get("fuerza_N") == FORCE), key=lambda r: (r.get("masa_kg") or 9e9, r["id"]))
+    with open(CSV, "w", newline="", encoding="utf-8-sig") as f:
+        w = _csv.DictWriter(f, fieldnames=cols, delimiter=";", extrasaction="ignore")
+        w.writeheader()
+        for r in rows:
+            w.writerow({k: (f"{v:.4f}".replace(".", ",") if isinstance(v, float) else v) for k, v in r.items()})
+    return CSV
+
+
+def _sent():
+    return set(json.load(open(SENT, encoding="utf-8"))) if os.path.exists(SENT) else set()
+
+
+def _mark_sent(ids):
+    s = _sent() | {str(i) for i in ids}
+    json.dump(sorted(s, key=int), open(SENT, "w", encoding="utf-8"))
+
+
+def _why(r):
+    if r["veredicto"] == "valido":
+        return f"cumple con nuestra carga: {r['tension_MPa']:.0f} MPa <= {SIG_LIM:.0f} MPa y {r['desp_mm']:.3f} mm <= {U_LIM} mm"
+    if r["veredicto"] == "no_cumple":
+        v = r["tension_MPa"] / SIG_LIM
+        if str(r.get("fidelidad", "")).startswith("rapida (descartado"):
+            return f"supera claramente el limite ({v:.1f} veces) ya en la pasada rapida (malla gruesa): no se calcula con malla fina"
+        return f"supera el limite: {r['tension_MPa']:.0f} MPa ({v:.2f} veces {SIG_LIM:.0f} MPa)" + (
+            f" o el desplazamiento ({r['desp_mm']:.3f} mm)" if r.get("desp_mm") and r["desp_mm"] > U_LIM else "")
+    return (r.get("error") or "")[:300]
+
+
+def notify_design(notify, r, k, total, wd):
+    """Un mensaje por diseno publicado calculado (con la imagen de tensiones si se calculo con malla completa)."""
+    img = None
+    if r.get("tension_MPa") is not None and str(r.get("fidelidad", "")).startswith("normal"):
+        try:
+            import render
+            d = np.load(os.path.join(wd, "campos.npz"))
+            img = os.path.join(wd, "vonmises.png")
+            render.results_png(d["nodes"], d["tris"], d["vm"], img,
+                               f"SimJEB {r['id']}: {r['masa_kg']:.3f} kg, {r['tension_MPa']:.0f} MPa", marker=r.get("tension_xyz"))
+        except Exception:
+            img = None
+    f = [dict(name="Resultado", value=VTXT[r["veredicto"]], inline=True),
+         dict(name="Tipo / autor", value=f"{r['categoria']} / {r['autor']}"[:100], inline=True)]
+    if r.get("tension_MPa") is not None:
+        f += [dict(name="Masa (acero)", value=f"{r['masa_kg']:.3f} kg", inline=True),
+              dict(name="Tension", value=f"{r['tension_MPa']:.0f} MPa (CS {215.0 / r['tension_MPa']:.2f})", inline=True),
+              dict(name="Desplazamiento", value=f"{r['desp_mm']:.3f} mm", inline=True),
+              dict(name="Calculo", value=str(r.get("fidelidad")), inline=True)]
+    notify.design(f"Estudio SimJEB {k}/{total}: diseno publicado n.o {r['id']}", VCAT[r["veredicto"]], f,
+                  f"Con NUESTRA carga ({FORCE:.0f} N) y NUESTRO limite ({SIG_LIM:.0f} MPa). Motivo: {_why(r)}", img)
+
+
+def progress_text(res=None):
+    res = {k: r for k, r in (res if res is not None else load_results()).items() if r.get("fuerza_N") == FORCE}
+    c = {v: sum(1 for r in res.values() if r["veredicto"] == v) for v in VTXT}
+    vals = sorted((r for r in res.values() if r["veredicto"] == "valido"), key=lambda r: r["masa_kg"])
+    near = sorted((r for r in res.values() if r.get("tension_MPa") and str(r.get("fidelidad", "")).startswith("normal")),
+                  key=lambda r: r["tension_MPa"] / SIG_LIM)[:5]
+    t = (f"**{len(res)} de {len(metadata())} disenos calculados** con {FORCE:.0f} N: {c['valido']} cumplen, {c['no_cumple']} no cumplen, "
+         f"{c['incompatible']} incompatibles, {c['fallido']} fallos de malla.")
+    if vals:
+        t += "\nMas ligeros que cumplen: " + ", ".join(f"n.o {r['id']} ({r['masa_kg']:.3f} kg, {r['tension_MPa']:.0f} MPa)" for r in vals[:5])
+    if near:
+        t += "\nMas cercanos a cumplir: " + ", ".join(f"n.o {r['id']} ({r['masa_kg']:.3f} kg, {r['tension_MPa']:.0f} MPa)" for r in near)
+    return t
+
+
+def backfill(notify, checkpoint=None):
+    """Lo ya calculado que aun no se envio a Discord: un resumen con la tabla completa adjunta (CSV)."""
+    res = load_results()
+    sent = _sent()
+    pend = [r for r in res.values() if r.get("fuerza_N") == FORCE and str(r["id"]) not in sent]
+    if not pend:
+        return
+    write_csv(res)
+    lines = [f"n.o {r['id']:>3}: {VTXT[r['veredicto']].split(' (')[0]}"
+             + (f", {r['masa_kg']:.3f} kg, {r['tension_MPa']:.0f} MPa" if r.get("tension_MPa") else "")
+             for r in sorted(pend, key=lambda r: (r.get("masa_kg") or 9e9))]
+    txt = (progress_text(res) + f"\n\nDisenos ya calculados que aun no estaban en Discord ({len(pend)}); tabla completa en el CSV adjunto:\n"
+           + "\n".join(lines))
+    notify.file("Estudio de las soluciones publicadas: lo calculado hasta ahora", txt, CSV)
+    _mark_sent(r["id"] for r in pend)
+    if checkpoint:
+        checkpoint(f"Estudio SimJEB: {len(res)} disenos calculados (guardado y enviado a Discord)")
+
+
+def run(max_n=None, stop_flag=None, notify=None, checkpoint=None):
+    """Calcula los disenos pendientes. Devuelve True si el estudio esta completo.
+    notify: avisos a Discord (un mensaje por diseno + resumen cada 20); checkpoint(msg): guardar en GitHub."""
     from evaluate import evaluate
     os.makedirs(WORK, exist_ok=True); os.makedirs(OUT, exist_ok=True)
     todo = pending()
     total = len(metadata())
+    if notify:
+        try:
+            backfill(notify, checkpoint)
+        except Exception as e:
+            log(f"  (Discord, resumen de lo ya calculado: {e!r})")
     if not todo:
         return True
     log(f"ESTUDIO SimJEB: {total - len(todo)}/{total} disenos ya calculados con {FORCE:.0f} N; quedan {len(todo)}"
@@ -169,6 +275,23 @@ def run(max_n=None, stop_flag=None):
         else:
             log(f"  -> {txt}: {(m.get('error') or '')[:120]} | {time.time() - t0:.0f} s")
         done_now += 1
+        if notify:
+            try:
+                notify_design(notify, row, k, total, wd)
+                _mark_sent([d["id"]])
+            except Exception as e:
+                log(f"  (Discord: {e!r})")
+        if done_now % 20 == 0:          # resumen y guardado cada 20 disenos
+            write_csv()
+            if notify:
+                notify.file(f"Estudio SimJEB: resumen ({k}/{total})", progress_text(), CSV)
+            if checkpoint:
+                checkpoint(f"Estudio SimJEB: {k}/{total} disenos calculados")
+    write_csv()
+    if notify and not pending():
+        notify.file("Estudio SimJEB TERMINADO", progress_text() + "\nAhora se sacan las reglas de diseno (DESIGN_RULES.md).", CSV, "top")
+    if checkpoint:
+        checkpoint("Estudio SimJEB: " + ("terminado" if not pending() else "guardado parcial"))
     return not pending()
 
 
@@ -211,11 +334,17 @@ if __name__ == "__main__":
     print("  ESTUDIO DE LAS SOLUCIONES PUBLICADAS (SimJEB) CON NUESTRA CARGA Y NUESTRO LIMITE")
     print("  Se puede cerrar esta ventana: al relanzarlo continua por el siguiente diseno.")
     print("=" * 86)
+    import discord_notify
+    notify = discord_notify.make(ROOT, OUT, log)
     try:
-        complete = run(n)
+        complete = run(n, notify=notify if notify.enabled else None)
         print(json.dumps(summary(), indent=1))
         print("ESTUDIO COMPLETO" if complete else "estudio parcial (quedan disenos)")
     finally:
+        try:
+            notify.flush(60)
+        except Exception:
+            pass
         try:
             os.remove(LOCK)
         except OSError:
