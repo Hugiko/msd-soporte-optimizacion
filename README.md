@@ -1,15 +1,15 @@
 # Optimizacion del soporte - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 13:19 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 13:20 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga 37800 N &nbsp;|&nbsp; limites: 187 MPa (coef. seguridad >= 1.15 sobre sy = 215 MPa) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 | Familia | disenos calculados | cumplen | mejor masa | estado |
 |---|---|---|---|---|
-| SimJEB modificado | 169 | 38 | 1.914 kg (CS 1.30) | en marcha |
+| SimJEB modificado | 170 | 38 | 1.914 kg (CS 1.30) | en marcha |
 | Refuerzo + vaciado | 232 | 75 | 2.314 kg (CS 1.15) | en marcha |
 | Diseno desde cero | 97 | 0 | - | en marcha |
 | Vaciado del original | 69 | 0 | - | terminada: retirada: 62 disenos sin ninguno valido; sus operaciones ya estan dentro de la familia refuerzo |
 
-**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 96 descartados en la pasada rapida, 53 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 14 % | Refuerzo + vaciado: error tipico 5 % | Diseno desde cero: error tipico 5 % | Vaciado del original: error tipico 4 %
+**Calculos ahorrados:** 0 descartados por el modelo sin ANSYS, 96 descartados en la pasada rapida, 53 piezas repetidas reutilizadas. **Fiabilidad del modelo de tension:** SimJEB modificado: error tipico 25 % | Refuerzo + vaciado: error tipico 5 % | Diseno desde cero: error tipico 5 % | Vaciado del original: error tipico 4 %
 
 ## Mejor diseno actual
 
@@ -25,7 +25,7 @@
 
 Grafico interactivo (hora y datos de cada punto al pasar el raton): [evolucion_interactiva.html](runs/opt_37800N/evolucion_interactiva.html) - descargar y abrir con el navegador (en el PC: doble clic en `runs/opt_37800N/evolucion_interactiva.html`).
 
-**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 567 fichas.
+**[Galeria: TODOS los disenos (validos y no validos) en orden cronologico](runs/opt_37800N/GALERIA.md)** - 568 fichas.
 
 ## Arbol genealogico de la busqueda
 
@@ -66,6 +66,7 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 
 | familia | # | masa | tension | resultado | motivo | ficha |
 |---|---|---|---|---|---|---|
+| SimJEB modificado | 170 | 1.379 | 530.1 | descartado | [rama SX10] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cam | [ver](runs/opt_37800N/galeria/20261123_132021_simjeb_170_NO_VALIDO_1.379kg.jpg) |
 | SimJEB modificado | 169 | 1.407 | 384.1 | descartado | [rama SX11] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cam | [ver](runs/opt_37800N/galeria/20261123_131929_simjeb_169_NO_VALIDO_1.407kg.jpg) |
 | Diseno desde cero | 097 | 1.829 | 1440.0 | descartado | [rama CX2] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_131543_cero_097_NO_VALIDO_1.829kg.jpg) |
 | Refuerzo + vaciado | 232 | 2.466 | 322.1 | descartado | [rama RX5] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_131454_refuerzo_232_NO_VALIDO_2.466kg.jpg) |
@@ -75,7 +76,6 @@ Detalle de cada rama: [ARBOL.md](runs/opt_37800N/ARBOL.md)
 | SimJEB modificado | 166 | 3.543 | - | fallido | [rama SX10] [aun sin disenos validos] pequeno cambio alrededor del mej | [ver](runs/opt_37800N/galeria/20261123_131030_simjeb_166_FALLO_3.543kg.jpg) |
 | SimJEB modificado | 165 | 1.355 | 343.6 | descartado | [rama SX11] exploradora: punto al azar en una zona nunca probada (a 1. | [ver](runs/opt_37800N/galeria/20261123_130921_simjeb_165_NO_VALIDO_1.355kg.jpg) |
 | Refuerzo + vaciado | 230 | 2.301 | 305.3 | descartado | [rama RX5] [aun sin disenos validos] pequeno cambio alrededor del mejo | [ver](runs/opt_37800N/galeria/20261123_130833_refuerzo_230_NO_VALIDO_2.301kg.jpg) |
-| SimJEB modificado | 164 | 1.358 | 682.4 | descartado | [rama SX10] exploradora: punto al azar en una zona nunca probada (a 1. | [ver](runs/opt_37800N/galeria/20261123_130709_simjeb_164_NO_VALIDO_1.358kg.jpg) |
 
 ---
 
