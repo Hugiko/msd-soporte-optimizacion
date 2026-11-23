@@ -749,5 +749,51 @@
   "error": null,
   "tiempo_s": 63.8,
   "fecha": "2026-11-23T15:15:20"
+ },
+ "611": {
+  "id": 611,
+  "fuerza_N": 42258.0,
+  "limite_MPa": 215.0,
+  "categoria": "beam",
+  "autor": "Tan Wei Kok",
+  "genus": 6.0,
+  "veredicto": "no_cumple",
+  "fidelidad": "rapida (descartado en la pasada rapida)",
+  "masa_kg": 0.6648210639900001,
+  "tension_MPa": 6725.934,
+  "tension_xyz": [
+   14.037618562990678,
+   -54.58073089790721,
+   16.394427958543776
+  ],
+  "desp_mm": 4.8327725655329825,
+  "cs": 0.03196582065777036,
+  "nodos": 50931,
+  "tension_simjeb_MPa": 5165.624,
+  "n_shells": 1,
+  "error": null,
+  "tiempo_s": 78.5,
+  "fecha": "2026-11-23T15:16:39"
+ },
+ "141": {
+  "id": 141,
+  "fuerza_N": 42258.0,
+  "limite_MPa": 215.0,
+  "categoria": "block",
+  "autor": "Shannon",
+  "genus": 21.0,
+  "veredicto": "fallido",
+  "fidelidad": null,
+  "masa_kg": null,
+  "tension_MPa": null,
+  "tension_xyz": null,
+  "desp_mm": null,
+  "cs": null,
+  "nodos": null,
+  "tension_simjeb_MPa": 11659.06,
+  "n_shells": 1,
+  "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | MAPDL alg1 h4.00: elementos con forma no valida | MAPDL alg10 h3.60: elementos con fo",
+  "tiempo_s": 124.8,
+  "fecha": "2026-11-23T15:18:44"
  }
 }

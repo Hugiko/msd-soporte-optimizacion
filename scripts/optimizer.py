@@ -910,6 +910,7 @@ def acquire_lock():
     if ES.lock_alive(lk):
         print(f"\nYa hay un optimizador en marcha. Esta ventana se cierra.")
         time.sleep(8); sys.exit(2)
+    open(lk, "w").write(f"{os.getpid()} {datetime.datetime.now().isoformat()}")   # reservado ANTES de esperar
     waited = False
     while not TEST and ES.lock_alive(ES.LOCK):
         if not waited:
