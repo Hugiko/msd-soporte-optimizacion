@@ -315,8 +315,14 @@
    "L0": 0.3,
    "succ": 0,
    "fail": 0,
-   "n": 0,
-   "best": null,
+   "n": 1,
+   "best": {
+    "score": [
+     1,
+     5.198672817606178
+    ],
+    "id": 84
+   },
    "prev_x": null,
    "estado": "activa",
    "hijos": [],

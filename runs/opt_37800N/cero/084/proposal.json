@@ -1,0 +1,22 @@
+{
+ "params": {
+  "R_pocket": 15.8038,
+  "w_bar": 25.4225,
+  "phi_end": 69.3011,
+  "H": 16.76,
+  "W_top": 28.0179,
+  "W_bot": 80.8681,
+  "x_box": 39.3945,
+  "g_end": 9.6194,
+  "t_w": 9.3933,
+  "e_lug": 13.0012,
+  "t_lug": 7.3162,
+  "r_f": 6.4885
+ },
+ "motivo": "[rama CX1] exploradora: punto al azar en una zona nunca probada (a 1.38 del diseno probado mas cercano (anti-estancamiento))",
+ "pred": null,
+ "fase": "exploradora",
+ "familia": "cero",
+ "rama": "CX1",
+ "fecha": "2026-11-23T10:41:03.372982"
+}
