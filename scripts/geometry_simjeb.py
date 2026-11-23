@@ -140,6 +140,27 @@ def protected():
     return _PROT[0]
 
 
+def _boolean(op, vol_ok, what, split_msg=None):
+    """Booleana robusta: prueba tolerancias difusas crecientes hasta obtener UN solido valido con un volumen coherente.
+    Si el resultado se parte en dos trozos grandes (> 1 %), es la geometria la que se parte: error (split_msg)."""
+    last = "sin resultado"
+    for tol in (1e-4, 1e-3, 1e-2, 0.05):
+        try:
+            res = op(tol)
+        except Exception as e:
+            last = f"{type(e).__name__}"; continue
+        sols = sorted(res.Solids(), key=lambda q: q.Volume(), reverse=True)
+        if not sols:
+            last = "sin solidos"; continue
+        big, rest = sols[0], [q.Volume() for q in sols[1:]]
+        if split_msg and rest and rest[0] > 0.01 * big.Volume() and big.isValid() and vol_ok(big.Volume() + sum(rest)):
+            raise GeometryError(split_msg)
+        if big.isValid() and sum(rest) < 1.0 and vol_ok(big.Volume()):
+            return big
+        last = f"{len(sols)} solidos, resto {sum(rest):.0f} mm3"
+    raise GeometryError(f"{what} ha fallado ({last})")
+
+
 def _load(idx):
     if idx not in _CACHE:
         sid = POOL[idx]["id"]
@@ -164,19 +185,20 @@ def build(p):
     base = _load(idx)
     solid = base
     info = {"clamped": [], "hueco": False}
+    rings = []
     for i, b in enumerate(G.BOLTS):
         t = p["t_col_del"] if i in FRONT else p["t_col_tra"]
         if t < 0.5:
             continue
         x, y = b["c"]
-        ring = cq.Solid.makeCylinder(R_HEAD + t, p["z_col"] - 1.0, cq.Vector(x, y, 1.0)).cut(
-            cq.Solid.makeCylinder(R_HEAD, p["z_col"] + 1.0, cq.Vector(x, y, 0.0)))
-        solid = solid.fuse(ring, tol=1e-4)
-    if solid is not base:
-        sols = sorted(solid.Solids(), key=lambda s: s.Volume(), reverse=True)
-        solid = sols[0]
-        if not solid.isValid() or solid.Volume() < base.Volume() - 1.0:
-            raise GeometryError("la union de los collares con el diseno ha fallado")
+        rings.append(cq.Solid.makeCylinder(R_HEAD + t, p["z_col"] - 1.0, cq.Vector(x, y, 1.0)).cut(
+            cq.Solid.makeCylinder(R_HEAD, p["z_col"] + 1.0, cq.Vector(x, y, 0.0))))
+    if rings:
+        # las superficies de muchos disenos SimJEB son tipo malla (B-spline): las booleanas de OCC son fragiles.
+        # Se unen todos los collares a la vez y, si sale mal, se repite con tolerancia difusa creciente.
+        v_add = sum(r.Volume() for r in rings)
+        solid = _boolean(lambda tol: base.fuse(*rings, tol=tol),
+                         lambda v: base.Volume() - 1.0 <= v <= base.Volume() + v_add + 1.0, "la union de los collares")
     if G.AM_ON and len(solid.Shells()) > 1:
         solid = _fill_closed_voids(solid)
         info["clamped"].append("cavidad cerrada rellenada (impresion 3D)")
@@ -190,17 +212,11 @@ def build(p):
             info["clamped"].append(f"aligeramiento {k} entero dentro de zona protegida: no se aplica")
             continue
         v0 = solid.Volume()
-        cut = solid.cut(tool, tol=1e-4)
-        sols = sorted(cut.Solids(), key=lambda s: s.Volume(), reverse=True)
-        if not sols:
-            raise GeometryError(f"el aligeramiento {k} ha fallado")
-        if len(sols) > 1 and sols[1].Volume() > 0.01 * sols[0].Volume():
-            raise GeometryError(f"el aligeramiento {k} parte la pieza en dos")
-        if not sols[0].isValid() or sols[0].Volume() > v0 + 1.0:
-            raise GeometryError(f"el aligeramiento {k} ha fallado (booleana)")
-        if v0 - sols[0].Volume() > 1.0:
+        new = _boolean(lambda tol, sol=solid, tl=tool: sol.cut(tl, tol=tol), lambda v, v0=v0: v <= v0 + 1.0,
+                       f"el aligeramiento {k}", split_msg=f"el aligeramiento {k} parte la pieza en dos")
+        if v0 - new.Volume() > 1.0:
             n_ali += 1
-        solid = sols[0]
+        solid = new
     info["aligeramientos"] = n_ali
     info.update(volume_mm3=solid.Volume(), mass_kg=solid.Volume() * 7.85e-6, pin_half_width=None,
                 auto_interfaces=True, holes={"deteccion": "en la malla"}, simjeb_id=seed["id"],
