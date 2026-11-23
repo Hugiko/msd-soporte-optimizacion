@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:54
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:57
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (51)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (52)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -45,6 +45,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 13:54
 | 160 | 2.218 | 176.4 | [rama SX6] [aun sin disenos validos] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_del, t_col_tra, z_col... | - |
 | 091 | 2.228 | 174.0 | [rama S2] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia z_col, ali1_x, ali2_x, ali2_y... | - |
 | 013 | 2.236 | 176.5 | torneo de referencias SimJEB (13/30): SimJEB n.o 474 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 127 MPa) | - |
+| 193 | 2.245 | 174.1 | [rama SX13] exploradora: punto al azar en una zona nunca probada (a 1.08 del diseno probado mas cercano (anti-estancamiento)) | [ver](193/vonmises.png) |
 | 163 | 2.260 | 174.5 | [rama S3] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia ali1_x, ali1_y, ali2_x | - |
 | 182 | 2.271 | 170.7 | [rama SX11] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, t_col_del, ali2_r | [ver](182/vonmises.png) |
 | 067 | 2.272 | 174.2 | [rama S3] rama nueva (inicial, paso 0.30) desde el diseno 016; cambia z_col, ali1_y, ali2_x, ali2_r | - |
