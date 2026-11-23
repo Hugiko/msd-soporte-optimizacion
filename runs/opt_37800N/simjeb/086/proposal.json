@@ -1,0 +1,38 @@
+{
+ "params": {
+  "semilla": 44.0,
+  "t_col_del": 4.4124,
+  "t_col_tra": 7.4318,
+  "z_col": 22.4998,
+  "ali1_x": 31.8814,
+  "ali1_y": -37.7783,
+  "ali1_r": 10.0,
+  "ali2_x": 46.4293,
+  "ali2_y": -158.0,
+  "ali2_r": 1.9472
+ },
+ "motivo": "[rama SX2] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, ali1_x, ali2_x, ali2_r",
+ "pred": {
+  "mass_kg": 2.075700330546725,
+  "stress_mpa": 180.45607129682014,
+  "p_cumple": 0.5462382063058693,
+  "paso": 0.15,
+  "modo": "mejorar masa",
+  "importancia_tension": {
+   "semilla": 0.8974384333485438,
+   "t_col_del": 0.01023514629010482,
+   "t_col_tra": 0.011206515165474929,
+   "z_col": 0.010138720913489862,
+   "ali1_x": 0.011671327572904318,
+   "ali1_y": 0.01124036864185574,
+   "ali1_r": 0.016717974277048513,
+   "ali2_x": 0.011299630082310113,
+   "ali2_y": 0.012706137670140876,
+   "ali2_r": 0.007345746038127124
+  }
+ },
+ "fase": "aprende",
+ "familia": "simjeb",
+ "rama": "SX2",
+ "fecha": "2026-11-23T10:14:21.982207"
+}
