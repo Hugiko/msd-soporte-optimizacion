@@ -158,8 +158,26 @@
  [
   "refuerzo",
   "RX2",
-  "activa",
+  "terminada",
   172
+ ],
+ [
+  "refuerzo",
+  "RX2.1",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "RX2.2",
+  "activa",
+  null
+ ],
+ [
+  "refuerzo",
+  "RX2.3",
+  "activa",
+  null
  ],
  [
   "cero",
