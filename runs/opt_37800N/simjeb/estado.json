@@ -156,11 +156,11 @@
    "padre": "S1",
    "semilla": 37,
    "tipo": "amplia",
-   "L": 0.35,
+   "L": 0.175,
    "L0": 0.35,
    "succ": 0,
-   "fail": 3,
-   "n": 4,
+   "fail": 0,
+   "n": 5,
    "best": {
     "score": [
      0,
