@@ -96,6 +96,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                         hh *= 1.15
                     else:
                         raise RuntimeError("no se consigue una malla por debajo del limite de nodos")
+                    if ginfo.get("auto_interfaces"):    # diseno externo: agujeros detectados en la malla
+                        fem.IFACE = fem.detect_interfaces(nodes, tris)
                     info = fem.write_inp(os.path.join(wd, "model.inp"), nodes, tets, tris, force=force,
                                          pin_half=ginfo["pin_half_width"])
                 except Exception as e:
@@ -195,6 +197,9 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
         res["traceback"] = traceback.format_exc()[-2000:]
         L(f"  !! fallo en {stage}: {res['error']}")
     finally:
+        if fem.IFACE is not None:
+            res["interfaces"] = fem.IFACE
+            fem.IFACE = None
         if not keep_big:
             for pat in BIG_FILES:
                 for f in glob.glob(os.path.join(wd, pat)):

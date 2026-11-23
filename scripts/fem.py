@@ -1,4 +1,4 @@
-﻿"""Nucleo de EF: STEP -> malla tet10 (gmsh) -> entrada MAPDL -> solucion -> metricas.
+"""Nucleo de EF: STEP -> malla tet10 (gmsh) -> entrada MAPDL -> solucion -> metricas.
 
 Unidades mm-N-MPa-t. Sistema de 0.stp: Z vertical (normal a la placa base),
 eje del bulon ~ +Y, carga 2 (Fz de la Tabla 2 = horizontal perpendicular al bulon) -> X del STEP.
@@ -48,9 +48,55 @@ def load_dir():
     return -d / np.linalg.norm(d)   # sentido -X (convenio del grupo); con RBE3 lineal, vM no depende del signo
 
 
+# Interfaces DETECTADAS en la malla (disenos externos, p. ej. SimJEB, donde cada autor modelo los agujeros a su
+# manera: otra longitud, alojamiento o superficie no cilindrica). Si es None se usan los agujeros exactos de 0.stp.
+IFACE = None
+
+
+def detect_interfaces(nodes, tris):
+    """Localiza en la superficie de la malla los agujeros de los 4 pernos y del bulon (mismas POSICIONES que 0.stp)."""
+    corners = np.unique(np.asarray(tris)[:, :3] - 1)
+    X = nodes[corners]
+    bolts = []
+    for b in HOLES["pernos"]:
+        r = np.hypot(X[:, 0] - b["c"][0], X[:, 1] - b["c"][1])
+        cand = (r < 7.5) & (X[:, 2] < 45.0)
+        if not cand.any():
+            raise RuntimeError(f"no se encuentra el agujero del perno en {b['c']}")
+        R = float(np.min(r[cand]))
+        hole = cand & (r < R + 0.2)
+        Rm = float(np.median(r[hole]))
+        if not (4.8 <= Rm <= 5.9):
+            raise RuntimeError(f"agujero de perno en {b['c']} con radio {Rm:.2f} mm (no es el de un perno M10)")
+        bolts.append(dict(c=b["c"], r=Rm, z0=float(X[hole, 2].min()), z1=float(X[hole, 2].max())))
+    a = pin_axis(); P = np.mean(np.array(HOLES["bulon"]["centers"]), axis=0)
+    v = X - P; t = v @ a; rho = np.linalg.norm(v - np.outer(t, a), axis=1)
+    cand = (rho < 12.0) & (np.abs(t) < 40.0)
+    if not cand.any():
+        raise RuntimeError("no se encuentra el agujero del bulon")
+    Rp = float(np.median(rho[cand & (rho < rho[cand].min() + 0.2)]))
+    if not (9.0 <= Rp <= 10.6):
+        raise RuntimeError(f"agujero del bulon con radio {Rp:.2f} mm")
+    th = np.sort(t[cand & (np.abs(rho - Rp) < 0.2)])
+    spans, lo = [], th[0]
+    for k in range(1, len(th)):
+        if th[k] - th[k - 1] > 2.0:
+            spans.append((float(lo), float(th[k - 1]))); lo = th[k]
+    spans.append((float(lo), float(th[-1])))
+    spans = [sp for sp in spans if sp[1] - sp[0] > 1.0]
+    return dict(bolts=bolts, pin=dict(r=Rp, P=P.tolist(), spans=spans), tol=0.2)
+
+
 def bolt_mask(xyz, extra=0.0, tol=0.05):
     """Nodos sobre (extra=0) o cerca (radio R+extra) de las superficies de pernos."""
     m = np.zeros(len(xyz), bool)
+    if IFACE is not None:
+        tol = max(tol, IFACE["tol"])
+        for b in IFACE["bolts"]:
+            r = np.hypot(xyz[:, 0] - b["c"][0], xyz[:, 1] - b["c"][1])
+            inz = (xyz[:, 2] > b["z0"] - tol - extra) & (xyz[:, 2] < b["z1"] + tol + extra)
+            m |= inz & ((np.abs(r - b["r"]) < tol) if extra == 0.0 else (r < b["r"] + extra))
+        return m
     z0, z1 = HOLES["pernos_z"]
     for b in HOLES["pernos"]:
         r = np.hypot(xyz[:, 0] - b["c"][0], xyz[:, 1] - b["c"][1])
@@ -64,6 +110,19 @@ def bolt_mask(xyz, extra=0.0, tol=0.05):
 
 def pin_mask(xyz, which=None, tol=0.05, extra=0.0, half=None):
     a = pin_axis()
+    if IFACE is not None:
+        tol = max(tol, IFACE["tol"]); pi = IFACE["pin"]
+        v = xyz - np.array(pi["P"]); t = v @ a
+        rad = np.linalg.norm(v - np.outer(t, a), axis=1)
+        m = np.zeros(len(xyz), bool)
+        for i, (lo, hi) in enumerate(pi["spans"]):
+            if which is not None and i != which:
+                continue
+            if extra == 0.0:
+                m |= (np.abs(rad - pi["r"]) < tol) & (t > lo - tol) & (t < hi + tol)
+            else:
+                m |= (rad < pi["r"] + extra) & (t > lo - extra) & (t < hi + extra)
+        return m
     R = HOLES["bulon"]["r"]
     half = HOLES["bulon"]["half_width"] if half is None else half
     m = np.zeros(len(xyz), bool)
@@ -181,8 +240,10 @@ def write_inp(path, nodes, tets, tris, force=42258.0, results="res", pin_half=No
     if len(fixed) < 20 or len(pin) < 20:
         raise RuntimeError(f"seleccion de superficies fallida: pernos={len(fixed)} bulon={len(pin)}")
     # nodos de cada perno (para comprobar que estan los 4) y de cada orejeta
-    nper = [len(face_nodes(nodes, tris, lambda x, b=b: bolt_mask_one(x, b))) for b in HOLES["pernos"]]
-    nlug = [len(face_nodes(nodes, tris, lambda x, i=i: pin_mask(x, which=i, half=pin_half))) for i in range(2)]
+    bl = IFACE["bolts"] if IFACE is not None else HOLES["pernos"]
+    nper = [len(face_nodes(nodes, tris, lambda x, b=b: bolt_mask_one(x, b))) for b in bl]
+    nl = len(IFACE["pin"]["spans"]) if IFACE is not None else 2
+    nlug = [len(face_nodes(nodes, tris, lambda x, i=i: pin_mask(x, which=i, half=pin_half))) for i in range(nl)]
     if min(nper) < 5 or min(nlug) < 5:
         raise RuntimeError(f"falta algun agujero en la malla: pernos={nper} orejetas={nlug}")
     d = load_dir()
@@ -236,6 +297,10 @@ def write_inp(path, nodes, tets, tris, force=42258.0, results="res", pin_half=No
 
 
 def bolt_mask_one(xyz, b, tol=0.05):
+    if "z0" in b:                                   # agujero detectado en la malla
+        tol = max(tol, IFACE["tol"] if IFACE else 0.2)
+        r = np.hypot(xyz[:, 0] - b["c"][0], xyz[:, 1] - b["c"][1])
+        return (xyz[:, 2] > b["z0"] - tol) & (xyz[:, 2] < b["z1"] + tol) & (np.abs(r - b["r"]) < tol)
     z0, z1 = HOLES["pernos_z"]
     r = np.hypot(xyz[:, 0] - b["c"][0], xyz[:, 1] - b["c"][1])
     return (xyz[:, 2] > z0 - tol) & (xyz[:, 2] < z1 + tol) & (np.abs(r - b["r"]) < tol)
