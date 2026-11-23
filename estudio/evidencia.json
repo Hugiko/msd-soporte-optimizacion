@@ -1,34 +1,115 @@
 {
  "_resumen": {
-  "n": 101,
-  "valido": 0,
-  "no_cumple": 80,
-  "incompatible": 6,
-  "fallido": 15,
-  "n_validos_con_campo": 0,
-  "referencia": "los 5 disenos publicados mas cercanos a cumplir (solo 0 cumplen con acero S235 y 42258 N: se disenaron para titanio)",
+  "n": 381,
+  "valido": 16,
+  "no_cumple": 281,
+  "incompatible": 50,
+  "fallido": 34,
+  "n_validos_con_campo": 16,
+  "referencia": "los 16 disenos publicados VALIDOS",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-23T16:06"
+  "fecha": "2026-11-23T19:39"
  },
  "R1": {
-  "respaldo": null,
-  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
-  "tabla": []
+  "respaldo": true,
+  "texto": "en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69)",
+  "tabla": [
+   "Referencia: los 16 disenos publicados VALIDOS.",
+   "",
+   "| | material ocioso (< 15 % de su propio pico) | masa |",
+   "|---|---|---|",
+   "| pieza original (SimJEB n.o 0) | 51 % | 2.423 kg |",
+   "| mediana del grupo de referencia (16) | 31 % | 2.503 kg |",
+   "| mediana de su mitad mas ligera (8) | 25 % | 2.342 kg |",
+   "",
+   "Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo de referencia:",
+   "",
+   "| zona | original | referencia ligera (mediana) | exceso del original |",
+   "|---|---|---|---|",
+   "| alrededor de los pernos delanteros | 25 | 37 | -12 |",
+   "| alrededor de los pernos traseros | 24 | 37 | -12 |",
+   "| orejetas del bulon | 20 | 21 | -1 |",
+   "| placa base (z < 10 mm) | 67 | 45 | +21 |",
+   "| cuerpo, lado de las orejetas (x < 15 mm) | 70 | 56 | +14 |",
+   "| cuerpo, lado trasero (x >= 15 mm) | 103 | 96 | +6 |"
+  ],
+  "exceso_zonas": {
+   "pernos_del": -12.21137605099549,
+   "pernos_tra": -12.422436946068437,
+   "orejetas": -1.1780636453211208,
+   "placa_base": 21.4640416544556,
+   "cuerpo_del": 14.177119308097758,
+   "cuerpo_tra": 6.367382414683533
+  }
  },
  "R2": {
-  "respaldo": null,
-  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
-  "tabla": []
+  "respaldo": true,
+  "texto": "en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55)",
+  "tabla": [
+   "Referencia: los 16 disenos publicados VALIDOS.",
+   "",
+   "| | material ocioso (< 15 % de su propio pico) | masa |",
+   "|---|---|---|",
+   "| pieza original (SimJEB n.o 0) | 51 % | 2.423 kg |",
+   "| mediana del grupo de referencia (16) | 31 % | 2.503 kg |",
+   "| mediana de su mitad mas ligera (8) | 25 % | 2.342 kg |",
+   "",
+   "Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo de referencia:",
+   "",
+   "| zona | original | referencia ligera (mediana) | exceso del original |",
+   "|---|---|---|---|",
+   "| alrededor de los pernos delanteros | 25 | 37 | -12 |",
+   "| alrededor de los pernos traseros | 24 | 37 | -12 |",
+   "| orejetas del bulon | 20 | 21 | -1 |",
+   "| placa base (z < 10 mm) | 67 | 45 | +21 |",
+   "| cuerpo, lado de las orejetas (x < 15 mm) | 70 | 56 | +14 |",
+   "| cuerpo, lado trasero (x >= 15 mm) | 103 | 96 | +6 |"
+  ],
+  "exceso_zonas": {
+   "pernos_del": -12.21137605099549,
+   "pernos_tra": -12.422436946068437,
+   "orejetas": -1.1780636453211208,
+   "placa_base": 21.4640416544556,
+   "cuerpo_del": 14.177119308097758,
+   "cuerpo_tra": 6.367382414683533
+  }
  },
  "R3": {
-  "respaldo": null,
-  "texto": "estudio de SimJEB aun incompleto: regla basada en la mecanica (Kirsch, flexion)",
-  "tabla": []
+  "respaldo": true,
+  "texto": "en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion)",
+  "tabla": [
+   "Referencia: los 16 disenos publicados VALIDOS.",
+   "",
+   "| | material ocioso (< 15 % de su propio pico) | masa |",
+   "|---|---|---|",
+   "| pieza original (SimJEB n.o 0) | 51 % | 2.423 kg |",
+   "| mediana del grupo de referencia (16) | 31 % | 2.503 kg |",
+   "| mediana de su mitad mas ligera (8) | 25 % | 2.342 kg |",
+   "",
+   "Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo de referencia:",
+   "",
+   "| zona | original | referencia ligera (mediana) | exceso del original |",
+   "|---|---|---|---|",
+   "| alrededor de los pernos delanteros | 25 | 37 | -12 |",
+   "| alrededor de los pernos traseros | 24 | 37 | -12 |",
+   "| orejetas del bulon | 20 | 21 | -1 |",
+   "| placa base (z < 10 mm) | 67 | 45 | +21 |",
+   "| cuerpo, lado de las orejetas (x < 15 mm) | 70 | 56 | +14 |",
+   "| cuerpo, lado trasero (x >= 15 mm) | 103 | 96 | +6 |"
+  ],
+  "exceso_zonas": {
+   "pernos_del": -12.21137605099549,
+   "pernos_tra": -12.422436946068437,
+   "orejetas": -1.1780636453211208,
+   "placa_base": 21.4640416544556,
+   "cuerpo_del": 14.177119308097758,
+   "cuerpo_tra": 6.367382414683533
+  }
  },
  "R4": {
   "respaldo": true,
-  "texto": "prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014)",
+  "texto": "prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno",
   "tabla": []
  },
  "R5": {
@@ -42,8 +123,8 @@
   "tabla": []
  },
  "R7": {
-  "respaldo": null,
-  "texto": "estudio aun incompleto: regla basada en la mecanica (aplastamiento/cortadura)",
+  "respaldo": true,
+  "texto": "ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta",
   "tabla": []
  },
  "R8": {
@@ -63,8 +144,169 @@
  },
  "R11": {
   "respaldo": null,
-  "texto": "teoria de Michell (1904): el volumen minimo para llevar una carga sigue las trayectorias principales; comparacion con SimJEB cuando el estudio tenga disenos de nervios y de bloque calculados con malla completa",
+  "texto": "NO CONCLUYENTE: entre los disenos publicados calculados con malla completa, los de nervios / arcos / vigas (9) tienen de mediana un 35 % de material ocioso y 1.048 kg, frente al 32 % y 2.119 kg de los tipo bloque (38). Teoria: Michell (1904), estructuras de volumen minimo",
   "tabla": []
  },
- "_validos": []
+ "_validos": [
+  {
+   "id": 237,
+   "masa": 1.97486729035,
+   "tension": 183.4629,
+   "desp": 0.13966554736889697,
+   "categoria": "block",
+   "autor": "Bol",
+   "ocioso": 0.23522693992543098,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 474,
+   "masa": 2.2358206249,
+   "tension": 197.2746,
+   "desp": 0.12598227764403214,
+   "categoria": "block",
+   "autor": "Kiran Kumar A",
+   "ocioso": 0.3033057038202723,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 475,
+   "masa": 2.2408144024000003,
+   "tension": 211.886,
+   "desp": 0.1302521652338609,
+   "categoria": "block",
+   "autor": "Kiran Kumar A",
+   "ocioso": 0.3305100228189673,
+   "zona_pico": "cuerpo_tra"
+  },
+  {
+   "id": 527,
+   "masa": 2.2716912941,
+   "tension": 194.9398,
+   "desp": 0.1275922029576971,
+   "categoria": "block",
+   "autor": "NIKHIL KHOBRAGADE",
+   "ocioso": 0.33733721964329355,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 476,
+   "masa": 2.41237386805,
+   "tension": 196.5152,
+   "desp": 0.12205342552610393,
+   "categoria": "block",
+   "autor": "Kiran Kumar A",
+   "ocioso": 0.3736398547587781,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 538,
+   "masa": 2.43314146695,
+   "tension": 171.5128,
+   "desp": 0.1342784798409445,
+   "categoria": "block",
+   "autor": "A0I0A",
+   "ocioso": 0.33970404572501484,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 537,
+   "masa": 2.4335396111,
+   "tension": 175.3643,
+   "desp": 0.13292232231285858,
+   "categoria": "block",
+   "autor": "A0I0A",
+   "ocioso": 0.34403114795104467,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 86,
+   "masa": 2.4642265877500007,
+   "tension": 169.5021,
+   "desp": 0.1315245269148767,
+   "categoria": "block",
+   "autor": "riyosketch",
+   "ocioso": 0.3247098964165897,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 211,
+   "masa": 2.542344175,
+   "tension": 197.9538,
+   "desp": 0.15468689359560622,
+   "categoria": "block",
+   "autor": "Michael Waugh",
+   "ocioso": 0.35458688239251007,
+   "zona_pico": "pernos_tra"
+  },
+  {
+   "id": 180,
+   "masa": 2.5696344488,
+   "tension": 194.5347,
+   "desp": 0.1484020809370933,
+   "categoria": "block",
+   "autor": "Tomek F.",
+   "ocioso": 0.303005598951165,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 403,
+   "masa": 2.5927066821,
+   "tension": 174.7306,
+   "desp": 0.11873869016650479,
+   "categoria": "block",
+   "autor": "Rafael",
+   "ocioso": 0.4218715690174573,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 233,
+   "masa": 2.8014488110000006,
+   "tension": 174.2003,
+   "desp": 0.13753254385957675,
+   "categoria": "block",
+   "autor": "Farandy Angesti Liong",
+   "ocioso": 0.4275556779095484,
+   "zona_pico": "pernos_tra"
+  },
+  {
+   "id": 424,
+   "masa": 2.8490226762500006,
+   "tension": 196.0281,
+   "desp": 0.12067711357161205,
+   "categoria": "block",
+   "autor": "Maciek_Wu",
+   "ocioso": 0.5109103363388995,
+   "zona_pico": "pernos_del"
+  },
+  {
+   "id": 214,
+   "masa": 2.8843296919,
+   "tension": 176.8211,
+   "desp": 0.1283188947725639,
+   "categoria": "block",
+   "autor": "Jim",
+   "ocioso": 0.5117009304708526,
+   "zona_pico": "orejetas"
+  },
+  {
+   "id": 492,
+   "masa": 3.1953752816,
+   "tension": 146.746,
+   "desp": 0.130909417075097,
+   "categoria": "flat",
+   "autor": "Behnam Persian",
+   "ocioso": 0.3816301970643712,
+   "zona_pico": "pernos_tra"
+  },
+  {
+   "id": 411,
+   "masa": 3.6439919643000005,
+   "tension": 176.9029,
+   "desp": 0.1094627857783457,
+   "categoria": "block",
+   "autor": "REIS",
+   "ocioso": 0.6461456670058949,
+   "zona_pico": "orejetas"
+  }
+ ]
 }
