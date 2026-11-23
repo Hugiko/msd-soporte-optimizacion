@@ -5,16 +5,19 @@
   Fijo:         posicion de los 4 agujeros de perno y de los 2 agujeros del bulon
 
 COMO FUNCIONA (version corta para la defensa)
-  Se prueban TRES FAMILIAS de piezas, alternando un diseno de cada una:
-    - "vaciado":  el soporte original al que se le quita material donde no trabaja.
+  Se prueban varias FAMILIAS de piezas, por turnos:
+    - "simjeb":   los mejores disenos del concurso GE / SimJEB (mismos agujeros que el 0.stp) MODIFICADOS:
+                  torneo inicial de los mas prometedores y despues collares (anaden) y aligeramientos (quitan).
     - "refuerzo": collares junto a los tornillos (el punto critico del original) + vaciado del resto.
     - "cero":     un soporte nuevo (cajon de torsion + orejetas + franja de pernos).
+    - "vaciado":  el soporte original al que se le quita material (retirada: sin disenos validos; se conserva).
   Para cada familia:
     1. Reparto inicial (DOE Sobol): disenos repartidos por todo el espacio -> primera "foto".
     2. Aprende: procesos gaussianos (BoTorch) predicen masa(x), tension(x) y desplazamiento(x) con su incertidumbre.
     3. Ramas (arbol genealogico): cada rama prueba cambios alrededor de su mejor diseno (si mejora, alarga el paso;
-       si no, lo acorta). Al terminar, su mejor diseno crea ramas hijas: fina, amplia y cruce; y cada 3 ramas nace
-       una rama EXPLORADORA en una zona nunca probada (para no quedarse atrapado).
+       si no, lo acorta). Al terminar, su mejor diseno crea ramas hijas: fina, amplia y cruce (por turnos); cada 2 ramas
+       nace una rama EXPLORADORA en una zona nunca probada, y si la familia se ESTANCA (25 disenos sin mejorar un 0,3 %)
+       se lanzan 2 exploradoras mas. Las ramas no finas incluyen mutaciones grandes (2-5 variables a la vez).
     4. Antes de gastar ANSYS: piezas repetidas, filtro por prediccion y pasada rapida con malla gruesa.
     5. Cada candidato a NUEVO MEJOR se verifica con malla fina antes de aceptarlo.
   Cada nuevo mejor diseno: proyecto Workbench, historial, timelapse, GitHub y Discord.
@@ -82,7 +85,7 @@ FAMILIES = {
     "refuerzo": ("geometry_refuerzo", "Refuerzo + vaciado",
                  [0.5, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.667, 0.444, 0.75]),  # 1er diseno: collares, cortes minimos
     "cero": ("geometry", "Diseno desde cero", None),
-    "simjeb": ("geometry_simjeb", "Disenos SimJEB + refuerzo", "auto"),     # 1os disenos: torneo de candidatos SimJEB
+    "simjeb": ("geometry_simjeb", "SimJEB modificado", "auto"),     # 1os disenos: torneo de candidatos SimJEB
 }
 BRANCH_PREFIX = {"vaciado": "V", "refuerzo": "R", "cero": "C", "simjeb": "S"}
 
@@ -364,7 +367,8 @@ class Family:
             return None
         if len(act) > 1 and self.rng.random() < float(USER.get("prob_rama_al_azar", 0.25)):
             return act[int(self.rng.integers(len(act)))]        # variedad: de vez en cuando, una rama activa al azar
-        return min(act, key=lambda b: (tuple(b["seed_score"]), b["creada"]))
+        # la de mejor origen; entre ramas hermanas (mismo origen: fina, amplia, cruce) por turnos (la que menos lleva)
+        return min(act, key=lambda b: (tuple(b["seed_score"]), b["n"], b["creada"]))
 
     # ---- propuesta: DOE -> rama activa (region de confianza) con modelos sustitutos
     def propose(self, runs):
