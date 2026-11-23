@@ -18,10 +18,18 @@ S2["S2 - inicial, paso 0.30<br/>1 pruebas<br/>mejor: 2.211 kg, 177 MPa (#041)"]:
 S0 --> S2
 S3["S3 - inicial, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
 S0 --> S3
-S1_1["S1.1 - fina, paso 0.10<br/>8 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::activa
+S1_1["S1.1 - fina, paso 0.10<br/>9 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::fin
 S1 --> S1_1
 S1_2["S1.2 - amplia, paso 0.35<br/>8 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]:::activa
 S1 --> S1_2
+S1_1_1["S1.1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S1_1 --> S1_1_1
+S1_1_2["S1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S1_1 --> S1_1_2
+S1_1_3["S1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S1_1 --> S1_1_3
+SX1["SX1 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S0 --> SX1
 ```
 
 ## Refuerzo + vaciado
