@@ -16,7 +16,7 @@ S1["S1 - inicial, paso 0.30<br/>12 pruebas<br/>mejor: 1.914 kg, 165 MPa (#037)"]
 S0 --> S1
 S2["S2 - inicial, paso 0.30<br/>1 pruebas<br/>mejor: 2.211 kg, 177 MPa (#041)"]:::activa
 S0 --> S2
-S3["S3 - inicial, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+S3["S3 - inicial, paso 0.30<br/>1 pruebas<br/>mejor: 2.272 kg, 174 MPa (#067)"]:::activa
 S0 --> S3
 S1_1["S1.1 - fina, paso 0.10<br/>9 pruebas<br/>mejor: 1.914 kg, 165 MPa (#044)"]:::fin
 S1 --> S1_1
