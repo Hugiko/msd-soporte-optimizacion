@@ -23393,3 +23393,42 @@
 [13:42:51]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [13:42:51]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [13:42:52]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
+[13:43:00]   (GitHub: subido)
+[13:43:14] [Refuerzo + vaciado] DISENO 240  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[13:43:14]   motivo: [rama R1.1.1.1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia cav_s0, cav_z0, r_cut, z_col
+[13:43:14]   el modelo predice: masa 2.290 kg | tension 183 MPa | P(cumplir) 0.79
+[13:43:24]   [1/5] geometria parametrica (cadquery)
+[13:43:24]         masa CAD = 2.2916 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False | ajustes: ['hueco acortado 11.0->5.8 mm (techo a 45 para impresion 3D)', 'hueco estrechado 49.2->5.8 mm (techo a 45 para impresion 3D)', 'hueco demasiado pequeno -> no se hace']
+[13:43:27]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[13:43:35]   malla h=4.0: 81297 nodos, 46868 tet10 (3.6s)
+[13:43:36]   [3/5] ANSYS MAPDL normal (81297 nodos, 46868 elementos)
+[13:43:36] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:43:42]   [fase] 4  /PREP7
+[13:43:44]   [fase] 176086  /SOLU
+[13:43:44]   [solver] 176088  EQSLV,SPARSE
+[13:43:44]   [fase] 176091  /POST1
+[13:43:44]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.942   TIME= 13:43:43
+[13:43:44]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.978
+[13:43:44]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[13:43:44]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.150   TIME= 13:43:43
+[13:43:44]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[13:43:45]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[13:43:46]   [solver] Equation solver memory allocated                     =  1652.465 MB
+[13:43:46]   [solver] Equation solver memory required for in-core mode     =  1581.446 MB
+[13:43:46]   [solver] Equation solver memory required for out-of-core mode =   381.043 MB
+[13:43:46]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[13:43:49]   [solver] Sparse solver maximum pivot= 263161850 at node 7086 UY.
+[13:43:49]   [solver] Sparse solver minimum pivot= 26645.3332 at node 1007 UZ.
+[13:43:49]   [solver] Sparse solver minimum pivot in absolute value= 26645.3332 at node 1007
+[13:43:51]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        14.443
+[13:43:51]   [AVISO] *** WARNING ***                         ELAPSED TIME =      15.303   TIME= 13:43:51
+[13:43:51]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        15.366
+[13:44:02]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.3 seconds
+[13:44:02]   [solver] Elapsed time in equation solver                :        5.1 seconds
+[13:44:02]   [fase] Elapsed time spent post-processing model (/POST1) :        0.9 seconds
+[13:44:02]   [solver] Equation solver used                              :            Sparse (symmetric)
+[13:44:02]   [solver] Sparse direct equation solver computational rate  :       79.5 Gflops
+[13:44:02] MAPDL termino: estado=ok codigo=0 tiempo=26.7s
+[13:44:03]   [4/5] resultados
+[13:44:03]   [5/5] imagenes
+[13:44:06]   RESULTADO: masa 2.305 kg | tension 192.1 MPa (bruta 742) | casi (hasta +10 %)

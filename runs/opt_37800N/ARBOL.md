@@ -94,7 +94,7 @@ RX1_3["RX1.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.339 kg, 186 MPa (#186
 RX1 --> RX1_3
 R1_1_1_1_1["R1.1.1.1.1 - fina, paso 0.10<br/>18 pruebas<br/>mejor: 2.372 kg, 185 MPa (#142)"]:::fin
 R1_1_1_1 --> R1_1_1_1_1
-R1_1_1_1_2["R1.1.1.1.2 - amplia, paso 0.35<br/>6 pruebas<br/>mejor: 2.366 kg, 182 MPa (#162)"]:::activa
+R1_1_1_1_2["R1.1.1.1.2 - amplia, paso 0.35<br/>7 pruebas<br/>mejor: 2.366 kg, 182 MPa (#162)"]:::activa
 R1_1_1_1 --> R1_1_1_1_2
 R1_1_1_1_3["R1.1.1.1.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.376 kg, 185 MPa (#151)"]:::activa
 R1_1_1_1 --> R1_1_1_1_3
