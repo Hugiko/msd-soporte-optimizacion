@@ -112,7 +112,7 @@ RX3["RX3 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.404 kg, 184 MPa (#
 R0 --> RX3
 RX4["RX4 - exploradora, paso 0.30<br/>10 pruebas<br/>aun sin validos; el mas cercano 257 MPa (#221)"]:::activa
 R0 --> RX4
-RX5["RX5 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
+RX5["RX5 - exploradora, paso 0.30<br/>1 pruebas<br/>aun sin validos; el mas cercano 303 MPa (#228)"]:::activa
 R0 --> RX5
 RX6["RX6 - exploradora, paso 0.30<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R0 --> RX6
