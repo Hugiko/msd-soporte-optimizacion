@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 23/11/2026 21:10 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 23/11/2026 21:13 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 14 | 12 | 0 | 2 | 0 | 24 |
+| 15 | 13 | 0 | 2 | 0 | 26 |
 
 ## Mejor diseno
 
-**2.1608 kg** (-10.8 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **203.1 MPa** &nbsp;|&nbsp; coef. seguridad **1.06** &nbsp;|&nbsp; desplazamiento **0.155 mm** &nbsp;|&nbsp; iteracion 14 &nbsp;|&nbsp; **malla fina: 214.0 MPa**
+**2.1561 kg** (-11.0 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **206.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.04** &nbsp;|&nbsp; desplazamiento **0.155 mm** &nbsp;|&nbsp; iteracion 15
 
 Operaciones sobre el original:
 
@@ -27,10 +27,11 @@ Operaciones sobre el original:
 11. aligeramiento pasante vertical D16 mm en (34, -74)
 12. rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquinas R3)
 13. rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esquinas R3.2)
+14. hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -44)
 
 Ultimo hito verificado (2.161 kg, iteracion 14): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/11_it014_2.161kg/workbench/soporte_it014.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/11_it014_2.161kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261123_210749_it014_ACEPTADA_2.161kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261123_211348_it015_ACEPTADA_2.156kg.jpg)
 
 ## Camino de la pieza
 
@@ -42,6 +43,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 15 | ACEPTADA | R3 | hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.156 kg, 206 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1561; masa 2.1608 -> 2.1561 kg) |
 | 14 | ACEPTADA | R2 | rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esq | 2.161 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.1883 -> 2.1608; masa 2.1883 -> 2.1608 kg) |
 | 13 | ACEPTADA | R2 | rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquina | 2.188 kg, 205 MPa | cumple y mejora al mejor (puntuacion 2.2224 -> 2.1883; masa 2.2224 -> 2.1883 kg) |
 | 12 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (34, -74) | 2.222 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.2607 -> 2.2224; masa 2.2607 -> 2.2224 kg) |
@@ -53,7 +55,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 6 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (-20, -26) | 2.336 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3652 -> 2.3358; masa 2.3652 -> 2.3358 kg) |
 | 5 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8 mm (esquin | 2.365 kg, 195 MPa | cumple pero no mejora al mejor (puntuacion 2.3654 frente a 2.3652) |
 | 4 | ACEPTADA | R2 | rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52 mm (esquin | 2.365 kg, 195 MPa | cumple y mejora al mejor (puntuacion 2.4126 -> 2.3652; masa 2.4126 -> 2.3652 kg) |
-| 3 | ACEPTADA | R2 | rebaje desde arriba hasta z = 7 mm en x 54..66, y -124..-28 mm (esquin | 2.413 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.4704 -> 2.4126; masa 2.4704 -> 2.4126 kg) |
 
 ---
 

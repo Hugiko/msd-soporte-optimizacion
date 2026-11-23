@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 15 - ACEPTADA: R3 hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -44)
+
+*2026-11-23 21:10*
+
+- **Pieza de partida:** 2.1608 kg | 203.1 MPa | CS 1.06 | 0.155 mm
+- **Por que (regla R3):** El nucleo de esa zona (a mas de 4 mm de cualquier superficie) trabaja por debajo del 35 % del limite: en flexion la tension crece con la distancia a la fibra neutra, asi que vaciarlo conserva las pieles, que son las que trabajan. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).
+- **Se esperaba:** la tension sube poco (prevision rapida: 2.1568 kg | 203.7 MPa | CS 1.06 | 0.155 mm)
+- **Resultado (malla completa):** 2.1561 kg | 206.3 MPa | CS 1.04 | 0.155 mm (tension +1.5 %, masa -5 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1608 -> 2.1561; masa 2.1608 -> 2.1561 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D16 mm en (-20, -74) -> tension prevista 305 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -29..-6, y -80..-68 mm (esquinas R3) -> tension prevista 279 MPa: supera el limite (215 MPa)
+
+<img src="galeria/20261123_211348_it015_ACEPTADA_2.156kg.jpg" width="520">
+
 ## Iteracion 14 - ACEPTADA: R2 rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esquinas R3.2)
 
 *2026-11-23 21:04*
