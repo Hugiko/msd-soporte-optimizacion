@@ -5,6 +5,7 @@ Veredicto: VALIDO (cumple tension y desplazamiento), CASI (hasta +10 %), no vali
 
 | fecha | diseno | veredicto | masa | ficha (clic para ampliar) |
 |---|---|---|---|---|
+| 23/11 06:53 | Refuerzo + vaciado 133 | VALIDO | 2.402 kg | <a href="galeria/20261123_065323_refuerzo_133_VALIDO_2.402kg.jpg"><img src="galeria/20261123_065323_refuerzo_133_VALIDO_2.402kg.jpg" width="420"></a> |
 | 23/11 06:52 | Diseno desde cero 064 | no valido | 2.265 kg | <a href="galeria/20261123_065226_cero_064_NO_VALIDO_2.265kg.jpg"><img src="galeria/20261123_065226_cero_064_NO_VALIDO_2.265kg.jpg" width="420"></a> |
 | 23/11 06:49 | Refuerzo + vaciado 132 | VALIDO | 2.392 kg | <a href="galeria/20261123_064945_refuerzo_132_VALIDO_2.392kg.jpg"><img src="galeria/20261123_064945_refuerzo_132_VALIDO_2.392kg.jpg" width="420"></a> |
 | 23/11 06:48 | Vaciado del original 064 | no valido | 2.388 kg | <a href="galeria/20261123_064804_vaciado_064_NO_VALIDO_2.388kg.jpg"><img src="galeria/20261123_064804_vaciado_064_NO_VALIDO_2.388kg.jpg" width="420"></a> |

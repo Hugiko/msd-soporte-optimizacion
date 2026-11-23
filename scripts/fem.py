@@ -53,6 +53,10 @@ def load_dir():
 IFACE = None
 
 
+class InterfaceError(RuntimeError):
+    """No se encuentran en la malla los agujeros de pernos / bulon (no tiene sentido reintentar la malla)."""
+
+
 def detect_interfaces(nodes, tris):
     """Localiza en la superficie de la malla los agujeros de los 4 pernos y del bulon (mismas POSICIONES que 0.stp)."""
     corners = np.unique(np.asarray(tris)[:, :3] - 1)
@@ -62,21 +66,21 @@ def detect_interfaces(nodes, tris):
         r = np.hypot(X[:, 0] - b["c"][0], X[:, 1] - b["c"][1])
         cand = (r < 7.5) & (X[:, 2] < 45.0)
         if not cand.any():
-            raise RuntimeError(f"no se encuentra el agujero del perno en {b['c']}")
+            raise InterfaceError(f"no se encuentra el agujero del perno en {b['c']}")
         R = float(np.min(r[cand]))
         hole = cand & (r < R + 0.2)
         Rm = float(np.median(r[hole]))
         if not (4.8 <= Rm <= 5.9):
-            raise RuntimeError(f"agujero de perno en {b['c']} con radio {Rm:.2f} mm (no es el de un perno M10)")
+            raise InterfaceError(f"agujero de perno en {b['c']} con radio {Rm:.2f} mm (no es el de un perno M10)")
         bolts.append(dict(c=b["c"], r=Rm, z0=float(X[hole, 2].min()), z1=float(X[hole, 2].max())))
     a = pin_axis(); P = np.mean(np.array(HOLES["bulon"]["centers"]), axis=0)
     v = X - P; t = v @ a; rho = np.linalg.norm(v - np.outer(t, a), axis=1)
     cand = (rho < 12.0) & (np.abs(t) < 40.0)
     if not cand.any():
-        raise RuntimeError("no se encuentra el agujero del bulon")
+        raise InterfaceError("no se encuentra el agujero del bulon")
     Rp = float(np.median(rho[cand & (rho < rho[cand].min() + 0.2)]))
     if not (9.0 <= Rp <= 10.6):
-        raise RuntimeError(f"agujero del bulon con radio {Rp:.2f} mm")
+        raise InterfaceError(f"agujero del bulon con radio {Rp:.2f} mm")
     th = np.sort(t[cand & (np.abs(rho - Rp) < 0.2)])
     spans, lo = [], th[0]
     for k in range(1, len(th)):

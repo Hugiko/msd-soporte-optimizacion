@@ -16,15 +16,15 @@ MECH_BODY = r'''
 import math
 ExtAPI.Application.ActiveUnitSystem = MechanicalUnitSystem.StandardNMM
 BOLTS = __BOLTS__
-PIN_C = __PINC__
+PIN_P = __PINP__
 PIN_A = __PINA__
 PIN_R = __PINR__
-HALF = __HALF__
-Z0, Z1 = __Z0__, __Z1__
+SPANS = __SPANS__
 F = __F__
 D = __D__
 PILOT = __PILOT__
-TOL = 0.08
+TOL = __TOL__
+CYL_ONLY = __CYL__
 LOGF = r"__LOG__"
 def L(msg):
     f = open(LOGF, "a"); f.write(str(msg) + "\n"); f.close()
@@ -37,16 +37,15 @@ def verts(face):
             pts.append((v.X * SCALE[0], v.Y * SCALE[0], v.Z * SCALE[0]))
     return pts
 def on_bolt(p, b):
-    return abs(math.hypot(p[0] - b[0], p[1] - b[1]) - b[2]) < TOL and Z0 - TOL <= p[2] <= Z1 + TOL
+    return abs(math.hypot(p[0] - b[0], p[1] - b[1]) - b[2]) < TOL and b[3] - TOL <= p[2] <= b[4] + TOL
 def pin_ok(p):
-    v = [p[i] - PIN_C[0][i] for i in range(3)]
+    v = [p[i] - PIN_P[i] for i in range(3)]
     t = sum(v[i] * PIN_A[i] for i in range(3))
     rad = math.sqrt(max(0.0, sum(x * x for x in v) - t * t))
     if abs(rad - PIN_R) > TOL:
         return False
-    for c in PIN_C:
-        tc = sum((p[i] - c[i]) * PIN_A[i] for i in range(3))
-        if abs(tc) <= HALF + TOL:
+    for t0, t1 in SPANS:
+        if t0 - TOL <= t <= t1 + TOL:
             return True
     return False
 body_geo = DataModel.GeoData.Assemblies[0].Parts[0].Bodies[0]
@@ -54,7 +53,7 @@ L("caras del solido: %d" % body_geo.Faces.Count)
 def find_faces():
     bolt_ids, pin_ids, per_bolt = [], [], [0, 0, 0, 0]
     for f in body_geo.Faces:
-        if "Cylind" not in str(f.SurfaceType):
+        if CYL_ONLY and "Cylind" not in str(f.SurfaceType):
             continue
         vs = verts(f)
         if not vs:
@@ -179,7 +178,8 @@ Save(Overwrite=True)
 '''
 
 
-def export(step, out, name="soporte", force=None, h=4.0, timeout=3600, log=None, half=None):
+def export(step, out, name="soporte", force=None, h=4.0, timeout=3600, log=None, half=None, iface=None):
+    """iface: agujeros detectados en la malla (disenos SimJEB, fem.detect_interfaces); None = los del 0.stp."""
     force = float(json.load(open(os.path.join(fem.ROOT, "config.json"), encoding="utf-8-sig"))["carga_N"]) if force is None else force
     out = os.path.abspath(out)
     os.makedirs(out, exist_ok=True)
@@ -187,12 +187,24 @@ def export(step, out, name="soporte", force=None, h=4.0, timeout=3600, log=None,
     stepc = os.path.join(out, name + ".stp")
     if os.path.abspath(step) != stepc:
         shutil.copy(step, stepc)
-    pilot = list(map(float, sum(map(lambda c: __import__("numpy").array(c), H["bulon"]["centers"])) / 2))
-    a = fem.pin_axis().tolist()
-    mech = (MECH.replace("__BOLTS__", repr([[b["c"][0], b["c"][1], b["r"]] for b in H["pernos"]]))
-            .replace("__PINC__", repr(H["bulon"]["centers"])).replace("__PINA__", repr(a))
-            .replace("__PINR__", repr(H["bulon"]["r"])).replace("__HALF__", repr(half if half is not None else _half(stepc)))
-            .replace("__Z0__", repr(H["pernos_z"][0])).replace("__Z1__", repr(H["pernos_z"][1]))
+    import numpy as np
+    pilot = list(map(float, np.mean(np.array(H["bulon"]["centers"], float), axis=0)))
+    a = fem.pin_axis()
+    if iface:
+        bolts = [[b["c"][0], b["c"][1], b["r"], b["z0"], b["z1"]] for b in iface["bolts"]]
+        pin_p, pin_r, spans = iface["pin"]["P"], iface["pin"]["r"], [list(sp) for sp in iface["pin"]["spans"]]
+        tol, cyl = 0.25, False                 # superficies de cada autor (a veces no son cilindros exactos)
+    else:
+        z0, z1 = H["pernos_z"]
+        bolts = [[b["c"][0], b["c"][1], b["r"], z0, z1] for b in H["pernos"]]
+        hw = half if half is not None else _half(stepc)
+        pin_p, pin_r = pilot, H["bulon"]["r"]
+        spans = [[float(np.dot(np.array(c) - pilot, a)) - hw, float(np.dot(np.array(c) - pilot, a)) + hw]
+                 for c in H["bulon"]["centers"]]
+        tol, cyl = 0.08, True
+    mech = (MECH.replace("__BOLTS__", repr(bolts)).replace("__PINP__", repr(list(pin_p))).replace("__PINA__", repr(a.tolist()))
+            .replace("__PINR__", repr(float(pin_r))).replace("__SPANS__", repr(spans))
+            .replace("__TOL__", repr(tol)).replace("__CYL__", repr(cyl))
             .replace("__F__", repr(force)).replace("__D__", repr(fem.load_dir().tolist()))
             .replace("__PILOT__", repr(pilot)).replace("__H__", repr(h))
             .replace("__LOG__", os.path.join(out, "_mechanical.log")))

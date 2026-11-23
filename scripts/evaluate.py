@@ -100,6 +100,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                         fem.IFACE = fem.detect_interfaces(nodes, tris)
                     info = fem.write_inp(os.path.join(wd, "model.inp"), nodes, tets, tris, force=force,
                                          pin_half=ginfo["pin_half_width"])
+                except fem.InterfaceError:
+                    raise                               # agujeros no reconocibles: el diseno no sirve tal cual
                 except Exception as e:
                     attempt_log.append(f"malla alg{algo} h{hh:.2f}: {e}")
                     L(f"        fallo de malla: {e}")

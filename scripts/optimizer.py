@@ -621,7 +621,8 @@ def do_workbench(job):
     """Crea el proyecto .wbpj (+ .wbpz para GitHub). Devuelve True si quedo montado."""
     try:
         import exportar_workbench as EW
-        ok, _, _ = EW.export(job["step"], job["out"], job["name"], CFG["force"], log=LOG, half=job["half"], timeout=1800)
+        ok, _, _ = EW.export(job["step"], job["out"], job["name"], CFG["force"], log=LOG, half=job["half"], timeout=1800,
+                             iface=job.get("iface"))
         return ok
     except Exception as e:
         log(f"  (Workbench: {e!r})")
@@ -669,7 +670,8 @@ def register_new_best(fam, r, git):
     wb_ok = False
     if CFG["workbench"]:
         job = dict(step=os.path.join(hd, "geometria.step"), out=os.path.join(hd, "workbench"),
-                   name=f"soporte_{fam.key}_{r['id']:03d}", half=r["p"]["params"].get("t_lug", 6.4) / 2, intentos=0)
+                   name=f"soporte_{fam.key}_{r['id']:03d}", half=r["p"]["params"].get("t_lug", 6.4) / 2, intentos=0,
+                   iface=m.get("interfaces"))
         wb_ok = do_workbench(job)
         if not wb_ok:
             pend = load_pending(); pend.append(job); atomic_json(PEND, pend)
