@@ -13,6 +13,7 @@ from run_mapdl import run
 NODE_LIMIT = 125000          # licencia Student: 128 000 nodos (margen de seguridad)
 MESH_H, MESH_HMIN = 4.0, 1.0  # malla de optimizacion (verificada en la Fase 2)
 PRE_H, PRE_HMIN = 6.0, 1.5    # malla de la pasada rapida (cribado)
+MESH_TIMEOUT_EXT = 180        # s por intento para disenos externos (SimJEB): geometrias mas complejas
 MESH_TIMEOUT = 60             # s por intento: un mallado normal tarda < 25 s; si gmsh se cuelga se corta y se prueba otra estrategia
 
 
@@ -90,7 +91,8 @@ def evaluate(params, wd, force=None, geom=None, prescreen=None, h=MESH_H, hmin=M
                 try:
                     for _ in range(4):
                         nodes, tets, tris = mesh_with_timeout(step, hh, hmin0, algo, heal, logfile=log,
-                                                              timeout=30 if quick else MESH_TIMEOUT)
+                                                              timeout=30 if quick else
+                                                              (MESH_TIMEOUT_EXT if ginfo.get("auto_interfaces") else MESH_TIMEOUT))
                         if len(nodes) <= NODE_LIMIT:
                             break
                         L(f"        {len(nodes)} nodos > limite Student: engrosando malla")

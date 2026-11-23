@@ -1027,7 +1027,7 @@ def write_dashboard(estado="EN MARCHA"):
     for r in allruns:
         if category(r["m"]) == "valido" and (best is None or score(r["m"]) < best):
             best = score(r["m"]); improvements.append(r)
-    col = {"vaciado": "#2c7fb8", "refuerzo": "#7b3294", "cero": "#d95f0e"}
+    col = {"vaciado": "#2c7fb8", "refuerzo": "#7b3294", "cero": "#d95f0e", "simjeb": "#1a9850"}
     # grafica estatica (README): eje horizontal = HORA real
     try:
         import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt, matplotlib.dates as mdates
@@ -1181,9 +1181,11 @@ def write_dashboard(estado="EN MARCHA"):
         ten = f"{m['vm_metric']:.1f}" if m.get("vm_metric") else "-"
         L.append(f"| {r['title']} | {r['id']:03d} | {(m.get('mass_kg') or m.get('mass_cad_kg') or 0):.3f} | {ten} | {category(m)} | "
                  f"{r['p']['motivo'][:70]} | " + (f"[ver]({rel(img)})" if os.path.exists(img) else "-") + " |")
-    L += ["", "---", "", "**Como funciona:** el programa prueba dos familias de piezas (vaciado del original y diseno desde cero). "
-          "Tras un reparto inicial, aprende con modelos sustitutos (procesos gaussianos) y propone pequenos cambios alrededor del "
-          "mejor diseno: si mejora, sigue por esa linea y alarga el paso; si no, lo acorta. Cada diseno se calcula en ANSYS MAPDL "
+    L += ["", "---", "", "**Como funciona:** el programa prueba varias familias de piezas (disenos del concurso GE/SimJEB "
+          "modificados, refuerzo + vaciado del original y diseno desde cero). "
+          "Tras un reparto inicial, aprende con modelos sustitutos (procesos gaussianos) y propone cambios alrededor del "
+          "mejor diseno: si mejora, sigue por esa linea y alarga el paso; si no, lo acorta; ramas exploradoras y "
+          "anti-estancamiento saltan a zonas nuevas. Cada diseno se calcula en ANSYS MAPDL "
           "(SOLID187, pernos empotrados, carga por RBE3). Cada nuevo mejor genera un proyecto de Workbench listo para abrir.", "",
           "**Abrir un proyecto:** descargar el `.wbpz` > Workbench > File > Restore Archive. "
           "Todo el detalle esta en `bitacora.md`; cada diseno en `runs/`."]
@@ -1295,6 +1297,8 @@ def notify_design(fam, r, cat):
               dict(name="Tension", value=f"{m['vm_metric']:.1f} MPa" if m.get("vm_metric") else "-", inline=True),
               dict(name="Desplazamiento", value=f"{m['u_max']:.3f} mm" if m.get("u_max") else "-", inline=True),
               dict(name="Rama", value=str(p.get("rama") or "-"), inline=True)]
+    if m.get("simjeb_id") is not None:
+        fields.append(dict(name="Base", value=f"SimJEB n.o {m['simjeb_id']}", inline=True))
     desc = p.get("motivo", "")
     if m.get("error"):
         desc += f"\n**Motivo del descarte / fallo:** {m['error'][:300]}"

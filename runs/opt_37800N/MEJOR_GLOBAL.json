@@ -1,14 +1,14 @@
 {
  "familia": "refuerzo",
  "titulo": "Refuerzo + vaciado",
- "iter": 132,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\16_refuerzo_132_2.392kg",
- "mass_kg": 2.39197346075,
- "vm_metric": 184.9717,
- "puntuacion": 2.3881470962319504,
- "coef_seguridad": 1.162339968762789,
- "vm_max_raw": 795.2024,
- "u_max": 0.1288344287776534,
+ "iter": 140,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_37800N\\historial\\17_refuerzo_140_2.378kg",
+ "mass_kg": 2.3776824258500007,
+ "vm_metric": 185.5827,
+ "puntuacion": 2.375053486742536,
+ "coef_seguridad": 1.1585131588235327,
+ "vm_max_raw": 803.6897,
+ "u_max": 0.12943230547038653,
  "params": {
   "cav_s0": 29.5061,
   "cav_len": 11.0022,
@@ -21,10 +21,10 @@
   "trim_a": 20.0,
   "r_cut": 4.6793,
   "R_pocket": 10.54,
-  "t_col_del": 5.2716,
+  "t_col_del": 4.5029,
   "t_col_tra": 2.8609,
   "z_col": 21.5408
  },
  "workbench": true,
- "fecha": "2026-11-23T06:51:43.892449"
+ "fecha": "2026-11-23T07:05:50.895464"
 }
