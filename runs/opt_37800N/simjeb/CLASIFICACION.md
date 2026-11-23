@@ -127,7 +127,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:50
 | 119 | 1.919 | 273.1 | [rama SX4] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia ali1_r, ali2_r | [ver](119/vonmises.png) |
 | 121 | 2.486 | 239.3 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia t_col_del, t_col_tra, z_col | [ver](121/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (11)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (12)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -142,6 +142,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:50
 | 082 | 0.000 | - | [rama SX1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_r... | - |
 | 088 | 1.094 | - | [rama SX4] exploradora: punto al azar en una zona nunca probada (a 1.38 del diseno probado mas cercano (anti-estancamiento)) | - |
 | 089 | 1.551 | - | [rama SX5] exploradora: punto al azar en una zona nunca probada (a 1.32 del diseno probado mas cercano (anti-estancamiento)) | - |
+| 122 | 0.000 | - | [rama SX5] varios pasos sin mejora: paso mas corto (0.60); cambia semilla, t_col_del, t_col_tra, z_col... | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 
