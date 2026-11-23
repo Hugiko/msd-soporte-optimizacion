@@ -13145,3 +13145,39 @@
 [07:41:34]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [07:41:34]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h3.60: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [07:41:35]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
+[07:41:38] [SimJEB modificado] DISENO 018  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:41:38]   motivo: torneo de referencias SimJEB (18/30): SimJEB n.o 165 (block, Andy Brookman) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 121 MPa)
+[07:41:39]   [1/5] geometria parametrica (cadquery)
+[07:41:39]         masa CAD = 2.3598 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[07:41:40]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[07:41:41]   (GitHub: subido)
+[07:41:44]   malla h=4.0: 54665 nodos, 32529 tet10 (0.9s)
+[07:41:45]   [3/5] ANSYS MAPDL normal (54665 nodos, 32529 elementos)
+[07:41:45] Lanzando MAPDL: model.inp (timeout 1200s)
+[07:41:51]   [fase] 4  /PREP7
+[07:41:53]   [fase] 120831  /SOLU
+[07:41:53]   [solver] 120833  EQSLV,SPARSE
+[07:41:53]   [fase] 120836  /POST1
+[07:41:53]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.569
+[07:41:53]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[07:41:53]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[07:41:54]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[07:41:54]   [solver] Equation solver memory allocated                     =  1074.061 MB
+[07:41:54]   [solver] Equation solver memory required for in-core mode     =  1028.106 MB
+[07:41:54]   [solver] Equation solver memory required for out-of-core mode =   257.822 MB
+[07:41:54]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[07:41:56]   [solver] Sparse solver maximum pivot= 5662775.11 at node 51776 UY.
+[07:41:56]   [solver] Sparse solver minimum pivot= 46017.0831 at node 3017 UY.
+[07:41:56]   [solver] Sparse solver minimum pivot in absolute value= 46017.0831 at node 3017
+[07:41:57]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        11.509
+[07:41:58]   [AVISO] *** WARNING ***                         ELAPSED TIME =      12.113   TIME= 07:41:57
+[07:41:58]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        12.156
+[07:42:08]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.3 seconds
+[07:42:08]   [solver] Elapsed time in equation solver                :        3.0 seconds
+[07:42:08]   [fase] Elapsed time spent post-processing model (/POST1) :        0.6 seconds
+[07:42:08]   [solver] Equation solver used                              :            Sparse (symmetric)
+[07:42:08]   [solver] Sparse direct equation solver computational rate  :       79.0 Gflops
+[07:42:09] MAPDL termino: estado=ok codigo=0 tiempo=24.3s
+[07:42:09]   [4/5] resultados
+[07:42:09]   [5/5] imagenes
+[07:42:11]   RESULTADO: masa 2.369 kg | tension 207.1 MPa (bruta 278) | NO cumple | REFERENCIA (diseno SimJEB sin modificar: punto de partida, no puede ser el mejor)
