@@ -66,7 +66,7 @@ R1_1_1_1_1_2["R1.1.1.1.1.2 - amplia, paso 0.35<br/>0 pruebas<br/>sin resultados 
 R1_1_1_1_1 --> R1_1_1_1_1_2
 R1_1_1_1_1_3["R1.1.1.1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activa
 R1_1_1_1_1 --> R1_1_1_1_1_3
-RX2["RX2 - exploradora, paso 0.30<br/>2 pruebas<br/>aun sin validos; el mas cercano 363 MPa (#161)"]:::activa
+RX2["RX2 - exploradora, paso 0.30<br/>3 pruebas<br/>aun sin validos; el mas cercano 345 MPa (#164)"]:::activa
 R0 --> RX2
 ```
 
