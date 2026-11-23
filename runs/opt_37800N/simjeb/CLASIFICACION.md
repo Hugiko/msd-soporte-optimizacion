@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:07
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (28)
 
@@ -14,7 +14,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
 | 052 | 1.914 | 165.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.10); cambia ali1_y, ali1_r (rama fina: solo mueve semilla, t_col_del, z_col, ali1_r, ali1_y) | - |
 | 054 | 1.914 | 165.3 | [rama S1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia ali1_r (rama fina: solo mueve semilla, t_col_del, z_col, ali1_r, ali2_r) | - |
 | 055 | 1.914 | 165.3 | [rama S1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia z_col, ali1_r (rama fina: solo mueve semilla, t_col_del, ali1_r, ali2_y, z_col) | - |
-| 056 | 1.914 | 165.3 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia t_col_tra, z_col, ali1_r | [ver](056/vonmises.png) |
+| 056 | 1.914 | 165.3 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia t_col_tra, z_col, ali1_r | - |
 | 040 | 1.923 | 164.9 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | - |
 | 033 | 1.921 | 167.7 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia z_col, ali1_x, ali1_y, ali1_r... | - |
 | 042 | 1.926 | 166.1 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | - |
@@ -44,7 +44,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
 | 015 | 2.241 | 189.5 | torneo de referencias SimJEB (15/30): SimJEB n.o 475 (block, Kiran Kumar A) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 142 MPa) | - |
 | 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | - |
 | 021 | 2.299 | 201.1 | torneo de referencias SimJEB (21/30): SimJEB n.o 289 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 173 MPa) | - |
-| 060 | 1.916 | 189.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia z_col, ali1_r, ali2_y (rama fina: solo mueve semilla, ali1_r, t_col_del, z_col, ali2_y) | [ver](060/vonmises.png) |
+| 060 | 1.916 | 189.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia z_col, ali1_r, ali2_y (rama fina: solo mueve semilla, ali1_r, t_col_del, z_col, ali2_y) | - |
 | 074 | 1.930 | 203.7 | [rama SX1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, t_col_tra, ali2_x | [ver](074/vonmises.png) |
 | 076 | 1.930 | 203.7 | [rama SX1] [aun sin disenos validos] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia t_col_del, ali1_x, ali1_r | [ver](076/vonmises.png) |
 
@@ -77,8 +77,8 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
 | 049 | 1.849 | 310.1 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.35); cambia t_col_tra, ali1_y, ali2_x, ali2_y | - |
 | 051 | 1.730 | 254.7 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.35); cambia semilla | - |
 | 053 | 1.877 | 377.8 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.35); cambia t_col_tra, ali1_y, ali1_r, ali2_x... | - |
-| 058 | 1.938 | 899.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia ali2_x (rama fina: solo mueve semilla, t_col_del, ali2_y, z_col, ali2_x) | [ver](058/vonmises.png) |
-| 059 | 1.849 | 902.6 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.17); cambia t_col_tra, z_col, ali1_r, ali2_y | [ver](059/vonmises.png) |
+| 058 | 1.938 | 899.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia ali2_x (rama fina: solo mueve semilla, t_col_del, ali2_y, z_col, ali2_x) | - |
+| 059 | 1.849 | 902.6 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.17); cambia t_col_tra, z_col, ali1_r, ali2_y | - |
 | 062 | 1.713 | 233.6 | [rama SX1] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_tra, ali1_r | [ver](062/vonmises.png) |
 | 063 | 1.638 | 760.4 | [rama S1.2] varios pasos sin mejora: paso mas corto (0.17); cambia semilla, ali1_r, ali2_x | [ver](063/vonmises.png) |
 | 064 | 1.894 | 358.1 | [rama SX2] exploradora: punto al azar en una zona nunca probada (a 1.47 del diseno probado mas cercano (anti-estancamiento)) | [ver](064/vonmises.png) |
@@ -90,7 +90,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
 | 072 | 0.999 | 491.4 | [rama SX3] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, z_col, ali1_x... | [ver](072/vonmises.png) |
 | 073 | 1.936 | 211.7 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.09); cambia t_col_tra, ali1_r, ali2_x | [ver](073/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (8)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (9)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -102,6 +102,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:06
 | 078 | 0.000 | - | [rama SX3] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, z_col, ali1_x... | - |
 | 080 | 0.000 | - | [rama SX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, t_col_del | - |
 | 081 | 0.000 | - | [rama SX3] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, z_col, ali1_r... | - |
+| 082 | 0.000 | - | [rama SX1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_r... | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

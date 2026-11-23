@@ -16878,3 +16878,11 @@
 [10:06:26]   [1/5] geometria parametrica (cadquery)
 [10:06:39]   !! fallo en geometria: GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3)
 [10:06:41]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3) -> se penaliza y se sigue
+[10:06:47] Limpieza automatica: liberados 284 MB (disenos antiguos ya superados)
+[10:06:49]   (GitHub: subido)
+[10:06:49] [SimJEB modificado] DISENO 082  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[10:06:49]   motivo: [rama SX1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_r...
+[10:06:49]   el modelo predice: masa 1.878 kg | tension 193 MPa | P(cumplir) 0.39
+[10:06:59]   [1/5] geometria parametrica (cadquery)
+[10:07:06]   !! fallo en geometria: GeometryError: el aligeramiento 2 ha fallado (1 solidos, resto 0 mm3)
+[10:07:07]   RESULTADO: FALLO (geom_fail): GeometryError: el aligeramiento 2 ha fallado (1 solidos, resto 0 mm3) -> se penaliza y se sigue
