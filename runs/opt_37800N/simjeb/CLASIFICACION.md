@@ -1,8 +1,8 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:00
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:02
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (32)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (33)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -15,6 +15,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:00
 | 054 | 1.914 | 165.3 | [rama S1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia ali1_r (rama fina: solo mueve semilla, t_col_del, z_col, ali1_r, ali2_r) | - |
 | 055 | 1.914 | 165.3 | [rama S1.1] pequeno cambio alrededor del mejor de la rama (paso 0.05); cambia z_col, ali1_r (rama fina: solo mueve semilla, t_col_del, ali1_r, ali2_y, z_col) | - |
 | 056 | 1.914 | 165.3 | [rama S1.2] pequeno cambio alrededor del mejor de la rama (paso 0.17); cambia t_col_tra, z_col, ali1_r | - |
+| 105 | 1.914 | 165.3 | [rama S1.1.1] rama nueva (fina, paso 0.10) desde el diseno 044; cambia t_col_del (rama fina: solo mueve semilla, t_col_del, ali1_y, ali1_r, z_col) | [ver](105/vonmises.png) |
 | 040 | 1.923 | 164.9 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | - |
 | 033 | 1.921 | 167.7 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia z_col, ali1_x, ali1_y, ali1_r... | - |
 | 042 | 1.926 | 166.1 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia t_col_tra | - |
