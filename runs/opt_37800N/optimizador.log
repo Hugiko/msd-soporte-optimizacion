@@ -22139,3 +22139,83 @@
 [13:05:31]   [4/5] resultados
 [13:05:31]   [5/5] imagenes
 [13:05:34]   RESULTADO: masa 2.260 kg | tension 174.5 MPa (bruta 397) | CUMPLE
+[13:05:39] [SimJEB modificado] DISENO 164  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[13:05:39]   motivo: [rama SX10] exploradora: punto al azar en una zona nunca probada (a 1.15 del diseno probado mas cercano (anti-estancamiento))
+[13:05:48]   [1/5] geometria parametrica (cadquery)
+[13:05:48]         masa CAD = 1.3596 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[13:05:49]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[13:05:50]   (GitHub: subido)
+[13:05:55]   malla h=4.0: 41219 nodos, 23571 tet10 (2.0s)
+[13:05:56]   [3/5] ANSYS MAPDL normal (41219 nodos, 23571 elementos)
+[13:05:56] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:06:02]   [fase] 4  /PREP7
+[13:06:03]   [fase] 89341  /SOLU
+[13:06:03]   [solver] 89343  EQSLV,SPARSE
+[13:06:03]   [fase] 89346  /POST1
+[13:06:03]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.348   TIME= 13:06:02
+[13:06:13]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[13:06:13]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[13:06:13]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[13:06:14] MAPDL termino: estado=error codigo=1 tiempo=17.9s
+[13:06:14]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[13:06:14]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[13:06:20]   malla h=4.0: 41766 nodos, 23734 tet10 (2.5s)
+[13:06:20]   [3/5] ANSYS MAPDL normal (41766 nodos, 23734 elementos)
+[13:06:20] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:06:20]   [fase] 4  /PREP7
+[13:06:21]   [fase] 89341  /SOLU
+[13:06:21]   [solver] 89343  EQSLV,SPARSE
+[13:06:21]   [fase] 89346  /POST1
+[13:06:21]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.348   TIME= 13:06:02
+[13:06:21]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[13:06:21]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[13:06:21]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[13:06:27]   [fase] 90214  /SOLU
+[13:06:27]   [solver] 90216  EQSLV,SPARSE
+[13:06:27]   [fase] 90219  /POST1
+[13:06:27]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.371   TIME= 13:06:27
+[13:06:38]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[13:06:38]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[13:06:38]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[13:06:38] MAPDL termino: estado=error codigo=1 tiempo=17.9s
+[13:06:38]         ANSYS rechazo el calculo (elementos con forma no valida): se vuelve a mallar
+[13:06:38]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[13:06:44]   malla h=3.6: 50642 nodos, 29675 tet10 (2.1s)
+[13:06:45]   [3/5] ANSYS MAPDL normal (50642 nodos, 29675 elementos)
+[13:06:45] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:06:45]   [fase] 4  /PREP7
+[13:06:46]   [fase] 90214  /SOLU
+[13:06:46]   [solver] 90216  EQSLV,SPARSE
+[13:06:46]   [fase] 90219  /POST1
+[13:06:46]   [AVISO] *** ERROR ***                           ELAPSED TIME =       6.371   TIME= 13:06:27
+[13:06:46]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.0 seconds
+[13:06:46]   [solver] Elapsed time in equation solver                :        0.0 seconds
+[13:06:46]   [fase] Elapsed time spent post-processing model (/POST1) :        0.0 seconds
+[13:06:52]   [fase] 111124  /SOLU
+[13:06:52]   [solver] 111126  EQSLV,SPARSE
+[13:06:52]   [fase] 111129  /POST1
+[13:06:52]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.448   TIME= 13:06:52
+[13:06:52]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         6.485
+[13:06:52]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[13:06:53]   [AVISO] *** WARNING ***                         ELAPSED TIME =       6.629   TIME= 13:06:52
+[13:06:53]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[13:06:53]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[13:06:54]   [solver] Equation solver memory allocated                     =   860.924 MB
+[13:06:54]   [solver] Equation solver memory required for in-core mode     =   824.697 MB
+[13:06:54]   [solver] Equation solver memory required for out-of-core mode =   237.024 MB
+[13:06:54]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[13:06:55]   [solver] Sparse solver maximum pivot= 143010560 at node 3642 UY.
+[13:06:55]   [solver] Sparse solver minimum pivot= 21619.9275 at node 254 UY.
+[13:06:55]   [solver] Sparse solver minimum pivot in absolute value= 21619.9275 at node 254
+[13:06:56]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        10.283
+[13:06:56]   [AVISO] *** WARNING ***                         ELAPSED TIME =      10.850   TIME= 13:06:56
+[13:06:57]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        10.890
+[13:07:08]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.2 seconds
+[13:07:08]   [solver] Elapsed time in equation solver                :        2.3 seconds
+[13:07:08]   [fase] Elapsed time spent post-processing model (/POST1) :        0.6 seconds
+[13:07:08]   [solver] Equation solver used                              :            Sparse (symmetric)
+[13:07:08]   [solver] Sparse direct equation solver computational rate  :       69.2 Gflops
+[13:07:08] MAPDL termino: estado=ok codigo=0 tiempo=23.1s
+[13:07:08]   [4/5] resultados
+[13:07:08]   [5/5] imagenes
+[13:07:11]   RESULTADO: masa 1.358 kg | tension 682.4 MPa (bruta 682) | NO cumple
