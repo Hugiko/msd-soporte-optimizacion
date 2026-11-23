@@ -20362,3 +20362,23 @@
 [12:12:49]         fallo de malla: Exception: The 1D mesh seems not to be forming a closed loop
 [12:12:49]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con forma no valida | MAPDL alg1 h4.00: elementos con forma no valida | MAPDL alg10 h4.14: elementos con forma no valida | malla alg4 h6.08: el mallado supero 60 s (gmsh colgado): se aborta | malla alg10 h4.00: Exception: The 1D mesh seems not to be forming a closed loop | malla alg1 h4.40: Exception: The 1D mesh seems not to be forming a closed loop
 [12:12:50]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: MAPDL alg10 h4.00: elementos con for -> se penaliza y se sigue
+[12:12:57] [SimJEB modificado] DISENO 135  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[12:12:57]   motivo: [rama SX2] varios pasos sin mejora: paso mas corto (0.15); cambia semilla, z_col, ali1_y
+[12:12:57]   el modelo predice: masa 1.241 kg | tension 288 MPa | P(cumplir) 0.19
+[12:13:03]   (GitHub: subido)
+[12:13:14]   [1/5] geometria parametrica (cadquery)
+[12:13:14]         masa CAD = 1.4105 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[12:13:16]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[12:13:21]         fallo de malla: Exception: Impossible to mesh periodic surface 96
+[12:13:21]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[12:13:25]         fallo de malla: Exception: Impossible to mesh periodic surface 96
+[12:13:25]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[12:13:30]         fallo de malla: Exception: Impossible to mesh periodic surface 96
+[12:13:30]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[12:13:35]         fallo de malla: Exception: Impossible to mesh periodic surface 96
+[12:13:35]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[12:13:42]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:13:42]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[12:13:48]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:13:48]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Impossible to mesh periodic surface 96 | malla alg1 h4.00: Exception: Impossible to mesh periodic surface 96 | malla alg10 h3.60: Exception: Impossible to mesh periodic surface 96 | malla alg4 h4.00: Exception: Impossible to mesh periodic surface 96 | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:13:50]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: Imposs -> se penaliza y se sigue

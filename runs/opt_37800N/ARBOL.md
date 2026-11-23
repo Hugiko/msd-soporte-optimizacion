@@ -30,7 +30,7 @@ S1_1_3["S1.1.3 - cruce, paso 0.20<br/>0 pruebas<br/>sin resultados aun"]:::activ
 S1_1 --> S1_1_3
 SX1["SX1 - exploradora, paso 0.30<br/>11 pruebas<br/>mejor: 1.928 kg, 170 MPa (#079)"]:::activa
 S0 --> SX1
-SX2["SX2 - exploradora, paso 0.30<br/>9 pruebas<br/>mejor: 3.583 kg, 151 MPa (#083)"]:::activa
+SX2["SX2 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 3.583 kg, 151 MPa (#083)"]:::activa
 S0 --> SX2
 SX3["SX3 - exploradora, paso 0.30<br/>10 pruebas<br/>mejor: 2.166 kg, 178 MPa (#084)"]:::activa
 S0 --> SX3
