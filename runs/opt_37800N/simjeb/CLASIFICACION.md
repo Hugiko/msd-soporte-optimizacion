@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:55
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:58
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (34)
 
@@ -41,7 +41,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:55
 | 002 | 3.644 | 152.8 | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | - |
 | 068 | 3.708 | 153.3 | [rama SX3] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, t_col_tra, ali2_x... | - |
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (12)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (13)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -57,6 +57,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 11:55
 | 100 | 1.926 | 193.6 | [rama SX5] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_r | - |
 | 120 | 2.412 | 204.2 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, z_col, ali1_x, ali1_y... | [ver](120/vonmises.png) |
 | 125 | 2.361 | 201.9 | [rama SX6] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia t_col_del, z_col, ali1_y | [ver](125/vonmises.png) |
+| 127 | 2.328 | 205.1 | [rama SX7] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia semilla, ali1_x, ali1_y, ali2_y... | [ver](127/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (66)
 
