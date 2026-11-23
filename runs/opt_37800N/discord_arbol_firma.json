@@ -8,8 +8,20 @@
  [
   "simjeb",
   "S1",
-  "activa",
+  "terminada",
   37
+ ],
+ [
+  "simjeb",
+  "S1.1",
+  "activa",
+  null
+ ],
+ [
+  "simjeb",
+  "S1.2",
+  "activa",
+  null
  ],
  [
   "simjeb",
