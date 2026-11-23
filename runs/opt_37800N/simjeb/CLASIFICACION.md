@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:18
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:22
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (30)
 
@@ -95,7 +95,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:18
 | 086 | 2.040 | 254.7 | [rama SX2] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, ali1_x, ali2_x, ali2_r | [ver](086/vonmises.png) |
 | 087 | 1.643 | 447.5 | [rama SX3] el ultimo paso mejoro: sigue en esa linea (paso 0.15); cambia semilla, t_col_tra, z_col, ali2_x | [ver](087/vonmises.png) |
 
-## FALLIDOS (geometria / malla / solver): registrados y penalizados (10)
+## FALLIDOS (geometria / malla / solver): registrados y penalizados (11)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -109,6 +109,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 10:18
 | 081 | 0.000 | - | [rama SX3] varios pasos sin mejora: paso mas corto (0.30); cambia semilla, t_col_tra, z_col, ali1_r... | - |
 | 082 | 0.000 | - | [rama SX1] el ultimo paso mejoro: sigue en esa linea (paso 0.30); cambia semilla, t_col_tra, ali1_x, ali1_r... | - |
 | 088 | 1.094 | - | [rama SX4] exploradora: punto al azar en una zona nunca probada (a 1.38 del diseno probado mas cercano (anti-estancamiento)) | - |
+| 089 | 1.551 | - | [rama SX5] exploradora: punto al azar en una zona nunca probada (a 1.32 del diseno probado mas cercano (anti-estancamiento)) | - |
 
 ## FILTRADOS por el modelo (casi seguro que no cumplian): no se calcularon en ANSYS (0)
 

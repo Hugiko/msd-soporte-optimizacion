@@ -1,0 +1,33 @@
+{
+ "status": "mesh_fail",
+ "params": {
+  "semilla": 18.0,
+  "t_col_del": 3.2757,
+  "t_col_tra": 2.2002,
+  "z_col": 24.1167,
+  "ali1_x": 55.3695,
+  "ali1_y": -37.971,
+  "ali1_r": 8.1795,
+  "ali2_x": -33.1722,
+  "ali2_y": 5.2771,
+  "ali2_r": 6.8985
+ },
+ "force": 37800.0,
+ "mass_cad_kg": 1.5507716861892342,
+ "volume_cad_mm3": 197550.53327251392,
+ "hueco": false,
+ "clamped": [],
+ "holes_check": {
+  "deteccion": "en la malla"
+ },
+ "aligeramientos": 1,
+ "sin_modificar": false,
+ "simjeb_id": 428,
+ "simjeb_categoria": "block",
+ "simjeb_autor": "michele di sacco",
+ "simjeb_tension_estimada": 210.2,
+ "error": "RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h4.14: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 164, in evaluate\n    out = level(h, hmin, \"normal\")\n          ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 136, in level\n    raise RuntimeError(\"todas las estrategias de malla/solucion fallaron: \" + \" | \".join(attempt_log))\nRuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h4.14: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)\n",
+ "total_s": 100.89523434638977,
+ "galeria": "galeria/20261123_102208_simjeb_089_FALLO_1.551kg.jpg"
+}

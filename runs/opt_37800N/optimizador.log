@@ -17305,3 +17305,24 @@
 [10:19:47]   [4/5] resultados
 [10:19:47]   [5/5] imagenes
 [10:19:50]   RESULTADO: masa 2.339 kg | tension 217.8 MPa (bruta 810) | NO cumple
+[10:19:53] [SimJEB modificado] DISENO 089  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[10:19:53]   motivo: [rama SX5] exploradora: punto al azar en una zona nunca probada (a 1.32 del diseno probado mas cercano (anti-estancamiento))
+[10:20:04]   (GitHub: subido)
+[10:20:27]   [1/5] geometria parametrica (cadquery)
+[10:20:28]         masa CAD = 1.5508 kg | agujeros OK {'deteccion': 'en la malla'} | hueco=False
+[10:20:34]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[10:20:44]         fallo de malla: Exception: HXT 3D mesh failed
+[10:20:44]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.00 mm)  [reintento 1]
+[10:20:54]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[10:20:54]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.60 mm)  [reintento 2]
+[10:21:13]   malla h=3.6: 127993 nodos, 67736 tet10 (13.3s)
+[10:21:14]         127993 nodos > limite Student: engrosando malla
+[10:21:25]         fallo de malla: Exception: HXT 3D mesh failed
+[10:21:25]   [2/5] malla normal tet10 (gmsh, algoritmo 4, h=4.00 mm)  [reintento 3]
+[10:21:37]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[10:21:37]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)  [reintento 4]
+[10:21:53]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[10:21:53]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=4.40 mm)  [reintento 5]
+[10:22:08]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[10:22:08]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D mesh failed | malla alg1 h4.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h4.14: Exception: HXT 3D mesh failed | malla alg4 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg10 h4.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido) | malla alg1 h4.40: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[10:22:10]   RESULTADO: FALLO (mesh_fail): RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h4.00: Exception: HXT 3D -> se penaliza y se sigue
