@@ -1,6 +1,6 @@
 # SimJEB modificado: clasificacion de disenos
 
-Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:55
+Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:56
 
 ## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (27)
 
@@ -34,7 +34,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:55
 | 002 | 3.644 | 152.8 | torneo de referencias SimJEB (2/30): SimJEB n.o 79 (block, Fritz VZ) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 193 MPa) | - |
 | 068 | 3.708 | 153.3 | [rama SX3] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, t_col_tra, ali2_x... | [ver](068/vonmises.png) |
 
-## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (6)
+## CERCA DEL LIMITE (hasta +10 %): candidatos a verificar con malla fina (7)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -44,6 +44,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 09:55
 | 019 | 2.253 | 201.3 | torneo de referencias SimJEB (19/30): SimJEB n.o 107 (block, julius) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 179 MPa) | - |
 | 021 | 2.299 | 201.1 | torneo de referencias SimJEB (21/30): SimJEB n.o 289 (flat, Marinus Reutelingsperger) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 173 MPa) | - |
 | 060 | 1.916 | 189.3 | [rama S1.1] varios pasos sin mejora: paso mas corto (0.05); cambia z_col, ali1_r, ali2_y (rama fina: solo mueve semilla, ali1_r, t_col_del, z_col, ali2_y) | [ver](060/vonmises.png) |
+| 074 | 1.930 | 203.7 | [rama SX1] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.30); cambia semilla, t_col_del, t_col_tra, ali2_x | [ver](074/vonmises.png) |
 
 ## DESCARTADOS (superan el limite): se guardan para explicar en el informe por que no valen (37)
 
