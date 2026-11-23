@@ -2,7 +2,7 @@
 
 Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:21
 
-## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (52)
+## VALIDOS, ordenados por puntuacion masa-seguridad (tension <= 187 MPa y desplazamiento <= 0.25 mm) (53)
 
 | # | masa (kg) | tension (MPa) | motivo | imagen |
 |---|---|---|---|---|
@@ -31,6 +31,7 @@ Limite: 187 MPa | carga 37800 N | actualizado 2026-11-23 14:21
 | 038 | 1.974 | 163.9 | [rama S1] el ultimo paso mejoro: sigue en esa linea (paso 0.60); cambia ali2_x, ali2_y | - |
 | 011 | 1.975 | 164.1 | torneo de referencias SimJEB (11/30): SimJEB n.o 237 (block, Bol) tal cual, como PUNTO DE PARTIDA para modificarlo despues (no puede ser el mejor: la pieza final debe ser nueva; tension estimada por SimJEB 178 MPa) | - |
 | 036 | 1.975 | 164.1 | [rama S1] varios pasos sin mejora: paso mas corto (0.60); cambia ali1_x, ali2_x | - |
+| 202 | 1.975 | 164.1 | [rama SX12] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, ali1_x, ali1_r, ali2_x... | - |
 | 035 | 1.970 | 167.5 | [rama S1] pequeno cambio alrededor del mejor de la rama (paso 0.60); cambia ali1_r, ali2_x, ali2_y | - |
 | 158 | 2.011 | 175.7 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del, ali1_r, ali2_y | - |
 | 153 | 2.066 | 167.3 | [rama SX8] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia t_col_del, z_col, ali1_y, ali1_r... | - |
