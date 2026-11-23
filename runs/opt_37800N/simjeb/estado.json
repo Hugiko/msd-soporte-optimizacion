@@ -283,11 +283,11 @@
    "padre": "S0",
    "semilla": null,
    "tipo": "exploradora",
-   "L": 0.3,
+   "L": 0.15,
    "L0": 0.3,
    "succ": 0,
-   "fail": 3,
-   "n": 9,
+   "fail": 0,
+   "n": 10,
    "best": {
     "score": [
      0,
