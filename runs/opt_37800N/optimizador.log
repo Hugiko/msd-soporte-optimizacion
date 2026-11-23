@@ -12171,3 +12171,9 @@
 [07:19:37]   el modelo predice: masa 2.258 kg | tension 394 MPa | P(cumplir) 0.00
 [07:19:38]   geometria IDENTICA al diseno 058 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
 [07:19:39]   RESULTADO: masa 2.264 kg | tension 380.6 MPa (bruta 871) | NO cumple
+[07:19:45]   (GitHub: subido)
+[07:19:56] [Refuerzo + vaciado] DISENO 148  |  mejor global: 2.372 kg (Refuerzo + vaciado #142)
+[07:19:56]   motivo: [rama R1.1.1.1.1] pequeno cambio alrededor del mejor de la rama (paso 0.03); cambia cav_s0 (rama fina: solo mueve trim_a, trim_s0, r_cut, R_pocket, t_col_tra, cav_s0, trim_ang)
+[07:19:56]   el modelo predice: masa 2.360 kg | tension 185 MPa | P(cumplir) 0.90
+[07:20:02]   geometria IDENTICA al diseno 142 (estos cambios no tocan la pieza): se reutiliza su resultado sin ANSYS
+[07:20:03]   RESULTADO: masa 2.372 kg | tension 185.4 MPa (bruta 730) | CUMPLE
