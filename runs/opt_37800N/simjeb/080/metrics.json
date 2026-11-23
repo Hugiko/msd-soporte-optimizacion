@@ -1,0 +1,20 @@
+{
+ "status": "geom_fail",
+ "params": {
+  "semilla": 12.0,
+  "t_col_del": 5.1618,
+  "t_col_tra": 7.4318,
+  "z_col": 22.4998,
+  "ali1_x": 18.5895,
+  "ali1_y": -37.7783,
+  "ali1_r": 8.8771,
+  "ali2_x": 57.2345,
+  "ali2_y": -158.0,
+  "ali2_r": 2.4042
+ },
+ "force": 37800.0,
+ "error": "GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3)",
+ "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\evaluate.py\", line 69, in evaluate\n    solid, ginfo = geom.build(params)\n                   ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\optimizer.py\", line 204, in build\n    val = self._mod.build(p)\n          ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_simjeb.py\", line 200, in build\n    solid = _boolean(lambda tol: base.fuse(*rings, tol=tol),\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\scripts\\geometry_simjeb.py\", line 161, in _boolean\n    raise GeometryError(f\"{what} ha fallado ({last})\")\ngeometry.GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3)\n",
+ "total_s": 10.144402027130127,
+ "galeria": "galeria/20261123_100445_simjeb_080_FALLO_0.000kg.jpg"
+}

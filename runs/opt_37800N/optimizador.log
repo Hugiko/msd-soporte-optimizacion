@@ -16825,3 +16825,10 @@
 [10:04:11]   [4/5] resultados
 [10:04:12]   [5/5] imagenes
 [10:04:15]   RESULTADO: masa 1.928 kg | tension 170.5 MPa (bruta 664) | CUMPLE
+[10:04:24] [SimJEB modificado] DISENO 080  |  mejor global: 1.914 kg (SimJEB modificado #037)
+[10:04:24]   motivo: [rama SX2] [aun sin disenos validos] pequeno cambio alrededor del mejor de la rama (paso 0.15); cambia semilla, t_col_del
+[10:04:24]   el modelo predice: masa 2.538 kg | tension 274 MPa | P(cumplir) 0.14
+[10:04:35]   (GitHub: subido)
+[10:04:35]   [1/5] geometria parametrica (cadquery)
+[10:04:45]   !! fallo en geometria: GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3)
+[10:04:47]   RESULTADO: FALLO (geom_fail): GeometryError: la union de los collares ha fallado (1 solidos, resto 0 mm3) -> se penaliza y se sigue
