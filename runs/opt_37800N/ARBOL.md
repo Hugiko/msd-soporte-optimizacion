@@ -68,7 +68,7 @@ RX1_1["RX1.1 - fina, paso 0.10<br/>0 pruebas<br/>sin resultados aun"]:::activa
 RX1 --> RX1_1
 RX1_2["RX1.2 - amplia, paso 0.35<br/>1 pruebas<br/>aun sin validos; el mas cercano 285 MPa (#104)"]:::activa
 RX1 --> RX1_2
-RX1_3["RX1.3 - cruce, paso 0.20<br/>2 pruebas<br/>mejor: 2.429 kg, 183 MPa (#173)"]:::activa
+RX1_3["RX1.3 - cruce, paso 0.20<br/>3 pruebas<br/>mejor: 2.339 kg, 186 MPa (#186)"]:::activa
 RX1 --> RX1_3
 R1_1_1_1_1["R1.1.1.1.1 - fina, paso 0.10<br/>18 pruebas<br/>mejor: 2.372 kg, 185 MPa (#142)"]:::fin
 R1_1_1_1 --> R1_1_1_1_1
