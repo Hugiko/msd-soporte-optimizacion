@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 120 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (34, -83)
+
+*2026-11-24 04:13*
+
+- **Pieza de partida:** 2.1443 kg | 204.4 MPa | CS 1.05 | 0.156 mm
+- **Por que (regla R1):** Toda la columna en (34, -83) hasta 8 mm de radio trabaja como maximo al 35 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (204 MPa, en cuerpo, lado de las orejetas (x < 15 mm)) esta a 71 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 112 veces que se ha aplicado: +1.1 % (prevision rapida: 2.1319 kg | 204.3 MPa | CS 1.05 | 0.157 mm)
+- **Resultado (malla completa):** 2.1307 kg | 208.3 MPa | CS 1.03 | 0.157 mm (tension +1.9 %, masa -14 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1443 -> 2.1307; masa 2.1443 -> 2.1307 kg)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -44) -> pasa la evaluacion rapida (2.1404 kg | 202.6 MPa | CS 1.06 | 0.156 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D16 mm en (67, -23) -> pasa la evaluacion rapida (2.1322 kg | 205.1 MPa | CS 1.05 | 0.157 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261124_041649_it120_ACEPTADA_2.131kg.jpg" width="520">
+
 ## Iteracion 119 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (43, -98)
 
 *2026-11-24 04:09*
