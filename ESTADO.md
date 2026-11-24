@@ -29,10 +29,11 @@ Partir del soporte del enunciado (`0.stp`) y modificarlo paso a paso, con un por
   9. [hecho] GitHub limpio: fuera `runs/archivo/` (4 413 ficheros); los datos de las reglas, en `estudio/calculos_anteriores.csv`.
 
 ## Pendiente
-1. **En marcha (23/11, 16:05)**: `optimizar.bat` lanzado. Espera a que termine el estudio (unas 4 h), escribe las reglas y empieza a optimizar solo.
-2. Cuando termine el estudio: revisar `DESIGN_RULES.md` con todos los datos (R1–R3 y R7 se completan con SimJEB).
-3. Primera prueba corta (2 iteraciones): collar de 6 mm en los pernos 1 y 3 → 238 → 201,9 MPa (cumple; malla fina 212,5); después, rebaje de material ocioso: −35 g, +0,9 % de tensión.
-4. Fase 5:
+1. **En marcha (24/11, 09:05)**: optimizador en **modo simétrico** (obligatorio), desde el original + los dos collares (2,504 kg; malla fina 212,5 MPa).
+   - La pieza asimétrica anterior (2,144 kg) no admite simetría: sus aligeramientos repetidos en el lado simétrico superan el límite. Queda archivada en el PC (`runs/archivo/opt_42258N_asimetrico_hasta_20261124`).
+   - Corregido el bucle de la noche del 23 al 24: la malla normal se calibra con la fina y los cambios que la malla fina no confirma quedan rechazados.
+2. Estudio SimJEB **terminado**: 381 diseños, 16 cumplen (el más ligero, 1,975 kg). Reglas actualizadas en `DESIGN_RULES.md`.
+3. Fase 5:
    - verificación final con malla fina y convergencia;
    - modelo de tornillo realista;
    - comparación del original con el final;
