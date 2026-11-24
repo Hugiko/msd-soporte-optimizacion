@@ -269,3 +269,32 @@
   - collar cónico entero a 15°: no se puede mallar (superficie periódica);
   - engrosar las orejetas por fuera: la operación de prueba apenas añadió material (sin efecto); pendiente de rehacer.
 - Corregida también la condición de «inversión»: usaba la tensión sin la corrección a malla fina.
+
+## 2026-11-24 – Análisis de la iteración 052 (propuesto por el grupo) contrastado con el campo
+
+- **Pieza de la iteración 052:** 2,2002 kg, 203,0 MPa.
+- **Puntos calientes medidos:**
+
+  | Tensión | Dónde |
+  |---|---|
+  | 203,0 MPa | **cara inferior en el borde del aligeramiento simétrico de la op. 4** (no en la orejeta) |
+  | 197,5 MPa | alojamiento del perno 4 |
+  | 194,5 / 191,6 MPa | unión orejeta-cartela (las dos orejetas) |
+  | 189,5 MPa | alojamiento del perno 2 |
+
+- **Zonas propuestas como ociosas:**
+
+  | Zona | Ociosa (< 15 % del límite) | Trabajo medio |
+  |---|---|---|
+  | Faldón inferior lejos de los pernos | 47 % | — |
+  | Extremos de la base | 37–44 % | — |
+  | Entre los pernos 1 y 2 | 32 % | — |
+  | Collares por fuera | ~10 % | 22–24 % |
+
+  Los collares trabajan: no conviene recortarlos.
+- **Pruebas en ANSYS:**
+  - Op. 4 reducida de Ø16 a Ø10: 195,2 MPa (−3,8 %) con +39 g. El pico pasa a la unión orejeta-cartela.
+  - Acuerdo en la unión orejeta-cartela: OCC no puede (superficies B-spline). Además, allí el pico no es una entalla: Kt aparente 1,58, la tensión baja suave (177 MPa a 2 mm, 123 MPa a 12 mm) y ya hay un acuerdo cilíndrico. Es flexión del borde superior de la cartela: lo que la baja es más canto, no más radio.
+- **Corregido:**
+  - R8 («reducir el corte junto al pico») no miraba la copia simétrica de cada corte, y por eso no actuó sobre el pico de la op. 4.
+  - Los bolsillos desde la cara de apoyo (R14) pueden salir por el contorno: el techo a 45° deja un chaflán en el faldón.

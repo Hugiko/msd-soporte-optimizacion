@@ -459,6 +459,12 @@ def corner_r(reg):
     return round(float(np.clip(0.2 * min(reg["x1"] - reg["x0"], reg["y1"] - reg["y0"]), 3.0, 8.0)), 1)
 
 
+def _dist_sym(p, op):
+    """Distancia del punto p al corte 'op' o a su copia simetrica (los cortes se aplican en los dos lados)."""
+    d = O.dist_to_op(p, op)
+    return min(d, O.dist_to_op(O.mirror_pt(p), op)) if O.SIM else d
+
+
 def _overlap_rect(a, b):
     ix = max(0.0, min(a["x1"], b["x1"]) - max(a["x0"], b["x0"])); iy = max(0.0, min(a["y1"], b["y1"]) - max(a["y0"], b["y0"]))
     return ix * iy / max((a["x1"] - a["x0"]) * (a["y1"] - a["y0"]), 1e-9)
@@ -527,12 +533,12 @@ def propose(C, m, ops, st, E, stats, n_max=3):
     if ratio > 0.97:
         # ---------------- R8: el pico esta en el borde de un corte anterior
         for k, op in enumerate(ops):
-            if op["tipo"] in O.QUITA and O.dist_to_op(pk["xyz"], op) < 4.0 and ok("R8"):
+            if op["tipo"] in O.QUITA and _dist_sym(pk["xyz"], op) < 4.0 and ok("R8"):
                 new = shrink(op)
                 nops = ops[:k] + ([new] if new else []) + ops[k + 1:]
                 reinf.append(dict(regla="R8", op=new or dict(tipo="deshacer", de=op), ops_nuevas=nops, reconstruir=True,
                                   titulo=("reducir" if new else "deshacer") + f" la operacion {k + 1} ({O.describe(op)})",
-                                  porque=(f"El pico ({sig:.0f} MPa) esta a {O.dist_to_op(pk['xyz'], op):.1f} mm del corte {k + 1} "
+                                  porque=(f"El pico ({sig:.0f} MPa) esta a {_dist_sym(pk['xyz'], op):.1f} mm del corte {k + 1} "
                                           f"({O.describe(op)}): ese material SI estaba en el camino de carga. Se "
                                           + ("reduce el corte a 0,6 veces su tamano." if new else "deshace el corte.") + ev("R8")),
                                   espero=dict(dsig_pct=-5.0, txt="baja el pico (vuelve material a donde trabaja)")))

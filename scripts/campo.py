@@ -269,7 +269,9 @@ class Campo:
         for w in range(2, nx):
             for h in range(2, ny):
                 zt = swv(zhi, (w, h)).min(axis=(-2, -1))
-                full = swv(has.astype(int), (w, h)).sum(axis=(-2, -1)) >= w * h      # todo el rectangulo con material
+                # al menos la mitad del rectangulo con material: si sale por el contorno de la pieza, el techo a 45 grados deja
+                # un CHAFLAN en el borde inferior (faldon de la placa base)
+                full = swv(has.astype(int), (w, h)).sum(axis=(-2, -1)) >= 0.5 * w * h
                 # altura REAL: el techo a 45 grados sube desde la cara de apoyo (z = -1) hasta la mitad del lado menor;
                 # no puede pasar de zt (material que trabaja encima) -> el lado menor no puede pasar de 2 (zt + 1) / tan + 3
                 zr = np.minimum(zt, -1.0 + min(w, h) * b / 2.0 * am_t)
