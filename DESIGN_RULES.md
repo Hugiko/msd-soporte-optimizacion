@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 12:28. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 13:14. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -198,6 +198,14 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y solo despues se aprovecha material que trabaja algo mas.
 - **Espero:** permite seguir aligerando con un riesgo controlado.
 - **Evidencia (basada en la teoria / en sus resultados):** regla de procedimiento: se juzga por sus resultados en el optimizador.
+
+### R12. Acampanar la raiz de los collares  (ACTIVA)
+
+- **Si:** la pieza esta en el limite de tension y tiene collares cilindricos (la union collar-cuerpo es una esquina viva).
+- **Hago:** la parte baja de cada collar pasa a tronco de cono con la pared a 30 grados (hasta z = 16 mm); en los dos collares de la pareja simetrica.
+- **Porque:** la union de un cilindro con el cuerpo es una entalla (esquina entrante a ~90 grados); con la pared inclinada la union es un angulo abierto (menor concentracion) y la base de los pernos se rigidiza, lo que reduce la flexion que llega a las orejetas. Compra margen de tension con poca masa, que luego se gasta aligerando.
+- **Espero:** baja la tension maxima del orden de un 5 % con ~+2 % de masa (inversion).
+- **Evidencia (respaldada por los datos):** prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a 30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %).
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (ACTIVA)
 

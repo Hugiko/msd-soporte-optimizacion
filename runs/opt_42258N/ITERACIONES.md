@@ -2,6 +2,17 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 29 - REEVALUADA
+
+*2026-11-24 13:14*
+
+- **Pieza de partida:** 2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Por que (regla None):** la pieza tiene que ser simetrica: se quita el aligeramiento D16 en (64, -32), que solo quitaba material en un lado (2,07 cm3 a su alrededor frente a 0,20 en el simetrico: alli el contorno del original es mas estrecho); desde ahora cada corte debe quitar parecido material en los dos lados. Nueva regla R12 (collar acampanado)
+- **Resultado (malla completa):** 2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm | simetria 89.9 % del volumen (92.7 % lejos de los pernos)
+- **Decision:** REEVALUADA - cumple: se sigue optimizando con las reglas nuevas
+
+<img src="galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg" width="520">
+
 ## Iteracion 28 - RECHAZADA: R14 bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (28, -92) (y su simetrico)
 
 *2026-11-24 12:25*

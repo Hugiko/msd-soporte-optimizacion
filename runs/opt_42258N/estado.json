@@ -1,5 +1,5 @@
 {
- "iter": 28,
+ "iter": 29,
  "actual": {
   "ops": [
    {
@@ -90,40 +90,134 @@
     "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\020\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\029\\completa",
   "m": {
-   "mass_kg": 2.2410245469,
-   "vm_metric": 199.3087,
-   "u_max": 0.14623948611207455,
+   "mass_kg": 2.2571172117500002,
+   "vm_metric": 202.0998,
+   "u_max": 0.14585127779689777,
    "vm_metric_xyz": [
-    16.721685350674203,
-    -141.97168205546467,
-    13.389599953816933
+    -5.026992058242467,
+    -58.65040080746889,
+    58.52526820249253
    ],
-   "n_nodes": 89430,
-   "cs": 1.07872862549402,
-   "viol": 0.9914449053488371,
-   "score": 2.2410245469,
+   "n_nodes": 89364,
+   "cs": 1.0638308400107275,
+   "viol": 0.9955530147906976,
+   "score": 2.2571172117500002,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.2562239445500007,
-   "vm_metric": 194.1491,
-   "u_max": 0.14599705656575582,
-   "vm_metric_xyz": [
-    -0.1439796340353645,
-    -87.09029429461272,
-    57.37325360368376
-   ],
-   "n_nodes": 50332,
-   "cs": 1.1073963258135113,
-   "viol": 0.965778895116279,
-   "score": 2.2562239445500007,
-   "valido": true
-  },
-  "galeria": "galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg"
  },
- "mejor": null,
+ "mejor": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "rebaje",
+    "x0": 41.52,
+    "x1": 61.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 9.0,
+    "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 48.52,
+    "y": -56.32,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 3.52,
+    "y": -74.32,
+    "r": 6.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -26.48,
+    "y": -29.32,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 27.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 18.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 42.52,
+    "y": -44.32,
+    "r": 4.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": 9.52,
+    "x1": 17.52,
+    "y0": -52.32,
+    "y1": -36.32,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 29.52,
+    "y0": -112.32,
+    "y1": -88.32,
+    "z0": -1.0,
+    "z1": 10.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 37.52,
+    "y0": -120.32,
+    "y1": -100.32,
+    "z0": -1.0,
+    "z1": 7.0,
+    "rr": 1.5
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\029\\completa",
+  "m": {
+   "mass_kg": 2.2571172117500002,
+   "vm_metric": 202.0998,
+   "u_max": 0.14585127779689777,
+   "vm_metric_xyz": [
+    -5.026992058242467,
+    -58.65040080746889,
+    58.52526820249253
+   ],
+   "n_nodes": 89364,
+   "cs": 1.0638308400107275,
+   "viol": 0.9955530147906976,
+   "score": 2.2571172117500002,
+   "valido": true
+  },
+  "iter": 29,
+  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg"
+ },
  "verificado": null,
  "tau_idx": 0,
  "rechazos": [
@@ -3349,6 +3443,62 @@
     "score": 2.2410245469,
     "valido": true
    }
+  },
+  {
+   "iter": 29,
+   "fecha": "2026-11-24T13:14:13.360077",
+   "decision": "REEVALUADA",
+   "titulo": "pieza actual reconstruida",
+   "porque": "la pieza tiene que ser simetrica: se quita el aligeramiento D16 en (64, -32), que solo quitaba material en un lado (2,07 cm3 a su alrededor frente a 0,20 en el simetrico: alli el contorno del original es mas estrecho); desde ahora cada corte debe quitar parecido material en los dos lados. Nueva regla R12 (collar acampanado)",
+   "antes": "2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   },
+   "despues": "2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm | simetria 89.9 % del volumen (92.7 % lejos de los pernos)",
+   "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg",
+   "m_cand": {
+    "mass_kg": 2.2571172117500002,
+    "vm_metric": 202.0998,
+    "u_max": 0.14585127779689777,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 89364,
+    "cs": 1.0638308400107275,
+    "viol": 0.9955530147906976,
+    "score": 2.2571172117500002,
+    "valido": true
+   },
+   "motivo": "cumple: se sigue optimizando con las reglas nuevas",
+   "m_actual": {
+    "mass_kg": 2.2571172117500002,
+    "vm_metric": 202.0998,
+    "u_max": 0.14585127779689777,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 89364,
+    "cs": 1.0638308400107275,
+    "viol": 0.9955530147906976,
+    "score": 2.2571172117500002,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -3462,6 +3612,5 @@
  "_avisadas": [
   "R11",
   "R5"
- ],
- "reevaluar": "la pieza tiene que ser simetrica: se quita el aligeramiento D16 en (64, -32), que solo quitaba material en un lado (2,07 cm3 a su alrededor frente a 0,20 en el simetrico: alli el contorno del original es mas estrecho); desde ahora cada corte debe quitar parecido material en los dos lados. Nueva regla R12 (collar acampanado)"
+ ]
 }
