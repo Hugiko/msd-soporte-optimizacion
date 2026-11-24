@@ -2,6 +2,18 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 20 - ACEPTADA: R14 bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm (techo a 45 grados) en (20, -110) (y su simetrico)
+
+*2026-11-24 12:04*
+
+- **Pieza de partida:** 2.2593 kg | 199.6 MPa | CS 1.08 | 0.146 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 7 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 25 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (200 MPa, en alrededor de los pernos traseros) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 2 veces que se ha aplicado: +0.1 % (prevision rapida: 2.2411 kg | 200.0 MPa | CS 1.07 | 0.146 mm)
+- **Resultado (malla completa):** 2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm (tension -0.1 %, masa -18 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2593 -> 2.2410; masa 2.2593 -> 2.2410 kg)
+
+<img src="galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg" width="520">
+
 ## Iteracion 19 - ACEPTADA: R14 bolsillo desde la cara de apoyo 28 x 24 mm, hasta z = 10 mm (techo a 45 grados) en (16, -100) (y su simetrico)
 
 *2026-11-24 11:58*
