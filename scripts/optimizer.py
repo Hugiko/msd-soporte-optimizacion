@@ -309,6 +309,7 @@ def current_quick(st):
     if m.get("status") != "ok":
         raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
     a["rapida"] = summ(m)
+    a["rapida"].update(algo=m.get("mesh_algo"), h=m.get("mesh_h"))
     return a["rapida"]
 
 
@@ -904,7 +905,12 @@ def step(st, git, E):
         dsig = (p["vm_metric"] / ma["vm_metric"] - 1) * 100; dm = (p["mass_kg"] - ma["mass_kg"]) * 1000
         log(f"      prevision: {txt_m(p)}  (tension {dsig:+.1f} %, masa {dm:+.0f} g; se esperaba {c['espero'].get('txt', '')})")
         why = None
-        if ma["valido"]:
+        if ref_q.get("algo") is not None and (mq.get("mesh_algo") != ref_q.get("algo")
+                                              or abs((mq.get("mesh_h") or 0) - (ref_q.get("h") or 0)) > 1e-6):
+            p["fiable"] = False       # otra estrategia de malla que la referencia: el cociente no es comparable
+            log("      prevision NO fiable (la malla gruesa del candidato no es la misma que la de la referencia): "
+                "no se usa para descartar")
+        elif ma["valido"]:
             if p["viol"] > 1.0 + TOL_Q:
                 why = f"tension prevista {p['vm_metric']:.0f} MPa: supera el limite ({SIG_OBJ:.0f} MPa)"
             elif p["score"] >= ma["score"] and c["regla"] not in ("R4", "R6", "R7", "R8", "R12"):
@@ -937,6 +943,7 @@ def step(st, git, E):
         record(st, h, git, False)
         return
     keyf = (lambda t: (0, 0, 0) if t[3] is None else          # refuerzo (sin prevision): se propuso porque la pieza esta al limite
+            (2, 0, -t[0]["espero"].get("dm_g", 0) * -1) if t[3].get("fiable") is False else   # prevision no fiable: al final
             (1, t[3]["viol"] > 1.0, t[3]["viol"] if not ma["valido"] else t[3]["score"]))
     c, s, holes, p = min(surv, key=keyf)
     for c2, _, _, p2 in surv:
@@ -969,6 +976,10 @@ def step(st, git, E):
         decision = "ACEPTADA"
         why = ("primera pieza que CUMPLE" if best is None else
                f"cumple y mejora al mejor (puntuacion {best['m']['score']:.4f} -> {sm['score']:.4f}; masa {best['m']['mass_kg']:.4f} -> {sm['mass_kg']:.4f} kg)")
+    elif sm["valido"] and st.get("inversion_desde") and sm["score"] < ma["score"] * (1 - 1e-4):
+        decision = "ACEPTADA"
+        why = (f"cumple y recupera parte de la inversion de la iteracion {st['inversion_desde']} (masa {ma['mass_kg']:.4f} -> "
+               f"{sm['mass_kg']:.4f} kg; el mejor sigue siendo {best['m']['mass_kg']:.4f} kg)" if best else "cumple y mejora la pieza actual")
     elif not ma["valido"] and sm["viol"] < ma["viol"] - 2e-3:
         decision = "ACEPTADA"
         why = (f"aun no cumple pero se acerca al limite ({ma['vm_metric']:.0f} -> {sm['vm_metric']:.0f} MPa)" if not sm["valido"]
