@@ -1,16 +1,16 @@
 {
- "iter": 4,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\02_it004_2.399kg",
- "mass_kg": 2.3988696936,
- "vm_metric": 205.5841,
- "u_max": 0.14141892240085774,
- "coef_seguridad": 1.0458007209701528,
- "puntuacion": 2.3988696936,
+ "iter": 6,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\03_it006_2.355kg",
+ "mass_kg": 2.3552425257500005,
+ "vm_metric": 196.6129,
+ "u_max": 0.14341589865446414,
+ "coef_seguridad": 1.0935192960380524,
+ "puntuacion": 2.3552425257500005,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 209.4441,
-  "u_max": 0.14626536619115169,
-  "n_nodes": 109427,
+  "vm_metric": 214.4475,
+  "u_max": 0.1485661463159831,
+  "n_nodes": 109715,
   "ok": true
  },
  "operaciones": [
@@ -18,8 +18,10 @@
   "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm",
   "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
   "aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)",
-  "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)"
+  "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)"
  ],
- "fecha": "2026-11-24T09:19:39",
+ "fecha": "2026-11-24T09:28:26",
  "final": false
 }
