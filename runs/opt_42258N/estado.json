@@ -1,5 +1,5 @@
 {
- "iter": 12,
+ "iter": 13,
  "actual": {
   "ops": [
    {
@@ -399,11 +399,22 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 12
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 39.52,
+    "y": -59.32,
+    "r": 4.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 13
   }
  ],
  "stats": {
   "R4": {
-   "intentos": 11,
+   "intentos": 12,
    "descartadas_rapido": 0,
    "evaluadas": 2,
    "aceptadas": 1,
@@ -499,11 +510,11 @@
    ]
   },
   "R1": {
-   "intentos": 370,
+   "intentos": 371,
    "descartadas_rapido": 7,
-   "evaluadas": 189,
+   "evaluadas": 190,
    "aceptadas": 183,
-   "rechazadas": 6,
+   "rechazadas": 7,
    "dsig": [
     -2.81,
     0.93,
@@ -693,7 +704,8 @@
     0.92,
     1.15,
     0.65,
-    1.64
+    1.64,
+    5.07
    ],
    "dm": [
     -34.0,
@@ -884,13 +896,10 @@
     -14.8,
     -32.2,
     -27.5,
-    -14.8
+    -14.8,
+    -24.3
    ],
    "ejemplos": [
-    [
-     4,
-     "aceptada: aligeramiento pasante vertical D12 mm en (4, -74) (y su sime (tension -0.2 %, masa -29 g)"
-    ],
     [
      5,
      "aceptada: aligeramiento pasante vertical D16 mm en (64, -32) (y su sim (tension -4.1 %, masa -16 g)"
@@ -918,6 +927,10 @@
     [
      12,
      "rechazada: aligeramiento pasante vertical D12 mm en (-5, -74) (y su sim (tension +1.6 %, masa -15 g)"
+    ],
+    [
+     13,
+     "rechazada: aligeramiento pasante vertical D8 mm en (40, -59) (y su sime (tension +5.1 %, masa -24 g)"
     ]
    ],
    "dsig_prev": [
@@ -1109,11 +1122,12 @@
     -2.03,
     1.71,
     2.07,
-    -0.3
+    -0.3,
+    0.04
    ]
   },
   "R3": {
-   "intentos": 174,
+   "intentos": 175,
    "descartadas_rapido": 1,
    "evaluadas": 1,
    "aceptadas": 1,
@@ -1165,7 +1179,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 2,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2925156956000006,
@@ -2024,6 +2038,77 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 202.6 MPa con la malla normal, que corregidos a malla fina (x1.077) son 218.1 MPa > 215 MPa",
    "galeria": "galeria/20261124_111823_it012_RECHAZADA_2.278kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   }
+  },
+  {
+   "iter": 13,
+   "fecha": "2026-11-24T11:18:28.754685",
+   "antes": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R4",
+     "titulo": "collar de 9 mm en los pernos 3 y 1",
+     "motivo": "pasa la evaluacion rapida (2.3627 kg | 199.1 MPa | CS 1.08 | 0.143 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    },
+    {
+     "regla": "R3",
+     "titulo": "hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.2830 kg | 196.2 MPa | CS 1.10 | 0.146 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D8 mm en (40, -59) (y su simetrico)",
+   "porque": "Toda la columna en (40, -59) hasta 7 mm de radio trabaja como maximo al 30 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~89 %; el pico (199 MPa, en alrededor de los pernos traseros) esta a 86 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 189 veces que se ha aplicado: +0.9 % (prevision rapida: 2.2700 kg | 199.4 MPa | CS 1.08 | 0.146 mm)",
+   "m_cand": {
+    "mass_kg": 2.2682079351,
+    "vm_metric": 209.4124,
+    "u_max": 0.14627059014763355,
+    "vm_metric_xyz": [
+     -1.4033595469271347,
+     -61.08153607239093,
+     57.50784598198372
+    ],
+    "n_nodes": 85220,
+    "cs": 1.0266822786043235,
+    "viol": 1.0488152200930232,
+    "score": 2.2682079351,
+    "valido": false
+   },
+   "despues": "2.2682 kg | 209.4 MPa | CS 1.03 | 0.146 mm (tension +5.1 %, masa -24 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 209.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 225.5 MPa > 215 MPa",
+   "galeria": "galeria/20261124_112155_it013_RECHAZADA_2.268kg.jpg",
    "m_actual": {
     "mass_kg": 2.2925156956000006,
     "vm_metric": 199.3109,
