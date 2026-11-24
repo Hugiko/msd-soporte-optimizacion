@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 51 - RECHAZADA: R1 aligeramiento pasante vertical D10 mm en (37, -86) (y su simetrico)
+
+*2026-11-24 19:03*
+
+- **Pieza de partida:** 2.2207 kg | 201.1 MPa | CS 1.07 | 0.150 mm
+- **Por que (regla R1):** Toda la columna en (37, -86) hasta 8 mm de radio trabaja como maximo al 37 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (201 MPa, en placa base (z < 10 mm)) esta a 20 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 197 veces que se ha aplicado: +1.7 % (prevision rapida: 2.1750 kg | 237.0 MPa | CS 0.91 | 0.155 mm)
+- **Resultado (malla completa):** 2.1716 kg | 249.4 MPa | CS 0.86 | 0.154 mm (tension +24.0 %, masa -49 g)
+- **Decision:** RECHAZADA - no cumple: 249.4 MPa con la malla normal, que corregidos a malla fina (x1.058) son 263.8 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -1..11, y -40..-28 mm (esquinas R3) (y su simetrico) -> tension prevista 278 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 28 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (9, -38) (y su simetrico) -> la geometria no se puede construir (operacion 19 (hueco): el hueco interior no quita material (cae fuera de la pieza o dentro de zona protegida))
+- Nota: umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_190618_it051_RECHAZADA_2.172kg.jpg" width="520">
+
 ## Iteracion 50 - RECHAZADA: R2 rebaje desde arriba hasta z = 5 mm en x -1..11, y -124..-112 mm (esquinas R3) (y su simetrico)
 
 *2026-11-24 19:00*
