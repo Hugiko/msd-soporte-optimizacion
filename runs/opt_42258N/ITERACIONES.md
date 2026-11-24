@@ -2,6 +2,17 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 17 - REEVALUADA
+
+*2026-11-24 11:49*
+
+- **Pieza de partida:** 2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Por que (regla None):** la pieza tiene que ser simetrica: las zonas protegidas de los pernos se reflejan tambien, para que cada corte y su simetrico sean identicos; ademas hay reglas nuevas (R13 ventanas pasantes, R14 bolsillos desde la cara de apoyo, umbral hasta el 45 %)
+- **Resultado (malla completa):** 2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm | simetria 90.6 % del volumen (93.7 % lejos de los pernos)
+- **Decision:** REEVALUADA - cumple: se sigue optimizando con las reglas nuevas
+
+<img src="galeria/20261124_114901_it017_REEVALUADA_2.293kg.jpg" width="520">
+
 ## Iteracion 16 - SIN CAMBIO
 
 *2026-11-24 11:26*

@@ -1,5 +1,5 @@
 {
- "iter": 16,
+ "iter": 17,
  "actual": {
   "ops": [
    {
@@ -66,38 +66,24 @@
     "r": 4.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\011\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\017\\completa",
   "m": {
-   "mass_kg": 2.2925156956000006,
-   "vm_metric": 199.3109,
-   "u_max": 0.14567388890910485,
+   "mass_kg": 2.2925151775000003,
+   "vm_metric": 199.3091,
+   "u_max": 0.14569007749145343,
    "vm_metric_xyz": [
     16.721685350674203,
     -141.97168205546467,
     13.389599953816933
    ],
-   "n_nodes": 86261,
-   "cs": 1.0787167184534312,
-   "viol": 0.9982231493953488,
-   "score": 2.2925156956000006,
+   "n_nodes": 86109,
+   "cs": 1.0787264605579976,
+   "viol": 0.9982141343255814,
+   "score": 2.2925151775000003,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.3085314304500004,
-   "vm_metric": 193.2299,
-   "u_max": 0.14542274401909766,
-   "vm_metric_xyz": [
-    -0.1439796340353663,
-    -87.09029429461255,
-    57.37325360368376
-   ],
-   "n_nodes": 49460,
-   "cs": 1.1126642408861156,
-   "viol": 0.9677672386976743,
-   "score": 2.3085314304500004,
-   "valido": true
-  },
-  "galeria": "galeria/20261124_094448_it011_ACEPTADA_2.293kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_114901_it017_REEVALUADA_2.293kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -165,124 +151,26 @@
     "r": 4.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\011\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\017\\completa",
   "m": {
-   "mass_kg": 2.2925156956000006,
-   "vm_metric": 199.3109,
-   "u_max": 0.14567388890910485,
+   "mass_kg": 2.2925151775000003,
+   "vm_metric": 199.3091,
+   "u_max": 0.14569007749145343,
    "vm_metric_xyz": [
     16.721685350674203,
     -141.97168205546467,
     13.389599953816933
    ],
-   "n_nodes": 86261,
-   "cs": 1.0787167184534312,
-   "viol": 0.9982231493953488,
-   "score": 2.2925156956000006,
+   "n_nodes": 86109,
+   "cs": 1.0787264605579976,
+   "viol": 0.9982141343255814,
+   "score": 2.2925151775000003,
    "valido": true
   },
-  "iter": 11,
-  "galeria": "galeria/20261124_094448_it011_ACEPTADA_2.293kg.jpg",
-  "verif": {
-   "vm_metric": 213.8309,
-   "u_max": 0.15121683683500756,
-   "n_nodes": 108996,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it011_2.293kg"
+  "iter": 17,
+  "galeria": "galeria/20261124_114901_it017_REEVALUADA_2.293kg.jpg"
  },
- "verificado": {
-  "ops": [
-   {
-    "tipo": "collar",
-    "perno": 0,
-    "t": 6.0,
-    "z": 22.0
-   },
-   {
-    "tipo": "collar",
-    "perno": 2,
-    "t": 6.0,
-    "z": 22.0
-   },
-   {
-    "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": 9.0,
-    "rr": 3.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 48.52,
-    "y": -56.32,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 3.52,
-    "y": -74.32,
-    "r": 6.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 63.52,
-    "y": -32.32,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": -26.48,
-    "y": -29.32,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 27.52,
-    "y": -74.32,
-    "r": 5.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 18.52,
-    "y": -74.32,
-    "r": 5.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 42.52,
-    "y": -44.32,
-    "r": 4.0
-   }
-  ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\011\\completa",
-  "m": {
-   "mass_kg": 2.2925156956000006,
-   "vm_metric": 199.3109,
-   "u_max": 0.14567388890910485,
-   "vm_metric_xyz": [
-    16.721685350674203,
-    -141.97168205546467,
-    13.389599953816933
-   ],
-   "n_nodes": 86261,
-   "cs": 1.0787167184534312,
-   "viol": 0.9982231493953488,
-   "score": 2.2925156956000006,
-   "valido": true
-  },
-  "iter": 11,
-  "galeria": "galeria/20261124_094448_it011_ACEPTADA_2.293kg.jpg",
-  "verif": {
-   "vm_metric": 213.8309,
-   "u_max": 0.15121683683500756,
-   "n_nodes": 108996,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it011_2.293kg"
- },
+ "verificado": null,
  "tau_idx": 0,
  "rechazos": [
   {
@@ -1221,7 +1109,7 @@
  "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.2925156956000006,
+ "wb_masa": null,
  "fin": false,
  "motivo_fin": "",
  "historia": [
@@ -2328,6 +2216,62 @@
     "score": 2.2925156956000006,
     "valido": true
    }
+  },
+  {
+   "iter": 17,
+   "fecha": "2026-11-24T11:49:01.945968",
+   "decision": "REEVALUADA",
+   "titulo": "pieza actual reconstruida",
+   "porque": "la pieza tiene que ser simetrica: las zonas protegidas de los pernos se reflejan tambien, para que cada corte y su simetrico sean identicos; ademas hay reglas nuevas (R13 ventanas pasantes, R14 bolsillos desde la cara de apoyo, umbral hasta el 45 %)",
+   "antes": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   },
+   "despues": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm | simetria 90.6 % del volumen (93.7 % lejos de los pernos)",
+   "galeria": "galeria/20261124_114901_it017_REEVALUADA_2.293kg.jpg",
+   "m_cand": {
+    "mass_kg": 2.2925151775000003,
+    "vm_metric": 199.3091,
+    "u_max": 0.14569007749145343,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86109,
+    "cs": 1.0787264605579976,
+    "viol": 0.9982141343255814,
+    "score": 2.2925151775000003,
+    "valido": true
+   },
+   "motivo": "cumple: se sigue optimizando con las reglas nuevas",
+   "m_actual": {
+    "mass_kg": 2.2925151775000003,
+    "vm_metric": 199.3091,
+    "u_max": 0.14569007749145343,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86109,
+    "cs": 1.0787264605579976,
+    "viol": 0.9982141343255814,
+    "score": 2.2925151775000003,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -2429,6 +2373,5 @@
  "_avisadas": [
   "R11",
   "R5"
- ],
- "reevaluar": "la pieza tiene que ser simetrica: las zonas protegidas de los pernos se reflejan tambien, para que cada corte y su simetrico sean identicos; ademas hay reglas nuevas (R13 ventanas pasantes, R14 bolsillos desde la cara de apoyo, umbral hasta el 45 %)"
+ ]
 }

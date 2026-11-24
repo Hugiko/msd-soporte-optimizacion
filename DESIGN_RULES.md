@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 11:26. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 11:49. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -194,10 +194,26 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 ### R10. Subir el umbral de material ocioso cuando ya no queda donde quitar  (ACTIVA)
 
 - **Si:** no hay ninguna zona por debajo del umbral actual donde quepa un corte.
-- **Hago:** se pasa al siguiente umbral (15 %, 25 %, 35 % del limite).
+- **Hago:** se pasa al siguiente umbral (15 %, 25 %, 35 %, 45 % del limite).
 - **Porque:** se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y solo despues se aprovecha material que trabaja algo mas.
 - **Espero:** permite seguir aligerando con un riesgo controlado.
 - **Evidencia (basada en la teoria / en sus resultados):** regla de procedimiento: se juzga por sus resultados en el optimizador.
+
+### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (ACTIVA)
+
+- **Si:** todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por debajo del umbral de material ocioso.
+- **Hago:** ventana pasante vertical con esquinas redondeadas (radio = 20 % del lado menor); paredes verticales: imprimible.
+- **Porque:** la placa base apenas trabaja lejos de los pernos (en el original, el 85 % de su material esta por debajo del 15 % del limite): la carga baja por el cuerpo a los pernos y la placa entre ellos no esta en ese camino. Una ventana la quita entera, cosa que un rebaje (que deja suelo) o un agujero redondo no pueden hacer.
+- **Espero:** baja la masa; la tension maxima casi no cambia (lejos de los picos).
+- **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+
+### R14. Aliviar la cara de apoyo: bolsillos desde abajo donde la placa base no trabaja  (ACTIVA)
+
+- **Si:** todo el material por debajo de una altura zt (desde la cara de apoyo, con 4 mm de margen) trabaja por debajo del umbral.
+- **Hago:** bolsillo (ranura) abierto por abajo con techo a cuatro aguas a 45 grados (imprimible sin soportes); nunca junto a los pernos (alli la cabeza y la arandela necesitan apoyo).
+- **Porque:** el soporte solo se sujeta por los pernos: la cara inferior lejos de ellos no apoya en nada en el modelo ni transmite carga. La placa base bajo el cuerpo esta ociosa aunque el cuerpo de encima trabaje, asi que se vacia desde abajo sin tocar el cuerpo (cara de apoyo aliviada, habitual en soportes atornillados); las ranuras dejan nervios entre ellas.
+- **Espero:** baja la masa; la tension maxima casi no cambia.
+- **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
 
 ### R11. Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)  (SUSPENDIDA: 9 INTENTOS SIN NINGUNA MEJORA)
 

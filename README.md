@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 11:26 &nbsp;|&nbsp; **Estado:** TERMINADO: ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo) &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 11:49 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 16 | 8 | 0 | 7 | 1 | 21 |
+| 17 | 8 | 0 | 7 | 1 | 21 |
 
 ## Mejor diseno
 
-**2.2925 kg** (-5.4 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.146 mm** &nbsp;|&nbsp; iteracion 11 &nbsp;|&nbsp; **malla fina: 213.8 MPa**
+**2.2925 kg** (-5.4 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.146 mm** &nbsp;|&nbsp; iteracion 17
 
 Operaciones sobre el original:
 
@@ -27,7 +27,7 @@ Operaciones sobre el original:
 
 Ultimo hito verificado (2.293 kg, iteracion 11): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/05_it011_2.293kg/workbench/soporte_it011.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/05_it011_2.293kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261124_094448_it011_ACEPTADA_2.293kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261124_114901_it017_REEVALUADA_2.293kg.jpg)
 
 ## Camino de la pieza
 
@@ -39,6 +39,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 17 | REEVALUADA | - | pieza actual reconstruida | 2.293 kg, 199 MPa | cumple: se sigue optimizando con las reglas nuevas |
 | 16 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 15 | RECHAZADA | R4 | collar de 9 mm en los pernos 3 y 1 | 2.364 kg, 207 MPa | no cumple: 207.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 223.4 M |
 | 14 | RECHAZADA | R3 | hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.282 kg, 202 MPa | no cumple: 202.3 MPa con la malla normal, que corregidos a malla fina (x1.077) son 217.9 M |
@@ -50,7 +51,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 8 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico) | 2.320 kg, 198 MPa | cumple y mejora al mejor (puntuacion 2.3349 -> 2.3201; masa 2.3349 -> 2.3201 kg) |
 | 7 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico) | 2.335 kg, 196 MPa | cumple y mejora al mejor (puntuacion 2.3552 -> 2.3349; masa 2.3552 -> 2.3349 kg) |
 | 6 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico) | 2.355 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3827 -> 2.3552; masa 2.3827 -> 2.3552 kg) |
-| 5 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico) | 2.383 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3989 -> 2.3827; masa 2.3989 -> 2.3827 kg) |
 
 ---
 
