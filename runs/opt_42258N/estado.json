@@ -1,5 +1,5 @@
 {
- "iter": 29,
+ "iter": 30,
  "actual": {
   "ops": [
    {
@@ -102,11 +102,25 @@
    ],
    "n_nodes": 89364,
    "cs": 1.0638308400107275,
-   "viol": 0.9955530147906976,
+   "viol": 0.994331016,
    "score": 2.2571172117500002,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.27223951455,
+   "vm_metric": 193.7605,
+   "u_max": 0.1456002947185987,
+   "vm_metric_xyz": [
+    -0.14397963403535918,
+    -87.09029429461287,
+    57.37325360368376
+   ],
+   "n_nodes": 50215,
+   "cs": 1.109617285256799,
+   "viol": 0.9533016600000002,
+   "score": 2.27223951455,
+   "valido": true
+  },
   "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg"
  },
  "mejor": {
@@ -211,15 +225,137 @@
    ],
    "n_nodes": 89364,
    "cs": 1.0638308400107275,
-   "viol": 0.9955530147906976,
+   "viol": 0.994331016,
    "score": 2.2571172117500002,
    "valido": true
   },
   "iter": 29,
-  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg"
+  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg",
+  "verif": {
+   "vm_metric": 213.7822,
+   "u_max": 0.15136817319761411,
+   "n_nodes": 111654,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
  },
- "verificado": null,
- "tau_idx": 0,
+ "verificado": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "rebaje",
+    "x0": 41.52,
+    "x1": 61.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 9.0,
+    "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 48.52,
+    "y": -56.32,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 3.52,
+    "y": -74.32,
+    "r": 6.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -26.48,
+    "y": -29.32,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 27.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 18.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 42.52,
+    "y": -44.32,
+    "r": 4.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": 9.52,
+    "x1": 17.52,
+    "y0": -52.32,
+    "y1": -36.32,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 29.52,
+    "y0": -112.32,
+    "y1": -88.32,
+    "z0": -1.0,
+    "z1": 10.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 37.52,
+    "y0": -120.32,
+    "y1": -100.32,
+    "z0": -1.0,
+    "z1": 7.0,
+    "rr": 1.5
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\029\\completa",
+  "m": {
+   "mass_kg": 2.2571172117500002,
+   "vm_metric": 202.0998,
+   "u_max": 0.14585127779689777,
+   "vm_metric_xyz": [
+    -5.026992058242467,
+    -58.65040080746889,
+    58.52526820249253
+   ],
+   "n_nodes": 89364,
+   "cs": 1.0638308400107275,
+   "viol": 0.994331016,
+   "score": 2.2571172117500002,
+   "valido": true
+  },
+  "iter": 29,
+  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg",
+  "verif": {
+   "vm_metric": 213.7822,
+   "u_max": 0.15136817319761411,
+   "n_nodes": 111654,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
+ },
+ "tau_idx": 1,
  "rechazos": [
   {
    "op": {
@@ -680,6 +816,14 @@
    "regla": "simetria",
    "iter": 28,
    "motivo": "no simetrico: en el lado simetrico no hay material (2,07 frente a 0,20 cm3)"
+  },
+  {
+   "op": {
+    "tipo": "collar_acampanado"
+   },
+   "motivo_tipo": "tension",
+   "regla": "R12",
+   "iter": 30
   }
  ],
  "stats": {
@@ -1546,12 +1690,22 @@
    "dsig_prev": [
     0.01
    ]
+  },
+  "R12": {
+   "intentos": 1,
+   "descartadas_rapido": 1,
+   "evaluadas": 0,
+   "aceptadas": 0,
+   "rechazadas": 0,
+   "dsig": [],
+   "dm": [],
+   "ejemplos": []
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": null,
+ "wb_masa": 2.2571172117500002,
  "fin": false,
  "motivo_fin": "",
  "historia": [
@@ -3479,7 +3633,7 @@
     ],
     "n_nodes": 89364,
     "cs": 1.0638308400107275,
-    "viol": 0.9955530147906976,
+    "viol": 0.994331016,
     "score": 2.2571172117500002,
     "valido": true
    },
@@ -3495,7 +3649,55 @@
     ],
     "n_nodes": 89364,
     "cs": 1.0638308400107275,
-    "viol": 0.9955530147906976,
+    "viol": 0.994331016,
+    "score": 2.2571172117500002,
+    "valido": true
+   }
+  },
+  {
+   "iter": 30,
+   "fecha": "2026-11-24T13:17:08.908352",
+   "antes": "2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2571172117500002,
+    "vm_metric": 202.0998,
+    "u_max": 0.14585127779689777,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 89364,
+    "cs": 1.0638308400107275,
+    "viol": 0.994331016,
+    "score": 2.2571172117500002,
+    "valido": true
+   },
+   "notas": [
+    "R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %",
+    "1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R12",
+     "titulo": "acampanar la raiz de los collares (30 grados hasta z = 16 mm)",
+     "motivo": "tension prevista 237 MPa: supera el limite (215 MPa)"
+    }
+   ],
+   "decision": "SIN CAMBIO",
+   "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
+   "m_actual": {
+    "mass_kg": 2.2571172117500002,
+    "vm_metric": 202.0998,
+    "u_max": 0.14585127779689777,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 89364,
+    "cs": 1.0638308400107275,
+    "viol": 0.994331016,
     "score": 2.2571172117500002,
     "valido": true
    }
@@ -3586,6 +3788,10 @@
   [
    1.0591,
    1.0378
+  ],
+  [
+   1.0578,
+   1.0378
   ]
  ],
  "estudio_anunciado": true,
@@ -3612,5 +3818,6 @@
  "_avisadas": [
   "R11",
   "R5"
- ]
+ ],
+ "_asim": 1
 }
