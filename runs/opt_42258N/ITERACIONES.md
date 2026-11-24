@@ -2,6 +2,18 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 67 - SIN CAMBIO
+
+*2026-11-24 20:26*
+
+- **Pieza de partida:** 2.0858 kg | 197.0 MPa | CS 1.09 | 0.158 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) -> tension prevista 215 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R16] eliminar la lamina de 1.8 mm en (4, -82, z -0..1) -> tension prevista 222 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R16] eliminar la lamina de 1.9 mm en (4, -66, z -0..1) -> tension prevista 221 MPa: supera el limite (215 MPa)
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
 ## Iteracion 66 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)
 
 *2026-11-24 20:20*

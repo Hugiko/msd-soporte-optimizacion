@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 20:25 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 20:28 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 66 | 21 | 4 | 31 | 8 | 105 |
+| 67 | 21 | 4 | 31 | 9 | 108 |
 
 ## Mejor diseno
 
@@ -51,6 +51,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 67 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 66 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico) | 2.086 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.1213 -> 2.0858; masa 2.1213 -> 2.0858 kg) |
 | 65 | RECHAZADA | R1 | aligeramiento pasante vertical D10 mm en (1, -41) (y su simetrico) | 2.087 kg, 206 MPa | no cumple: 206.0 MPa con la malla normal, que corregidos a malla fina (x1.054) son 217.1 M |
 | 64 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -5..7, y -44..-24 mm (esquinas | 2.024 kg, 333 MPa | no cumple: 333.4 MPa con la malla normal, que corregidos a malla fina (x1.054) son 351.2 M |
@@ -62,7 +63,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 58 | RECHAZADA | R7 | anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm) | 2.204 kg, 208 MPa | no cumple: 208.2 MPa con la malla normal, que corregidos a malla fina (x1.054) son 219.4 M |
 | 57 | ACEPTADA | R1 | aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico) | 2.181 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2002 -> 2.1806; masa 2.2002 -> 2.1806 kg) |
 | 56 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) | 2.221 kg, 221 MPa | no cumple: 220.5 MPa con la malla normal, que corregidos a malla fina (x1.058) son 233.3 M |
-| 55 | INVERSION | R8 | reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49,  | 2.240 kg, 195 MPa | refuerzo eficiente: compra 3.7 % de margen de tension con +40 g (1.8 % de masa); ese marge |
 
 ---
 
