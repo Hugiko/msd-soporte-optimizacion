@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 14:07. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 14:12. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,12 +45,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 378 veces (11 descartadas en la evaluacion rapida, 184 aceptadas, 9 rechazadas); tension +1.3 % (mediana), masa -16 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.3 % real (mediana de 193)
-  - iteracion 13: rechazada: aligeramiento pasante vertical D8 mm en (40, -59) (y su sime (tension +5.1 %, masa -24 g)
+- **Aplicada en el optimizador:** 379 veces (11 descartadas en la evaluacion rapida, 184 aceptadas, 10 rechazadas); tension +1.5 % (mediana), masa -16 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.5 % real (mediana de 194)
   - iteracion 24: rechazada: aligeramiento pasante vertical D12 mm en (7, -116) (y su sim (tension +3.0 %, masa -58 g)
   - iteracion 25: rechazada: aligeramiento pasante vertical D12 mm en (4, -32) (y su sime (tension +4.3 %, masa -58 g)
   - iteracion 35: aceptada: aligeramiento pasante vertical D8 mm en (37, -62) (y su sime (tension +1.7 %, masa -32 g)
+  - iteracion 36: rechazada: aligeramiento pasante vertical D12 mm en (-17, -74) (y su si (tension +209.4 %, masa -20 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -111,7 +111,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** a flexion y torsion la tension crece con la distancia a la fibra neutra (s = M y / I, t = T r / J): el nucleo apenas trabaja y la rigidez la dan las pieles. Por eso las vigas son en I o en cajon.
 - **Espero:** baja la masa; la tension sube poco (las pieles siguen).
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).
-- **Aplicada en el optimizador:** 178 veces (1 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +1.5 % (mediana), masa -8 g (mediana).
+- **Aplicada en el optimizador:** 179 veces (1 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +1.5 % (mediana), masa -8 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.6 % frente a +1.5 % real (mediana de 2)
   - iteracion 15: aceptada: hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -5 g)
   - iteracion 14: rechazada: hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -11 g)
@@ -209,14 +209,14 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Aplicada en el optimizador:** 1 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -5.6 % (mediana), masa +52 g (mediana).
   - iteracion 31: inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)
 
-### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (ACTIVA)
+### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 
 - **Si:** todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por debajo del umbral de material ocioso.
 - **Hago:** ventana pasante vertical con esquinas redondeadas (radio = 20 % del lado menor); paredes verticales: imprimible.
 - **Porque:** la placa base apenas trabaja lejos de los pernos (en el original, el 85 % de su material esta por debajo del 15 % del limite): la carga baja por el cuerpo a los pernos y la placa entre ellos no esta en ese camino. Una ventana la quita entera, cosa que un rebaje (que deja suelo) o un agujero redondo no pueden hacer.
 - **Espero:** baja la masa; la tension maxima casi no cambia (lejos de los picos).
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 7 veces (6 descartadas en la evaluacion rapida, 0 aceptadas, 1 rechazadas); tension +1.6 % (mediana), masa -49 g (mediana).
+- **Aplicada en el optimizador:** 8 veces (7 descartadas en la evaluacion rapida, 0 aceptadas, 1 rechazadas); tension +1.6 % (mediana), masa -49 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.0 % frente a +1.6 % real (mediana de 1)
   - iteracion 27: rechazada: ventana pasante en x 6..38, y -80..-68 mm (esquinas R3) (y s (tension +1.6 %, masa -49 g)
 

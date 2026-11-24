@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 36 - RECHAZADA: R1 aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)
+
+*2026-11-24 14:07*
+
+- **Pieza de partida:** 2.2770 kg | 194.0 MPa | CS 1.11 | 0.145 mm
+- **Por que (regla R1):** Toda la columna en (-17, -74) hasta 9 mm de radio trabaja como maximo al 30 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~89 %; el pico (194 MPa, en alrededor de los pernos traseros) esta a 82 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 193 veces que se ha aplicado: +1.3 % (prevision rapida: 2.2572 kg | 432.5 MPa | CS 0.50 | 0.145 mm)
+- **Resultado (malla completa):** 2.2569 kg | 600.3 MPa | CS 0.36 | 0.147 mm (tension +209.4 %, masa -20 g)
+- **Decision:** RECHAZADA - no cumple: 600.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 635.0 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R13] ventana pasante en x -2..26, y -80..-68 mm (esquinas R3) (y su simetrico) -> tension prevista 218 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.2682 kg | 181.9 MPa | CS 1.18 | 0.143 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: se deshace la inversion de la iteracion 33 (no se recupero en 3 iteraciones): se vuelve al mejor (2.2571 kg)
+
+<img src="galeria/20261124_141225_it036_RECHAZADA_2.257kg.jpg" width="520">
+
 ## Iteracion 35 - ACEPTADA: R1 aligeramiento pasante vertical D8 mm en (37, -62) (y su simetrico)
 
 *2026-11-24 14:02*
