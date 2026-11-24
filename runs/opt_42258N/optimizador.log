@@ -269,3 +269,15 @@
 [09:04:34]   [4/5] resultados
 [09:04:34]   [5/5] imagenes
 [09:04:36]   RESULTADO: 2.4599 kg | 207.8 MPa | CS 1.03 | 0.140 mm (tension +2.9 %, masa -44 g) -> RECHAZADA: no cumple: 207.8 MPa con la malla normal, que corregidos a malla fina (x1.041) son 216.3 MPa > 215 MPa
+[09:04:36] ITERACION 2 | pieza actual: 2.5044 kg | 201.9 MPa | CS 1.06 | 0.139 mm
+[09:04:39]   (GitHub: subido)
+[09:04:41]   pico: 202 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[09:04:41]    1. [R7] anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)
+[09:04:41]       porque: El pico (202 MPa) esta en la orejeta. Delante del bulon hay 7.5 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~28 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pi
+[09:04:41]    2. [R2] rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)
+[09:04:41]       porque: Todo el material por encima de z = 9 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 15 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas l
+[09:04:41]   [1/2] evaluacion rapida: [R7] anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)
+[09:04:51]   [1/5] geometria parametrica (cadquery)
+[09:04:51]         masa CAD = 2.5069 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[09:04:51]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[09:04:57]   malla h=6.0: 47188 nodos, 26279 tet10 (3.7s)

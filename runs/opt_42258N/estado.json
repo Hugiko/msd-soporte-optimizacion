@@ -48,34 +48,88 @@
   },
   "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg"
  },
- "mejor": null,
- "verificado": null,
- "tau_idx": 0,
- "rechazos": [
-  {
-   "op": {
+ "mejor": {
+  "ops": [
+   {
     "tipo": "collar",
     "perno": 0,
     "t": 6.0,
     "z": 22.0
    },
-   "motivo_tipo": "tension",
-   "regla": "verificacion",
-   "iter": 0,
-   "motivo": "malla fina 212.5 MPa"
-  },
-  {
-   "op": {
+   {
     "tipo": "collar",
     "perno": 2,
     "t": 6.0,
     "z": 22.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "verificacion",
-   "iter": 0,
-   "motivo": "malla fina 212.5 MPa"
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9774201209302325,
+   "score": 2.5044295071000002,
+   "valido": true
   },
+  "iter": 0,
+  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg",
+  "verif": {
+   "vm_metric": 212.5,
+   "u_max": 0.144,
+   "n_nodes": 107837,
+   "ok": true
+  }
+ },
+ "verificado": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9774201209302325,
+   "score": 2.5044295071000002,
+   "valido": true
+  },
+  "iter": 0,
+  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg",
+  "verif": {
+   "vm_metric": 212.5,
+   "u_max": 0.144,
+   "n_nodes": 107837,
+   "ok": true
+  }
+ },
+ "tau_idx": 0,
+ "rechazos": [
   {
    "op": {
     "tipo": "rebaje",
@@ -828,7 +882,7 @@
  "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": null,
+ "wb_masa": 2.5044295071000002,
  "fin": false,
  "motivo_fin": "",
  "historia": [

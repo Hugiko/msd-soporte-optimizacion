@@ -485,7 +485,7 @@ def verify_fine(st, best):
     if mv.get("status") != "ok":
         log(f"  verificacion no disponible ({str(mv.get('error'))[:80]})")
         return None
-    ok = valid(mv)
+    ok = mv["vm_metric"] <= SIG_OBJ and (U_LIM <= 0 or mv["u_max"] <= U_LIM)   # la malla fina NO se corrige: es la referencia
     notify_calc(f"Verificacion con malla fina del mejor diseno (iteracion {best['iter']})", "valido" if ok else "descartado",
                 [dict(name="Malla fina", value=f"{mv['vm_metric']:.1f} MPa, {mv['u_max']:.3f} mm ({mv.get('n_nodes')} nodos)", inline=False),
                  dict(name="Resultado", value="CONFIRMADO" if ok else "NO se confirma", inline=True)],
