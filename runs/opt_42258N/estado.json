@@ -1,5 +1,5 @@
 {
- "iter": 39,
+ "iter": 40,
  "actual": {
   "ops": [
    {
@@ -124,7 +124,23 @@
    "score": 2.3017682394000003,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.3166221193000003,
+   "vm_metric": 201.7407,
+   "u_max": 0.14789411805671177,
+   "vm_metric_xyz": [
+    -2.6352259709518364,
+    -58.57777223613992,
+    57.839124185053635
+   ],
+   "n_nodes": 56821,
+   "cs": 1.06572446710059,
+   "viol": 0.9925642440000001,
+   "score": 2.3166221193000003,
+   "valido": true,
+   "algo": 1,
+   "h": 6.0
+  },
   "galeria": "galeria/20261124_142719_it039_INVERSION_2.302kg.jpg"
  },
  "mejor": {
@@ -359,7 +375,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
  },
- "tau_idx": 0,
+ "tau_idx": 1,
  "rechazos": [
   {
    "op": {
@@ -453,6 +469,17 @@
    "motivo_tipo": "puntuacion",
    "regla": "R14",
    "iter": 34
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 37.33,
+    "y": -64.61,
+    "r": 4.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 40
   }
  ],
  "stats": {
@@ -567,8 +594,8 @@
    ]
   },
   "R1": {
-   "intentos": 381,
-   "descartadas_rapido": 13,
+   "intentos": 382,
+   "descartadas_rapido": 14,
    "evaluadas": 194,
    "aceptadas": 184,
    "rechazadas": 10,
@@ -1375,7 +1402,7 @@
    ]
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 2,
  "inversiones": 2,
  "inversion_desde": 37,
  "wb_masa": 2.2571172117500002,
@@ -3950,6 +3977,54 @@
    "decision": "INVERSION",
    "motivo": "refuerzo eficiente: compra 4.2 % de margen de tension con +15 g (0.7 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)",
    "galeria": "galeria/20261124_142719_it039_INVERSION_2.302kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3017682394000003,
+    "vm_metric": 193.7646,
+    "u_max": 0.14675050093902073,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 92268,
+    "cs": 1.1095938060925474,
+    "viol": 0.9533218320000001,
+    "score": 2.3017682394000003,
+    "valido": true
+   }
+  },
+  {
+   "iter": 40,
+   "fecha": "2026-11-24T15:24:58.647418",
+   "antes": "2.3018 kg | 193.8 MPa | CS 1.11 | 0.147 mm",
+   "m_antes": {
+    "mass_kg": 2.3017682394000003,
+    "vm_metric": 193.7646,
+    "u_max": 0.14675050093902073,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 92268,
+    "cs": 1.1095938060925474,
+    "viol": 0.9533218320000001,
+    "score": 2.3017682394000003,
+    "valido": true
+   },
+   "notas": [
+    "umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D8 mm en (37, -65) (y su simetrico)",
+     "motivo": "tension prevista 213 MPa: supera el limite (215 MPa)"
+    }
+   ],
+   "decision": "SIN CAMBIO",
+   "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
    "m_actual": {
     "mass_kg": 2.3017682394000003,
     "vm_metric": 193.7646,

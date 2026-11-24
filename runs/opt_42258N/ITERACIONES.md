@@ -2,6 +2,16 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 40 - SIN CAMBIO
+
+*2026-11-24 15:24*
+
+- **Pieza de partida:** 2.3018 kg | 193.8 MPa | CS 1.11 | 0.147 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D8 mm en (37, -65) (y su simetrico) -> tension prevista 213 MPa: supera el limite (215 MPa)
+- Nota: umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %
+
 ## Iteracion 39 - INVERSION: R7 anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)
 
 *2026-11-24 14:22*
