@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 77 - ACEPTADA: R18 agrandar: rebaje desde arriba hasta z = 9 mm en x 40..64, y -82..-66 mm (esquinas R3) (y su simetrico)
+
+*2026-11-24 21:47*
+
+- **Pieza de partida:** 2.1581 kg | 198.0 MPa | CS 1.09 | 0.159 mm
+- **Por que (regla R18):** El material que rodea la operacion 3 (rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 69 % del limite: se agranda la MISMA forma (quita ~6 g con su simetrico) en vez de anadir otro hueco. Evidencia: crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
+- **Se esperaba:** baja la masa; la tension casi no cambia (prevision rapida: 2.1557 kg | 195.2 MPa | CS 1.10 | 0.159 mm)
+- **Resultado (malla completa):** 2.1556 kg | 193.7 MPa | CS 1.11 | 0.159 mm (tension -2.2 %, masa -3 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1581 -> 2.1556; masa 2.1581 -> 2.1556 kg)
+- Descartada en la evaluacion rapida: [R18] agrandar: ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1291 kg | 223.0 MPa | CS 0.96 | 0.161 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico) -> pasa la evaluacion rapida (2.1561 kg | 195.1 MPa | CS 1.10 | 0.159 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+- Nota: el cambio baja la tension un 2.2 %: se vuelven a permitir los 1 cortes que se habian rechazado por tension con menos margen
+
+<img src="galeria/20261124_215434_it077_ACEPTADA_2.156kg.jpg" width="520">
+
 ## Iteracion 76 - RECHAZADA: R4 collar de 6 mm en los pernos 4 y 2
 
 *2026-11-24 21:41*
