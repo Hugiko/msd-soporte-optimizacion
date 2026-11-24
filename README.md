@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 08:20 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 08:24 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 180 | 177 | 0 | 3 | 0 | 356 |
+| 181 | 178 | 0 | 3 | 0 | 358 |
 
 ## Mejor diseno
 
-**2.1608 kg** (-10.8 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **203.1 MPa** &nbsp;|&nbsp; coef. seguridad **1.06** &nbsp;|&nbsp; desplazamiento **0.155 mm** &nbsp;|&nbsp; iteracion 14 &nbsp;|&nbsp; **malla fina: 214.0 MPa**
+**2.1443 kg** (-11.5 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **204.4 MPa** &nbsp;|&nbsp; coef. seguridad **1.05** &nbsp;|&nbsp; desplazamiento **0.156 mm** &nbsp;|&nbsp; iteracion 181
 
 Operaciones sobre el original:
 
@@ -27,10 +27,11 @@ Operaciones sobre el original:
 11. aligeramiento pasante vertical D16 mm en (34, -74)
 12. rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 mm (esquinas R3)
 13. rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-104 mm (esquinas R3.2)
+14. aligeramiento pasante vertical D10 mm en (43, -98)
 
 Ultimo hito verificado (2.161 kg, iteracion 14): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/11_it014_2.161kg/workbench/soporte_it014.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/11_it014_2.161kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261123_210749_it014_ACEPTADA_2.161kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261124_082447_it181_ACEPTADA_2.144kg.jpg)
 
 ## Camino de la pieza
 
@@ -42,6 +43,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 181 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (43, -98) | 2.144 kg, 204 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1443; masa 2.1608 -> 2.1443 kg) |
 | 180 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (34, -83) | 2.131 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.1443 -> 2.1307; masa 2.1443 -> 2.1307 kg) |
 | 179 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (43, -98) | 2.144 kg, 204 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1443; masa 2.1608 -> 2.1443 kg) |
 | 178 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (34, -83) | 2.131 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.1443 -> 2.1307; masa 2.1443 -> 2.1307 kg) |
@@ -53,7 +55,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 172 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (34, -83) | 2.131 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.1443 -> 2.1307; masa 2.1443 -> 2.1307 kg) |
 | 171 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (43, -98) | 2.144 kg, 204 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1443; masa 2.1608 -> 2.1443 kg) |
 | 170 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (34, -83) | 2.131 kg, 208 MPa | cumple y mejora al mejor (puntuacion 2.1443 -> 2.1307; masa 2.1443 -> 2.1307 kg) |
-| 169 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (43, -98) | 2.144 kg, 204 MPa | cumple y mejora al mejor (puntuacion 2.1608 -> 2.1443; masa 2.1608 -> 2.1443 kg) |
 
 ---
 
