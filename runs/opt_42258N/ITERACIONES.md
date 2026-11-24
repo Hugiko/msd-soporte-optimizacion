@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 28 - RECHAZADA: R14 bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (28, -92) (y su simetrico)
+
+*2026-11-24 12:25*
+
+- **Pieza de partida:** 2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 12 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 45 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (199 MPa, en alrededor de los pernos traseros) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 4 veces que se ha aplicado: +0.1 % (prevision rapida: 2.2058 kg | 199.5 MPa | CS 1.08 | 0.147 mm)
+- **Resultado (malla completa):** 2.2039 kg | 203.0 MPa | CS 1.06 | 0.147 mm (tension +1.8 %, masa -37 g)
+- **Decision:** RECHAZADA - no cumple: 203.0 MPa con la malla normal, que corregidos a malla fina (x1.069) son 217.1 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R13] ventana pasante en x -26..-2, y -80..-68 mm (esquinas R3) (y su simetrico) -> tension prevista 1382 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -26..-2, y -80..-68 mm (esquinas R3) (y su simetrico) -> tension prevista 210 MPa: supera el limite (215 MPa)
+
+<img src="galeria/20261124_122817_it028_RECHAZADA_2.204kg.jpg" width="520">
+
 ## Iteracion 27 - RECHAZADA: R13 ventana pasante en x 6..38, y -80..-68 mm (esquinas R3) (y su simetrico)
 
 *2026-11-24 12:22*
