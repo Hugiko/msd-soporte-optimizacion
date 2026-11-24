@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 20:33. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 21:07. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -232,6 +232,14 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Espero:** baja la masa; la tension casi no cambia.
 - **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo del 18-33 % del limite.
 - **Aplicada en el optimizador:** 8 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+
+### R18. Agrandar una forma pura cuyo borde no trabaja  (ACTIVA)
+
+- **Si:** el material que se quitaria al agrandar un corte existente (agujero, ranura, bolsillo) trabaja por debajo del 75 % del limite.
+- **Hago:** la MISMA forma, mas grande (radio +1,5 mm o 3 mm mas larga por cada extremo): la pieza sigue hecha de formas puras.
+- **Porque:** es el crecimiento de contorno de la optimizacion evolutiva (ESO): se quita el material de baja tension en la frontera de un hueco que ya funciona, sin anadir huecos nuevos superpuestos (facil de fabricar: menos operaciones y formas simples).
+- **Espero:** baja la masa; la tension sube poco si el borde de verdad no trabaja.
+- **Evidencia (basada en la teoria / en sus resultados):** crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 

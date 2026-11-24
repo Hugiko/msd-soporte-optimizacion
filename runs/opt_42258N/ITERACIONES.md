@@ -2,6 +2,17 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 71 - REEVALUADA
+
+*2026-11-24 21:07*
+
+- **Pieza de partida:** 2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm
+- **Por que (regla None):** FORMAS PURAS para facilitar la fabricacion: los 23 cortes irregulares de la mejor pieza (2.0776 kg) se sustituyen por 14 operaciones de formas puras (circulos, ranuras y bolsillos en ranura con techo a 45 grados) INSCRITAS en lo que ya se habia vaciado (no quitan material nuevo) y sin paredes de menos de 4 mm entre ellas. Despues la pieza crece agrandando esas mismas formas (R18).
+- **Resultado (malla completa):** 2.1876 kg | 193.7 MPa | CS 1.11 | 0.156 mm | simetria 88.7 % del volumen (90.9 % lejos de los pernos)
+- **Decision:** REEVALUADA - cumple: se sigue optimizando con las reglas nuevas
+
+<img src="galeria/20261124_210739_it071_REEVALUADA_2.188kg.jpg" width="520">
+
 ## Iteracion 70 - SIN CAMBIO
 
 *2026-11-24 20:33*

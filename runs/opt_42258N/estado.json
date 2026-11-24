@@ -1,5 +1,5 @@
 {
- "iter": 70,
+ "iter": 71,
  "actual": {
   "ops": [
    {
@@ -28,16 +28,26 @@
     "rr": 3.0
    },
    {
-    "tipo": "agujero",
-    "x": 48.52,
-    "y": -56.32,
-    "r": 4.8
+    "tipo": "orejeta",
+    "ro": 20.09
    },
    {
-    "tipo": "agujero",
-    "x": 3.52,
-    "y": -74.32,
-    "r": 6.0
+    "tipo": "ranura",
+    "x1": 41.5,
+    "y1": -78.6,
+    "r1": 11.5,
+    "x2": 41.5,
+    "y2": -66.6,
+    "r2": 11.5
+   },
+   {
+    "tipo": "ranura",
+    "x1": 26.5,
+    "y1": -71.6,
+    "r1": 4.0,
+    "x2": 17.5,
+    "y2": -75.6,
+    "r2": 4.0
    },
    {
     "tipo": "agujero",
@@ -47,14 +57,14 @@
    },
    {
     "tipo": "agujero",
-    "x": 27.52,
-    "y": -74.32,
-    "r": 5.0
+    "x": 3.5,
+    "y": -74.3,
+    "r": 6.5
    },
    {
     "tipo": "agujero",
-    "x": 18.52,
-    "y": -74.32,
+    "x": 4.33,
+    "y": -109.61,
     "r": 5.0
    },
    {
@@ -64,157 +74,60 @@
     "r": 4.0
    },
    {
-    "tipo": "hueco",
-    "x0": 9.52,
-    "x1": 17.52,
-    "y0": -52.32,
-    "y1": -36.32,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 13.3,
+    "y1": -54.4,
+    "x2": 7.3,
+    "y2": -35.4,
+    "r": 10.5,
+    "z1": 11.1
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 29.52,
-    "y0": -112.32,
-    "y1": -88.32,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 23.3,
+    "y1": -27.4,
+    "x2": 56.3,
+    "y2": -28.4,
+    "r": 7.5,
+    "z1": 6.0
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 37.52,
-    "y0": -120.32,
-    "y1": -100.32,
-    "z0": -1.0,
-    "z1": 7.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 23.3,
+    "y1": -38.4,
+    "x2": 29.3,
+    "y2": -61.4,
+    "r": 4.0,
+    "z1": 6.1
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 33.52,
-    "y0": -107.61,
-    "y1": -79.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "orejeta",
-    "ro": 20.09
-   },
-   {
-    "tipo": "agujero",
-    "x": 34.33,
-    "y": -76.61,
-    "r": 6.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -0.67,
-    "x1": 23.33,
-    "y0": -119.61,
-    "y1": -87.61,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 3.33,
-    "x1": 15.33,
-    "y0": -51.61,
-    "y1": -35.61,
-    "z0": 24.07,
-    "z1": 32.07
-   },
-   {
-    "tipo": "hueco",
-    "x0": -4.67,
-    "x1": 23.33,
-    "y0": -55.61,
-    "y1": -23.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 7.33,
-    "x1": 63.33,
-    "y0": -35.61,
-    "y1": -19.61,
-    "z0": -1.0,
-    "z1": 6.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "agujero",
-    "x": 43.33,
-    "y": -67.61,
-    "r": 10.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 37.33,
-    "y": -61.61,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -109.61,
-    "r": 5.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -44.67,
-    "x1": -16.67,
-    "y0": -107.61,
-    "y1": -43.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": -30.6,
+    "y1": -93.6,
+    "x2": -32.6,
+    "y2": -56.6,
+    "r": 13.5,
+    "z1": 12.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\068\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\071\\completa",
   "m": {
-   "mass_kg": 2.0776116307,
-   "vm_metric": 195.2278,
-   "u_max": 0.15880749888969553,
+   "mass_kg": 2.18755008,
+   "vm_metric": 193.6982,
+   "u_max": 0.15551843468860843,
    "vm_metric_xyz": [
-    -0.19800991558367897,
-    -58.50376352723593,
-    57.13994159170428
+    -0.25288282949144403,
+    -61.046600599090745,
+    57.177800029302176
    ],
-   "n_nodes": 93594,
-   "cs": 1.1012775844423797,
-   "viol": 0.9570702381395348,
-   "score": 2.0776116307,
+   "n_nodes": 97191,
+   "cs": 1.109974176321721,
+   "viol": 0.9594817813953489,
+   "score": 2.18755008,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.0946019037999997,
-   "vm_metric": 204.7256,
-   "u_max": 0.15831889374190466,
-   "vm_metric_xyz": [
-    -2.6352259709518364,
-    -58.57777223613992,
-    57.839124185053635
-   ],
-   "n_nodes": 54942,
-   "cs": 1.0501862004556344,
-   "viol": 1.0036315460465115,
-   "score": 2.0946019037999997,
-   "valido": false,
-   "algo": 10,
-   "h": 6.0
-  },
-  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_210739_it071_REEVALUADA_2.188kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -244,16 +157,26 @@
     "rr": 3.0
    },
    {
-    "tipo": "agujero",
-    "x": 48.52,
-    "y": -56.32,
-    "r": 4.8
+    "tipo": "orejeta",
+    "ro": 20.09
    },
    {
-    "tipo": "agujero",
-    "x": 3.52,
-    "y": -74.32,
-    "r": 6.0
+    "tipo": "ranura",
+    "x1": 41.5,
+    "y1": -78.6,
+    "r1": 11.5,
+    "x2": 41.5,
+    "y2": -66.6,
+    "r2": 11.5
+   },
+   {
+    "tipo": "ranura",
+    "x1": 26.5,
+    "y1": -71.6,
+    "r1": 4.0,
+    "x2": 17.5,
+    "y2": -75.6,
+    "r2": 4.0
    },
    {
     "tipo": "agujero",
@@ -263,14 +186,14 @@
    },
    {
     "tipo": "agujero",
-    "x": 27.52,
-    "y": -74.32,
-    "r": 5.0
+    "x": 3.5,
+    "y": -74.3,
+    "r": 6.5
    },
    {
     "tipo": "agujero",
-    "x": 18.52,
-    "y": -74.32,
+    "x": 4.33,
+    "y": -109.61,
     "r": 5.0
    },
    {
@@ -280,649 +203,64 @@
     "r": 4.0
    },
    {
-    "tipo": "hueco",
-    "x0": 9.52,
-    "x1": 17.52,
-    "y0": -52.32,
-    "y1": -36.32,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 13.3,
+    "y1": -54.4,
+    "x2": 7.3,
+    "y2": -35.4,
+    "r": 10.5,
+    "z1": 11.1
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 29.52,
-    "y0": -112.32,
-    "y1": -88.32,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 23.3,
+    "y1": -27.4,
+    "x2": 56.3,
+    "y2": -28.4,
+    "r": 7.5,
+    "z1": 6.0
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 37.52,
-    "y0": -120.32,
-    "y1": -100.32,
-    "z0": -1.0,
-    "z1": 7.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": 23.3,
+    "y1": -38.4,
+    "x2": 29.3,
+    "y2": -61.4,
+    "r": 4.0,
+    "z1": 6.1
    },
    {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 33.52,
-    "y0": -107.61,
-    "y1": -79.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "orejeta",
-    "ro": 20.09
-   },
-   {
-    "tipo": "agujero",
-    "x": 34.33,
-    "y": -76.61,
-    "r": 6.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -0.67,
-    "x1": 23.33,
-    "y0": -119.61,
-    "y1": -87.61,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 3.33,
-    "x1": 15.33,
-    "y0": -51.61,
-    "y1": -35.61,
-    "z0": 24.07,
-    "z1": 32.07
-   },
-   {
-    "tipo": "hueco",
-    "x0": -4.67,
-    "x1": 23.33,
-    "y0": -55.61,
-    "y1": -23.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 7.33,
-    "x1": 63.33,
-    "y0": -35.61,
-    "y1": -19.61,
-    "z0": -1.0,
-    "z1": 6.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "agujero",
-    "x": 43.33,
-    "y": -67.61,
-    "r": 10.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 37.33,
-    "y": -61.61,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -109.61,
-    "r": 5.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -44.67,
-    "x1": -16.67,
-    "y0": -107.61,
-    "y1": -43.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
+    "tipo": "bolsillo_ranura",
+    "x1": -30.6,
+    "y1": -93.6,
+    "x2": -32.6,
+    "y2": -56.6,
+    "r": 13.5,
+    "z1": 12.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\068\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\071\\completa",
   "m": {
-   "mass_kg": 2.0776116307,
-   "vm_metric": 195.2278,
-   "u_max": 0.15880749888969553,
+   "mass_kg": 2.18755008,
+   "vm_metric": 193.6982,
+   "u_max": 0.15551843468860843,
    "vm_metric_xyz": [
-    -0.19800991558367897,
-    -58.50376352723593,
-    57.13994159170428
+    -0.25288282949144403,
+    -61.046600599090745,
+    57.177800029302176
    ],
-   "n_nodes": 93594,
-   "cs": 1.1012775844423797,
-   "viol": 0.9570702381395348,
-   "score": 2.0776116307,
+   "n_nodes": 97191,
+   "cs": 1.109974176321721,
+   "viol": 0.9594817813953489,
+   "score": 2.18755008,
    "valido": true
   },
-  "iter": 68,
-  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg",
-  "verif": {
-   "vm_metric": 210.0537,
-   "u_max": 0.1654195214486428,
-   "n_nodes": 117068,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\14_it068_2.078kg"
+  "iter": 71,
+  "galeria": "galeria/20261124_210739_it071_REEVALUADA_2.188kg.jpg"
  },
- "verificado": {
-  "ops": [
-   {
-    "tipo": "collar",
-    "perno": 0,
-    "t": 6.0,
-    "z": 22.0,
-    "flare": 30.0,
-    "z_flare": 16.0
-   },
-   {
-    "tipo": "collar",
-    "perno": 2,
-    "t": 6.0,
-    "z": 22.0,
-    "flare": 30.0,
-    "z_flare": 16.0
-   },
-   {
-    "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": 9.0,
-    "rr": 3.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 48.52,
-    "y": -56.32,
-    "r": 4.8
-   },
-   {
-    "tipo": "agujero",
-    "x": 3.52,
-    "y": -74.32,
-    "r": 6.0
-   },
-   {
-    "tipo": "agujero",
-    "x": -26.48,
-    "y": -29.32,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 27.52,
-    "y": -74.32,
-    "r": 5.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 18.52,
-    "y": -74.32,
-    "r": 5.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 42.52,
-    "y": -44.32,
-    "r": 4.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": 9.52,
-    "x1": 17.52,
-    "y0": -52.32,
-    "y1": -36.32,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 29.52,
-    "y0": -112.32,
-    "y1": -88.32,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 37.52,
-    "y0": -120.32,
-    "y1": -100.32,
-    "z0": -1.0,
-    "z1": 7.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 33.52,
-    "y0": -107.61,
-    "y1": -79.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "orejeta",
-    "ro": 20.09
-   },
-   {
-    "tipo": "agujero",
-    "x": 34.33,
-    "y": -76.61,
-    "r": 6.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -0.67,
-    "x1": 23.33,
-    "y0": -119.61,
-    "y1": -87.61,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 3.33,
-    "x1": 15.33,
-    "y0": -51.61,
-    "y1": -35.61,
-    "z0": 24.07,
-    "z1": 32.07
-   },
-   {
-    "tipo": "hueco",
-    "x0": -4.67,
-    "x1": 23.33,
-    "y0": -55.61,
-    "y1": -23.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "hueco",
-    "x0": 7.33,
-    "x1": 63.33,
-    "y0": -35.61,
-    "y1": -19.61,
-    "z0": -1.0,
-    "z1": 6.0,
-    "rr": 1.5
-   },
-   {
-    "tipo": "agujero",
-    "x": 43.33,
-    "y": -67.61,
-    "r": 10.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 37.33,
-    "y": -61.61,
-    "r": 8.0
-   },
-   {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -109.61,
-    "r": 5.0
-   },
-   {
-    "tipo": "hueco",
-    "x0": -44.67,
-    "x1": -16.67,
-    "y0": -107.61,
-    "y1": -43.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   }
-  ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\068\\completa",
-  "m": {
-   "mass_kg": 2.0776116307,
-   "vm_metric": 195.2278,
-   "u_max": 0.15880749888969553,
-   "vm_metric_xyz": [
-    -0.19800991558367897,
-    -58.50376352723593,
-    57.13994159170428
-   ],
-   "n_nodes": 93594,
-   "cs": 1.1012775844423797,
-   "viol": 0.9570702381395348,
-   "score": 2.0776116307,
-   "valido": true
-  },
-  "iter": 68,
-  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg",
-  "verif": {
-   "vm_metric": 210.0537,
-   "u_max": 0.1654195214486428,
-   "n_nodes": 117068,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\14_it068_2.078kg"
- },
- "tau_idx": 3,
- "rechazos": [
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -64.32,
-    "zc": 11.0,
-    "rr": 3.2
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R2",
-   "iter": 1
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 37.52,
-    "x1": 49.52,
-    "y0": -80.32,
-    "y1": -64.32,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R2",
-   "iter": 3
-  },
-  {
-   "op": {
-    "tipo": "collar",
-    "perno": 2,
-    "t": 8.0,
-    "z": 22.0
-   },
-   "motivo_tipo": "puntuacion",
-   "regla": "R4",
-   "iter": 9
-  },
-  {
-   "op": {
-    "tipo": "redondeo",
-    "x": 16.72,
-    "y": -141.97,
-    "z": 13.39,
-    "r": 3.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R6",
-   "iter": 10
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 5.52,
-    "x1": 41.52,
-    "y0": -104.32,
-    "y1": -76.32,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R14",
-   "iter": 27
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 63.52,
-    "y": -32.32,
-    "r": 8.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "simetria",
-   "iter": 28,
-   "motivo": "no simetrico: en el lado simetrico no hay material (2,07 frente a 0,20 cm3)"
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 33.52,
-    "y0": -67.61,
-    "y1": -35.61,
-    "z0": -1.0,
-    "z1": 14.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "puntuacion",
-   "regla": "R14",
-   "iter": 34
-  },
-  {
-   "op": {
-    "tipo": "redondeo",
-    "x": 57.49,
-    "y": -88.34,
-    "z": -0.0,
-    "r": 3.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R6",
-   "iter": 42
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": -0.67,
-    "x1": 23.33,
-    "y0": -119.61,
-    "y1": -87.61,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R14",
-   "iter": 43
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 1.33,
-    "y": -28.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 47
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": -4.67,
-    "x1": 23.33,
-    "y0": -55.61,
-    "y1": -23.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R14",
-   "iter": 50
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": -4.67,
-    "x1": 23.33,
-    "y0": -51.61,
-    "y1": -23.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R14",
-   "iter": 51
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -109.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 52
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -40.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 52
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 40.33,
-    "y": -85.61,
-    "r": 4.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 57
-  },
-  {
-   "op": {
-    "tipo": "collar",
-    "perno": 3,
-    "t": 4.0,
-    "z": 22.0
-   },
-   "motivo_tipo": "puntuacion",
-   "regla": "R4",
-   "iter": 60
-  },
-  {
-   "op": {
-    "tipo": "collar",
-    "perno": 3,
-    "t": 6.0,
-    "z": 22.0
-   },
-   "motivo_tipo": "puntuacion",
-   "regla": "R4",
-   "iter": 61
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -1.67,
-    "y": -28.61,
-    "r": 5.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 63
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -16.67,
-    "y": -73.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 67
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 0.5,
-    "x1": 8.31,
-    "y0": -86.4,
-    "y1": -78.58,
-    "z0": -1.0,
-    "z1": 2.41,
-    "rr": 1.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R16",
-   "iter": 67
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 0.08,
-    "x1": 7.89,
-    "y0": -69.61,
-    "y1": -61.81,
-    "z0": -1.0,
-    "z1": 2.4,
-    "rr": 1.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R16",
-   "iter": 67
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -22.67,
-    "y": -103.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 68
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -22.67,
-    "y": -46.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "geometria",
-   "regla": "R1",
-   "iter": 69
-  }
- ],
+ "verificado": null,
+ "tau_idx": 0,
+ "rechazos": [],
  "stats": {
   "R4": {
    "intentos": 17,
@@ -1968,12 +1306,12 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.0776116307,
- "fin": true,
- "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
+ "wb_masa": null,
+ "fin": false,
+ "motivo_fin": "",
  "historia": [
   {
    "iter": 0,
@@ -6711,6 +6049,62 @@
     "score": 2.0776116307,
     "valido": true
    }
+  },
+  {
+   "iter": 71,
+   "fecha": "2026-11-24T21:07:39.714275",
+   "decision": "REEVALUADA",
+   "titulo": "pieza actual reconstruida",
+   "porque": "FORMAS PURAS para facilitar la fabricacion: los 23 cortes irregulares de la mejor pieza (2.0776 kg) se sustituyen por 14 operaciones de formas puras (circulos, ranuras y bolsillos en ranura con techo a 45 grados) INSCRITAS en lo que ya se habia vaciado (no quitan material nuevo) y sin paredes de menos de 4 mm entre ellas. Despues la pieza crece agrandando esas mismas formas (R18).",
+   "antes": "2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm",
+   "m_antes": {
+    "mass_kg": 2.0776116307,
+    "vm_metric": 195.2278,
+    "u_max": 0.15880749888969553,
+    "vm_metric_xyz": [
+     -0.19800991558367897,
+     -58.50376352723593,
+     57.13994159170428
+    ],
+    "n_nodes": 93594,
+    "cs": 1.1012775844423797,
+    "viol": 0.9570702381395348,
+    "score": 2.0776116307,
+    "valido": true
+   },
+   "despues": "2.1876 kg | 193.7 MPa | CS 1.11 | 0.156 mm | simetria 88.7 % del volumen (90.9 % lejos de los pernos)",
+   "galeria": "galeria/20261124_210739_it071_REEVALUADA_2.188kg.jpg",
+   "m_cand": {
+    "mass_kg": 2.18755008,
+    "vm_metric": 193.6982,
+    "u_max": 0.15551843468860843,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 97191,
+    "cs": 1.109974176321721,
+    "viol": 0.9594817813953489,
+    "score": 2.18755008,
+    "valido": true
+   },
+   "motivo": "cumple: se sigue optimizando con las reglas nuevas",
+   "m_actual": {
+    "mass_kg": 2.18755008,
+    "vm_metric": 193.6982,
+    "u_max": 0.15551843468860843,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 97191,
+    "cs": 1.109974176321721,
+    "viol": 0.9594817813953489,
+    "score": 2.18755008,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -7568,6 +6962,191 @@
     "t": 2.244192392016716,
     "smax": 101.65789794921875,
     "n": 4
+   }
+  ]
+ },
+ "pieza_irregular_anterior": {
+  "masa_kg": 2.0776116307,
+  "tension": 195.2278,
+  "iter": 68,
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0,
+    "flare": 30.0,
+    "z_flare": 16.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0,
+    "flare": 30.0,
+    "z_flare": 16.0
+   },
+   {
+    "tipo": "rebaje",
+    "x0": 41.52,
+    "x1": 61.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 9.0,
+    "rr": 3.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 48.52,
+    "y": -56.32,
+    "r": 4.8
+   },
+   {
+    "tipo": "agujero",
+    "x": 3.52,
+    "y": -74.32,
+    "r": 6.0
+   },
+   {
+    "tipo": "agujero",
+    "x": -26.48,
+    "y": -29.32,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 27.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 18.52,
+    "y": -74.32,
+    "r": 5.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 42.52,
+    "y": -44.32,
+    "r": 4.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": 9.52,
+    "x1": 17.52,
+    "y0": -52.32,
+    "y1": -36.32,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 29.52,
+    "y0": -112.32,
+    "y1": -88.32,
+    "z0": -1.0,
+    "z1": 10.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 37.52,
+    "y0": -120.32,
+    "y1": -100.32,
+    "z0": -1.0,
+    "z1": 7.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 33.52,
+    "y0": -107.61,
+    "y1": -79.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "orejeta",
+    "ro": 20.09
+   },
+   {
+    "tipo": "agujero",
+    "x": 34.33,
+    "y": -76.61,
+    "r": 6.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": -0.67,
+    "x1": 23.33,
+    "y0": -119.61,
+    "y1": -87.61,
+    "z0": -1.0,
+    "z1": 10.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 3.33,
+    "x1": 15.33,
+    "y0": -51.61,
+    "y1": -35.61,
+    "z0": 24.07,
+    "z1": 32.07
+   },
+   {
+    "tipo": "hueco",
+    "x0": -4.67,
+    "x1": 23.33,
+    "y0": -55.61,
+    "y1": -23.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 7.33,
+    "x1": 63.33,
+    "y0": -35.61,
+    "y1": -19.61,
+    "z0": -1.0,
+    "z1": 6.0,
+    "rr": 1.5
+   },
+   {
+    "tipo": "agujero",
+    "x": 43.33,
+    "y": -67.61,
+    "r": 10.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 37.33,
+    "y": -61.61,
+    "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 4.33,
+    "y": -109.61,
+    "r": 5.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": -44.67,
+    "x1": -16.67,
+    "y0": -107.61,
+    "y1": -43.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
    }
   ]
  }

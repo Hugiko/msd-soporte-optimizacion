@@ -9,7 +9,7 @@
   "referencia": "los 16 disenos publicados VALIDOS",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-24T19:45"
+  "fecha": "2026-11-24T21:05"
  },
  "R1": {
   "respaldo": true,
@@ -135,6 +135,11 @@
  "R14": {
   "respaldo": true,
   "texto": "placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3",
+  "tabla": []
+ },
+ "R18": {
+  "respaldo": null,
+  "texto": "crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos",
   "tabla": []
  },
  "R16": {
