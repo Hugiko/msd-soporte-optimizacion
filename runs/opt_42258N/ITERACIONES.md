@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 5 - ACEPTADA: R1 aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico)
+
+*2026-11-24 09:19*
+
+- **Pieza de partida:** 2.3989 kg | 205.6 MPa | CS 1.05 | 0.141 mm
+- **Por que (regla R1):** Toda la columna en (64, -32) hasta 11 mm de radio trabaja como maximo al 25 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~74 %; el pico (206 MPa, en alrededor de los pernos delanteros) esta a 26 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 182 veces que se ha aplicado: +1.6 % (prevision rapida: 2.3833 kg | 204.9 MPa | CS 1.05 | 0.142 mm)
+- **Resultado (malla completa):** 2.3827 kg | 197.2 MPa | CS 1.09 | 0.142 mm (tension -4.1 %, masa -16 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.3989 -> 2.3827; masa 2.3989 -> 2.3827 kg)
+- Descartada en la evaluacion rapida: [R4] collar de 4 mm en los pernos 2 y 4 -> pasa la evaluacion rapida (2.4403 kg | 206.5 MPa | CS 1.04 | 0.140 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R4] collar de 6 mm en los pernos 2 y 4 -> pasa la evaluacion rapida (2.4754 kg | 205.5 MPa | CS 1.05 | 0.138 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261124_092340_it005_ACEPTADA_2.383kg.jpg" width="520">
+
 ## Iteracion 4 - ACEPTADA: R1 aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)
 
 *2026-11-24 09:13*
