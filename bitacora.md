@@ -298,3 +298,18 @@
 - **Corregido:**
   - R8 («reducir el corte junto al pico») no miraba la copia simétrica de cada corte, y por eso no actuó sobre el pico de la op. 4.
   - Los bolsillos desde la cara de apoyo (R14) pueden salir por el contorno: el techo a 45° deja un chaflán en el faldón.
+
+## 2026-11-24 – Láminas finas entre cortes (observación del grupo)
+
+- **Observación del grupo:** las paredes que unen los huecos son finísimas.
+- **Medido:**
+  - **Espesor en el CAD** (rayo hacia dentro desde cada punto de la superficie, unos 26 000 puntos): 12 láminas de 0,8–2,3 mm, algunas con filo de 0,1–0,2 mm. Casi todas están en la cara de apoyo, donde el techo a 45° de un bolsillo corta un aligeramiento vertical o el borde. Trabajan de media a 13–51 MPa (6–24 % del límite).
+  - **Paredes entre aligeramientos:** de 4–5 mm con un máximo del 18–33 % del límite (la de 4,6 mm entre los n.º 4 y 9 trabaja al 59 %: se queda).
+- **Por qué sobran:**
+  - casi no aportan sección (rigidez a flexión ∝ espesor³);
+  - se imprimen mal (paredes < ~1 mm y filos);
+  - la malla de 4 mm no las resuelve, y son la causa probable de los elementos defectuosos que daban error en MAPDL.
+- **Reglas nuevas:**
+  - **R16:** eliminar láminas finas ociosas, medidas en el CAD, con un vaciado de techo a 45°.
+  - **R17:** unir dos aligeramientos separados por una pared fina ociosa en una ranura.
+  - Cada iteración prueba al menos una de estas propuestas si existen.

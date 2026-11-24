@@ -104,6 +104,19 @@ REGLAS = {
                         "union es un angulo abierto (menor concentracion) y la base de los pernos se rigidiza, lo que reduce la "
                         "flexion que llega a las orejetas. Compra margen de tension con poca masa, que luego se gasta aligerando."),
                 espero="baja la tension maxima del orden de un 5 % con ~+2 % de masa (inversion)"),
+    "R16": dict(titulo="Eliminar laminas finas que no trabajan", tipo="quitar",
+                si="una pared de la pieza mide menos de 2,5 mm (medido en el CAD con rayos hacia dentro) y trabaja por debajo del umbral",
+                hago="se quita con un vaciado que la abarca (techo a 45 grados si queda material encima; abierto por abajo si esta en la cara de apoyo)",
+                porque=("una lamina tan fina casi no aporta seccion (a flexion la rigidez de una pared va como el espesor al cubo), se "
+                        "imprime mal (paredes de menos de ~1 mm y filos en fusion de lecho de polvo) y la malla de 4 mm no la resuelve "
+                        "(elementos degenerados). Suelen quedar donde se cruzan dos cortes."),
+                espero="baja algo la masa; la tension no cambia (la lamina no lleva carga) y la malla mejora"),
+    "R17": dict(titulo="Unir dos aligeramientos separados por una pared fina que no trabaja", tipo="quitar",
+                si="dos aligeramientos verticales quedan separados por una pared de menos de 5 mm que trabaja por debajo del umbral",
+                hago="ranura: la envolvente de los dos agujeros (vertical y pasante: imprimible)",
+                porque=("la pared entre dos agujeros cercanos no esta en el camino de la carga si trabaja poco; quitarla convierte dos "
+                        "huecos en una ranura con el borde mas suave (sin la pared fina entre ellos)."),
+                espero="baja la masa; la tension casi no cambia"),
     "R13": dict(titulo="Ventana pasante donde toda la columna (de la base a arriba) esta ociosa", tipo="quitar",
                 si="todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por "
                    "debajo del umbral de material ocioso",
@@ -382,6 +395,11 @@ def evidence(log=print):
         E["R13"] = dict(respaldo=None, texto="la placa base del original apenas trabaja (85 % ocioso)", tabla=[])
     if "R13" in E:
         E["R14"] = dict(E["R13"])
+    E["R16"] = dict(respaldo=None, texto=("medido en la pieza de la iteracion 56: 12 laminas de 0,8 a 2,3 mm (algunas con filo de "
+                                          "0,1-0,2 mm), casi todas en la cara de apoyo donde un bolsillo a 45 grados corta un aligeramiento, "
+                                          "trabajando de media a 13-51 MPa"), tabla=[])
+    E["R17"] = dict(respaldo=None, texto=("medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo "
+                                          "del 18-33 % del limite"), tabla=[])
     E["R12"] = dict(respaldo=True, texto=("prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a "
                                           "30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %)"), tabla=[])
     for r in ("R8", "R9", "R10"):
@@ -509,7 +527,45 @@ def shrink(op, f=0.6):
     return op if min(op["x1"] - op["x0"], op["y1"] - op["y0"]) >= 8.0 else None
 
 
-def propose(C, m, ops, st, E, stats, n_max=3):
+def thin_walls(solid, C, max_t=2.5, step=2):
+    """Laminas finas de la pieza: espesor medido en el CAD (rayo hacia dentro desde cada punto de la superficie hasta la
+    cara opuesta). Devuelve grupos con su caja, espesor y tension del entorno."""
+    import vtk, pyvista as pv
+    from scipy.sparse.csgraph import connected_components
+    from scipy.sparse import coo_matrix
+    from scipy.spatial import cKDTree
+    verts, tris = solid.tessellate(0.1, 0.3)
+    P = np.array([(v.x, v.y, v.z) for v in verts])
+    mesh = pv.PolyData(P, np.hstack([np.full((len(tris), 1), 3), np.array(tris)]).ravel()).clean()
+    mesh = mesh.compute_normals(point_normals=True, cell_normals=False, auto_orient_normals=True, consistent_normals=True)
+    P = mesh.points; N = mesh.point_data["Normals"]
+    obb = vtk.vtkOBBTree(); obb.SetDataSet(mesh); obb.BuildLocator()
+    pts = vtk.vtkPoints()
+    sel = np.arange(0, len(P), step)
+    th = np.full(len(P), np.inf)
+    for i in sel:
+        pts.Reset()
+        if obb.IntersectWithLine(P[i] - N[i] * 0.02, P[i] - N[i] * 15.0, pts, None) != 0 and pts.GetNumberOfPoints():
+            th[i] = np.linalg.norm(np.array(pts.GetPoint(0)) - P[i])
+    idx = np.flatnonzero(th < max_t)
+    if not len(idx):
+        return []
+    pr = cKDTree(P[idx]).query_pairs(3.0, output_type="ndarray")
+    g = coo_matrix((np.ones(len(pr)), (pr[:, 0], pr[:, 1])), shape=(len(idx), len(idx)))
+    nc, lab = connected_components(g, directed=False)
+    _, ne = cKDTree(C.cen).query(P)
+    out = []
+    for k in range(nc):
+        e = idx[lab == k]
+        if len(e) < 4:
+            continue
+        lo, hi = P[e].min(0), P[e].max(0)
+        out.append(dict(x0=float(lo[0]), x1=float(hi[0]), y0=float(lo[1]), y1=float(hi[1]), z0=float(lo[2]), z1=float(hi[2]),
+                        t=float(np.median(th[e])), smax=float(C.smax[ne[e]].max()), n=int(len(e))))
+    return sorted(out, key=lambda q: -q["n"])
+
+
+def propose(C, m, ops, st, E, stats, n_max=3, solid=None):
     """Lista de modificaciones candidatas, cada una con su regla, su porque (con datos) y lo esperado.
     Candidato: dict(regla, titulo, ops_nuevas (lista completa de operaciones de la pieza), op (la nueva), porque, espero)."""
     lim = C.lim; sig = m["vm_metric"]; ratio = sig / lim
@@ -719,12 +775,65 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                         f"cada nervio se dimensiona para trabajar al {SIG_TRABAJO * 100:.0f} % del limite: "
                                         f"{info['V_rib'] / 1e3:.1f} cm3 en lugar de {info['V_block'] / 1e3:.0f}. Acuerdo de 3 mm en su raiz." + ev("R11")),
                                 espero=dict(dm_g=-net * RHO * 1000, dsig_pct=d, txt=hist or "baja la masa; la tension sube algo")))
+    # ---------------- R16 laminas finas y R17 paredes finas entre aligeramientos (en cualquier momento: no tocan el camino de carga)
+    tau_t = TAUS[min(st.get("tau_idx", 0), len(TAUS) - 1)]
+    if ok("R17"):
+        hl = [o for o in ops if o["tipo"] == "agujero"]
+        for i in range(len(hl)):
+            for j in range(i + 1, len(hl)):
+                a_, b_ = hl[i], hl[j]
+                for bx, by in ((b_["x"], b_["y"]), tuple(O.mirror_pt((b_["x"], b_["y"], 0.0))[:2])):
+                    dd = math.hypot(bx - a_["x"], by - a_["y"]); wall = dd - a_["r"] - b_["r"]
+                    if not (0.0 < wall < 5.0):
+                        continue
+                    ux, uy = (bx - a_["x"]) / dd, (by - a_["y"]) / dd
+                    px, py = C.cen[:, 0] - a_["x"], C.cen[:, 1] - a_["y"]
+                    s_ = px * ux + py * uy; t_ = -px * uy + py * ux
+                    msk = (s_ > a_["r"] - 3) & (s_ < dd - b_["r"] + 3) & (np.abs(t_) < min(a_["r"], b_["r"]) + 3)
+                    if not msk.any() or C.smax[msk].max() >= tau_t * lim:
+                        continue
+                    op = dict(tipo="ranura", x1=a_["x"], y1=a_["y"], r1=a_["r"], x2=round(float(bx), 2), y2=round(float(by), 2), r2=b_["r"])
+                    if veto(op):
+                        continue
+                    V = float(C.vol[msk & (s_ > a_["r"]) & (s_ < dd - b_["r"]) & (np.abs(t_) < min(a_["r"], b_["r"]))].sum())
+                    rem.append(dict(regla="R17", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=max(V, 300.0),
+                                    porque=(f"La pared entre esos dos aligeramientos mide {wall:.1f} mm y, con 3 mm de margen alrededor, "
+                                            f"trabaja como maximo al {C.smax[msk].max() / lim * 100:.0f} % del limite: no esta en el camino "
+                                            f"de la carga. Se unen en una ranura (vertical y pasante, imprimible)." + ev("R17")),
+                                    espero=dict(dm_g=-V * RHO * 1000, dsig_pct=0.0, txt="la tension casi no cambia")))
+    if ok("R16") and solid is not None:
+        key = json.dumps(ops, sort_keys=True)
+        cache = st.setdefault("_laminas", {})
+        if key not in cache:
+            try:
+                cache.clear(); cache[key] = thin_walls(solid, C)
+            except Exception as e_:
+                cache[key] = []; notes.append(f"R16: no se pudo medir el espesor de las paredes ({type(e_).__name__})")
+        for w in cache[key][:8]:
+            if w["smax"] >= tau_t * lim:
+                continue
+            cx, cy = (w["x0"] + w["x1"]) / 2, (w["y0"] + w["y1"]) / 2
+            z0 = -1.0 if w["z0"] < 1.0 else w["z0"] - 1.0
+            z1 = w["z1"] + 1.0
+            half = max((w["x1"] - w["x0"]) / 2 + 1.5, (w["y1"] - w["y0"]) / 2 + 1.5, (z1 - z0) / G.AM_T + 0.5, 3.0)
+            op = dict(tipo="hueco", x0=round(cx - half, 2), x1=round(cx + half, 2), y0=round(cy - half, 2), y1=round(cy + half, 2),
+                      z0=round(z0, 2), z1=round(z1, 2), rr=1.0)
+            box = (C.cen[:, 0] > op["x0"] - 1) & (C.cen[:, 0] < op["x1"] + 1) & (C.cen[:, 1] > op["y0"] - 1) & \
+                  (C.cen[:, 1] < op["y1"] + 1) & (C.cen[:, 2] > z0 - 1) & (C.cen[:, 2] < z1 + 1)
+            if (box.any() and C.smax[box].max() >= tau_t * lim) or veto(op):
+                continue
+            rem.append(dict(regla="R16", op=op, ops_nuevas=ops + [op], V=max(float(C.vol[box & ~C.prot].sum()) * 0.5, 200.0),
+                            titulo=(f"eliminar la lamina de {w['t']:.1f} mm en ({cx:.0f}, {cy:.0f}, z {w['z0']:.0f}..{w['z1']:.0f})"),
+                            porque=(f"En ({cx:.0f}, {cy:.0f}), entre z = {w['z0']:.0f} y {w['z1']:.0f} mm, queda una lamina de {w['t']:.1f} mm "
+                                    f"(medida en el CAD) que trabaja como maximo al {w['smax'] / lim * 100:.0f} % del limite: casi no aporta "
+                                    f"seccion, se imprime mal y la malla no la resuelve. Se quita con un vaciado de techo a 45 grados." + ev("R16")),
+                            espero=dict(dm_g=-1.0, dsig_pct=0.0, txt="la tension no cambia; la malla mejora")))
     # ---------------- SIMETRIA EFECTIVA: cada corte debe quitar parecido material en los dos lados
     if O.SIM:
         keep = []
         for cnd in rem:
             op = cnd["op"]
-            if op["tipo"] not in ("agujero", "rebaje", "hueco", "rebaje_nervio"):
+            if op["tipo"] not in ("agujero", "rebaje", "hueco", "rebaje_nervio") or cnd["regla"] in ("R16", "R17"):
                 keep.append(cnd); continue
             va, vb = side_volumes(C, op)
             if max(va, vb) > 0 and min(va, vb) < 0.75 * max(va, vb):
@@ -749,6 +858,12 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                 sel.append(by_rule[rid].pop(0))
     if not sel and ratio > 1.0 and reinf:
         sel = reinf[:n_max]
+    # las laminas finas (R16/R17) se prueban siempre que existan: importan por fabricacion y malla, no solo por la masa
+    thin_c = [c for c in rem if c["regla"] in ("R16", "R17")]
+    if thin_c and not any(c["regla"] in ("R16", "R17") for c in sel):
+        if len(sel) >= n_max:
+            sel = sel[:n_max - 1]
+        sel.append(max(thin_c, key=lambda c: c["V"]))
     return sel, notes, pk
 
 

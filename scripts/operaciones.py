@@ -388,9 +388,19 @@ def root_fillet(new, part, rib, r=3.0):
     return new
 
 
+def op_ranura(solid, x1, y1, r1, x2, y2, r2):
+    """Ranura vertical pasante: envolvente convexa de dos aligeramientos circulares (quita la pared que los separaba)."""
+    from shapely.geometry import Point as P_
+    hull = P_(x1, y1).buffer(r1, quad_segs=16).union(P_(x2, y2).buffer(r2, quad_segs=16)).convex_hull
+    pts = [cq.Vector(x, y, -30.0) for x, y in list(hull.exterior.coords)[:-1]]
+    face = cq.Face.makeFromWires(cq.Wire.makePolygon(pts, close=True))
+    tool = sym(cq.Solid.extrudeLinear(face, cq.Vector(0, 0, 180.0))).cut(protected())
+    return cut(solid, tool, "la ranura")
+
+
 OPS = dict(agujero=op_agujero, rebaje=op_rebaje, hueco=op_hueco, collar=op_collar, alojamiento=op_alojamiento,
-           redondeo=op_redondeo, orejeta=op_orejeta, nervio=op_nervio)
-QUITA = ("agujero", "rebaje", "hueco")
+           redondeo=op_redondeo, orejeta=op_orejeta, nervio=op_nervio, ranura=op_ranura)
+QUITA = ("agujero", "rebaje", "hueco", "ranura")
 ANADE = ("collar", "alojamiento", "redondeo", "orejeta", "nervio")
 
 
@@ -401,11 +411,14 @@ def apply(solid, op):
 
 def describe(op):
     d = _describe(op)
-    return d + (" (y su simetrico)" if SIM and op["tipo"] in ("agujero", "rebaje", "hueco", "redondeo", "nervio") else "")
+    return d + (" (y su simetrico)" if SIM and op["tipo"] in ("agujero", "rebaje", "hueco", "redondeo", "nervio", "ranura") else "")
 
 
 def _describe(op):
     t = op["tipo"]
+    if t == "ranura":
+        return (f"ranura que une los aligeramientos de ({op['x1']:.0f}, {op['y1']:.0f}) y ({op['x2']:.0f}, {op['y2']:.0f}) "
+                f"(quita la pared fina entre ellos)")
     if t == "agujero":
         return f"aligeramiento pasante vertical D{2 * op['r']:.0f} mm en ({op['x']:.0f}, {op['y']:.0f})"
     if t == "rebaje" and op["zc"] < 0:
@@ -451,6 +464,9 @@ def size(op):
 def box_of(op):
     """Caja (x0,x1,y0,y1,z0,z1) que ocupa la herramienta (para distancias y solapes)."""
     t = op["tipo"]
+    if t == "ranura":
+        return (min(op["x1"] - op["r1"], op["x2"] - op["r2"]), max(op["x1"] + op["r1"], op["x2"] + op["r2"]),
+                min(op["y1"] - op["r1"], op["y2"] - op["r2"]), max(op["y1"] + op["r1"], op["y2"] + op["r2"]), -30.0, 150.0)
     if t == "agujero":
         return (op["x"] - op["r"], op["x"] + op["r"], op["y"] - op["r"], op["y"] + op["r"], -30.0, 150.0)
     if t in ("rebaje", "rebaje_nervio"):

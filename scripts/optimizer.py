@@ -841,7 +841,11 @@ def step(st, git, E):
         ma["valido"] = True; ma["viol"] = min(ma["viol"], 1.0)   # verificada con malla fina: cumple
     import operaciones as O_
     C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ / K_FINO[0], mfull, sym=O_.SIM)
-    cands, notes, pk = R.propose(C, mfull, a["ops"], st, E, st["stats"], N_CAND)
+    try:
+        solid_now = current_solid(a["ops"])
+    except Exception:
+        solid_now = None
+    cands, notes, pk = R.propose(C, mfull, a["ops"], st, E, st["stats"], N_CAND, solid=solid_now)
     for n in notes:
         log(f"  nota: {n}")
     h = dict(iter=it, fecha=datetime.datetime.now().isoformat(), antes=txt_m(ma), m_antes=ma, notas=notes, descartes=[])
