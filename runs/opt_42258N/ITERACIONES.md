@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 57 - ACEPTADA: R1 aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)
+
+*2026-11-24 19:36*
+
+- **Pieza de partida:** 2.2404 kg | 195.4 MPa | CS 1.10 | 0.149 mm
+- **Por que (regla R1):** Toda la columna en (43, -68) hasta 13 mm de radio trabaja como maximo al 35 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (195 MPa, en alrededor de los pernos delanteros) esta a 63 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 201 veces que se ha aplicado: +1.9 % (prevision rapida: 2.1816 kg | 221.8 MPa | CS 0.97 | 0.153 mm)
+- **Resultado (malla completa):** 2.1806 kg | 199.6 MPa | CS 1.08 | 0.152 mm (tension +2.1 %, masa -60 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2002 -> 2.1806; masa 2.2002 -> 2.1806 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D8 mm en (40, -86) (y su simetrico) -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x 35..47, y -72..-60 mm (esquinas R3) (y su simetrico) -> pasa la evaluacion rapida (2.2031 kg | 218.2 MPa | CS 0.99 | 0.152 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_193924_it057_ACEPTADA_2.181kg.jpg" width="520">
+
 ## Iteracion 56 - RECHAZADA: R1 aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)
 
 *2026-11-24 19:31*

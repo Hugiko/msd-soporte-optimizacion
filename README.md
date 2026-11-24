@@ -1,23 +1,23 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 19:35 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 19:41 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 56 | 18 | 4 | 24 | 8 | 85 |
+| 57 | 19 | 4 | 24 | 8 | 87 |
 
 ## Mejor diseno
 
-**2.2002 kg** (-9.2 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **203.0 MPa** &nbsp;|&nbsp; coef. seguridad **1.06** &nbsp;|&nbsp; desplazamiento **0.150 mm** &nbsp;|&nbsp; iteracion 52
+**2.1806 kg** (-10.0 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.6 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.152 mm** &nbsp;|&nbsp; iteracion 57 &nbsp;|&nbsp; **malla fina: 210.4 MPa**
 
 Operaciones sobre el original:
 
 1. collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm
 2. collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm
 3. rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)
-4. aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)
+4. aligeramiento pasante vertical D10 mm en (49, -56) (y su simetrico)
 5. aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)
 6. aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)
 7. aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)
@@ -33,10 +33,11 @@ Operaciones sobre el original:
 17. hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (9, -44) (y su simetrico)
 18. bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)
 19. bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)
+20. aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)
 
-Ultimo hito verificado (2.221 kg, iteracion 47): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/10_it047_2.221kg/workbench/soporte_it047.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/10_it047_2.221kg/geometria.step)
+Ultimo hito verificado (2.181 kg, iteracion 57): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/11_it057_2.181kg/workbench/soporte_it057.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/11_it057_2.181kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261124_190835_it052_ACEPTADA_2.200kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261124_193924_it057_ACEPTADA_2.181kg.jpg)
 
 ## Camino de la pieza
 
@@ -48,6 +49,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 57 | ACEPTADA | R1 | aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico) | 2.181 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2002 -> 2.1806; masa 2.2002 -> 2.1806 kg) |
 | 56 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) | 2.221 kg, 221 MPa | no cumple: 220.5 MPa con la malla normal, que corregidos a malla fina (x1.058) son 233.3 M |
 | 55 | INVERSION | R8 | reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49,  | 2.240 kg, 195 MPa | refuerzo eficiente: compra 3.7 % de margen de tension con +40 g (1.8 % de masa); ese marge |
 | 54 | RECHAZADA | R1 | aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico) | 2.165 kg, 208 MPa | no cumple: 208.1 MPa con la malla normal, que corregidos a malla fina (x1.058) son 220.1 M |
@@ -59,7 +61,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 48 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.199 kg, 207 MPa | no cumple: 207.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 219.3 M |
 | 47 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.221 kg, 201 MPa | cumple y mejora al mejor (puntuacion 2.2362 -> 2.2207; masa 2.2362 -> 2.2207 kg) |
 | 46 | RECHAZADA | R1 | aligeramiento pasante vertical D20 mm en (7, -116) (y su simetrico) | 2.081 kg, 292 MPa | no cumple: 292.4 MPa con la malla normal, que corregidos a malla fina (x1.058) son 309.3 M |
-| 45 | RECHAZADA | R1 | aligeramiento pasante vertical D24 mm en (4, -32) (y su simetrico) | 2.024 kg, 594 MPa | no cumple: 594.1 MPa con la malla normal, que corregidos a malla fina (x1.058) son 628.4 M |
 
 ---
 

@@ -1,23 +1,23 @@
 {
- "iter": 47,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\10_it047_2.221kg",
- "mass_kg": 2.2206762871500003,
- "vm_metric": 201.1213,
- "u_max": 0.14963368974866592,
- "coef_seguridad": 1.069006614416275,
- "puntuacion": 2.2206762871500003,
+ "iter": 57,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\11_it057_2.181kg",
+ "mass_kg": 2.1805938182,
+ "vm_metric": 199.5691,
+ "u_max": 0.15182787106414486,
+ "coef_seguridad": 1.0773210882847095,
+ "puntuacion": 2.1805938182,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 211.8738,
-  "u_max": 0.15593877579835266,
-  "n_nodes": 119512,
+  "vm_metric": 210.3519,
+  "u_max": 0.1585501097255237,
+  "n_nodes": 118540,
   "ok": true
  },
  "operaciones": [
   "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
   "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
   "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
-  "aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (49, -56) (y su simetrico)",
   "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)",
   "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)",
   "aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)",
@@ -31,8 +31,10 @@
   "aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico)",
   "bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 45 grados) en (11, -104) (y su simetrico)",
   "hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (9, -44) (y su simetrico)",
-  "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)"
+  "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)",
+  "aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)"
  ],
- "fecha": "2026-11-24T18:52:59",
+ "fecha": "2026-11-24T19:41:45",
  "final": false
 }
