@@ -1,5 +1,5 @@
 {
- "iter": 37,
+ "iter": 38,
  "actual": {
   "ops": [
    {
@@ -92,26 +92,36 @@
     "z0": -1.0,
     "z1": 7.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 33.52,
+    "y0": -107.61,
+    "y1": -79.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\037\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\038\\completa",
   "m": {
-   "mass_kg": 2.30886905895,
-   "vm_metric": 190.742,
-   "u_max": 0.14411993620256577,
+   "mass_kg": 2.2868401613000002,
+   "vm_metric": 202.2151,
+   "u_max": 0.14451101131843208,
    "vm_metric_xyz": [
-    -3.1978708089013246,
-    -59.865442955010316,
-    58.011592677890185
+    -5.026992058242467,
+    -58.65040080746889,
+    58.52526820249253
    ],
-   "n_nodes": 91374,
-   "cs": 1.127177024462363,
-   "viol": 0.93845064,
-   "score": 2.30886905895,
+   "n_nodes": 91246,
+   "cs": 1.0632242597115644,
+   "viol": 0.9948982920000001,
+   "score": 2.2868401613000002,
    "valido": true
   },
   "rapida": null,
-  "galeria": "galeria/20261124_141649_it037_INVERSION_2.309kg.jpg"
+  "galeria": "galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -345,7 +355,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
  },
- "tau_idx": 0,
+ "tau_idx": 2,
  "rechazos": [
   {
    "op": {
@@ -439,6 +449,17 @@
    "motivo_tipo": "puntuacion",
    "regla": "R14",
    "iter": 34
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 36.52,
+    "y": -73.61,
+    "r": 8.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 38
   }
  ],
  "stats": {
@@ -553,8 +574,8 @@
    ]
   },
   "R1": {
-   "intentos": 379,
-   "descartadas_rapido": 11,
+   "intentos": 380,
+   "descartadas_rapido": 12,
    "evaluadas": 194,
    "aceptadas": 184,
    "rechazadas": 10,
@@ -1182,7 +1203,7 @@
    ]
   },
   "R3": {
-   "intentos": 179,
+   "intentos": 180,
    "descartadas_rapido": 1,
    "evaluadas": 2,
    "aceptadas": 1,
@@ -1241,10 +1262,10 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 12,
+   "intentos": 13,
    "descartadas_rapido": 2,
-   "evaluadas": 6,
-   "aceptadas": 3,
+   "evaluadas": 7,
+   "aceptadas": 4,
    "rechazadas": 3,
    "dsig": [
     -0.14,
@@ -1252,7 +1273,8 @@
     -0.15,
     2.35,
     1.84,
-    6.29
+    6.29,
+    6.01
    ],
    "dm": [
     -1.1,
@@ -1260,7 +1282,8 @@
     -18.3,
     -2.0,
     -37.1,
-    -26.7
+    -26.7,
+    -22.0
    ],
    "ejemplos": [
     [
@@ -1286,6 +1309,10 @@
     [
      34,
      "rechazada: bolsillo desde la cara de apoyo 32 x 32 mm, hasta z = 14 mm  (tension +6.3 %, masa -27 g)"
+    ],
+    [
+     38,
+     "aceptada: bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm  (tension +6.0 %, masa -22 g)"
     ]
    ],
    "dsig_prev": [
@@ -1294,7 +1321,8 @@
     0.2,
     -0.28,
     0.08,
-    0.31
+    0.31,
+    -4.19
    ]
   },
   "R13": {
@@ -1345,7 +1373,7 @@
    ]
   }
  },
- "sin_mejora": 2,
+ "sin_mejora": 0,
  "inversiones": 1,
  "inversion_desde": 37,
  "wb_masa": 2.2571172117500002,
@@ -3784,6 +3812,81 @@
     "cs": 1.127177024462363,
     "viol": 0.93845064,
     "score": 2.30886905895,
+    "valido": true
+   }
+  },
+  {
+   "iter": 38,
+   "fecha": "2026-11-24T14:17:09.107985",
+   "antes": "2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm",
+   "m_antes": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   },
+   "notas": [
+    "umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D16 mm en (37, -74) (y su simetrico)",
+     "motivo": "tension prevista 246 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R3",
+     "titulo": "hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.2997 kg | 169.4 MPa | CS 1.27 | 0.144 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R14",
+   "titulo": "bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico)",
+   "porque": "Todo el material por debajo de z = 12 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 35 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (191 MPa, en orejetas del bulon) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.",
+   "espero": "mediana de las 6 veces que se ha aplicado: +1.1 % (prevision rapida: 2.2864 kg | 182.8 MPa | CS 1.18 | 0.145 mm)",
+   "m_cand": {
+    "mass_kg": 2.2868401613000002,
+    "vm_metric": 202.2151,
+    "u_max": 0.14451101131843208,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 91246,
+    "cs": 1.0632242597115644,
+    "viol": 0.9948982920000001,
+    "score": 2.2868401613000002,
+    "valido": true
+   },
+   "despues": "2.2868 kg | 202.2 MPa | CS 1.06 | 0.145 mm (tension +6.0 %, masa -22 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y recupera parte de la inversion de la iteracion 37 (masa 2.3089 -> 2.2868 kg; el mejor sigue siendo 2.2571 kg)",
+   "galeria": "galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2868401613000002,
+    "vm_metric": 202.2151,
+    "u_max": 0.14451101131843208,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 91246,
+    "cs": 1.0632242597115644,
+    "viol": 0.9948982920000001,
+    "score": 2.2868401613000002,
     "valido": true
    }
   }

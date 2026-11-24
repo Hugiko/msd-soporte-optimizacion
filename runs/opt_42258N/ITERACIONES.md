@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 38 - ACEPTADA: R14 bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico)
+
+*2026-11-24 14:17*
+
+- **Pieza de partida:** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 12 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 35 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (191 MPa, en orejetas del bulon) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 6 veces que se ha aplicado: +1.1 % (prevision rapida: 2.2864 kg | 182.8 MPa | CS 1.18 | 0.145 mm)
+- **Resultado (malla completa):** 2.2868 kg | 202.2 MPa | CS 1.06 | 0.145 mm (tension +6.0 %, masa -22 g)
+- **Decision:** ACEPTADA - cumple y recupera parte de la inversion de la iteracion 37 (masa 2.3089 -> 2.2868 kg; el mejor sigue siendo 2.2571 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D16 mm en (37, -74) (y su simetrico) -> tension prevista 246 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.2997 kg | 169.4 MPa | CS 1.27 | 0.144 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
+<img src="galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg" width="520">
+
 ## Iteracion 37 - INVERSION: R12 acampanar la raiz de los collares (30 grados hasta z = 16 mm)
 
 *2026-11-24 14:12*
