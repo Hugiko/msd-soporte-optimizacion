@@ -1,0 +1,207 @@
+{
+ "operaciones": [
+  {
+   "tipo": "collar",
+   "perno": 0,
+   "t": 6.0,
+   "z": 22.0,
+   "flare": 30.0,
+   "z_flare": 16.0
+  },
+  {
+   "tipo": "collar",
+   "perno": 2,
+   "t": 6.0,
+   "z": 22.0,
+   "flare": 30.0,
+   "z_flare": 16.0
+  },
+  {
+   "tipo": "rebaje",
+   "x0": 41.52,
+   "x1": 61.52,
+   "y0": -80.32,
+   "y1": -68.32,
+   "zc": 9.0,
+   "rr": 3.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 48.52,
+   "y": -56.32,
+   "r": 4.8
+  },
+  {
+   "tipo": "agujero",
+   "x": 3.52,
+   "y": -74.32,
+   "r": 6.0
+  },
+  {
+   "tipo": "agujero",
+   "x": -26.48,
+   "y": -29.32,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 27.52,
+   "y": -74.32,
+   "r": 5.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 18.52,
+   "y": -74.32,
+   "r": 5.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 42.52,
+   "y": -44.32,
+   "r": 4.0
+  },
+  {
+   "tipo": "hueco",
+   "x0": 9.52,
+   "x1": 17.52,
+   "y0": -52.32,
+   "y1": -36.32,
+   "z0": -1.0,
+   "z1": 12.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "hueco",
+   "x0": 1.52,
+   "x1": 29.52,
+   "y0": -112.32,
+   "y1": -88.32,
+   "z0": -1.0,
+   "z1": 10.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "hueco",
+   "x0": 1.52,
+   "x1": 37.52,
+   "y0": -120.32,
+   "y1": -100.32,
+   "z0": -1.0,
+   "z1": 7.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "hueco",
+   "x0": 1.52,
+   "x1": 33.52,
+   "y0": -107.61,
+   "y1": -79.61,
+   "z0": -1.0,
+   "z1": 12.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "orejeta",
+   "ro": 20.09
+  },
+  {
+   "tipo": "agujero",
+   "x": 34.33,
+   "y": -76.61,
+   "r": 6.0
+  },
+  {
+   "tipo": "hueco",
+   "x0": -0.67,
+   "x1": 23.33,
+   "y0": -119.61,
+   "y1": -87.61,
+   "z0": -1.0,
+   "z1": 10.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "hueco",
+   "x0": 3.33,
+   "x1": 15.33,
+   "y0": -51.61,
+   "y1": -35.61,
+   "z0": 24.07,
+   "z1": 32.07
+  },
+  {
+   "tipo": "hueco",
+   "x0": -4.67,
+   "x1": 23.33,
+   "y0": -55.61,
+   "y1": -23.61,
+   "z0": -1.0,
+   "z1": 12.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "hueco",
+   "x0": 7.33,
+   "x1": 63.33,
+   "y0": -35.61,
+   "y1": -19.61,
+   "z0": -1.0,
+   "z1": 6.0,
+   "rr": 1.5
+  },
+  {
+   "tipo": "agujero",
+   "x": 43.33,
+   "y": -67.61,
+   "r": 10.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 37.33,
+   "y": -61.61,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 4.33,
+   "y": -109.61,
+   "r": 5.0
+  },
+  {
+   "tipo": "hueco",
+   "x0": -44.67,
+   "x1": -16.67,
+   "y0": -107.61,
+   "y1": -43.61,
+   "z0": -1.0,
+   "z1": 12.0,
+   "rr": 1.5
+  }
+ ],
+ "descripcion": [
+  "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
+  "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
+  "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (49, -56) (y su simetrico)",
+  "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D8 mm en (43, -44) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 8 x 16 mm, hasta z = 12 mm (techo a 45 grados) en (14, -44) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 28 x 24 mm, hasta z = 10 mm (techo a 45 grados) en (16, -100) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm (techo a 45 grados) en (20, -110) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico)",
+  "anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)",
+  "aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 45 grados) en (11, -104) (y su simetrico)",
+  "hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (9, -44) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)",
+  "aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)",
+  "bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 45 grados) en (-31, -76) (y su simetrico)"
+ ]
+}

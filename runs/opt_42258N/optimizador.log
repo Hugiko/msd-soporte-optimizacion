@@ -12715,3 +12715,51 @@
 [20:33:38] ITERACION 70 | pieza actual: 2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm | mejor: 2.0776 kg
 [20:33:41]   (GitHub: subido)
 [20:33:44]   nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[20:33:45] Limpieza automatica: liberados 40 MB
+[20:33:45] OPTIMIZACION TERMINADA: ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)
+[20:33:45]   verificacion con malla fina del mejor diseno...
+[20:33:48]   (GitHub: subido)
+[20:33:48]   [1/5] geometria parametrica (cadquery)
+[20:33:49]         masa CAD = 2.0565 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=True
+[20:33:49]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=3.50 mm)
+[20:33:58]   malla h=3.5: 117068 nodos, 67183 tet10 (5.9s)
+[20:33:59]   [3/5] ANSYS MAPDL normal (117068 nodos, 67183 elementos)
+[20:33:59] Lanzando MAPDL: model.inp (timeout 1200s)
+[20:34:05]   [fase] 4  /PREP7
+[20:34:10]   [fase] 252771  /SOLU
+[20:34:10]   [solver] 252773  EQSLV,SPARSE
+[20:34:10]   [fase] 252776  /POST1
+[20:34:10]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.906   TIME= 20:34:07
+[20:34:10]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.965
+[20:34:10]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[20:34:10]   [AVISO] *** WARNING ***                         ELAPSED TIME =       8.269   TIME= 20:34:08
+[20:34:10]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[20:34:11]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[20:34:13]   [solver] Equation solver memory allocated                     =  2237.734 MB
+[20:34:13]   [solver] Equation solver memory required for in-core mode     =  2142.211 MB
+[20:34:13]   [solver] Equation solver memory required for out-of-core mode =   548.299 MB
+[20:34:13]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[20:34:20]   [solver] Sparse solver maximum pivot= 216268282 at node 8366 UY.
+[20:34:20]   [solver] Sparse solver minimum pivot= 7179.02127 at node 736 UZ.
+[20:34:20]   [solver] Sparse solver minimum pivot in absolute value= 7179.02127 at node 736
+[20:34:22]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        22.855
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.385   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.542   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.557   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.572   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.586   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.601   TIME= 20:34:24
+[20:34:24]   [AVISO] *** WARNING ***                         ELAPSED TIME =      24.615   TIME= 20:34:24
+[20:34:24]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        24.726
+[20:34:36]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.7 seconds
+[20:34:36]   [solver] Elapsed time in equation solver                :        9.8 seconds
+[20:34:36]   [fase] Elapsed time spent post-processing model (/POST1) :        1.9 seconds
+[20:34:36]   [solver] Equation solver used                              :            Sparse (symmetric)
+[20:34:36]   [solver] Sparse direct equation solver computational rate  :       52.7 Gflops
+[20:34:36] MAPDL termino: estado=ok codigo=0 tiempo=37.3s
+[20:34:37]   [4/5] resultados
+[20:34:37]   calibracion: malla fina / malla normal = 1.076 en tension (1.042 en desplazamiento); desde ahora para aceptar una pieza se exige tension x 1.065 <= 215 MPa (es decir <= 201.9 MPa con la malla normal)
+[20:34:37]   verificacion (malla fina, 117068 nodos): 210.1 MPa, 0.165 mm -> CONFIRMADO
+[20:34:38] Workbench (sin ventana): creando soporte_it068.wbpj con F = 42258 N ...
+[20:36:08] Workbench termino en 90 s: montaje OK, resuelto SI
+[20:36:08]   >>> HITO 14: 2.078 kg (iteracion 68) | proyecto Workbench creado

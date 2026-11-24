@@ -414,7 +414,14 @@
    "valido": true
   },
   "iter": 68,
-  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg"
+  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg",
+  "verif": {
+   "vm_metric": 210.0537,
+   "u_max": 0.1654195214486428,
+   "n_nodes": 117068,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\14_it068_2.078kg"
  },
  "verificado": {
   "ops": [
@@ -585,33 +592,43 @@
     "x": 4.33,
     "y": -109.61,
     "r": 5.0
+   },
+   {
+    "tipo": "hueco",
+    "x0": -44.67,
+    "x1": -16.67,
+    "y0": -107.61,
+    "y1": -43.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\066\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\068\\completa",
   "m": {
-   "mass_kg": 2.0858363897000003,
-   "vm_metric": 197.0322,
-   "u_max": 0.15804039135731854,
+   "mass_kg": 2.0776116307,
+   "vm_metric": 195.2278,
+   "u_max": 0.15880749888969553,
    "vm_metric_xyz": [
-    34.52315692937254,
-    -137.04680387972883,
-    10.388599922349174
+    -0.19800991558367897,
+    -58.50376352723593,
+    57.13994159170428
    ],
-   "n_nodes": 93202,
-   "cs": 1.091192201071703,
-   "viol": 0.9659159944186047,
-   "score": 2.0858363897000003,
+   "n_nodes": 93594,
+   "cs": 1.1012775844423797,
+   "viol": 0.9570702381395348,
+   "score": 2.0776116307,
    "valido": true
   },
-  "iter": 66,
-  "galeria": "galeria/20261124_202329_it066_ACEPTADA_2.086kg.jpg",
+  "iter": 68,
+  "galeria": "galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg",
   "verif": {
-   "vm_metric": 209.8373,
-   "u_max": 0.16464492139444448,
-   "n_nodes": 116723,
+   "vm_metric": 210.0537,
+   "u_max": 0.1654195214486428,
+   "n_nodes": 117068,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\13_it066_2.086kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\14_it068_2.078kg"
  },
  "tau_idx": 3,
  "rechazos": [
@@ -1954,7 +1971,7 @@
  "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.0858363897000003,
+ "wb_masa": 2.0776116307,
  "fin": true,
  "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
  "historia": [
@@ -6801,6 +6818,10 @@
   [
    1.065,
    1.0418
+  ],
+  [
+   1.0759,
+   1.0416
   ]
  ],
  "estudio_anunciado": true,
