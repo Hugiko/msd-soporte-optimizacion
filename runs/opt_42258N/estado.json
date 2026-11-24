@@ -1,5 +1,5 @@
 {
- "iter": 42,
+ "iter": 43,
  "actual": {
   "ops": [
    {
@@ -122,26 +122,35 @@
     "z0": -1.0,
     "z1": 10.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 3.33,
+    "x1": 15.33,
+    "y0": -51.61,
+    "y1": -35.61,
+    "z0": 24.07,
+    "z1": 32.07
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\042\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\043\\completa",
   "m": {
-   "mass_kg": 2.2433359951000007,
-   "vm_metric": 200.2674,
-   "u_max": 0.1492368739672304,
+   "mass_kg": 2.2362199387,
+   "vm_metric": 200.8585,
+   "u_max": 0.14937030432586973,
    "vm_metric_xyz": [
     57.492360251601,
     -88.34349146243,
     -8.072793278302e-08
    ],
-   "n_nodes": 90960,
-   "cs": 1.0735646440708773,
-   "viol": 0.9853156080000001,
-   "score": 2.2433359951000007,
+   "n_nodes": 95693,
+   "cs": 1.0704052853127948,
+   "viol": 0.9882238200000001,
+   "score": 2.2362199387,
    "valido": true
   },
   "rapida": null,
-  "galeria": "galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg"
+  "galeria": "galeria/20261124_183013_it043_ACEPTADA_2.236kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -265,26 +274,35 @@
     "z0": -1.0,
     "z1": 10.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 3.33,
+    "x1": 15.33,
+    "y0": -51.61,
+    "y1": -35.61,
+    "z0": 24.07,
+    "z1": 32.07
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\042\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\043\\completa",
   "m": {
-   "mass_kg": 2.2433359951000007,
-   "vm_metric": 200.2674,
-   "u_max": 0.1492368739672304,
+   "mass_kg": 2.2362199387,
+   "vm_metric": 200.8585,
+   "u_max": 0.14937030432586973,
    "vm_metric_xyz": [
     57.492360251601,
     -88.34349146243,
     -8.072793278302e-08
    ],
-   "n_nodes": 90960,
-   "cs": 1.0735646440708773,
-   "viol": 0.9853156080000001,
-   "score": 2.2433359951000007,
+   "n_nodes": 95693,
+   "cs": 1.0704052853127948,
+   "viol": 0.9882238200000001,
+   "score": 2.2362199387,
    "valido": true
   },
-  "iter": 42,
-  "galeria": "galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg"
+  "iter": 43,
+  "galeria": "galeria/20261124_183013_it043_ACEPTADA_2.236kg.jpg"
  },
  "verificado": {
   "ops": [
@@ -519,6 +537,32 @@
    "motivo_tipo": "geometria",
    "regla": "R6",
    "iter": 42
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": -7.67,
+    "y": -73.61,
+    "r": 6.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 43
+  },
+  {
+   "op": {
+    "tipo": "hueco",
+    "x0": -0.67,
+    "x1": 23.33,
+    "y0": -119.61,
+    "y1": -87.61,
+    "z0": -1.0,
+    "z1": 10.0,
+    "rr": 1.5
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R14",
+   "iter": 43
   }
  ],
  "stats": {
@@ -633,8 +677,8 @@
    ]
   },
   "R1": {
-   "intentos": 384,
-   "descartadas_rapido": 14,
+   "intentos": 385,
+   "descartadas_rapido": 15,
    "evaluadas": 195,
    "aceptadas": 185,
    "rechazadas": 10,
@@ -1265,18 +1309,20 @@
    ]
   },
   "R3": {
-   "intentos": 181,
+   "intentos": 182,
    "descartadas_rapido": 1,
-   "evaluadas": 2,
-   "aceptadas": 1,
+   "evaluadas": 3,
+   "aceptadas": 2,
    "rechazadas": 1,
    "dsig": [
     1.54,
-    1.51
+    1.51,
+    0.3
    ],
    "dm": [
     -4.7,
-    -10.7
+    -10.7,
+    -7.1
    ],
    "ejemplos": [
     [
@@ -1286,11 +1332,16 @@
     [
      14,
      "rechazada: hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -11 g)"
+    ],
+    [
+     43,
+     "aceptada: hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacio (tension +0.3 %, masa -7 g)"
     ]
    ],
    "dsig_prev": [
     0.26,
-    -1.55
+    -1.55,
+    0.04
    ]
   },
   "R7": {
@@ -1333,8 +1384,8 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 15,
-   "descartadas_rapido": 2,
+   "intentos": 16,
+   "descartadas_rapido": 3,
    "evaluadas": 8,
    "aceptadas": 5,
    "rechazadas": 3,
@@ -4235,6 +4286,79 @@
     "cs": 1.0735646440708773,
     "viol": 0.9853156080000001,
     "score": 2.2433359951000007,
+    "valido": true
+   }
+  },
+  {
+   "iter": 43,
+   "fecha": "2026-11-24T18:25:44.828494",
+   "antes": "2.2433 kg | 200.3 MPa | CS 1.07 | 0.149 mm",
+   "m_antes": {
+    "mass_kg": 2.2433359951000007,
+    "vm_metric": 200.2674,
+    "u_max": 0.1492368739672304,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 90960,
+    "cs": 1.0735646440708773,
+    "viol": 0.9853156080000001,
+    "score": 2.2433359951000007,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (-8, -74) (y su simetrico)",
+     "motivo": "tension prevista 214 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R14",
+     "titulo": "bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 45 grados) en (11, -104) (y su simetrico)",
+     "motivo": "la geometria no se puede construir (operacion 17 (hueco): el hueco interior no quita material (cae fuera de la pieza o dentro de zona protegida))"
+    }
+   ],
+   "regla": "R3",
+   "titulo": "hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (9, -44) (y su simetrico)",
+   "porque": "El nucleo de esa zona (a mas de 4 mm de cualquier superficie) trabaja por debajo del 35 % del limite: en flexion la tension crece con la distancia a la fibra neutra, asi que vaciarlo conserva las pieles, que son las que trabajan. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).",
+   "espero": "mediana de las 2 veces que se ha aplicado: +1.5 % (prevision rapida: 2.2365 kg | 200.4 MPa | CS 1.07 | 0.149 mm)",
+   "m_cand": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
+    "valido": true
+   },
+   "despues": "2.2362 kg | 200.9 MPa | CS 1.07 | 0.149 mm (tension +0.3 %, masa -7 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y mejora al mejor (puntuacion 2.2433 -> 2.2362; masa 2.2433 -> 2.2362 kg)",
+   "galeria": "galeria/20261124_183013_it043_ACEPTADA_2.236kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
     "valido": true
    }
   }
