@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 08:49. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 09:00. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -28,6 +28,13 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 | 233 (Farandy Angesti Liong) | 2.801 kg | 174 MPa | 0.138 mm | block | 43 % | alrededor de los pernos traseros |
 
 <img src="estudio/img/simjeb_237.png" width="260" title="SimJEB 237"> <img src="estudio/img/simjeb_474.png" width="260" title="SimJEB 474"> <img src="estudio/img/simjeb_475.png" width="260" title="SimJEB 475"> <img src="estudio/img/simjeb_527.png" width="260" title="SimJEB 527"> <img src="estudio/img/simjeb_476.png" width="260" title="SimJEB 476"> <img src="estudio/img/simjeb_538.png" width="260" title="SimJEB 538">
+
+## Restricciones que se cumplen siempre
+
+- Coeficiente de seguridad >= 1 (215 MPa) y desplazamiento <= 0.25 mm, con la malla normal corregida a malla fina (calibracion medida en cada verificacion).
+- Los 4 agujeros de los pernos y los 2 del bulon, intactos (se comprueba en cada pieza).
+- **Simetria** respecto al plano medio de las orejetas: cada operacion se aplica tambien en su simetrico y un material solo es ocioso si tambien lo es en el lado simetrico (los agujeros de los pernos del enunciado no son simetricos: la pieza lo es salvo donde ellos lo impiden).
+- Impresion 3D: sin voladizos de menos de 45 grados ni cavidades cerradas.
 
 ## Reglas
 

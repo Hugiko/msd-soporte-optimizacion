@@ -1,7 +1,73 @@
 {
  "iter": 0,
- "actual": null,
- "mejor": null,
+ "actual": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9774201209302325,
+   "score": 2.5044295071000002,
+   "valido": true
+  },
+  "rapida": null,
+  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg"
+ },
+ "mejor": {
+  "ops": [
+   {
+    "tipo": "collar",
+    "perno": 0,
+    "t": 6.0,
+    "z": 22.0
+   },
+   {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 6.0,
+    "z": 22.0
+   }
+  ],
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "m": {
+   "mass_kg": 2.5044295071000002,
+   "vm_metric": 201.9075,
+   "u_max": 0.13915347332683817,
+   "vm_metric_xyz": [
+    -5.157557663763868,
+    -61.19553636990821,
+    58.584841174714256
+   ],
+   "n_nodes": 83597,
+   "cs": 1.0648440498743237,
+   "viol": 0.9774201209302325,
+   "score": 2.5044295071000002,
+   "valido": true
+  },
+  "iter": 0,
+  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg"
+ },
  "verificado": null,
  "tau_idx": 0,
  "rechazos": [],
@@ -731,7 +797,48 @@
  "wb_masa": null,
  "fin": false,
  "motivo_fin": "",
- "historia": [],
+ "historia": [
+  {
+   "iter": 0,
+   "fecha": "2026-11-24T09:00:49.563944",
+   "decision": "INICIO",
+   "titulo": "pieza SIMETRICA de partida: original + collares de 6 mm en los pernos 1 y 3 (pareja simetrica)",
+   "porque": "La pieza tiene que ser simetrica respecto al plano medio de las orejetas. La pieza anterior (2,144 kg, 14 operaciones) no lo era: sus aligeramientos estaban donde sobraba material solo en un lado. Repetidos en el lado simetrico no cumplen (14 operaciones: 316 MPa; 8 operaciones: 252 MPa; 5 operaciones: 242 MPa; 3 operaciones: 208 MPa; 2 operaciones: 202 MPa; limite 215 MPa con la correccion a malla fina x1,041), porque los pernos 2 y 4 del enunciado no son simetricos y ese lado trabaja mas. Se parte de la ultima pieza simetrica que cumple (los dos collares, ya simetricos) y las reglas siguen en modo simetrico, conservando lo aprendido (estadistica de cada regla y calibracion de malla).",
+   "despues": "2.5044 kg | 201.9 MPa | CS 1.06 | 0.139 mm",
+   "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg",
+   "m_cand": {
+    "mass_kg": 2.5044295071000002,
+    "vm_metric": 201.9075,
+    "u_max": 0.13915347332683817,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 83597,
+    "cs": 1.0648440498743237,
+    "viol": 0.9774201209302325,
+    "score": 2.5044295071000002,
+    "valido": true
+   },
+   "motivo": "cumple: se sigue quitando material donde no trabaja",
+   "m_actual": {
+    "mass_kg": 2.5044295071000002,
+    "vm_metric": 201.9075,
+    "u_max": 0.13915347332683817,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 83597,
+    "cs": 1.0648440498743237,
+    "viol": 0.9774201209302325,
+    "score": 2.5044295071000002,
+    "valido": true
+   }
+  }
+ ],
  "creado": "2026-11-24T08:59:38",
  "k_fino": [
   [
