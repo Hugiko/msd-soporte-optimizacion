@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 61 - RECHAZADA: R4 collar de 6 mm en los pernos 4 y 2
+
+*2026-11-24 20:02*
+
+- **Pieza de partida:** 2.1213 kg | 203.3 MPa | CS 1.06 | 0.154 mm
+- **Por que (regla R4):** El pico (203 MPa, 100 % del limite) esta junto al alojamiento del perno 4 (concentracion local x2.1). El momento de vuelco de la carga (F x 44,7 mm) llega a los pernos por una seccion pequena alrededor del alojamiento: un collar de 6 mm aumenta esa seccion. El perno 2 es su simetrico respecto al plano medio de las orejetas y trabaja igual. Evidencia: prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.
+- **Se esperaba:** mediana de las 4 veces que se ha aplicado: -3.2 % (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.1984 kg | 194.6 MPa | CS 1.10 | 0.151 mm (tension -4.3 %, masa +77 g)
+- **Decision:** RECHAZADA - cumple pero no mejora al mejor (puntuacion 2.1984 frente a 2.1213)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -9..15, y -124..-104 mm (esquinas R4) (y su simetrico) -> tension prevista 297 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R17] ranura que une los aligeramientos de (28, -74) y (43, -68) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1203 kg | 180.7 MPa | CS 1.19 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_200635_it061_RECHAZADA_2.198kg.jpg" width="520">
+
 ## Iteracion 60 - RECHAZADA: R4 collar de 4 mm en los pernos 4 y 2
 
 *2026-11-24 19:56*
