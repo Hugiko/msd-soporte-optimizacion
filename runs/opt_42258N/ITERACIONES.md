@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 35 - ACEPTADA: R1 aligeramiento pasante vertical D8 mm en (37, -62) (y su simetrico)
+
+*2026-11-24 14:02*
+
+- **Pieza de partida:** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm
+- **Por que (regla R1):** Toda la columna en (37, -62) hasta 7 mm de radio trabaja como maximo al 34 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (191 MPa, en orejetas del bulon) esta a 40 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 192 veces que se ha aplicado: +1.2 % (prevision rapida: 2.2796 kg | 179.2 MPa | CS 1.20 | 0.145 mm)
+- **Resultado (malla completa):** 2.2770 kg | 194.0 MPa | CS 1.11 | 0.145 mm (tension +1.7 %, masa -32 g)
+- **Decision:** ACEPTADA - cumple y recupera parte de la inversion de la iteracion 33 (masa 2.3089 -> 2.2770 kg; el mejor sigue siendo 2.2571 kg)
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico) -> pasa la evaluacion rapida (2.2866 kg | 168.7 MPa | CS 1.27 | 0.143 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.2995 kg | 192.7 MPa | CS 1.12 | 0.144 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_140733_it035_ACEPTADA_2.277kg.jpg" width="520">
+
 ## Iteracion 34 - RECHAZADA: R14 bolsillo desde la cara de apoyo 32 x 32 mm, hasta z = 14 mm (techo a 45 grados) en (18, -52) (y su simetrico)
 
 *2026-11-24 13:54*
