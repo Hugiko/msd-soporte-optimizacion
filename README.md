@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 20:32 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 20:33 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 68 | 22 | 4 | 31 | 9 | 110 |
+| 69 | 22 | 4 | 31 | 10 | 111 |
 
 ## Mejor diseno
 
@@ -52,6 +52,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 69 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 68 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 4 | 2.078 kg, 195 MPa | cumple y mejora al mejor (puntuacion 2.0858 -> 2.0776; masa 2.0858 -> 2.0776 kg) |
 | 67 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 66 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico) | 2.086 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.1213 -> 2.0858; masa 2.1213 -> 2.0858 kg) |
@@ -63,7 +64,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 60 | RECHAZADA | R4 | collar de 4 mm en los pernos 4 y 2 | 2.163 kg, 197 MPa | cumple pero no mejora al mejor (puntuacion 2.1630 frente a 2.1213) |
 | 59 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico) | 2.121 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.1806 -> 2.1213; masa 2.1806 -> 2.1213 kg) |
 | 58 | RECHAZADA | R7 | anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm) | 2.204 kg, 208 MPa | no cumple: 208.2 MPa con la malla normal, que corregidos a malla fina (x1.054) son 219.4 M |
-| 57 | ACEPTADA | R1 | aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico) | 2.181 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2002 -> 2.1806; masa 2.2002 -> 2.1806 kg) |
 
 ---
 

@@ -2,6 +2,15 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 69 - SIN CAMBIO
+
+*2026-11-24 20:32*
+
+- **Pieza de partida:** 2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-23, -47) (y su simetrico) -> la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)
+- Nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
 ## Iteracion 68 - ACEPTADA: R14 bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 45 grados) en (-31, -76) (y su simetrico)
 
 *2026-11-24 20:28*
