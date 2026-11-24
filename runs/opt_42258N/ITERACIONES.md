@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 49 - RECHAZADA: R14 bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (29, -52) (y su simetrico)
+
+*2026-11-24 18:56*
+
+- **Pieza de partida:** 2.2207 kg | 201.1 MPa | CS 1.07 | 0.150 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 12 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 45 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (201 MPa, en placa base (z < 10 mm)) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 10 veces que se ha aplicado: +1.1 % (prevision rapida: 2.1941 kg | 202.2 MPa | CS 1.06 | 0.150 mm)
+- **Resultado (malla completa):** 2.1945 kg | 206.8 MPa | CS 1.04 | 0.150 mm (tension +2.8 %, masa -26 g)
+- **Decision:** RECHAZADA - no cumple: 206.8 MPa con la malla normal, que corregidos a malla fina (x1.058) son 218.8 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -9..3, y -128..-104 mm (esquinas R3) (y su simetrico) -> tension prevista 271 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D10 mm en (37, -86) (y su simetrico) -> pasa la evaluacion rapida (2.1750 kg | 237.0 MPa | CS 0.91 | 0.155 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_190022_it049_RECHAZADA_2.194kg.jpg" width="520">
+
 ## Iteracion 48 - RECHAZADA: R14 bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (29, -96) (y su simetrico)
 
 *2026-11-24 18:53*
