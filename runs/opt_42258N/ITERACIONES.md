@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 41 - ACEPTADA: R1 aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico)
+
+*2026-11-24 15:35*
+
+- **Pieza de partida:** 2.3018 kg | 193.8 MPa | CS 1.11 | 0.147 mm
+- **Por que (regla R1):** Toda la columna en (34, -77) hasta 9 mm de radio trabaja como maximo al 34 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (194 MPa, en orejetas del bulon) esta a 38 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 194 veces que se ha aplicado: +1.5 % (prevision rapida: 2.2527 kg | 192.2 MPa | CS 1.12 | 0.149 mm)
+- **Resultado (malla completa):** 2.2514 kg | 200.1 MPa | CS 1.07 | 0.149 mm (tension +3.3 %, masa -50 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2571 -> 2.2514; masa 2.2571 -> 2.2514 kg)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -5..39, y -80..-68 mm (esquinas R3) (y su simetrico) -> pasa la evaluacion rapida (2.2537 kg | 195.3 MPa | CS 1.10 | 0.151 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 20 x 44 mm, hasta z = 8 mm (techo a 45 grados) en (9, -102) (y su simetrico) -> pasa la evaluacion rapida (2.2891 kg | 194.1 MPa | CS 1.11 | 0.146 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 25 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
+<img src="galeria/20261124_153959_it041_ACEPTADA_2.251kg.jpg" width="520">
+
 ## Iteracion 40 - SIN CAMBIO
 
 *2026-11-24 15:24*
