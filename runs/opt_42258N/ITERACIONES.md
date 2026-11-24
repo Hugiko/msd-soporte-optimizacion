@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 62 - RECHAZADA: R2 rebaje desde arriba hasta z = 9 mm en x -9..11, y -44..-24 mm (esquinas R4) (y su simetrico)
+
+*2026-11-24 20:06*
+
+- **Pieza de partida:** 2.1213 kg | 203.3 MPa | CS 1.06 | 0.154 mm
+- **Por que (regla R2):** Todo el material por encima de z = 9 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 45 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
+- **Se esperaba:** mediana de las 8 veces que se ha aplicado: +0.7 % (prevision rapida: 1.9906 kg | 264.7 MPa | CS 0.81 | 0.181 mm)
+- **Resultado (malla completa):** 1.9882 kg | 331.3 MPa | CS 0.65 | 0.185 mm (tension +63.0 %, masa -133 g)
+- **Decision:** RECHAZADA - no cumple: 331.3 MPa con la malla normal, que corregidos a malla fina (x1.054) son 349.0 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (1, -122) (y su simetrico) -> tension prevista 245 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R17] ranura que une los aligeramientos de (28, -74) y (43, -68) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1203 kg | 180.7 MPa | CS 1.19 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_200955_it062_RECHAZADA_1.988kg.jpg" width="520">
+
 ## Iteracion 61 - RECHAZADA: R4 collar de 6 mm en los pernos 4 y 2
 
 *2026-11-24 20:02*
