@@ -1,5 +1,5 @@
 {
- "iter": 49,
+ "iter": 50,
  "actual": {
   "ops": [
    {
@@ -814,6 +814,35 @@
    "motivo_tipo": "tension",
    "regla": "R14",
    "iter": 49
+  },
+  {
+   "op": {
+    "tipo": "hueco",
+    "x0": -4.67,
+    "x1": 23.33,
+    "y0": -55.61,
+    "y1": -23.61,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R14",
+   "iter": 50
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -0.67,
+    "x1": 11.33,
+    "y0": -123.61,
+    "y1": -111.61,
+    "zc": 5.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R2",
+   "iter": 50
   }
  ],
  "stats": {
@@ -864,11 +893,11 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 26,
+   "intentos": 27,
    "descartadas_rapido": 15,
-   "evaluadas": 7,
+   "evaluadas": 8,
    "aceptadas": 5,
-   "rechazadas": 2,
+   "rechazadas": 3,
    "dsig": [
     5.87,
     -5.97,
@@ -876,7 +905,8 @@
     1.25,
     -0.94,
     -0.49,
-    1.65
+    1.65,
+    7.06
    ],
    "dm": [
     -57.8,
@@ -885,7 +915,8 @@
     -34.1,
     -27.5,
     -22.2,
-    -39.1
+    -39.1,
+    -58.9
    ],
    "ejemplos": [
     [
@@ -915,6 +946,10 @@
     [
      26,
      "rechazada: rebaje desde arriba hasta z = 5 mm en x -26..14, y -80..-68  (tension +1.7 %, masa -39 g)"
+    ],
+    [
+     50,
+     "rechazada: rebaje desde arriba hasta z = 5 mm en x -1..11, y -124..-112 (tension +7.1 %, masa -59 g)"
     ]
    ],
    "dsig_prev": [
@@ -924,11 +959,12 @@
     2.94,
     -1.12,
     -0.39,
-    -0.67
+    -0.67,
+    27.91
    ]
   },
   "R1": {
-   "intentos": 391,
+   "intentos": 392,
    "descartadas_rapido": 18,
    "evaluadas": 197,
    "aceptadas": 185,
@@ -1641,8 +1677,8 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 21,
-   "descartadas_rapido": 3,
+   "intentos": 22,
+   "descartadas_rapido": 4,
    "evaluadas": 11,
    "aceptadas": 6,
    "rechazadas": 5,
@@ -1768,7 +1804,7 @@
    ]
   }
  },
- "sin_mejora": 2,
+ "sin_mejora": 3,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2206762871500003,
@@ -5026,6 +5062,79 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 206.8 MPa con la malla normal, que corregidos a malla fina (x1.058) son 218.8 MPa > 215 MPa",
    "galeria": "galeria/20261124_190022_it049_RECHAZADA_2.194kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2206762871500003,
+    "vm_metric": 201.1213,
+    "u_max": 0.14963368974866592,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96654,
+    "cs": 1.069006614416275,
+    "viol": 0.9895167960000001,
+    "score": 2.2206762871500003,
+    "valido": true
+   }
+  },
+  {
+   "iter": 50,
+   "fecha": "2026-11-24T19:00:29.232106",
+   "antes": "2.2207 kg | 201.1 MPa | CS 1.07 | 0.150 mm",
+   "m_antes": {
+    "mass_kg": 2.2206762871500003,
+    "vm_metric": 201.1213,
+    "u_max": 0.14963368974866592,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96654,
+    "cs": 1.069006614416275,
+    "viol": 0.9895167960000001,
+    "score": 2.2206762871500003,
+    "valido": true
+   },
+   "notas": [
+    "umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R14",
+     "titulo": "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)",
+     "motivo": "la geometria no se puede construir (operacion 19 (hueco): el hueco interior no quita material (cae fuera de la pieza o dentro de zona protegida))"
+    },
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D10 mm en (37, -86) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1750 kg | 237.0 MPa | CS 0.91 | 0.155 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R2",
+   "titulo": "rebaje desde arriba hasta z = 5 mm en x -1..11, y -124..-112 mm (esquinas R3) (y su simetrico)",
+   "porque": "Todo el material por encima de z = 5 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 45 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).",
+   "espero": "mediana de las 7 veces que se ha aplicado: +0.1 % (prevision rapida: 2.1629 kg | 257.3 MPa | CS 0.84 | 0.158 mm)",
+   "m_cand": {
+    "mass_kg": 2.1618032889000007,
+    "vm_metric": 215.3172,
+    "u_max": 0.15772852048932914,
+    "vm_metric_xyz": [
+     10.567264492115816,
+     -122.60866145206722,
+     32.351624743872854
+    ],
+    "n_nodes": 96895,
+    "cs": 0.9985268246103887,
+    "viol": 1.0593606240000002,
+    "score": 2.1618032889000007,
+    "valido": false
+   },
+   "despues": "2.1618 kg | 215.3 MPa | CS 1.00 | 0.158 mm (tension +7.1 %, masa -59 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 215.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 227.8 MPa > 215 MPa",
+   "galeria": "galeria/20261124_190335_it050_RECHAZADA_2.162kg.jpg",
    "m_actual": {
     "mass_kg": 2.2206762871500003,
     "vm_metric": 201.1213,

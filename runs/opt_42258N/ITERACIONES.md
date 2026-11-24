@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 50 - RECHAZADA: R2 rebaje desde arriba hasta z = 5 mm en x -1..11, y -124..-112 mm (esquinas R3) (y su simetrico)
+
+*2026-11-24 19:00*
+
+- **Pieza de partida:** 2.2207 kg | 201.1 MPa | CS 1.07 | 0.150 mm
+- **Por que (regla R2):** Todo el material por encima de z = 5 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 45 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
+- **Se esperaba:** mediana de las 7 veces que se ha aplicado: +0.1 % (prevision rapida: 2.1629 kg | 257.3 MPa | CS 0.84 | 0.158 mm)
+- **Resultado (malla completa):** 2.1618 kg | 215.3 MPa | CS 1.00 | 0.158 mm (tension +7.1 %, masa -59 g)
+- **Decision:** RECHAZADA - no cumple: 215.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 227.8 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico) -> la geometria no se puede construir (operacion 19 (hueco): el hueco interior no quita material (cae fuera de la pieza o dentro de zona protegida))
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D10 mm en (37, -86) (y su simetrico) -> pasa la evaluacion rapida (2.1750 kg | 237.0 MPa | CS 0.91 | 0.155 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_190335_it050_RECHAZADA_2.162kg.jpg" width="520">
+
 ## Iteracion 49 - RECHAZADA: R14 bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (29, -52) (y su simetrico)
 
 *2026-11-24 18:56*
