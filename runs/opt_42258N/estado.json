@@ -1,5 +1,5 @@
 {
- "iter": 13,
+ "iter": 14,
  "actual": {
   "ops": [
    {
@@ -410,11 +410,25 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 13
+  },
+  {
+   "op": {
+    "tipo": "hueco",
+    "x0": 5.52,
+    "x1": 17.52,
+    "y0": -52.32,
+    "y1": -32.32,
+    "z0": 24.09,
+    "z1": 32.09
+   },
+   "motivo_tipo": "tension",
+   "regla": "R3",
+   "iter": 14
   }
  ],
  "stats": {
   "R4": {
-   "intentos": 12,
+   "intentos": 13,
    "descartadas_rapido": 0,
    "evaluadas": 2,
    "aceptadas": 1,
@@ -1127,25 +1141,32 @@
    ]
   },
   "R3": {
-   "intentos": 175,
+   "intentos": 176,
    "descartadas_rapido": 1,
-   "evaluadas": 1,
+   "evaluadas": 2,
    "aceptadas": 1,
-   "rechazadas": 0,
+   "rechazadas": 1,
    "dsig": [
-    1.54
+    1.54,
+    1.51
    ],
    "dm": [
-    -4.7
+    -4.7,
+    -10.7
    ],
    "ejemplos": [
     [
      15,
      "aceptada: hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -5 g)"
+    ],
+    [
+     14,
+     "rechazada: hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -11 g)"
     ]
    ],
    "dsig_prev": [
-    0.26
+    0.26,
+    -1.55
    ]
   },
   "R7": {
@@ -1179,7 +1200,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 2,
+ "sin_mejora": 3,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2925156956000006,
@@ -2109,6 +2130,72 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 209.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 225.5 MPa > 215 MPa",
    "galeria": "galeria/20261124_112155_it013_RECHAZADA_2.268kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   }
+  },
+  {
+   "iter": 14,
+   "fecha": "2026-11-24T11:22:01.704004",
+   "antes": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R4",
+     "titulo": "collar de 9 mm en los pernos 3 y 1",
+     "motivo": "pasa la evaluacion rapida (2.3627 kg | 199.1 MPa | CS 1.08 | 0.143 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R3",
+   "titulo": "hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico)",
+   "porque": "El nucleo de esa zona (a mas de 4 mm de cualquier superficie) trabaja por debajo del 35 % del limite: en flexion la tension crece con la distancia a la fibra neutra, asi que vaciarlo conserva las pieles, que son las que trabajan. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).",
+   "espero": "la tension sube poco (prevision rapida: 2.2830 kg | 196.2 MPa | CS 1.10 | 0.146 mm)",
+   "m_cand": {
+    "mass_kg": 2.2818148424999998,
+    "vm_metric": 202.3304,
+    "u_max": 0.14590974933300777,
+    "vm_metric_xyz": [
+     -1.4033595469271347,
+     -61.08153607239093,
+     57.50784598198372
+    ],
+    "n_nodes": 91363,
+    "cs": 1.06261837074409,
+    "viol": 1.0133459289302325,
+    "score": 2.2818148424999998,
+    "valido": false
+   },
+   "despues": "2.2818 kg | 202.3 MPa | CS 1.06 | 0.146 mm (tension +1.5 %, masa -11 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 202.3 MPa con la malla normal, que corregidos a malla fina (x1.077) son 217.9 MPa > 215 MPa",
+   "galeria": "galeria/20261124_112447_it014_RECHAZADA_2.282kg.jpg",
    "m_actual": {
     "mass_kg": 2.2925156956000006,
     "vm_metric": 199.3109,
