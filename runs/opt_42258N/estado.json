@@ -1,5 +1,5 @@
 {
- "iter": 8,
+ "iter": 9,
  "actual": {
   "ops": [
    {
@@ -72,11 +72,25 @@
    ],
    "n_nodes": 85338,
    "cs": 1.0857247894703885,
-   "viol": 0.950425015627907,
+   "viol": 0.9917798786976746,
    "score": 2.3200603329500002,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.3338957460000005,
+   "vm_metric": 190.1923,
+   "u_max": 0.14439962464167905,
+   "vm_metric_xyz": [
+    -0.1439796340353645,
+    -87.09029429461272,
+    57.37325360368376
+   ],
+   "n_nodes": 48579,
+   "cs": 1.1304348283290124,
+   "viol": 0.9525538076279069,
+   "score": 2.3338957460000005,
+   "valido": true
+  },
   "galeria": "galeria/20261124_093222_it008_ACEPTADA_2.320kg.jpg"
  },
  "mejor": {
@@ -151,7 +165,7 @@
    ],
    "n_nodes": 85338,
    "cs": 1.0857247894703885,
-   "viol": 0.950425015627907,
+   "viol": 0.9917798786976746,
    "score": 2.3200603329500002,
    "valido": true
   },
@@ -237,7 +251,7 @@
    ],
    "n_nodes": 85338,
    "cs": 1.0857247894703885,
-   "viol": 0.950425015627907,
+   "viol": 0.9917798786976746,
    "score": 2.3200603329500002,
    "valido": true
   },
@@ -251,7 +265,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\04_it008_2.320kg"
  },
- "tau_idx": 1,
+ "tau_idx": 2,
  "rechazos": [
   {
    "op": {
@@ -311,29 +325,58 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 6
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": -17.48,
+    "y": -74.32,
+    "r": 6.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 9
+  },
+  {
+   "op": {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 8.0,
+    "z": 22.0
+   },
+   "motivo_tipo": "puntuacion",
+   "regla": "R4",
+   "iter": 9
   }
  ],
  "stats": {
   "R4": {
-   "intentos": 6,
+   "intentos": 8,
    "descartadas_rapido": 0,
-   "evaluadas": 1,
+   "evaluadas": 2,
    "aceptadas": 1,
-   "rechazadas": 0,
+   "rechazadas": 1,
    "dsig": [
-    -15.18
+    -15.18,
+    -3.26
    ],
    "dm": [
-    81.0
+    81.0,
+    46.4
    ],
    "ejemplos": [
     [
      1,
      "aceptada: collar de 6 mm en los pernos 1 y 3 (tension -15.2 %, masa +81 g)"
+    ],
+    [
+     9,
+     "rechazada: collar de 8 mm en los pernos 3 y 1 (tension -3.3 %, masa +46 g)"
     ]
    ],
    "dsig_prev": [
-    -6.78
+    -6.78,
+    1.72
    ]
   },
   "R11": {
@@ -404,8 +447,8 @@
    ]
   },
   "R1": {
-   "intentos": 366,
-   "descartadas_rapido": 6,
+   "intentos": 367,
+   "descartadas_rapido": 7,
    "evaluadas": 186,
    "aceptadas": 182,
    "rechazadas": 4,
@@ -1061,7 +1104,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.3200603329500002,
@@ -1626,7 +1669,7 @@
     ],
     "n_nodes": 85338,
     "cs": 1.0857247894703885,
-    "viol": 0.950425015627907,
+    "viol": 0.9917798786976746,
     "score": 2.3200603329500002,
     "valido": true
    },
@@ -1645,7 +1688,80 @@
     ],
     "n_nodes": 85338,
     "cs": 1.0857247894703885,
-    "viol": 0.950425015627907,
+    "viol": 0.9917798786976746,
+    "score": 2.3200603329500002,
+    "valido": true
+   }
+  },
+  {
+   "iter": 9,
+   "fecha": "2026-11-24T09:34:42.629529",
+   "antes": "2.3201 kg | 198.0 MPa | CS 1.09 | 0.144 mm",
+   "m_antes": {
+    "mass_kg": 2.3200603329500002,
+    "vm_metric": 198.0244,
+    "u_max": 0.14439539150583008,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 85338,
+    "cs": 1.0857247894703885,
+    "viol": 0.9917798786976746,
+    "score": 2.3200603329500002,
+    "valido": true
+   },
+   "notas": [
+    "R10: ya no queda material por debajo del 25 % del limite donde quepa un corte -> se pasa al umbral del 35 %"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)",
+     "motivo": "tension prevista 412 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R4",
+     "titulo": "collar de 9 mm en los pernos 3 y 1",
+     "motivo": "pasa la evaluacion rapida (2.3901 kg | 201.4 MPa | CS 1.07 | 0.141 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R4",
+   "titulo": "collar de 8 mm en los pernos 3 y 1",
+   "porque": "El pico (198 MPa, 99 % del limite) esta junto al alojamiento del perno 3 (concentracion local x2.6). El momento de vuelco de la carga (F x 44,7 mm) llega a los pernos por una seccion pequena alrededor del alojamiento: un collar de 8 mm aumenta esa seccion. El perno 1 es su simetrico respecto al plano medio de las orejetas y trabaja igual. Evidencia: prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.",
+   "espero": "del orden de -20 % (collares anteriores: -15 % con 6 mm) (prevision rapida: 2.3654 kg | 201.4 MPa | CS 1.07 | 0.142 mm)",
+   "m_cand": {
+    "mass_kg": 2.3664543903000004,
+    "vm_metric": 191.5745,
+    "u_max": 0.1422742351202781,
+    "vm_metric_xyz": [
+     2.6198441248925235,
+     -58.41819633307778,
+     56.3315625022261
+    ],
+    "n_nodes": 86382,
+    "cs": 1.1222788001534652,
+    "viol": 0.9594763795348836,
+    "score": 2.3664543903000004,
+    "valido": true
+   },
+   "despues": "2.3665 kg | 191.6 MPa | CS 1.12 | 0.142 mm (tension -3.3 %, masa +46 g)",
+   "decision": "RECHAZADA",
+   "motivo": "cumple pero no mejora al mejor (puntuacion 2.3665 frente a 2.3201)",
+   "galeria": "galeria/20261124_093855_it009_RECHAZADA_2.366kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3200603329500002,
+    "vm_metric": 198.0244,
+    "u_max": 0.14439539150583008,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 85338,
+    "cs": 1.0857247894703885,
+    "viol": 0.9917798786976746,
     "score": 2.3200603329500002,
     "valido": true
    }
