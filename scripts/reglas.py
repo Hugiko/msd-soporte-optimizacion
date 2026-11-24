@@ -96,6 +96,23 @@ REGLAS = {
                 porque="se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y "
                        "solo despues se aprovecha material que trabaja algo mas.",
                 espero="permite seguir aligerando con un riesgo controlado"),
+    "R13": dict(titulo="Ventana pasante donde toda la columna (de la base a arriba) esta ociosa", tipo="quitar",
+                si="todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por "
+                   "debajo del umbral de material ocioso",
+                hago="ventana pasante vertical con esquinas redondeadas (radio = 20 % del lado menor); paredes verticales: imprimible",
+                porque=("la placa base apenas trabaja lejos de los pernos (en el original, el 85 % de su material esta por debajo del 15 % "
+                        "del limite): la carga baja por el cuerpo a los pernos y la placa entre ellos no esta en ese camino. Una ventana la "
+                        "quita entera, cosa que un rebaje (que deja suelo) o un agujero redondo no pueden hacer."),
+                espero="baja la masa; la tension maxima casi no cambia (lejos de los picos)"),
+    "R14": dict(titulo="Aliviar la cara de apoyo: bolsillos desde abajo donde la placa base no trabaja", tipo="quitar",
+                si="todo el material por debajo de una altura zt (desde la cara de apoyo, con 4 mm de margen) trabaja por debajo del umbral",
+                hago=("bolsillo (ranura) abierto por abajo con techo a cuatro aguas a 45 grados (imprimible sin soportes); nunca junto "
+                      "a los pernos (alli la cabeza y la arandela necesitan apoyo)"),
+                porque=("el soporte solo se sujeta por los pernos: la cara inferior lejos de ellos no apoya en nada en el modelo ni "
+                        "transmite carga. La placa base bajo el cuerpo esta ociosa aunque el cuerpo de encima trabaje, asi que se "
+                        "vacia desde abajo sin tocar el cuerpo (cara de apoyo aliviada, habitual en soportes atornillados); las "
+                        "ranuras dejan nervios entre ellas."),
+                espero="baja la masa; la tension maxima casi no cambia"),
     "R11": dict(titulo="Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)", tipo="sustituir",
                 si=("un bloque trabaja por debajo del 45-60 % del limite (no es ocioso: lleva algo de carga) o un rebaje se rechazo "
                     "porque ese material si trabajaba"),
@@ -348,6 +365,15 @@ def evidence(log=print):
                               + (f", y {lp:.1f} mm en los {len(lug_peak)} disenos cuyo pico esta en la orejeta" if lp else "")), tabla=[])
     else:
         E["R7"] = dict(respaldo=None, texto="estudio aun incompleto: regla basada en la mecanica (aplastamiento/cortadura)", tabla=[])
+    if len(G) >= 3 and orig:
+        a13, b13 = orig["V_placa_base_cm3"], med(light, "V_placa_base_cm3")
+        E["R13"] = dict(respaldo=(True if b13 < a13 * 0.9 else None),
+                        texto=(f"placa base (z < 10 mm): original {a13:.0f} cm3 con un {pct(orig['ocioso_placa_base'])} de material ocioso; "
+                               f"mediana de la mitad mas ligera de {glabel}: {b13:.0f} cm3"), tabla=[])
+    else:
+        E["R13"] = dict(respaldo=None, texto="la placa base del original apenas trabaja (85 % ocioso)", tabla=[])
+    if "R13" in E:
+        E["R14"] = dict(E["R13"])
     for r in ("R8", "R9", "R10"):
         E[r] = dict(respaldo=None, texto="regla de procedimiento: se juzga por sus resultados en el optimizador", tabla=[])
     full = [k for k in allf if k != "0" and str(rows[k].get("fidelidad", "")).startswith("normal")]
@@ -538,7 +564,10 @@ def propose(C, m, ops, st, E, stats, n_max=3):
             cols = C.columns(tau, veto=veto) if ok("R1") else []
             cuts = C.top_cuts(tau, veto=veto) if ok("R2") else []
             cavs = C.cavities(tau, veto=veto) if ok("R3") else []
-            if cols or cuts or cavs:
+            wins = [w for w in C.top_cuts(tau, z_floor=-1.0, veto=veto, v_min=1500.0)
+                    if w["zc"] < 0] if ok("R13") else []          # ventanas pasantes (toda la columna ociosa)
+            bots = C.bottom_cuts(tau, veto=veto, am_t=G.AM_T) if ok("R14") else []
+            if cols or cuts or cavs or wins or bots:
                 break
             ti += 1
         if ti != st.get("tau_idx", 0) and ti < len(TAUS):
@@ -564,6 +593,26 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                 porque=(f"Todo el material por encima de z = {c['zc']:.0f} mm en esa zona (y 4 mm alrededor) trabaja "
                                         f"por debajo del {tau * 100:.0f} % del limite: ni el momento de vuelco ni el cortante pasan por "
                                         f"ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados." + ev("R2")),
+                                espero=dict(dm_g=-c["V"] * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
+            for c in bots:
+                op = dict(tipo="hueco", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1")}, z0=-1.0, z1=round(c["zt"], 2),
+                          rr=1.5)
+                d, hist = _expect("R14", stats, 0.0)
+                rem.append(dict(regla="R14", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=c["V"] * 0.6,
+                                porque=(f"Todo el material por debajo de z = {c['zt']:.0f} mm en esa zona (y 4 mm alrededor y encima) "
+                                        f"trabaja por debajo del {tau * 100:.0f} % del limite: la placa base bajo el cuerpo no lleva carga "
+                                        f"(el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 "
+                                        f"grados (imprimible), sin tocar el cuerpo de encima; el pico ({sig:.0f} MPa, en {zona}) esta lejos."
+                                        + ev("R14")),
+                                espero=dict(dm_g=-c["V"] * 0.6 * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
+            for c in wins:
+                op = dict(tipo="rebaje", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1")}, zc=-1.0, rr=corner_r(c))
+                d, hist = _expect("R13", stats, 0.0)
+                rem.append(dict(regla="R13", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=c["V"],
+                                porque=(f"Todo el material de esa zona, desde la cara de apoyo hasta arriba (y 4 mm alrededor), trabaja por "
+                                        f"debajo del {tau * 100:.0f} % del limite: la carga baja por el cuerpo hasta los pernos y esa parte "
+                                        f"de la placa no esta en el camino. Se abre una ventana pasante (esquinas R{corner_r(c):g}); el pico "
+                                        f"({sig:.0f} MPa, en {zona}) esta lejos." + ev("R13")),
                                 espero=dict(dm_g=-c["V"] * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
             for c in cavs:
                 op = dict(tipo="hueco", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1", "z0", "z1")})

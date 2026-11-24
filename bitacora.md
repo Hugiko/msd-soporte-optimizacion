@@ -239,3 +239,20 @@
   Sus aligeramientos estaban donde sobraba material solo en un lado.
 - **Nuevo punto de partida:** la pieza asimétrica se archiva en el PC (`runs/archivo/opt_42258N_asimetrico_hasta_20261124`) y el optimizador sigue en modo simétrico desde el original con los dos collares (2,504 kg, 201,9 MPa). Conserva la estadística de cada regla y la calibración de malla.
 - **Corregido también:** el motivo de rechazo ahora muestra la tensión corregida a malla fina (antes decía «desplazamiento» por error cuando la causa era la tensión corregida).
+
+## 2026-11-24 – Primera optimización simétrica terminada y reglas nuevas
+
+- **Resultado de la primera pasada simétrica:** 2,293 kg; 199,3 MPa con malla normal y **213,8 MPa con malla fina** (límite 215), desplazamiento 0,146 mm. Terminó porque ninguna regla encontraba nada más.
+- **Diagnóstico:**
+  - El pico está en la **unión del collar del perno 3 con el cuerpo** (arista viva, concentración ×2,6). Detrás, casi igual de cargada, está la parte alta de las **orejetas**.
+  - OCC no consigue redondear esa unión (superficies B-spline): de 27 aristas, solo 9 admiten el acuerdo por separado.
+  - Un collar troncocónico a 30° elimina ese pico, pero entonces manda la orejeta (201 MPa) y añade 114 g. No compensa.
+  - La **placa base sigue ociosa al 73 %** (60 cm³, frente a 37,5 cm³ del diseño publicado válido más ligero, SimJEB 237 con 1,975 kg). No se podía quitar: los cortes desde arriba dejaban un suelo de 5 mm y los agujeros redondos exigían que toda la columna estuviera ociosa (el cuerpo de encima trabaja).
+- **Simetría:** 90,6 % del volumen tiene material en su simétrico, igual que el original. La asimetría restante viene del original (paredes interiores) y de la posición de los pernos.
+- **Mejoras nuevas:**
+  - **R13, ventanas pasantes:** donde toda la columna está ociosa.
+  - **R14, bolsillos desde la cara de apoyo:** con techo a 45°, imprimibles, en la placa base bajo el cuerpo. En la pieza actual salen bolsillos de 28 × 24 mm hasta z = 19–21 mm al umbral del 25 %.
+  - **Umbral de material ocioso hasta el 45 %.**
+  - **Protecciones de los pernos también reflejadas:** cada corte coincide exactamente con su simétrico. Por eso la pieza actual se reconstruye y se recalcula antes de seguir.
+  - **Collar con acuerdo en la raíz:** opción añadida, aunque OCC no siempre puede aplicarla.
+  - Evidencia de R13 y R14: la placa base del original tiene 67 cm³ (77 % ociosa); la mitad más ligera de los 16 diseños publicados válidos, 45 cm³.

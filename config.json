@@ -18,7 +18,7 @@
   "_estudio_nota": "antes de optimizar se calculan con NUESTRA carga todas las soluciones publicadas (SimJEB) y se sacan las reglas de diseno (DESIGN_RULES.md). Se hace una vez; se puede interrumpir.",
   "candidatos_por_iteracion": 3,
   "_candidatos_nota": "cuantas modificaciones (cada una justificada por una regla) se prueban por iteracion con la evaluacion rapida; solo la mas prometedora pasa a la evaluacion completa",
-  "umbrales_ocioso": [0.15, 0.25, 0.35],
+  "umbrales_ocioso": [0.15, 0.25, 0.35, 0.45],
   "_umbrales_nota": "material 'ocioso' = tension < umbral x limite. Se empieza por el mas prudente (con Kt ~ 3 el borde de un agujero queda < 45 % del limite) y se sube cuando ya no queda donde quitar",
   "descarte_rapido_tolerancia": 0.03,
   "_descarte_nota": "en la evaluacion rapida (malla gruesa) se descarta una modificacion si su tension prevista supera el limite en mas de un 3 % o si no mejora la pieza",

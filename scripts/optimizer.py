@@ -768,6 +768,59 @@ def start(st, git):
         register_best(st, git)        # hito: verificacion con malla fina + proyecto Workbench de la pieza de partida
 
 
+def symmetry_pct(wd):
+    """% del volumen con material en su punto simetrico (total y lejos de los pernos, cuya posicion no es simetrica)."""
+    try:
+        import operaciones as O, geometry as G
+        from scipy.spatial import cKDTree
+        d = np.load(os.path.join(wd, "campos.npz")); nd = d["nodes"].astype(float); t4 = d["tets4"]
+        P = nd[t4]; c = P.mean(1)
+        V = np.abs(np.einsum("ij,ij->i", np.cross(P[:, 1] - P[:, 0], P[:, 2] - P[:, 0]), P[:, 3] - P[:, 0])) / 6
+        cm = c - 2 * ((c - O.PIN_P) @ O.PIN_A)[:, None] * O.PIN_A
+        dist, _ = cKDTree(c).query(cm)
+        ok = dist < 2.5
+        far = np.ones(len(c), bool)
+        for bb in G.BOLTS:
+            far &= np.hypot(c[:, 0] - bb["c"][0], c[:, 1] - bb["c"][1]) >= 22.0
+        return round(100 * V[ok].sum() / V.sum(), 1), round(100 * V[ok & far].sum() / V[far].sum(), 1)
+    except Exception:
+        return None, None
+
+
+def reevaluate(st, git, motivo):
+    """Reconstruye la pieza actual con el codigo vigente (p. ej. protecciones simetricas) y la recalcula; queda en el
+    historial como una iteracion mas ('REEVALUADA')."""
+    import operaciones as O
+    st["iter"] += 1
+    it = st["iter"]; ops = st["actual"]["ops"]
+    log(f"ITERACION {it}: REEVALUACION de la pieza actual ({motivo})")
+    s, holes = O.build(ops)
+    wd = os.path.join(ITD, f"{it:03d}", "completa")
+    m = run_eval(ops, s, holes, wd)
+    if m.get("status") != "ok":
+        raise RuntimeError(f"no se ha podido recalcular la pieza actual: {m.get('error')}")
+    set_current(s, ops)
+    K_FINO[:] = k_fino(st)
+    sm = summ(m)
+    old = st["actual"]["m"]
+    gal = add_to_gallery(wd, it, "REEVALUADA", sm["mass_kg"])
+    st["actual"] = dict(ops=ops, dir=wd, m=sm, rapida=None, galeria=gal)
+    sp, spf = symmetry_pct(wd)
+    h = dict(iter=it, fecha=datetime.datetime.now().isoformat(), decision="REEVALUADA", titulo="pieza actual reconstruida",
+             porque=motivo, antes=txt_m(old), m_antes=old, despues=txt_m(sm) + (f" | simetria {sp} % del volumen ({spf} % lejos de los pernos)" if sp else ""),
+             galeria=gal, m_cand=sm,
+             motivo=("cumple: se sigue optimizando con las reglas nuevas" if sm["valido"] else
+                     f"no cumple ({sm['vm_metric']:.1f} MPa x {K_FINO[0]:.3f}): las reglas reforzaran primero"))
+    log(f"  {h['despues']} -> {h['motivo']}")
+    if sm["valido"]:
+        st["mejor"] = dict(ops=ops, dir=wd, m=sm, iter=it, galeria=gal)
+        st["verificado"] = None; st["wb_masa"] = None
+    st.pop("reevaluar", None)
+    record(st, h, git, True)
+    if sm["valido"]:
+        register_best(st, git)
+
+
 def step(st, git, E):
     import operaciones as O, reglas as R, campo as CA
     st["iter"] += 1
@@ -1073,6 +1126,8 @@ def main():
         # ---- 1. pieza de partida
         if not st.get("actual"):
             start(st, git)
+        elif st.get("reevaluar"):
+            reevaluate(st, git, st["reevaluar"])
         # ---- 2. iteraciones
         crash = 0
         while not st.get("fin"):

@@ -283,7 +283,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it011_2.293kg"
  },
- "tau_idx": 2,
+ "tau_idx": 0,
  "rechazos": [
   {
    "op": {
@@ -1218,12 +1218,12 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 4,
+ "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2925156956000006,
- "fin": true,
- "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
+ "fin": false,
+ "motivo_fin": "",
  "historia": [
   {
    "iter": 0,
@@ -2429,5 +2429,6 @@
  "_avisadas": [
   "R11",
   "R5"
- ]
+ ],
+ "reevaluar": "la pieza tiene que ser simetrica: las zonas protegidas de los pernos se reflejan tambien, para que cada corte y su simetrico sean identicos; ademas hay reglas nuevas (R13 ventanas pasantes, R14 bolsillos desde la cara de apoyo, umbral hasta el 45 %)"
 }

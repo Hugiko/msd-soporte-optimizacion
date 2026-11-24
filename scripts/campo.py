@@ -242,6 +242,60 @@ class Campo:
                 break
         return sel
 
+    def bottom_cuts(self, tau, b=4.0, z_min=3.0, v_min=1200.0, n_max=6, veto=None, am_t=1.0):
+        """Bolsillos desde la CARA DE APOYO (abajo): rectangulo en planta y altura zt tal que todo el material por DEBAJO
+        de zt (con 4 mm de margen alrededor y encima) esta por debajo de tau x limite. Para imprimir sin soportes el techo
+        es a cuatro aguas (45 grados): el lado menor del bolsillo no puede pasar de 2 x zt / tan + 3 mm (ranuras)."""
+        from numpy.lib.stride_tricks import sliding_window_view as swv
+        from scipy.ndimage import minimum_filter
+        c = self.cen
+        x0, y0 = c[:, 0].min() - b, c[:, 1].min() - b
+        ix = ((c[:, 0] - x0) // b).astype(int); iy = ((c[:, 1] - y0) // b).astype(int)
+        nx, ny = ix.max() + 2, iy.max() + 2
+        zhi = np.full((nx, ny), 1e9)
+        hi = ~self.low(tau) | self.prot
+        np.minimum.at(zhi, (ix[hi], iy[hi]), c[hi, 2] - b)
+        zhi = minimum_filter(zhi, size=3, mode="constant", cval=1e9)
+        has = np.zeros((nx, ny), bool); has[ix, iy] = True
+        dz = 1.0
+        L = np.arange(z_min, 30.0, dz)
+        H = np.zeros((len(L), nx, ny))
+        free = ~self.prot
+        for k, zt in enumerate(L):
+            sel = free & (c[:, 2] < zt)
+            np.add.at(H[k], (ix[sel], iy[sel]), self.vol[sel])
+        S = np.zeros((len(L), nx + 1, ny + 1)); S[:, 1:, 1:] = H.cumsum(1).cumsum(2)
+        cands = []
+        for w in range(2, nx):
+            for h in range(2, ny):
+                zt = swv(zhi, (w, h)).min(axis=(-2, -1))
+                full = swv(has.astype(int), (w, h)).sum(axis=(-2, -1)) >= w * h      # todo el rectangulo con material
+                k = np.floor((zt - z_min) / dz).astype(int)
+                okm = full & (k >= 0)
+                k = np.clip(k, 0, len(L) - 1)
+                zt_eff = z_min + k * dz
+                okm &= min(w, h) * b <= 2.0 * (zt_eff + 1.0) / am_t + 3.0            # techo a 45 grados sin tramo plano
+                I, J = np.nonzero(okm)
+                if not len(I):
+                    continue
+                kk = k[I, J]
+                V = S[kk, I + w, J + h] - S[kk, I, J + h] - S[kk, I + w, J] + S[kk, I, J]
+                for q in np.argsort(-V)[:6]:
+                    if V[q] >= v_min:
+                        i, j = I[q], J[q]
+                        cands.append(dict(x0=float(x0 + i * b), x1=float(x0 + (i + w) * b), y0=float(y0 + j * b),
+                                          y1=float(y0 + (j + h) * b), zt=float(zt_eff[i, j]), V=float(V[q])))
+        cands.sort(key=lambda d: -d["V"])
+        sel = []
+        for cd in cands:
+            if veto and veto(dict(tipo="hueco", x0=cd["x0"], x1=cd["x1"], y0=cd["y0"], y1=cd["y1"], z0=-1.0, z1=cd["zt"])):
+                continue
+            if all(_rect_overlap(cd, q) < 0.2 for q in sel):
+                sel.append(cd)
+            if len(sel) >= n_max:
+                break
+        return sel
+
     def _open_slivers(self, cd, wall=5.0):
         """Si al lado de un rebaje solo quedaria una pared de menos de 'wall' mm hasta el borde de la pieza, el rebaje se
         abre hasta el borde: una lamina fina se carga y concentra la tension (y apenas pesa)."""

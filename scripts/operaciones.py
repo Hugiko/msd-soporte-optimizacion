@@ -83,8 +83,8 @@ def protected():
     """Cilindros alrededor de los 4 pernos (alojamiento + 3 mm) y del bulon (cubre las 2 orejetas)."""
     if not _PROT:
         s = None
-        for b in G.BOLTS:
-            c = cq.Solid.makeCylinder(PROT["perno"], 160.0, cq.Vector(b["c"][0], b["c"][1], -20.0))
+        for (bx, by) in prot_centers():
+            c = cq.Solid.makeCylinder(PROT["perno"], 160.0, cq.Vector(bx, by, -20.0))
             s = c if s is None else s.fuse(c)
         st = PIN_P - 26.0 * PIN_A
         pin = cq.Solid.makeCylinder(PROT["bulon"], 52.0, cq.Vector(*st), cq.Vector(*PIN_A))
@@ -92,12 +92,21 @@ def protected():
     return _PROT[0]
 
 
+def prot_centers():
+    """Centros (x, y) de las zonas protegidas de los pernos; con simetria, tambien sus simetricos (los pernos 2 y 4 del
+    enunciado no son simetricos): asi un corte y su simetrico se recortan exactamente igual."""
+    cs = [tuple(b["c"]) for b in G.BOLTS]
+    if SIM:
+        cs += [tuple(mirror_pt((x, y, 0.0))[:2]) for x, y in cs]
+    return cs
+
+
 def in_protected(xyz, extra=0.0):
     """Mascara de puntos dentro de las zonas protegidas (para el analisis del campo de tensiones)."""
     xyz = np.asarray(xyz, float)
     m = np.zeros(len(xyz), bool)
-    for b in G.BOLTS:
-        m |= np.hypot(xyz[:, 0] - b["c"][0], xyz[:, 1] - b["c"][1]) < PROT["perno"] + extra
+    for bx, by in prot_centers():
+        m |= np.hypot(xyz[:, 0] - bx, xyz[:, 1] - by) < PROT["perno"] + extra
     v = xyz - PIN_P; t = v @ PIN_A
     rho = np.linalg.norm(v - np.outer(t, PIN_A), axis=1)
     m |= (rho < PROT["bulon"] + extra) & (np.abs(t) < 26.0 + extra)
@@ -226,18 +235,22 @@ def op_hueco(solid, x0, x1, y0, y1, z0, z1, rr=2.0):
         raise GeometryError("hueco demasiado pequeno")
     cav = sym(rounded(hip_box(x0, x1, y0, y1, z0, z1), rr))
     new = cut(solid, cav, "el hueco interior")
-    if G.AM_ON:   # agujero de evacuacion del polvo (D5) desde el suelo del hueco hasta la cara inferior
+    if G.AM_ON and z0 >= 0:   # agujero de evacuacion del polvo (D5) desde el suelo del hueco hasta la cara inferior
         drain = sym(cq.Solid.makeCylinder(2.5, z0 + 2.0 + 1.0, cq.Vector((x0 + x1) / 2, (y0 + y1) / 2, -1.0)))
         new = cut(new, drain, "el agujero de evacuacion del hueco")
     return new
 
 
-def op_collar(solid, perno, t, z, r_in=R_HEAD):
+def op_collar(solid, perno, t, z, r_in=R_HEAD, acuerdo=0.0):
+    """Anillo de refuerzo alrededor del alojamiento de un perno. acuerdo > 0: acuerdo de ese radio en la RAIZ del collar
+    (donde se une al cuerpo hay una arista viva entrante: entalla)."""
     x, y = G.BOLTS[int(perno)]["c"]
     ring = cq.Solid.makeCylinder(r_in + t, z - 1.0, cq.Vector(x, y, 1.0)).cut(
         cq.Solid.makeCylinder(r_in, z + 1.0, cq.Vector(x, y, 0.0)))
-    new = fuse(solid, ring, "el collar")
-    return fill_closed_voids(new)
+    new = fill_closed_voids(fuse(solid, ring, "el collar"))
+    if acuerdo > 0:
+        new = root_fillet(new, solid, ring, r=acuerdo)
+    return new
 
 
 def op_alojamiento(solid, perno, R):
@@ -387,14 +400,21 @@ def _describe(op):
     t = op["tipo"]
     if t == "agujero":
         return f"aligeramiento pasante vertical D{2 * op['r']:.0f} mm en ({op['x']:.0f}, {op['y']:.0f})"
+    if t == "rebaje" and op["zc"] < 0:
+        return (f"ventana pasante en x {op['x0']:.0f}..{op['x1']:.0f}, y {op['y0']:.0f}..{op['y1']:.0f} mm "
+                f"(esquinas R{op.get('rr', 3.0):g})")
     if t == "rebaje":
         return (f"rebaje desde arriba hasta z = {op['zc']:.0f} mm en x {op['x0']:.0f}..{op['x1']:.0f}, "
                 f"y {op['y0']:.0f}..{op['y1']:.0f} mm (esquinas R{op.get('rr', 3.0):g})")
+    if t == "hueco" and op["z0"] < 0:
+        return (f"bolsillo desde la cara de apoyo {op['x1'] - op['x0']:.0f} x {op['y1'] - op['y0']:.0f} mm, hasta z = {op['z1']:.0f} mm "
+                f"(techo a 45 grados) en ({(op['x0'] + op['x1']) / 2:.0f}, {(op['y0'] + op['y1']) / 2:.0f})")
     if t == "hueco":
         return (f"hueco interior {op['x1'] - op['x0']:.0f} x {op['y1'] - op['y0']:.0f} x {op['z1'] - op['z0']:.0f} mm "
                 f"(techo a 45 grados + evacuacion D5) en ({(op['x0'] + op['x1']) / 2:.0f}, {(op['y0'] + op['y1']) / 2:.0f})")
     if t == "collar":
-        return f"collar de {op['t']:.1f} mm alrededor del perno {int(op['perno']) + 1} hasta z = {op['z']:.0f} mm"
+        return (f"collar de {op['t']:.1f} mm alrededor del perno {int(op['perno']) + 1} hasta z = {op['z']:.0f} mm"
+                + (f" con acuerdo R{op['acuerdo']:g} en su raiz" if op.get("acuerdo") else ""))
     if t == "alojamiento":
         return f"alojamiento del perno {int(op['perno']) + 1} con radio {op['R']:.2f} mm (acuerdo de fondo {op['R'] - 8:.2f} mm)"
     if t == "redondeo":

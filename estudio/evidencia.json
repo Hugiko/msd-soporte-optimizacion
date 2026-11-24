@@ -9,7 +9,7 @@
   "referencia": "los 16 disenos publicados VALIDOS",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-24T11:12"
+  "fecha": "2026-11-24T11:46"
  },
  "R1": {
   "respaldo": true,
@@ -125,6 +125,16 @@
  "R7": {
   "respaldo": true,
   "texto": "ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta",
+  "tabla": []
+ },
+ "R13": {
+  "respaldo": true,
+  "texto": "placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3",
+  "tabla": []
+ },
+ "R14": {
+  "respaldo": true,
+  "texto": "placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3",
   "tabla": []
  },
  "R8": {

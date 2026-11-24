@@ -115,6 +115,8 @@ Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (o
 | R9 | un corte fue rechazado | en esa zona, cortes ≤ 0,6 × el rechazado | búsqueda por bisección del tamaño |
 | R10 | no queda material ocioso donde cortar | subir el umbral 15 % → 25 % → 35 % | primero lo más seguro |
 | **R11** | un bloque trabaja algo (< 45–60 % del límite) o quitarlo entero se rechazó | **forma nueva**: se quita el bloque y se crean **nervios**, uno por cada familia de la carga (tracción y compresión) que lleve ≥ 25 % de ella, en su dirección principal, dimensionados para trabajar al 50 % del límite y con acuerdo de 3 mm en la raíz | Michell (1904): la estructura mínima lleva cada familia por su trayectoria, con un volumen ∫\|σ\| dV / σ_trabajo |
+| **R13** | toda la columna, desde la cara de apoyo hasta arriba, está ociosa | **ventana pasante** con esquinas redondeadas | la placa base lejos de los pernos no está en el camino de la carga |
+| **R14** | todo lo que queda por debajo de una altura, desde la cara de apoyo, está ocioso | **bolsillo desde abajo** con techo a 45° (ranuras imprimibles; nunca junto a los pernos) | el soporte solo se sujeta por los pernos: la placa bajo el cuerpo no lleva carga aunque el cuerpo de encima sí |
 
 **Datos de las reglas**
 - **Las reglas se juzgan con datos.** Una regla que contradicen los datos de un cambio **directo** (mismo diseño, cambiando solo eso) **se desactiva**. Las comparaciones con SimJEB (diseños distintos) pueden respaldarla o ser «no concluyentes», pero no la desactivan. Una regla que se prueba 8 veces en el optimizador sin que ninguna se acepte **se suspende**. Ejemplo real: R5 parecía lógica (agrandar el radio del acuerdo baja Kt), pero en los 294 diseños calculados antes, agrandar el alojamiento **sube** la tensión (Spearman +0,76: mediana de 360 MPa con R > 11 mm frente a 206 MPa con el del original). Pesa más la sección que se pierde que el acuerdo que se gana, así que está desactivada.
@@ -200,7 +202,7 @@ Las que quitan nunca entran en las zonas protegidas: alojamiento + 3 mm alrededo
 | `peso_seguridad` | 0 | 0 = objetivo solo masa; > 0 = la seguridad sobrante desempata |
 | `estudio_simjeb` | true | Estudio de las soluciones publicadas antes de optimizar |
 | `candidatos_por_iteracion` | 3 | Propuestas que se prueban en la evaluación rápida |
-| `umbrales_ocioso` | 0,15 / 0,25 / 0,35 | Umbral de material ocioso (R10) |
+| `umbrales_ocioso` | 0,15 / 0,25 / 0,35 / 0,45 | Umbral de material ocioso (R10) |
 | `descarte_rapido_tolerancia` | 0,03 | Margen sobre el límite en la evaluación rápida |
 | `max_iteraciones_sin_mejora` / `max_inversiones_seguidas` | 8 / 2 | Parada e inversiones |
 | `verificar_mejores` / `verificacion_h_mm` | true / 3,5 | Verificación con malla fina en cada hito |
