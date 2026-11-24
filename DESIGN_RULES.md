@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 09:04. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 09:07. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -78,12 +78,12 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 11 veces (4 descartadas en la evaluacion rapida, 4 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa -34 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a +0.1 % real (mediana de 5)
-  - iteracion 4: aceptada: rebaje desde arriba hasta z = 9 mm en x 42..54, y -100..-52  (tension -6.0 %, masa -47 g)
+- **Aplicada en el optimizador:** 12 veces (4 descartadas en la evaluacion rapida, 5 aceptadas, 1 rechazadas); tension -0.2 % (mediana), masa -31 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.2 % frente a -0.2 % real (mediana de 6)
   - iteracion 5: rechazada: rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8  (tension +0.0 %, masa +0 g)
   - iteracion 13: aceptada: rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 m (tension +1.3 %, masa -34 g)
   - iteracion 14: aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)
+  - iteracion 2: aceptada: rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 m (tension -0.5 %, masa -22 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -169,7 +169,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el bulon empuja la orejeta en la direccion de la carga; el ligamento delante del agujero trabaja a cortadura y aplastamiento (s ~ F / (2 t e)). Mas ligamento e -> menos tension.
 - **Espero:** baja la tension en la orejeta; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
-- **Aplicada en el optimizador:** 2 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 3 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R8. Reponer material donde un corte anterior ha creado el pico  (ACTIVA)
 

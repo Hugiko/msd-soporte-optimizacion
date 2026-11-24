@@ -1,5 +1,5 @@
 {
- "iter": 1,
+ "iter": 2,
  "actual": {
   "ops": [
    {
@@ -13,40 +13,35 @@
     "perno": 2,
     "t": 6.0,
     "z": 22.0
+   },
+   {
+    "tipo": "rebaje",
+    "x0": 41.52,
+    "x1": 61.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 9.0,
+    "rr": 3.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\002\\completa",
   "m": {
-   "mass_kg": 2.5044295071000002,
-   "vm_metric": 201.9075,
-   "u_max": 0.13915347332683817,
+   "mass_kg": 2.4822082530500005,
+   "vm_metric": 200.9276,
+   "u_max": 0.1395676490929105,
    "vm_metric_xyz": [
     -5.157557663763868,
     -61.19553636990821,
     58.584841174714256
    ],
-   "n_nodes": 83597,
-   "cs": 1.0648440498743237,
-   "viol": 0.9774201209302325,
-   "score": 2.5044295071000002,
+   "n_nodes": 84555,
+   "cs": 1.070037167616594,
+   "viol": 0.9726764933953488,
+   "score": 2.4822082530500005,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.5129753939000006,
-   "vm_metric": 190.0382,
-   "u_max": 0.13918198493085698,
-   "vm_metric_xyz": [
-    47.05616414614749,
-    -7.704069186801394,
-    10.388599920100642
-   ],
-   "n_nodes": 46708,
-   "cs": 1.131351486174885,
-   "viol": 0.9199616677209301,
-   "score": 2.5129753939000006,
-   "valido": true
-  },
-  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_090732_it002_ACEPTADA_2.482kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -61,32 +56,35 @@
     "perno": 2,
     "t": 6.0,
     "z": 22.0
+   },
+   {
+    "tipo": "rebaje",
+    "x0": 41.52,
+    "x1": 61.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 9.0,
+    "rr": 3.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\000\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\002\\completa",
   "m": {
-   "mass_kg": 2.5044295071000002,
-   "vm_metric": 201.9075,
-   "u_max": 0.13915347332683817,
+   "mass_kg": 2.4822082530500005,
+   "vm_metric": 200.9276,
+   "u_max": 0.1395676490929105,
    "vm_metric_xyz": [
     -5.157557663763868,
     -61.19553636990821,
     58.584841174714256
    ],
-   "n_nodes": 83597,
-   "cs": 1.0648440498743237,
-   "viol": 0.9774201209302325,
-   "score": 2.5044295071000002,
+   "n_nodes": 84555,
+   "cs": 1.070037167616594,
+   "viol": 0.9726764933953488,
+   "score": 2.4822082530500005,
    "valido": true
   },
-  "iter": 0,
-  "galeria": "galeria/20261124_090049_it000_INICIO_2.504kg.jpg",
-  "verif": {
-   "vm_metric": 212.5,
-   "u_max": 0.144,
-   "n_nodes": 107837,
-   "ok": true
-  }
+  "iter": 2,
+  "galeria": "galeria/20261124_090732_it002_ACEPTADA_2.482kg.jpg"
  },
  "verificado": {
   "ops": [
@@ -190,24 +188,26 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 11,
+   "intentos": 12,
    "descartadas_rapido": 4,
-   "evaluadas": 5,
-   "aceptadas": 4,
+   "evaluadas": 6,
+   "aceptadas": 5,
    "rechazadas": 1,
    "dsig": [
     5.87,
     -5.97,
     0.05,
     1.25,
-    -0.94
+    -0.94,
+    -0.49
    ],
    "dm": [
     -57.8,
     -47.4,
     0.1,
     -34.1,
-    -27.5
+    -27.5,
+    -22.2
    ],
    "ejemplos": [
     [
@@ -229,6 +229,10 @@
     [
      14,
      "aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)"
+    ],
+    [
+     2,
+     "aceptada: rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 m (tension -0.5 %, masa -22 g)"
     ]
    ],
    "dsig_prev": [
@@ -236,7 +240,8 @@
     0.43,
     -0.5,
     2.94,
-    -1.12
+    -1.12,
+    -0.39
    ]
   },
   "R1": {
@@ -849,7 +854,7 @@
    ]
   },
   "R7": {
-   "intentos": 2,
+   "intentos": 3,
    "descartadas_rapido": 1,
    "evaluadas": 0,
    "aceptadas": 0,
@@ -879,7 +884,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.5044295071000002,
@@ -996,6 +1001,72 @@
     "cs": 1.0648440498743237,
     "viol": 0.9774201209302325,
     "score": 2.5044295071000002,
+    "valido": true
+   }
+  },
+  {
+   "iter": 2,
+   "fecha": "2026-11-24T09:05:26.258138",
+   "antes": "2.5044 kg | 201.9 MPa | CS 1.06 | 0.139 mm",
+   "m_antes": {
+    "mass_kg": 2.5044295071000002,
+    "vm_metric": 201.9075,
+    "u_max": 0.13915347332683817,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 83597,
+    "cs": 1.0648440498743237,
+    "viol": 0.9774201209302325,
+    "score": 2.5044295071000002,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R7",
+     "titulo": "anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)",
+     "motivo": "pasa la evaluacion rapida (2.5200 kg | 210.5 MPa | CS 1.02 | 0.141 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R2",
+   "titulo": "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
+   "porque": "Todo el material por encima de z = 9 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 15 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).",
+   "espero": "mediana de las 5 veces que se ha aplicado: +0.1 % (prevision rapida: 2.4817 kg | 201.1 MPa | CS 1.07 | 0.139 mm)",
+   "m_cand": {
+    "mass_kg": 2.4822082530500005,
+    "vm_metric": 200.9276,
+    "u_max": 0.1395676490929105,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 84555,
+    "cs": 1.070037167616594,
+    "viol": 0.9726764933953488,
+    "score": 2.4822082530500005,
+    "valido": true
+   },
+   "despues": "2.4822 kg | 200.9 MPa | CS 1.07 | 0.140 mm (tension -0.5 %, masa -22 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y mejora al mejor (puntuacion 2.5044 -> 2.4822; masa 2.5044 -> 2.4822 kg)",
+   "galeria": "galeria/20261124_090732_it002_ACEPTADA_2.482kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.4822082530500005,
+    "vm_metric": 200.9276,
+    "u_max": 0.1395676490929105,
+    "vm_metric_xyz": [
+     -5.157557663763868,
+     -61.19553636990821,
+     58.584841174714256
+    ],
+    "n_nodes": 84555,
+    "cs": 1.070037167616594,
+    "viol": 0.9726764933953488,
+    "score": 2.4822082530500005,
     "valido": true
    }
   }
