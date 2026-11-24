@@ -613,6 +613,20 @@ def propose(C, m, ops, st, E, stats, n_max=3):
             wins = [w for w in C.top_cuts(tau, z_floor=-1.0, veto=veto, v_min=1500.0)
                     if w["zc"] < 0] if ok("R13") else []          # ventanas pasantes (toda la columna ociosa)
             bots = C.bottom_cuts(tau, veto=veto, am_t=G.AM_T) if ok("R14") else []
+            if O.SIM:          # simetria efectiva ANTES de decidir si este umbral tiene algo que proponer
+                def sym_ok(op):
+                    va, vb = side_volumes(C, op)
+                    return max(va, vb) <= 0 or min(va, vb) >= 0.75 * max(va, vb)
+                n0 = len(cols) + len(cuts) + len(cavs) + len(wins) + len(bots)
+                cols = [c for c in cols if sym_ok(dict(tipo="agujero", x=c["x"], y=c["y"], r=c["r"]))]
+                cuts = [c for c in cuts if sym_ok(dict(tipo="rebaje", **{k: c[k] for k in ("x0", "x1", "y0", "y1", "zc")}))]
+                cavs = [c for c in cavs if sym_ok(dict(tipo="hueco", **{k: c[k] for k in ("x0", "x1", "y0", "y1", "z0", "z1")}))]
+                wins = [c for c in wins if sym_ok(dict(tipo="rebaje", **{k: c[k] for k in ("x0", "x1", "y0", "y1")}, zc=-1.0))]
+                bots = [c for c in bots if sym_ok(dict(tipo="hueco", **{k: c[k] for k in ("x0", "x1", "y0", "y1")}, z0=-1.0, z1=c["zt"]))]
+                n1 = len(cols) + len(cuts) + len(cavs) + len(wins) + len(bots)
+                if n1 < n0:
+                    notes.append(f"umbral {tau * 100:.0f} %: {n0 - n1} cortes descartados por SIMETRIA (quitarian distinto material en un "
+                                 "lado que en su simetrico: el contorno del original no es simetrico en esa zona)")
             if cols or cuts or cavs or wins or bots:
                 break
             ti += 1
