@@ -1,5 +1,5 @@
 {
- "iter": 64,
+ "iter": 65,
  "actual": {
   "ops": [
    {
@@ -897,6 +897,31 @@
    "motivo_tipo": "tension",
    "regla": "R2",
    "iter": 64
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -8.67,
+    "x1": 3.33,
+    "y0": -127.61,
+    "y1": -103.61,
+    "zc": 7.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R2",
+   "iter": 65
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 1.33,
+    "y": -40.61,
+    "r": 5.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 65
   }
  ],
  "stats": {
@@ -959,8 +984,8 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 36,
-   "descartadas_rapido": 17,
+   "intentos": 37,
+   "descartadas_rapido": 18,
    "evaluadas": 11,
    "aceptadas": 5,
    "rechazadas": 6,
@@ -1039,11 +1064,11 @@
    ]
   },
   "R1": {
-   "intentos": 410,
+   "intentos": 411,
    "descartadas_rapido": 24,
-   "evaluadas": 203,
+   "evaluadas": 204,
    "aceptadas": 187,
-   "rechazadas": 16,
+   "rechazadas": 17,
    "dsig": [
     -2.81,
     0.93,
@@ -1247,7 +1272,8 @@
     2.48,
     12.84,
     2.12,
-    1.85
+    1.85,
+    1.37
    ],
    "dm": [
     -34.0,
@@ -1452,13 +1478,10 @@
     -35.4,
     -19.7,
     -59.8,
-    -59.3
+    -59.3,
+    -34.3
    ],
    "ejemplos": [
-    [
-     45,
-     "rechazada: aligeramiento pasante vertical D24 mm en (4, -32) (y su sime (tension +195.8 %, masa -212 g)"
-    ],
     [
      46,
      "rechazada: aligeramiento pasante vertical D20 mm en (7, -116) (y su sim (tension +45.6 %, masa -155 g)"
@@ -1486,6 +1509,10 @@
     [
      59,
      "aceptada: aligeramiento pasante vertical D16 mm en (37, -62) (y su sim (tension +1.8 %, masa -59 g)"
+    ],
+    [
+     65,
+     "rechazada: aligeramiento pasante vertical D10 mm en (1, -41) (y su sime (tension +1.4 %, masa -34 g)"
     ]
    ],
    "dsig_prev": [
@@ -1691,7 +1718,8 @@
     0.61,
     1.65,
     13.49,
-    1.88
+    1.88,
+    -12.82
    ]
   },
   "R3": {
@@ -1915,7 +1943,7 @@
    ]
   },
   "R17": {
-   "intentos": 7,
+   "intentos": 8,
    "descartadas_rapido": 0,
    "evaluadas": 0,
    "aceptadas": 0,
@@ -1925,7 +1953,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 5,
+ "sin_mejora": 6,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.1212608806000004,
@@ -6284,6 +6312,79 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 333.4 MPa con la malla normal, que corregidos a malla fina (x1.054) son 351.2 MPa > 215 MPa",
    "galeria": "galeria/20261124_201522_it064_RECHAZADA_2.024kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.1212608806000004,
+    "vm_metric": 203.2537,
+    "u_max": 0.1542493122470928,
+    "vm_metric_xyz": [
+     34.52315692937254,
+     -137.04680387972883,
+     10.388599922349174
+    ],
+    "n_nodes": 93907,
+    "cs": 1.0577913218799952,
+    "viol": 0.9959431300000001,
+    "score": 2.1212608806000004,
+    "valido": true
+   }
+  },
+  {
+   "iter": 65,
+   "fecha": "2026-11-24T20:15:34.105327",
+   "antes": "2.1213 kg | 203.3 MPa | CS 1.06 | 0.154 mm",
+   "m_antes": {
+    "mass_kg": 2.1212608806000004,
+    "vm_metric": 203.2537,
+    "u_max": 0.1542493122470928,
+    "vm_metric_xyz": [
+     34.52315692937254,
+     -137.04680387972883,
+     10.388599922349174
+    ],
+    "n_nodes": 93907,
+    "cs": 1.0577913218799952,
+    "viol": 0.9959431300000001,
+    "score": 2.1212608806000004,
+    "valido": true
+   },
+   "notas": [
+    "umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R2",
+     "titulo": "rebaje desde arriba hasta z = 7 mm en x -9..3, y -128..-104 mm (esquinas R3) (y su simetrico)",
+     "motivo": "tension prevista 247 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R17",
+     "titulo": "ranura que une los aligeramientos de (28, -74) y (43, -68) (quita la pared fina entre ellos) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1203 kg | 180.7 MPa | CS 1.19 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D10 mm en (1, -41) (y su simetrico)",
+   "porque": "Toda la columna en (1, -41) hasta 8 mm de radio trabaja como maximo al 44 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (203 MPa, en alrededor de los pernos traseros) esta a 102 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 203 veces que se ha aplicado: +1.9 % (prevision rapida: 2.0878 kg | 177.2 MPa | CS 1.21 | 0.156 mm)",
+   "m_cand": {
+    "mass_kg": 2.0869850723500005,
+    "vm_metric": 206.0473,
+    "u_max": 0.15790402171275988,
+    "vm_metric_xyz": [
+     34.52315692937254,
+     -137.04680387972883,
+     10.388599922349174
+    ],
+    "n_nodes": 93601,
+    "cs": 1.0434497321731466,
+    "viol": 1.0096317700000002,
+    "score": 2.0869850723500005,
+    "valido": false
+   },
+   "despues": "2.0870 kg | 206.0 MPa | CS 1.04 | 0.158 mm (tension +1.4 %, masa -34 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 206.0 MPa con la malla normal, que corregidos a malla fina (x1.054) son 217.1 MPa > 215 MPa",
+   "galeria": "galeria/20261124_201847_it065_RECHAZADA_2.087kg.jpg",
    "m_actual": {
     "mass_kg": 2.1212608806000004,
     "vm_metric": 203.2537,
