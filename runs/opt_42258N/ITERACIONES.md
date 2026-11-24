@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 34 - RECHAZADA: R14 bolsillo desde la cara de apoyo 32 x 32 mm, hasta z = 14 mm (techo a 45 grados) en (18, -52) (y su simetrico)
+
+*2026-11-24 13:54*
+
+- **Pieza de partida:** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 14 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 35 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (191 MPa, en orejetas del bulon) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 5 veces que se ha aplicado: +0.3 % (prevision rapida: 2.2825 kg | 191.3 MPa | CS 1.12 | 0.145 mm)
+- **Resultado (malla completa):** 2.2822 kg | 202.7 MPa | CS 1.06 | 0.144 mm (tension +6.3 %, masa -27 g)
+- **Decision:** RECHAZADA - cumple pero no mejora al mejor (puntuacion 2.2822 frente a 2.2571)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D16 mm en (37, -74) (y su simetrico) -> tension prevista 278 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.2995 kg | 190.9 MPa | CS 1.13 | 0.144 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 25 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 35 %: 4 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
+<img src="galeria/20261124_140040_it034_RECHAZADA_2.282kg.jpg" width="520">
+
 ## Iteracion 33 - SIN CAMBIO
 
 *2026-11-24 13:52*
