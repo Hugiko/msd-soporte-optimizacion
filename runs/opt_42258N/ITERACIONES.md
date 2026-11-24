@@ -2,6 +2,17 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 22 - SIN CAMBIO
+
+*2026-11-24 12:09*
+
+- **Pieza de partida:** 2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D24 mm en (7, -113) (y su simetrico) -> tension prevista 314 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R13] ventana pasante en x -2..18, y -120..-104 mm (esquinas R3.2) (y su simetrico) -> tension prevista 356 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 9 mm en x -10..14, y -124..-104 mm (esquinas R4) (y su simetrico) -> tension prevista 324 MPa: supera el limite (215 MPa)
+- Nota: R10: ya no queda material por debajo del 35 % del limite donde quepa un corte -> se pasa al umbral del 45 %
+
 ## Iteracion 21 - RECHAZADA: R14 bolsillo desde la cara de apoyo 24 x 24 mm, hasta z = 10 mm (techo a 45 grados) en (14, -108) (y su simetrico)
 
 *2026-11-24 12:06*
