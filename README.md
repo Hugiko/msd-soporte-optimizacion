@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 09:47 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 11:18 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 11 | 8 | 0 | 3 | 0 | 16 |
+| 12 | 8 | 0 | 4 | 0 | 18 |
 
 ## Mejor diseno
 
@@ -39,6 +39,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 12 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (-5, -74) (y su simetrico) | 2.278 kg, 203 MPa | no cumple: 202.6 MPa con la malla normal, que corregidos a malla fina (x1.077) son 218.1 M |
 | 11 | ACEPTADA | R1 | aligeramiento pasante vertical D8 mm en (43, -44) (y su simetrico) | 2.293 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.3201 -> 2.2925; masa 2.3201 -> 2.2925 kg) |
 | 10 | RECHAZADA | R1 | aligeramiento pasante vertical D8 mm en (37, -83) (y su simetrico) | 2.288 kg, 200 MPa | no cumple: 200.3 MPa con la malla normal, que corregidos a malla fina (x1.077) son 215.7 M |
 | 9 | RECHAZADA | R4 | collar de 8 mm en los pernos 3 y 1 | 2.366 kg, 192 MPa | cumple pero no mejora al mejor (puntuacion 2.3665 frente a 2.3201) |
@@ -50,7 +51,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 3 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico) | 2.428 kg, 206 MPa | cumple y mejora al mejor (puntuacion 2.4822 -> 2.4281; masa 2.4822 -> 2.4281 kg) |
 | 2 | ACEPTADA | R2 | rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquina | 2.482 kg, 201 MPa | cumple y mejora al mejor (puntuacion 2.5044 -> 2.4822; masa 2.5044 -> 2.4822 kg) |
 | 1 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (40, -71) (y su simetrico) | 2.460 kg, 208 MPa | no cumple: 207.8 MPa con la malla normal, que corregidos a malla fina (x1.041) son 216.3 M |
-| 0 | INICIO | - | pieza SIMETRICA de partida: original + collares de 6 mm en los pernos  | 2.504 kg, 202 MPa | cumple: se sigue quitando material donde no trabaja |
 
 ---
 
