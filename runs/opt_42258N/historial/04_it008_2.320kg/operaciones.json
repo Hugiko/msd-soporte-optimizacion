@@ -1,0 +1,72 @@
+{
+ "operaciones": [
+  {
+   "tipo": "collar",
+   "perno": 0,
+   "t": 6.0,
+   "z": 22.0
+  },
+  {
+   "tipo": "collar",
+   "perno": 2,
+   "t": 6.0,
+   "z": 22.0
+  },
+  {
+   "tipo": "rebaje",
+   "x0": 41.52,
+   "x1": 61.52,
+   "y0": -80.32,
+   "y1": -68.32,
+   "zc": 9.0,
+   "rr": 3.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 48.52,
+   "y": -56.32,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 3.52,
+   "y": -74.32,
+   "r": 6.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 63.52,
+   "y": -32.32,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": -26.48,
+   "y": -29.32,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 27.52,
+   "y": -74.32,
+   "r": 5.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 18.52,
+   "y": -74.32,
+   "r": 5.0
+  }
+ ],
+ "descripcion": [
+  "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm",
+  "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm",
+  "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)",
+  "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico)"
+ ]
+}

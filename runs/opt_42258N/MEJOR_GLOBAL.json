@@ -1,16 +1,16 @@
 {
- "iter": 6,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\03_it006_2.355kg",
- "mass_kg": 2.3552425257500005,
- "vm_metric": 196.6129,
- "u_max": 0.14341589865446414,
- "coef_seguridad": 1.0935192960380524,
- "puntuacion": 2.3552425257500005,
+ "iter": 8,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\04_it008_2.320kg",
+ "mass_kg": 2.3200603329500002,
+ "vm_metric": 198.0244,
+ "u_max": 0.14439539150583008,
+ "coef_seguridad": 1.0857247894703885,
+ "puntuacion": 2.3200603329500002,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 214.4475,
-  "u_max": 0.1485661463159831,
-  "n_nodes": 109715,
+  "vm_metric": 213.2404,
+  "u_max": 0.1498292776768309,
+  "n_nodes": 108175,
   "ok": true
  },
  "operaciones": [
@@ -20,8 +20,10 @@
   "aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)",
   "aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico)",
   "aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico)",
-  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)"
+  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico)"
  ],
- "fecha": "2026-11-24T09:28:26",
+ "fecha": "2026-11-24T09:34:33",
  "final": false
 }

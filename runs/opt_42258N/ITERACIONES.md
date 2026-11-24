@@ -2,6 +2,18 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 8 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico)
+
+*2026-11-24 09:30*
+
+- **Pieza de partida:** 2.3349 kg | 196.2 MPa | CS 1.10 | 0.144 mm
+- **Por que (regla R1):** Toda la columna en (19, -74) hasta 8 mm de radio trabaja como maximo al 25 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~75 %; el pico (196 MPa, en alrededor de los pernos traseros) esta a 68 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 185 veces que se ha aplicado: +0.9 % (prevision rapida: 2.3209 kg | 192.2 MPa | CS 1.12 | 0.145 mm)
+- **Resultado (malla completa):** 2.3201 kg | 198.0 MPa | CS 1.09 | 0.144 mm (tension +0.9 %, masa -15 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.3349 -> 2.3201; masa 2.3349 -> 2.3201 kg)
+
+<img src="galeria/20261124_093222_it008_ACEPTADA_2.320kg.jpg" width="520">
+
 ## Iteracion 7 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)
 
 *2026-11-24 09:28*
