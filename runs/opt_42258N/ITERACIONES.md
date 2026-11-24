@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 74 - ACEPTADA: R18 agrandar: bolsillo en ranura desde la cara de apoyo, 30 mm de ancho, de (-31, -94) a (-33, -57), hasta z = 12 mm (techo a 45 grados) (y su simetrico)
+
+*2026-11-24 21:28*
+
+- **Pieza de partida:** 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm
+- **Por que (regla R18):** El material que rodea la operacion 14 (bolsillo en ranura desde la cara de apoyo, 27 mm de ancho, de (-31, -94) a (-33, -57), hasta z = 12 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 40 % del limite: se agranda la MISMA forma (quita ~14 g con su simetrico) en vez de anadir otro hueco. Evidencia: crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
+- **Se esperaba:** baja la masa; la tension casi no cambia (prevision rapida: 2.1578 kg | 199.7 MPa | CS 1.08 | 0.159 mm)
+- **Resultado (malla completa):** 2.1581 kg | 198.0 MPa | CS 1.09 | 0.159 mm (tension +0.7 %, masa -3 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1614 -> 2.1581; masa 2.1614 -> 2.1581 kg)
+- Descartada en la evaluacion rapida: [R18] agrandar: ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1321 kg | 228.3 MPa | CS 0.94 | 0.161 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R16] eliminar la lamina de 1.2 mm en (-2, -79, z 5..8) -> pasa la evaluacion rapida (2.1592 kg | 199.9 MPa | CS 1.08 | 0.159 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+
+<img src="galeria/20261124_213445_it074_ACEPTADA_2.158kg.jpg" width="520">
+
 ## Iteracion 73 - RECHAZADA: R7 anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
 
 *2026-11-24 21:22*
