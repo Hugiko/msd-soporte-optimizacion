@@ -1002,6 +1002,14 @@ def step(st, git, E):
         rs["aceptadas"] += 1
         set_current(s, c["ops_nuevas"])
         st["actual"] = dict(ops=c["ops_nuevas"], dir=wd, m=sm, rapida=None, galeria=gal)
+        if decision == "INVERSION" or (decision == "ACEPTADA" and dsig < -2.0):
+            # el margen ha cambiado: los cortes rechazados POR TENSION (con menos margen) se pueden volver a probar
+            n_t = sum(1 for r in st["rechazos"] if r["motivo_tipo"] == "tension")
+            if n_t:
+                st["rechazos"] = [r for r in st["rechazos"] if r["motivo_tipo"] != "tension"]
+                h.setdefault("notas", []).append(f"el cambio baja la tension un {-dsig:.1f} %: se vuelven a permitir los {n_t} cortes "
+                                                 "que se habian rechazado por tension con menos margen")
+                st["tau_idx"] = 0
         if decision == "INVERSION":
             st["inversiones"] += 1
             st["inversion_desde"] = st["inversion_desde"] or it
