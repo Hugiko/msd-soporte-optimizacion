@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 37 - INVERSION: R12 acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+
+*2026-11-24 14:12*
+
+- **Pieza de partida:** 2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm
+- **Por que (regla R12):** La pieza esta en el limite (202 MPa, 99 % del limite corregido; pico en orejetas del bulon) y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza. Evidencia: prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a 30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %).
+- **Se esperaba:** ~-5,6 % de tension con ~+52 g (prueba en ANSYS del 24/11) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm (tension -5.6 %, masa +52 g)
+- **Decision:** INVERSION - refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)
+- Descartada en la evaluacion rapida: [R7] anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm) -> refuerzo pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico) -> pasa la evaluacion rapida (2.2353 kg | 202.9 MPa | CS 1.06 | 0.146 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: R13 (Ventana pasante donde toda la columna (de la base a arriba) esta ociosa) suspendida: 8 intentos sin ninguna mejora
+- Nota: umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: el cambio baja la tension un 5.6 %: se vuelven a permitir los 3 cortes que se habian rechazado por tension con menos margen
+
+<img src="galeria/20261124_141649_it037_INVERSION_2.309kg.jpg" width="520">
+
 ## Iteracion 36 - RECHAZADA: R1 aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)
 
 *2026-11-24 14:07*

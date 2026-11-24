@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 14:12. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 14:16. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -172,7 +172,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el bulon empuja la orejeta en la direccion de la carga; el ligamento delante del agujero trabaja a cortadura y aplastamiento (s ~ F / (2 t e)). Mas ligamento e -> menos tension.
 - **Espero:** baja la tension en la orejeta; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
-- **Aplicada en el optimizador:** 4 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 5 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R8. Reponer material donde un corte anterior ha creado el pico  (ACTIVA)
 
@@ -206,8 +206,9 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la union de un cilindro con el cuerpo es una entalla (esquina entrante a ~90 grados); con la pared inclinada la union es un angulo abierto (menor concentracion) y la base de los pernos se rigidiza, lo que reduce la flexion que llega a las orejetas. Compra margen de tension con poca masa, que luego se gasta aligerando.
 - **Espero:** baja la tension maxima del orden de un 5 % con ~+2 % de masa (inversion).
 - **Evidencia (respaldada por los datos):** prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a 30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %).
-- **Aplicada en el optimizador:** 1 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -5.6 % (mediana), masa +52 g (mediana).
+- **Aplicada en el optimizador:** 2 veces (0 descartadas en la evaluacion rapida, 2 aceptadas, 0 rechazadas); tension -5.6 % (mediana), masa +52 g (mediana).
   - iteracion 31: inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)
+  - iteracion 37: inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 
@@ -227,7 +228,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el soporte solo se sujeta por los pernos: la cara inferior lejos de ellos no apoya en nada en el modelo ni transmite carga. La placa base bajo el cuerpo esta ociosa aunque el cuerpo de encima trabaje, asi que se vacia desde abajo sin tocar el cuerpo (cara de apoyo aliviada, habitual en soportes atornillados); las ranuras dejan nervios entre ellas.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 11 veces (2 descartadas en la evaluacion rapida, 3 aceptadas, 3 rechazadas); tension +1.1 % (mediana), masa -22 g (mediana).
+- **Aplicada en el optimizador:** 12 veces (2 descartadas en la evaluacion rapida, 3 aceptadas, 3 rechazadas); tension +1.1 % (mediana), masa -22 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.1 % frente a +1.1 % real (mediana de 6)
   - iteracion 20: aceptada: bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm ( (tension -0.1 %, masa -18 g)
   - iteracion 21: rechazada: bolsillo desde la cara de apoyo 24 x 24 mm, hasta z = 10 mm  (tension +2.4 %, masa -2 g)
