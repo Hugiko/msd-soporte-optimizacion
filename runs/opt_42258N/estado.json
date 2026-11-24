@@ -1,5 +1,5 @@
 {
- "iter": 185,
+ "iter": 186,
  "actual": {
   "ops": [
    {
@@ -111,11 +111,25 @@
    ],
    "n_nodes": 82514,
    "cs": 1.0520001213469907,
-   "viol": 0.9505702325581395,
+   "viol": 0.9893534980465115,
    "score": 2.1442634294500005,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.1575935694000004,
+   "vm_metric": 194.5131,
+   "u_max": 0.15652920122697522,
+   "vm_metric_xyz": [
+    -0.1439796340353663,
+    -87.09029429461255,
+    57.37325360368376
+   ],
+   "n_nodes": 48234,
+   "cs": 1.105324011596134,
+   "viol": 0.9416243464186047,
+   "score": 2.1575935694000004,
+   "valido": true
+  },
   "galeria": "galeria/20261124_084100_it185_ACEPTADA_2.144kg.jpg"
  },
  "mejor": {
@@ -638,6 +652,29 @@
    "motivo_tipo": "tension",
    "regla": "R7",
    "iter": 18
+  },
+  {
+   "op": {
+    "tipo": "redondeo",
+    "x": -15.51,
+    "y": -32.59,
+    "z": 14.97,
+    "r": 3.0
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R6",
+   "iter": 186
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 66.52,
+    "y": -23.32,
+    "r": 8.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 186
   }
  ],
  "stats": {
@@ -724,11 +761,11 @@
    ]
   },
   "R1": {
-   "intentos": 357,
+   "intentos": 358,
    "descartadas_rapido": 5,
-   "evaluadas": 178,
+   "evaluadas": 179,
    "aceptadas": 176,
-   "rechazadas": 2,
+   "rechazadas": 3,
    "dsig": [
     -2.81,
     0.93,
@@ -907,7 +944,8 @@
     1.92,
     0.61,
     1.92,
-    0.61
+    0.61,
+    2.23
    ],
    "dm": [
     -34.0,
@@ -1087,13 +1125,10 @@
     -13.6,
     -16.5,
     -13.6,
-    -16.5
+    -16.5,
+    -12.4
    ],
    "ejemplos": [
-    [
-     178,
-     "aceptada: aligeramiento pasante vertical D10 mm en (34, -83) (tension +1.9 %, masa -14 g)"
-    ],
     [
      179,
      "aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)"
@@ -1121,6 +1156,10 @@
     [
      185,
      "aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)"
+    ],
+    [
+     186,
+     "rechazada: aligeramiento pasante vertical D16 mm en (67, -23) (tension +2.2 %, masa -12 g)"
     ]
    ],
    "dsig_prev": [
@@ -1301,7 +1340,8 @@
     -0.03,
     -1.91,
     -0.03,
-    -1.91
+    -1.91,
+    0.05
    ]
   },
   "R3": {
@@ -1335,9 +1375,29 @@
    "dsig": [],
    "dm": [],
    "ejemplos": []
+  },
+  "R8": {
+   "intentos": 1,
+   "descartadas_rapido": 0,
+   "evaluadas": 0,
+   "aceptadas": 0,
+   "rechazadas": 0,
+   "dsig": [],
+   "dm": [],
+   "ejemplos": []
+  },
+  "R6": {
+   "intentos": 1,
+   "descartadas_rapido": 1,
+   "evaluadas": 0,
+   "aceptadas": 0,
+   "rechazadas": 0,
+   "dsig": [],
+   "dm": [],
+   "ejemplos": []
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.1607990855000003,
@@ -14504,6 +14564,77 @@
     "score": 2.1442634294500005,
     "valido": true
    }
+  },
+  {
+   "iter": 186,
+   "fecha": "2026-11-24T08:45:28.608814",
+   "antes": "2.1443 kg | 204.4 MPa | CS 1.05 | 0.156 mm",
+   "m_antes": {
+    "mass_kg": 2.1442634294500005,
+    "vm_metric": 204.3726,
+    "u_max": 0.1562664036715082,
+    "vm_metric_xyz": [
+     -15.51336600354,
+     -32.5915665304,
+     14.970310646582
+    ],
+    "n_nodes": 82514,
+    "cs": 1.0520001213469907,
+    "viol": 0.9893534980465115,
+    "score": 2.1442634294500005,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R6",
+     "titulo": "redondeo R3.0 de las aristas junto a (-16, -33, 15)",
+     "motivo": "la geometria no se puede construir (operacion 15 (redondeo): el redondeo no se puede hacer en esas aristas (StdFail_NotDone))"
+    },
+    {
+     "regla": "R8",
+     "titulo": "reducir la operacion 6 (aligeramiento pasante vertical D16 mm en (-20, -26))",
+     "motivo": "pasa la evaluacion rapida (2.1620 kg | 204.8 MPa | CS 1.05 | 0.155 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D16 mm en (67, -23)",
+   "porque": "Toda la columna en (67, -23) hasta 11 mm de radio trabaja como maximo al 33 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~98 %; el pico (204 MPa, en cuerpo, lado de las orejetas (x < 15 mm)) esta a 83 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 178 veces que se ha aplicado: +1.1 % (prevision rapida: 2.1321 kg | 204.5 MPa | CS 1.05 | 0.157 mm)",
+   "m_cand": {
+    "mass_kg": 2.1319057710500005,
+    "vm_metric": 208.9302,
+    "u_max": 0.15645860275354315,
+    "vm_metric_xyz": [
+     -15.51336600354,
+     -32.5915665304,
+     14.970310646582
+    ],
+    "n_nodes": 82088,
+    "cs": 1.0290518077329174,
+    "viol": 1.0114165216744186,
+    "score": 2.1319057710500005,
+    "valido": false
+   },
+   "despues": "2.1319 kg | 208.9 MPa | CS 1.03 | 0.156 mm (tension +2.2 %, masa -12 g)",
+   "decision": "RECHAZADA",
+   "motivo": "desplazamiento 0.156 mm > 0.25 mm",
+   "galeria": "galeria/20261124_084909_it186_RECHAZADA_2.132kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.1442634294500005,
+    "vm_metric": 204.3726,
+    "u_max": 0.1562664036715082,
+    "vm_metric_xyz": [
+     -15.51336600354,
+     -32.5915665304,
+     14.970310646582
+    ],
+    "n_nodes": 82514,
+    "cs": 1.0520001213469907,
+    "viol": 0.9893534980465115,
+    "score": 2.1442634294500005,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-23T18:46:21",
@@ -14511,5 +14642,55 @@
  "_avisadas": [
   "R5",
   "R11"
+ ],
+ "k_fino": [
+  [
+   1.0525,
+   1.036
+  ],
+  [
+   1.0846,
+   1.0286
+  ],
+  [
+   1.0231,
+   1.0355
+  ],
+  [
+   1.0901,
+   1.0352
+  ],
+  [
+   1.0685,
+   1.035
+  ],
+  [
+   1.0447,
+   1.0278
+  ],
+  [
+   1.0577,
+   1.0347
+  ],
+  [
+   1.0484,
+   1.0408
+  ],
+  [
+   1.0258,
+   1.0403
+  ],
+  [
+   1.0537,
+   1.0452
+  ],
+  [
+   1.0212,
+   1.0446
+  ],
+  [
+   1.0408,
+   1.0446
+  ]
  ]
 }

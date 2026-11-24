@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 186 - RECHAZADA: R1 aligeramiento pasante vertical D16 mm en (67, -23)
+
+*2026-11-24 08:45*
+
+- **Pieza de partida:** 2.1443 kg | 204.4 MPa | CS 1.05 | 0.156 mm
+- **Por que (regla R1):** Toda la columna en (67, -23) hasta 11 mm de radio trabaja como maximo al 33 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~98 %; el pico (204 MPa, en cuerpo, lado de las orejetas (x < 15 mm)) esta a 83 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 178 veces que se ha aplicado: +1.1 % (prevision rapida: 2.1321 kg | 204.5 MPa | CS 1.05 | 0.157 mm)
+- **Resultado (malla completa):** 2.1319 kg | 208.9 MPa | CS 1.03 | 0.156 mm (tension +2.2 %, masa -12 g)
+- **Decision:** RECHAZADA - desplazamiento 0.156 mm > 0.25 mm
+- Descartada en la evaluacion rapida: [R6] redondeo R3.0 de las aristas junto a (-16, -33, 15) -> la geometria no se puede construir (operacion 15 (redondeo): el redondeo no se puede hacer en esas aristas (StdFail_NotDone))
+- Descartada en la evaluacion rapida: [R8] reducir la operacion 6 (aligeramiento pasante vertical D16 mm en (-20, -26)) -> pasa la evaluacion rapida (2.1620 kg | 204.8 MPa | CS 1.05 | 0.155 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261124_084909_it186_RECHAZADA_2.132kg.jpg" width="520">
+
 ## Iteracion 185 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (43, -98)
 
 *2026-11-24 08:36*

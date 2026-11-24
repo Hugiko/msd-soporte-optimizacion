@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 08:41. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 08:49. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -38,12 +38,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 357 veces (5 descartadas en la evaluacion rapida, 176 aceptadas, 2 rechazadas); tension +1.1 % (mediana), masa -16 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a +1.1 % real (mediana de 178)
-  - iteracion 182: aceptada: aligeramiento pasante vertical D10 mm en (34, -83) (tension +1.9 %, masa -14 g)
+- **Aplicada en el optimizador:** 358 veces (5 descartadas en la evaluacion rapida, 176 aceptadas, 3 rechazadas); tension +1.3 % (mediana), masa -16 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.3 % real (mediana de 179)
   - iteracion 183: aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)
   - iteracion 184: aceptada: aligeramiento pasante vertical D10 mm en (34, -83) (tension +1.9 %, masa -14 g)
   - iteracion 185: aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)
+  - iteracion 186: rechazada: aligeramiento pasante vertical D16 mm en (67, -23) (tension +2.2 %, masa -12 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -153,6 +153,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** una arista viva entrante es una entalla: Kt crece al bajar el radio (Peterson). Un acuerdo reparte la tension en mas material.
 - **Espero:** baja la tension maxima con muy poca masa.
 - **Evidencia (basada en la teoria / en sus resultados):** no se puede medir en las mallas publicadas (radios de acuerdo); regla basada en la teoria (Peterson) y en los resultados del propio optimizador.
+- **Aplicada en el optimizador:** 1 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R7. Engrosar el anillo de las orejetas  (ACTIVA)
 
@@ -170,6 +171,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** si el pico aparece en el borde de un corte, ese material SI estaba en el camino de carga: se devuelve solo ese material en vez de reforzar en otro sitio.
 - **Espero:** baja la tension maxima; sube un poco la masa.
 - **Evidencia (basada en la teoria / en sus resultados):** regla de procedimiento: se juzga por sus resultados en el optimizador.
+- **Aplicada en el optimizador:** 1 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R9. Cortar menos donde ya se rechazo un corte  (ACTIVA)
 
