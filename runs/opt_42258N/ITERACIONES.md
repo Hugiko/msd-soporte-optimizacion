@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 73 - RECHAZADA: R7 anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+
+*2026-11-24 21:22*
+
+- **Pieza de partida:** 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm
+- **Por que (regla R7):** El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
+- **Se esperaba:** ~-23 % (s ~ 1/e) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.1846 kg | 204.4 MPa | CS 1.05 | 0.162 mm (tension +3.9 %, masa +23 g)
+- **Decision:** RECHAZADA - no cumple: 204.4 MPa con la malla normal, que corregidos a malla fina (x1.076) son 219.9 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R18] agrandar: ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1321 kg | 228.3 MPa | CS 0.94 | 0.161 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R16] eliminar la lamina de 1.2 mm en (-2, -79, z 5..8) -> pasa la evaluacion rapida (2.1592 kg | 199.9 MPa | CS 1.08 | 0.159 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+
+<img src="galeria/20261124_212834_it073_RECHAZADA_2.185kg.jpg" width="520">
+
 ## Iteracion 72 - ACEPTADA: R18 agrandar: aligeramiento pasante vertical D13 mm en (4, -110) (y su simetrico)
 
 *2026-11-24 21:11*

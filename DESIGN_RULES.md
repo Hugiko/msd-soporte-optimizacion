@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 21:22. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 21:28. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -174,9 +174,10 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el bulon empuja la orejeta en la direccion de la carga; el ligamento delante del agujero trabaja a cortadura y aplastamiento (s ~ F / (2 t e)). Mas ligamento e -> menos tension.
 - **Espero:** baja la tension en la orejeta; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
-- **Aplicada en el optimizador:** 7 veces (2 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa +19 g (mediana).
+- **Aplicada en el optimizador:** 8 veces (2 descartadas en la evaluacion rapida, 1 aceptadas, 2 rechazadas); tension +3.9 % (mediana), masa +23 g (mediana).
   - iteracion 39: inversion: anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 m (tension -4.2 %, masa +15 g)
   - iteracion 58: rechazada: anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 m (tension +4.3 %, masa +23 g)
+  - iteracion 73: rechazada: anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 m (tension +3.9 %, masa +23 g)
 
 ### R8. Reponer material donde un corte anterior ha creado el pico  (ACTIVA)
 
@@ -222,7 +223,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** una lamina tan fina casi no aporta seccion (a flexion la rigidez de una pared va como el espesor al cubo), se imprime mal (paredes de menos de ~1 mm y filos en fusion de lecho de polvo) y la malla de 4 mm no la resuelve (elementos degenerados). Suelen quedar donde se cruzan dos cortes.
 - **Espero:** baja algo la masa; la tension no cambia (la lamina no lleva carga) y la malla mejora.
 - **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: 12 laminas de 0,8 a 2,3 mm (algunas con filo de 0,1-0,2 mm), casi todas en la cara de apoyo donde un bolsillo a 45 grados corta un aligeramiento, trabajando de media a 13-51 MPa.
-- **Aplicada en el optimizador:** 3 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 4 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R17. Unir dos aligeramientos separados por una pared fina que no trabaja  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 
@@ -240,7 +241,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** es el crecimiento de contorno de la optimizacion evolutiva (ESO): se quita el material de baja tension en la frontera de un hueco que ya funciona, sin anadir huecos nuevos superpuestos (facil de fabricar: menos operaciones y formas simples).
 - **Espero:** baja la masa; la tension sube poco si el borde de verdad no trabaja.
 - **Evidencia (basada en la teoria / en sus resultados):** crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
-- **Aplicada en el optimizador:** 3 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension +1.5 % (mediana), masa -26 g (mediana).
+- **Aplicada en el optimizador:** 4 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension +1.5 % (mediana), masa -26 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.4 % frente a +1.5 % real (mediana de 1)
   - iteracion 72: aceptada: agrandar: aligeramiento pasante vertical D13 mm en (4, -110) (tension +1.5 %, masa -26 g)
 

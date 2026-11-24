@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 21:22 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 21:28 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 72 | 23 | 4 | 31 | 11 | 113 |
+| 73 | 23 | 4 | 32 | 11 | 115 |
 
 ## Mejor diseno
 
@@ -43,6 +43,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 73 | RECHAZADA | R7 | anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm) | 2.185 kg, 204 MPa | no cumple: 204.4 MPa con la malla normal, que corregidos a malla fina (x1.076) son 219.9 M |
 | 72 | ACEPTADA | R18 | agrandar: aligeramiento pasante vertical D13 mm en (4, -110) (y su sim | 2.161 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.1876 -> 2.1614; masa 2.1876 -> 2.1614 kg) |
 | 71 | REEVALUADA | - | pieza actual reconstruida | 2.188 kg, 194 MPa | cumple: se sigue optimizando con las reglas nuevas |
 | 70 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
@@ -54,7 +55,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 64 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -5..7, y -44..-24 mm (esquinas | 2.024 kg, 333 MPa | no cumple: 333.4 MPa con la malla normal, que corregidos a malla fina (x1.054) son 351.2 M |
 | 63 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -1..15, y -120..-104 mm (esqui | 2.015 kg, 293 MPa | no cumple: 293.5 MPa con la malla normal, que corregidos a malla fina (x1.054) son 309.2 M |
 | 62 | RECHAZADA | R2 | rebaje desde arriba hasta z = 9 mm en x -9..11, y -44..-24 mm (esquina | 1.988 kg, 331 MPa | no cumple: 331.3 MPa con la malla normal, que corregidos a malla fina (x1.054) son 349.0 M |
-| 61 | RECHAZADA | R4 | collar de 6 mm en los pernos 4 y 2 | 2.198 kg, 195 MPa | cumple pero no mejora al mejor (puntuacion 2.1984 frente a 2.1213) |
 
 ---
 
