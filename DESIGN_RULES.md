@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 19:50. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 19:56. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,12 +45,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 406 veces (22 descartadas en la evaluacion rapida, 186 aceptadas, 16 rechazadas); tension +1.9 % (mediana), masa -16 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.9 % real (mediana de 202)
-  - iteracion 53: rechazada: aligeramiento pasante vertical D10 mm en (1, -26) (y su sime (tension +2.6 %, masa -36 g)
+- **Aplicada en el optimizador:** 407 veces (22 descartadas en la evaluacion rapida, 187 aceptadas, 16 rechazadas); tension +1.9 % (mediana), masa -16 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.9 % real (mediana de 203)
   - iteracion 54: rechazada: aligeramiento pasante vertical D10 mm en (4, -110) (y su sim (tension +2.5 %, masa -35 g)
   - iteracion 56: rechazada: aligeramiento pasante vertical D12 mm en (-17, -74) (y su si (tension +12.8 %, masa -20 g)
   - iteracion 57: aceptada: aligeramiento pasante vertical D20 mm en (43, -68) (y su sim (tension +2.1 %, masa -60 g)
+  - iteracion 59: aceptada: aligeramiento pasante vertical D16 mm en (37, -62) (y su sim (tension +1.8 %, masa -59 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -78,7 +78,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 31 veces (16 descartadas en la evaluacion rapida, 5 aceptadas, 3 rechazadas); tension +0.7 % (mediana), masa -37 g (mediana).
+- **Aplicada en el optimizador:** 32 veces (16 descartadas en la evaluacion rapida, 5 aceptadas, 3 rechazadas); tension +0.7 % (mediana), masa -37 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.2 % frente a +0.7 % real (mediana de 8)
   - iteracion 14: aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)
   - iteracion 2: aceptada: rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 m (tension -0.5 %, masa -22 g)
@@ -229,7 +229,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la pared entre dos agujeros cercanos no esta en el camino de la carga si trabaja poco; quitarla convierte dos huecos en una ranura con el borde mas suave (sin la pared fina entre ellos).
 - **Espero:** baja la masa; la tension casi no cambia.
 - **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo del 18-33 % del limite.
-- **Aplicada en el optimizador:** 1 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 2 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 

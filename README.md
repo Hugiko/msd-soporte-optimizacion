@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 19:50 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 19:56 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 58 | 19 | 4 | 25 | 8 | 89 |
+| 59 | 20 | 4 | 25 | 8 | 91 |
 
 ## Mejor diseno
 
-**2.1806 kg** (-10.0 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.6 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.152 mm** &nbsp;|&nbsp; iteracion 57 &nbsp;|&nbsp; **malla fina: 210.4 MPa**
+**2.1213 kg** (-12.5 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **203.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.06** &nbsp;|&nbsp; desplazamiento **0.154 mm** &nbsp;|&nbsp; iteracion 59 &nbsp;|&nbsp; **malla fina: 210.0 MPa**
 
 Operaciones sobre el original:
 
@@ -34,10 +34,11 @@ Operaciones sobre el original:
 18. bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)
 19. bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)
 20. aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)
+21. aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico)
 
-Ultimo hito verificado (2.181 kg, iteracion 57): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/11_it057_2.181kg/workbench/soporte_it057.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/11_it057_2.181kg/geometria.step)
+Ultimo hito verificado (2.121 kg, iteracion 59): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/12_it059_2.121kg/workbench/soporte_it059.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/12_it059_2.121kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261124_193924_it057_ACEPTADA_2.181kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261124_195403_it059_ACEPTADA_2.121kg.jpg)
 
 ## Camino de la pieza
 
@@ -49,6 +50,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 59 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico) | 2.121 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.1806 -> 2.1213; masa 2.1806 -> 2.1213 kg) |
 | 58 | RECHAZADA | R7 | anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm) | 2.204 kg, 208 MPa | no cumple: 208.2 MPa con la malla normal, que corregidos a malla fina (x1.054) son 219.4 M |
 | 57 | ACEPTADA | R1 | aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico) | 2.181 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2002 -> 2.1806; masa 2.2002 -> 2.1806 kg) |
 | 56 | RECHAZADA | R1 | aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) | 2.221 kg, 221 MPa | no cumple: 220.5 MPa con la malla normal, que corregidos a malla fina (x1.058) son 233.3 M |
@@ -60,7 +62,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 50 | RECHAZADA | R2 | rebaje desde arriba hasta z = 5 mm en x -1..11, y -124..-112 mm (esqui | 2.162 kg, 215 MPa | no cumple: 215.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 227.8 M |
 | 49 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.194 kg, 207 MPa | no cumple: 206.8 MPa con la malla normal, que corregidos a malla fina (x1.058) son 218.8 M |
 | 48 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.199 kg, 207 MPa | no cumple: 207.3 MPa con la malla normal, que corregidos a malla fina (x1.058) son 219.3 M |
-| 47 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.221 kg, 201 MPa | cumple y mejora al mejor (puntuacion 2.2362 -> 2.2207; masa 2.2362 -> 2.2207 kg) |
 
 ---
 

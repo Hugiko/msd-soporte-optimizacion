@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 59 - ACEPTADA: R1 aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico)
+
+*2026-11-24 19:50*
+
+- **Pieza de partida:** 2.1806 kg | 199.6 MPa | CS 1.08 | 0.152 mm
+- **Por que (regla R1):** Toda la columna en (37, -62) hasta 11 mm de radio trabaja como maximo al 43 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (200 MPa, en orejetas del bulon) esta a 38 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 202 veces que se ha aplicado: +1.9 % (prevision rapida: 2.1218 kg | 203.3 MPa | CS 1.06 | 0.154 mm)
+- **Resultado (malla completa):** 2.1213 kg | 203.3 MPa | CS 1.06 | 0.154 mm (tension +1.8 %, masa -59 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1806 -> 2.1213; masa 2.1806 -> 2.1213 kg)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -9..15, y -124..-104 mm (esquinas R4) (y su simetrico) -> pasa la evaluacion rapida (2.0216 kg | 317.4 MPa | CS 0.68 | 0.187 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R17] ranura que une los aligeramientos de (28, -74) y (43, -68) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1763 kg | 181.0 MPa | CS 1.19 | 0.151 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_195403_it059_ACEPTADA_2.121kg.jpg" width="520">
+
 ## Iteracion 58 - RECHAZADA: R7 anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
 
 *2026-11-24 19:45*
