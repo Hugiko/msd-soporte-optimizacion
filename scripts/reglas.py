@@ -559,7 +559,8 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                   espero=dict(dsig_pct=d, txt=hist or f"del orden de {d:.0f} % (collares anteriores: -15 % con 6 mm)")))
         # ---------------- R12: acampanar la raiz de los collares (inversion: compra margen para seguir aligerando)
         cols_ = [o for o in ops if o["tipo"] == "collar"]
-        if cols_ and not any(o.get("flare") for o in cols_) and ok("R12"):
+        if cols_ and not any(o.get("flare") for o in cols_) and ok("R12") and not any(
+                rj["op"].get("tipo") == "collar_acampanado" for rj in st.get("rechazos", [])):
             new_ops = [dict(o, flare=30.0, z_flare=16.0) if o["tipo"] == "collar" else o for o in ops]
             d, hist = _expect("R12", stats, -5.6)
             reinf.append(dict(regla="R12", op=dict(tipo="collar_acampanado"), ops_nuevas=new_ops, reconstruir=True,

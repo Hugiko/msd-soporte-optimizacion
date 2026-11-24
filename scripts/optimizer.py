@@ -768,6 +768,9 @@ def start(st, git):
         register_best(st, git)        # hito: verificacion con malla fina + proyecto Workbench de la pieza de partida
 
 
+REFUERZOS = ("R4", "R6", "R7", "R8", "R12")
+
+
 def symmetry_pct(wd):
     """% del volumen con material en su punto simetrico (total y lejos de los pernos, cuya posicion no es simetrica)."""
     try:
@@ -874,6 +877,12 @@ def step(st, git, E):
                         [dict(name="Resultado", value="DESCARTADA (geometria)", inline=True)],
                         f"**Por que se propuso:** {c['porque'][:600]}\n**Motivo del descarte:** {why}", None)
             continue
+        if c["regla"] in REFUERZOS:
+            # los refuerzos crean uniones nuevas que la malla gruesa no resuelve (datos: collar -6,8 % previsto frente a
+            # -15,2 % real; collar acampanado +17,5 % previsto frente a -5,6 % real): van directos a la malla completa
+            log("      refuerzo: se evalua directamente con la malla completa (la malla gruesa no resuelve bien las uniones nuevas)")
+            surv.append((c, s, holes, None))
+            continue
         wq = os.path.join(itd, f"cand{k}_rapida")
         mq = run_eval(c["ops_nuevas"], s, holes, wq, quick=True)
         img_q = None
@@ -927,19 +936,21 @@ def step(st, git, E):
         maybe_finish(st)
         record(st, h, git, False)
         return
-    keyf = (lambda t: (t[3]["viol"] > 1.0, t[3]["viol"] if not ma["valido"] else t[3]["score"]))
+    keyf = (lambda t: (0, 0, 0) if t[3] is None else          # refuerzo (sin prevision): se propuso porque la pieza esta al limite
+            (1, t[3]["viol"] > 1.0, t[3]["viol"] if not ma["valido"] else t[3]["score"]))
     c, s, holes, p = min(surv, key=keyf)
     for c2, _, _, p2 in surv:
         if c2 is not c:
             h["descartes"].append(dict(regla=c2["regla"], titulo=c2["titulo"],
-                                       motivo=f"pasa la evaluacion rapida ({txt_m(p2)}) pero otra es mas prometedora; se podra proponer de nuevo"))
+                                       motivo=(f"pasa la evaluacion rapida ({txt_m(p2)})" if p2 else "refuerzo")
+                                       + " pero otra es mas prometedora; se podra proponer de nuevo"))
     rs = rule_stats(st, c["regla"]); rs["evaluadas"] += 1
     log(f"  EVALUACION COMPLETA de la mas prometedora: [{c['regla']}] {c['titulo']}")
     wd = os.path.join(itd, "completa")
     t0 = time.time()
     m = run_eval(c["ops_nuevas"], s, holes, wd)
     h.update(regla=c["regla"], titulo=c["titulo"], porque=c["porque"],
-             espero=c["espero"].get("txt", "") + (f" (prevision rapida: {txt_m(p)})"))
+             espero=c["espero"].get("txt", "") + (f" (prevision rapida: {txt_m(p)})" if p is not None else " (refuerzo: sin evaluacion rapida)"))
     if m.get("status") != "ok":
         h.update(decision="RECHAZADA", motivo=f"el calculo completo ha fallado: {str(m.get('error'))[:150]}")
         st["rechazos"].append(dict(op=c["op"], motivo_tipo="geometria", regla=c["regla"], iter=it))
@@ -949,7 +960,8 @@ def step(st, git, E):
     sm = summ(m)
     dsig = (sm["vm_metric"] / ma["vm_metric"] - 1) * 100; dm = (sm["mass_kg"] - ma["mass_kg"]) * 1000
     rs["dsig"].append(round(dsig, 2)); rs["dm"].append(round(dm, 1))
-    rs.setdefault("dsig_prev", []).append(round((p["vm_metric"] / ma["vm_metric"] - 1) * 100, 2))   # calibracion malla rapida
+    if p is not None:
+        rs.setdefault("dsig_prev", []).append(round((p["vm_metric"] / ma["vm_metric"] - 1) * 100, 2))   # calibracion malla rapida
     h.update(m_cand=sm, despues=txt_m(sm) + f" (tension {dsig:+.1f} %, masa {dm:+.0f} g)")
     best = st.get("mejor")
     decision, why = "RECHAZADA", ""
