@@ -2,6 +2,13 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 16 - SIN CAMBIO
+
+*2026-11-24 11:26*
+
+- **Pieza de partida:** 2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Decision:** SIN CAMBIO - ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)
+
 ## Iteracion 15 - RECHAZADA: R4 collar de 9 mm en los pernos 3 y 1
 
 *2026-11-24 11:24*

@@ -6,7 +6,7 @@ La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada it
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 15 | 8 | 0 | 7 | 0 | 21 |
+| 16 | 8 | 0 | 7 | 1 | 21 |
 
 ## Mejor diseno
 
@@ -39,6 +39,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 16 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 15 | RECHAZADA | R4 | collar de 9 mm en los pernos 3 y 1 | 2.364 kg, 207 MPa | no cumple: 207.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 223.4 M |
 | 14 | RECHAZADA | R3 | hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.282 kg, 202 MPa | no cumple: 202.3 MPa con la malla normal, que corregidos a malla fina (x1.077) son 217.9 M |
 | 13 | RECHAZADA | R1 | aligeramiento pasante vertical D8 mm en (40, -59) (y su simetrico) | 2.268 kg, 209 MPa | no cumple: 209.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 225.5 M |
@@ -50,7 +51,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 7 | ACEPTADA | R1 | aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico) | 2.335 kg, 196 MPa | cumple y mejora al mejor (puntuacion 2.3552 -> 2.3349; masa 2.3552 -> 2.3349 kg) |
 | 6 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico) | 2.355 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3827 -> 2.3552; masa 2.3827 -> 2.3552 kg) |
 | 5 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (64, -32) (y su simetrico) | 2.383 kg, 197 MPa | cumple y mejora al mejor (puntuacion 2.3989 -> 2.3827; masa 2.3989 -> 2.3827 kg) |
-| 4 | ACEPTADA | R1 | aligeramiento pasante vertical D12 mm en (4, -74) (y su simetrico) | 2.399 kg, 206 MPa | cumple y mejora al mejor (puntuacion 2.4281 -> 2.3989; masa 2.4281 -> 2.3989 kg) |
 
 ---
 

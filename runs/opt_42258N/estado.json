@@ -1,5 +1,5 @@
 {
- "iter": 15,
+ "iter": 16,
  "actual": {
   "ops": [
    {
@@ -1222,8 +1222,8 @@
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2925156956000006,
- "fin": false,
- "motivo_fin": "",
+ "fin": true,
+ "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
  "historia": [
   {
    "iter": 0,
@@ -2274,6 +2274,45 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 207.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 223.4 MPa > 215 MPa",
    "galeria": "galeria/20261124_112653_it015_RECHAZADA_2.364kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   }
+  },
+  {
+   "iter": 16,
+   "fecha": "2026-11-24T11:26:58.409951",
+   "antes": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [],
+   "decision": "SIN CAMBIO",
+   "motivo": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
    "m_actual": {
     "mass_kg": 2.2925156956000006,
     "vm_metric": 199.3109,

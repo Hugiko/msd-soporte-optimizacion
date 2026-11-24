@@ -2861,3 +2861,5 @@
 [11:26:52]   [4/5] resultados
 [11:26:52]   [5/5] imagenes
 [11:26:53]   RESULTADO: 2.3640 kg | 207.4 MPa | CS 1.04 | 0.142 mm (tension +4.1 %, masa +71 g) -> RECHAZADA: no cumple: 207.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 223.4 MPa > 215 MPa
+[11:26:54] ITERACION 16 | pieza actual: 2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm | mejor: 2.2925 kg
+[11:26:57]   (GitHub: subido)
