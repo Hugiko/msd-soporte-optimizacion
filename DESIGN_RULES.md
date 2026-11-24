@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 12:22. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 12:25. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -78,7 +78,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 18 veces (9 descartadas en la evaluacion rapida, 5 aceptadas, 2 rechazadas); tension +0.1 % (mediana), masa -34 g (mediana).
+- **Aplicada en el optimizador:** 19 veces (9 descartadas en la evaluacion rapida, 5 aceptadas, 2 rechazadas); tension +0.1 % (mediana), masa -34 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.4 % frente a +0.1 % real (mediana de 7)
   - iteracion 13: aceptada: rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 m (tension +1.3 %, masa -34 g)
   - iteracion 14: aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)
@@ -206,7 +206,9 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la placa base apenas trabaja lejos de los pernos (en el original, el 85 % de su material esta por debajo del 15 % del limite): la carga baja por el cuerpo a los pernos y la placa entre ellos no esta en ese camino. Una ventana la quita entera, cosa que un rebaje (que deja suelo) o un agujero redondo no pueden hacer.
 - **Espero:** baja la masa; la tension maxima casi no cambia (lejos de los picos).
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 5 veces (5 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 6 veces (5 descartadas en la evaluacion rapida, 0 aceptadas, 1 rechazadas); tension +1.6 % (mediana), masa -49 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.0 % frente a +1.6 % real (mediana de 1)
+  - iteracion 27: rechazada: ventana pasante en x 6..38, y -80..-68 mm (esquinas R3) (y s (tension +1.6 %, masa -49 g)
 
 ### R14. Aliviar la cara de apoyo: bolsillos desde abajo donde la placa base no trabaja  (ACTIVA)
 
@@ -215,7 +217,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el soporte solo se sujeta por los pernos: la cara inferior lejos de ellos no apoya en nada en el modelo ni transmite carga. La placa base bajo el cuerpo esta ociosa aunque el cuerpo de encima trabaje, asi que se vacia desde abajo sin tocar el cuerpo (cara de apoyo aliviada, habitual en soportes atornillados); las ranuras dejan nervios entre ellas.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 7 veces (1 descartadas en la evaluacion rapida, 3 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa -10 g (mediana).
+- **Aplicada en el optimizador:** 8 veces (2 descartadas en la evaluacion rapida, 3 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa -10 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +0.1 % real (mediana de 4)
   - iteracion 18: aceptada: bolsillo desde la cara de apoyo 8 x 16 mm, hasta z = 12 mm ( (tension -0.1 %, masa -1 g)
   - iteracion 19: aceptada: bolsillo desde la cara de apoyo 28 x 24 mm, hasta z = 10 mm  (tension +0.3 %, masa -32 g)

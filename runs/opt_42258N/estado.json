@@ -1,5 +1,5 @@
 {
- "iter": 26,
+ "iter": 27,
  "actual": {
   "ops": [
    {
@@ -733,6 +733,35 @@
    "motivo_tipo": "tension",
    "regla": "R2",
    "iter": 26
+  },
+  {
+   "op": {
+    "tipo": "hueco",
+    "x0": 5.52,
+    "x1": 41.52,
+    "y0": -104.32,
+    "y1": -76.32,
+    "z0": -1.0,
+    "z1": 12.0,
+    "rr": 1.5
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R14",
+   "iter": 27
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": 5.52,
+    "x1": 37.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": -1.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R13",
+   "iter": 27
   }
  ],
  "stats": {
@@ -783,7 +812,7 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 18,
+   "intentos": 19,
    "descartadas_rapido": 9,
    "evaluadas": 7,
    "aceptadas": 5,
@@ -1529,8 +1558,8 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 7,
-   "descartadas_rapido": 1,
+   "intentos": 8,
+   "descartadas_rapido": 2,
    "evaluadas": 4,
    "aceptadas": 3,
    "rechazadas": 1,
@@ -1572,17 +1601,29 @@
    ]
   },
   "R13": {
-   "intentos": 5,
+   "intentos": 6,
    "descartadas_rapido": 5,
-   "evaluadas": 0,
+   "evaluadas": 1,
    "aceptadas": 0,
-   "rechazadas": 0,
-   "dsig": [],
-   "dm": [],
-   "ejemplos": []
+   "rechazadas": 1,
+   "dsig": [
+    1.62
+   ],
+   "dm": [
+    -48.8
+   ],
+   "ejemplos": [
+    [
+     27,
+     "rechazada: ventana pasante en x 6..38, y -80..-68 mm (esquinas R3) (y s (tension +1.6 %, masa -49 g)"
+    ]
+   ],
+   "dsig_prev": [
+    0.01
+   ]
   }
  },
- "sin_mejora": 6,
+ "sin_mejora": 7,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2593321442,
@@ -3320,6 +3361,77 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 202.6 MPa con la malla normal, que corregidos a malla fina (x1.069) son 216.7 MPa > 215 MPa",
    "galeria": "galeria/20261124_122236_it026_RECHAZADA_2.202kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   }
+  },
+  {
+   "iter": 27,
+   "fecha": "2026-11-24T12:22:44.859514",
+   "antes": "2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R14",
+     "titulo": "bolsillo desde la cara de apoyo 36 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (24, -90) (y su simetrico)",
+     "motivo": "la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)"
+    },
+    {
+     "regla": "R2",
+     "titulo": "rebaje desde arriba hasta z = 5 mm en x 6..38, y -80..-68 mm (esquinas R3) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1971 kg | 199.4 MPa | CS 1.08 | 0.149 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R13",
+   "titulo": "ventana pasante en x 6..38, y -80..-68 mm (esquinas R3) (y su simetrico)",
+   "porque": "Todo el material de esa zona, desde la cara de apoyo hasta arriba (y 4 mm alrededor), trabaja por debajo del 45 % del limite: la carga baja por el cuerpo hasta los pernos y esa parte de la placa no esta en el camino. Se abre una ventana pasante (esquinas R3); el pico (199 MPa, en alrededor de los pernos traseros) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.",
+   "espero": "la tension maxima casi no cambia (prevision rapida: 2.1906 kg | 199.3 MPa | CS 1.08 | 0.149 mm)",
+   "m_cand": {
+    "mass_kg": 2.192224127,
+    "vm_metric": 202.5447,
+    "u_max": 0.14826510039257101,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86987,
+    "cs": 1.0614940800722013,
+    "viol": 1.0075421239534883,
+    "score": 2.192224127,
+    "valido": false
+   },
+   "despues": "2.1922 kg | 202.5 MPa | CS 1.06 | 0.148 mm (tension +1.6 %, masa -49 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 202.5 MPa con la malla normal, que corregidos a malla fina (x1.069) son 216.6 MPa > 215 MPa",
+   "galeria": "galeria/20261124_122515_it027_RECHAZADA_2.192kg.jpg",
    "m_actual": {
     "mass_kg": 2.2410245469,
     "vm_metric": 199.3087,
