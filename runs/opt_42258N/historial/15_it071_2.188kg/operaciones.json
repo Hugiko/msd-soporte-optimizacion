@@ -1,0 +1,127 @@
+{
+ "operaciones": [
+  {
+   "tipo": "collar",
+   "perno": 0,
+   "t": 6.0,
+   "z": 22.0,
+   "flare": 30.0,
+   "z_flare": 16.0
+  },
+  {
+   "tipo": "collar",
+   "perno": 2,
+   "t": 6.0,
+   "z": 22.0,
+   "flare": 30.0,
+   "z_flare": 16.0
+  },
+  {
+   "tipo": "rebaje",
+   "x0": 41.52,
+   "x1": 61.52,
+   "y0": -80.32,
+   "y1": -68.32,
+   "zc": 9.0,
+   "rr": 3.0
+  },
+  {
+   "tipo": "orejeta",
+   "ro": 20.09
+  },
+  {
+   "tipo": "ranura",
+   "x1": 41.5,
+   "y1": -78.6,
+   "r1": 11.5,
+   "x2": 41.5,
+   "y2": -66.6,
+   "r2": 11.5
+  },
+  {
+   "tipo": "ranura",
+   "x1": 26.5,
+   "y1": -71.6,
+   "r1": 4.0,
+   "x2": 17.5,
+   "y2": -75.6,
+   "r2": 4.0
+  },
+  {
+   "tipo": "agujero",
+   "x": -26.48,
+   "y": -29.32,
+   "r": 8.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 3.5,
+   "y": -74.3,
+   "r": 6.5
+  },
+  {
+   "tipo": "agujero",
+   "x": 4.33,
+   "y": -109.61,
+   "r": 5.0
+  },
+  {
+   "tipo": "agujero",
+   "x": 42.52,
+   "y": -44.32,
+   "r": 4.0
+  },
+  {
+   "tipo": "bolsillo_ranura",
+   "x1": 13.3,
+   "y1": -54.4,
+   "x2": 7.3,
+   "y2": -35.4,
+   "r": 10.5,
+   "z1": 11.1
+  },
+  {
+   "tipo": "bolsillo_ranura",
+   "x1": 23.3,
+   "y1": -27.4,
+   "x2": 56.3,
+   "y2": -28.4,
+   "r": 7.5,
+   "z1": 6.0
+  },
+  {
+   "tipo": "bolsillo_ranura",
+   "x1": 23.3,
+   "y1": -38.4,
+   "x2": 29.3,
+   "y2": -61.4,
+   "r": 4.0,
+   "z1": 6.1
+  },
+  {
+   "tipo": "bolsillo_ranura",
+   "x1": -30.6,
+   "y1": -93.6,
+   "x2": -32.6,
+   "y2": -56.6,
+   "r": 13.5,
+   "z1": 12.0
+  }
+ ],
+ "descripcion": [
+  "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
+  "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
+  "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
+  "anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)",
+  "ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico)",
+  "ranura que une los aligeramientos de (26, -72) y (18, -76) (quita la pared fina entre ellos) (y su simetrico)",
+  "aligeramiento pasante vertical D16 mm en (-26, -29) (y su simetrico)",
+  "aligeramiento pasante vertical D13 mm en (4, -74) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)",
+  "aligeramiento pasante vertical D8 mm en (43, -44) (y su simetrico)",
+  "bolsillo en ranura desde la cara de apoyo, 21 mm de ancho, de (13, -54) a (7, -35), hasta z = 11 mm (techo a 45 grados) (y su simetrico)",
+  "bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)",
+  "bolsillo en ranura desde la cara de apoyo, 8 mm de ancho, de (23, -38) a (29, -61), hasta z = 6 mm (techo a 45 grados) (y su simetrico)",
+  "bolsillo en ranura desde la cara de apoyo, 27 mm de ancho, de (-31, -94) a (-33, -57), hasta z = 12 mm (techo a 45 grados) (y su simetrico)"
+ ]
+}
