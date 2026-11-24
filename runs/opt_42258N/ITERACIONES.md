@@ -2,6 +2,16 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 23 - SIN CAMBIO
+
+*2026-11-24 12:11*
+
+- **Pieza de partida:** 2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D20 mm en (7, -35) (y su simetrico) -> tension prevista 253 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R13] ventana pasante en x -30..38, y -80..-68 mm (esquinas R3) (y su simetrico) -> tension prevista 211 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x -6..14, y -44..-28 mm (esquinas R3.2) (y su simetrico) -> tension prevista 304 MPa: supera el limite (215 MPa)
+
 ## Iteracion 22 - SIN CAMBIO
 
 *2026-11-24 12:09*

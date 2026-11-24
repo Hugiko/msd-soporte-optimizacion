@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 12:11. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 12:13. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,7 +45,7 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 372 veces (8 descartadas en la evaluacion rapida, 183 aceptadas, 7 rechazadas); tension +1.0 % (mediana), masa -16 g (mediana).
+- **Aplicada en el optimizador:** 373 veces (9 descartadas en la evaluacion rapida, 183 aceptadas, 7 rechazadas); tension +1.0 % (mediana), masa -16 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.0 % real (mediana de 190)
   - iteracion 10: rechazada: aligeramiento pasante vertical D8 mm en (37, -83) (y su sime (tension +1.1 %, masa -32 g)
   - iteracion 11: aceptada: aligeramiento pasante vertical D8 mm en (43, -44) (y su sime (tension +0.6 %, masa -28 g)
@@ -78,7 +78,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 14 veces (6 descartadas en la evaluacion rapida, 5 aceptadas, 1 rechazadas); tension -0.2 % (mediana), masa -31 g (mediana).
+- **Aplicada en el optimizador:** 15 veces (7 descartadas en la evaluacion rapida, 5 aceptadas, 1 rechazadas); tension -0.2 % (mediana), masa -31 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.2 % frente a -0.2 % real (mediana de 6)
   - iteracion 5: rechazada: rebaje desde arriba hasta z = 5 mm en x -30..-18, y -40..-8  (tension +0.0 %, masa +0 g)
   - iteracion 13: aceptada: rebaje desde arriba hasta z = 5 mm en x 38..50, y -60..-44 m (tension +1.3 %, masa -34 g)
@@ -206,7 +206,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la placa base apenas trabaja lejos de los pernos (en el original, el 85 % de su material esta por debajo del 15 % del limite): la carga baja por el cuerpo a los pernos y la placa entre ellos no esta en ese camino. Una ventana la quita entera, cosa que un rebaje (que deja suelo) o un agujero redondo no pueden hacer.
 - **Espero:** baja la masa; la tension maxima casi no cambia (lejos de los picos).
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 1 veces (1 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 2 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R14. Aliviar la cara de apoyo: bolsillos desde abajo donde la placa base no trabaja  (ACTIVA)
 

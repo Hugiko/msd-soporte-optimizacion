@@ -1,5 +1,5 @@
 {
- "iter": 22,
+ "iter": 23,
  "actual": {
   "ops": [
    {
@@ -577,6 +577,45 @@
    "motivo_tipo": "tension",
    "regla": "R2",
    "iter": 22
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 6.52,
+    "y": -35.32,
+    "r": 10.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 23
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -30.48,
+    "x1": 37.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": -1.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R13",
+   "iter": 23
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -6.48,
+    "x1": 13.52,
+    "y0": -44.32,
+    "y1": -28.32,
+    "zc": 5.0,
+    "rr": 3.2
+   },
+   "motivo_tipo": "tension",
+   "regla": "R2",
+   "iter": 23
   }
  ],
  "stats": {
@@ -627,8 +666,8 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 14,
-   "descartadas_rapido": 6,
+   "intentos": 15,
+   "descartadas_rapido": 7,
    "evaluadas": 6,
    "aceptadas": 5,
    "rechazadas": 1,
@@ -684,8 +723,8 @@
    ]
   },
   "R1": {
-   "intentos": 372,
-   "descartadas_rapido": 8,
+   "intentos": 373,
+   "descartadas_rapido": 9,
    "evaluadas": 190,
    "aceptadas": 183,
    "rechazadas": 7,
@@ -1403,8 +1442,8 @@
    ]
   },
   "R13": {
-   "intentos": 1,
-   "descartadas_rapido": 1,
+   "intentos": 2,
+   "descartadas_rapido": 2,
    "evaluadas": 0,
    "aceptadas": 0,
    "rechazadas": 0,
@@ -1413,7 +1452,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 2,
+ "sin_mejora": 3,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2593321442,
@@ -2879,6 +2918,61 @@
      "regla": "R2",
      "titulo": "rebaje desde arriba hasta z = 9 mm en x -10..14, y -124..-104 mm (esquinas R4) (y su simetrico)",
      "motivo": "tension prevista 324 MPa: supera el limite (215 MPa)"
+    }
+   ],
+   "decision": "SIN CAMBIO",
+   "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
+   "m_actual": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   }
+  },
+  {
+   "iter": 23,
+   "fecha": "2026-11-24T12:11:46.288848",
+   "antes": "2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D20 mm en (7, -35) (y su simetrico)",
+     "motivo": "tension prevista 253 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R13",
+     "titulo": "ventana pasante en x -30..38, y -80..-68 mm (esquinas R3) (y su simetrico)",
+     "motivo": "tension prevista 211 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R2",
+     "titulo": "rebaje desde arriba hasta z = 5 mm en x -6..14, y -44..-28 mm (esquinas R3.2) (y su simetrico)",
+     "motivo": "tension prevista 304 MPa: supera el limite (215 MPa)"
     }
    ],
    "decision": "SIN CAMBIO",
