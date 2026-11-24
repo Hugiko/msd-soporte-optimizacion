@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 21:41. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 21:47. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -143,12 +143,12 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la carga horizontal aplicada a 44,7 mm de altura crea un momento de vuelco (F x h ~ 1,9 kN m con 42 258 N) que la pieza lleva a los pernos; alrededor del alojamiento la seccion es pequena. Mas seccion -> menos tension (s ~ M / W). El soporte es simetrico respecto al plano medio de las orejetas (y ~ -75 mm): el perno simetrico trabaja igual.
 - **Espero:** baja la tension maxima; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.
-- **Aplicada en el optimizador:** 19 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 5 rechazadas); tension -3.2 % (mediana), masa +59 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a -3.1 % real (mediana de 3)
-  - iteracion 15: rechazada: collar de 9 mm en los pernos 3 y 1 (tension +4.1 %, masa +71 g)
+- **Aplicada en el optimizador:** 20 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 6 rechazadas); tension -3.1 % (mediana), masa +72 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a -2.5 % real (mediana de 3)
   - iteracion 60: rechazada: collar de 4 mm en los pernos 4 y 2 (tension -3.1 %, masa +42 g)
   - iteracion 61: rechazada: collar de 6 mm en los pernos 4 y 2 (tension -4.3 %, masa +77 g)
   - iteracion 75: rechazada: collar de 4 mm en los pernos 4 y 2 (tension -2.3 %, masa +42 g)
+  - iteracion 76: rechazada: collar de 6 mm en los pernos 4 y 2 (tension -2.5 %, masa +77 g)
 
 ### R5. Alojamiento de la cabeza mas ancho con acuerdo de fondo mayor  (DESACTIVADA: LOS DATOS LA CONTRADICEN)
 
@@ -241,7 +241,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** es el crecimiento de contorno de la optimizacion evolutiva (ESO): se quita el material de baja tension en la frontera de un hueco que ya funciona, sin anadir huecos nuevos superpuestos (facil de fabricar: menos operaciones y formas simples).
 - **Espero:** baja la masa; la tension sube poco si el borde de verdad no trabaja.
 - **Evidencia (basada en la teoria / en sus resultados):** crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
-- **Aplicada en el optimizador:** 7 veces (0 descartadas en la evaluacion rapida, 2 aceptadas, 0 rechazadas); tension +1.1 % (mediana), masa -15 g (mediana).
+- **Aplicada en el optimizador:** 9 veces (0 descartadas en la evaluacion rapida, 2 aceptadas, 0 rechazadas); tension +1.1 % (mediana), masa -15 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +1.0 % frente a +1.1 % real (mediana de 2)
   - iteracion 72: aceptada: agrandar: aligeramiento pasante vertical D13 mm en (4, -110) (tension +1.5 %, masa -26 g)
   - iteracion 74: aceptada: agrandar: bolsillo en ranura desde la cara de apoyo, 30 mm d (tension +0.7 %, masa -3 g)

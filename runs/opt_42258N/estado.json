@@ -1,5 +1,5 @@
 {
- "iter": 75,
+ "iter": 76,
  "actual": {
   "ops": [
    {
@@ -431,22 +431,34 @@
    "motivo_tipo": "puntuacion",
    "regla": "R4",
    "iter": 75
+  },
+  {
+   "op": {
+    "tipo": "collar",
+    "perno": 3,
+    "t": 6.0,
+    "z": 22.0
+   },
+   "motivo_tipo": "puntuacion",
+   "regla": "R4",
+   "iter": 76
   }
  ],
  "stats": {
   "R4": {
-   "intentos": 19,
+   "intentos": 20,
    "descartadas_rapido": 0,
-   "evaluadas": 6,
+   "evaluadas": 7,
    "aceptadas": 1,
-   "rechazadas": 5,
+   "rechazadas": 6,
    "dsig": [
     -15.18,
     -3.26,
     4.08,
     -3.13,
     -4.26,
-    -2.27
+    -2.27,
+    -2.45
    ],
    "dm": [
     81.0,
@@ -454,7 +466,8 @@
     71.5,
     41.7,
     77.2,
-    41.8
+    41.8,
+    77.2
    ],
    "ejemplos": [
     [
@@ -480,6 +493,10 @@
     [
      75,
      "rechazada: collar de 4 mm en los pernos 4 y 2 (tension -2.3 %, masa +42 g)"
+    ],
+    [
+     76,
+     "rechazada: collar de 6 mm en los pernos 4 y 2 (tension -2.5 %, masa +77 g)"
     ]
    ],
    "dsig_prev": [
@@ -1490,7 +1507,7 @@
    "ejemplos": []
   },
   "R18": {
-   "intentos": 7,
+   "intentos": 9,
    "descartadas_rapido": 0,
    "evaluadas": 2,
    "aceptadas": 2,
@@ -1519,7 +1536,7 @@
    ]
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 2,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.1614368352000004,
@@ -6600,6 +6617,80 @@
    "decision": "RECHAZADA",
    "motivo": "cumple pero no mejora al mejor (puntuacion 2.1999 frente a 2.1581)",
    "galeria": "galeria/20261124_214124_it075_RECHAZADA_2.200kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.1581220392500002,
+    "vm_metric": 197.9824,
+    "u_max": 0.15891710488155375,
+    "vm_metric_xyz": [
+     34.52315692937254,
+     -137.04680387972883,
+     10.388599922349174
+    ],
+    "n_nodes": 96908,
+    "cs": 1.0859551152021594,
+    "viol": 0.9907407635348838,
+    "score": 2.1581220392500002,
+    "valido": true
+   }
+  },
+  {
+   "iter": 76,
+   "fecha": "2026-11-24T21:41:31.581636",
+   "antes": "2.1581 kg | 198.0 MPa | CS 1.09 | 0.159 mm",
+   "m_antes": {
+    "mass_kg": 2.1581220392500002,
+    "vm_metric": 197.9824,
+    "u_max": 0.15891710488155375,
+    "vm_metric_xyz": [
+     34.52315692937254,
+     -137.04680387972883,
+     10.388599922349174
+    ],
+    "n_nodes": 96908,
+    "cs": 1.0859551152021594,
+    "viol": 0.9907407635348838,
+    "score": 2.1581220392500002,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)"
+   ],
+   "descartes": [
+    {
+     "regla": "R18",
+     "titulo": "agrandar: ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1291 kg | 223.0 MPa | CS 0.96 | 0.161 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    },
+    {
+     "regla": "R18",
+     "titulo": "agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1561 kg | 195.1 MPa | CS 1.10 | 0.159 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R4",
+   "titulo": "collar de 6 mm en los pernos 4 y 2",
+   "porque": "El pico (198 MPa, 99 % del limite) esta junto al alojamiento del perno 4 (concentracion local x2.1). El momento de vuelco de la carga (F x 44,7 mm) llega a los pernos por una seccion pequena alrededor del alojamiento: un collar de 6 mm aumenta esa seccion. El perno 2 es su simetrico respecto al plano medio de las orejetas y trabaja igual. Evidencia: prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.",
+   "espero": "mediana de las 6 veces que se ha aplicado: -3.2 % (refuerzo: sin evaluacion rapida)",
+   "m_cand": {
+    "mass_kg": 2.2352868484500004,
+    "vm_metric": 193.1302,
+    "u_max": 0.15519900738309256,
+    "vm_metric_xyz": [
+     -0.19800991558367897,
+     -58.50376352723593,
+     57.13994159170428
+    ],
+    "n_nodes": 98903,
+    "cs": 1.1132386338335485,
+    "viol": 0.9664594520000002,
+    "score": 2.2352868484500004,
+    "valido": true
+   },
+   "despues": "2.2353 kg | 193.1 MPa | CS 1.11 | 0.155 mm (tension -2.5 %, masa +77 g)",
+   "decision": "RECHAZADA",
+   "motivo": "cumple pero no mejora al mejor (puntuacion 2.2353 frente a 2.1581)",
+   "galeria": "galeria/20261124_214743_it076_RECHAZADA_2.235kg.jpg",
    "m_actual": {
     "mass_kg": 2.1581220392500002,
     "vm_metric": 197.9824,
