@@ -2,6 +2,20 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 11 - ACEPTADA: R1 aligeramiento pasante vertical D8 mm en (43, -44) (y su simetrico)
+
+*2026-11-24 09:41*
+
+- **Pieza de partida:** 2.3201 kg | 198.0 MPa | CS 1.09 | 0.144 mm
+- **Por que (regla R1):** Toda la columna en (43, -44) hasta 7 mm de radio trabaja como maximo al 34 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (198 MPa, en alrededor de los pernos traseros) esta a 101 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 187 veces que se ha aplicado: +0.9 % (prevision rapida: 2.2948 kg | 202.1 MPa | CS 1.06 | 0.145 mm)
+- **Resultado (malla completa):** 2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm (tension +0.6 %, masa -28 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.3201 -> 2.2925; masa 2.3201 -> 2.2925 kg)
+- Descartada en la evaluacion rapida: [R4] collar de 9 mm en los pernos 3 y 1 -> pasa la evaluacion rapida (2.3901 kg | 201.4 MPa | CS 1.07 | 0.141 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.3103 kg | 205.1 MPa | CS 1.05 | 0.145 mm) pero otra es mas prometedora; se podra proponer de nuevo
+
+<img src="galeria/20261124_094448_it011_ACEPTADA_2.293kg.jpg" width="520">
+
 ## Iteracion 10 - RECHAZADA: R1 aligeramiento pasante vertical D8 mm en (37, -83) (y su simetrico)
 
 *2026-11-24 09:39*
