@@ -1,5 +1,5 @@
 {
- "iter": 44,
+ "iter": 45,
  "actual": {
   "ops": [
    {
@@ -436,7 +436,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
  },
- "tau_idx": 2,
+ "tau_idx": 3,
  "rechazos": [
   {
    "op": {
@@ -590,6 +590,31 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 44
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -8.67,
+    "x1": 15.33,
+    "y0": -123.61,
+    "y1": -103.61,
+    "zc": 7.0,
+    "rr": 4.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R2",
+   "iter": 45
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 4.33,
+    "y": -31.61,
+    "r": 12.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 45
   }
  ],
  "stats": {
@@ -640,8 +665,8 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 21,
-   "descartadas_rapido": 10,
+   "intentos": 22,
+   "descartadas_rapido": 11,
    "evaluadas": 7,
    "aceptadas": 5,
    "rechazadas": 2,
@@ -704,11 +729,11 @@
    ]
   },
   "R1": {
-   "intentos": 386,
+   "intentos": 387,
    "descartadas_rapido": 16,
-   "evaluadas": 195,
+   "evaluadas": 196,
    "aceptadas": 185,
-   "rechazadas": 10,
+   "rechazadas": 11,
    "dsig": [
     -2.81,
     0.93,
@@ -904,7 +929,8 @@
     4.3,
     1.72,
     209.4,
-    3.28
+    3.28,
+    195.78
    ],
    "dm": [
     -34.0,
@@ -1101,13 +1127,10 @@
     -57.6,
     -31.9,
     -20.1,
-    -50.4
+    -50.4,
+    -212.2
    ],
    "ejemplos": [
-    [
-     11,
-     "aceptada: aligeramiento pasante vertical D8 mm en (43, -44) (y su sime (tension +0.6 %, masa -28 g)"
-    ],
     [
      12,
      "rechazada: aligeramiento pasante vertical D12 mm en (-5, -74) (y su sim (tension +1.6 %, masa -15 g)"
@@ -1135,6 +1158,10 @@
     [
      41,
      "aceptada: aligeramiento pasante vertical D12 mm en (34, -77) (y su sim (tension +3.3 %, masa -50 g)"
+    ],
+    [
+     45,
+     "rechazada: aligeramiento pasante vertical D24 mm en (4, -32) (y su sime (tension +195.8 %, masa -212 g)"
     ]
    ],
    "dsig_prev": [
@@ -1332,7 +1359,8 @@
     -0.01,
     -6.07,
     122.91,
-    -0.81
+    -0.81,
+    160.7
    ]
   },
   "R3": {
@@ -1411,7 +1439,7 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 16,
+   "intentos": 17,
    "descartadas_rapido": 3,
    "evaluadas": 8,
    "aceptadas": 5,
@@ -1529,7 +1557,7 @@
    ]
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 2,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2571172117500002,
@@ -4420,6 +4448,81 @@
    ],
    "decision": "SIN CAMBIO",
    "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
+   "m_actual": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
+    "valido": true
+   }
+  },
+  {
+   "iter": 45,
+   "fecha": "2026-11-24T18:33:33.078919",
+   "antes": "2.2362 kg | 200.9 MPa | CS 1.07 | 0.149 mm",
+   "m_antes": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "R10: ya no queda material por debajo del 35 % del limite donde quepa un corte -> se pasa al umbral del 45 %"
+   ],
+   "descartes": [
+    {
+     "regla": "R2",
+     "titulo": "rebaje desde arriba hasta z = 7 mm en x -9..15, y -124..-104 mm (esquinas R4) (y su simetrico)",
+     "motivo": "tension prevista 322 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R14",
+     "titulo": "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.2207 kg | 200.1 MPa | CS 1.07 | 0.148 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D24 mm en (4, -32) (y su simetrico)",
+   "porque": "Toda la columna en (4, -32) hasta 15 mm de radio trabaja como maximo al 44 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (201 MPa, en placa base (z < 10 mm)) esta a 78 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 195 veces que se ha aplicado: +1.6 % (prevision rapida: 2.0266 kg | 523.6 MPa | CS 0.41 | 0.184 mm)",
+   "m_cand": {
+    "mass_kg": 2.0239835471500003,
+    "vm_metric": 594.1081,
+    "u_max": 0.18747902099766514,
+    "vm_metric_xyz": [
+     11.709379523559,
+     -22.14719080572,
+     20.573170330659
+    ],
+    "n_nodes": 90533,
+    "cs": 0.3618870033921436,
+    "viol": 2.9230118520000006,
+    "score": 2.0239835471500003,
+    "valido": false
+   },
+   "despues": "2.0240 kg | 594.1 MPa | CS 0.36 | 0.187 mm (tension +195.8 %, masa -212 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 594.1 MPa con la malla normal, que corregidos a malla fina (x1.058) son 628.4 MPa > 215 MPa",
+   "galeria": "galeria/20261124_183659_it045_RECHAZADA_2.024kg.jpg",
    "m_actual": {
     "mass_kg": 2.2362199387,
     "vm_metric": 200.8585,
