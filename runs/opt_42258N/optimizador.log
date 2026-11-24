@@ -5136,3 +5136,6 @@
 [13:23:06]   [4/5] resultados
 [13:23:07]   [5/5] imagenes
 [13:23:08]   RESULTADO: 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm (tension -5.6 %, masa +52 g) -> INVERSION: refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)
+[13:23:11] ITERACION 32 | pieza actual: 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm | mejor: 2.2571 kg
+[13:23:16]   (GitHub: subido)
+[13:23:17]   nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)

@@ -6,7 +6,7 @@ La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada it
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 31 | 11 | 1 | 13 | 4 | 41 |
+| 32 | 11 | 1 | 13 | 5 | 41 |
 
 ## Mejor diseno
 
@@ -41,6 +41,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 32 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 31 | INVERSION | R12 | acampanar la raiz de los collares (30 grados hasta z = 16 mm) | 2.309 kg, 191 MPa | refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese marge |
 | 30 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 29 | REEVALUADA | - | pieza actual reconstruida | 2.257 kg, 202 MPa | cumple: se sigue optimizando con las reglas nuevas |
@@ -52,7 +53,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 23 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 22 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 21 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 24 x 24 mm, hasta z = 10 mm (techo a 4 | 2.239 kg, 204 MPa | no cumple: 204.0 MPa con la malla normal, que corregidos a malla fina (x1.069) son 218.2 M |
-| 20 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm (techo a 45 | 2.241 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2593 -> 2.2410; masa 2.2593 -> 2.2410 kg) |
 
 ---
 

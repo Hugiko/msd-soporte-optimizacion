@@ -1,5 +1,5 @@
 {
- "iter": 31,
+ "iter": 32,
  "actual": {
   "ops": [
    {
@@ -1697,8 +1697,8 @@
  "inversiones": 1,
  "inversion_desde": 31,
  "wb_masa": 2.2571172117500002,
- "fin": false,
- "motivo_fin": "",
+ "fin": true,
+ "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
  "historia": [
   {
    "iter": 0,
@@ -3754,6 +3754,47 @@
     "score": 2.30886905895,
     "valido": true
    }
+  },
+  {
+   "iter": 32,
+   "fecha": "2026-11-24T13:23:17.640577",
+   "antes": "2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm",
+   "m_antes": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   },
+   "notas": [
+    "1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [],
+   "decision": "SIN CAMBIO",
+   "motivo": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
+   "m_actual": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -3872,5 +3913,5 @@
   "R11",
   "R5"
  ],
- "_asim": 2
+ "_asim": 3
 }
