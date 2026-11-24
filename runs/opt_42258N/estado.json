@@ -1,5 +1,5 @@
 {
- "iter": 25,
+ "iter": 26,
  "actual": {
   "ops": [
    {
@@ -694,6 +694,45 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 25
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -26.48,
+    "x1": 13.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": -1.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R13",
+   "iter": 26
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 51.52,
+    "y": -23.32,
+    "r": 6.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 26
+  },
+  {
+   "op": {
+    "tipo": "rebaje",
+    "x0": -26.48,
+    "x1": 13.52,
+    "y0": -80.32,
+    "y1": -68.32,
+    "zc": 5.0,
+    "rr": 3.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R2",
+   "iter": 26
   }
  ],
  "stats": {
@@ -744,18 +783,19 @@
    "ejemplos": []
   },
   "R2": {
-   "intentos": 17,
+   "intentos": 18,
    "descartadas_rapido": 9,
-   "evaluadas": 6,
+   "evaluadas": 7,
    "aceptadas": 5,
-   "rechazadas": 1,
+   "rechazadas": 2,
    "dsig": [
     5.87,
     -5.97,
     0.05,
     1.25,
     -0.94,
-    -0.49
+    -0.49,
+    1.65
    ],
    "dm": [
     -57.8,
@@ -763,7 +803,8 @@
     0.1,
     -34.1,
     -27.5,
-    -22.2
+    -22.2,
+    -39.1
    ],
    "ejemplos": [
     [
@@ -789,6 +830,10 @@
     [
      2,
      "aceptada: rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 m (tension -0.5 %, masa -22 g)"
+    ],
+    [
+     26,
+     "rechazada: rebaje desde arriba hasta z = 5 mm en x -26..14, y -80..-68  (tension +1.7 %, masa -39 g)"
     ]
    ],
    "dsig_prev": [
@@ -797,12 +842,13 @@
     -0.5,
     2.94,
     -1.12,
-    -0.39
+    -0.39,
+    -0.67
    ]
   },
   "R1": {
-   "intentos": 375,
-   "descartadas_rapido": 9,
+   "intentos": 376,
+   "descartadas_rapido": 10,
    "evaluadas": 192,
    "aceptadas": 183,
    "rechazadas": 9,
@@ -1526,8 +1572,8 @@
    ]
   },
   "R13": {
-   "intentos": 4,
-   "descartadas_rapido": 4,
+   "intentos": 5,
+   "descartadas_rapido": 5,
    "evaluadas": 0,
    "aceptadas": 0,
    "rechazadas": 0,
@@ -1536,7 +1582,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 5,
+ "sin_mejora": 6,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2593321442,
@@ -3203,6 +3249,77 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 207.9 MPa con la malla normal, que corregidos a malla fina (x1.069) son 222.3 MPa > 215 MPa",
    "galeria": "galeria/20261124_121938_it025_RECHAZADA_2.183kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   }
+  },
+  {
+   "iter": 26,
+   "fecha": "2026-11-24T12:19:46.114431",
+   "antes": "2.2410 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2410245469,
+    "vm_metric": 199.3087,
+    "u_max": 0.14623948611207455,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 89430,
+    "cs": 1.07872862549402,
+    "viol": 0.9914449053488371,
+    "score": 2.2410245469,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [
+    {
+     "regla": "R13",
+     "titulo": "ventana pasante en x -26..14, y -80..-68 mm (esquinas R3) (y su simetrico)",
+     "motivo": "tension prevista 380 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (52, -23) (y su simetrico)",
+     "motivo": "tension prevista 271 MPa: supera el limite (215 MPa)"
+    }
+   ],
+   "regla": "R2",
+   "titulo": "rebaje desde arriba hasta z = 5 mm en x -26..14, y -80..-68 mm (esquinas R3) (y su simetrico)",
+   "porque": "Todo el material por encima de z = 5 mm en esa zona (y 4 mm alrededor) trabaja por debajo del 45 % del limite: ni el momento de vuelco ni el cortante pasan por ahi. El rebaje deja un suelo horizontal (imprimible) y acuerdos redondeados. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).",
+   "espero": "mediana de las 6 veces que se ha aplicado: -0.2 % (prevision rapida: 2.2009 kg | 198.0 MPa | CS 1.09 | 0.148 mm)",
+   "m_cand": {
+    "mass_kg": 2.2019634728500006,
+    "vm_metric": 202.6067,
+    "u_max": 0.14681187537318532,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 88465,
+    "cs": 1.0611692505726613,
+    "viol": 1.0078505379069767,
+    "score": 2.2019634728500006,
+    "valido": false
+   },
+   "despues": "2.2020 kg | 202.6 MPa | CS 1.06 | 0.147 mm (tension +1.7 %, masa -39 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 202.6 MPa con la malla normal, que corregidos a malla fina (x1.069) son 216.7 MPa > 215 MPa",
+   "galeria": "galeria/20261124_122236_it026_RECHAZADA_2.202kg.jpg",
    "m_actual": {
     "mass_kg": 2.2410245469,
     "vm_metric": 199.3087,
