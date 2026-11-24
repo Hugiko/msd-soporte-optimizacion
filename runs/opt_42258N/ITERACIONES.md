@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 56 - RECHAZADA: R1 aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)
+
+*2026-11-24 19:31*
+
+- **Pieza de partida:** 2.2404 kg | 195.4 MPa | CS 1.10 | 0.149 mm
+- **Por que (regla R1):** Toda la columna en (-17, -74) hasta 9 mm de radio trabaja como maximo al 32 % del limite (umbral de material ocioso: 35 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~95 %; el pico (195 MPa, en alrededor de los pernos delanteros) esta a 91 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 200 veces que se ha aplicado: +1.9 % (prevision rapida: 2.2210 kg | 198.7 MPa | CS 1.08 | 0.150 mm)
+- **Resultado (malla completa):** 2.2207 kg | 220.5 MPa | CS 0.98 | 0.150 mm (tension +12.8 %, masa -20 g)
+- **Decision:** RECHAZADA - no cumple: 220.5 MPa con la malla normal, que corregidos a malla fina (x1.058) son 233.3 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico) -> pasa la evaluacion rapida (2.1816 kg | 221.8 MPa | CS 0.97 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x 35..47, y -72..-60 mm (esquinas R3) (y su simetrico) -> pasa la evaluacion rapida (2.2031 kg | 218.2 MPa | CS 0.99 | 0.152 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+
+<img src="galeria/20261124_193554_it056_RECHAZADA_2.221kg.jpg" width="520">
+
 ## Iteracion 55 - INVERSION: R8 reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico))
 
 *2026-11-24 19:27*
