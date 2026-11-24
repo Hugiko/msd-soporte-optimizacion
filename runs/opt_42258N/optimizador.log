@@ -12712,3 +12712,6 @@
 [20:33:37]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [20:33:37]       DESCARTADA: la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)
 [20:33:37]   SIN CAMBIO: todas las modificaciones propuestas se descartaron en la evaluacion rapida (1 iteraciones seguidas sin mejora)
+[20:33:38] ITERACION 70 | pieza actual: 2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm | mejor: 2.0776 kg
+[20:33:41]   (GitHub: subido)
+[20:33:44]   nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)

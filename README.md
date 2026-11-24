@@ -6,7 +6,7 @@ La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada it
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 69 | 22 | 4 | 31 | 10 | 111 |
+| 70 | 22 | 4 | 31 | 11 | 111 |
 
 ## Mejor diseno
 
@@ -52,6 +52,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 70 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 69 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 68 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 4 | 2.078 kg, 195 MPa | cumple y mejora al mejor (puntuacion 2.0858 -> 2.0776; masa 2.0858 -> 2.0776 kg) |
 | 67 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
@@ -63,7 +64,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 61 | RECHAZADA | R4 | collar de 6 mm en los pernos 4 y 2 | 2.198 kg, 195 MPa | cumple pero no mejora al mejor (puntuacion 2.1984 frente a 2.1213) |
 | 60 | RECHAZADA | R4 | collar de 4 mm en los pernos 4 y 2 | 2.163 kg, 197 MPa | cumple pero no mejora al mejor (puntuacion 2.1630 frente a 2.1213) |
 | 59 | ACEPTADA | R1 | aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico) | 2.121 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.1806 -> 2.1213; masa 2.1806 -> 2.1213 kg) |
-| 58 | RECHAZADA | R7 | anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm) | 2.204 kg, 208 MPa | no cumple: 208.2 MPa con la malla normal, que corregidos a malla fina (x1.054) son 219.4 M |
 
 ---
 

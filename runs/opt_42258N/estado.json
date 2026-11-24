@@ -1,5 +1,5 @@
 {
- "iter": 69,
+ "iter": 70,
  "actual": {
   "ops": [
    {
@@ -1955,8 +1955,8 @@
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.0858363897000003,
- "fin": false,
- "motivo_fin": "",
+ "fin": true,
+ "motivo_fin": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
  "historia": [
   {
    "iter": 0,
@@ -6638,6 +6638,47 @@
    ],
    "decision": "SIN CAMBIO",
    "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
+   "m_actual": {
+    "mass_kg": 2.0776116307,
+    "vm_metric": 195.2278,
+    "u_max": 0.15880749888969553,
+    "vm_metric_xyz": [
+     -0.19800991558367897,
+     -58.50376352723593,
+     57.13994159170428
+    ],
+    "n_nodes": 93594,
+    "cs": 1.1012775844423797,
+    "viol": 0.9570702381395348,
+    "score": 2.0776116307,
+    "valido": true
+   }
+  },
+  {
+   "iter": 70,
+   "fecha": "2026-11-24T20:33:44.437636",
+   "antes": "2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm",
+   "m_antes": {
+    "mass_kg": 2.0776116307,
+    "vm_metric": 195.2278,
+    "u_max": 0.15880749888969553,
+    "vm_metric_xyz": [
+     -0.19800991558367897,
+     -58.50376352723593,
+     57.13994159170428
+    ],
+    "n_nodes": 93594,
+    "cs": 1.1012775844423797,
+    "viol": 0.9570702381395348,
+    "score": 2.0776116307,
+    "valido": true
+   },
+   "notas": [
+    "umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [],
+   "decision": "SIN CAMBIO",
+   "motivo": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
    "m_actual": {
     "mass_kg": 2.0776116307,
     "vm_metric": 195.2278,
