@@ -1,5 +1,5 @@
 {
- "iter": 51,
+ "iter": 52,
  "actual": {
   "ops": [
    {
@@ -141,42 +141,36 @@
     "z0": -1.0,
     "z1": 12.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 7.33,
+    "x1": 63.33,
+    "y0": -35.61,
+    "y1": -19.61,
+    "z0": -1.0,
+    "z1": 6.0,
+    "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\047\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\052\\completa",
   "m": {
-   "mass_kg": 2.2206762871500003,
-   "vm_metric": 201.1213,
-   "u_max": 0.14963368974866592,
+   "mass_kg": 2.2001961317,
+   "vm_metric": 203.032,
+   "u_max": 0.14960099659358642,
    "vm_metric_xyz": [
     57.492360251601,
     -88.34349146243,
     -8.072793278302e-08
    ],
-   "n_nodes": 96654,
-   "cs": 1.069006614416275,
-   "viol": 0.9895167960000001,
-   "score": 2.2206762871500003,
+   "n_nodes": 96720,
+   "cs": 1.058946372985539,
+   "viol": 0.99891744,
+   "score": 2.2001961317,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.2366328644000006,
-   "vm_metric": 201.4058,
-   "u_max": 0.1497987709007781,
-   "vm_metric_xyz": [
-    -1.691202685357954,
-    -89.67844819679729,
-    57.839233806248224
-   ],
-   "n_nodes": 56008,
-   "cs": 1.0674965666331357,
-   "viol": 0.9909165360000001,
-   "score": 2.2366328644000006,
-   "valido": true,
-   "algo": 10,
-   "h": 6.0
-  },
-  "galeria": "galeria/20261124_184402_it047_ACEPTADA_2.221kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_190835_it052_ACEPTADA_2.200kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -319,33 +313,36 @@
     "z0": -1.0,
     "z1": 12.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 7.33,
+    "x1": 63.33,
+    "y0": -35.61,
+    "y1": -19.61,
+    "z0": -1.0,
+    "z1": 6.0,
+    "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\047\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\052\\completa",
   "m": {
-   "mass_kg": 2.2206762871500003,
-   "vm_metric": 201.1213,
-   "u_max": 0.14963368974866592,
+   "mass_kg": 2.2001961317,
+   "vm_metric": 203.032,
+   "u_max": 0.14960099659358642,
    "vm_metric_xyz": [
     57.492360251601,
     -88.34349146243,
     -8.072793278302e-08
    ],
-   "n_nodes": 96654,
-   "cs": 1.069006614416275,
-   "viol": 0.9895167960000001,
-   "score": 2.2206762871500003,
+   "n_nodes": 96720,
+   "cs": 1.058946372985539,
+   "viol": 0.99891744,
+   "score": 2.2001961317,
    "valido": true
   },
-  "iter": 47,
-  "galeria": "galeria/20261124_184402_it047_ACEPTADA_2.221kg.jpg",
-  "verif": {
-   "vm_metric": 211.8738,
-   "u_max": 0.15593877579835266,
-   "n_nodes": 119512,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\10_it047_2.221kg"
+  "iter": 52,
+  "galeria": "galeria/20261124_190835_it052_ACEPTADA_2.200kg.jpg"
  },
  "verificado": {
   "ops": [
@@ -883,6 +880,28 @@
    "motivo_tipo": "tension",
    "regla": "R1",
    "iter": 51
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 4.33,
+    "y": -109.61,
+    "r": 6.0
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R1",
+   "iter": 52
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": 4.33,
+    "y": -40.61,
+    "r": 6.0
+   },
+   "motivo_tipo": "geometria",
+   "regla": "R1",
+   "iter": 52
   }
  ],
  "stats": {
@@ -1004,8 +1023,8 @@
    ]
   },
   "R1": {
-   "intentos": 393,
-   "descartadas_rapido": 18,
+   "intentos": 395,
+   "descartadas_rapido": 20,
    "evaluadas": 198,
    "aceptadas": 185,
    "rechazadas": 13,
@@ -1720,10 +1739,10 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 23,
+   "intentos": 24,
    "descartadas_rapido": 5,
-   "evaluadas": 11,
-   "aceptadas": 6,
+   "evaluadas": 12,
+   "aceptadas": 7,
    "rechazadas": 5,
    "dsig": [
     -0.14,
@@ -1736,7 +1755,8 @@
     0.08,
     0.13,
     3.09,
-    2.83
+    2.83,
+    0.95
    ],
    "dm": [
     -1.1,
@@ -1749,13 +1769,10 @@
     -8.1,
     -15.5,
     -22.0,
-    -26.2
+    -26.2,
+    -20.5
    ],
    "ejemplos": [
-    [
-     21,
-     "rechazada: bolsillo desde la cara de apoyo 24 x 24 mm, hasta z = 10 mm  (tension +2.4 %, masa -2 g)"
-    ],
     [
      28,
      "rechazada: bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm  (tension +1.8 %, masa -37 g)"
@@ -1783,6 +1800,10 @@
     [
      49,
      "rechazada: bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm  (tension +2.8 %, masa -26 g)"
+    ],
+    [
+     52,
+     "aceptada: bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm ( (tension +1.0 %, masa -20 g)"
     ]
    ],
    "dsig_prev": [
@@ -1796,7 +1817,8 @@
     0.86,
     -0.38,
     -0.07,
-    0.53
+    0.53,
+    0.06
    ]
   },
   "R13": {
@@ -1847,7 +1869,7 @@
    ]
   }
  },
- "sin_mejora": 4,
+ "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2206762871500003,
@@ -5264,6 +5286,79 @@
     "cs": 1.069006614416275,
     "viol": 0.9895167960000001,
     "score": 2.2206762871500003,
+    "valido": true
+   }
+  },
+  {
+   "iter": 52,
+   "fecha": "2026-11-24T19:06:24.977859",
+   "antes": "2.2207 kg | 201.1 MPa | CS 1.07 | 0.150 mm",
+   "m_antes": {
+    "mass_kg": 2.2206762871500003,
+    "vm_metric": 201.1213,
+    "u_max": 0.14963368974866592,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96654,
+    "cs": 1.069006614416275,
+    "viol": 0.9895167960000001,
+    "score": 2.2206762871500003,
+    "valido": true
+   },
+   "notas": [
+    "umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (4, -110) (y su simetrico)",
+     "motivo": "la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)"
+    },
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (4, -41) (y su simetrico)",
+     "motivo": "la malla o el calculo han fallado (RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla)"
+    }
+   ],
+   "regla": "R14",
+   "titulo": "bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)",
+   "porque": "Todo el material por debajo de z = 6 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 45 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (201 MPa, en placa base (z < 10 mm)) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.",
+   "espero": "mediana de las 11 veces que se ha aplicado: +1.8 % (prevision rapida: 2.1998 kg | 201.2 MPa | CS 1.07 | 0.150 mm)",
+   "m_cand": {
+    "mass_kg": 2.2001961317,
+    "vm_metric": 203.032,
+    "u_max": 0.14960099659358642,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96720,
+    "cs": 1.058946372985539,
+    "viol": 0.99891744,
+    "score": 2.2001961317,
+    "valido": true
+   },
+   "despues": "2.2002 kg | 203.0 MPa | CS 1.06 | 0.150 mm (tension +1.0 %, masa -20 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y mejora al mejor (puntuacion 2.2207 -> 2.2002; masa 2.2207 -> 2.2002 kg)",
+   "galeria": "galeria/20261124_190835_it052_ACEPTADA_2.200kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2001961317,
+    "vm_metric": 203.032,
+    "u_max": 0.14960099659358642,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96720,
+    "cs": 1.058946372985539,
+    "viol": 0.99891744,
+    "score": 2.2001961317,
     "valido": true
    }
   }

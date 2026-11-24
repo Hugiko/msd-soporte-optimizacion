@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 19:06. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 19:08. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,7 +45,7 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 393 veces (18 descartadas en la evaluacion rapida, 185 aceptadas, 13 rechazadas); tension +1.8 % (mediana), masa -16 g (mediana).
+- **Aplicada en el optimizador:** 395 veces (20 descartadas en la evaluacion rapida, 185 aceptadas, 13 rechazadas); tension +1.8 % (mediana), masa -16 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.8 % real (mediana de 198)
   - iteracion 41: aceptada: aligeramiento pasante vertical D12 mm en (34, -77) (y su sim (tension +3.3 %, masa -50 g)
   - iteracion 45: rechazada: aligeramiento pasante vertical D24 mm en (4, -32) (y su sime (tension +195.8 %, masa -212 g)
@@ -230,12 +230,12 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el soporte solo se sujeta por los pernos: la cara inferior lejos de ellos no apoya en nada en el modelo ni transmite carga. La placa base bajo el cuerpo esta ociosa aunque el cuerpo de encima trabaje, asi que se vacia desde abajo sin tocar el cuerpo (cara de apoyo aliviada, habitual en soportes atornillados); las ranuras dejan nervios entre ellas.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
-- **Aplicada en el optimizador:** 23 veces (5 descartadas en la evaluacion rapida, 6 aceptadas, 5 rechazadas); tension +1.8 % (mediana), masa -22 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.1 % frente a +1.8 % real (mediana de 11)
-  - iteracion 42: aceptada: bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm  (tension +0.1 %, masa -8 g)
+- **Aplicada en el optimizador:** 24 veces (5 descartadas en la evaluacion rapida, 7 aceptadas, 5 rechazadas); tension +1.4 % (mediana), masa -21 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto +0.1 % frente a +1.4 % real (mediana de 12)
   - iteracion 47: aceptada: bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm  (tension +0.1 %, masa -16 g)
   - iteracion 48: rechazada: bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm  (tension +3.1 %, masa -22 g)
   - iteracion 49: rechazada: bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm  (tension +2.8 %, masa -26 g)
+  - iteracion 52: aceptada: bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm ( (tension +1.0 %, masa -20 g)
 
 ### R11. Sustituir un bloque que trabaja poco por un nervio en la trayectoria de la carga (FORMA NUEVA)  (SUSPENDIDA: 9 INTENTOS SIN NINGUNA MEJORA)
 
