@@ -256,3 +256,16 @@
   - **Protecciones de los pernos también reflejadas:** cada corte coincide exactamente con su simétrico. Por eso la pieza actual se reconstruye y se recalcula antes de seguir.
   - **Collar con acuerdo en la raíz:** opción añadida, aunque OCC no siempre puede aplicarla.
   - Evidencia de R13 y R14: la placa base del original tiene 67 cm³ (77 % ociosa); la mitad más ligera de los 16 diseños publicados válidos, 45 cm³.
+
+## 2026-11-24 – Simetría efectiva y collar acampanado (R12)
+
+- **Asimetría detectada por el grupo:** el aligeramiento D16 en (64, −32) se aplicaba también en su simétrico, (66, −112), pero allí **no hay material**: el contorno del original es más estrecho en esa zona. Resultado: un agujero en un extremo y nada en el otro. Material a su alrededor: 2,07 frente a 0,20 cm³.
+- **Corrección:**
+  - Se quita ese aligeramiento de la pieza.
+  - **Simetría efectiva:** cada corte propuesto debe quitar parecido material en los dos lados (diferencia ≤ 25 %, medida en la malla); si no, se descarta.
+- **Primera pasada con R13/R14** (antes de corregirlo): 2,293 → 2,241 kg gracias a los bolsillos desde la cara de apoyo. Después se paró: los cortes de 37–58 g pasaban del límite por un 1–3 %.
+- **Pruebas en ANSYS para bajar los picos** (pieza simétrica sin ese agujero: 2,257 kg y 202,1 MPa en la parte alta de la orejeta; corregido a malla fina son 216 MPa, un poco por encima):
+  - collares acampanados (30° hasta z = 16 mm): **190,7 MPa (−5,6 %) con +52 g** → nueva regla **R12**, que el optimizador acepta como inversión;
+  - collar cónico entero a 15°: no se puede mallar (superficie periódica);
+  - engrosar las orejetas por fuera: la operación de prueba apenas añadió material (sin efecto); pendiente de rehacer.
+- Corregida también la condición de «inversión»: usaba la tensión sin la corrección a malla fina.

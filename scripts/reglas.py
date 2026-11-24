@@ -96,6 +96,14 @@ REGLAS = {
                 porque="se empieza por lo mas seguro (con Kt ~ 3, el borde de un corte en material al 15 % queda al ~45 %) y "
                        "solo despues se aprovecha material que trabaja algo mas.",
                 espero="permite seguir aligerando con un riesgo controlado"),
+    "R12": dict(titulo="Acampanar la raiz de los collares", tipo="anadir",
+                si="la pieza esta en el limite de tension y tiene collares cilindricos (la union collar-cuerpo es una esquina viva)",
+                hago=("la parte baja de cada collar pasa a tronco de cono con la pared a 30 grados (hasta z = 16 mm); en los dos "
+                      "collares de la pareja simetrica"),
+                porque=("la union de un cilindro con el cuerpo es una entalla (esquina entrante a ~90 grados); con la pared inclinada la "
+                        "union es un angulo abierto (menor concentracion) y la base de los pernos se rigidiza, lo que reduce la "
+                        "flexion que llega a las orejetas. Compra margen de tension con poca masa, que luego se gasta aligerando."),
+                espero="baja la tension maxima del orden de un 5 % con ~+2 % de masa (inversion)"),
     "R13": dict(titulo="Ventana pasante donde toda la columna (de la base a arriba) esta ociosa", tipo="quitar",
                 si="todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por "
                    "debajo del umbral de material ocioso",
@@ -374,6 +382,8 @@ def evidence(log=print):
         E["R13"] = dict(respaldo=None, texto="la placa base del original apenas trabaja (85 % ocioso)", tabla=[])
     if "R13" in E:
         E["R14"] = dict(E["R13"])
+    E["R12"] = dict(respaldo=True, texto=("prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a "
+                                          "30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %)"), tabla=[])
     for r in ("R8", "R9", "R10"):
         E[r] = dict(respaldo=None, texto="regla de procedimiento: se juzga por sus resultados en el optimizador", tabla=[])
     full = [k for k in allf if k != "0" and str(rows[k].get("fidelidad", "")).startswith("normal")]
@@ -418,6 +428,29 @@ def activa(rid, E, stats):
 def symmetric_bolt(k):
     ym = float(O.PIN_P[1]); x, y = G.BOLTS[k]["c"]
     return int(np.argmin([abs(b["c"][0] - x) + abs(b["c"][1] - (2 * ym - y)) if j != k else 1e9 for j, b in enumerate(G.BOLTS)]))
+
+
+def _in_tool(op, p):
+    """Puntos dentro de la herramienta de un corte (aproximacion en caja / cilindro)."""
+    t = op["tipo"]
+    if t == "agujero":
+        return np.hypot(p[:, 0] - op["x"], p[:, 1] - op["y"]) < op["r"]
+    inb = (p[:, 0] > op["x0"]) & (p[:, 0] < op["x1"]) & (p[:, 1] > op["y0"]) & (p[:, 1] < op["y1"])
+    if t in ("rebaje", "rebaje_nervio"):
+        return inb & (p[:, 2] > op["zc"])
+    if t == "hueco":
+        return inb & (p[:, 2] > op["z0"]) & (p[:, 2] < op["z1"])
+    return np.zeros(len(p), bool)
+
+
+def side_volumes(C, op):
+    """Material que quita un corte en su lado y en el simetrico (la herramienta se aplica en los dos, pero el original no
+    es simetrico del todo: si en un lado no hay material, el resultado no seria simetrico)."""
+    free = ~C.prot
+    cm = C.cen - 2.0 * ((C.cen - O.PIN_P) @ O.PIN_A)[:, None] * O.PIN_A
+    va = float(C.vol[_in_tool(op, C.cen) & free].sum())
+    vb = float(C.vol[_in_tool(op, cm) & free].sum())
+    return va, vb
 
 
 def corner_r(reg):
@@ -524,6 +557,18 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                           f"de {tt:.0f} mm aumenta esa seccion. El perno {ks + 1} es su simetrico respecto al plano medio "
                                           f"de las orejetas y trabaja igual." + ev("R4")),
                                   espero=dict(dsig_pct=d, txt=hist or f"del orden de {d:.0f} % (collares anteriores: -15 % con 6 mm)")))
+        # ---------------- R12: acampanar la raiz de los collares (inversion: compra margen para seguir aligerando)
+        cols_ = [o for o in ops if o["tipo"] == "collar"]
+        if cols_ and not any(o.get("flare") for o in cols_) and ok("R12"):
+            new_ops = [dict(o, flare=30.0, z_flare=16.0) if o["tipo"] == "collar" else o for o in ops]
+            d, hist = _expect("R12", stats, -5.6)
+            reinf.append(dict(regla="R12", op=dict(tipo="collar_acampanado"), ops_nuevas=new_ops, reconstruir=True,
+                              titulo="acampanar la raiz de los collares (30 grados hasta z = 16 mm)",
+                              porque=(f"La pieza esta en el limite ({sig:.0f} MPa, {ratio * 100:.0f} % del limite corregido; pico en {zona}) "
+                                      f"y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en "
+                                      f"tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza."
+                                      + ev("R12")),
+                              espero=dict(dsig_pct=d, txt=hist or "~-5,6 % de tension con ~+52 g (prueba en ANSYS del 24/11)")))
         # ---------------- R5: alojamiento mas ancho (solo si los datos no la contradicen)
         if pk["en_alojamiento"] and pk["kt_aparente"] > 1.8 and ok("R5"):
             op = dict(tipo="alojamiento", perno=pk["perno"], R=11.5)
@@ -653,6 +698,23 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                                         f"cada nervio se dimensiona para trabajar al {SIG_TRABAJO * 100:.0f} % del limite: "
                                         f"{info['V_rib'] / 1e3:.1f} cm3 en lugar de {info['V_block'] / 1e3:.0f}. Acuerdo de 3 mm en su raiz." + ev("R11")),
                                 espero=dict(dm_g=-net * RHO * 1000, dsig_pct=d, txt=hist or "baja la masa; la tension sube algo")))
+    # ---------------- SIMETRIA EFECTIVA: cada corte debe quitar parecido material en los dos lados
+    if O.SIM:
+        keep = []
+        for cnd in rem:
+            op = cnd["op"]
+            if op["tipo"] not in ("agujero", "rebaje", "hueco", "rebaje_nervio"):
+                keep.append(cnd); continue
+            va, vb = side_volumes(C, op)
+            if max(va, vb) > 0 and min(va, vb) < 0.75 * max(va, vb):
+                st.setdefault("_asim", 0)
+                st["_asim"] += 1
+                continue
+            keep.append(cnd)
+        if len(keep) < len(rem):
+            notes.append(f"{len(rem) - len(keep)} propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en "
+                         "su simetrico (el contorno del original no es simetrico en esa zona)")
+        rem = keep
     # ---------------- seleccion: diversidad de reglas
     sel = []
     if ratio > 0.97:

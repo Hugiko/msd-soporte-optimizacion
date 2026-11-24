@@ -241,12 +241,20 @@ def op_hueco(solid, x0, x1, y0, y1, z0, z1, rr=2.0):
     return new
 
 
-def op_collar(solid, perno, t, z, r_in=R_HEAD, acuerdo=0.0):
+def op_collar(solid, perno, t, z, r_in=R_HEAD, acuerdo=0.0, flare=0.0, z_flare=0.0):
     """Anillo de refuerzo alrededor del alojamiento de un perno. acuerdo > 0: acuerdo de ese radio en la RAIZ del collar
-    (donde se une al cuerpo hay una arista viva entrante: entalla)."""
+    (donde se une al cuerpo hay una arista viva entrante: entalla). flare > 0: la parte baja del collar (hasta z_flare)
+    es un tronco de cono con la pared inclinada 'flare' grados: la union con el cuerpo deja de ser una esquina a 90 grados."""
     x, y = G.BOLTS[int(perno)]["c"]
-    ring = cq.Solid.makeCylinder(r_in + t, z - 1.0, cq.Vector(x, y, 1.0)).cut(
-        cq.Solid.makeCylinder(r_in, z + 1.0, cq.Vector(x, y, 0.0)))
+    if flare > 0 and z_flare > 1.0:
+        r_top = r_in + t
+        r_bot = r_top + (z_flare - 1.0) * math.tan(math.radians(flare))
+        body = cq.Solid.makeCone(r_bot, r_top, z_flare - 1.0, cq.Vector(x, y, 1.0)).fuse(
+            cq.Solid.makeCylinder(r_top, z - z_flare, cq.Vector(x, y, z_flare)))
+        ring = body.cut(cq.Solid.makeCylinder(r_in, z + 1.0, cq.Vector(x, y, 0.0))).intersect(envelope()).cut(keep_out())
+    else:
+        ring = cq.Solid.makeCylinder(r_in + t, z - 1.0, cq.Vector(x, y, 1.0)).cut(
+            cq.Solid.makeCylinder(r_in, z + 1.0, cq.Vector(x, y, 0.0)))
     new = fill_closed_voids(fuse(solid, ring, "el collar"))
     if acuerdo > 0:
         new = root_fillet(new, solid, ring, r=acuerdo)
@@ -414,7 +422,8 @@ def _describe(op):
                 f"(techo a 45 grados + evacuacion D5) en ({(op['x0'] + op['x1']) / 2:.0f}, {(op['y0'] + op['y1']) / 2:.0f})")
     if t == "collar":
         return (f"collar de {op['t']:.1f} mm alrededor del perno {int(op['perno']) + 1} hasta z = {op['z']:.0f} mm"
-                + (f" con acuerdo R{op['acuerdo']:g} en su raiz" if op.get("acuerdo") else ""))
+                + (f" con acuerdo R{op['acuerdo']:g} en su raiz" if op.get("acuerdo") else "")
+                + (f", acampanado a {op['flare']:g} grados hasta z = {op['z_flare']:g} mm" if op.get("flare") else ""))
     if t == "alojamiento":
         return f"alojamiento del perno {int(op['perno']) + 1} con radio {op['R']:.2f} mm (acuerdo de fondo {op['R'] - 8:.2f} mm)"
     if t == "redondeo":

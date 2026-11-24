@@ -898,7 +898,7 @@ def step(st, git, E):
         if ma["valido"]:
             if p["viol"] > 1.0 + TOL_Q:
                 why = f"tension prevista {p['vm_metric']:.0f} MPa: supera el limite ({SIG_OBJ:.0f} MPa)"
-            elif p["score"] >= ma["score"] and c["regla"] not in ("R4", "R6", "R7", "R8"):
+            elif p["score"] >= ma["score"] and c["regla"] not in ("R4", "R6", "R7", "R8", "R12"):
                 why = f"no mejora la pieza (puntuacion {p['score']:.4f} >= {ma['score']:.4f})"
         elif p["viol"] >= ma["viol"] - 1e-3:
             why = f"no acerca la pieza al limite (prevision {p['vm_metric']:.0f} MPa frente a {ma['vm_metric']:.0f} MPa)"
@@ -961,7 +961,7 @@ def step(st, git, E):
         decision = "ACEPTADA"
         why = (f"aun no cumple pero se acerca al limite ({ma['vm_metric']:.0f} -> {sm['vm_metric']:.0f} MPa)" if not sm["valido"]
                else "ya cumple")
-    elif (sm["valido"] and c["regla"] in ("R4", "R6", "R7", "R8") and ma["vm_metric"] / SIG_OBJ > 0.97 and dm > 0
+    elif (sm["valido"] and c["regla"] in ("R4", "R6", "R7", "R8", "R12") and ma["vm_metric"] * K_FINO[0] / SIG_OBJ > 0.97 and dm > 0
           and -dsig >= 2.0 * (dm / 1000 / ma["mass_kg"] * 100) and st["inversiones"] < MAX_INV):
         decision = "INVERSION"
         why = (f"refuerzo eficiente: compra {-dsig:.1f} % de margen de tension con +{dm:.0f} g ({dm / 10 / ma['mass_kg']:.1f} % de masa); "
