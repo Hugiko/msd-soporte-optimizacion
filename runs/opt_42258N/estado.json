@@ -1,5 +1,5 @@
 {
- "iter": 32,
+ "iter": 33,
  "actual": {
   "ops": [
    {
@@ -363,26 +363,6 @@
   },
   {
    "op": {
-    "tipo": "agujero",
-    "x": 39.52,
-    "y": -71.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 1
-  },
-  {
-   "op": {
-    "tipo": "orejeta",
-    "ro": 20.09
-   },
-   "motivo_tipo": "tension",
-   "regla": "R7",
-   "iter": 3
-  },
-  {
-   "op": {
     "tipo": "rebaje",
     "x0": 37.52,
     "x1": 49.52,
@@ -394,28 +374,6 @@
    "motivo_tipo": "geometria",
    "regla": "R2",
    "iter": 3
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -23.48,
-    "y": -119.32,
-    "r": 8.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 6
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -17.48,
-    "y": -74.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 9
   },
   {
    "op": {
@@ -442,289 +400,6 @@
   },
   {
    "op": {
-    "tipo": "agujero",
-    "x": 36.52,
-    "y": -83.32,
-    "r": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 10
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -5.48,
-    "y": -74.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 12
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 39.52,
-    "y": -59.32,
-    "r": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 13
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 5.52,
-    "x1": 17.52,
-    "y0": -52.32,
-    "y1": -32.32,
-    "z0": 24.09,
-    "z1": 32.09
-   },
-   "motivo_tipo": "tension",
-   "regla": "R3",
-   "iter": 14
-  },
-  {
-   "op": {
-    "tipo": "collar",
-    "perno": 2,
-    "t": 9.0,
-    "z": 22.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R4",
-   "iter": 15
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 29.52,
-    "x1": 49.52,
-    "y0": -84.32,
-    "y1": -60.32,
-    "z0": -1.0,
-    "z1": 8.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "tension",
-   "regla": "R14",
-   "iter": 21
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 1.52,
-    "x1": 25.52,
-    "y0": -120.32,
-    "y1": -96.32,
-    "z0": -1.0,
-    "z1": 10.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "tension",
-   "regla": "R14",
-   "iter": 21
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 6.52,
-    "y": -113.32,
-    "r": 12.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 22
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -2.48,
-    "x1": 17.52,
-    "y0": -120.32,
-    "y1": -104.32,
-    "zc": -1.0,
-    "rr": 3.2
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 22
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -10.48,
-    "x1": 13.52,
-    "y0": -124.32,
-    "y1": -104.32,
-    "zc": 9.0,
-    "rr": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 22
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 6.52,
-    "y": -35.32,
-    "r": 10.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 23
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -30.48,
-    "x1": 37.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 23
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -6.48,
-    "x1": 13.52,
-    "y0": -44.32,
-    "y1": -28.32,
-    "zc": 5.0,
-    "rr": 3.2
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 23
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 1.52,
-    "x1": 13.52,
-    "y0": -120.32,
-    "y1": -104.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 24
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 1.52,
-    "x1": 17.52,
-    "y0": -116.32,
-    "y1": -104.32,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 24
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 6.52,
-    "y": -116.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 24
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -2.48,
-    "x1": 13.52,
-    "y0": -40.32,
-    "y1": -28.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 25
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 1.52,
-    "x1": 13.52,
-    "y0": -44.32,
-    "y1": -28.32,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 25
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 3.52,
-    "y": -32.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 25
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -26.48,
-    "x1": 13.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 26
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 51.52,
-    "y": -23.32,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 26
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -26.48,
-    "x1": 13.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 26
-  },
-  {
-   "op": {
     "tipo": "hueco",
     "x0": 5.52,
     "x1": 41.52,
@@ -737,63 +412,6 @@
    "motivo_tipo": "geometria",
    "regla": "R14",
    "iter": 27
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": 5.52,
-    "x1": 37.52,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 27
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -26.48,
-    "x1": -2.48,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": -1.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R13",
-   "iter": 28
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -26.48,
-    "x1": -2.48,
-    "y0": -80.32,
-    "y1": -68.32,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 28
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 13.52,
-    "x1": 41.52,
-    "y0": -108.32,
-    "y1": -76.32,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "tension",
-   "regla": "R14",
-   "iter": 28
   },
   {
    "op": {
@@ -1693,7 +1311,7 @@
    ]
   }
  },
- "sin_mejora": 1,
+ "sin_mejora": 0,
  "inversiones": 1,
  "inversion_desde": 31,
  "wb_masa": 2.2571172117500002,
@@ -3795,6 +3413,48 @@
     "score": 2.30886905895,
     "valido": true
    }
+  },
+  {
+   "iter": 33,
+   "fecha": "2026-11-24T13:52:19.019199",
+   "antes": "2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm",
+   "m_antes": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   },
+   "notas": [
+    "R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %",
+    "1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [],
+   "decision": "SIN CAMBIO",
+   "motivo": "ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)",
+   "m_actual": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -3913,5 +3573,5 @@
   "R11",
   "R5"
  ],
- "_asim": 3
+ "_asim": 4
 }

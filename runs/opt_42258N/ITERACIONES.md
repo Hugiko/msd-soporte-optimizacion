@@ -2,6 +2,15 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 33 - SIN CAMBIO
+
+*2026-11-24 13:52*
+
+- **Pieza de partida:** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm
+- **Decision:** SIN CAMBIO - ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %
+- Nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)
+
 ## Iteracion 32 - SIN CAMBIO
 
 *2026-11-24 13:23*
