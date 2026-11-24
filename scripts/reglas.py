@@ -656,7 +656,14 @@ def write_doc(E=None, stats=None, log=print):
             imgs = [v for v in vals[:6] if os.path.exists(os.path.join(EST, "img", f"simjeb_{v['id']}.png"))]
             if imgs:
                 L += [" ".join(f"<img src=\"estudio/img/simjeb_{v['id']}.png\" width=\"260\" title=\"SimJEB {v['id']}\">" for v in imgs), ""]
-    L += ["## Reglas", ""]
+    L += ["## Restricciones que se cumplen siempre", "",
+          f"- Coeficiente de seguridad >= 1 ({SIG_LIM:.0f} MPa) y desplazamiento <= {USER.get('desplazamiento_max_mm', 0.25)} mm, "
+          "con la malla normal corregida a malla fina (calibracion medida en cada verificacion).",
+          "- Los 4 agujeros de los pernos y los 2 del bulon, intactos (se comprueba en cada pieza).",
+          "- **Simetria** respecto al plano medio de las orejetas: cada operacion se aplica tambien en su simetrico y un material solo "
+          "es ocioso si tambien lo es en el lado simetrico (los agujeros de los pernos del enunciado no son simetricos: la pieza lo es "
+          "salvo donde ellos lo impiden)." if USER.get("simetria", True) else "- Sin restriccion de simetria.",
+          "- Impresion 3D: sin voladizos de menos de 45 grados ni cavidades cerradas.", "", "## Reglas", ""]
     for rid, R in REGLAS.items():
         e = E.get(rid, {}); s = stats.get(rid, {})
         a, why = activa(rid, E, stats)

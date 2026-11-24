@@ -36,6 +36,29 @@ PIN_P = np.mean(np.array(PIN_C), axis=0)
 GeometryError = G.GeometryError
 # zonas protegidas (las operaciones que QUITAN no entran): se pueden ajustar con los datos del estudio (reglas.py)
 PROT = dict(perno=R_HEAD + 3.0, bulon=G.RP + 6.0)
+# SIMETRIA (obligatoria por defecto): cada operacion se aplica tambien en su simetrico respecto al plano medio de las
+# orejetas (perpendicular al bulon por su centro, donde se aplica la carga). Los agujeros fijos de los pernos no son
+# simetricos (enunciado), asi que la pieza es simetrica salvo donde lo impiden ellos.
+SIM = bool(G._cfg.get("simetria", True))
+
+
+def mirror_pt(p):
+    p = np.asarray(p, float)
+    return p - 2.0 * ((p - PIN_P) @ PIN_A) * PIN_A
+
+
+def sym(sh):
+    """La forma y su simetrica (si SIM). Si se solapan se unen en un solido."""
+    if not SIM:
+        return sh
+    m = sh.mirror(cq.Vector(*PIN_A), cq.Vector(*PIN_P))
+    try:
+        u = sh.fuse(m, tol=1e-4)
+        if u.isValid():
+            return u
+    except Exception:
+        pass
+    return cq.Compound.makeCompound([sh, m])
 
 
 def set_protection(perno=None, bulon=None):
@@ -170,7 +193,7 @@ def fill_closed_voids(solid):
 
 # ------------------------------------------------------------------------------------------- operaciones
 def op_agujero(solid, x, y, r):
-    tool = cq.Solid.makeCylinder(r, 180.0, cq.Vector(x, y, -30.0)).cut(protected())
+    tool = sym(cq.Solid.makeCylinder(r, 180.0, cq.Vector(x, y, -30.0))).cut(protected())
     if tool.Volume() < 1.0:
         raise GeometryError("el aligeramiento cae entero dentro de una zona protegida")
     return cut(solid, tool, "el aligeramiento")
@@ -179,7 +202,7 @@ def op_agujero(solid, x, y, r):
 def op_rebaje(solid, x0, x1, y0, y1, zc, rr=3.0):
     if x1 - x0 < 2 * rr + 1 or y1 - y0 < 2 * rr + 1:
         raise GeometryError("rebaje demasiado pequeno")
-    tool = rounded(cq.Solid.makeBox(x1 - x0, y1 - y0, 220.0 - zc, cq.Vector(x0, y0, zc)), rr).cut(protected())
+    tool = sym(rounded(cq.Solid.makeBox(x1 - x0, y1 - y0, 220.0 - zc, cq.Vector(x0, y0, zc)), rr)).cut(protected())
     return cut(solid, tool, "el rebaje")
 
 
@@ -201,10 +224,10 @@ def hip_box(x0, x1, y0, y1, z0, z1):
 def op_hueco(solid, x0, x1, y0, y1, z0, z1, rr=2.0):
     if min(x1 - x0, y1 - y0, z1 - z0) < 2 * rr + 1:
         raise GeometryError("hueco demasiado pequeno")
-    cav = rounded(hip_box(x0, x1, y0, y1, z0, z1), rr)
+    cav = sym(rounded(hip_box(x0, x1, y0, y1, z0, z1), rr))
     new = cut(solid, cav, "el hueco interior")
     if G.AM_ON:   # agujero de evacuacion del polvo (D5) desde el suelo del hueco hasta la cara inferior
-        drain = cq.Solid.makeCylinder(2.5, z0 + 2.0 + 1.0, cq.Vector((x0 + x1) / 2, (y0 + y1) / 2, -1.0))
+        drain = sym(cq.Solid.makeCylinder(2.5, z0 + 2.0 + 1.0, cq.Vector((x0 + x1) / 2, (y0 + y1) / 2, -1.0)))
         new = cut(new, drain, "el agujero de evacuacion del hueco")
     return new
 
@@ -241,7 +264,8 @@ def op_redondeo(solid, x, y, z, r, d=6.0):
             if abs(np.linalg.norm(v - t * PIN_A) - G.RP) < 0.3:
                 return True
         return False
-    edges = [e for e in solid.Edges() if e.distance(p) < d and not on_fixed_hole(e)]
+    pts = [p] + ([cq.Vertex.makeVertex(*mirror_pt((x, y, z)))] if SIM else [])
+    edges = [e for e in solid.Edges() if min(e.distance(q) for q in pts) < d and not on_fixed_hole(e)]
     if not edges:
         raise GeometryError("no hay aristas junto al pico (salvo las de los agujeros fijos, que no se tocan)")
     last = None
@@ -311,7 +335,7 @@ def op_nervio(solid, x0, y0, x1, y1, zt0, zt1, t, zb=0.0):
         rib = rounded(rib, min(1.5, t / 3))
     except GeometryError:
         pass
-    rib = rib.intersect(envelope()).cut(keep_out())
+    rib = sym(rib).intersect(envelope()).cut(keep_out())
     if rib.Volume() < 1.0:
         raise GeometryError("el nervio cae entero en zonas reservadas (tornillos, bulon) o fuera del volumen de diseno")
     new = fuse(solid, rib, "el nervio")
@@ -355,6 +379,11 @@ def apply(solid, op):
 
 
 def describe(op):
+    d = _describe(op)
+    return d + (" (y su simetrico)" if SIM and op["tipo"] in ("agujero", "rebaje", "hueco", "redondeo", "nervio") else "")
+
+
+def _describe(op):
     t = op["tipo"]
     if t == "agujero":
         return f"aligeramiento pasante vertical D{2 * op['r']:.0f} mm en ({op['x']:.0f}, {op['y']:.0f})"

@@ -218,3 +218,24 @@
   1. **Calibración malla normal → malla fina:** cada verificación guarda el cociente fina/normal (tensión y desplazamiento). Para aceptar una pieza se exige `σ_normal × k ≤ 215 MPa`, con k = mediana de las 3 últimas verificaciones (ahora 1,041, es decir ≤ 206,5 MPa con la malla normal). Las reglas analizan el campo con ese límite corregido.
   2. **Si la malla fina no confirma un hito**, los cambios hechos desde el último diseño verificado se anotan como rechazados. Por la regla R9, en esa zona solo se probarán cambios menores, así que el mismo camino no puede repetirse.
 - La calibración se sembró con las 12 verificaciones del registro. Progreso conservado: pieza actual 2,144 kg; último hito verificado 2,161 kg (frente a 2,423 kg del original, que además no cumplía).
+
+## 2026-11-24 – Pieza simétrica (obligatorio)
+
+- **Petición del grupo:** «sobre todo la pieza tiene que ser simétrica».
+- **Plano de simetría:** el plano medio de las orejetas (perpendicular al bulón por su centro, donde se aplica la carga). El original es simétrico en un 90 % de su volumen; la asimetría viene de los agujeros de los pernos del enunciado (pernos 2 y 4 desfasados 18,5 mm; 1 y 3, 4,5 mm). La pieza será simétrica salvo donde lo impiden esos agujeros fijos.
+- **Implementación:**
+  - cada operación (aligeramiento, rebaje, hueco, nervio, redondeo) se aplica también en su simétrico; los collares van por parejas simétricas y las orejetas ya lo son;
+  - en el análisis del campo, un material solo es «ocioso» si también lo es en el lado simétrico.
+- **Intento de conservar la pieza asimétrica** (2,144 kg, 14 operaciones) aplicando sus operaciones en simétrico, en ANSYS con la corrección a malla fina (×1,041):
+
+  | Operaciones | Masa | Tensión normal | Corregida | Resultado |
+  |---|---|---|---|---|
+  | 14 | 2,061 kg | 316 MPa | 329 MPa | no cumple |
+  | 8 | — | 252 MPa | 262 MPa | no cumple |
+  | 5 | — | 242 MPa | 252 MPa | no cumple |
+  | 3 | — | 208 MPa | 216 MPa | no cumple |
+  | 2 (solo collares) | 2,504 kg | 202 MPa | 210 MPa | cumple |
+
+  Sus aligeramientos estaban donde sobraba material solo en un lado.
+- **Nuevo punto de partida:** la pieza asimétrica se archiva en el PC (`runs/archivo/opt_42258N_asimetrico_hasta_20261124`) y el optimizador sigue en modo simétrico desde el original con los dos collares (2,504 kg, 201,9 MPa). Conserva la estadística de cada regla y la calibración de malla.
+- **Corregido también:** el motivo de rechazo ahora muestra la tensión corregida a malla fina (antes decía «desplazamiento» por error cuando la causa era la tensión corregida).

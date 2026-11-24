@@ -47,7 +47,7 @@ def zone_of(xyz):
 
 
 class Campo:
-    def __init__(self, nodes, tets4, vm, tris=None, sig_lim=215.0, peak_xyz=None, peak_vm=None, sig6=None):
+    def __init__(self, nodes, tets4, vm, tris=None, sig_lim=215.0, peak_xyz=None, peak_vm=None, sig6=None, sym=False):
         nodes = np.asarray(nodes, float); tets4 = np.asarray(tets4, int); vm = np.asarray(vm, float)
         P = nodes[tets4]
         a, b, c, d = P[:, 0], P[:, 1], P[:, 2], P[:, 3]
@@ -65,6 +65,12 @@ class Campo:
         import operaciones as O
         self.prot = O.in_protected(self.cen)
         self._tree2 = None
+        if sym:     # SIMETRIA: un material solo es "ocioso" si tambien lo es en el lado simetrico (y lo protegido, en los dos)
+            cm = self.cen - 2.0 * ((self.cen - PIN_P) @ PIN_A)[:, None] * PIN_A
+            dd, nn = cKDTree(self.cen).query(cm)
+            ok = dd < 3.0
+            self.smax = np.where(ok, np.maximum(self.smax, self.smax[nn]), self.smax)
+            self.prot = self.prot | (ok & self.prot[nn])
         self.pval = self.pdir = None
         if sig6 is not None:                      # tensor medio de cada elemento -> tensiones y direcciones principales
             t = np.asarray(sig6, float)[tets4].mean(axis=1)
@@ -317,10 +323,10 @@ def _box_overlap(a, b):
     return ix * iy * iz
 
 
-def from_npz(path, sig_lim=215.0, metrics=None):
+def from_npz(path, sig_lim=215.0, metrics=None, sym=False):
     d = np.load(path)
     if "tets4" not in d:
         raise ValueError("campos.npz sin tetraedros (calculado con una version anterior)")
     m = metrics or {}
     return Campo(d["nodes"], d["tets4"], d["vm"], d["tris"], sig_lim, m.get("vm_metric_xyz"), m.get("vm_metric"),
-                 d["sig6"] if "sig6" in d else None)
+                 d["sig6"] if "sig6" in d else None, sym=sym)

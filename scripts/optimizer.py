@@ -739,27 +739,33 @@ def record(st, h, git, changed):
 
 
 def start(st, git):
-    """Iteracion 0: la pieza del enunciado, tal cual, calculada con la malla completa."""
+    """Iteracion 0: la pieza de partida calculada con la malla completa. Normalmente el 0.stp tal cual; si el estado trae
+    'ops_iniciales' (p. ej. la version SIMETRICA de una pieza anterior), se parte de esas operaciones."""
     import operaciones as O
-    log("ITERACION 0: la pieza del enunciado (0.stp) tal cual")
-    s, holes = O.build([])
+    ops0 = st.get("ops_iniciales") or []
+    titulo = st.get("inicio_titulo") or "pieza del enunciado (0.stp)"
+    K_FINO[:] = k_fino(st)
+    log(f"ITERACION 0: {titulo}")
+    s, holes = O.build(ops0)
     wd = os.path.join(ITD, "000", "completa")
-    m = run_eval([], s, holes, wd)
+    m = run_eval(ops0, s, holes, wd)
     if m.get("status") != "ok":
-        raise RuntimeError(f"no se ha podido calcular la pieza original: {m.get('error')}")
-    set_current(s, [])
+        raise RuntimeError(f"no se ha podido calcular la pieza de partida: {m.get('error')}")
+    set_current(s, ops0)
     sm = summ(m)
-    st["actual"] = dict(ops=[], dir=wd, m=sm, rapida=None)
+    st["actual"] = dict(ops=ops0, dir=wd, m=sm, rapida=None)
     gal = add_to_gallery(wd, 0, "INICIO", sm["mass_kg"])
     st["actual"]["galeria"] = gal
     if sm["valido"]:
-        st["mejor"] = dict(ops=[], dir=wd, m=sm, iter=0, galeria=gal)
-    h = dict(iter=0, fecha=datetime.datetime.now().isoformat(), decision="INICIO", titulo="pieza del enunciado (0.stp)",
+        st["mejor"] = dict(ops=ops0, dir=wd, m=sm, iter=0, galeria=gal)
+    h = dict(iter=0, fecha=datetime.datetime.now().isoformat(), decision="INICIO", titulo=titulo, porque=st.get("inicio_porque"),
              despues=txt_m(sm), galeria=gal, m_cand=sm,
-             motivo=("cumple: se empieza a quitar material donde no trabaja" if sm["valido"] else
+             motivo=("cumple: se sigue quitando material donde no trabaja" if sm["valido"] else
                      f"NO cumple ({sm['vm_metric']:.0f} MPa > {SIG_OBJ:.0f}): primero hay que reforzar donde esta el pico"))
-    log(f"  original: {txt_m(sm)} -> {h['motivo']}")
+    log(f"  pieza de partida: {txt_m(sm)} -> {h['motivo']}")
     record(st, h, git, True)
+    if sm["valido"] and ops0:
+        register_best(st, git)        # hito: verificacion con malla fina + proyecto Workbench de la pieza de partida
 
 
 def step(st, git, E):
@@ -776,7 +782,8 @@ def step(st, git, E):
         d.update(summ(dict(d)))
     if st.get("verificado") and ops_key(st["verificado"]["ops"]) == ops_key(a["ops"]):
         ma["valido"] = True; ma["viol"] = min(ma["viol"], 1.0)   # verificada con malla fina: cumple
-    C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ / K_FINO[0], mfull)
+    import operaciones as O_
+    C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ / K_FINO[0], mfull, sym=O_.SIM)
     cands, notes, pk = R.propose(C, mfull, a["ops"], st, E, st["stats"], N_CAND)
     for n in notes:
         log(f"  nota: {n}")
@@ -908,8 +915,12 @@ def step(st, git, E):
                "ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)")
     else:
         if not sm["valido"]:
-            why = f"la tension sube a {sm['vm_metric']:.1f} MPa (> {SIG_OBJ:.0f} MPa): no cumple" if sm["vm_metric"] > SIG_OBJ else \
-                f"desplazamiento {sm['u_max']:.3f} mm > {U_LIM:.2f} mm"
+            if sm["vm_metric"] * K_FINO[0] > SIG_OBJ:
+                why = (f"no cumple: {sm['vm_metric']:.1f} MPa con la malla normal, que corregidos a malla fina (x{K_FINO[0]:.3f}) son "
+                       f"{sm['vm_metric'] * K_FINO[0]:.1f} MPa > {SIG_OBJ:.0f} MPa")
+            else:
+                why = (f"no cumple: desplazamiento {sm['u_max']:.3f} mm (x{K_FINO[1]:.3f} a malla fina = "
+                       f"{sm['u_max'] * K_FINO[1]:.3f} mm) > {U_LIM:.2f} mm")
             mt = "tension"
         else:
             why = (f"cumple pero no mejora al mejor (puntuacion {sm['score']:.4f} frente a "

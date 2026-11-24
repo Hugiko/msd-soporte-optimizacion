@@ -38,6 +38,7 @@ Un **creador de piezas**: se le dan las premisas (carga, límites de tensión y 
 | **Aplicación de la carga** | RBE3 desde un nodo piloto (punto medio entre orejetas) a los 2 agujeros del bulón | Mismo esquema que SimJEB; sin cargas puntuales |
 | **Tensión admisible** | **Coeficiente de seguridad ≥ 1,0**, es decir, **σ ≤ 215 MPa**, obligatorio | Límite del enunciado. Ninguna pieza que lo supere cuenta como válida |
 | **Desplazamiento** | **≤ 0,25 mm** | No lo exige el enunciado; evita piezas ligeras pero blandas |
+| **Simetría** | Pieza **simétrica** respecto al plano medio de las orejetas (perpendicular al bulón por su centro), obligatoria | Petición del grupo (24/11). Cada operación se aplica también en su simétrico y un material solo es «ocioso» si también lo es en el lado simétrico. Los agujeros de los pernos del enunciado no son simétricos (pernos 2 y 4 desfasados 18,5 mm; el original es simétrico en un 90 % de su volumen), así que la pieza es simétrica salvo donde ellos lo impiden |
 | **Impresión 3D** | Reglas de fabricación aditiva activadas | Decisión de diseño propia: techos a 45°, evacuación de polvo, sin cavidades cerradas |
 | **Objetivo** | **Mínima masa**; tensión y desplazamiento son límites obligatorios | Lo que pide el grupo (23/11): el parámetro es la masa. La seguridad sobrante no puntúa (`peso_seguridad` = 0) |
 
@@ -133,7 +134,10 @@ Cada regla tiene **si** (condición medida en el mapa de tensiones), **hago** (o
    - **ACEPTADA** si cumple y mejora al mejor, o si la pieza aún no cumplía y se acerca al límite;
    - **INVERSIÓN** si es un refuerzo eficiente (−% de tensión ≥ 2 × % de masa) cuando no queda margen: se acepta para gastar ese margen aligerando y, si en 3 iteraciones no hay mejora, se deshace;
    - **RECHAZADA** si no cumple o no mejora: se revierte, se registra el motivo y la zona queda marcada (R9).
-6. **Hito** (mejora de masa ≥ 1 % desde el anterior, y al final): verificación con **malla fina** y **proyecto Workbench**. Si la malla fina no confirma, se vuelve al último diseño verificado.
+6. **Hito** (mejora de masa ≥ 1 % desde el anterior, y al final): verificación con **malla fina** y **proyecto Workbench**.
+   - Cada verificación mide el cociente malla fina / malla normal; ha salido 1,02–1,07 en esta pieza.
+   - Para aceptar cualquier pieza se exige `σ_normal × cociente ≤ 215 MPa` (calibración con la mediana de las 3 últimas verificaciones).
+   - Si la malla fina no confirma un hito, se vuelve al último diseño verificado y los cambios que llevaron hasta él quedan rechazados (R9), así que no se repiten.
 7. **Fin**: cuando ninguna regla encuentra modificaciones o tras 8 iteraciones seguidas sin mejorar.
 
 ### 7.2 Operaciones (`scripts/operaciones.py`)
@@ -201,6 +205,7 @@ Las que quitan nunca entran en las zonas protegidas: alojamiento + 3 mm alrededo
 | `max_iteraciones_sin_mejora` / `max_inversiones_seguidas` | 8 / 2 | Parada e inversiones |
 | `verificar_mejores` / `verificacion_h_mm` | true / 3,5 | Verificación con malla fina en cada hito |
 | `crear_workbench_en_cada_mejora` / `workbench_mejora_minima_pct` | true / 1,0 | Proyecto Workbench cada ≥ 1 % de mejora de masa y al final |
+| `simetria` | true | Pieza simétrica respecto al plano medio de las orejetas |
 | `reglas_impresion_3d` / `angulo_voladizo_deg` | true / 45 | Fabricación aditiva |
 | `discord` / `subir_a_github` | true / true | Publicación |
 
