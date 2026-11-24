@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 19:56. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 20:02. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -143,11 +143,12 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la carga horizontal aplicada a 44,7 mm de altura crea un momento de vuelco (F x h ~ 1,9 kN m con 42 258 N) que la pieza lleva a los pernos; alrededor del alojamiento la seccion es pequena. Mas seccion -> menos tension (s ~ M / W). El soporte es simetrico respecto al plano medio de las orejetas (y ~ -75 mm): el perno simetrico trabaja igual.
 - **Espero:** baja la tension maxima; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.
-- **Aplicada en el optimizador:** 14 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 2 rechazadas); tension -3.3 % (mediana), masa +72 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a -3.3 % real (mediana de 3)
+- **Aplicada en el optimizador:** 16 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 3 rechazadas); tension -3.2 % (mediana), masa +59 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.1 % frente a -3.1 % real (mediana de 3)
   - iteracion 1: aceptada: collar de 6 mm en los pernos 1 y 3 (tension -15.2 %, masa +81 g)
   - iteracion 9: rechazada: collar de 8 mm en los pernos 3 y 1 (tension -3.3 %, masa +46 g)
   - iteracion 15: rechazada: collar de 9 mm en los pernos 3 y 1 (tension +4.1 %, masa +71 g)
+  - iteracion 60: rechazada: collar de 4 mm en los pernos 4 y 2 (tension -3.1 %, masa +42 g)
 
 ### R5. Alojamiento de la cabeza mas ancho con acuerdo de fondo mayor  (DESACTIVADA: LOS DATOS LA CONTRADICEN)
 
@@ -229,7 +230,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la pared entre dos agujeros cercanos no esta en el camino de la carga si trabaja poco; quitarla convierte dos huecos en una ranura con el borde mas suave (sin la pared fina entre ellos).
 - **Espero:** baja la masa; la tension casi no cambia.
 - **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo del 18-33 % del limite.
-- **Aplicada en el optimizador:** 2 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 3 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 
