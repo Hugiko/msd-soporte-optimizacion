@@ -1,5 +1,5 @@
 {
- "iter": 6,
+ "iter": 7,
  "actual": {
   "ops": [
    {
@@ -46,26 +46,32 @@
     "x": -26.48,
     "y": -29.32,
     "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 27.52,
+    "y": -74.32,
+    "r": 5.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\006\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\007\\completa",
   "m": {
-   "mass_kg": 2.3552425257500005,
-   "vm_metric": 196.6129,
-   "u_max": 0.14341589865446414,
+   "mass_kg": 2.3348910239500005,
+   "vm_metric": 196.215,
+   "u_max": 0.14365295261750596,
    "vm_metric_xyz": [
     16.721685350674203,
     -141.97168205546467,
     13.389599953816933
    ],
-   "n_nodes": 86150,
-   "cs": 1.0935192960380524,
-   "viol": 0.9436504721395349,
-   "score": 2.3552425257500005,
+   "n_nodes": 86095,
+   "cs": 1.0957368193053538,
+   "viol": 0.9417407372093024,
+   "score": 2.3348910239500005,
    "valido": true
   },
   "rapida": null,
-  "galeria": "galeria/20261124_092617_it006_ACEPTADA_2.355kg.jpg"
+  "galeria": "galeria/20261124_093025_it007_ACEPTADA_2.335kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -113,33 +119,32 @@
     "x": -26.48,
     "y": -29.32,
     "r": 8.0
+   },
+   {
+    "tipo": "agujero",
+    "x": 27.52,
+    "y": -74.32,
+    "r": 5.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\006\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\007\\completa",
   "m": {
-   "mass_kg": 2.3552425257500005,
-   "vm_metric": 196.6129,
-   "u_max": 0.14341589865446414,
+   "mass_kg": 2.3348910239500005,
+   "vm_metric": 196.215,
+   "u_max": 0.14365295261750596,
    "vm_metric_xyz": [
     16.721685350674203,
     -141.97168205546467,
     13.389599953816933
    ],
-   "n_nodes": 86150,
-   "cs": 1.0935192960380524,
-   "viol": 0.9436504721395349,
-   "score": 2.3552425257500005,
+   "n_nodes": 86095,
+   "cs": 1.0957368193053538,
+   "viol": 0.9417407372093024,
+   "score": 2.3348910239500005,
    "valido": true
   },
-  "iter": 6,
-  "galeria": "galeria/20261124_092617_it006_ACEPTADA_2.355kg.jpg",
-  "verif": {
-   "vm_metric": 214.4475,
-   "u_max": 0.1485661463159831,
-   "n_nodes": 109715,
-   "ok": true
-  },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\03_it006_2.355kg"
+  "iter": 7,
+  "galeria": "galeria/20261124_093025_it007_ACEPTADA_2.335kg.jpg"
  },
  "verificado": {
   "ops": [
@@ -368,10 +373,10 @@
    ]
   },
   "R1": {
-   "intentos": 364,
+   "intentos": 365,
    "descartadas_rapido": 6,
-   "evaluadas": 184,
-   "aceptadas": 180,
+   "evaluadas": 185,
+   "aceptadas": 181,
    "rechazadas": 4,
    "dsig": [
     -2.81,
@@ -557,7 +562,8 @@
     2.53,
     -0.21,
     -4.08,
-    -0.29
+    -0.29,
+    -0.2
    ],
    "dm": [
     -34.0,
@@ -743,13 +749,10 @@
     -54.1,
     -29.2,
     -16.1,
-    -27.5
+    -27.5,
+    -20.4
    ],
    "ejemplos": [
-    [
-     184,
-     "aceptada: aligeramiento pasante vertical D10 mm en (34, -83) (tension +1.9 %, masa -14 g)"
-    ],
     [
      185,
      "aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)"
@@ -777,6 +780,10 @@
     [
      6,
      "aceptada: aligeramiento pasante vertical D16 mm en (-26, -29) (y su si (tension -0.3 %, masa -28 g)"
+    ],
+    [
+     7,
+     "aceptada: aligeramiento pasante vertical D10 mm en (28, -74) (y su sim (tension -0.2 %, masa -20 g)"
     ]
    ],
    "dsig_prev": [
@@ -963,7 +970,8 @@
     1.44,
     -0.14,
     -0.35,
-    0.5
+    0.5,
+    1.09
    ]
   },
   "R3": {
@@ -1485,6 +1493,66 @@
     "cs": 1.0935192960380524,
     "viol": 0.9436504721395349,
     "score": 2.3552425257500005,
+    "valido": true
+   }
+  },
+  {
+   "iter": 7,
+   "fecha": "2026-11-24T09:28:32.258712",
+   "antes": "2.3552 kg | 196.6 MPa | CS 1.09 | 0.143 mm",
+   "m_antes": {
+    "mass_kg": 2.3552425257500005,
+    "vm_metric": 196.6129,
+    "u_max": 0.14341589865446414,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86150,
+    "cs": 1.0935192960380524,
+    "viol": 0.9436504721395349,
+    "score": 2.3552425257500005,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [],
+   "regla": "R1",
+   "titulo": "aligeramiento pasante vertical D10 mm en (28, -74) (y su simetrico)",
+   "porque": "Toda la columna en (28, -74) hasta 8 mm de radio trabaja como maximo al 25 % del limite (umbral de material ocioso: 25 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~75 %; el pico (197 MPa, en alrededor de los pernos traseros) esta a 69 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).",
+   "espero": "mediana de las 184 veces que se ha aplicado: +1.1 % (prevision rapida: 2.3357 kg | 198.8 MPa | CS 1.08 | 0.144 mm)",
+   "m_cand": {
+    "mass_kg": 2.3348910239500005,
+    "vm_metric": 196.215,
+    "u_max": 0.14365295261750596,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86095,
+    "cs": 1.0957368193053538,
+    "viol": 0.9417407372093024,
+    "score": 2.3348910239500005,
+    "valido": true
+   },
+   "despues": "2.3349 kg | 196.2 MPa | CS 1.10 | 0.144 mm (tension -0.2 %, masa -20 g)",
+   "decision": "ACEPTADA",
+   "motivo": "cumple y mejora al mejor (puntuacion 2.3552 -> 2.3349; masa 2.3552 -> 2.3349 kg)",
+   "galeria": "galeria/20261124_093025_it007_ACEPTADA_2.335kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3348910239500005,
+    "vm_metric": 196.215,
+    "u_max": 0.14365295261750596,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86095,
+    "cs": 1.0957368193053538,
+    "viol": 0.9417407372093024,
+    "score": 2.3348910239500005,
     "valido": true
    }
   }
