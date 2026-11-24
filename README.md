@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 18:30 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 18:33 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 43 | 16 | 3 | 15 | 7 | 60 |
+| 44 | 16 | 3 | 15 | 8 | 61 |
 
 ## Mejor diseno
 
@@ -46,6 +46,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 44 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 43 | ACEPTADA | R3 | hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.236 kg, 201 MPa | cumple y mejora al mejor (puntuacion 2.2433 -> 2.2362; masa 2.2433 -> 2.2362 kg) |
 | 42 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 4 | 2.243 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2514 -> 2.2433; masa 2.2514 -> 2.2433 kg) |
 | 41 | ACEPTADA | R1 | aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico) | 2.251 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2571 -> 2.2514; masa 2.2571 -> 2.2514 kg) |
@@ -57,7 +58,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 35 | ACEPTADA | R1 | aligeramiento pasante vertical D8 mm en (37, -62) (y su simetrico) | 2.277 kg, 194 MPa | cumple y recupera parte de la inversion de la iteracion 33 (masa 2.3089 -> 2.2770 kg; el m |
 | 34 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 32 x 32 mm, hasta z = 14 mm (techo a 4 | 2.282 kg, 203 MPa | cumple pero no mejora al mejor (puntuacion 2.2822 frente a 2.2571) |
 | 33 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
-| 32 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 
 ---
 

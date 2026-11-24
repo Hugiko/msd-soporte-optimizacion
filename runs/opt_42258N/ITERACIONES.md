@@ -2,6 +2,15 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 44 - SIN CAMBIO
+
+*2026-11-24 18:31*
+
+- **Pieza de partida:** 2.2362 kg | 200.9 MPa | CS 1.07 | 0.149 mm
+- **Decision:** SIN CAMBIO - todas las modificaciones propuestas se descartaron en la evaluacion rapida
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-20, -74) (y su simetrico) -> tension prevista 571 MPa: supera el limite (215 MPa)
+- Nota: umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
 ## Iteracion 43 - ACEPTADA: R3 hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en (9, -44) (y su simetrico)
 
 *2026-11-24 18:25*

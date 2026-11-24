@@ -1,5 +1,5 @@
 {
- "iter": 43,
+ "iter": 44,
  "actual": {
   "ops": [
    {
@@ -149,7 +149,23 @@
    "score": 2.2362199387,
    "valido": true
   },
-  "rapida": null,
+  "rapida": {
+   "mass_kg": 2.2522785581,
+   "vm_metric": 202.1809,
+   "u_max": 0.1506830378395299,
+   "vm_metric_xyz": [
+    -2.6352259709518435,
+    -58.577772236139666,
+    57.839124185053635
+   ],
+   "n_nodes": 61227,
+   "cs": 1.0634041098837723,
+   "viol": 0.9947300280000001,
+   "score": 2.2522785581,
+   "valido": true,
+   "algo": 1,
+   "h": 6.0
+  },
   "galeria": "galeria/20261124_183013_it043_ACEPTADA_2.236kg.jpg"
  },
  "mejor": {
@@ -563,6 +579,17 @@
    "motivo_tipo": "geometria",
    "regla": "R14",
    "iter": 43
+  },
+  {
+   "op": {
+    "tipo": "agujero",
+    "x": -19.67,
+    "y": -73.61,
+    "r": 6.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R1",
+   "iter": 44
   }
  ],
  "stats": {
@@ -677,8 +704,8 @@
    ]
   },
   "R1": {
-   "intentos": 385,
-   "descartadas_rapido": 15,
+   "intentos": 386,
+   "descartadas_rapido": 16,
    "evaluadas": 195,
    "aceptadas": 185,
    "rechazadas": 10,
@@ -1502,7 +1529,7 @@
    ]
   }
  },
- "sin_mejora": 0,
+ "sin_mejora": 1,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2571172117500002,
@@ -4346,6 +4373,53 @@
    "decision": "ACEPTADA",
    "motivo": "cumple y mejora al mejor (puntuacion 2.2433 -> 2.2362; masa 2.2433 -> 2.2362 kg)",
    "galeria": "galeria/20261124_183013_it043_ACEPTADA_2.236kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
+    "valido": true
+   }
+  },
+  {
+   "iter": 44,
+   "fecha": "2026-11-24T18:31:01.962303",
+   "antes": "2.2362 kg | 200.9 MPa | CS 1.07 | 0.149 mm",
+   "m_antes": {
+    "mass_kg": 2.2362199387,
+    "vm_metric": 200.8585,
+    "u_max": 0.14937030432586973,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 95693,
+    "cs": 1.0704052853127948,
+    "viol": 0.9882238200000001,
+    "score": 2.2362199387,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (-20, -74) (y su simetrico)",
+     "motivo": "tension prevista 571 MPa: supera el limite (215 MPa)"
+    }
+   ],
+   "decision": "SIN CAMBIO",
+   "motivo": "todas las modificaciones propuestas se descartaron en la evaluacion rapida",
    "m_actual": {
     "mass_kg": 2.2362199387,
     "vm_metric": 200.8585,
