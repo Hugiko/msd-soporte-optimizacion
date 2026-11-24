@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 68 - ACEPTADA: R14 bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 45 grados) en (-31, -76) (y su simetrico)
+
+*2026-11-24 20:28*
+
+- **Pieza de partida:** 2.0858 kg | 197.0 MPa | CS 1.09 | 0.158 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 12 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 45 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (197 MPa, en alrededor de los pernos traseros) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 12 veces que se ha aplicado: +1.4 % (prevision rapida: 2.0784 kg | 187.6 MPa | CS 1.15 | 0.159 mm)
+- **Resultado (malla completa):** 2.0776 kg | 195.2 MPa | CS 1.10 | 0.159 mm (tension -0.9 %, masa -8 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.0858 -> 2.0776; masa 2.0858 -> 2.0776 kg)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-23, -104) (y su simetrico) -> tension prevista 409 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D10 mm en (-23, -47) (y su simetrico) -> pasa la evaluacion rapida (2.0628 kg | 365.3 MPa | CS 0.59 | 0.169 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 35 % del limite donde quepa un corte -> se pasa al umbral del 45 %
+
+<img src="galeria/20261124_203221_it068_ACEPTADA_2.078kg.jpg" width="520">
+
 ## Iteracion 67 - SIN CAMBIO
 
 *2026-11-24 20:26*
