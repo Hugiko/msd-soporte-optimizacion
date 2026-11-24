@@ -206,3 +206,15 @@
   - El optimizador lo rechazará y, por R9, en esa zona solo probará sustituciones menores. Si R11 falla 8 veces sin acierto, se suspende y queda reflejado en DESIGN_RULES.md.
 - Booleanas: algunos cortes daban sólidos que OCC marca como no válidos; ida y vuelta por STEP los repara (comprobado). La malla rápida prueba ahora la reparación de geometría de gmsh en su 3.er intento.
 - Los cortes que atraviesan la zona de cartelas y alojamientos pueden dejar caras diminutas que gmsh no malla. Esas propuestas se descartan solas y quedan anotadas.
+
+## 2026-11-24 – Bucle de verificación (malla fina) corregido
+
+- **Síntoma:** desde la noche del 23 al 24 el optimizador repetía el mismo ciclo (84 veces, unas 11 h).
+  1. Desde la pieza verificada de 2,161 kg aceptaba dos aligeramientos (2,144 kg y 2,131 kg, 208,3 MPa con la malla de 4 mm).
+  2. En el hito, la **malla fina** daba 216,8 MPa (> 215): no se confirmaba y volvía a 2,161 kg.
+  3. Nada recordaba el motivo, así que volvía a proponer los mismos cambios.
+- **Causa de fondo:** en esta pieza la malla de 4 mm da el pico entre un 2 y un 7 % más bajo que la malla fina (12 verificaciones distintas: cociente fina/normal 1,02–1,07). Las piezas aceptadas al 97 % del límite podían superarlo.
+- **Corrección** (con los datos del propio programa):
+  1. **Calibración malla normal → malla fina:** cada verificación guarda el cociente fina/normal (tensión y desplazamiento). Para aceptar una pieza se exige `σ_normal × k ≤ 215 MPa`, con k = mediana de las 3 últimas verificaciones (ahora 1,041, es decir ≤ 206,5 MPa con la malla normal). Las reglas analizan el campo con ese límite corregido.
+  2. **Si la malla fina no confirma un hito**, los cambios hechos desde el último diseño verificado se anotan como rechazados. Por la regla R9, en esa zona solo se probarán cambios menores, así que el mismo camino no puede repetirse.
+- La calibración se sembró con las 12 verificaciones del registro. Progreso conservado: pieza actual 2,144 kg; último hito verificado 2,161 kg (frente a 2,423 kg del original, que además no cumplía).

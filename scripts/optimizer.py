@@ -73,11 +73,23 @@ def fmt_t(s):
     return f"{s // 3600}h{(s % 3600) // 60:02d}m" if s >= 3600 else f"{s // 60}m{s % 60:02d}s"
 
 
+K_FINO = [1.0, 1.0]     # calibracion malla normal -> malla fina (tension, desplazamiento); se actualiza en cada verificacion
+
+
+def k_fino(st):
+    """Cociente malla fina / malla normal medido en las ultimas verificaciones (mediana de las 3 ultimas, >= 1).
+    La malla de 4 mm da el pico algo mas bajo que la fina: para aceptar una pieza se exige que cumpla CORREGIDA."""
+    ks = st.get("k_fino", [])[-3:]
+    if not ks:
+        return [1.0, 1.0]
+    return [max(1.0, float(np.median([k[0] for k in ks]))), max(1.0, float(np.median([k[1] for k in ks])))]
+
+
 def violation(m):
-    """max(tension / limite, desplazamiento / limite): > 1 = no cumple."""
-    v = m["vm_metric"] / SIG_OBJ
+    """max(tension / limite, desplazamiento / limite), con la correccion a malla fina: > 1 = no cumple."""
+    v = m["vm_metric"] * K_FINO[0] / SIG_OBJ
     if U_LIM > 0 and m.get("u_max") is not None:
-        v = max(v, m["u_max"] / U_LIM)
+        v = max(v, m["u_max"] * K_FINO[1] / U_LIM)
     return v
 
 
@@ -479,9 +491,23 @@ def verify_fine(st, best):
                  dict(name="Resultado", value="CONFIRMADO" if ok else "NO se confirma", inline=True)],
                 "Antes de registrar un hito (proyecto Workbench) el diseno se recalcula con una malla mas fina (h = 3,5 mm).", img_v)
     best["verif"] = dict(vm_metric=mv["vm_metric"], u_max=mv["u_max"], n_nodes=mv.get("n_nodes"), ok=ok)
+    kk = [mv["vm_metric"] / best["m"]["vm_metric"], mv["u_max"] / max(best["m"]["u_max"], 1e-9)]
+    st.setdefault("k_fino", []).append([round(kk[0], 4), round(kk[1], 4)])
+    K_FINO[:] = k_fino(st)
+    log(f"  calibracion: malla fina / malla normal = {kk[0]:.3f} en tension ({kk[1]:.3f} en desplazamiento); desde ahora "
+        f"para aceptar una pieza se exige tension x {K_FINO[0]:.3f} <= {SIG_OBJ:.0f} MPa (es decir <= {SIG_OBJ / K_FINO[0]:.1f} MPa "
+        f"con la malla normal)")
     log(f"  verificacion (malla fina, {mv.get('n_nodes')} nodos): {mv['vm_metric']:.1f} MPa, {mv['u_max']:.3f} mm -> "
         + ("CONFIRMADO" if ok else "NO se confirma"))
     return ok
+
+
+def O_describe(o):
+    import operaciones as O
+    try:
+        return O.describe(o)
+    except Exception:
+        return str(o.get("tipo"))
 
 
 def register_best(st, git, final=False):
@@ -496,6 +522,14 @@ def register_best(st, git, final=False):
             msg = (f"la malla fina NO confirma el mejor diseno ({best['verif']['vm_metric']:.1f} MPa): se vuelve al ultimo "
                    "diseno verificado" if prev else "la malla fina no confirma el mejor diseno: deja de contar como mejor")
             log("  " + msg); DISCORD.alert(msg)
+            prev_ops = prev["ops"] if prev else []
+            nuevos = [o for o in best["ops"] if o not in prev_ops]
+            for o in nuevos:          # R9: en esa zona solo se probaran cambios menores (no se repite el mismo camino)
+                st["rechazos"].append(dict(op=o, motivo_tipo="tension", regla="verificacion", iter=best["iter"],
+                                           motivo=f"malla fina {best['verif']['vm_metric']:.1f} MPa"))
+            if nuevos:
+                log(f"  se anotan como rechazados los {len(nuevos)} cambios desde el ultimo diseno verificado: "
+                    + "; ".join(O_describe(o) for o in nuevos))
             st["mejor"] = prev
             if prev:
                 st["actual"] = dict(ops=prev["ops"], dir=prev["dir"], m=prev["m"], rapida=None)
@@ -737,7 +771,12 @@ def step(st, git, E):
     print("\n" + "=" * 90)
     log(f"ITERACION {it} | pieza actual: {txt_m(ma)}" + (f" | mejor: {st['mejor']['m']['mass_kg']:.4f} kg" if st.get("mejor") else ""))
     mfull = json.load(open(os.path.join(a["dir"], "metrics.json"), encoding="utf-8"))
-    C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ, mfull)
+    K_FINO[:] = k_fino(st)
+    for d in (ma, ):                      # validez de la pieza actual con la calibracion vigente
+        d.update(summ(dict(d)))
+    if st.get("verificado") and ops_key(st["verificado"]["ops"]) == ops_key(a["ops"]):
+        ma["valido"] = True; ma["viol"] = min(ma["viol"], 1.0)   # verificada con malla fina: cumple
+    C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ / K_FINO[0], mfull)
     cands, notes, pk = R.propose(C, mfull, a["ops"], st, E, st["stats"], N_CAND)
     for n in notes:
         log(f"  nota: {n}")
