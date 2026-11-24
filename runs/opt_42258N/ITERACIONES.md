@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 39 - INVERSION: R7 anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)
+
+*2026-11-24 14:22*
+
+- **Pieza de partida:** 2.2868 kg | 202.2 MPa | CS 1.06 | 0.145 mm
+- **Por que (regla R7):** El pico (202 MPa) esta en la orejeta. Delante del bulon hay 7.5 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~28 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
+- **Se esperaba:** ~-28 % (s ~ 1/e) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.3018 kg | 193.8 MPa | CS 1.11 | 0.147 mm (tension -4.2 %, masa +15 g)
+- **Decision:** INVERSION - refuerzo eficiente: compra 4.2 % de margen de tension con +15 g (0.7 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) -> tension prevista 355 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R3] hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico) -> pasa la evaluacion rapida (2.2782 kg | 187.1 MPa | CS 1.15 | 0.145 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: el cambio baja la tension un 4.2 %: se vuelven a permitir los 2 cortes que se habian rechazado por tension con menos margen
+
+<img src="galeria/20261124_142719_it039_INVERSION_2.302kg.jpg" width="520">
+
 ## Iteracion 38 - ACEPTADA: R14 bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico)
 
 *2026-11-24 14:17*

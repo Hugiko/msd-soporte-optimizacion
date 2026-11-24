@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 14:22. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 14:27. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,7 +45,7 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 380 veces (12 descartadas en la evaluacion rapida, 184 aceptadas, 10 rechazadas); tension +1.5 % (mediana), masa -16 g (mediana).
+- **Aplicada en el optimizador:** 381 veces (13 descartadas en la evaluacion rapida, 184 aceptadas, 10 rechazadas); tension +1.5 % (mediana), masa -16 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.5 % real (mediana de 194)
   - iteracion 24: rechazada: aligeramiento pasante vertical D12 mm en (7, -116) (y su sim (tension +3.0 %, masa -58 g)
   - iteracion 25: rechazada: aligeramiento pasante vertical D12 mm en (4, -32) (y su sime (tension +4.3 %, masa -58 g)
@@ -111,7 +111,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** a flexion y torsion la tension crece con la distancia a la fibra neutra (s = M y / I, t = T r / J): el nucleo apenas trabaja y la rigidez la dan las pieles. Por eso las vigas son en I o en cajon.
 - **Espero:** baja la masa; la tension sube poco (las pieles siguen).
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Huecos interiores cerrados en ese grupo: 1 de 16 (en el concurso no se podian dejar cavidades cerradas; aqui se dejan con evacuacion).
-- **Aplicada en el optimizador:** 180 veces (1 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +1.5 % (mediana), masa -8 g (mediana).
+- **Aplicada en el optimizador:** 181 veces (1 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +1.5 % (mediana), masa -8 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.6 % frente a +1.5 % real (mediana de 2)
   - iteracion 15: aceptada: hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -5 g)
   - iteracion 14: rechazada: hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacio (tension +1.5 %, masa -11 g)
@@ -172,7 +172,8 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el bulon empuja la orejeta en la direccion de la carga; el ligamento delante del agujero trabaja a cortadura y aplastamiento (s ~ F / (2 t e)). Mas ligamento e -> menos tension.
 - **Espero:** baja la tension en la orejeta; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
-- **Aplicada en el optimizador:** 5 veces (2 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
+- **Aplicada en el optimizador:** 6 veces (2 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -4.2 % (mediana), masa +15 g (mediana).
+  - iteracion 39: inversion: anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 m (tension -4.2 %, masa +15 g)
 
 ### R8. Reponer material donde un corte anterior ha creado el pico  (ACTIVA)
 

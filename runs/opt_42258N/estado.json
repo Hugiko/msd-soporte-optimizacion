@@ -1,5 +1,5 @@
 {
- "iter": 38,
+ "iter": 39,
  "actual": {
   "ops": [
    {
@@ -102,26 +102,30 @@
     "z0": -1.0,
     "z1": 12.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "orejeta",
+    "ro": 20.09
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\038\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\039\\completa",
   "m": {
-   "mass_kg": 2.2868401613000002,
-   "vm_metric": 202.2151,
-   "u_max": 0.14451101131843208,
+   "mass_kg": 2.3017682394000003,
+   "vm_metric": 193.7646,
+   "u_max": 0.14675050093902073,
    "vm_metric_xyz": [
-    -5.026992058242467,
-    -58.65040080746889,
-    58.52526820249253
+    -0.25288282949144403,
+    -61.046600599090745,
+    57.177800029302176
    ],
-   "n_nodes": 91246,
-   "cs": 1.0632242597115644,
-   "viol": 0.9948982920000001,
-   "score": 2.2868401613000002,
+   "n_nodes": 92268,
+   "cs": 1.1095938060925474,
+   "viol": 0.9533218320000001,
+   "score": 2.3017682394000003,
    "valido": true
   },
   "rapida": null,
-  "galeria": "galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg"
+  "galeria": "galeria/20261124_142719_it039_INVERSION_2.302kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -355,7 +359,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\09_it029_2.257kg"
  },
- "tau_idx": 2,
+ "tau_idx": 0,
  "rechazos": [
   {
    "op": {
@@ -449,17 +453,6 @@
    "motivo_tipo": "puntuacion",
    "regla": "R14",
    "iter": 34
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 36.52,
-    "y": -73.61,
-    "r": 8.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 38
   }
  ],
  "stats": {
@@ -574,8 +567,8 @@
    ]
   },
   "R1": {
-   "intentos": 380,
-   "descartadas_rapido": 12,
+   "intentos": 381,
+   "descartadas_rapido": 13,
    "evaluadas": 194,
    "aceptadas": 184,
    "rechazadas": 10,
@@ -1203,7 +1196,7 @@
    ]
   },
   "R3": {
-   "intentos": 180,
+   "intentos": 181,
    "descartadas_rapido": 1,
    "evaluadas": 2,
    "aceptadas": 1,
@@ -1232,14 +1225,23 @@
    ]
   },
   "R7": {
-   "intentos": 5,
+   "intentos": 6,
    "descartadas_rapido": 2,
-   "evaluadas": 0,
-   "aceptadas": 0,
+   "evaluadas": 1,
+   "aceptadas": 1,
    "rechazadas": 0,
-   "dsig": [],
-   "dm": [],
-   "ejemplos": []
+   "dsig": [
+    -4.18
+   ],
+   "dm": [
+    14.9
+   ],
+   "ejemplos": [
+    [
+     39,
+     "inversion: anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 m (tension -4.2 %, masa +15 g)"
+    ]
+   ]
   },
   "R8": {
    "intentos": 1,
@@ -1373,8 +1375,8 @@
    ]
   }
  },
- "sin_mejora": 0,
- "inversiones": 1,
+ "sin_mejora": 1,
+ "inversiones": 2,
  "inversion_desde": 37,
  "wb_masa": 2.2571172117500002,
  "fin": false,
@@ -3887,6 +3889,80 @@
     "cs": 1.0632242597115644,
     "viol": 0.9948982920000001,
     "score": 2.2868401613000002,
+    "valido": true
+   }
+  },
+  {
+   "iter": 39,
+   "fecha": "2026-11-24T14:22:45.303113",
+   "antes": "2.2868 kg | 202.2 MPa | CS 1.06 | 0.145 mm",
+   "m_antes": {
+    "mass_kg": 2.2868401613000002,
+    "vm_metric": 202.2151,
+    "u_max": 0.14451101131843208,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 91246,
+    "cs": 1.0632242597115644,
+    "viol": 0.9948982920000001,
+    "score": 2.2868401613000002,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "el cambio baja la tension un 4.2 %: se vuelven a permitir los 2 cortes que se habian rechazado por tension con menos margen"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico)",
+     "motivo": "tension prevista 355 MPa: supera el limite (215 MPa)"
+    },
+    {
+     "regla": "R3",
+     "titulo": "hueco interior 12 x 20 x 8 mm (techo a 45 grados + evacuacion D5) en (12, -42) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.2782 kg | 187.1 MPa | CS 1.15 | 0.145 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R7",
+   "titulo": "anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)",
+   "porque": "El pico (202 MPa) esta en la orejeta. Delante del bulon hay 7.5 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~28 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.",
+   "espero": "~-28 % (s ~ 1/e) (refuerzo: sin evaluacion rapida)",
+   "m_cand": {
+    "mass_kg": 2.3017682394000003,
+    "vm_metric": 193.7646,
+    "u_max": 0.14675050093902073,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 92268,
+    "cs": 1.1095938060925474,
+    "viol": 0.9533218320000001,
+    "score": 2.3017682394000003,
+    "valido": true
+   },
+   "despues": "2.3018 kg | 193.8 MPa | CS 1.11 | 0.147 mm (tension -4.2 %, masa +15 g)",
+   "decision": "INVERSION",
+   "motivo": "refuerzo eficiente: compra 4.2 % de margen de tension con +15 g (0.7 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)",
+   "galeria": "galeria/20261124_142719_it039_INVERSION_2.302kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.3017682394000003,
+    "vm_metric": 193.7646,
+    "u_max": 0.14675050093902073,
+    "vm_metric_xyz": [
+     -0.25288282949144403,
+     -61.046600599090745,
+     57.177800029302176
+    ],
+    "n_nodes": 92268,
+    "cs": 1.1095938060925474,
+    "viol": 0.9533218320000001,
+    "score": 2.3017682394000003,
     "valido": true
    }
   }
