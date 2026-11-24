@@ -598,13 +598,13 @@ def propose(C, m, ops, st, E, stats, n_max=3):
                 op = dict(tipo="hueco", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1")}, z0=-1.0, z1=round(c["zt"], 2),
                           rr=1.5)
                 d, hist = _expect("R14", stats, 0.0)
-                rem.append(dict(regla="R14", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=c["V"] * 0.6,
+                rem.append(dict(regla="R14", op=op, ops_nuevas=ops + [op], titulo=O.describe(op), V=c["V"],
                                 porque=(f"Todo el material por debajo de z = {c['zt']:.0f} mm en esa zona (y 4 mm alrededor y encima) "
                                         f"trabaja por debajo del {tau * 100:.0f} % del limite: la placa base bajo el cuerpo no lleva carga "
                                         f"(el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 "
                                         f"grados (imprimible), sin tocar el cuerpo de encima; el pico ({sig:.0f} MPa, en {zona}) esta lejos."
                                         + ev("R14")),
-                                espero=dict(dm_g=-c["V"] * 0.6 * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
+                                espero=dict(dm_g=-c["V"] * 2 * RHO * 1000, dsig_pct=d, txt=hist or "la tension maxima casi no cambia")))
             for c in wins:
                 op = dict(tipo="rebaje", **{k: round(c[k], 2) for k in ("x0", "x1", "y0", "y1")}, zc=-1.0, rr=corner_r(c))
                 d, hist = _expect("R13", stats, 0.0)

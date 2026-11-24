@@ -270,16 +270,19 @@ class Campo:
             for h in range(2, ny):
                 zt = swv(zhi, (w, h)).min(axis=(-2, -1))
                 full = swv(has.astype(int), (w, h)).sum(axis=(-2, -1)) >= w * h      # todo el rectangulo con material
-                k = np.floor((zt - z_min) / dz).astype(int)
+                # altura REAL: el techo a 45 grados sube desde la cara de apoyo (z = -1) hasta la mitad del lado menor;
+                # no puede pasar de zt (material que trabaja encima) -> el lado menor no puede pasar de 2 (zt + 1) / tan + 3
+                zr = np.minimum(zt, -1.0 + min(w, h) * b / 2.0 * am_t)
+                k = np.floor((zr - z_min) / dz).astype(int)
                 okm = full & (k >= 0)
                 k = np.clip(k, 0, len(L) - 1)
                 zt_eff = z_min + k * dz
-                okm &= min(w, h) * b <= 2.0 * (zt_eff + 1.0) / am_t + 3.0            # techo a 45 grados sin tramo plano
+                okm &= min(w, h) * b <= 2.0 * (np.minimum(zt, 30.0) + 1.0) / am_t + 3.0   # sin tramo de techo plano
                 I, J = np.nonzero(okm)
                 if not len(I):
                     continue
                 kk = k[I, J]
-                V = S[kk, I + w, J + h] - S[kk, I, J + h] - S[kk, I + w, J] + S[kk, I, J]
+                V = 0.5 * (S[kk, I + w, J + h] - S[kk, I, J + h] - S[kk, I + w, J] + S[kk, I, J])   # forma de tienda ~ 1/2 de la caja
                 for q in np.argsort(-V)[:6]:
                     if V[q] >= v_min:
                         i, j = I[q], J[q]
