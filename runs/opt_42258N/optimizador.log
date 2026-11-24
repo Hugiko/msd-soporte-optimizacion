@@ -5145,3 +5145,5 @@
 [13:52:07] ITERACION 33 | pieza actual: 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm | mejor: 2.2571 kg
 [13:52:19]   nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 25 %
 [13:52:19]   nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)
+[13:52:21] OPTIMIZACION TERMINADA: ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa un corte y el pico no admite refuerzo)
+[13:52:24]   (GitHub: subido)
