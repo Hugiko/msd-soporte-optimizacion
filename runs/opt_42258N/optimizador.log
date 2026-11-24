@@ -5079,3 +5079,60 @@
 [13:19:54]       prevision: 2.3080 kg | 237.5 MPa | CS 0.91 | 0.145 mm  (tension +17.5 %, masa +51 g; se esperaba ~-5,6 % de tension con ~+52 g (prueba en ANSYS del 24/11))
 [13:19:54]       DESCARTADA en la evaluacion rapida: tension prevista 237 MPa: supera el limite (215 MPa)
 [13:19:54]   SIN CAMBIO: todas las modificaciones propuestas se descartaron en la evaluacion rapida (1 iteraciones seguidas sin mejora)
+[13:19:55] Limpieza automatica: liberados 75 MB
+[13:19:55] ITERACION 31 | pieza actual: 2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm | mejor: 2.2571 kg
+[13:20:00]   nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)
+[13:20:00]   pico: 202 MPa en orejetas del bulon (concentracion x1.6) | 1 modificaciones propuestas:
+[13:20:00]    1. [R12] acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+[13:20:00]       porque: La pieza esta en el limite (202 MPa, 99 % del limite corregido; pico en orejetas del bulon) y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza. Evidencia: prueba d
+[13:20:00]   [1/1] evaluacion rapida: [R12] acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+[13:20:02]   (GitHub: subido)
+[13:21:08] ITERACION 31 | pieza actual: 2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm | mejor: 2.2571 kg
+[13:21:13]   nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)
+[13:21:13]   pico: 202 MPa en orejetas del bulon (concentracion x1.6) | 1 modificaciones propuestas:
+[13:21:13]    1. [R12] acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+[13:21:13]       porque: La pieza esta en el limite (202 MPa, 99 % del limite corregido; pico en orejetas del bulon) y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza. Evidencia: prueba d
+[13:21:13]   [1/1] evaluacion rapida: [R12] acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+[13:22:08]       refuerzo: se evalua directamente con la malla completa (la malla gruesa no resuelve bien las uniones nuevas)
+[13:22:08]   EVALUACION COMPLETA de la mas prometedora: [R12] acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+[13:22:10]   [1/5] geometria parametrica (cadquery)
+[13:22:11]         masa CAD = 2.2899 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=True
+[13:22:21]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=4.00 mm)
+[13:22:29]   malla h=4.0: 91374 nodos, 52554 tet10 (5.3s)
+[13:22:30]   [3/5] ANSYS MAPDL normal (91374 nodos, 52554 elementos)
+[13:22:30] Lanzando MAPDL: model.inp (timeout 1200s)
+[13:22:36]   [fase] 4  /PREP7
+[13:22:40]   [fase] 197535  /SOLU
+[13:22:40]   [solver] 197537  EQSLV,SPARSE
+[13:22:40]   [fase] 197540  /POST1
+[13:22:41]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.426   TIME= 13:22:38
+[13:22:41]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =         7.482
+[13:22:41]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[13:22:41]   [AVISO] *** WARNING ***                         ELAPSED TIME =       7.902   TIME= 13:22:39
+[13:22:41]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[13:22:42]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[13:22:44]   [solver] Equation solver memory allocated                     =  1792.442 MB
+[13:22:44]   [solver] Equation solver memory required for in-core mode     =  1715.707 MB
+[13:22:44]   [solver] Equation solver memory required for out-of-core mode =   428.241 MB
+[13:22:44]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[13:22:51]   [solver] Sparse solver maximum pivot= 172909002 at node 68417 UY.
+[13:22:51]   [solver] Sparse solver minimum pivot= 5430.4771 at node 3996 UY.
+[13:22:51]   [solver] Sparse solver minimum pivot in absolute value= 5430.4771 at node 3996
+[13:22:53]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        21.758
+[13:22:54]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.212   TIME= 13:22:54
+[13:22:54]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.314   TIME= 13:22:54
+[13:22:55]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.332   TIME= 13:22:54
+[13:22:55]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.349   TIME= 13:22:54
+[13:22:55]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.367   TIME= 13:22:54
+[13:22:55]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.386   TIME= 13:22:54
+[13:22:55]   [AVISO] *** WARNING ***                         ELAPSED TIME =      23.404   TIME= 13:22:54
+[13:22:55]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        23.497
+[13:23:05]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.6 seconds
+[13:23:05]   [solver] Elapsed time in equation solver                :       10.0 seconds
+[13:23:05]   [fase] Elapsed time spent post-processing model (/POST1) :        1.7 seconds
+[13:23:05]   [solver] Equation solver used                              :            Sparse (symmetric)
+[13:23:05]   [solver] Sparse direct equation solver computational rate  :       38.9 Gflops
+[13:23:06] MAPDL termino: estado=ok codigo=0 tiempo=35.8s
+[13:23:06]   [4/5] resultados
+[13:23:07]   [5/5] imagenes
+[13:23:08]   RESULTADO: 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm (tension -5.6 %, masa +52 g) -> INVERSION: refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)

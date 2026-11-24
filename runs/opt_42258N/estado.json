@@ -1,18 +1,22 @@
 {
- "iter": 30,
+ "iter": 31,
  "actual": {
   "ops": [
    {
     "tipo": "collar",
     "perno": 0,
     "t": 6.0,
-    "z": 22.0
+    "z": 22.0,
+    "flare": 30.0,
+    "z_flare": 16.0
    },
    {
     "tipo": "collar",
     "perno": 2,
     "t": 6.0,
-    "z": 22.0
+    "z": 22.0,
+    "flare": 30.0,
+    "z_flare": 16.0
    },
    {
     "tipo": "rebaje",
@@ -90,38 +94,24 @@
     "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\029\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\031\\completa",
   "m": {
-   "mass_kg": 2.2571172117500002,
-   "vm_metric": 202.0998,
-   "u_max": 0.14585127779689777,
+   "mass_kg": 2.30886905895,
+   "vm_metric": 190.742,
+   "u_max": 0.14411993620256577,
    "vm_metric_xyz": [
-    -5.026992058242467,
-    -58.65040080746889,
-    58.52526820249253
+    -3.1978708089013246,
+    -59.865442955010316,
+    58.011592677890185
    ],
-   "n_nodes": 89364,
-   "cs": 1.0638308400107275,
-   "viol": 0.994331016,
-   "score": 2.2571172117500002,
+   "n_nodes": 91374,
+   "cs": 1.127177024462363,
+   "viol": 0.93845064,
+   "score": 2.30886905895,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.27223951455,
-   "vm_metric": 193.7605,
-   "u_max": 0.1456002947185987,
-   "vm_metric_xyz": [
-    -0.14397963403535918,
-    -87.09029429461287,
-    57.37325360368376
-   ],
-   "n_nodes": 50215,
-   "cs": 1.109617285256799,
-   "viol": 0.9533016600000002,
-   "score": 2.27223951455,
-   "valido": true
-  },
-  "galeria": "galeria/20261124_131413_it029_REEVALUADA_2.257kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_132308_it031_INVERSION_2.309kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -816,14 +806,6 @@
    "regla": "simetria",
    "iter": 28,
    "motivo": "no simetrico: en el lado simetrico no hay material (2,07 frente a 0,20 cm3)"
-  },
-  {
-   "op": {
-    "tipo": "collar_acampanado"
-   },
-   "motivo_tipo": "tension",
-   "regla": "R12",
-   "iter": 30
   }
  ],
  "stats": {
@@ -1693,18 +1675,27 @@
   },
   "R12": {
    "intentos": 1,
-   "descartadas_rapido": 1,
-   "evaluadas": 0,
-   "aceptadas": 0,
+   "descartadas_rapido": 0,
+   "evaluadas": 1,
+   "aceptadas": 1,
    "rechazadas": 0,
-   "dsig": [],
-   "dm": [],
-   "ejemplos": []
+   "dsig": [
+    -5.62
+   ],
+   "dm": [
+    51.8
+   ],
+   "ejemplos": [
+    [
+     31,
+     "inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)"
+    ]
+   ]
   }
  },
  "sin_mejora": 1,
- "inversiones": 0,
- "inversion_desde": null,
+ "inversiones": 1,
+ "inversion_desde": 31,
  "wb_masa": 2.2571172117500002,
  "fin": false,
  "motivo_fin": "",
@@ -3701,6 +3692,68 @@
     "score": 2.2571172117500002,
     "valido": true
    }
+  },
+  {
+   "iter": 31,
+   "fecha": "2026-11-24T13:21:13.064095",
+   "antes": "2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2571172117500002,
+    "vm_metric": 202.0998,
+    "u_max": 0.14585127779689777,
+    "vm_metric_xyz": [
+     -5.026992058242467,
+     -58.65040080746889,
+     58.52526820249253
+    ],
+    "n_nodes": 89364,
+    "cs": 1.0638308400107275,
+    "viol": 0.994331016,
+    "score": 2.2571172117500002,
+    "valido": true
+   },
+   "notas": [
+    "1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)"
+   ],
+   "descartes": [],
+   "regla": "R12",
+   "titulo": "acampanar la raiz de los collares (30 grados hasta z = 16 mm)",
+   "porque": "La pieza esta en el limite (202 MPa, 99 % del limite corregido; pico en orejetas del bulon) y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza. Evidencia: prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a 30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %).",
+   "espero": "~-5,6 % de tension con ~+52 g (prueba en ANSYS del 24/11) (refuerzo: sin evaluacion rapida)",
+   "m_cand": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   },
+   "despues": "2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm (tension -5.6 %, masa +52 g)",
+   "decision": "INVERSION",
+   "motivo": "refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)",
+   "galeria": "galeria/20261124_132308_it031_INVERSION_2.309kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.30886905895,
+    "vm_metric": 190.742,
+    "u_max": 0.14411993620256577,
+    "vm_metric_xyz": [
+     -3.1978708089013246,
+     -59.865442955010316,
+     58.011592677890185
+    ],
+    "n_nodes": 91374,
+    "cs": 1.127177024462363,
+    "viol": 0.93845064,
+    "score": 2.30886905895,
+    "valido": true
+   }
   }
  ],
  "creado": "2026-11-24T08:59:38",
@@ -3819,5 +3872,5 @@
   "R11",
   "R5"
  ],
- "_asim": 1
+ "_asim": 2
 }

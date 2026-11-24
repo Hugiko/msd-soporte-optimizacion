@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 13:19 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 13:23 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 30 | 11 | 0 | 13 | 4 | 41 |
+| 31 | 11 | 1 | 13 | 4 | 41 |
 
 ## Mejor diseno
 
@@ -41,6 +41,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 31 | INVERSION | R12 | acampanar la raiz de los collares (30 grados hasta z = 16 mm) | 2.309 kg, 191 MPa | refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese marge |
 | 30 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 29 | REEVALUADA | - | pieza actual reconstruida | 2.257 kg, 202 MPa | cumple: se sigue optimizando con las reglas nuevas |
 | 28 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 4 | 2.204 kg, 203 MPa | no cumple: 203.0 MPa con la malla normal, que corregidos a malla fina (x1.069) son 217.1 M |
@@ -52,7 +53,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 22 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 21 | RECHAZADA | R14 | bolsillo desde la cara de apoyo 24 x 24 mm, hasta z = 10 mm (techo a 4 | 2.239 kg, 204 MPa | no cumple: 204.0 MPa con la malla normal, que corregidos a malla fina (x1.069) son 218.2 M |
 | 20 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm (techo a 45 | 2.241 kg, 199 MPa | cumple y mejora al mejor (puntuacion 2.2593 -> 2.2410; masa 2.2593 -> 2.2410 kg) |
-| 19 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 28 x 24 mm, hasta z = 10 mm (techo a 4 | 2.259 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2914 -> 2.2593; masa 2.2914 -> 2.2593 kg) |
 
 ---
 

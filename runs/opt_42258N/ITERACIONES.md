@@ -2,6 +2,19 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 31 - INVERSION: R12 acampanar la raiz de los collares (30 grados hasta z = 16 mm)
+
+*2026-11-24 13:21*
+
+- **Pieza de partida:** 2.2571 kg | 202.1 MPa | CS 1.06 | 0.146 mm
+- **Por que (regla R12):** La pieza esta en el limite (202 MPa, 99 % del limite corregido; pico en orejetas del bulon) y los collares son cilindros: su union con el cuerpo es una esquina viva. Con la parte baja en tronco de cono (30 grados) la union es un angulo abierto y la base de los pernos se rigidiza. Evidencia: prueba directa en ANSYS (24/11) sobre la pieza simetrica de 2,257 kg: collares acampanados a 30 grados hasta z = 16 mm -> pico de 202,1 a 190,7 MPa (-5,6 %) con +52 g (+2,3 %).
+- **Se esperaba:** ~-5,6 % de tension con ~+52 g (prueba en ANSYS del 24/11) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.3089 kg | 190.7 MPa | CS 1.13 | 0.144 mm (tension -5.6 %, masa +52 g)
+- **Decision:** INVERSION - refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)
+- Nota: 1 propuestas descartadas por SIMETRIA: quitarian distinto material en un lado que en su simetrico (el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_132308_it031_INVERSION_2.309kg.jpg" width="520">
+
 ## Iteracion 30 - SIN CAMBIO
 
 *2026-11-24 13:17*
