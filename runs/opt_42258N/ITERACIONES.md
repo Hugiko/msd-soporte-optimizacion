@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 46 - RECHAZADA: R1 aligeramiento pasante vertical D20 mm en (7, -116) (y su simetrico)
+
+*2026-11-24 18:37*
+
+- **Pieza de partida:** 2.2362 kg | 200.9 MPa | CS 1.07 | 0.149 mm
+- **Por que (regla R1):** Toda la columna en (7, -116) hasta 13 mm de radio trabaja como maximo al 42 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (201 MPa, en placa base (z < 10 mm)) esta a 57 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 196 veces que se ha aplicado: +1.7 % (prevision rapida: 2.0831 kg | 279.0 MPa | CS 0.77 | 0.169 mm)
+- **Resultado (malla completa):** 2.0809 kg | 292.4 MPa | CS 0.74 | 0.172 mm (tension +45.6 %, masa -155 g)
+- **Decision:** RECHAZADA - no cumple: 292.4 MPa con la malla normal, que corregidos a malla fina (x1.058) son 309.3 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -9..11, y -44..-24 mm (esquinas R4) (y su simetrico) -> tension prevista 295 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico) -> pasa la evaluacion rapida (2.2207 kg | 200.1 MPa | CS 1.07 | 0.148 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_184034_it046_RECHAZADA_2.081kg.jpg" width="520">
+
 ## Iteracion 45 - RECHAZADA: R1 aligeramiento pasante vertical D24 mm en (4, -32) (y su simetrico)
 
 *2026-11-24 18:33*
