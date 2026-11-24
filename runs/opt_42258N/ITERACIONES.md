@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 58 - RECHAZADA: R7 anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+
+*2026-11-24 19:45*
+
+- **Pieza de partida:** 2.1806 kg | 199.6 MPa | CS 1.08 | 0.152 mm
+- **Por que (regla R7):** El pico (200 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
+- **Se esperaba:** ~-23 % (s ~ 1/e) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.2039 kg | 208.2 MPa | CS 1.03 | 0.155 mm (tension +4.3 %, masa +23 g)
+- **Decision:** RECHAZADA - no cumple: 208.2 MPa con la malla normal, que corregidos a malla fina (x1.054) son 219.4 MPa > 215 MPa
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 7 mm en x -9..15, y -124..-104 mm (esquinas R4) (y su simetrico) -> pasa la evaluacion rapida (2.0216 kg | 317.4 MPa | CS 0.68 | 0.187 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R17] ranura que une los aligeramientos de (28, -74) y (43, -68) (quita la pared fina entre ellos) (y su simetrico) -> pasa la evaluacion rapida (2.1763 kg | 181.0 MPa | CS 1.19 | 0.151 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 1 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 45 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 35 % del limite donde quepa un corte -> se pasa al umbral del 45 %
+
+<img src="galeria/20261124_195038_it058_RECHAZADA_2.204kg.jpg" width="520">
+
 ## Iteracion 57 - ACEPTADA: R1 aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)
 
 *2026-11-24 19:36*

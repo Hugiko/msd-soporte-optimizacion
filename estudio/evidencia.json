@@ -9,7 +9,7 @@
   "referencia": "los 16 disenos publicados VALIDOS",
   "carga": 42258.0,
   "limite": 215.0,
-  "fecha": "2026-11-24T19:26"
+  "fecha": "2026-11-24T19:45"
  },
  "R1": {
   "respaldo": true,
@@ -135,6 +135,16 @@
  "R14": {
   "respaldo": true,
   "texto": "placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3",
+  "tabla": []
+ },
+ "R16": {
+  "respaldo": null,
+  "texto": "medido en la pieza de la iteracion 56: 12 laminas de 0,8 a 2,3 mm (algunas con filo de 0,1-0,2 mm), casi todas en la cara de apoyo donde un bolsillo a 45 grados corta un aligeramiento, trabajando de media a 13-51 MPa",
+  "tabla": []
+ },
+ "R17": {
+  "respaldo": null,
+  "texto": "medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo del 18-33 % del limite",
   "tabla": []
  },
  "R12": {

@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 19:41. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 19:50. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -78,7 +78,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** material que no transmite carga: su tension es baja porque ni el momento de vuelco ni el cortante pasan por ahi. Quitarlo desde arriba no deja voladizos y no corta el camino de carga.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55).
-- **Aplicada en el optimizador:** 30 veces (16 descartadas en la evaluacion rapida, 5 aceptadas, 3 rechazadas); tension +0.7 % (mediana), masa -37 g (mediana).
+- **Aplicada en el optimizador:** 31 veces (16 descartadas en la evaluacion rapida, 5 aceptadas, 3 rechazadas); tension +0.7 % (mediana), masa -37 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.2 % frente a +0.7 % real (mediana de 8)
   - iteracion 14: aceptada: rebaje desde arriba hasta z = 7 mm en x -26..-10, y -124..-1 (tension -0.9 %, masa -27 g)
   - iteracion 2: aceptada: rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 m (tension -0.5 %, masa -22 g)
@@ -173,8 +173,9 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** el bulon empuja la orejeta en la direccion de la carga; el ligamento delante del agujero trabaja a cortadura y aplastamiento (s ~ F / (2 t e)). Mas ligamento e -> menos tension.
 - **Espero:** baja la tension en la orejeta; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo pico esta en la orejeta.
-- **Aplicada en el optimizador:** 6 veces (2 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -4.2 % (mediana), masa +15 g (mediana).
+- **Aplicada en el optimizador:** 7 veces (2 descartadas en la evaluacion rapida, 1 aceptadas, 1 rechazadas); tension +0.1 % (mediana), masa +19 g (mediana).
   - iteracion 39: inversion: anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 m (tension -4.2 %, masa +15 g)
+  - iteracion 58: rechazada: anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 m (tension +4.3 %, masa +23 g)
 
 ### R8. Reponer material donde un corte anterior ha creado el pico  (ACTIVA)
 
@@ -212,6 +213,23 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Aplicada en el optimizador:** 2 veces (0 descartadas en la evaluacion rapida, 2 aceptadas, 0 rechazadas); tension -5.6 % (mediana), masa +52 g (mediana).
   - iteracion 31: inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)
   - iteracion 37: inversion: acampanar la raiz de los collares (30 grados hasta z = 16 mm (tension -5.6 %, masa +52 g)
+
+### R16. Eliminar laminas finas que no trabajan  (ACTIVA)
+
+- **Si:** una pared de la pieza mide menos de 2,5 mm (medido en el CAD con rayos hacia dentro) y trabaja por debajo del umbral.
+- **Hago:** se quita con un vaciado que la abarca (techo a 45 grados si queda material encima; abierto por abajo si esta en la cara de apoyo).
+- **Porque:** una lamina tan fina casi no aporta seccion (a flexion la rigidez de una pared va como el espesor al cubo), se imprime mal (paredes de menos de ~1 mm y filos en fusion de lecho de polvo) y la malla de 4 mm no la resuelve (elementos degenerados). Suelen quedar donde se cruzan dos cortes.
+- **Espero:** baja algo la masa; la tension no cambia (la lamina no lleva carga) y la malla mejora.
+- **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: 12 laminas de 0,8 a 2,3 mm (algunas con filo de 0,1-0,2 mm), casi todas en la cara de apoyo donde un bolsillo a 45 grados corta un aligeramiento, trabajando de media a 13-51 MPa.
+
+### R17. Unir dos aligeramientos separados por una pared fina que no trabaja  (ACTIVA)
+
+- **Si:** dos aligeramientos verticales quedan separados por una pared de menos de 5 mm que trabaja por debajo del umbral.
+- **Hago:** ranura: la envolvente de los dos agujeros (vertical y pasante: imprimible).
+- **Porque:** la pared entre dos agujeros cercanos no esta en el camino de la carga si trabaja poco; quitarla convierte dos huecos en una ranura con el borde mas suave (sin la pared fina entre ellos).
+- **Espero:** baja la masa; la tension casi no cambia.
+- **Evidencia (basada en la teoria / en sus resultados):** medido en la pieza de la iteracion 56: paredes de 4-5 mm entre aligeramientos con un maximo del 18-33 % del limite.
+- **Aplicada en el optimizador:** 1 veces (0 descartadas en la evaluacion rapida, 0 aceptadas, 0 rechazadas).
 
 ### R13. Ventana pasante donde toda la columna (de la base a arriba) esta ociosa  (SUSPENDIDA: 8 INTENTOS SIN NINGUNA MEJORA)
 
