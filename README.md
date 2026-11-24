@@ -1,16 +1,16 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 15:40 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 18:25 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 41 | 14 | 3 | 15 | 7 | 56 |
+| 42 | 15 | 3 | 15 | 7 | 58 |
 
 ## Mejor diseno
 
-**2.2514 kg** (-7.1 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **200.1 MPa** &nbsp;|&nbsp; coef. seguridad **1.07** &nbsp;|&nbsp; desplazamiento **0.149 mm** &nbsp;|&nbsp; iteracion 41
+**2.2433 kg** (-7.4 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **200.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.07** &nbsp;|&nbsp; desplazamiento **0.149 mm** &nbsp;|&nbsp; iteracion 42
 
 Operaciones sobre el original:
 
@@ -29,10 +29,11 @@ Operaciones sobre el original:
 13. bolsillo desde la cara de apoyo 32 x 28 mm, hasta z = 12 mm (techo a 45 grados) en (18, -94) (y su simetrico)
 14. anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)
 15. aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico)
+16. bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 45 grados) en (11, -104) (y su simetrico)
 
 Ultimo hito verificado (2.257 kg, iteracion 29): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/09_it029_2.257kg/workbench/soporte_it029.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/09_it029_2.257kg/geometria.step)
 
-![mejor diseno](runs/opt_42258N/galeria/20261124_153959_it041_ACEPTADA_2.251kg.jpg)
+![mejor diseno](runs/opt_42258N/galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg)
 
 ## Camino de la pieza
 
@@ -44,6 +45,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 42 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 4 | 2.243 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2514 -> 2.2433; masa 2.2514 -> 2.2433 kg) |
 | 41 | ACEPTADA | R1 | aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico) | 2.251 kg, 200 MPa | cumple y mejora al mejor (puntuacion 2.2571 -> 2.2514; masa 2.2571 -> 2.2514 kg) |
 | 40 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 | 39 | INVERSION | R7 | anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm) | 2.302 kg, 194 MPa | refuerzo eficiente: compra 4.2 % de margen de tension con +15 g (0.7 % de masa); ese marge |
@@ -55,7 +57,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 33 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 32 | SIN CAMBIO | - | - | - | ninguna regla encuentra ya una modificacion posible (no queda material ocioso donde quepa  |
 | 31 | INVERSION | R12 | acampanar la raiz de los collares (30 grados hasta z = 16 mm) | 2.309 kg, 191 MPa | refuerzo eficiente: compra 5.6 % de margen de tension con +52 g (2.3 % de masa); ese marge |
-| 30 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
 
 ---
 

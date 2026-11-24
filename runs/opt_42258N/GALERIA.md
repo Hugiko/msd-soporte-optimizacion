@@ -4,6 +4,7 @@ Cada ficha: geometria 3D | tension de von Mises | deformada | radiografia del in
 
 | fecha | iteracion | decision | masa | ficha (clic para ampliar) |
 |---|---|---|---|---|
+| 24/11 18:25 | iteracion 042 | ACEPTADA | 2.243 kg | <a href="galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg"><img src="galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg" width="420"></a> |
 | 24/11 15:39 | iteracion 041 | ACEPTADA | 2.251 kg | <a href="galeria/20261124_153959_it041_ACEPTADA_2.251kg.jpg"><img src="galeria/20261124_153959_it041_ACEPTADA_2.251kg.jpg" width="420"></a> |
 | 24/11 14:27 | iteracion 039 | INVERSION | 2.302 kg | <a href="galeria/20261124_142719_it039_INVERSION_2.302kg.jpg"><img src="galeria/20261124_142719_it039_INVERSION_2.302kg.jpg" width="420"></a> |
 | 24/11 14:22 | iteracion 038 | ACEPTADA | 2.287 kg | <a href="galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg"><img src="galeria/20261124_142235_it038_ACEPTADA_2.287kg.jpg" width="420"></a> |

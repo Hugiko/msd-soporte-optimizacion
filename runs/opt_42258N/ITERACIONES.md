@@ -2,6 +2,21 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 42 - ACEPTADA: R14 bolsillo desde la cara de apoyo 24 x 32 mm, hasta z = 10 mm (techo a 45 grados) en (11, -104) (y su simetrico)
+
+*2026-11-24 18:20*
+
+- **Pieza de partida:** 2.2514 kg | 200.1 MPa | CS 1.07 | 0.149 mm
+- **Por que (regla R14):** Todo el material por debajo de z = 10 mm en esa zona (y 4 mm alrededor y encima) trabaja por debajo del 35 % del limite: la placa base bajo el cuerpo no lleva carga (el soporte solo se sujeta por los pernos). Se vacia desde la cara de apoyo con techo a 45 grados (imprimible), sin tocar el cuerpo de encima; el pico (200 MPa, en placa base (z < 10 mm)) esta lejos. Evidencia: placa base (z < 10 mm): original 67 cm3 con un 77 % de material ocioso; mediana de la mitad mas ligera de los 16 disenos publicados VALIDOS: 45 cm3.
+- **Se esperaba:** mediana de las 7 veces que se ha aplicado: +1.8 % (prevision rapida: 2.2435 kg | 201.8 MPa | CS 1.07 | 0.149 mm)
+- **Resultado (malla completa):** 2.2433 kg | 200.3 MPa | CS 1.07 | 0.149 mm (tension +0.1 %, masa -8 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.2514 -> 2.2433; masa 2.2514 -> 2.2433 kg)
+- Descartada en la evaluacion rapida: [R6] redondeo R3.0 de las aristas junto a (57, -88, -0) (y su simetrico) -> la geometria no se puede construir (operacion 16 (redondeo): el redondeo no se puede hacer en esas aristas (StdFail_NotDone))
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D12 mm en (-17, -74) (y su simetrico) -> pasa la evaluacion rapida (2.2318 kg | 206.5 MPa | CS 1.04 | 0.151 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+
+<img src="galeria/20261124_182535_it042_ACEPTADA_2.243kg.jpg" width="520">
+
 ## Iteracion 41 - ACEPTADA: R1 aligeramiento pasante vertical D12 mm en (34, -77) (y su simetrico)
 
 *2026-11-24 15:35*
