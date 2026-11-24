@@ -7,6 +7,8 @@
   "_margen_nota": "limite de tension = sigma_y x margen. 1.0 = coeficiente de seguridad >= 1,0 (215 MPa), OBLIGATORIO: ninguna pieza que lo supere cuenta como valida.",
   "desplazamiento_max_mm": 0.25,
   "_desplazamiento_nota": "desplazamiento maximo permitido (mm). 0 = sin limite (el enunciado no lo exige).",
+  "formas_puras": true,
+  "_formas_puras_nota": "true = la pieza se mantiene hecha de formas geometricas puras (circulos, ranuras, rectangulos y bolsillos con techo a 45 grados): un corte nuevo no puede solapar a medias otro ni quedar a menos de 4 mm de el, y los huecos crecen agrandando la misma forma (R18)",
   "simetria": true,
   "_simetria_nota": "true = pieza SIMETRICA respecto al plano medio de las orejetas (perpendicular al bulon por su centro): cada operacion se aplica tambien en su simetrico, y un material solo se considera ocioso si tambien lo es en el lado simetrico. Los agujeros de los pernos del enunciado no son simetricos (los pernos 2 y 4 estan desfasados 18,5 mm), asi que la pieza es simetrica salvo donde ellos lo impiden.",
   "reglas_impresion_3d": true,

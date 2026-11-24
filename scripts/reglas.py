@@ -117,6 +117,13 @@ REGLAS = {
                 porque=("la pared entre dos agujeros cercanos no esta en el camino de la carga si trabaja poco; quitarla convierte dos "
                         "huecos en una ranura con el borde mas suave (sin la pared fina entre ellos)."),
                 espero="baja la masa; la tension casi no cambia"),
+    "R18": dict(titulo="Agrandar una forma pura cuyo borde no trabaja", tipo="quitar",
+                si="el material que se quitaria al agrandar un corte existente (agujero, ranura, bolsillo) trabaja por debajo del 75 % del limite",
+                hago="la MISMA forma, mas grande (radio +1,5 mm o 3 mm mas larga por cada extremo): la pieza sigue hecha de formas puras",
+                porque=("es el crecimiento de contorno de la optimizacion evolutiva (ESO): se quita el material de baja tension en la "
+                        "frontera de un hueco que ya funciona, sin anadir huecos nuevos superpuestos (facil de fabricar: menos "
+                        "operaciones y formas simples)."),
+                espero="baja la masa; la tension sube poco si el borde de verdad no trabaja"),
     "R13": dict(titulo="Ventana pasante donde toda la columna (de la base a arriba) esta ociosa", tipo="quitar",
                 si="todo el material de una zona rectangular, desde la cara de apoyo hasta arriba (con 4 mm de margen), trabaja por "
                    "debajo del umbral de material ocioso",
@@ -395,6 +402,8 @@ def evidence(log=print):
         E["R13"] = dict(respaldo=None, texto="la placa base del original apenas trabaja (85 % ocioso)", tabla=[])
     if "R13" in E:
         E["R14"] = dict(E["R13"])
+    E["R18"] = dict(respaldo=None, texto=("crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): "
+                                          "se quita material de baja tension en la frontera de los huecos"), tabla=[])
     E["R16"] = dict(respaldo=None, texto=("medido en la pieza de la iteracion 56: 12 laminas de 0,8 a 2,3 mm (algunas con filo de "
                                           "0,1-0,2 mm), casi todas en la cara de apoyo donde un bolsillo a 45 grados corta un aligeramiento, "
                                           "trabajando de media a 13-51 MPa"), tabla=[])
@@ -563,6 +572,59 @@ def thin_walls(solid, C, max_t=2.5, step=2):
         out.append(dict(x0=float(lo[0]), x1=float(hi[0]), y0=float(lo[1]), y1=float(hi[1]), z0=float(lo[2]), z1=float(hi[2]),
                         t=float(np.median(th[e])), smax=float(C.smax[ne[e]].max()), n=int(len(e))))
     return sorted(out, key=lambda q: -q["n"])
+
+
+PURAS = bool(USER.get("formas_puras", True))
+
+
+def footprint2d(op):
+    """Huella en planta de un corte (con su simetrico), como geometria shapely."""
+    from shapely.geometry import Point as P_, LineString as L_, box as B_
+    from shapely.ops import unary_union
+    from shapely import affinity
+    t = op["tipo"]
+    if t == "agujero":
+        g = P_(op["x"], op["y"]).buffer(op["r"], quad_segs=24)
+    elif t == "ranura":
+        g = P_(op["x1"], op["y1"]).buffer(op["r1"], quad_segs=24).union(P_(op["x2"], op["y2"]).buffer(op["r2"], quad_segs=24)).convex_hull
+    elif t == "bolsillo_ranura":
+        g = L_([(op["x1"], op["y1"]), (op["x2"], op["y2"])]).buffer(op["r"], quad_segs=24) if \
+            (op["x1"], op["y1"]) != (op["x2"], op["y2"]) else P_(op["x1"], op["y1"]).buffer(op["r"], quad_segs=24)
+    elif t in ("rebaje", "hueco", "rebaje_nervio"):
+        g = B_(op["x0"], op["y0"], op["x1"], op["y1"])
+    else:
+        return None
+    if not O.SIM:
+        return g
+    a2 = O.PIN_A[:2] / np.linalg.norm(O.PIN_A[:2]); c = tuple(O.PIN_P[:2]); ang = math.degrees(math.atan2(a2[1], a2[0]))
+    m_ = affinity.rotate(affinity.scale(affinity.rotate(g, -ang, origin=c), xfact=-1, yfact=1, origin=c), ang, origin=c)
+    return unary_union([g, m_])
+
+
+def grow(op):
+    """Versiones mayores de la MISMA forma pura (R18)."""
+    t = op["tipo"]; out = []
+    if t == "agujero" and op["r"] + 1.5 <= 25:
+        out.append(dict(op, r=op["r"] + 1.5))
+    elif t == "ranura":
+        if max(op["r1"], op["r2"]) + 1.5 <= 20:
+            out.append(dict(op, r1=op["r1"] + 1.5, r2=op["r2"] + 1.5))
+        L = math.hypot(op["x2"] - op["x1"], op["y2"] - op["y1"])
+        if L > 0.5:
+            ux, uy = (op["x2"] - op["x1"]) / L, (op["y2"] - op["y1"]) / L
+            out.append(dict(op, x1=round(op["x1"] - 3 * ux, 2), y1=round(op["y1"] - 3 * uy, 2),
+                            x2=round(op["x2"] + 3 * ux, 2), y2=round(op["y2"] + 3 * uy, 2)))
+    elif t == "bolsillo_ranura":
+        if op["r"] + 1.5 <= 18:
+            out.append(dict(op, r=op["r"] + 1.5))
+        L = math.hypot(op["x2"] - op["x1"], op["y2"] - op["y1"])
+        if L > 0.5:
+            ux, uy = (op["x2"] - op["x1"]) / L, (op["y2"] - op["y1"]) / L
+            out.append(dict(op, x1=round(op["x1"] - 3 * ux, 2), y1=round(op["y1"] - 3 * uy, 2),
+                            x2=round(op["x2"] + 3 * ux, 2), y2=round(op["y2"] + 3 * uy, 2)))
+    elif t == "rebaje":
+        out.append(dict(op, x0=op["x0"] - 2, x1=op["x1"] + 2, y0=op["y0"] - 2, y1=op["y1"] + 2))
+    return out
 
 
 def propose(C, m, ops, st, E, stats, n_max=3, solid=None):
@@ -828,12 +890,74 @@ def propose(C, m, ops, st, E, stats, n_max=3, solid=None):
                                     f"(medida en el CAD) que trabaja como maximo al {w['smax'] / lim * 100:.0f} % del limite: casi no aporta "
                                     f"seccion, se imprime mal y la malla no la resuelve. Se quita con un vaciado de techo a 45 grados." + ev("R16")),
                             espero=dict(dm_g=-1.0, dsig_pct=0.0, txt="la tension no cambia; la malla mejora")))
+    # ---------------- R18: agrandar formas puras existentes (solo si su borde no trabaja)
+    if PURAS and ok("R18"):
+        from shapely.geometry import Point as P_
+        from shapely.prepared import prep as prep_
+        tau_g = TAUS[min(st.get("tau_idx", 0), len(TAUS) - 1)]
+        cuts = [(k, o, footprint2d(o)) for k, o in enumerate(ops) if o["tipo"] in O.QUITA]
+        for k, o, f0 in cuts:
+            if f0 is None:
+                continue
+            for g_op in grow(o):
+                f1 = footprint2d(g_op)
+                band = f1.difference(f0)
+                if band.area < 5:
+                    continue
+                others = [fo for kk, oo, fo in cuts if kk != k and fo is not None]
+                if any(0.0 < f1.distance(fo) < 4.0 for fo in others):
+                    continue                                     # dejaria una pared fina con otro corte
+                pb = prep_(band.buffer(3.0)); pin = prep_(band)
+                zc_ = C.cen[:, 2]
+                zmax = g_op.get("z1", 1e9) + 3.0 if g_op["tipo"] in ("bolsillo_ranura", "hueco") else 1e9
+                zmin = g_op.get("zc", -1e9) - 3.0 if g_op["tipo"] == "rebaje" else -1e9
+                cand = np.flatnonzero((zc_ < zmax) & (zc_ > zmin))
+                near = np.array([i for i in cand if pb.contains(P_(C.cen[i, 0], C.cen[i, 1]))], int)
+                inb = np.array([i for i in near if pin.contains(P_(C.cen[i, 0], C.cen[i, 1]))], int)
+                # ESO: decide la tension del material QUE SE QUITA (la banda); el borde actual siempre tiene la concentracion
+                # del propio hueco. Despues ANSYS confirma.
+                if not len(inb) or C.smax[inb].max() >= 0.75 * lim:
+                    continue
+                V = float(C.vol[inb][~C.prot[inb]].sum())
+                if V < 150 or veto(g_op):
+                    continue
+                new_ops = ops[:k] + [g_op] + ops[k + 1:]
+                rem.append(dict(regla="R18", op=g_op, ops_nuevas=new_ops, reconstruir=True, V=V,
+                                titulo=f"agrandar: {O.describe(g_op)}",
+                                porque=(f"El material que rodea la operacion {k + 1} ({O.describe(o)}) y se quitaria al agrandarla trabaja "
+                                        f"como maximo al {C.smax[inb].max() / lim * 100:.0f} % del limite: se agranda la MISMA forma (quita ~{V * RHO * 1000 * 2:.0f} g "
+                                        f"con su simetrico) en vez de anadir otro hueco." + ev("R18")),
+                                espero=dict(dm_g=-V * RHO * 1000 * 2, dsig_pct=0.5, txt="baja la masa; la tension casi no cambia")))
+    # ---------------- FORMAS PURAS: un corte nuevo no puede solapar a medias otro ni dejar una pared de menos de 4 mm
+    if PURAS:
+        cuts_fp = [footprint2d(o) for o in ops if o["tipo"] in O.QUITA]
+        cuts_fp = [f for f in cuts_fp if f is not None]
+        keep2, n_bad = [], 0
+        for cnd in rem:
+            if cnd["regla"] in ("R16", "R17", "R18", "R11", "R8"):
+                keep2.append(cnd); continue
+            f = footprint2d(cnd["op"])
+            if f is None:
+                keep2.append(cnd); continue
+            bad = False
+            for g in cuts_fp:
+                inter = f.intersection(g).area
+                if (inter > 1.0 and inter < 0.95 * f.area) or (0.0 < f.distance(g) < 4.0):
+                    bad = True; break
+            if bad:
+                n_bad += 1
+            else:
+                keep2.append(cnd)
+        if n_bad:
+            notes.append(f"{n_bad} propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de "
+                         "menos de 4 mm: la pieza se mantiene hecha de formas simples)")
+        rem = keep2
     # ---------------- SIMETRIA EFECTIVA: cada corte debe quitar parecido material en los dos lados
     if O.SIM:
         keep = []
         for cnd in rem:
             op = cnd["op"]
-            if op["tipo"] not in ("agujero", "rebaje", "hueco", "rebaje_nervio") or cnd["regla"] in ("R16", "R17"):
+            if op["tipo"] not in ("agujero", "rebaje", "hueco", "rebaje_nervio") or cnd["regla"] in ("R16", "R17", "R18"):
                 keep.append(cnd); continue
             va, vb = side_volumes(C, op)
             if max(va, vb) > 0 and min(va, vb) < 0.75 * max(va, vb):

@@ -313,3 +313,24 @@
   - **R16:** eliminar láminas finas ociosas, medidas en el CAD, con un vaciado de techo a 45°.
   - **R17:** unir dos aligeramientos separados por una pared fina ociosa en una ranura.
   - Cada iteración prueba al menos una de estas propuestas si existen.
+
+## 2026-11-24 – Formas geométricas puras (fabricabilidad)
+
+- **Petición del grupo:** sustituir el vaciado irregular de la mejor pieza por formas puras, sin dejar de mejorar masa y tensión.
+- **Situación de partida:** mejor pieza de 2,0776 kg (195,2 MPa; malla fina 210,1) con 23 operaciones. Muchas se superponían: 8 aligeramientos de diámetros distintos y 8 bolsillos inferiores de tamaños distintos (más sus simétricos).
+- **Método** (`scripts/simplificar_formas.py`):
+  - se agrupan los cortes que se tocan;
+  - en cada grupo se colocan formas puras (círculo, ranura u obround) **inscritas** en lo ya vaciado, en planta y bajo el techo a 45° de los bolsillos originales, con 0,8 mm de tolerancia;
+  - así no se quita material que ANSYS no haya validado, y entre formas o se solapan o quedan a ≥ 4 mm (sin paredes finas).
+- **Pruebas en ANSYS:**
+
+  | Variante | Masa | Tensión | Resultado |
+  |---|---|---|---|
+  | Formas que mejor «se parecen» (máxima coincidencia, 63–70 %) | 2,063 kg | 391 MPa | se comen material que trabajaba |
+  | Inscritas con paredes de ~2 mm entre ellas | — | 277,5 MPa | pico en la pared fina nueva |
+  | **Inscritas sin paredes finas** | **2,1876 kg** | **193,7 MPa** | 23 → 14 operaciones, menos tensión que la irregular, +110 g |
+
+- **Nueva operación** `bolsillo_ranura`: bolsillo desde la cara de apoyo con planta de ranura y techo a 45° (dos conos y una cuña).
+- **Modo formas puras** (`formas_puras` en `config.json`):
+  - un corte nuevo no puede solapar a medias otro ni quedar a menos de 4 mm;
+  - nueva regla **R18**: agrandar la misma forma (radio +1,5 mm o 3 mm más por extremo) si el material que se quitaría trabaja por debajo del 75 % del límite. Es el crecimiento de contorno de ESO; ANSYS confirma cada paso.

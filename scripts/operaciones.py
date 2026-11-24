@@ -398,9 +398,33 @@ def op_ranura(solid, x1, y1, r1, x2, y2, r2):
     return cut(solid, tool, "la ranura")
 
 
+def op_bolsillo_ranura(solid, x1, y1, x2, y2, r, z1, z0=-1.0):
+    """Bolsillo desde la cara de apoyo con planta de RANURA (forma pura: dos semicirculos y dos rectas) y techo a 45 grados
+    (dos conos en los extremos y una cuna en el tramo recto: imprimible sin soportes). Si el techo pasaria de z1 se corta
+    plano a esa altura (tramo plano de 2 (r - (z1 - z0)) mm como mucho)."""
+    h = r * G.AM_T
+    L = math.hypot(x2 - x1, y2 - y1)
+    parts = [cq.Solid.makeCone(r, 0.0, h, cq.Vector(x1, y1, z0), cq.Vector(0, 0, 1))]
+    if L > 0.2:
+        parts.append(cq.Solid.makeCone(r, 0.0, h, cq.Vector(x2, y2, z0), cq.Vector(0, 0, 1)))
+        ux, uy = (x2 - x1) / L, (y2 - y1) / L
+        nx, ny = -uy, ux
+        tri = cq.Wire.makePolygon([cq.Vector(x1 + nx * r, y1 + ny * r, z0), cq.Vector(x1 - nx * r, y1 - ny * r, z0),
+                                   cq.Vector(x1, y1, z0 + h)], close=True)
+        parts.append(cq.Solid.extrudeLinear(cq.Face.makeFromWires(tri), cq.Vector(ux * L, uy * L, 0)))
+    roof = parts[0]
+    for q in parts[1:]:
+        roof = roof.fuse(q)
+    if z0 + h > z1:
+        bb = roof.BoundingBox()
+        roof = roof.intersect(cq.Solid.makeBox(bb.xlen + 2, bb.ylen + 2, z1 - z0 + 1, cq.Vector(bb.xmin - 1, bb.ymin - 1, z0 - 1)))
+    tool = sym(roof).cut(protected())
+    return cut(solid, tool, "el bolsillo en ranura")
+
+
 OPS = dict(agujero=op_agujero, rebaje=op_rebaje, hueco=op_hueco, collar=op_collar, alojamiento=op_alojamiento,
-           redondeo=op_redondeo, orejeta=op_orejeta, nervio=op_nervio, ranura=op_ranura)
-QUITA = ("agujero", "rebaje", "hueco", "ranura")
+           redondeo=op_redondeo, orejeta=op_orejeta, nervio=op_nervio, ranura=op_ranura, bolsillo_ranura=op_bolsillo_ranura)
+QUITA = ("agujero", "rebaje", "hueco", "ranura", "bolsillo_ranura")
 ANADE = ("collar", "alojamiento", "redondeo", "orejeta", "nervio")
 
 
@@ -411,11 +435,15 @@ def apply(solid, op):
 
 def describe(op):
     d = _describe(op)
-    return d + (" (y su simetrico)" if SIM and op["tipo"] in ("agujero", "rebaje", "hueco", "redondeo", "nervio", "ranura") else "")
+    return d + (" (y su simetrico)" if SIM and op["tipo"] in ("agujero", "rebaje", "hueco", "redondeo", "nervio", "ranura",
+                                                               "bolsillo_ranura") else "")
 
 
 def _describe(op):
     t = op["tipo"]
+    if t == "bolsillo_ranura":
+        return (f"bolsillo en ranura desde la cara de apoyo, {2 * op['r']:.0f} mm de ancho, de ({op['x1']:.0f}, {op['y1']:.0f}) a "
+                f"({op['x2']:.0f}, {op['y2']:.0f}), hasta z = {op['z1']:.0f} mm (techo a 45 grados)")
     if t == "ranura":
         return (f"ranura que une los aligeramientos de ({op['x1']:.0f}, {op['y1']:.0f}) y ({op['x2']:.0f}, {op['y2']:.0f}) "
                 f"(quita la pared fina entre ellos)")
@@ -464,6 +492,9 @@ def size(op):
 def box_of(op):
     """Caja (x0,x1,y0,y1,z0,z1) que ocupa la herramienta (para distancias y solapes)."""
     t = op["tipo"]
+    if t == "bolsillo_ranura":
+        return (min(op["x1"], op["x2"]) - op["r"], max(op["x1"], op["x2"]) + op["r"], min(op["y1"], op["y2"]) - op["r"],
+                max(op["y1"], op["y2"]) + op["r"], op.get("z0", -1.0), op["z1"])
     if t == "ranura":
         return (min(op["x1"] - op["r1"], op["x2"] - op["r2"]), max(op["x1"] + op["r1"], op["x2"] + op["r2"]),
                 min(op["y1"] - op["r1"], op["y2"] - op["r2"]), max(op["y1"] + op["r1"], op["y2"] + op["r2"]), -30.0, 150.0)
