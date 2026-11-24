@@ -1,6 +1,6 @@
 # Reglas de diseno del soporte (DESIGN_RULES)
 
-Actualizado: 24/11/2026 09:13. Generado por `scripts/reglas.py` a partir de:
+Actualizado: 24/11/2026 09:19. Generado por `scripts/reglas.py` a partir de:
 
 1. **Estudio de las soluciones publicadas** (SimJEB: los 381 disenos del GE Jet Engine Bracket Challenge, Whalen et al. 2021, doi:10.7910/DVN/XFUWJG) calculados con **nuestra** carga (42258 N en -X por el bulon, pernos empotrados) y **nuestro** limite (215 MPa, coef. de seguridad >= 1; desplazamiento <= 0.25 mm). Resultados: `estudio/estudio_simjeb.json`.
 2. **Nuestros calculos anteriores** (familias vaciado y refuerzo, 294 disenos con 37 800 N; el modelo es lineal y se escalan x1.118). Datos: `estudio/calculos_anteriores.csv`.
@@ -45,12 +45,12 @@ Los mas ligeros que cumplen (son la referencia de lo que se puede conseguir; NO 
 - **Porque:** ese material no esta en el camino de la carga (bulon -> orejetas -> cuerpo -> pernos). Un agujero en una zona a tension s multiplica la tension en su borde por Kt ~ 3 (placa con agujero circular, Kirsch): si todo alrededor esta por debajo del umbral u, el borde queda por debajo de ~3u del limite y el pico no cambia.
 - **Espero:** baja la masa; la tension maxima casi no cambia.
 - **Evidencia (respaldada por los datos):** en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
-- **Aplicada en el optimizador:** 360 veces (5 descartadas en la evaluacion rapida, 177 aceptadas, 4 rechazadas); tension +1.9 % (mediana), masa -16 g (mediana).
-  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.9 % real (mediana de 181)
-  - iteracion 185: aceptada: aligeramiento pasante vertical D10 mm en (43, -98) (tension +0.6 %, masa -17 g)
+- **Aplicada en el optimizador:** 361 veces (5 descartadas en la evaluacion rapida, 178 aceptadas, 4 rechazadas); tension +1.6 % (mediana), masa -16 g (mediana).
+  - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -0.0 % frente a +1.6 % real (mediana de 182)
   - iteracion 186: rechazada: aligeramiento pasante vertical D16 mm en (67, -23) (tension +2.2 %, masa -12 g)
   - iteracion 1: rechazada: aligeramiento pasante vertical D12 mm en (40, -71) (y su sim (tension +2.9 %, masa -44 g)
   - iteracion 3: aceptada: aligeramiento pasante vertical D16 mm en (49, -56) (y su sim (tension +2.5 %, masa -54 g)
+  - iteracion 4: aceptada: aligeramiento pasante vertical D12 mm en (4, -74) (y su sime (tension -0.2 %, masa -29 g)
 
 Referencia: los 16 disenos publicados VALIDOS.
 
@@ -141,7 +141,7 @@ Donde esta el material (cm3) - original frente a la mitad mas ligera del grupo d
 - **Porque:** la carga horizontal aplicada a 44,7 mm de altura crea un momento de vuelco (F x h ~ 1,9 kN m con 42 258 N) que la pieza lleva a los pernos; alrededor del alojamiento la seccion es pequena. Mas seccion -> menos tension (s ~ M / W). El soporte es simetrico respecto al plano medio de las orejetas (y ~ -75 mm): el perno simetrico trabaja igual.
 - **Espero:** baja la tension maxima; sube un poco la masa.
 - **Evidencia (respaldada por los datos):** prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.
-- **Aplicada en el optimizador:** 2 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -15.2 % (mediana), masa +81 g (mediana).
+- **Aplicada en el optimizador:** 4 veces (0 descartadas en la evaluacion rapida, 1 aceptadas, 0 rechazadas); tension -15.2 % (mediana), masa +81 g (mediana).
   - calibracion de la evaluacion rapida (malla gruesa): cambio de tension previsto -6.8 % frente a -15.2 % real (mediana de 1)
   - iteracion 1: aceptada: collar de 6 mm en los pernos 1 y 3 (tension -15.2 %, masa +81 g)
 

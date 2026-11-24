@@ -1,0 +1,15 @@
+inicio script Mechanical
+caras del solido: 569
+escala 1000.0 -> caras pernos por agujero [0, 0, 0, 0], caras bulon 0
+escala 1.0 -> caras pernos por agujero [2, 2, 2, 2], caras bulon 4
+condiciones creadas; mallando
+malla: 25299 nodos, 12670 elementos
+MONTAJE OK
+resuelto. estado: NotSolved
+Equivalent Stress: max 0 [MPa]
+Total Deformation: max 0 [mm]
+Desplazamiento X: max 0 [mm]
+Desplazamiento Y: max 0 [mm]
+Desplazamiento Z: max 0 [mm]
+Equivalent Elastic Strain: max 0 [mm mm^-1]
+FIN OK
