@@ -1,6 +1,6 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 12:28 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 12:30 &nbsp;|&nbsp; **Estado:** TERMINADO: 8 iteraciones seguidas sin mejorar: las reglas ya no encuentran mejoras &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
@@ -10,7 +10,7 @@ La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada it
 
 ## Mejor diseno
 
-**2.2410 kg** (-7.5 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.146 mm** &nbsp;|&nbsp; iteracion 20
+**2.2410 kg** (-7.5 % frente al original, 2.423 kg) &nbsp;|&nbsp; tension **199.3 MPa** &nbsp;|&nbsp; coef. seguridad **1.08** &nbsp;|&nbsp; desplazamiento **0.146 mm** &nbsp;|&nbsp; iteracion 20 &nbsp;|&nbsp; **malla fina: 211.1 MPa**
 
 Operaciones sobre el original:
 
@@ -28,7 +28,7 @@ Operaciones sobre el original:
 12. bolsillo desde la cara de apoyo 28 x 24 mm, hasta z = 10 mm (techo a 45 grados) en (16, -100) (y su simetrico)
 13. bolsillo desde la cara de apoyo 36 x 20 mm, hasta z = 7 mm (techo a 45 grados) en (20, -110) (y su simetrico)
 
-Ultimo hito verificado (2.259 kg, iteracion 19): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/07_it019_2.259kg/workbench/soporte_it019.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/07_it019_2.259kg/geometria.step)
+Ultimo hito verificado (2.241 kg, iteracion 20): [Proyecto Workbench (.wbpz)](runs/opt_42258N/historial/08_it020_2.241kg/workbench/soporte_it020.wbpz) &nbsp;|&nbsp; [Geometria STEP](runs/opt_42258N/historial/08_it020_2.241kg/geometria.step)
 
 ![mejor diseno](runs/opt_42258N/galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg)
 

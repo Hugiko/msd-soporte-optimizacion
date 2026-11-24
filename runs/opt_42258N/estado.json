@@ -242,7 +242,14 @@
    "valido": true
   },
   "iter": 20,
-  "galeria": "galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg"
+  "galeria": "galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg",
+  "verif": {
+   "vm_metric": 211.0814,
+   "u_max": 0.15176302542770423,
+   "n_nodes": 111606,
+   "ok": true
+  },
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\08_it020_2.241kg"
  },
  "verificado": {
   "ops": [
@@ -328,33 +335,43 @@
     "z0": -1.0,
     "z1": 10.0,
     "rr": 1.5
+   },
+   {
+    "tipo": "hueco",
+    "x0": 1.52,
+    "x1": 37.52,
+    "y0": -120.32,
+    "y1": -100.32,
+    "z0": -1.0,
+    "z1": 7.0,
+    "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\019\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\020\\completa",
   "m": {
-   "mass_kg": 2.2593321442,
-   "vm_metric": 199.6013,
-   "u_max": 0.1462212884728281,
+   "mass_kg": 2.2410245469,
+   "vm_metric": 199.3087,
+   "u_max": 0.14623948611207455,
    "vm_metric_xyz": [
     16.721685350674203,
     -141.97168205546467,
     13.389599953816933
    ],
-   "n_nodes": 87832,
-   "cs": 1.0771472931288524,
-   "viol": 0.9929004202325581,
-   "score": 2.2593321442,
+   "n_nodes": 89430,
+   "cs": 1.07872862549402,
+   "viol": 0.9914449053488371,
+   "score": 2.2410245469,
    "valido": true
   },
-  "iter": 19,
-  "galeria": "galeria/20261124_120139_it019_ACEPTADA_2.259kg.jpg",
+  "iter": 20,
+  "galeria": "galeria/20261124_120623_it020_ACEPTADA_2.241kg.jpg",
   "verif": {
-   "vm_metric": 209.7272,
-   "u_max": 0.15171267565622193,
-   "n_nodes": 109778,
+   "vm_metric": 211.0814,
+   "u_max": 0.15176302542770423,
+   "n_nodes": 111606,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\07_it019_2.259kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\08_it020_2.241kg"
  },
  "tau_idx": 3,
  "rechazos": [
@@ -1676,7 +1693,7 @@
  "sin_mejora": 8,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.2593321442,
+ "wb_masa": 2.2410245469,
  "fin": true,
  "motivo_fin": "8 iteraciones seguidas sin mejorar: las reglas ya no encuentran mejoras",
  "historia": [
@@ -3651,6 +3668,10 @@
   [
    1.0507,
    1.0376
+  ],
+  [
+   1.0591,
+   1.0378
   ]
  ],
  "estudio_anunciado": true,
