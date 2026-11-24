@@ -1,16 +1,16 @@
 {
- "iter": 11,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\05_it011_2.293kg",
- "mass_kg": 2.2925156956000006,
- "vm_metric": 199.3109,
- "u_max": 0.14567388890910485,
- "coef_seguridad": 1.0787167184534312,
- "puntuacion": 2.2925156956000006,
+ "iter": 17,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\06_it017_2.293kg",
+ "mass_kg": 2.2925151775000003,
+ "vm_metric": 199.3091,
+ "u_max": 0.14569007749145343,
+ "coef_seguridad": 1.0787264605579976,
+ "puntuacion": 2.2925151775000003,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 213.8309,
-  "u_max": 0.15121683683500756,
-  "n_nodes": 108996,
+  "vm_metric": 213.1595,
+  "u_max": 0.1511963423016301,
+  "n_nodes": 108856,
   "ok": true
  },
  "operaciones": [
@@ -25,6 +25,6 @@
   "aligeramiento pasante vertical D10 mm en (19, -74) (y su simetrico)",
   "aligeramiento pasante vertical D8 mm en (43, -44) (y su simetrico)"
  ],
- "fecha": "2026-11-24T09:47:01",
+ "fecha": "2026-11-24T11:54:09",
  "final": false
 }
