@@ -1,5 +1,5 @@
 {
- "iter": 54,
+ "iter": 55,
  "actual": {
   "ops": [
    {
@@ -31,7 +31,7 @@
     "tipo": "agujero",
     "x": 48.52,
     "y": -56.32,
-    "r": 8.0
+    "r": 4.8
    },
    {
     "tipo": "agujero",
@@ -153,40 +153,24 @@
     "rr": 1.5
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\052\\completa",
+  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\055\\completa",
   "m": {
-   "mass_kg": 2.2001961317,
-   "vm_metric": 203.032,
-   "u_max": 0.14960099659358642,
+   "mass_kg": 2.2403814435000005,
+   "vm_metric": 195.4241,
+   "u_max": 0.14850067659269545,
    "vm_metric_xyz": [
-    57.492360251601,
-    -88.34349146243,
-    -8.072793278302e-08
+    43.71129621965127,
+    -4.871358378014962,
+    10.388599920493004
    ],
-   "n_nodes": 96720,
-   "cs": 1.058946372985539,
-   "viol": 0.99891744,
-   "score": 2.2001961317,
+   "n_nodes": 97438,
+   "cs": 1.10017137088005,
+   "viol": 0.9614865720000001,
+   "score": 2.2403814435000005,
    "valido": true
   },
-  "rapida": {
-   "mass_kg": 2.2156101876000003,
-   "vm_metric": 201.521,
-   "u_max": 0.14970004110756416,
-   "vm_metric_xyz": [
-    -1.691202685357954,
-    -89.67844819679729,
-    57.839233806248224
-   ],
-   "n_nodes": 56102,
-   "cs": 1.066886329464423,
-   "viol": 0.9914833200000001,
-   "score": 2.2156101876000003,
-   "valido": true,
-   "algo": 10,
-   "h": 6.0
-  },
-  "galeria": "galeria/20261124_190835_it052_ACEPTADA_2.200kg.jpg"
+  "rapida": null,
+  "galeria": "galeria/20261124_193125_it055_INVERSION_2.240kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -529,7 +513,7 @@
   },
   "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\10_it047_2.221kg"
  },
- "tau_idx": 3,
+ "tau_idx": 0,
  "rechazos": [
   {
    "op": {
@@ -626,17 +610,6 @@
   },
   {
    "op": {
-    "tipo": "agujero",
-    "x": 37.33,
-    "y": -64.61,
-    "r": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 40
-  },
-  {
-   "op": {
     "tipo": "redondeo",
     "x": 57.49,
     "y": -88.34,
@@ -646,17 +619,6 @@
    "motivo_tipo": "geometria",
    "regla": "R6",
    "iter": 42
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": -7.67,
-    "y": -73.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 43
   },
   {
    "op": {
@@ -676,81 +638,6 @@
   {
    "op": {
     "tipo": "agujero",
-    "x": -19.67,
-    "y": -73.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 44
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -8.67,
-    "x1": 15.33,
-    "y0": -123.61,
-    "y1": -103.61,
-    "zc": 7.0,
-    "rr": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 45
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -31.61,
-    "r": 12.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 45
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -8.67,
-    "x1": 11.33,
-    "y0": -43.61,
-    "y1": -23.61,
-    "zc": 7.0,
-    "rr": 4.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 46
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 7.33,
-    "y": -115.61,
-    "r": 10.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 46
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -0.67,
-    "x1": 15.33,
-    "y0": -123.61,
-    "y1": -107.61,
-    "zc": 5.0,
-    "rr": 3.2
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 47
-  },
-  {
-   "op": {
-    "tipo": "agujero",
     "x": 1.33,
     "y": -28.61,
     "r": 6.0
@@ -758,75 +645,6 @@
    "motivo_tipo": "geometria",
    "regla": "R1",
    "iter": 47
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -0.67,
-    "x1": 11.33,
-    "y0": -43.61,
-    "y1": -23.61,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 48
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 7.33,
-    "y": -121.61,
-    "r": 6.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 48
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 15.33,
-    "x1": 43.33,
-    "y0": -111.61,
-    "y1": -79.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "tension",
-   "regla": "R14",
-   "iter": 48
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -8.67,
-    "x1": 3.33,
-    "y0": -127.61,
-    "y1": -103.61,
-    "zc": 7.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 49
-  },
-  {
-   "op": {
-    "tipo": "hueco",
-    "x0": 15.33,
-    "x1": 43.33,
-    "y0": -67.61,
-    "y1": -35.61,
-    "z0": -1.0,
-    "z1": 12.0,
-    "rr": 1.5
-   },
-   "motivo_tipo": "tension",
-   "regla": "R14",
-   "iter": 49
   },
   {
    "op": {
@@ -845,34 +663,6 @@
   },
   {
    "op": {
-    "tipo": "rebaje",
-    "x0": -0.67,
-    "x1": 11.33,
-    "y0": -123.61,
-    "y1": -111.61,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 50
-  },
-  {
-   "op": {
-    "tipo": "rebaje",
-    "x0": -0.67,
-    "x1": 11.33,
-    "y0": -39.61,
-    "y1": -27.61,
-    "zc": 5.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R2",
-   "iter": 51
-  },
-  {
-   "op": {
     "tipo": "hueco",
     "x0": -4.67,
     "x1": 23.33,
@@ -884,17 +674,6 @@
    },
    "motivo_tipo": "geometria",
    "regla": "R14",
-   "iter": 51
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 37.33,
-    "y": -85.61,
-    "r": 5.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
    "iter": 51
   },
   {
@@ -918,39 +697,6 @@
    "motivo_tipo": "geometria",
    "regla": "R1",
    "iter": 52
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 1.33,
-    "y": -25.61,
-    "r": 5.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 53
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 10.33,
-    "y": -73.61,
-    "r": 8.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 54
-  },
-  {
-   "op": {
-    "tipo": "agujero",
-    "x": 4.33,
-    "y": -109.61,
-    "r": 5.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "R1",
-   "iter": 54
   }
  ],
  "stats": {
@@ -1072,7 +818,7 @@
    ]
   },
   "R1": {
-   "intentos": 401,
+   "intentos": 402,
    "descartadas_rapido": 21,
    "evaluadas": 200,
    "aceptadas": 185,
@@ -1774,14 +1520,23 @@
    ]
   },
   "R8": {
-   "intentos": 1,
+   "intentos": 2,
    "descartadas_rapido": 0,
-   "evaluadas": 0,
-   "aceptadas": 0,
+   "evaluadas": 1,
+   "aceptadas": 1,
    "rechazadas": 0,
-   "dsig": [],
-   "dm": [],
-   "ejemplos": []
+   "dsig": [
+    -3.75
+   ],
+   "dm": [
+    40.2
+   ],
+   "ejemplos": [
+    [
+     55,
+     "inversion: reducir la operacion 4 (aligeramiento pasante vertical D16 m (tension -3.7 %, masa +40 g)"
+    ]
+   ]
   },
   "R6": {
    "intentos": 3,
@@ -1794,7 +1549,7 @@
    "ejemplos": []
   },
   "R14": {
-   "intentos": 24,
+   "intentos": 25,
    "descartadas_rapido": 5,
    "evaluadas": 12,
    "aceptadas": 7,
@@ -1924,9 +1679,9 @@
    ]
   }
  },
- "sin_mejora": 2,
- "inversiones": 0,
- "inversion_desde": null,
+ "sin_mejora": 1,
+ "inversiones": 1,
+ "inversion_desde": 55,
  "wb_masa": 2.2206762871500003,
  "fin": false,
  "motivo_fin": "",
@@ -5560,6 +5315,82 @@
     "cs": 1.058946372985539,
     "viol": 0.99891744,
     "score": 2.2001961317,
+    "valido": true
+   }
+  },
+  {
+   "iter": 55,
+   "fecha": "2026-11-24T19:27:13.120089",
+   "antes": "2.2002 kg | 203.0 MPa | CS 1.06 | 0.150 mm",
+   "m_antes": {
+    "mass_kg": 2.2001961317,
+    "vm_metric": 203.032,
+    "u_max": 0.14960099659358642,
+    "vm_metric_xyz": [
+     57.492360251601,
+     -88.34349146243,
+     -8.072793278302e-08
+    ],
+    "n_nodes": 96720,
+    "cs": 1.058946372985539,
+    "viol": 0.99891744,
+    "score": 2.2001961317,
+    "valido": true
+   },
+   "notas": [
+    "umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "umbral 45 %: 6 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)",
+    "R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 45 %",
+    "el cambio baja la tension un 3.7 %: se vuelven a permitir los 19 cortes que se habian rechazado por tension con menos margen"
+   ],
+   "descartes": [
+    {
+     "regla": "R1",
+     "titulo": "aligeramiento pasante vertical D10 mm en (1, -38) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1671 kg | 203.1 MPa | CS 1.06 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    },
+    {
+     "regla": "R14",
+     "titulo": "bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 45 grados) en (-31, -76) (y su simetrico)",
+     "motivo": "pasa la evaluacion rapida (2.1923 kg | 202.2 MPa | CS 1.06 | 0.150 mm) pero otra es mas prometedora; se podra proponer de nuevo"
+    }
+   ],
+   "regla": "R8",
+   "titulo": "reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico))",
+   "porque": "El pico (203 MPa) esta a 0.0 mm del corte 4 (aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)): ese material SI estaba en el camino de carga. Se reduce el corte a 0,6 veces su tamano. Evidencia: regla de procedimiento: se juzga por sus resultados en el optimizador.",
+   "espero": "baja el pico (vuelve material a donde trabaja) (refuerzo: sin evaluacion rapida)",
+   "m_cand": {
+    "mass_kg": 2.2403814435000005,
+    "vm_metric": 195.4241,
+    "u_max": 0.14850067659269545,
+    "vm_metric_xyz": [
+     43.71129621965127,
+     -4.871358378014962,
+     10.388599920493004
+    ],
+    "n_nodes": 97438,
+    "cs": 1.10017137088005,
+    "viol": 0.9614865720000001,
+    "score": 2.2403814435000005,
+    "valido": true
+   },
+   "despues": "2.2404 kg | 195.4 MPa | CS 1.10 | 0.149 mm (tension -3.7 %, masa +40 g)",
+   "decision": "INVERSION",
+   "motivo": "refuerzo eficiente: compra 3.7 % de margen de tension con +40 g (1.8 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)",
+   "galeria": "galeria/20261124_193125_it055_INVERSION_2.240kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2403814435000005,
+    "vm_metric": 195.4241,
+    "u_max": 0.14850067659269545,
+    "vm_metric_xyz": [
+     43.71129621965127,
+     -4.871358378014962,
+     10.388599920493004
+    ],
+    "n_nodes": 97438,
+    "cs": 1.10017137088005,
+    "viol": 0.9614865720000001,
+    "score": 2.2403814435000005,
     "valido": true
    }
   }

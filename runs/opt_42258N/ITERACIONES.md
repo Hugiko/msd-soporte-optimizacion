@@ -2,6 +2,24 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 55 - INVERSION: R8 reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico))
+
+*2026-11-24 19:27*
+
+- **Pieza de partida:** 2.2002 kg | 203.0 MPa | CS 1.06 | 0.150 mm
+- **Por que (regla R8):** El pico (203 MPa) esta a 0.0 mm del corte 4 (aligeramiento pasante vertical D16 mm en (49, -56) (y su simetrico)): ese material SI estaba en el camino de carga. Se reduce el corte a 0,6 veces su tamano. Evidencia: regla de procedimiento: se juzga por sus resultados en el optimizador.
+- **Se esperaba:** baja el pico (vuelve material a donde trabaja) (refuerzo: sin evaluacion rapida)
+- **Resultado (malla completa):** 2.2404 kg | 195.4 MPa | CS 1.10 | 0.149 mm (tension -3.7 %, masa +40 g)
+- **Decision:** INVERSION - refuerzo eficiente: compra 3.7 % de margen de tension con +40 g (1.8 % de masa); ese margen se gastara aligerando en las siguientes iteraciones (si no, se deshace)
+- Descartada en la evaluacion rapida: [R1] aligeramiento pasante vertical D10 mm en (1, -38) (y su simetrico) -> pasa la evaluacion rapida (2.1671 kg | 203.1 MPa | CS 1.06 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Descartada en la evaluacion rapida: [R14] bolsillo desde la cara de apoyo 28 x 64 mm, hasta z = 12 mm (techo a 45 grados) en (-31, -76) (y su simetrico) -> pasa la evaluacion rapida (2.1923 kg | 202.2 MPa | CS 1.06 | 0.150 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 3 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: umbral 45 %: 6 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 45 %
+- Nota: el cambio baja la tension un 3.7 %: se vuelven a permitir los 19 cortes que se habian rechazado por tension con menos margen
+
+<img src="galeria/20261124_193125_it055_INVERSION_2.240kg.jpg" width="520">
+
 ## Iteracion 54 - RECHAZADA: R1 aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)
 
 *2026-11-24 19:12*

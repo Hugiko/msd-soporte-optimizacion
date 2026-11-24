@@ -1,12 +1,12 @@
 # Optimizacion del soporte guiada por reglas - panel en directo
 
-> **Ultima actualizacion:** 24/11/2026 19:15 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
+> **Ultima actualizacion:** 24/11/2026 19:31 &nbsp;|&nbsp; **Estado:** EN MARCHA &nbsp;|&nbsp; carga **42258 N** &nbsp;|&nbsp; limite **215 MPa** (coef. de seguridad >= 1.00, obligatorio) y 0.25 mm &nbsp;|&nbsp; acero S235
 
 La pieza parte del **0.stp del enunciado** y se modifica paso a paso: en cada iteracion una **regla de diseno** (sacada del estudio de las soluciones publicadas y de nuestros calculos, ver [DESIGN_RULES.md](DESIGN_RULES.md)) propone anadir material donde esta el pico, quitarlo donde no trabaja o **crear formas nuevas** (nervios en la direccion principal de tension, dimensionados con la carga que llevan), siempre **con su porque**; se prueba en ANSYS y se acepta o se revierte. Objetivo: **minima masa** con la tension y el desplazamiento como limites obligatorios. Cada cambio esta en [ITERACIONES.md](runs/opt_42258N/ITERACIONES.md).
 
 | iteraciones | aceptadas | inversiones | rechazadas | sin cambio | descartadas en la evaluacion rapida |
 |---|---|---|---|---|---|
-| 54 | 18 | 3 | 23 | 8 | 81 |
+| 55 | 18 | 4 | 23 | 8 | 83 |
 
 ## Mejor diseno
 
@@ -48,6 +48,7 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 
 | iteracion | decision | regla | modificacion | resultado | motivo |
 |---|---|---|---|---|---|
+| 55 | INVERSION | R8 | reducir la operacion 4 (aligeramiento pasante vertical D16 mm en (49,  | 2.240 kg, 195 MPa | refuerzo eficiente: compra 3.7 % de margen de tension con +40 g (1.8 % de masa); ese marge |
 | 54 | RECHAZADA | R1 | aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico) | 2.165 kg, 208 MPa | no cumple: 208.1 MPa con la malla normal, que corregidos a malla fina (x1.058) son 220.1 M |
 | 53 | RECHAZADA | R1 | aligeramiento pasante vertical D10 mm en (1, -26) (y su simetrico) | 2.164 kg, 208 MPa | no cumple: 208.4 MPa con la malla normal, que corregidos a malla fina (x1.058) son 220.5 M |
 | 52 | ACEPTADA | R14 | bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 | 2.200 kg, 203 MPa | cumple y mejora al mejor (puntuacion 2.2207 -> 2.2002; masa 2.2207 -> 2.2002 kg) |
@@ -59,7 +60,6 @@ Grafico interactivo: [evolucion_interactiva.html](runs/opt_42258N/evolucion_inte
 | 46 | RECHAZADA | R1 | aligeramiento pasante vertical D20 mm en (7, -116) (y su simetrico) | 2.081 kg, 292 MPa | no cumple: 292.4 MPa con la malla normal, que corregidos a malla fina (x1.058) son 309.3 M |
 | 45 | RECHAZADA | R1 | aligeramiento pasante vertical D24 mm en (4, -32) (y su simetrico) | 2.024 kg, 594 MPa | no cumple: 594.1 MPa con la malla normal, que corregidos a malla fina (x1.058) son 628.4 M |
 | 44 | SIN CAMBIO | - | - | - | todas las modificaciones propuestas se descartaron en la evaluacion rapida |
-| 43 | ACEPTADA | R3 | hueco interior 12 x 16 x 8 mm (techo a 45 grados + evacuacion D5) en ( | 2.236 kg, 201 MPa | cumple y mejora al mejor (puntuacion 2.2433 -> 2.2362; masa 2.2433 -> 2.2362 kg) |
 
 ---
 
