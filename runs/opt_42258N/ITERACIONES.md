@@ -2,6 +2,23 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 66 - ACEPTADA: R1 aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)
+
+*2026-11-24 20:20*
+
+- **Pieza de partida:** 2.1213 kg | 203.3 MPa | CS 1.06 | 0.154 mm
+- **Por que (regla R1):** Toda la columna en (4, -110) hasta 8 mm de radio trabaja como maximo al 41 % del limite (umbral de material ocioso: 45 %): no esta en el camino de la carga. Con Kt ~ 3 el borde del agujero quedaria por debajo del ~100 %; el pico (203 MPa, en alrededor de los pernos traseros) esta a 41 mm. Evidencia: en los 16 disenos publicados VALIDOS, la mitad mas ligera tiene un 25 % de material ocioso (por debajo del 15 % de su pico) frente al 51 % del original; en ese grupo, a mas material ocioso mas masa (Spearman +0.55). Agujeros pasantes: en ese grupo, a mas agujeros pasantes (genus de la malla) menos masa (Spearman -0.11, p = 0.69).
+- **Se esperaba:** mediana de las 204 veces que se ha aplicado: +1.9 % (prevision rapida: 2.0874 kg | 190.0 MPa | CS 1.13 | 0.156 mm)
+- **Resultado (malla completa):** 2.0858 kg | 197.0 MPa | CS 1.09 | 0.158 mm (tension -3.1 %, masa -35 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1213 -> 2.0858; masa 2.1213 -> 2.0858 kg)
+- Descartada en la evaluacion rapida: [R2] rebaje desde arriba hasta z = 5 mm en x 3..15, y -120..-108 mm (esquinas R3) (y su simetrico) -> tension prevista 218 MPa: supera el limite (215 MPa)
+- Descartada en la evaluacion rapida: [R16] eliminar la lamina de 0.9 mm en (31, -43, z 0..3) -> pasa la evaluacion rapida (2.1213 kg | 180.6 MPa | CS 1.19 | 0.153 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 45 %: 5 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R17 (Unir dos aligeramientos separados por una pared fina que no trabaja) suspendida: 8 intentos sin ninguna mejora
+- Nota: el cambio baja la tension un 3.1 %: se vuelven a permitir los 10 cortes que se habian rechazado por tension con menos margen
+
+<img src="galeria/20261124_202329_it066_ACEPTADA_2.086kg.jpg" width="520">
+
 ## Iteracion 65 - RECHAZADA: R1 aligeramiento pasante vertical D10 mm en (1, -41) (y su simetrico)
 
 *2026-11-24 20:15*

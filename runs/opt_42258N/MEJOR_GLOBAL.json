@@ -1,16 +1,16 @@
 {
- "iter": 59,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\12_it059_2.121kg",
- "mass_kg": 2.1212608806000004,
- "vm_metric": 203.2537,
- "u_max": 0.1542493122470928,
- "coef_seguridad": 1.0577913218799952,
- "puntuacion": 2.1212608806000004,
+ "iter": 66,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\13_it066_2.086kg",
+ "mass_kg": 2.0858363897000003,
+ "vm_metric": 197.0322,
+ "u_max": 0.15804039135731854,
+ "coef_seguridad": 1.091192201071703,
+ "puntuacion": 2.0858363897000003,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 209.9627,
-  "u_max": 0.16100419946377828,
-  "n_nodes": 117028,
+  "vm_metric": 209.8373,
+  "u_max": 0.16464492139444448,
+  "n_nodes": 116723,
   "ok": true
  },
  "operaciones": [
@@ -34,8 +34,9 @@
   "bolsillo desde la cara de apoyo 28 x 32 mm, hasta z = 12 mm (techo a 45 grados) en (9, -40) (y su simetrico)",
   "bolsillo desde la cara de apoyo 56 x 16 mm, hasta z = 6 mm (techo a 45 grados) en (35, -28) (y su simetrico)",
   "aligeramiento pasante vertical D20 mm en (43, -68) (y su simetrico)",
-  "aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico)"
+  "aligeramiento pasante vertical D16 mm en (37, -62) (y su simetrico)",
+  "aligeramiento pasante vertical D10 mm en (4, -110) (y su simetrico)"
  ],
- "fecha": "2026-11-24T19:56:18",
+ "fecha": "2026-11-24T20:25:45",
  "final": false
 }
