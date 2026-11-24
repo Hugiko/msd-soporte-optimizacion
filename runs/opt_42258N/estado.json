@@ -1,5 +1,5 @@
 {
- "iter": 14,
+ "iter": 15,
  "actual": {
   "ops": [
    {
@@ -424,22 +424,35 @@
    "motivo_tipo": "tension",
    "regla": "R3",
    "iter": 14
+  },
+  {
+   "op": {
+    "tipo": "collar",
+    "perno": 2,
+    "t": 9.0,
+    "z": 22.0
+   },
+   "motivo_tipo": "tension",
+   "regla": "R4",
+   "iter": 15
   }
  ],
  "stats": {
   "R4": {
-   "intentos": 13,
+   "intentos": 14,
    "descartadas_rapido": 0,
-   "evaluadas": 2,
+   "evaluadas": 3,
    "aceptadas": 1,
-   "rechazadas": 1,
+   "rechazadas": 2,
    "dsig": [
     -15.18,
-    -3.26
+    -3.26,
+    4.08
    ],
    "dm": [
     81.0,
-    46.4
+    46.4,
+    71.5
    ],
    "ejemplos": [
     [
@@ -449,11 +462,16 @@
     [
      9,
      "rechazada: collar de 8 mm en los pernos 3 y 1 (tension -3.3 %, masa +46 g)"
+    ],
+    [
+     15,
+     "rechazada: collar de 9 mm en los pernos 3 y 1 (tension +4.1 %, masa +71 g)"
     ]
    ],
    "dsig_prev": [
     -6.78,
-    1.72
+    1.72,
+    -0.11
    ]
   },
   "R11": {
@@ -1200,7 +1218,7 @@
    "ejemplos": []
   }
  },
- "sin_mejora": 3,
+ "sin_mejora": 4,
  "inversiones": 0,
  "inversion_desde": null,
  "wb_masa": 2.2925156956000006,
@@ -2196,6 +2214,66 @@
    "decision": "RECHAZADA",
    "motivo": "no cumple: 202.3 MPa con la malla normal, que corregidos a malla fina (x1.077) son 217.9 MPa > 215 MPa",
    "galeria": "galeria/20261124_112447_it014_RECHAZADA_2.282kg.jpg",
+   "m_actual": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   }
+  },
+  {
+   "iter": 15,
+   "fecha": "2026-11-24T11:24:52.974220",
+   "antes": "2.2925 kg | 199.3 MPa | CS 1.08 | 0.146 mm",
+   "m_antes": {
+    "mass_kg": 2.2925156956000006,
+    "vm_metric": 199.3109,
+    "u_max": 0.14567388890910485,
+    "vm_metric_xyz": [
+     16.721685350674203,
+     -141.97168205546467,
+     13.389599953816933
+    ],
+    "n_nodes": 86261,
+    "cs": 1.0787167184534312,
+    "viol": 0.9982231493953488,
+    "score": 2.2925156956000006,
+    "valido": true
+   },
+   "notas": [],
+   "descartes": [],
+   "regla": "R4",
+   "titulo": "collar de 9 mm en los pernos 3 y 1",
+   "porque": "El pico (199 MPa, 100 % del limite) esta junto al alojamiento del perno 3 (concentracion local x2.6). El momento de vuelco de la carga (F x 44,7 mm) llega a los pernos por una seccion pequena alrededor del alojamiento: un collar de 9 mm aumenta esa seccion. El perno 1 es su simetrico respecto al plano medio de las orejetas y trabaja igual. Evidencia: prueba directa en ANSYS sobre el original (bitacora 22/11): collares de 6 mm -> pico de 238 a 203 MPa (-15 %) con +159 g (escalado lineal a 42258 N); en 228 disenos de la familia refuerzo, mas collar delantero -> menos tension (Spearman -0.25, p = 0.00014); material junto a los pernos delanteros: original 25 cm3, mediana del grupo de referencia 37 cm3; en 104 de 297 disenos publicados calculados el pico esta junto a un perno.",
+   "espero": "mediana de las 2 veces que se ha aplicado: -9.2 % (prevision rapida: 2.3627 kg | 199.1 MPa | CS 1.08 | 0.143 mm)",
+   "m_cand": {
+    "mass_kg": 2.3640136447500004,
+    "vm_metric": 207.448,
+    "u_max": 0.1424770813887073,
+    "vm_metric_xyz": [
+     -1.4033595469271347,
+     -61.08153607239093,
+     57.50784598198372
+    ],
+    "n_nodes": 87538,
+    "cs": 1.0364043037291273,
+    "viol": 1.0389767739534885,
+    "score": 2.3640136447500004,
+    "valido": false
+   },
+   "despues": "2.3640 kg | 207.4 MPa | CS 1.04 | 0.142 mm (tension +4.1 %, masa +71 g)",
+   "decision": "RECHAZADA",
+   "motivo": "no cumple: 207.4 MPa con la malla normal, que corregidos a malla fina (x1.077) son 223.4 MPa > 215 MPa",
+   "galeria": "galeria/20261124_112653_it015_RECHAZADA_2.364kg.jpg",
    "m_actual": {
     "mass_kg": 2.2925156956000006,
     "vm_metric": 199.3109,
