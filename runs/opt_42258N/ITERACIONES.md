@@ -2,6 +2,22 @@
 
 Carga 42258 N | limite 215 MPa (coef. de seguridad >= 1.00) y 0.25 mm | reglas: [DESIGN_RULES.md](../../DESIGN_RULES.md) | la mas reciente arriba
 
+## Iteracion 78 - ACEPTADA: R18 agrandar: ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico)
+
+*2026-11-25 10:14*
+
+- **Pieza de partida:** 2.1556 kg | 193.7 MPa | CS 1.11 | 0.159 mm
+- **Por que (regla R18):** El material que rodea la operacion 5 (ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 58 % del limite: se agranda la MISMA forma (quita ~53 g con su simetrico) en vez de anadir otro hueco. Evidencia: crecimiento de contorno de la optimizacion evolutiva de estructuras (ESO, Xie y Steven): se quita material de baja tension en la frontera de los huecos.
+- **Se esperaba:** baja la masa; la tension casi no cambia (prevision rapida: 2.1269 kg | 193.1 MPa | CS 1.11 | 0.160 mm)
+- **Resultado (malla completa):** 2.1263 kg | 198.5 MPa | CS 1.08 | 0.161 mm (tension +2.4 %, masa -29 g)
+- **Decision:** ACEPTADA - cumple y mejora al mejor (puntuacion 2.1556 -> 2.1263; masa 2.1556 -> 2.1263 kg)
+- Descartada en la evaluacion rapida: [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico) -> pasa la evaluacion rapida (2.1537 kg | 196.0 MPa | CS 1.10 | 0.159 mm) pero otra es mas prometedora; se podra proponer de nuevo
+- Nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+- Nota: R10: ya no queda material por debajo del 15 % del limite donde quepa un corte -> se pasa al umbral del 35 %
+- Nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+
+<img src="galeria/20261125_102258_it078_ACEPTADA_2.126kg.jpg" width="520">
+
 ## Iteracion 77 - ACEPTADA: R18 agrandar: rebaje desde arriba hasta z = 9 mm en x 40..64, y -82..-66 mm (esquinas R3) (y su simetrico)
 
 *2026-11-24 21:47*
