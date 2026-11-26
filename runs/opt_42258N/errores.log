@@ -504,3 +504,58 @@ Traceback (most recent call last):
   File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
     raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
 RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+
+[2026-11-26 12:40:03]
+Traceback (most recent call last):
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 1172, in main
+    step(st, git, E)
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 864, in step
+    ref_q = current_quick(st)
+            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
+    raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
+RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+
+[2026-11-26 12:41:08]
+Traceback (most recent call last):
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 1172, in main
+    step(st, git, E)
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 864, in step
+    ref_q = current_quick(st)
+            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
+    raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
+RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+
+[2026-11-26 12:42:12]
+Traceback (most recent call last):
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 1172, in main
+    step(st, git, E)
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 864, in step
+    ref_q = current_quick(st)
+            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
+    raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
+RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+
+[2026-11-26 12:43:15]
+Traceback (most recent call last):
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 1172, in main
+    step(st, git, E)
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 864, in step
+    ref_q = current_quick(st)
+            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
+    raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
+RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+
+[2026-11-26 12:44:17]
+Traceback (most recent call last):
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 1172, in main
+    step(st, git, E)
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 864, in step
+    ref_q = current_quick(st)
+            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\scripts\optimizer.py", line 310, in current_quick
+    raise RuntimeError(f"la evaluacion rapida de la pieza actual ha fallado: {m.get('error')}")
+RuntimeError: la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
