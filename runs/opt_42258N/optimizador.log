@@ -15282,3 +15282,99 @@ send-pack: unexpected disc)
 [12:31:41]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [12:31:41]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
 [12:31:41] ERROR INESPERADO (5 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
+[12:31:47]   (GitHub: subido)
+[12:32:55] ITERACION 120 | pieza actual: 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm | mejor: 2.1614 kg
+[12:33:10]   nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[12:33:10]   nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+[12:33:10]   pico: 197 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[12:33:10]    1. [R7] anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+[12:33:10]       porque: El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo p
+[12:33:10]    2. [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)
+[12:33:10]       porque: El material que rodea la operacion 12 (bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 23 % del limite: se agranda la MISMA forma (quita ~10 g con su simetrico
+[12:33:10]   evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)
+[12:33:15]   [1/5] geometria parametrica (cadquery)
+[12:33:16]         masa CAD = 2.1262 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[12:33:16]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[12:33:24]         fallo de malla: Exception: HXT 3D mesh failed
+[12:33:24]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=6.00 mm)  [reintento 1]
+[12:33:31]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[12:33:31]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)  [reintento 2]
+[12:33:43]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:33:43]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:33:43] ERROR INESPERADO (1 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
+[12:34:03] ITERACION 121 | pieza actual: 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm | mejor: 2.1614 kg
+[12:34:13]   nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[12:34:13]   nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+[12:34:13]   pico: 197 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[12:34:13]    1. [R7] anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+[12:34:13]       porque: El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo p
+[12:34:13]    2. [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)
+[12:34:13]       porque: El material que rodea la operacion 12 (bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 23 % del limite: se agranda la MISMA forma (quita ~10 g con su simetrico
+[12:34:13]   evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)
+[12:34:18]   [1/5] geometria parametrica (cadquery)
+[12:34:19]         masa CAD = 2.1262 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[12:34:19]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[12:34:27]         fallo de malla: Exception: HXT 3D mesh failed
+[12:34:27]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=6.00 mm)  [reintento 1]
+[12:34:34]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[12:34:34]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)  [reintento 2]
+[12:34:47]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:34:47]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:34:47] ERROR INESPERADO (2 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
+[12:35:07] ITERACION 122 | pieza actual: 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm | mejor: 2.1614 kg
+[12:35:16]   nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[12:35:16]   nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+[12:35:16]   pico: 197 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[12:35:16]    1. [R7] anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+[12:35:16]       porque: El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo p
+[12:35:16]    2. [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)
+[12:35:16]       porque: El material que rodea la operacion 12 (bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 23 % del limite: se agranda la MISMA forma (quita ~10 g con su simetrico
+[12:35:16]   evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)
+[12:35:21]   [1/5] geometria parametrica (cadquery)
+[12:35:22]         masa CAD = 2.1262 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[12:35:22]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[12:35:30]         fallo de malla: Exception: HXT 3D mesh failed
+[12:35:30]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=6.00 mm)  [reintento 1]
+[12:35:37]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[12:35:37]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)  [reintento 2]
+[12:35:49]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:35:49]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:35:49] ERROR INESPERADO (3 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
+[12:36:09] ITERACION 123 | pieza actual: 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm | mejor: 2.1614 kg
+[12:36:19]   nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[12:36:19]   nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+[12:36:19]   pico: 197 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[12:36:19]    1. [R7] anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+[12:36:19]       porque: El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo p
+[12:36:19]    2. [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)
+[12:36:19]       porque: El material que rodea la operacion 12 (bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 23 % del limite: se agranda la MISMA forma (quita ~10 g con su simetrico
+[12:36:19]   evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)
+[12:36:23]   [1/5] geometria parametrica (cadquery)
+[12:36:24]         masa CAD = 2.1262 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[12:36:24]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[12:36:32]         fallo de malla: Exception: HXT 3D mesh failed
+[12:36:32]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=6.00 mm)  [reintento 1]
+[12:36:40]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[12:36:40]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)  [reintento 2]
+[12:36:52]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:36:52]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:36:52] ERROR INESPERADO (4 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
+[12:37:12] ITERACION 124 | pieza actual: 2.1614 kg | 196.7 MPa | CS 1.09 | 0.159 mm | mejor: 2.1614 kg
+[12:37:22]   nota: umbral 35 %: 2 cortes descartados por SIMETRIA (quitarian distinto material en un lado que en su simetrico: el contorno del original no es simetrico en esa zona)
+[12:37:22]   nota: 1 propuestas descartadas por FORMAS PURAS (solaparian a medias otro corte o dejarian una pared de menos de 4 mm: la pieza se mantiene hecha de formas simples)
+[12:37:22]   pico: 197 MPa en orejetas del bulon (concentracion x1.6) | 2 modificaciones propuestas:
+[12:37:22]    1. [R7] anillo de las orejetas hasta radio 23.1 mm (ligamento 13.5 mm)
+[12:37:22]       porque: El pico (197 MPa) esta en la orejeta. Delante del bulon hay 10.1 mm de ligamento; la tension de aplastamiento/cortadura va como 1/e: +3 mm la reduce ~23 %. Evidencia: ligamento delante del bulon: original 7.5 mm, mediana de los 16 disenos publicados VALIDOS: 7.6 mm, y 7.5 mm en los 25 disenos cuyo p
+[12:37:22]    2. [R18] agrandar: bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (20, -27) a (59, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)
+[12:37:22]       porque: El material que rodea la operacion 12 (bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)) y se quitaria al agrandarla trabaja como maximo al 23 % del limite: se agranda la MISMA forma (quita ~10 g con su simetrico
+[12:37:22]   evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)
+[12:37:26]   [1/5] geometria parametrica (cadquery)
+[12:37:27]         masa CAD = 2.1262 kg | agujeros OK {'pernos': [0.9991, 0.9991, 0.9991, 0.9991], 'bulon': 1.0} | hueco=False
+[12:37:27]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)
+[12:37:35]         fallo de malla: Exception: HXT 3D mesh failed
+[12:37:35]   [2/5] malla normal tet10 (gmsh, algoritmo 1, h=6.00 mm)  [reintento 1]
+[12:37:43]         fallo de malla: Exception: PLC Error:  A segment and a facet intersect at point
+[12:37:43]   [2/5] malla normal tet10 (gmsh, algoritmo 10, h=6.00 mm)  [reintento 2]
+[12:37:55]         fallo de malla: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:37:55]   !! fallo en malla: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)
+[12:37:55] ERROR INESPERADO (5 seguidos): RuntimeError('la evaluacion rapida de la pieza actual ha fallado: RuntimeError: todas las estrategias de malla/solucion fallaron: malla alg10 h6.00: Exception: HXT 3D mesh failed | malla alg1 h6.00: Exception: PLC Error:  A segment and a facet intersect at point | malla alg10 h6.00: RuntimeError: gmsh no genero elementos tet10 (volumen no reconocido)')
