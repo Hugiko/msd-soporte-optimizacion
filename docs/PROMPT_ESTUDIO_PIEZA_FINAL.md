@@ -254,6 +254,61 @@ Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/
 | Estudio SimJEB | `estudio/estudio_simjeb.json` / `.csv`, `estudio/comparativa_simjeb.csv`, `estudio/caracteristicas.json`, `estudio/img/` |
 | Figura de la comparativa | `figuras/comparativa_simjeb.png` (generada con `scripts/grafica_simjeb.py`) |
 | Convergencia del original (fase 2) | `figuras/fase2_*.png` y `bitacora.md` |
+| **STEP de los 381 diseños publicados** y sus metadatos | `datos_simjeb/stp/<id>.stp` (p. ej. `237.stp`), `datos_simjeb/metadata.tab`, `datos_simjeb/README.txt` (no se sube a GitHub) |
+| Nuestro cálculo de cada diseño publicado (campos, métricas, imagen) | `datos_simjeb/estudio/<id>/` (`campos.npz`, `metrics.json`, `vonmises.png`) |
+| Pieza con el vaciado irregular (it. 68, antes de las formas puras) | `runs/opt_42258N/historial/14_it068_2.078kg/` |
+| Enfoques anteriores, solo como historia (37 800 N por familias; 42 258 N sin simetría) | `runs/archivo/` (**no** sirven para la pieza final) |
+
+### 3.1 Cómo está organizado
+
+```
+Trabajo/
+├── cad/                 0.stp (original, NO tocar), agujeros_fijos.json, referencia_original/
+├── config.json          carga, límites, mallas, simetría, formas puras (lo lee todo el código)
+├── scripts/             código (ver abajo)
+├── estudio/             estudio SimJEB: tablas, características, evidencia de las reglas, img/
+├── datos_simjeb/        381 STEP de SimJEB + nuestro cálculo de cada uno (estudio/<id>/)
+├── figuras/             figuras generales (comparativa SimJEB, convergencia del original)
+├── docs/                parte 1 (SimJEB), fabricación aditiva, este prompt
+├── runs/opt_42258N/     el optimizador actual (carga 42 258 N)
+│   ├── estado.json        estado completo (mejor, actual, rechazos, historia): SOLO LECTURA
+│   ├── ITERACIONES.md     cada iteración explicada; registro.csv (una fila por iteración)
+│   ├── historial/         HITOS verificados con malla fina: NN_itXXX_masa/ con STEP, operaciones, métricas, fichas, modelo APDL y workbench/
+│   ├── iteraciones/NNN/   cada iteración: completa/ (cálculo con malla de 4 mm), candK_rapida/ y actual_rapida/ (malla de 6 mm)
+│   ├── galeria/, fotos/   fichas de cada cálculo (geometría | von Mises | deformada | radiografía)
+│   └── MEJOR_GLOBAL.json  resumen del mejor diseño
+└── estudio_final/       (lo creas tú) tu trabajo
+```
+
+- **Limpieza de iteraciones:** en las iteraciones antiguas el optimizador borra los archivos pesados (`campos.npz`, `res_*.txt`, `model.inp`). Los cálculos completos de la pieza final están en `iteraciones/077/reverificada/`; para cualquier otra, reconstrúyela desde su lista de operaciones.
+- **Contenido de `campos.npz`** (numpy), mm y MPa:
+  - `nodes` (N × 3);
+  - `tets4` (vértices de cada tetraedro, índices desde 0);
+  - `tris` (triángulos de superficie de 6 nodos, índices desde 1);
+  - `vm` (von Mises nodal; los nodos intermedios de SOLID187 valen 0);
+  - `u` (desplazamientos, N × 3);
+  - `sig6` (SX, SY, SZ, SXY, SYZ, SXZ por nodo).
+- **Contenido de `metrics.json`:**
+  - masa CAD y de la malla;
+  - reacciones y error de equilibrio;
+  - `vm_metric` y su posición;
+  - máximo bruto;
+  - sensibilidad a la exclusión (`vm_ex_bX_pY`: X mm alrededor de los pernos, Y mm alrededor del bulón);
+  - `u_max` y sus componentes;
+  - nodos, elementos y tiempos.
+- **Scripts útiles:**
+
+| Script | Para qué |
+|---|---|
+| `operaciones.py` | Construye una pieza desde el 0.stp y una lista de operaciones; `describe(op)` la explica en texto. |
+| `evaluate.py` | Geometría → malla gmsh → MAPDL → métricas e imágenes. |
+| `fem.py` | Escribe el `model.inp` (SOLID187, RBE3, empotramiento, carga) y define la métrica (`stress_metric`). |
+| `campo.py` | Análisis del campo: material ocioso, zonas, pico, direcciones principales y camino de la carga. |
+| `verificar_diseno.py ops.json carpeta` | Calcula un diseño con malla normal y fina. |
+| `exportar_workbench.py` | Crea un proyecto de Workbench desde un STEP. |
+| `estudio_simjeb.py` | Calcula diseños de SimJEB con nuestras condiciones. |
+| `grafica_simjeb.py` | La figura comparativa. |
+| `render.py` | Las fichas de cada pieza. |
 
 **Herramientas:**
 - **ANSYS Student 2026 R1:**
