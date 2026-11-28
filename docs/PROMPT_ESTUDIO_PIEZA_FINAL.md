@@ -11,7 +11,7 @@ Eres un ingeniero mecánico especialista en análisis por elementos finitos. Tra
 Tienes que:
 
 1. **Entender** por qué la pieza es como es. Abajo te doy el trasfondo completo: qué pide el enunciado, qué decisiones se tomaron y por qué, y el porqué de cada hueco, bolsillo y refuerzo.
-2. **Analizarla a fondo** con ANSYS y con cálculos a mano:
+2. **Analizarla a fondo** con ANSYS y con cálculos a mano. **Todo cálculo nuevo se hace en ANSYS Workbench con la interfaz gráfica, clicando como lo haría una persona**: nada de comandos ni scripts para montar o lanzar cálculos. Cada paso se documenta con su captura y su porqué (ver §3.2). Lo que hay que estudiar:
    - cómo carga y por dónde va la carga;
    - reacciones en cada perno;
    - tensiones, deformaciones unitarias y desplazamientos;
@@ -327,15 +327,45 @@ Trabajo/
 | `grafica_simjeb.py` | La figura comparativa. |
 | `render.py` | Las fichas de cada pieza. |
 
-**Herramientas:**
-- **ANSYS Student 2026 R1:**
-  - MAPDL: `"C:\Program Files\ANSYS Inc\ANSYS Student\v261\ansys\bin\winx64\MAPDL.exe" -b -p ansys -i model.inp -o salida.out`. **Sin `-p ansys` falla la licencia.**
-  - Workbench: `RunWB2.exe` en `...\v261\Framework\bin\Win64\`.
-  - **Límite de 128 000 nodos. Solo una sesión de ANSYS a la vez**: cierra Workbench antes de lanzar MAPDL.
-- **Python:** `.venv` del proyecto (cadquery, gmsh, numpy, scipy, pyvista, matplotlib, shapely).
-  - `operaciones.build(ops)` reconstruye la pieza desde `0.stp` y la lista de operaciones.
-  - `evaluate.evaluate(...)` malla, calcula en MAPDL y saca métricas e imágenes.
-  - En Windows, ejecútalos **desde un archivo .py**, no por stdin, porque usan multiprocessing.
+### 3.2 Cómo hacer los cálculos nuevos: ANSYS Workbench con la interfaz, clicando
+
+**Regla principal:** todo lo que calcules de nuevo se hace en **Ansys Workbench 2026 R1** con la interfaz gráfica, clicando:
+- Módulos: Static Structural, Modal, Transient Structural, Steady-State/Transient Thermal, Eigenvalue Buckling…
+- Tareas: importar la geometría, asignar el material, mallar, poner apoyos y cargas, resolver y sacar resultados.
+- **No** uses MAPDL por comandos, ni scripts de Python, journals (`.wbjn`) o APDL para montar o lanzar cálculos.
+- **Necesitas poder ver y controlar la pantalla del ordenador** (uso del ordenador). Si no puedes, dilo antes de empezar.
+
+**Dónde está y dónde se guarda:**
+- **Ansys:** menú Inicio → «Ansys 2026 R1» → **«Workbench 2026 R1»**. Versión Student: límite de 128 000 nodos y una sola sesión de ANSYS a la vez.
+- **Geometría de partida:** `C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\runs\opt_42258N\historial\17_it077_2.156kg\geometria.step`. Impórtala en un proyecto **nuevo** (Geometry → botón derecho → Import Geometry → Browse).
+  - El proyecto que ya existe (`historial/17_it077_2.156kg/workbench/soporte_it077.wbpj`) se creó automáticamente. Ábrelo solo para comparar; no lo modifiques.
+- **Tus proyectos:** `C:\Users\hugof\Desktop\Universidad\MSD\Trabajo\estudio_final\workbench\`. Por ejemplo, `Estudio_soporte.wbpj`, con un sistema por análisis que comparta la geometría, como en las prácticas.
+  - Guarda a menudo.
+  - Al terminar cada análisis, haz una copia de seguridad: File → Archive → `.wbpz`.
+- **Cómo se trabaja en clase:** en `C:\Users\hugof\Desktop\Práctica 5 ANSYS\` está la práctica 5 de la asignatura: `Practica_5.pdf` y el proyecto `Practica5_Biela.wbpj`. Muestra cómo se hacen en Workbench:
+  - el **análisis modal**: 10 primeros modos, Tabular Data;
+  - el **dinámico** por superposición modal (Transient Structural enlazado al Modal, carga senoidal cerca y lejos de una frecuencia propia);
+  - la **plasticidad bilineal**;
+  - el **termomecánico secuencial** (Thermal → Static Structural);
+  - cómo **exportar imágenes**: «Image to File» con Font Magnification Factor para agrandar la leyenda y fondo blanco, y «Convert To Path Results» para sacar gráficas a Excel.
+
+  **Sigue ese mismo procedimiento** adaptado al soporte. Es lo que el profesor espera ver.
+
+**Documentación de cada paso (obligatoria):**
+- **Antes de empezar, pregunta al usuario si va a grabar la pantalla.**
+  - Si graba: escribe en el chat, antes de cada acción, qué vas a hacer y por qué, para que la grabación se entienda. Haz capturas de los momentos clave: geometría, material, malla, apoyos y cargas, ajustes del análisis y cada resultado.
+  - Si no graba: **haz una captura de cada paso**.
+- **En los dos casos:**
+  - Guarda las capturas en `estudio_final\capturas\` numeradas: `001_importar_geometria.png`, `002_material_S235.png`…
+  - Lleva `estudio_final\capturas\PASOS.md`, una tabla con una fila por paso: nº | captura | qué se ha hecho (menú y clics concretos) | **por qué** (el criterio o la teoría que lo justifica) | qué ha salido.
+  - Ejemplo de «por qué»: «se empotran las superficies de los agujeros de los pernos porque son las *fixed support interfaces* del enunciado; esto crea una singularidad en el borde que se trata en §2.5».
+- Las **imágenes para el informe** se sacan con «Image to File» de Mechanical (alta resolución, leyenda agrandada, fondo blanco), no con capturas de pantalla.
+
+**Las gráficas** (convergencia, frecuencias, tensión frente a temperatura…) se hacen con los datos exportados de Workbench, en Excel o similar. Los cálculos a mano pueden ir en Excel o a mano, siempre con las fórmulas a la vista.
+
+**Herramientas usadas hasta ahora (solo para consultar lo ya hecho, no para cálculos nuevos):**
+- El programa de optimización calculó todas las iteraciones con ANSYS MAPDL por comandos (`-b -p ansys`) y Python (`.venv` del proyecto). Sus resultados (los de §2) se citan como antecedentes.
+- Si necesitas leer alguno de sus archivos (`campos.npz`, `metrics.json`), puedes usar Python solo para leerlo.
 
 ---
 
@@ -344,7 +374,13 @@ Trabajo/
 Haz todo lo que puedas de esta lista, en este orden de prioridad. Para cada apartado: qué se calcula, cómo (modelo, malla, condiciones), resultados con figuras y tablas, e **interpretación física**.
 
 ### A. Comprobación del modelo y convergencia (lo primero: de esto depende el «cumple»)
-1. Reproduce el resultado de la pieza final (193,7 / 209,4 MPa; 0,159 / 0,166 mm) con el `model.inp` y con Workbench, y explica las diferencias.
+1. Monta en Workbench, clicando, el modelo de la pieza final con las mismas condiciones:
+   - empotramiento de las superficies de los pernos;
+   - carga de 42 258 N en −X aplicada al bulón con una *Remote Force* deformable (equivale al RBE3);
+   - acero S235;
+   - tetraedros cuadráticos.
+
+   Compáralo con el resultado del programa (193,7 / 209,4 MPa; 0,159 / 0,166 mm) y explica las diferencias. La tensión del borde de los pernos no cuenta (ver §2.5): usa la misma exclusión con una selección o un *path*.
 2. **Estudio de convergencia de malla** en el pico (unión orejeta-cuerpo, z ≈ 57).
    - Refinamiento local (sizing de cara o arista en el acuerdo de la unión, el fondo de los alojamientos y el borde de los aligeramientos) dentro del límite de 128 000 nodos.
    - Si hace falta, **submodelo**.
@@ -383,19 +419,31 @@ Define y **justifica** un rango de temperaturas de servicio. Por ejemplo, de −
    - Recalcula **CS(T)** y u(T). Con cargas impuestas y apoyos fijos, las tensiones apenas dependen de E (solo de ν) y los desplazamientos van como 1/E. Demuéstralo numéricamente.
 2. **Dilatación libre uniforme:** sin tensiones. Compruébalo en ANSYS como validación.
 3. **Dilatación impedida:** la base (el motor) y el soporte a distinta temperatura, con los pernos fijos. Calcula las tensiones térmicas (orden de magnitud: E·α·ΔT ≈ 2,5 MPa/K) y su **combinación con la carga mecánica**. ¿A partir de qué ΔT deja de cumplir?
-4. **Gradiente térmico:** análisis térmico estacionario (por ejemplo, base caliente y orejetas a temperatura ambiente) acoplado al estructural (Workbench: Steady-State Thermal → Static Structural). Tensiones y deformada resultantes.
+4. **Gradiente térmico:** análisis termomecánico secuencial, como en la práctica 5: Steady-State o Transient Thermal → Static Structural, con temperaturas impuestas y convección.
+   - Por ejemplo, base caliente (el motor) y el resto a temperatura ambiente, con convección al aire.
+   - Las temperaturas, el coeficiente de convección y las propiedades térmicas del acero (conductividad, α, calor específico) son hipótesis que hay que justificar y citar.
+   - Resultados: tensiones y deformada.
 5. **Baja temperatura:** fragilidad del S235 (grados JR/J0/J2 y temperatura del ensayo Charpy). Recomendación de grado si la pieza trabaja en frío.
 
 ### D. Dinámica (práctica 5)
-1. **Análisis modal libre y con los pernos fijos:** primeras 6-10 frecuencias y formas modales, original frente a final. ¿Ha bajado la frecuencia fundamental al aligerar?
-2. Comenta el riesgo de resonancia con las frecuencias de excitación de un motor o de la elevación (hipótesis justificada) y, si te da tiempo, un **armónico** o un **impulso** (carga aplicada de golpe: factor dinámico ≈ 2 en un sistema de 1 GDL).
+1. **Análisis modal** (módulo Modal, como en la práctica 5), con los pernos fijos:
+   - los **10 primeros modos** y sus frecuencias (Tabular Data), con las formas modales;
+   - original frente a final: ¿ha bajado la frecuencia fundamental al aligerar? Explícalo con f = (1/2π)·√(k/m).
+2. **Respuesta dinámica** (Transient Structural enlazado al Modal, superposición modal, como en la práctica 5):
+   - la carga del caso 2 aplicada como función senoidal a una frecuencia **lejos** y otra **cerca** de una frecuencia propia;
+   - compara desplazamientos y tensiones con el caso estático (resonancia).
+   - Comenta también el riesgo real con las frecuencias de excitación de un motor o de la elevación (hipótesis justificada), y la carga aplicada de golpe (factor dinámico ≈ 2 en un sistema de 1 GDL).
 
 ### E. Otros (si te da tiempo; márcalos como complementarios)
-1. **Pandeo lineal** de las almas y paredes finas bajo la carga del caso 2 (factor de carga crítico).
-2. **Fatiga:** si la carga se repite (ciclos de elevación), Goodman o Soderberg con un Se estimado (Shigley) en la zona del pico. Indica que no es un requisito del enunciado.
-3. **Los otros 3 casos de carga** del enunciado (vertical, diagonal y torsión) aplicados a la pieza final, solo como información. **La pieza se diseñó solo para el caso 2**; no la penalices por los demás, pero di qué pasaría.
-4. **Fabricación:** formas puras (círculos, ranuras, bolsillos en ranura), techos a 45°, sin cavidades cerradas y paredes ≥ 4 mm. Discute la fabricación aditiva frente al mecanizado con estas formas.
-5. **SimJEB n.º 237:** calcúlalo con malla fina y analiza su topología frente a la nuestra. ¿Qué aprendemos para una siguiente versión?
+1. **Pandeo lineal** (Eigenvalue Buckling) de las almas y paredes finas bajo la carga del caso 2 (factor de carga crítico).
+2. **Comportamiento plástico** (plasticidad bilineal isótropa, como en la práctica 5):
+   - qué pasa si la carga supera la de diseño (por ejemplo, ×1,5 y ×2): dónde empieza a plastificar, deformación plástica y desplazamiento;
+   - si luego se descarga, deformación permanente y tensiones residuales.
+   - El módulo tangente del S235 es una hipótesis: cítalo.
+3. **Fatiga:** si la carga se repite (ciclos de elevación), Goodman o Soderberg con un Se estimado (Shigley) en la zona del pico. Indica que no es un requisito del enunciado.
+4. **Los otros 3 casos de carga** del enunciado (vertical, diagonal y torsión) aplicados a la pieza final, solo como información. **La pieza se diseñó solo para el caso 2**; no la penalices por los demás, pero di qué pasaría.
+5. **Fabricación:** formas puras (círculos, ranuras, bolsillos en ranura), techos a 45°, sin cavidades cerradas y paredes ≥ 4 mm. Discute la fabricación aditiva frente al mecanizado con estas formas.
+6. **SimJEB n.º 237:** calcúlalo en Workbench (su STEP está en `datos_simjeb/stp/237.stp`) y analiza su topología frente a la nuestra. ¿Qué aprendemos para una siguiente versión?
 
 ---
 
@@ -410,10 +458,10 @@ Define y **justifica** un rango de temperaturas de servicio. Por ejemplo, de −
 
 ## 6. Normas de trabajo
 
-- **No modifiques** `cad/0.stp`, los PDF del enunciado ni nada de `runs/` (son datos). Trabaja en una carpeta nueva: `Trabajo/estudio_final/`, con subcarpetas `modelos/`, `resultados/`, `figuras/` y `scripts/`.
-- **No inventes nada.** Cada valor sale de un cálculo reproducible (guarda los scripts y los `.inp`) o de una referencia citada (autor, título, año, norma y apartado). Separa claramente resultado, hipótesis y opinión.
-- Las ejecuciones largas, en una **consola visible** con el progreso y con log en disco.
-- Una sola sesión de ANSYS a la vez y respeta el límite de 128 000 nodos.
+- **No modifiques** `cad/0.stp`, los PDF del enunciado, la carpeta de la práctica 5 ni nada de `runs/` (son datos). Trabaja en una carpeta nueva: `Trabajo/estudio_final/`, con subcarpetas `workbench/`, `capturas/`, `figuras/` y `resultados/`.
+- **Cálculos nuevos: solo con la interfaz de Workbench, clicando** (§3.2), con captura y porqué de cada paso.
+- **No inventes nada.** Cada valor sale de un cálculo reproducible (el proyecto de Workbench guardado) o de una referencia citada (autor, título, año, norma y apartado). Separa claramente resultado, hipótesis y opinión.
+- Una sola sesión de ANSYS a la vez, y respeta el límite de 128 000 nodos de la versión Student.
 - `discord_webhooks.json` contiene secretos: no lo leas, no lo imprimas, no lo subas. No envíes datos personales a servicios externos.
 - Si subes algo al repositorio Git del proyecto (privado), que sea solo `estudio_final/`. Nunca `datos_simjeb/` ni `discord_webhooks.json`.
 
@@ -436,7 +484,7 @@ Define y **justifica** un rango de temperaturas de servicio. Por ejemplo, de −
    14. Bibliografía.
    15. **Anexo (corto, 1-2 páginas): herramientas de cálculo.** Cómo se automatizó el trabajo: Python (cadquery para la geometría, gmsh para la malla), lanzamiento de ANSYS MAPDL y Workbench, el programa de optimización por reglas (en un párrafo) y dónde están los archivos. **Es lo único del informe que habla de código.**
 2. Figuras numeradas en `estudio_final/figuras/` (PNG ≥ 150 ppp, leyendas con unidades y legibles).
-3. Tablas de datos (CSV) y scripts y modelos reproducibles.
+3. Los **proyectos de Workbench** (`.wbpj` y su copia `.wbpz`) en `estudio_final/workbench/`, las tablas de datos exportadas (Excel/CSV) en `estudio_final/resultados/` y la carpeta **`estudio_final/capturas/` con `PASOS.md`** (cada paso con su captura, qué se hizo y por qué).
 4. Una **lista de 8-10 preguntas probables de la defensa** con su respuesta corta y basada en los resultados.
 
 ### 7.1 Declaración de uso de inteligencia artificial (obligatoria en el informe)
@@ -478,7 +526,11 @@ No añadas a esta lista decisiones que no aparezcan en este prompt o en `bitacor
 
 ## 8. Antes de empezar: plan y aprobación
 
-**No lances ningún cálculo ni escribas el informe todavía.** Lee los archivos que necesites y presenta primero, en español:
+**No lances ningún cálculo ni escribas el informe todavía.** Lee los archivos que necesites (incluida la práctica 5) y, antes que nada:
+- confirma que puedes ver y controlar la pantalla para trabajar en Workbench;
+- pregunta al usuario si va a grabar la pantalla (§3.2).
+
+Después presenta, en español:
 
 1. **Qué vas a hacer exactamente.** La lista de análisis y apartados, y para cada uno:
    - la teoría que usarás;
@@ -490,7 +542,8 @@ No añadas a esta lista decisiones que no aparezcan en este prompt o en `bitacor
    - cuáles son imprescindibles y cuáles complementarias;
    - qué harás si una falla (por ejemplo, si el contacto de los tornillos no converge con la licencia de estudiante).
 3. **Tiempo estimado por tarea y total**, separando:
-   - el tiempo de cálculo de ANSYS (unos 1-2 min por cálculo con 100 000 nodos; un análisis con contacto o térmico acoplado, bastante más);
+   - el tiempo de montar cada modelo **clicando en Workbench**, con sus capturas (es lo más lento);
+   - el tiempo de cálculo de ANSYS (unos 1-2 min por cálculo estático con 100 000 nodos; con contacto, transitorio o térmico acoplado, bastante más);
    - el tiempo de preparación y redacción.
 
    Indica también qué puntos de control tendrá el usuario para revisar resultados parciales.
