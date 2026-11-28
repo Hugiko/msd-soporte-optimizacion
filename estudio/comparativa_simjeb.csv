@@ -1,0 +1,300 @@
+﻿id;categoria;autor;veredicto;fidelidad;masa_kg;tension_MPa;cs;desp_mm
+original;;enunciado (0.stp);no_cumple;normal (37 800 N x 1,118);2.4234;238.4;0.902;0.1446
+nuestra (it. 72);formas puras;grupo 831_MSD_13_B;valido;normal (fina: 209.2 MPa);2.1614;196.7;1.093;0.1585
+237;block;Bol;valido;normal;1.9749;183.5;1.172;0.1397
+474;block;Kiran Kumar A;valido;normal;2.2358;197.3;1.090;0.1260
+475;block;Kiran Kumar A;valido;normal;2.2408;211.9;1.015;0.1303
+527;block;NIKHIL KHOBRAGADE;valido;normal;2.2717;194.9;1.103;0.1276
+476;block;Kiran Kumar A;valido;normal;2.4124;196.5;1.094;0.1221
+538;block;A0I0A;valido;normal;2.4331;171.5;1.254;0.1343
+537;block;A0I0A;valido;normal;2.4335;175.4;1.226;0.1329
+86;block;riyosketch;valido;normal;2.4642;169.5;1.268;0.1315
+211;block;Michael Waugh;valido;normal;2.5423;198.0;1.086;0.1547
+180;block;Tomek F.;valido;normal;2.5696;194.5;1.105;0.1484
+403;block;Rafael;valido;normal;2.5927;174.7;1.230;0.1187
+233;block;Farandy Angesti Liong;valido;normal;2.8014;174.2;1.234;0.1375
+424;block;Maciek_Wu;valido;normal;2.8490;196.0;1.097;0.1207
+214;block;Jim;valido;normal;2.8843;176.8;1.216;0.1283
+492;flat;Behnam Persian;valido;normal;3.1954;146.7;1.465;0.1309
+411;block;REIS;valido;normal;3.6440;176.9;1.215;0.1095
+23;beam;Jack Schorsch;no_cumple;rapida (descartado en la pasada rapida);0.3301;4895.7;0.044;4.2099
+373;arch;M. David;no_cumple;rapida (descartado en la pasada rapida);0.3467;4341.0;0.050;5.2534
+623;beam;Renier Janse van Vuuren;no_cumple;rapida (descartado en la pasada rapida);0.3533;2611.9;0.082;2.6997
+35;butterfly;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.3755;1739.4;0.124;2.3241
+236;beam;Nishikant Maruti Mane;no_cumple;rapida (descartado en la pasada rapida);0.4129;11399.2;0.019;20.3836
+34;beam;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.4421;1737.6;0.124;1.2741
+548;flat;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.4513;1889.6;0.114;1.9278
+551;flat;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.4533;1891.6;0.114;2.1567
+33;flat;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.4818;1546.6;0.139;1.7570
+479;butterfly;M. David;no_cumple;rapida (descartado en la pasada rapida);0.5011;1389.3;0.155;1.5848
+631;beam;ashish;no_cumple;rapida (descartado en la pasada rapida);0.5082;1686.1;0.128;1.3995
+398;butterfly;camoca;no_cumple;rapida (descartado en la pasada rapida);0.5161;3985.0;0.054;7.3968
+554;flat;Jerry Grandov;no_cumple;normal;0.5329;1874.2;0.115;1.3501
+30;arch;Tim Titus;no_cumple;rapida (descartado en la pasada rapida);0.5437;1302.1;0.165;1.4507
+498;butterfly;Hubert Baumgartner;no_cumple;rapida (descartado en la pasada rapida);0.5496;1623.3;0.132;1.2560
+21;arch;Paul Rosario;no_cumple;rapida (descartado en la pasada rapida);0.5610;1105.9;0.194;1.0099
+448;beam;Alexis;no_cumple;rapida (descartado en la pasada rapida);0.5877;1216.6;0.177;1.1365
+369;butterfly;Mészáros Márió ;no_cumple;rapida (descartado en la pasada rapida);0.6112;1291.6;0.166;1.3007
+50;butterfly;Josef Bohm;no_cumple;rapida (descartado en la pasada rapida);0.6167;1313.7;0.164;1.3107
+9;beam;Penn;no_cumple;rapida (descartado en la pasada rapida);0.6180;2064.2;0.104;1.1583
+576;arch;Eric;no_cumple;rapida (descartado en la pasada rapida);0.6199;1181.0;0.182;0.6238
+566;block;M Arie Kurniawan;no_cumple;rapida (descartado en la pasada rapida);0.6208;782.7;0.275;0.6567
+511;butterfly;Sebastien Vavassori;no_cumple;normal;0.6253;1037.8;0.207;0.8407
+625;beam;Tan Wei Kok;no_cumple;rapida (descartado en la pasada rapida);0.6327;7899.3;0.027;5.0465
+506;beam;Alexis;no_cumple;rapida (descartado en la pasada rapida);0.6509;698.0;0.308;0.8186
+611;beam;Tan Wei Kok;no_cumple;rapida (descartado en la pasada rapida);0.6648;6725.9;0.032;4.8328
+547;block;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.6706;974.8;0.221;0.4312
+8;beam;Mandli Peter;no_cumple;rapida (descartado en la pasada rapida);0.7013;1119.9;0.192;1.0120
+400;beam;Gerald Feldman;no_cumple;rapida (descartado en la pasada rapida);0.7052;1099.9;0.195;0.9800
+590;flat;Florin Traila;no_cumple;rapida (descartado en la pasada rapida);0.7090;1611.8;0.133;1.2870
+418;flat;Rona;no_cumple;rapida (descartado en la pasada rapida);0.7124;2508.1;0.086;2.1762
+55;beam;Sikker Rosendal;no_cumple;rapida (descartado en la pasada rapida);0.7138;1101.9;0.195;0.8977
+556;beam;Nic;no_cumple;normal;0.7155;1395.4;0.154;0.6487
+10;block;Arfi'an;no_cumple;normal;0.7175;808.1;0.266;0.5263
+545;block;Alan Grantz;no_cumple;rapida (descartado en la pasada rapida);0.7197;764.4;0.281;0.5116
+462;beam;andreas anedda;no_cumple;rapida (descartado en la pasada rapida);0.7225;933.7;0.230;0.8023
+461;beam;andreas anedda;no_cumple;rapida (descartado en la pasada rapida);0.7226;968.3;0.222;0.8064
+202;arch;Ármin Fendrik;no_cumple;rapida (descartado en la pasada rapida);0.7325;907.0;0.237;0.7117
+59;butterfly;Juan Esteban;no_cumple;rapida (descartado en la pasada rapida);0.7346;1270.1;0.169;2.0608
+19;flat;Azhar Vellore;no_cumple;rapida (descartado en la pasada rapida);0.7352;922.4;0.233;0.9763
+536;beam;Paolo Minetola;no_cumple;rapida (descartado en la pasada rapida);0.7352;796.5;0.270;0.7097
+20;arch;Krishnan Suresh;no_cumple;normal;0.7385;889.6;0.242;0.6255
+80;butterfly;Martin Dirker;no_cumple;rapida (descartado en la pasada rapida);0.7406;997.9;0.215;1.7184
+524;butterfly;Martin Dirker;no_cumple;rapida (descartado en la pasada rapida);0.7409;1066.8;0.202;1.7267
+523;butterfly;Martin Dirker;no_cumple;rapida (descartado en la pasada rapida);0.7410;1089.7;0.197;1.7253
+81;butterfly;Martin Dirker;no_cumple;rapida (descartado en la pasada rapida);0.7410;1001.1;0.215;1.7154
+295;beam;RYAN;no_cumple;rapida (descartado en la pasada rapida);0.7448;2372.7;0.091;2.0706
+246;flat;Shannon;no_cumple;rapida (descartado en la pasada rapida);0.7458;7876.9;0.027;6.9226
+464;arch;Michael van der Bent;no_cumple;rapida (descartado en la pasada rapida);0.7524;1233.5;0.174;0.4737
+510;block;M Arie Kurniawan;no_cumple;rapida (descartado en la pasada rapida);0.7563;710.7;0.303;0.5325
+339;flat;Manolo Valenzuela;no_cumple;rapida (descartado en la pasada rapida);0.7576;1244.8;0.173;2.0908
+40;butterfly;Piotr Mikulski;no_cumple;rapida (descartado en la pasada rapida);0.7579;900.8;0.239;0.9272
+504;beam;Borut;no_cumple;rapida (descartado en la pasada rapida);0.7636;3280.0;0.066;1.1896
+494;flat;Ármin Fendrik;no_cumple;rapida (descartado en la pasada rapida);0.7657;1201.7;0.179;1.0762
+136;block;Tan Wei Kok;no_cumple;normal;0.7675;3664.7;0.059;2.8516
+270;arch;Lumas;no_cumple;rapida (descartado en la pasada rapida);0.7707;3934.8;0.055;2.0667
+500;arch;Krisztián Haász;no_cumple;rapida (descartado en la pasada rapida);0.7745;885.2;0.243;0.8866
+520;flat;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);0.7775;742.4;0.290;0.6940
+29;butterfly;Lumas;no_cumple;rapida (descartado en la pasada rapida);0.7806;844.5;0.255;0.9008
+466;flat;Nic;no_cumple;rapida (descartado en la pasada rapida);0.7838;613.7;0.350;0.5468
+389;arch;Florin Traila;no_cumple;rapida (descartado en la pasada rapida);0.7978;1759.2;0.122;0.8521
+390;arch;Florin Traila;no_cumple;rapida (descartado en la pasada rapida);0.7978;1634.7;0.132;0.8521
+562;beam;bj;no_cumple;rapida (descartado en la pasada rapida);0.8067;649.9;0.331;0.6151
+561;beam;bj;no_cumple;rapida (descartado en la pasada rapida);0.8069;650.9;0.330;0.6151
+610;block;Arfi'an;no_cumple;normal;0.8183;1048.8;0.205;0.4911
+4;beam;simon;no_cumple;rapida (descartado en la pasada rapida);0.8212;1128.8;0.190;0.6229
+406;flat;Ricky;no_cumple;rapida (descartado en la pasada rapida);0.8227;2269.1;0.095;2.8640
+589;flat;richard kilshaw;no_cumple;rapida (descartado en la pasada rapida);0.8251;736.2;0.292;0.6641
+597;arch;richard kilshaw;no_cumple;rapida (descartado en la pasada rapida);0.8251;736.2;0.292;0.6641
+499;butterfly;Andrei Roncea;no_cumple;rapida (descartado en la pasada rapida);0.8283;714.2;0.301;0.9732
+441;butterfly;Andrew Smolkov;no_cumple;rapida (descartado en la pasada rapida);0.8295;947.3;0.227;0.7745
+66;arch;D SONG;no_cumple;rapida (descartado en la pasada rapida);0.8345;1296.0;0.166;0.3642
+422;flat;Thomas Frevillier;no_cumple;rapida (descartado en la pasada rapida);0.8349;1866.5;0.115;1.5338
+465;block;Arfi'an;no_cumple;normal;0.8350;1073.5;0.200;0.4970
+125;arch;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);0.8354;1085.5;0.198;0.6417
+364;block;Alex;no_cumple;rapida (descartado en la pasada rapida);0.8362;931.2;0.231;0.4403
+447;flat;Ármin Fendrik;no_cumple;rapida (descartado en la pasada rapida);0.8413;999.7;0.215;0.7210
+552;block;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.8419;1040.3;0.207;0.7867
+62;arch;m.h.m;no_cumple;rapida (descartado en la pasada rapida);0.8421;592.7;0.363;0.6622
+483;flat;Ted Nye;no_cumple;rapida (descartado en la pasada rapida);0.8468;840.5;0.256;0.6148
+482;flat;Ted Nye;no_cumple;rapida (descartado en la pasada rapida);0.8468;840.5;0.256;0.6148
+519;flat;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);0.8503;578.0;0.372;0.5389
+324;arch;Duje Siskov;no_cumple;rapida (descartado en la pasada rapida);0.8544;2504.0;0.086;0.5364
+484;flat;Ted Nye;no_cumple;rapida (descartado en la pasada rapida);0.8545;857.5;0.251;0.6172
+102;flat;Brooks;no_cumple;rapida (descartado en la pasada rapida);0.8586;1077.5;0.200;0.5994
+76;block;Krishnan Suresh;no_cumple;normal;0.8602;762.8;0.282;0.5020
+82;beam;Andrew Coyne;no_cumple;normal;0.8666;3023.7;0.071;1.3900
+308;flat;Damian Lesniak;no_cumple;rapida (descartado en la pasada rapida);0.8700;3288.6;0.065;3.7985
+586;butterfly;Patrikurn;no_cumple;rapida (descartado en la pasada rapida);0.8712;1127.0;0.191;0.8436
+108;butterfly;Lumas;no_cumple;rapida (descartado en la pasada rapida);0.8714;609.4;0.353;0.5215
+53;flat;kandarp;no_cumple;normal;0.8765;8256.8;0.026;2.2719
+309;flat;Damian Lesniak;no_cumple;rapida (descartado en la pasada rapida);0.8823;2865.7;0.075;3.2448
+323;butterfly;Antonio Cruz;no_cumple;rapida (descartado en la pasada rapida);0.8865;723.6;0.297;0.7625
+569;arch;Ilioni Alin;no_cumple;rapida (descartado en la pasada rapida);0.8904;1877.3;0.115;1.3932
+496;butterfly;Tomas Cervenka;no_cumple;rapida (descartado en la pasada rapida);0.8910;1305.3;0.165;2.0052
+518;other;Pranav Panchal;no_cumple;normal;0.8959;715.6;0.300;0.7342
+322;butterfly;Antonio Cruz;no_cumple;rapida (descartado en la pasada rapida);0.9020;723.3;0.297;0.7368
+419;block;Rona;no_cumple;rapida (descartado en la pasada rapida);0.9072;1873.6;0.115;0.8867
+606;flat;vitor;no_cumple;rapida (descartado en la pasada rapida);0.9117;1192.3;0.180;0.7276
+415;arch;Krisztián Haász;no_cumple;rapida (descartado en la pasada rapida);0.9145;624.6;0.344;0.5993
+633;block;Amartesh Sehgal;no_cumple;rapida (descartado en la pasada rapida);0.9167;3519.9;0.061;0.6099
+507;flat;Behnam Persian;no_cumple;rapida (descartado en la pasada rapida);0.9178;1398.6;0.154;1.9325
+471;beam;Abhijeet;no_cumple;rapida (descartado en la pasada rapida);0.9192;1439.9;0.149;0.8644
+495;block;Mihael Vucinic;no_cumple;rapida (descartado en la pasada rapida);0.9221;595.0;0.361;0.3640
+150;block;rene jürnaste;no_cumple;normal;0.9221;759.6;0.283;0.3491
+549;block;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);0.9239;1604.8;0.134;0.3645
+587;other;Chester Lee Coloma;no_cumple;rapida (descartado en la pasada rapida);0.9257;3397.0;0.063;3.9112
+459;flat;blekiwajt;no_cumple;rapida (descartado en la pasada rapida);0.9260;1517.1;0.142;2.0084
+605;butterfly;Wei Jiang;no_cumple;rapida (descartado en la pasada rapida);0.9310;1573.1;0.137;2.8001
+395;block;Ririwin;no_cumple;normal;0.9336;553.1;0.389;0.3963
+310;arch;Duje Siskov;no_cumple;rapida (descartado en la pasada rapida);0.9464;573.2;0.375;0.3658
+306;flat;Tiago Pereira;no_cumple;rapida (descartado en la pasada rapida);0.9534;574.9;0.374;0.3414
+147;flat;Rodolfo Solorio;no_cumple;rapida (descartado en la pasada rapida);0.9572;1817.8;0.118;2.0489
+427;flat;htkashai;no_cumple;rapida (descartado en la pasada rapida);0.9576;4973.1;0.043;3.4701
+282;block;Mark Ramsey;no_cumple;rapida (descartado en la pasada rapida);0.9611;873.6;0.246;0.3963
+73;butterfly;simon;no_cumple;rapida (descartado en la pasada rapida);0.9657;986.0;0.218;0.5607
+440;flat;Gochat;no_cumple;rapida (descartado en la pasada rapida);0.9685;1240.3;0.173;1.2928
+275;block;Andrew Smolkov;no_cumple;rapida (descartado en la pasada rapida);0.9800;960.1;0.224;0.4948
+472;beam;Abhijeet;no_cumple;rapida (descartado en la pasada rapida);0.9808;915.8;0.235;0.6203
+296;arch;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);0.9849;2460.7;0.087;0.7506
+312;arch;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);0.9862;1431.1;0.150;0.7376
+379;flat;Michele Cantatore;no_cumple;rapida (descartado en la pasada rapida);0.9872;787.3;0.273;0.6753
+320;block;Antonio Cruz;no_cumple;rapida (descartado en la pasada rapida);0.9941;488.4;0.440;0.2599
+63;block;Arfi'an;no_cumple;rapida (descartado en la pasada rapida);0.9995;573.5;0.375;0.3497
+489;flat;Gregg;no_cumple;rapida (descartado en la pasada rapida);1.0047;805.5;0.267;0.7485
+15;beam;Sen Lin;no_cumple;rapida (descartado en la pasada rapida);1.0180;763.2;0.282;0.4282
+194;flat;ahmed Elbahgy;no_cumple;rapida (descartado en la pasada rapida);1.0207;1029.8;0.209;0.6231
+112;block;Ivo Alberti;no_cumple;rapida (descartado en la pasada rapida);1.0267;1881.4;0.114;1.1456
+148;butterfly;Rad Siderius;no_cumple;rapida (descartado en la pasada rapida);1.0313;1288.7;0.167;1.1759
+254;block;Rodolfo Solorio;no_cumple;rapida (descartado en la pasada rapida);1.0328;783.2;0.275;0.4633
+220;block;Alex Scarborough;no_cumple;rapida (descartado en la pasada rapida);1.0396;6232.1;0.034;3.1354
+121;beam;grad;no_cumple;rapida (descartado en la pasada rapida);1.0426;1629.4;0.132;2.3192
+249;flat;Giacomo Calzoni;no_cumple;rapida (descartado en la pasada rapida);1.0438;982.3;0.219;0.7187
+378;arch;Andrew Coyne;no_cumple;normal;1.0482;1003.4;0.214;0.3844
+550;block;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);1.0500;1297.1;0.166;0.5608
+122;arch;Voibor;no_cumple;rapida (descartado en la pasada rapida);1.0514;615.3;0.349;0.7760
+95;beam;Eduardo Romo;no_cumple;rapida (descartado en la pasada rapida);1.0528;544.5;0.395;0.5420
+517;flat;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);1.0663;526.9;0.408;0.6275
+91;beam;EDISON PHOENIX;no_cumple;rapida (descartado en la pasada rapida);1.0665;449.2;0.479;0.3088
+234;beam;Yadwinder Paul Singh;no_cumple;normal;1.0798;1319.5;0.163;0.8862
+133;block;Rodolfo Solorio;no_cumple;normal;1.0814;677.6;0.317;0.4517
+512;butterfly;Hendri Surya;no_cumple;rapida (descartado en la pasada rapida);1.0970;588.1;0.366;0.5942
+77;block;Andrew Smolkov;no_cumple;rapida (descartado en la pasada rapida);1.1020;976.3;0.220;0.5540
+72;flat;Dino Salkanovic;no_cumple;rapida (descartado en la pasada rapida);1.1149;1323.5;0.162;1.1513
+235;flat;Manolo Valenzuela;no_cumple;rapida (descartado en la pasada rapida);1.1151;942.8;0.228;0.6758
+266;butterfly;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);1.1174;1514.7;0.142;1.4611
+269;flat;Tomek F.;no_cumple;rapida (descartado en la pasada rapida);1.1196;1964.8;0.109;1.1684
+134;flat;Richard;no_cumple;rapida (descartado en la pasada rapida);1.1207;876.0;0.245;0.6656
+488;flat;Gregg;no_cumple;rapida (descartado en la pasada rapida);1.1222;877.4;0.245;0.7821
+546;block;Ian;no_cumple;rapida (descartado en la pasada rapida);1.1329;846.4;0.254;0.5143
+230;block;Shannon;no_cumple;rapida (descartado en la pasada rapida);1.1454;1790.7;0.120;0.4470
+129;beam;Bol;no_cumple;rapida (descartado en la pasada rapida);1.1474;988.7;0.217;0.7583
+101;flat;Chris Dabek;no_cumple;normal;1.1495;773.9;0.278;0.5543
+559;flat;Hector Ulises Levatti;no_cumple;normal;1.1512;765.4;0.281;0.3590
+293;flat;Duje Siskov;no_cumple;rapida (descartado en la pasada rapida);1.1520;685.2;0.314;0.6913
+473;butterfly;Abhijeet;no_cumple;rapida (descartado en la pasada rapida);1.1617;751.9;0.286;1.0610
+258;flat;Richard;no_cumple;rapida (descartado en la pasada rapida);1.1622;486.0;0.442;0.5832
+375;arch;Andrew Coyne;no_cumple;normal;1.1786;331.4;0.649;0.2321
+497;butterfly;Sander Saarniit;no_cumple;rapida (descartado en la pasada rapida);1.1875;1693.2;0.127;0.7097
+325;block;Tomek F.;no_cumple;rapida (descartado en la pasada rapida);1.1886;619.8;0.347;0.4184
+207;butterfly;Brooks;no_cumple;rapida (descartado en la pasada rapida);1.1942;513.2;0.419;0.3744
+120;arch;Arfi'an;no_cumple;rapida (descartado en la pasada rapida);1.1959;594.7;0.362;0.3570
+515;butterfly;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);1.2030;782.7;0.275;0.5901
+572;arch;Hector Ulises Levatti;no_cumple;rapida (descartado en la pasada rapida);1.2238;707.0;0.304;0.3192
+221;other;Brooks;no_cumple;rapida (descartado en la pasada rapida);1.2323;1732.5;0.124;0.9195
+560;flat;Hector Ulises Levatti;no_cumple;rapida (descartado en la pasada rapida);1.2369;759.2;0.283;0.3066
+114;butterfly;Praveen Kumar;no_cumple;rapida (descartado en la pasada rapida);1.2499;788.5;0.273;0.9350
+245;flat;Alex Scarborough;no_cumple;rapida (descartado en la pasada rapida);1.2572;3090.5;0.070;1.6107
+335;block;Duje Siskov;no_cumple;rapida (descartado en la pasada rapida);1.2653;917.2;0.234;0.3173
+336;block;Duje Siskov;no_cumple;rapida (descartado en la pasada rapida);1.2653;917.2;0.234;0.3173
+139;beam;Andrew Smolkov;no_cumple;rapida (descartado en la pasada rapida);1.2666;1004.1;0.214;0.8722
+138;beam;Andrew Smolkov;no_cumple;rapida (descartado en la pasada rapida);1.2676;1075.9;0.200;0.8721
+181;block;ahmed Elbahgy;no_cumple;rapida (descartado en la pasada rapida);1.2705;1215.8;0.177;0.4530
+267;block;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);1.2807;479.7;0.448;0.2374
+446;flat;brett cheatham;no_cumple;rapida (descartado en la pasada rapida);1.2848;421.1;0.511;0.4408
+12;butterfly;Wei Jiang;no_cumple;normal;1.2884;642.7;0.335;0.4690
+297;flat;Michele Cantatore;no_cumple;rapida (descartado en la pasada rapida);1.2890;526.7;0.408;0.4463
+256;butterfly;Richard;no_cumple;normal;1.2981;383.0;0.561;0.3208
+257;butterfly;Richard;no_cumple;rapida (descartado en la pasada rapida);1.3010;331.3;0.649;0.3184
+321;block;Antonio Cruz;no_cumple;rapida (descartado en la pasada rapida);1.3047;325.0;0.661;0.1929
+247;beam;Deep Mota;no_cumple;rapida (descartado en la pasada rapida);1.3070;379.4;0.567;0.2606
+626;flat;Fernando Martinez;no_cumple;rapida (descartado en la pasada rapida);1.3258;1400.6;0.154;1.1777
+213;flat;Tomek F.;no_cumple;rapida (descartado en la pasada rapida);1.3272;722.0;0.298;0.3775
+69;other;Pavol Kiraly;no_cumple;rapida (descartado en la pasada rapida);1.3290;723.4;0.297;0.5932
+229;flat;Girish.K.S;no_cumple;rapida (descartado en la pasada rapida);1.3307;1521.4;0.141;1.8479
+149;flat;Tomek F.;no_cumple;rapida (descartado en la pasada rapida);1.3397;1303.3;0.165;1.0348
+38;arch;Hector Ulises Levatti;no_cumple;rapida (descartado en la pasada rapida);1.3533;754.5;0.285;0.2629
+592;block;Mike raymond;no_cumple;normal;1.3631;384.9;0.559;0.2618
+564;flat;BuseHase;no_cumple;rapida (descartado en la pasada rapida);1.3694;380.1;0.566;0.4438
+79;block;Fritz VZ;no_cumple;rapida (descartado en la pasada rapida);1.3723;360.5;0.596;0.2148
+22;block;Yingcong Chou;no_cumple;rapida (descartado en la pasada rapida);1.3765;608.7;0.353;0.2582
+116;flat;grad;no_cumple;rapida (descartado en la pasada rapida);1.3908;828.9;0.259;0.7107
+198;flat;Davor Granić;no_cumple;rapida (descartado en la pasada rapida);1.4019;415.2;0.518;0.2730
+351;flat;vahid paydar;no_cumple;rapida (descartado en la pasada rapida);1.4048;819.8;0.262;0.6993
+131;block;Gavin Lee;no_cumple;rapida (descartado en la pasada rapida);1.4107;703.6;0.306;0.2802
+416;flat;Rapbando;no_cumple;rapida (descartado en la pasada rapida);1.4128;1257.4;0.171;1.0847
+319;flat;Aldin Ramic;no_cumple;rapida (descartado en la pasada rapida);1.4129;487.4;0.441;0.3038
+78;flat;Ririwin;no_cumple;rapida (descartado en la pasada rapida);1.4145;747.4;0.288;0.9925
+565;flat;BuseHase;no_cumple;rapida (descartado en la pasada rapida);1.4256;392.7;0.547;0.4195
+174;flat;Wellington;no_cumple;rapida (descartado en la pasada rapida);1.4272;750.2;0.287;1.0810
+624;flat;Robert Melvin;no_cumple;rapida (descartado en la pasada rapida);1.4319;380.7;0.565;0.3440
+449;block;Greg Brown;no_cumple;rapida (descartado en la pasada rapida);1.4331;662.6;0.324;0.2808
+437;block;Tomas;no_cumple;normal;1.4406;330.0;0.652;0.2172
+596;flat;Yashom Bhandarkar;no_cumple;rapida (descartado en la pasada rapida);1.4518;829.3;0.259;0.4879
+152;flat;Tomek F.;no_cumple;rapida (descartado en la pasada rapida);1.4682;603.6;0.356;0.5499
+171;flat;Thierry;no_cumple;normal;1.4863;301.7;0.713;0.3304
+553;flat;Jerry Grandov;no_cumple;rapida (descartado en la pasada rapida);1.4865;593.0;0.363;0.2433
+514;flat;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);1.5113;554.1;0.388;0.4926
+166;flat;Rad Siderius;no_cumple;rapida (descartado en la pasada rapida);1.5160;679.1;0.317;0.7507
+285;arch;Lorenzo Temporin;no_cumple;rapida (descartado en la pasada rapida);1.5203;633.6;0.339;0.2413
+205;flat;Gavin Lee;no_cumple;rapida (descartado en la pasada rapida);1.5285;1238.5;0.174;0.6072
+345;flat;Netfish netsea;no_cumple;normal;1.5319;1204.3;0.179;0.6507
+420;other;Antoniou Stephanos;no_cumple;rapida (descartado en la pasada rapida);1.5365;514.7;0.418;0.3800
+433;flat;Dino Salkanovic;no_cumple;rapida (descartado en la pasada rapida);1.5371;1902.9;0.113;0.5737
+428;block;michele di sacco;no_cumple;rapida (descartado en la pasada rapida);1.5516;374.5;0.574;0.2026
+241;flat;Andrei;no_cumple;rapida (descartado en la pasada rapida);1.5587;539.2;0.399;0.6058
+242;flat;Andrei;no_cumple;rapida (descartado en la pasada rapida);1.5602;700.5;0.307;0.6905
+142;block;Tomek F.;no_cumple;normal;1.5788;515.5;0.417;0.2458
+460;flat;Vishal Bharatia;no_cumple;rapida (descartado en la pasada rapida);1.5923;744.1;0.289;0.5578
+206;flat;Gavin Lee;no_cumple;rapida (descartado en la pasada rapida);1.6088;549.5;0.391;0.4464
+570;flat;aditya;no_cumple;rapida (descartado en la pasada rapida);1.6136;953.5;0.225;0.5452
+28;flat;aditya;no_cumple;rapida (descartado en la pasada rapida);1.6141;959.2;0.224;0.5457
+371;flat;Siddhant Tibrewal;no_cumple;normal;1.6191;958.9;0.224;0.7825
+357;flat;Ankur Biswas;no_cumple;rapida (descartado en la pasada rapida);1.6392;581.7;0.370;0.9624
+199;flat;Armin;no_cumple;normal;1.6523;316.6;0.679;0.2247
+208;flat;Mauricio Karsten;no_cumple;normal;1.6541;312.1;0.689;0.3098
+217;block;Yadwinder Paul Singh;no_cumple;rapida (descartado en la pasada rapida);1.6584;607.7;0.354;0.1991
+575;flat;Gustavo Vieira;no_cumple;rapida (descartado en la pasada rapida);1.6681;506.0;0.425;0.4907
+535;block;Winroth LLC;no_cumple;rapida (descartado en la pasada rapida);1.6683;694.6;0.310;0.3661
+27;flat;Gustavo Vieira;no_cumple;rapida (descartado en la pasada rapida);1.6698;361.2;0.595;0.5201
+200;flat;Giacomo Calzoni;no_cumple;rapida (descartado en la pasada rapida);1.6718;675.0;0.319;0.5752
+175;flat;Bob Laws;no_cumple;rapida (descartado en la pasada rapida);1.6993;7376.2;0.029;7.0576
+193;flat;Tomek F.;no_cumple;normal;1.7376;282.5;0.761;0.2244
+485;block;saeid mirshahidi;no_cumple;normal;1.7395;240.7;0.893;0.1482
+439;flat;Dino Salkanovic;no_cumple;rapida (descartado en la pasada rapida);1.7534;571.7;0.376;0.6000
+127;block;Daniel Jaeger;no_cumple;normal;1.7597;234.9;0.915;0.1917
+170;block;Wellington;no_cumple;rapida (descartado en la pasada rapida);1.8153;621.8;0.346;0.2318
+192;flat;Tomek F.;no_cumple;normal;1.8235;321.8;0.668;0.2100
+191;flat;Tomek F.;no_cumple;normal;1.8235;321.8;0.668;0.2100
+380;block;Richard Amancio;no_cumple;rapida (descartado en la pasada rapida);1.8297;424.5;0.506;0.1619
+183;block;ZHICHAO LI;no_cumple;rapida (descartado en la pasada rapida);1.8544;563.6;0.381;0.2435
+182;block;ZHICHAO LI;no_cumple;rapida (descartado en la pasada rapida);1.8546;477.3;0.450;0.2430
+167;block;Kevin Koch;no_cumple;normal;1.8606;409.7;0.525;0.1192
+119;block;Mike Madsen;no_cumple;rapida (descartado en la pasada rapida);1.8634;518.9;0.414;0.3824
+332;flat;Vishal Bharatia;no_cumple;rapida (descartado en la pasada rapida);1.8708;1052.3;0.204;0.7625
+280;flat;Vishal Bharatia;no_cumple;rapida (descartado en la pasada rapida);1.8756;556.2;0.387;0.4439
+39;flat;ibrahim;no_cumple;rapida (descartado en la pasada rapida);1.8808;423.1;0.508;0.3035
+164;block;Rad Siderius;no_cumple;normal;1.8953;234.7;0.916;0.1541
+87;flat;Leonardo Alves;no_cumple;rapida (descartado en la pasada rapida);1.8956;360.6;0.596;0.3570
+417;arch;Greg Murvai;no_cumple;rapida (descartado en la pasada rapida);1.9004;339.5;0.633;0.2516
+113;block;Adrian Patterson;no_cumple;normal;1.9193;305.3;0.704;0.2965
+438;flat;Gustavo Vieira;no_cumple;rapida (descartado en la pasada rapida);1.9254;447.7;0.480;0.4670
+513;butterfly;Pranav Panchal;no_cumple;rapida (descartado en la pasada rapida);1.9747;323.4;0.665;0.3873
+185;block;Tomek F.;no_cumple;normal;2.0288;248.7;0.864;0.2112
+186;block;Tomek F.;no_cumple;normal;2.0626;219.7;0.979;0.2046
+421;flat;Roberto Rodriguez;no_cumple;normal;2.0776;278.9;0.771;0.3051
+173;flat;Tom Martin;no_cumple;rapida (descartado en la pasada rapida);2.0854;332.1;0.647;0.3153
+290;flat;Marinus Reutelingsperger;no_cumple;normal;2.1619;218.2;0.985;0.1596
+163;block;Martin Charette;no_cumple;normal;2.1745;367.1;0.586;0.2604
+225;flat;Michael Jenkins;no_cumple;rapida (descartado en la pasada rapida);2.1837;504.6;0.426;0.3827
+140;block;Sterry Shaffer;no_cumple;rapida (descartado en la pasada rapida);2.2034;475.2;0.452;0.1972
+107;block;julius;no_cumple;normal;2.2532;225.0;0.955;0.1699
+56;flat;Stefan Stoica;no_cumple;rapida (descartado en la pasada rapida);2.2543;323.3;0.665;0.2685
+384;block;JuanCR;no_cumple;rapida (descartado en la pasada rapida);2.2690;386.8;0.556;0.1906
+362;other;emre;no_cumple;rapida (descartado en la pasada rapida);2.2749;779.1;0.276;0.5231
+289;flat;Marinus Reutelingsperger;no_cumple;normal;2.2993;224.8;0.956;0.1463
+195;flat;Armin;no_cumple;normal;2.3656;271.1;0.793;0.1775
+165;block;Andy Brookman;no_cumple;normal;2.3688;231.6;0.929;0.1634
+616;flat;Harrell Holloway;no_cumple;rapida (descartado en la pasada rapida);2.4071;461.1;0.466;0.2538
+58;flat;Stefan Stoica;no_cumple;normal;2.4180;300.0;0.717;0.2305
+634;block;Aaron Weissbart;no_cumple;normal;2.4234;238.1;0.903;0.1445
+0;block;Aaron Weissbart;no_cumple;normal;2.4234;238.0;0.903;0.1445
+329;block;julius;no_cumple;normal;2.4638;217.0;0.991;0.1589
+209;block;Sterry Shaffer;no_cumple;rapida (descartado en la pasada rapida);2.4811;334.3;0.643;0.1441
+432;flat;Punit;no_cumple;rapida (descartado en la pasada rapida);2.4812;474.3;0.453;0.3358
+61;flat;blekiwajt;no_cumple;normal;2.5497;321.5;0.669;0.2277
+377;flat;matt osborn;no_cumple;normal;2.5587;280.0;0.768;0.1461
+252;block;Daniel Jaeger;no_cumple;rapida (descartado en la pasada rapida);2.7832;337.8;0.636;0.2326
+248;block;Daniel Jaeger;no_cumple;rapida (descartado en la pasada rapida);2.7903;352.3;0.610;0.2323
+331;block;Matija;no_cumple;rapida (descartado en la pasada rapida);2.7960;357.4;0.602;0.1653
+434;flat;Aleksandr R;no_cumple;normal;2.8923;328.7;0.654;0.1756
