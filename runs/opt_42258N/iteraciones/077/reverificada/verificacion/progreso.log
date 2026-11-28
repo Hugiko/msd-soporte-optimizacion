@@ -1,0 +1,33 @@
+[17:03:40] Lanzando MAPDL: model.inp (timeout 1200s)
+[17:03:52]   [fase] 4  /PREP7
+[17:03:56]   [fase] 258537  /SOLU
+[17:03:56]   [solver] 258539  EQSLV,SPARSE
+[17:03:56]   [fase] 258542  /POST1
+[17:03:56]   [AVISO] *** WARNING ***                         ELAPSED TIME =      13.613   TIME= 17:03:54
+[17:03:57]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        13.675
+[17:03:57]   [solver] USE SPARSE MATRIX DIRECT SOLVER
+[17:03:57]   [AVISO] *** WARNING ***                         ELAPSED TIME =      14.015   TIME= 17:03:54
+[17:03:57]   [solver] EQUATION SOLVER OPTION. . . . . . . . . . . . .SPARSE
+[17:03:59]   [solver] SPARSE MATRIX DIRECT SOLVER.
+[17:04:02]   [solver] Equation solver memory allocated                     =  2207.625 MB
+[17:04:02]   [solver] Equation solver memory required for in-core mode     =  2113.793 MB
+[17:04:02]   [solver] Equation solver memory required for out-of-core mode =   561.124 MB
+[17:04:02]   [solver] The Sparse Matrix Solver is currently running in the in-core memory
+[17:04:12]   [solver] Sparse solver maximum pivot= 511080437 at node 90822 UX.
+[17:04:12]   [solver] Sparse solver minimum pivot= 8974.6026 at node 5612 UZ.
+[17:04:12]   [solver] Sparse solver minimum pivot in absolute value= 8974.6026 at node 5612
+[17:04:16]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        35.094
+[17:04:18]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.388   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.555   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.571   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.588   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.605   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.620   TIME= 17:04:18
+[17:04:19]   [AVISO] *** WARNING ***                         ELAPSED TIME =      37.635   TIME= 17:04:18
+[17:04:19]   [fase] ***** ROUTINE COMPLETED *****  ELAPSED TIME =        37.824
+[17:04:31]   [fase] Elapsed time spent pre-processing model (/PREP7)  :        0.8 seconds
+[17:04:31]   [solver] Elapsed time in equation solver                :       14.4 seconds
+[17:04:31]   [fase] Elapsed time spent post-processing model (/POST1) :        2.7 seconds
+[17:04:31]   [solver] Equation solver used                              :            Sparse (symmetric)
+[17:04:31]   [solver] Sparse direct equation solver computational rate  :       30.1 Gflops
+[17:04:31] MAPDL termino: estado=ok codigo=0 tiempo=50.8s

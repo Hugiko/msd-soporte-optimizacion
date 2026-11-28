@@ -149,23 +149,28 @@ Por tanto, el primer paso fue **reforzar**, y después aligerar.
   - Techos a 45° y sin cavidades cerradas (fabricación aditiva).
   - **Simetría obligatoria**: cada operación se aplica también en su simétrica.
 - **Verificación:** cada mejora ≥ 1 % se recalcula con **malla fina** (3,5 mm). Para aceptar una pieza se exige σ(malla 4 mm) × k ≤ 215 MPa, donde k es el cociente fina/normal medido (~1,04-1,08).
-- **Formas puras (24/11/2026):** al final, el vaciado irregular de la mejor pieza (23 operaciones, 2,0776 kg, 195,2 MPa) se sustituyó por **formas geométricas puras inscritas** en lo ya vaciado: círculos, ranuras y bolsillos en ranura, sin paredes de menos de 4 mm. El objetivo era facilitar la fabricación. Eso costó +110 g; la R18 recuperó 26 g agrandando esas formas.
+- **Formas puras (24/11/2026):** al final, el vaciado irregular de la mejor pieza (23 operaciones, 2,0776 kg, 195,2 MPa) se sustituyó por **formas geométricas puras inscritas** en lo ya vaciado: círculos, ranuras y bolsillos en ranura, sin paredes de menos de 4 mm. El objetivo era facilitar la fabricación. Eso costó +110 g; la R18 recuperó 32 g agrandando esas formas (it. 72, 74 y 77).
 
-### 2.3 La pieza final: iteración 72 (verificada con malla fina)
+### 2.3 La pieza final: iteración 77 (verificada con malla fina)
 
-| Magnitud | Malla 4 mm (96 664 nodos) | Malla fina 3,5 mm (121 520 nodos) |
+| Magnitud | Malla 4 mm (96 353 nodos) | Malla fina 3,5 mm (120 608 nodos) |
 |---|---|---|
-| Masa | 2,1614 kg (volumen de la malla); **2,1439 kg (CAD)** | ídem |
-| σ von Mises (métrica) | 196,7 MPa en (−0,25; −61,05; 57,18) | **209,2 MPa** en (−0,18; −87,09; 57,38) |
-| CS = 215/σ | 1,093 | **1,028** |
-| u máx | 0,159 mm (ux 0,133; uy 0,014; uz 0,112) | 0,165 mm |
-| Error de equilibrio de reacciones | 3·10⁻⁷ % | — |
+| Masa | 2,1556 kg (volumen de la malla); **2,1381 kg (CAD)** | ídem |
+| σ von Mises (métrica) | 193,7 MPa en (−0,20; −58,50; 57,14) | **209,4 MPa** en (−0,18; −87,09; 57,38) |
+| CS = 215/σ | 1,110 | **1,027** |
+| u máx | 0,159 mm (ux 0,134; uy 0,014; uz 0,112) | 0,166 mm |
+| Error de equilibrio de reacciones | < 10⁻⁶ % | — |
 
-- Reducción de masa respecto al original: **−11,1 %** (CAD: 2,4115 → 2,1439 kg) o −10,8 % (malla: 2,4234 → 2,1614 kg).
+- Reducción de masa respecto al original: **−11,3 %** (CAD: 2,4115 → 2,1381 kg) o −11,1 % (malla: 2,4234 → 2,1556 kg).
+- **Historia de esta pieza:**
+  - El optimizador aceptó la it. 77 el 24/11, pero no la comprobó con malla fina porque bajaba la masa menos de un 1 %.
+  - La siguiente (it. 78, 2,1263 kg) no pasó la malla fina por 0,1 MPa (215,1 MPa). Al deshacerla se volvió al último hito verificado, la it. 72 (2,1614 kg, 209,2 MPa con malla fina), y se perdieron también las it. 74 y 77.
+  - El 28/11 se reconstruyó la 77 y se comprobó aparte: con malla normal reproduce exactamente 2,1556 kg y 193,7 MPa, y con malla fina da 209,4 MPa. **Cumple**, así que es el hito 17.
+  - Los archivos de la it. 72 siguen en `historial/16_it072_2.161kg/` por si se quieren comparar.
 - El pico está en **la unión de la orejeta con el cuerpo** (z ≈ 57), en una orejeta o en su simétrica según la malla.
   - Es **flexión** (concentración de tensiones ×1,6).
   - Refinar el acuerdo no lo resolvía; necesita más canto.
-- Workbench (proyecto ya resuelto, malla por defecto, 78 454 nodos): u máx 0,1614 mm; σ máx bruta 617 MPa, que es la singularidad del borde del perno empotrado (ver §4).
+- Workbench (proyecto ya resuelto, malla por defecto, 78 156 nodos): u máx 0,1621 mm; σ máx bruta 605 MPa, que es la singularidad del borde del perno empotrado (ver §2.5).
 
 **Las 14 operaciones sobre el original y su porqué:**
 - «(y su simétrica)» = también se aplica en el lado simétrico respecto al plano de las orejetas.
@@ -175,7 +180,7 @@ Por tanto, el primer paso fue **reforzar**, y después aligerar.
 | # | Operación | Por qué (regla, mecánica y datos) |
 |---|---|---|
 | 1-2 | **Collar de 6 mm** alrededor de los pernos 1 y 3, hasta z = 22 mm, **acampanado a 30°** hasta z = 16 mm | **Refuerzo** (R4 + R12).<br>• El pico del original estaba en el fondo del alojamiento del perno 1: el momento de vuelco F·h se transmite por la sección que rodea a los pernos delanteros.<br>• Prueba directa: collares de 6 mm bajan el pico de 238 a 203 MPa (−15 %) con +159 g.<br>• Pieza simétrica de partida (original + collares): 2,5044 kg, 201,9 MPa.<br>• El cilindro dejaba una esquina viva en su unión con el cuerpo. Acampanarlo a 30° (it. 31/37) bajó el pico de 202,1 a 190,7 MPa (−5,6 %) con +52 g. Ese margen se «gastó» después aligerando.<br>• Collares de 8-9 mm (it. 9, 15) no mejoran (9 mm: sube a 207 MPa).<br>• Collares en los pernos 2 y 4 (it. 60, 61, 75, 76): cumplen pero pesan más sin hacer falta. |
-| 3 | **Rebaje desde arriba** hasta z = 9 mm en x 42…62, y −80…−68 (esquinas R3) (y su simétrica) | R2 (it. 2).<br>• Todo el material por encima de z = 9 en esa zona trabajaba por debajo del 15 % del límite: ni el momento de vuelco ni el cortante pasan por ahí.<br>• 2,5044 → 2,4822 kg; 201,9 → 200,9 MPa. |
+| 3 | **Rebaje desde arriba** hasta z = 9 mm en x 40…64, y −82…−66 (esquinas R3) (y su simétrica) | R2 (it. 2, en x 42…62, y −80…−68).<br>• Todo el material por encima de z = 9 en esa zona trabajaba por debajo del 15 % del límite: ni el momento de vuelco ni el cortante pasan por ahí.<br>• 2,5044 → 2,4822 kg; 201,9 → 200,9 MPa.<br>R18 (it. 77): ampliado 2 mm por cada lado; el borde que se quitaba trabajaba como máximo al 69 % del límite.<br>• 2,1581 → 2,1556 kg; 198,0 → 193,7 MPa. |
 | 4 | **Anillo de las orejetas** hasta radio 20,1 mm (ligamento de 10,5 mm delante del bulón) | **Refuerzo** (R7, it. 39).<br>• El pico pasó a la orejeta. Había 7,5 mm de ligamento, igual que la mediana de los 16 diseños SimJEB válidos (7,6 mm). La tensión de aplastamiento y cortadura va como ~1/e.<br>• +15 g; 202,2 → 193,8 MPa (−4,2 %).<br>• Seguir creciendo a 23,1 mm **empeora** (it. 58 y 73: 208 y 204 MPa). Explícalo: rigidiza la orejeta y lleva más carga a la unión orejeta-cuerpo, que trabaja a flexión. |
 | 5 | **Ranura** de (42; −79) a (42; −67), r = 11,5 (y su simétrica) | Sustituye al grupo central de aligeramientos R1 de las it. 3, 35, 41, 55, 57 y 59: D16 en (49; −56) y (37; −62), D20 en (43; −68), D12 en (34; −77).<br>• Cada columna trabajaba por debajo del 25-45 % del límite: no está en el camino de la carga, y con Kt ≈ 3 (Kirsch) el borde queda bajo el límite.<br>• En la it. 55 se **redujo** (R8) el D16 de (49; −56) porque el pico estaba en su borde: ese material sí trabajaba. |
 | 6 | **Ranura** de (26; −72) a (18; −76), r = 4 (y su simétrica) | Sustituye a D10 en (28; −74) y D10 en (19; −74) (it. 7 y 8): columnas por debajo del 25 % del límite. |
@@ -186,9 +191,9 @@ Por tanto, el primer paso fue **reforzar**, y después aligerar.
 | 11 | **Bolsillo en ranura desde la cara de apoyo**, 21 mm de ancho, de (13; −54) a (7; −35), hasta z = 11, techo a 45° (y su simétrico) | Sustituye a los bolsillos R14 de las it. 18 y 47 y al hueco interior R3 de la it. 43.<br>• **El soporte solo se sujeta por los pernos**: la placa base bajo el cuerpo no lleva carga aunque el cuerpo de encima sí.<br>• Placa base del original (z < 10 mm): 67 cm³ con un 77 % de material ocioso. En la mitad más ligera de los SimJEB válidos: mediana de 45 cm³. |
 | 12 | **Bolsillo en ranura**, 15 mm de ancho, de (23; −27) a (56; −28), hasta z = 6 (y su simétrico) | Sustituye al bolsillo R14 de 56 × 16 mm de la it. 52 (material por debajo del 45 % del límite). |
 | 13 | **Bolsillo en ranura**, 8 mm de ancho, de (23; −38) a (29; −61), hasta z = 6 (y su simétrico) | Sustituye a los bolsillos R14 de las it. 19, 20, 38 y 42 y a sus simétricos. Misma razón que el 11. |
-| 14 | **Bolsillo en ranura**, 27 mm de ancho, de (−31; −94) a (−33; −57), hasta z = 12 (y su simétrico) | R14 (it. 68): material bajo las orejetas, del lado de la carga, por debajo del 45 % del límite. |
+| 14 | **Bolsillo en ranura**, 30 mm de ancho, de (−31; −94) a (−33; −57), hasta z = 12 (y su simétrico) | R14 (it. 68): material bajo las orejetas, del lado de la carga, por debajo del 45 % del límite. En formas puras quedó de 27 mm.<br>R18 (it. 74): ensanchado a 30 mm; el borde que se quitaba trabajaba como máximo al 40 % del límite.<br>• 2,1614 → 2,1581 kg; 196,7 → 198,0 MPa. |
 
-Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/16_it072_2.161kg/operaciones.json`.
+Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/17_it077_2.156kg/operaciones.json`.
 
 **¿Y los nervios?** La regla R11 crea nervios en la dirección de las tensiones principales (Michell): se quita un bloque que trabaja poco y se ponen nervios. Se probó **9 veces y ninguna mejoró** la pieza, así que la regla quedó suspendida. **La pieza final no tiene nervios nuevos.** Los refuerzos son collares, acampanado y anillo. Explica por qué tiene sentido: la pieza original ya tiene una cartela y almas en la dirección de la carga, y lo que sobraba era placa base y material fuera de ese camino.
 
@@ -203,28 +208,29 @@ Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/
 | 46 | Agujero D20 en (7; −116) | 292 MPa | Ídem |
 | 51 | Agujero D10 en (37; −86) | 249 MPa | Material junto al camino hacia los pernos traseros |
 | 1, 12, 13, 14, 21, 24-28, 48, 49, 53, 54, 65 | Aligeramientos pequeños | 202-210 MPa con malla de 4 mm; tras corregir a malla fina, 216-226 MPa | Al límite: no cumplen por poco tras la corrección a malla fina |
-| 78 | Agrandar la ranura n.º 5 (R18) | 2,1263 kg, 198,5 MPa con malla de 4 mm, pero **215,1 MPa con malla fina** | Rechazada por 0,1 MPa. Se volvió a la it. 72 |
+| 78 | Agrandar la ranura n.º 5 (R18) | 2,1263 kg, 198,5 MPa con malla de 4 mm, pero **215,1 MPa con malla fina** | Rechazada por 0,1 MPa: la ranura central ya está en su tamaño máximo. (La it. 77, anterior, se recuperó después; ver §2.3) |
+| 73 | Anillo de las orejetas a radio 23,1 mm | 204,4 MPa (sube) | Más anillo rigidiza la orejeta y lleva más carga a la unión orejeta-cuerpo |
 
 ### 2.5 Decisiones de modelo que debes discutir en el informe
 
 - **Métrica de tensión** (`scripts/fem.py`, `stress_metric`): máximo de von Mises excluyendo los nodos a menos de **5 mm** de cada agujero de perno (en el tramo z del agujero ± 5 mm) y a menos de **2 mm** de la superficie del bulón (esquinas del RBE3).
-  - Motivo: el borde del agujero empotrado es una **singularidad**. Su tensión crece sin límite al refinar: bruto 868 MPa con malla de 4 mm y 856 MPa con la fina.
+  - Motivo: el borde del agujero empotrado es una **singularidad**: su tensión no converge al refinar (bruto 920 MPa con malla de 4 mm y 895 MPa con la fina; el máximo bruto salta de un nodo a otro según la malla).
   - Hipótesis física: 5 mm ≈ zona de apoyo de una arandela de M10 (diámetro exterior 20 mm según ISO 7089; **verifícalo**).
   - **Sensibilidad (pieza final; malla 4 mm / malla fina):**
 
 | Exclusión | Malla 4 mm | Malla fina |
 |---|---|---|
-| Sin exclusión | 868 MPa | 856 MPa |
-| Pernos 3 mm, bulón 0 mm | 322 MPa | 353 MPa |
-| Pernos 3 mm, bulón 2 mm | **242 MPa** | **260 MPa** |
-| Pernos 5 mm, bulón 2 mm (la usada) | 196,7 MPa | 209,2 MPa |
+| Sin exclusión | 920 MPa | 895 MPa |
+| Pernos 3 mm, bulón 0 mm | 317 MPa | 302 MPa |
+| Pernos 3 mm, bulón 2 mm | **253 MPa** | **271 MPa** |
+| Pernos 5 mm, bulón 2 mm (la usada) | 193,7 MPa | 209,4 MPa |
 
-  - **Es el punto débil del modelo:** entre 3 y 5 mm de los pernos hay hasta 260 MPa. Hay que estudiarlo con un modelo de tornillo realista: contacto bajo cabeza o arandela, precarga, apoyo solo a compresión en la cara inferior. Así se ve si esa tensión es real o un artefacto del empotramiento.
+  - **Es el punto débil del modelo:** entre 3 y 5 mm de los pernos hay hasta 271 MPa. Hay que estudiarlo con un modelo de tornillo realista: contacto bajo cabeza o arandela, precarga, apoyo solo a compresión en la cara inferior. Así se ve si esa tensión es real o un artefacto del empotramiento.
   - Lo mismo con el bulón: modelo de contacto bulón-orejeta en vez de RBE3.
 - **Malla:** tetraedros de 2.º orden SOLID187 generados con gmsh.
   - Rápida h = 6 mm, normal h = 4 mm, fina h = 3,5 mm.
-  - El cociente fina/normal en el pico ha sido de 1,04-1,08; para la pieza final, 209,2/196,7 = **1,064**.
-  - **No hay convergencia demostrada.** Con CS = 1,028 en la malla fina, el margen es pequeño.
+  - El cociente fina/normal en el pico ha sido de 1,04-1,08; para la pieza final, 209,4/193,7 = **1,081**.
+  - **No hay convergencia demostrada.** Con CS = 1,027 en la malla fina, el margen es pequeño.
   - Validación del montaje con una viga en voladizo: flecha con un 0,02 % de error.
 - **Simetría impuesta, fabricación aditiva y formas puras:** son decisiones de diseño del grupo, no exigencias del enunciado.
 
@@ -234,9 +240,10 @@ Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/
 
 | Qué | Dónde |
 |---|---|
-| **Pieza final** (STEP, operaciones, métricas, imágenes, modelo APDL completo) | `runs/opt_42258N/historial/16_it072_2.161kg/`<br>`geometria.step`, `operaciones.json`, `metrics.json`, `resumen.png`, `vonmises.png`, `modelo_apdl.zip` (`model.inp` con malla, RBE3, empotramiento y carga; el parámetro `FUERZA` está al final) |
-| **Proyecto Workbench** de la pieza final (ya resuelto) | `runs/opt_42258N/historial/16_it072_2.161kg/workbench/soporte_it072.wbpj` (y `.wbpz`) |
-| Campos de resultados (nodos, tets, von Mises, desplazamientos y tensor completo SX…SXZ) | `runs/opt_42258N/iteraciones/072/completa/campos.npz`, `res_nod.txt`, `res_comp.txt`; verificación fina en `.../072/completa/verificacion/` |
+| **Pieza final** (STEP, operaciones, métricas, imágenes, modelo APDL completo) | `runs/opt_42258N/historial/17_it077_2.156kg/`<br>`geometria.step`, `operaciones.json`, `metrics.json`, `resumen.png`, `vonmises.png`, `modelo_apdl.zip` (`model.inp` con malla, RBE3, empotramiento y carga; el parámetro `FUERZA` está al final) |
+| **Proyecto Workbench** de la pieza final (ya resuelto) | `runs/opt_42258N/historial/17_it077_2.156kg/workbench/soporte_it077.wbpj` (y `.wbpz`) |
+| Campos de resultados (nodos, tets, von Mises, desplazamientos y tensor completo SX…SXZ) | `runs/opt_42258N/iteraciones/077/reverificada/completa/` (`campos.npz`, `res_nod.txt`, `res_comp.txt`, `model.inp`) y malla fina en `.../077/reverificada/verificacion/`<br>Resumen: `.../077/reverificada/verificacion_resultado.json` |
+| Pieza anterior (it. 72), por si se compara | `runs/opt_42258N/historial/16_it072_2.161kg/` |
 | Original | `cad/0.stp` (**no modificar**); resultados de referencia (37 800 N) en `cad/referencia_original/` |
 | Geometría fija | `cad/agujeros_fijos.json` |
 | Historia completa, iteración a iteración (regla, porqué, previsión, antes/después, decisión) | `runs/opt_42258N/ITERACIONES.md`, `runs/opt_42258N/registro.csv`, `runs/opt_42258N/estado.json` (solo lectura) |
@@ -265,7 +272,7 @@ Las coordenadas exactas (incluidos radios) están en `runs/opt_42258N/historial/
 Haz todo lo que puedas de esta lista, en este orden de prioridad. Para cada apartado: qué se calcula, cómo (modelo, malla, condiciones), resultados con figuras y tablas, e **interpretación física**.
 
 ### A. Comprobación del modelo y convergencia (lo primero: de esto depende el «cumple»)
-1. Reproduce el resultado de la pieza final (196,7 / 209,2 MPa; 0,159 / 0,165 mm) con el `model.inp` y con Workbench, y explica las diferencias.
+1. Reproduce el resultado de la pieza final (193,7 / 209,4 MPa; 0,159 / 0,166 mm) con el `model.inp` y con Workbench, y explica las diferencias.
 2. **Estudio de convergencia de malla** en el pico (unión orejeta-cuerpo, z ≈ 57).
    - Refinamiento local (sizing de cara o arista en el acuerdo de la unión, el fondo de los alojamientos y el borde de los aligeramientos) dentro del límite de 128 000 nodos.
    - Si hace falta, **submodelo**.
@@ -275,7 +282,7 @@ Haz todo lo que puedas de esta lista, en este orden de prioridad. Para cada apar
 4. **Modelo de apoyo realista.**
    - Pernos M10 con contacto bajo cabeza o arandela, cara inferior apoyada solo a compresión y precarga razonable (justificada y citada).
    - Bulón con contacto en lugar de RBE3.
-   - Compara tensiones, desplazamientos y reacciones con el modelo empotrado. Esto decide si los 242-260 MPa a 3-5 mm de los pernos son reales.
+   - Compara tensiones, desplazamientos y reacciones con el modelo empotrado. Esto decide si los 253-271 MPa a 3-5 mm de los pernos son reales.
 
 ### B. Cómo carga la pieza (análisis estático detallado, caso 2)
 1. **Cálculo a mano:**
@@ -322,9 +329,9 @@ Define y **justifica** un rango de temperaturas de servicio. Por ejemplo, de −
 
 ## 5. Advertencias (cosas que ya sabemos)
 
-- La pieza final cumple con **CS = 1,028 en malla fina**, un margen pequeño. Sin un estudio de convergencia, el «cumple» no está demostrado (§A.2).
-- La métrica depende de la exclusión de 5 mm alrededor de los pernos; con 3 mm, la pieza **no cumpliría** (242-260 MPa) (§A.3-A.4).
-- La masa «de malla» (2,1614 kg) es ~0,8 % mayor que la del CAD (2,1439 kg). En el informe, usa la del CAD para la pieza y explica que la gráfica SimJEB usa la de malla para todos (comparación homogénea).
+- La pieza final cumple con **CS = 1,027 en malla fina**, un margen pequeño. Sin un estudio de convergencia, el «cumple» no está demostrado (§A.2).
+- La métrica depende de la exclusión de 5 mm alrededor de los pernos; con 3 mm, la pieza **no cumpliría** (253-271 MPa) (§A.3-A.4).
+- La masa «de malla» (2,1556 kg) es ~0,8 % mayor que la del CAD (2,1381 kg). En el informe, usa la del CAD para la pieza y explica que la gráfica SimJEB usa la de malla para todos (comparación homogénea).
 - La incoherencia de la carga del enunciado (§1.1).
 - Los pernos 2 y 4 no son simétricos: la pieza es simétrica salvo allí.
 - En `runs/opt_42258N/` existe un `EN_EJECUCION.lock` antiguo: el optimizador **no** está en marcha. Aun así, no lances ANSYS si ves un `python.exe` del optimizador corriendo.

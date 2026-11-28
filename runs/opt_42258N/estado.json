@@ -1,5 +1,5 @@
 {
- "iter": 174,
+ "iter": 177,
  "actual": {
   "ops": [
    {
@@ -20,10 +20,10 @@
    },
    {
     "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -68.32,
+    "x0": 39.52,
+    "x1": 63.52,
+    "y0": -82.32,
+    "y1": -66.32,
     "zc": 9.0,
     "rr": 3.0
    },
@@ -106,27 +106,28 @@
     "y1": -93.6,
     "x2": -32.6,
     "y2": -56.6,
-    "r": 13.5,
+    "r": 15.0,
     "z1": 12.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\072\\completa",
+  "dir": "runs\\opt_42258N\\iteraciones\\077\\reverificada\\completa",
   "m": {
-   "mass_kg": 2.1614368352000004,
-   "vm_metric": 196.6856,
-   "u_max": 0.1585139163467973,
+   "mass_kg": 2.1555840557500003,
+   "vm_metric": 193.7256,
+   "u_max": 0.15918882084420508,
    "vm_metric_xyz": [
-    -0.25288282949144403,
-    -61.046600599090745,
-    57.177800029302176
+    -0.19800991558367897,
+    -58.50376352723593,
+    57.13994159170428
    ],
-   "n_nodes": 96664,
-   "cs": 1.0931151034951212,
-   "viol": 0.9890083821395348,
-   "score": 2.1614368352000004,
+   "n_nodes": 96353,
+   "cs": 1.1098171847190046,
+   "viol": 0.9740342958139534,
+   "score": 2.1555840557500003,
    "valido": true
   },
-  "rapida": null
+  "rapida": null,
+  "galeria": "galeria/20261124_215434_it077_ACEPTADA_2.156kg.jpg"
  },
  "mejor": {
   "ops": [
@@ -148,10 +149,10 @@
    },
    {
     "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -68.32,
+    "x0": 39.52,
+    "x1": 63.52,
+    "y0": -82.32,
+    "y1": -66.32,
     "zc": 9.0,
     "rr": 3.0
    },
@@ -234,35 +235,35 @@
     "y1": -93.6,
     "x2": -32.6,
     "y2": -56.6,
-    "r": 13.5,
+    "r": 15.0,
     "z1": 12.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\072\\completa",
+  "dir": "runs\\opt_42258N\\iteraciones\\077\\reverificada\\completa",
   "m": {
-   "mass_kg": 2.1614368352000004,
-   "vm_metric": 196.6856,
-   "u_max": 0.1585139163467973,
+   "mass_kg": 2.1555840557500003,
+   "vm_metric": 193.7256,
+   "u_max": 0.15918882084420508,
    "vm_metric_xyz": [
-    -0.25288282949144403,
-    -61.046600599090745,
-    57.177800029302176
+    -0.19800991558367897,
+    -58.50376352723593,
+    57.13994159170428
    ],
-   "n_nodes": 96664,
-   "cs": 1.0931151034951212,
-   "viol": 0.9890083821395348,
-   "score": 2.1614368352000004,
+   "n_nodes": 96353,
+   "cs": 1.1098171847190046,
+   "viol": 0.9740342958139534,
+   "score": 2.1555840557500003,
    "valido": true
   },
-  "iter": 72,
-  "galeria": "galeria/20261124_211917_it072_ACEPTADA_2.161kg.jpg",
+  "iter": 77,
+  "galeria": "galeria/20261124_215434_it077_ACEPTADA_2.156kg.jpg",
   "verif": {
-   "vm_metric": 209.2156,
-   "u_max": 0.1651655302809412,
-   "n_nodes": 121520,
+   "vm_metric": 209.4112,
+   "u_max": 0.16578901340506522,
+   "n_nodes": 120608,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\16_it072_2.161kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\17_it077_2.156kg"
  },
  "verificado": {
   "ops": [
@@ -284,10 +285,10 @@
    },
    {
     "tipo": "rebaje",
-    "x0": 41.52,
-    "x1": 61.52,
-    "y0": -80.32,
-    "y1": -68.32,
+    "x0": 39.52,
+    "x1": 63.52,
+    "y0": -82.32,
+    "y1": -66.32,
     "zc": 9.0,
     "rr": 3.0
    },
@@ -370,35 +371,35 @@
     "y1": -93.6,
     "x2": -32.6,
     "y2": -56.6,
-    "r": 13.5,
+    "r": 15.0,
     "z1": 12.0
    }
   ],
-  "dir": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\iteraciones\\072\\completa",
+  "dir": "runs\\opt_42258N\\iteraciones\\077\\reverificada\\completa",
   "m": {
-   "mass_kg": 2.1614368352000004,
-   "vm_metric": 196.6856,
-   "u_max": 0.1585139163467973,
+   "mass_kg": 2.1555840557500003,
+   "vm_metric": 193.7256,
+   "u_max": 0.15918882084420508,
    "vm_metric_xyz": [
-    -0.25288282949144403,
-    -61.046600599090745,
-    57.177800029302176
+    -0.19800991558367897,
+    -58.50376352723593,
+    57.13994159170428
    ],
-   "n_nodes": 96664,
-   "cs": 1.0931151034951212,
-   "viol": 0.9890083821395348,
-   "score": 2.1614368352000004,
+   "n_nodes": 96353,
+   "cs": 1.1098171847190046,
+   "viol": 0.9740342958139534,
+   "score": 2.1555840557500003,
    "valido": true
   },
-  "iter": 72,
-  "galeria": "galeria/20261124_211917_it072_ACEPTADA_2.161kg.jpg",
+  "iter": 77,
+  "galeria": "galeria/20261124_215434_it077_ACEPTADA_2.156kg.jpg",
   "verif": {
-   "vm_metric": 209.2156,
-   "u_max": 0.1651655302809412,
-   "n_nodes": 121520,
+   "vm_metric": 209.4112,
+   "u_max": 0.16578901340506522,
+   "n_nodes": 120608,
    "ok": true
   },
-  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\16_it072_2.161kg"
+  "historial": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\17_it077_2.156kg"
  },
  "tau_idx": 2,
  "rechazos": [
@@ -426,21 +427,6 @@
   },
   {
    "op": {
-    "tipo": "rebaje",
-    "x0": 39.52,
-    "x1": 63.52,
-    "y0": -82.32,
-    "y1": -66.32,
-    "zc": 9.0,
-    "rr": 3.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "verificacion",
-   "iter": 78,
-   "motivo": "malla fina 215.1 MPa"
-  },
-  {
-   "op": {
     "tipo": "ranura",
     "x1": 41.5,
     "y1": -78.6,
@@ -448,21 +434,6 @@
     "x2": 41.5,
     "y2": -66.6,
     "r2": 13.0
-   },
-   "motivo_tipo": "tension",
-   "regla": "verificacion",
-   "iter": 78,
-   "motivo": "malla fina 215.1 MPa"
-  },
-  {
-   "op": {
-    "tipo": "bolsillo_ranura",
-    "x1": -30.6,
-    "y1": -93.6,
-    "x2": -32.6,
-    "y2": -56.6,
-    "r": 15.0,
-    "z1": 12.0
    },
    "motivo_tipo": "tension",
    "regla": "verificacion",
@@ -1579,7 +1550,7 @@
  "sin_mejora": 0,
  "inversiones": 0,
  "inversion_desde": null,
- "wb_masa": 2.1614368352000004,
+ "wb_masa": 2.1555840557500003,
  "fin": false,
  "motivo_fin": "",
  "historia": [
@@ -7014,6 +6985,10 @@
   [
    1.0839,
    1.0406
+  ],
+  [
+   1.081,
+   1.0415
   ]
  ],
  "estudio_anunciado": true,

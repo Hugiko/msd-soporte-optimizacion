@@ -68,7 +68,7 @@ dots(a1, val, s=46, c=OK, edgecolors=SURF, linewidths=1.0, zorder=4, label=f"Cum
 a1.scatter([orig["m"]], [orig["s"]], s=90, marker="D", facecolors=SURF, edgecolors=INK, linewidths=1.6, zorder=5,
            label="Soporte original del enunciado (0.stp)")
 a1.scatter([ours["m"]], [ours["s"]], s=260, marker="*", c=OURS, edgecolors=SURF, linewidths=1.0, zorder=6,
-           label="Nuestra pieza (iteración 72)")
+           label=f"Nuestra pieza (iteración {best['iter']})")
 a1.set_ylim(100, 10000)
 xmax = max(v["masa_kg"] for v in rows) * 1.05
 a1.set_xlim(0, xmax)
@@ -107,7 +107,7 @@ if irr:
                 xytext=(1.875, 205.5), textcoords="data", fontsize=8.0, color=INK2, ha="left",
                 arrowprops=dict(arrowstyle="-", color=INK3, lw=0.7))
 a2.scatter([ours["m"]], [ours["s"]], s=330, marker="*", c=OURS, edgecolors=SURF, linewidths=1.0, zorder=6)
-a2.annotate(f"Nuestra pieza (formas puras, it. 72)\n{ours['m']:.3f} kg · {ours['s']:.1f} MPa (malla fina {ours['s_fino']:.1f})\n"
+a2.annotate(f"Nuestra pieza (formas puras, it. {best['iter']})\n{ours['m']:.3f} kg · {ours['s']:.1f} MPa (malla fina {ours['s_fino']:.1f})\n"
             f"{rank}.ª más ligera de las {len(val) + 1} que cumplen", (ours["m"], ours["s"]), xytext=(2.6, 202),
             textcoords="data", fontsize=8.8, color=INK, fontweight="bold",
             arrowprops=dict(arrowstyle="-", color=INK3, lw=0.8))
@@ -140,7 +140,7 @@ with open(os.path.join(TOP, "estudio", "comparativa_simjeb.csv"), "w", newline="
     w.writerow(["id", "categoria", "autor", "veredicto", "fidelidad", "masa_kg", "tension_MPa", "cs", "desp_mm"])
     w.writerow(["original", "", "enunciado (0.stp)", "no_cumple", "normal (37 800 N x 1,118)", f"{orig['m']:.4f}", f"{orig['s']:.1f}",
                 f"{LIM / orig['s']:.3f}", f"{orig['u']:.4f}"])
-    w.writerow(["nuestra (it. 72)", "formas puras", "grupo 831_MSD_13_B", "valido", "normal (fina: %.1f MPa)" % ours["s_fino"],
+    w.writerow([f"nuestra (it. {best['iter']})", "formas puras", "grupo 831_MSD_13_B", "valido", "normal (fina: %.1f MPa)" % ours["s_fino"],
                 f"{ours['m']:.4f}", f"{ours['s']:.1f}", f"{LIM / ours['s']:.3f}", f"{ours['u']:.4f}"])
     for v in sorted(rows, key=lambda v: (v["veredicto"] != "valido", v["masa_kg"])):
         w.writerow([v["id"], v.get("categoria"), v.get("autor"), v["veredicto"], v.get("fidelidad"), f"{v['masa_kg']:.4f}",

@@ -1,0 +1,6 @@
+﻿[17:04:49] RECUPERACION de la iteracion 77: la aceptaron las reglas (2.1556 kg, 193.7 MPa) pero se perdio al deshacer la verificacion fallida de la iteracion siguiente; comprobada aparte con malla fina: 209.4 MPa, 0.166 mm -> CUMPLE. Pasa a ser el mejor diseno (antes 2.1614 kg, iteracion 72); se quitan de los rechazos 2 cambios que contiene.
+[17:06:31] Workbench (sin ventana): creando soporte_it077.wbpj con F = 42258 N ...
+[17:10:26] Workbench termino en 236 s: montaje OK, resuelto SI
+[17:10:27]   >>> HITO 17: 2.156 kg (iteracion 77) | proyecto Workbench creado
+adoptado
+FIN

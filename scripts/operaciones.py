@@ -74,9 +74,11 @@ _PROT = []
 
 
 def original():
+    """Copia NUEVA del 0.stp en cada llamada: las reparaciones de OpenCascade (fix/heal) pueden modificar en el sitio las
+    caras que una pieza comparte con su origen; con una copia, la pieza de partida en memoria nunca se contamina."""
     if not _ORIG:
         _ORIG.append(cq.importers.importStep(STEP0).val())
-    return _ORIG[0]
+    return _ORIG[0].copy()
 
 
 def protected():

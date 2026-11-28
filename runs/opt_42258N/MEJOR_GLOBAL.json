@@ -1,22 +1,22 @@
 {
- "iter": 72,
- "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\16_it072_2.161kg",
- "mass_kg": 2.1614368352000004,
- "vm_metric": 196.6856,
- "u_max": 0.1585139163467973,
- "coef_seguridad": 1.0931151034951212,
- "puntuacion": 2.1614368352000004,
+ "iter": 77,
+ "carpeta": "C:\\Users\\hugof\\Desktop\\Universidad\\MSD\\Trabajo\\runs\\opt_42258N\\historial\\17_it077_2.156kg",
+ "mass_kg": 2.1555840557500003,
+ "vm_metric": 193.7256,
+ "u_max": 0.15918882084420508,
+ "coef_seguridad": 1.1098171847190046,
+ "puntuacion": 2.1555840557500003,
  "workbench": true,
  "verificacion": {
-  "vm_metric": 209.2156,
-  "u_max": 0.1651655302809412,
-  "n_nodes": 121520,
+  "vm_metric": 209.4112,
+  "u_max": 0.16578901340506522,
+  "n_nodes": 120608,
   "ok": true
  },
  "operaciones": [
   "collar de 6.0 mm alrededor del perno 1 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
   "collar de 6.0 mm alrededor del perno 3 hasta z = 22 mm, acampanado a 30 grados hasta z = 16 mm",
-  "rebaje desde arriba hasta z = 9 mm en x 42..62, y -80..-68 mm (esquinas R3) (y su simetrico)",
+  "rebaje desde arriba hasta z = 9 mm en x 40..64, y -82..-66 mm (esquinas R3) (y su simetrico)",
   "anillo de las orejetas hasta radio 20.1 mm (ligamento 10.5 mm)",
   "ranura que une los aligeramientos de (42, -79) y (42, -67) (quita la pared fina entre ellos) (y su simetrico)",
   "ranura que une los aligeramientos de (26, -72) y (18, -76) (quita la pared fina entre ellos) (y su simetrico)",
@@ -27,8 +27,8 @@
   "bolsillo en ranura desde la cara de apoyo, 21 mm de ancho, de (13, -54) a (7, -35), hasta z = 11 mm (techo a 45 grados) (y su simetrico)",
   "bolsillo en ranura desde la cara de apoyo, 15 mm de ancho, de (23, -27) a (56, -28), hasta z = 6 mm (techo a 45 grados) (y su simetrico)",
   "bolsillo en ranura desde la cara de apoyo, 8 mm de ancho, de (23, -38) a (29, -61), hasta z = 6 mm (techo a 45 grados) (y su simetrico)",
-  "bolsillo en ranura desde la cara de apoyo, 27 mm de ancho, de (-31, -94) a (-33, -57), hasta z = 12 mm (techo a 45 grados) (y su simetrico)"
+  "bolsillo en ranura desde la cara de apoyo, 30 mm de ancho, de (-31, -94) a (-33, -57), hasta z = 12 mm (techo a 45 grados) (y su simetrico)"
  ],
- "fecha": "2026-11-24T21:22:16",
+ "fecha": "2026-11-28T17:10:26",
  "final": false
 }

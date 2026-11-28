@@ -202,19 +202,57 @@ def ops_key(ops):
     return json.dumps(ops, sort_keys=True)
 
 
-def current_solid(ops):
+def expected_cad_mass(wd):
+    """Masa CAD con la que se calculo la pieza de la carpeta wd (metrics.json), o None."""
+    try:
+        return float(json.load(open(os.path.join(wd, "metrics.json"), encoding="utf-8"))["mass_cad_kg"])
+    except Exception:
+        return None
+
+
+def current_solid(ops, wd=None):
+    """La pieza actual (cache en memoria -> pieza_actual.step -> reconstruccion desde el 0.stp).
+    Si se da wd (carpeta donde se calculo esa pieza), la geometria se VALIDA con su masa CAD: el 25/11 la cache guardo una
+    geometria equivocada (2,1262 kg en lugar de 2,1439 kg) con la etiqueta de la pieza 72 y el optimizador quedo en bucle
+    100 iteraciones intentando mallarla."""
     import operaciones as O
     import cadquery as cq
     k = ops_key(ops)
-    if Current.key == k and Current.solid is not None:
+    want = expected_cad_mass(wd) if wd else None
+
+    def ok(s, origen):
+        if want is None:
+            return True
+        got = s.Volume() * 7.85e-6
+        if abs(got - want) / want <= 0.002:
+            return True
+        log(f"  !! la geometria de {origen} no es la calculada ({got:.4f} kg frente a {want:.4f} kg de masa CAD): se descarta")
+        return False
+
+    if Current.key == k and Current.solid is not None and ok(Current.solid, "la memoria"):
         return Current.solid
     side = PIEZA_STEP + ".json"
+    s = None
     if os.path.exists(PIEZA_STEP) and os.path.exists(side) and open(side, encoding="utf-8").read() == k:
         s = cq.importers.importStep(PIEZA_STEP).val()
         s = sorted(s.Solids(), key=lambda q: q.Volume(), reverse=True)[0]
-    else:
+        if not ok(s, "pieza_actual.step"):
+            s = None
+    if s is None:
         log(f"  reconstruyendo la pieza actual desde el 0.stp ({len(ops)} operaciones)...")
         s, _ = O.build(ops)
+        if not ok(s, "la reconstruccion"):
+            gs = os.path.join(wd, "geometria.step") if wd else ""
+            if gs and os.path.exists(gs):
+                s = cq.importers.importStep(gs).val()
+                s = sorted(s.Solids(), key=lambda q: q.Volume(), reverse=True)[0]
+                if not ok(s, "geometria.step de la carpeta del calculo"):
+                    s = None
+            else:
+                s = None
+            if s is None:
+                raise RuntimeError("no se consigue reconstruir la pieza actual con la masa con la que se calculo: se para "
+                                   "(al relanzar, un proceso limpio la reconstruye desde el 0.stp)")
     set_current(s, ops)
     return s
 
@@ -295,7 +333,7 @@ def current_quick(st):
     wd = os.path.join(ITD, f"{st['iter']:03d}", "actual_rapida")
     log("  evaluacion rapida de la pieza actual (referencia para comparar en la misma malla gruesa)")
     import operaciones as O
-    s = current_solid(a["ops"])
+    s = current_solid(a["ops"], a.get("dir"))
     m = run_eval(a["ops"], s, O.finish(s)[1], wd, quick=True)
     if m.get("status") == "ok":
         img = snap(wd, f"iteracion {st['iter']}: pieza actual (malla gruesa) {m['mass_kg']:.3f} kg, {m['vm_metric']:.0f} MPa",
@@ -842,7 +880,7 @@ def step(st, git, E):
     import operaciones as O_
     C = CA.from_npz(os.path.join(a["dir"], "campos.npz"), SIG_OBJ / K_FINO[0], mfull, sym=O_.SIM)
     try:
-        solid_now = current_solid(a["ops"])
+        solid_now = current_solid(a["ops"], a.get("dir"))
     except Exception:
         solid_now = None
     cands, notes, pk = R.propose(C, mfull, a["ops"], st, E, st["stats"], N_CAND, solid=solid_now)

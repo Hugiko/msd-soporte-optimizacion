@@ -334,3 +334,27 @@
 - **Modo formas puras** (`formas_puras` en `config.json`):
   - un corte nuevo no puede solapar a medias otro ni quedar a menos de 4 mm;
   - nueva regla **R18**: agrandar la misma forma (radio +1,5 mm o 3 mm más por extremo) si el material que se quitaría trabaja por debajo del 75 % del límite. Es el crecimiento de contorno de ESO; ANSYS confirma cada paso.
+
+## 2026-11-28 – Comparativa SimJEB, bucle del optimizador y recuperación de la iteración 77
+
+- **Comparativa con las soluciones publicadas** (`scripts/grafica_simjeb.py` → `figuras/comparativa_simjeb.png`, `estudio/comparativa_simjeb.csv`). De los 381 diseños calculados con nuestra carga:
+  - 16 cumplen;
+  - 281 no cumplen (ninguno solo por desplazamiento);
+  - 50 son incompatibles y 34 no se pudieron mallar.
+
+  Nuestra pieza es la 2.ª más ligera de las 17 que cumplen. La más ligera publicada es la n.º 237 (*block*, 1,975 kg, 183,5 MPa), con la base en arco.
+- **Fallo del optimizador (25/11 → 26/11).**
+  - La it. 78 (2,1263 kg) dio 215,1 MPa con malla fina y se volvió al último hito verificado, la it. 72.
+  - Al reconstruir la 72 dentro del mismo proceso salió una geometría distinta: 2,1262 kg en vez de 2,1439 kg de masa CAD, imposible de mallar. Se guardó en la caché `pieza_actual.step` con la etiqueta de la 72, y en cada reinicio se volvía a cargar.
+  - Resultado: 100 iteraciones (79-178) sin avanzar.
+  - En un proceso limpio la 72 se reconstruye bien, incluso después de construir la 77 y la 78. Lo más probable es que alguna reparación de OpenCascade modificara en memoria el 0.stp compartido.
+- **Arreglo:**
+  - `operaciones.original()` devuelve una copia nueva del 0.stp en cada llamada.
+  - `optimizer.current_solid()` valida la pieza actual con la masa CAD de su cálculo (`metrics.json`, tolerancia 0,2 %). Si no cuadra, descarta la caché, reconstruye y, si hace falta, usa el `geometria.step` del cálculo; si sigue sin cuadrar, se para en vez de entrar en bucle.
+  - Probado: detecta la caché mala (2,1262 frente a 2,1439 kg) y la reconstruye bien.
+- **Recuperación de la it. 77.**
+  - Al deshacer la 78 se perdieron también la 74 y la 77, aceptadas pero sin comprobar con malla fina (mejoraban menos de un 1 %).
+  - Reconstruida y comprobada aparte (`scripts/verificar_diseno.py`): malla normal 2,1556 kg y 193,7 MPa (idéntico a lo que calculó el optimizador); malla fina **209,4 MPa y 0,166 mm → cumple** (CS 1,027).
+  - Adoptada como mejor diseño (`scripts/adoptar_verificado.py`): hito 17 `historial/17_it077_2.156kg` con su proyecto Workbench (u = 0,162 mm).
+  - Se quitaron de los rechazos los dos cambios que contiene; el de la it. 78 sigue rechazado.
+- **Prompt del estudio exhaustivo** de la pieza final: `docs/PROMPT_ESTUDIO_PIEZA_FINAL.md`, actualizado a la it. 77.

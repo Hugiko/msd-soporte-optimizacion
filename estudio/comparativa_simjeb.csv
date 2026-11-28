@@ -1,6 +1,6 @@
 ﻿id;categoria;autor;veredicto;fidelidad;masa_kg;tension_MPa;cs;desp_mm
 original;;enunciado (0.stp);no_cumple;normal (37 800 N x 1,118);2.4234;238.4;0.902;0.1446
-nuestra (it. 72);formas puras;grupo 831_MSD_13_B;valido;normal (fina: 209.2 MPa);2.1614;196.7;1.093;0.1585
+nuestra (it. 77);formas puras;grupo 831_MSD_13_B;valido;normal (fina: 209.4 MPa);2.1556;193.7;1.110;0.1592
 237;block;Bol;valido;normal;1.9749;183.5;1.172;0.1397
 474;block;Kiran Kumar A;valido;normal;2.2358;197.3;1.090;0.1260
 475;block;Kiran Kumar A;valido;normal;2.2408;211.9;1.015;0.1303
