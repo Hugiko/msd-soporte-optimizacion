@@ -21,6 +21,23 @@ Tienes que:
    Más adelante tienes la lista completa.
 3. **Explicar con números** por qué se quitó material en cada sitio y por qué se añadió en otros. También qué se intentó y no funcionó, porque eso demuestra dónde está el camino de la carga.
 4. **Redactar** el estudio en español, con figuras y tablas numeradas, preparado para integrarse en el informe.
+   - Escribe **en nombre del grupo**, en primera persona del plural («hemos decidido», «el grupo exigió…»).
+   - No te menciones como autor en el cuerpo del texto. El uso de IA se declara **solo** en la sección «Declaración de uso de inteligencia artificial» (§7.1), con el enfoque que allí se indica.
+
+**El estudio tiene que ser, ante todo, TEÓRICO.** Es un trabajo de Mecánica de Sólidos Deformables: cada resultado de ANSYS se explica y, siempre que se pueda, se contrasta con la teoría y con cálculos a mano. Por ejemplo:
+- flexión y cortante (Navier, Collignon), momento de vuelco y reparto entre pernos;
+- tensiones principales y criterio de von Mises;
+- concentración de tensiones (Kirsch, Peterson);
+- teoría de orejetas;
+- principio de Saint-Venant y singularidades;
+- estructuras de mínimo peso (Michell);
+- termoelasticidad (dilatación, tensiones térmicas);
+- vibraciones (frecuencias propias, factor dinámico);
+- pandeo y fatiga si se tratan.
+
+Cada fórmula, con su fuente. Las decisiones de diseño (por qué un hueco aquí, un refuerzo allá) se explican **con mecánica**, no con cómo funciona el programa.
+
+**Todo lo informático va en un anexo corto** (1-2 páginas como mucho): Python, cadquery, gmsh, la automatización de ANSYS, cómo está programado el optimizador, nombres de scripts y carpetas. En el cuerpo del informe no aparecen nombres de scripts, archivos ni código.
 
 Trabaja en español. **No inventes datos, resultados ni referencias.** Cada número sale de un cálculo tuyo, de un archivo que te indico o de una fuente que cites. Si algo es una hipótesis tuya, dilo explícitamente.
 
@@ -405,18 +422,77 @@ Define y **justifica** un rango de temperaturas de servicio. Por ejemplo, de −
 1. **`estudio_final/ESTUDIO_PIEZA_FINAL.md`**, y su versión **.docx**, con esta estructura:
    1. Resumen ejecutivo (1 página: qué es la pieza, cuánto pesa, si cumple y con qué margen, y las 5 conclusiones clave).
    2. Objetivo y descripción del problema (datos de §1, incluida la nota de la carga).
-   3. Antecedentes: el original no cumple; estudio SimJEB y figura comparativa; método de optimización por reglas.
-   4. Modelo de EF: geometría, material, malla, condiciones de contorno, carga y métrica. Validación y convergencia.
-   5. Resultados del caso 2: mapas, reacciones, camino de la carga, material ocioso y cálculo a mano.
-   6. **Justificación de la geometría:** cada rasgo de la tabla de §2.3 con su porqué (historia y comprobación con el resultado final) y lo que se rechazó (§2.4).
-   7. Sensibilidad: apoyos realistas, exclusión de la métrica, malla.
-   8. Temperatura.
-   9. Dinámica.
-   10. Complementarios (pandeo, fatiga, otros casos, fabricación, SimJEB 237).
-   11. Conclusiones y propuestas de mejora (con números).
-   12. Bibliografía.
+   3. **Fundamentos teóricos:** la teoría que se usa después, con sus fuentes (ver §0). Breve, pero completa: es la base de todo el informe.
+   4. Antecedentes: el original no cumple (explicado con la teoría); estudio SimJEB y figura comparativa; método de diseño. El método se cuenta como **criterios mecánicos** (quitar material que no está en el camino de la carga, reforzar donde está el pico, verificar cada cambio), no como programa.
+   5. Modelo de EF: geometría, material, malla, condiciones de contorno, carga y métrica. Validación (con un caso de solución analítica) y convergencia.
+   6. Resultados del caso 2: mapas, reacciones, camino de la carga y material ocioso, **siempre comparados con el cálculo a mano**.
+   7. **Justificación de la geometría:** cada rasgo de la tabla de §2.3 con su porqué mecánico (historia y comprobación con el resultado final) y lo que se rechazó (§2.4).
+   8. Sensibilidad: apoyos realistas, exclusión de la métrica, malla.
+   9. Temperatura (termoelasticidad).
+   10. Dinámica.
+   11. Complementarios (pandeo, fatiga, otros casos, fabricación, SimJEB 237).
+   12. Conclusiones y propuestas de mejora (con números).
+   13. Declaración de uso de inteligencia artificial (§7.1).
+   14. Bibliografía.
+   15. **Anexo (corto, 1-2 páginas): herramientas de cálculo.** Cómo se automatizó el trabajo: Python (cadquery para la geometría, gmsh para la malla), lanzamiento de ANSYS MAPDL y Workbench, el programa de optimización por reglas (en un párrafo) y dónde están los archivos. **Es lo único del informe que habla de código.**
 2. Figuras numeradas en `estudio_final/figuras/` (PNG ≥ 150 ppp, leyendas con unidades y legibles).
 3. Tablas de datos (CSV) y scripts y modelos reproducibles.
 4. Una **lista de 8-10 preguntas probables de la defensa** con su respuesta corta y basada en los resultados.
 
-Antes de empezar los cálculos, presenta un **plan breve**: qué análisis harás, con qué herramienta y en qué orden. Después ejecútalo y ve informando de los resultados parciales.
+### 7.1 Declaración de uso de inteligencia artificial (obligatoria en el informe)
+
+El informe debe llevar una sección **«Declaración de uso de inteligencia artificial»**, justo antes de la bibliografía (o como anexo si el profesor lo pide así).
+
+**Enfoque:**
+- La IA se usó como **herramienta para generar algunos elementos, siempre bajo las directrices del grupo**: el grupo decía lo que quería y la herramienta lo implementaba.
+- **Nunca** debe dar a entender que la IA hizo el trabajo. Las decisiones, los criterios y la validación son del grupo.
+- Debe ser **veraz**: nombra lo que hizo la herramienta, sin exagerarlo ni ocultarlo. En la defensa pueden preguntar.
+
+**En el cuerpo del informe:**
+- Describe el programa de optimización como una herramienta implementada con asistencia de IA según las especificaciones del grupo, o simplemente como «el programa de optimización».
+- No atribuyas la programación a una persona concreta.
+
+**Texto base** (adáptalo, pero conserva el enfoque y que todo sea cierto):
+
+> **Declaración de uso de inteligencia artificial.** En este trabajo se ha utilizado un asistente de inteligencia artificial (Claude, de Anthropic) como herramienta de apoyo, siempre bajo la dirección del grupo. El grupo planteó el problema, fijó los objetivos y los criterios de diseño y tomó las decisiones; la herramienta se empleó para implementar y ejecutar lo que el grupo le indicaba.
+>
+> **Decisiones y criterios del grupo:**
+> - la interpretación del enunciado y la consulta al profesor sobre la carga de cálculo (42 258 N);
+> - el criterio de aceptación (coeficiente de seguridad ≥ 1, σ ≤ 215 MPa) y un límite propio de desplazamiento (0,25 mm);
+> - el objetivo de mínima masa;
+> - el método: estudiar primero las soluciones publicadas (SimJEB) con nuestras condiciones y modificar la pieza paso a paso con cambios justificados mecánicamente, descartando los que no mejoraban;
+> - la exigencia de simetría;
+> - la sustitución del vaciado irregular por formas geométricas puras para facilitar la fabricación;
+> - la revisión de los resultados intermedios, con observaciones que se incorporaron al proceso (un aligeramiento no simétrico, paredes finas entre huecos y zonas con posible material sobrante);
+> - la elección y verificación de la pieza final y las conclusiones.
+>
+> **Elementos generados con la herramienta, siguiendo esas directrices:**
+> - los scripts de geometría, mallado y automatización de ANSYS y el programa de optimización guiado por reglas;
+> - la ejecución de los cálculos;
+> - figuras y tablas;
+> - borradores de partes del texto.
+>
+> Todos los resultados proceden de cálculos con ANSYS reproducibles con los archivos del proyecto. El grupo ha revisado los resultados y el texto y asume la responsabilidad de su contenido.
+
+No añadas a esta lista decisiones que no aparezcan en este prompt o en `bitacora.md`. Si dudas de si algo lo decidió el grupo, déjalo fuera y avísalo en tu resumen.
+
+## 8. Antes de empezar: plan y aprobación
+
+**No lances ningún cálculo ni escribas el informe todavía.** Lee los archivos que necesites y presenta primero, en español:
+
+1. **Qué vas a hacer exactamente.** La lista de análisis y apartados, y para cada uno:
+   - la teoría que usarás;
+   - qué calcularás a mano;
+   - qué modelo de ANSYS montarás (tipo de análisis, malla, condiciones de contorno);
+   - qué figura o tabla saldrá.
+2. **Planificación de tareas:**
+   - las tareas en orden, con sus dependencias (por ejemplo, la convergencia antes que todo lo demás);
+   - cuáles son imprescindibles y cuáles complementarias;
+   - qué harás si una falla (por ejemplo, si el contacto de los tornillos no converge con la licencia de estudiante).
+3. **Tiempo estimado por tarea y total**, separando:
+   - el tiempo de cálculo de ANSYS (unos 1-2 min por cálculo con 100 000 nodos; un análisis con contacto o térmico acoplado, bastante más);
+   - el tiempo de preparación y redacción.
+
+   Indica también qué puntos de control tendrá el usuario para revisar resultados parciales.
+
+**Espera a que el usuario apruebe o corrija el plan.** Después ejecútalo en el orden acordado e informa al terminar cada tarea: qué ha salido, si cumple lo esperado y cuánto falta.
